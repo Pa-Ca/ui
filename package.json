@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Componentes para interfaces del producto Pa'Ca",
-  "main": "src/index.js",
+  "main": "src/index.tsx",
   "scripts": {
     "build": "npx rollup -c rollup.config.js && npm pack",
     "storybook": "start-storybook -p 6006",
