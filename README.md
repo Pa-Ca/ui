@@ -37,8 +37,16 @@ Este comando agrega a paca-ui como dependencia del proyecto en el package.json
 Utilizando el elemento Button por defecto de Storybook
 ```
 ...
-import { Button } from 'paca-ui/'
+import { Button } from 'paca-ui'
 ...
 <Button label="Button Here" primary/>
 ...
 ```
+
+***
+
+### Referencias
+
+* [Rollup tutorial](https://kaizenpanda.com/posts/2021-02-18-rollup/)
+* [Rollup & React](https://stackoverflow.com/questions/59668493/how-to-create-a-privately-shared-component-library-which-can-be-used-across-mult)
+* [Rollup Imports](https://stackoverflow.com/questions/53722817/using-rollup-for-a-react-component-library)
