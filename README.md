@@ -28,7 +28,7 @@ Tiene la forma:
 ```
 $ git clone git@github.com:Pa-Ca/ui.git
 $ cd <external-project-folder>
-$ npm -i ../ui/[package-name]-[package-version].tgz
+$ npm i ../ui/[package-name]-[package-version].tgz
 ```
 
 Este comando agrega a paca-ui como dependencia del proyecto en el package.json
