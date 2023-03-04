@@ -1,32 +1,57 @@
-@import "../../assets/scss/normalize.scss";
-
-.storybook-button {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
+.button {
   border: 0;
-  border-radius: 3em;
+  border-radius: 5px;
   cursor: pointer;
   display: inline-block;
   line-height: 1;
 }
-.storybook-button--primary {
+
+// Type
+.button--primary {
   color: white;
-  background-color: #1ea7fd;
 }
-.storybook-button--secondary {
-  color: #333;
+.button--secondary {
+  color: black;
   background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  border: 1px solid #EF7A08;
 }
-.storybook-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
+
+// Sizes
+.button--extra-small {
+  padding: 6.5px 10px;
 }
-.storybook-button--medium {
-  font-size: 14px;
-  padding: 11px 20px;
+.button--small {
+  padding: 6.5px 12px;
 }
-.storybook-button--large {
-  font-size: 16px;
-  padding: 12px 24px;
+.button--box {
+  padding: 15px;
+}
+.button--medium {
+  padding: 13px 16px;
+}
+.button--large {
+  padding: 17px;
+}
+.button--extra-large {
+  padding: 17px 24px;
+}
+.button--full-width {
+  width: 100%;
+}
+
+// States
+.button--state-normal {
+  background-color: #EF7A08;
+}
+.button--state-active {
+  background-color: #F3871E;
+}
+.button--state-selected {
+  background-color: #EF7A08;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+.button--state-inactive {
+  background-color: rgba(239, 122, 8, 0.4);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: default;
 }
