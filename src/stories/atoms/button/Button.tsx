@@ -29,7 +29,7 @@ interface ButtonProps {
   /**
    * Button contents
    */
-  label: string;
+  child: JSX.Element;
   /**
    * Optional click handler
    */
@@ -44,9 +44,9 @@ export const Button = ({
   size = 'medium',
   state = 'normal',
   fullWidth = false,
+  child = (<span>Button</span>),
   backgroundColor,
   borderColor,
-  label,
   ...props
 }: ButtonProps) => {
   return (
@@ -62,7 +62,7 @@ export const Button = ({
       style={{ backgroundColor, borderColor }}
       {...props}
     >
-      {label}
+      {child}
     </button>
   );
 };
