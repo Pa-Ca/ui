@@ -25,21 +25,21 @@ interface TextProps {
   /**
    * Text content
    */
-  content?: string;
+  children?: React.ReactNode;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Text = ({
+export function Text({
   type = 'p',
   bold = false,
   italic = false, 
   uppercase = false,
   color,
-  content,
+  children,
   ...props
-}: TextProps) => {
+}: TextProps): JSX.Element {
   return (
     <span
       className={[
@@ -52,7 +52,7 @@ export const Text = ({
       style={{ color }}
       {...props}
     >
-      {content}
+      {children}
     </span>
   );
 };
