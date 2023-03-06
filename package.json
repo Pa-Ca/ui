@@ -39,6 +39,7 @@
     "css-loader": "^5.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-simple-star-rating": "^5.1.7",
     "rollup": "^3.9.1",
     "sass": "^1.58.3",
     "sass-loader": "^10.1.1",
