@@ -27,13 +27,13 @@ interface ButtonProps {
    */
   fullWidth?: boolean;
   /**
-   * Button contents
-   */
-  child: JSX.Element;
-  /**
    * Optional click handler
-   */
-  onClick?: () => void;
+  */
+ onClick?: () => void;
+ /**
+  * Text content
+  */
+ children?: React.ReactNode;
 }
 
 /**
@@ -44,11 +44,11 @@ export const Button = ({
   size = 'medium',
   state = 'normal',
   fullWidth = false,
-  child = (<span>Button</span>),
   backgroundColor,
   borderColor,
+  children,
   ...props
-}: ButtonProps) => {
+}: ButtonProps): JSX.Element => {
   return (
     <button
       type="button"
@@ -62,7 +62,7 @@ export const Button = ({
       style={{ backgroundColor, borderColor }}
       {...props}
     >
-      {child}
+      {children}
     </button>
   );
 };

@@ -47,9 +47,9 @@ interface BoxProps {
    */
   borderBottomLeftRadius?: string;
   /**
-   * Button contents
+   * Button content
    */
-  child: JSX.Element;
+  children?: React.ReactNode;
 }
 
 /**
@@ -67,9 +67,9 @@ export const Box = ({
   borderTopRightRadius,
   borderBottomRightRadius,
   borderBottomLeftRadius,
-  child=<span>This is a Box</span>,
+  children,
   ...props
-}: BoxProps) => {
+}: BoxProps): JSX.Element => {
   return (
     <div
       className={[
@@ -90,7 +90,7 @@ export const Box = ({
       }}
       {...props}
     >
-      {child}
+      {children}
     </div>
   );
 };
