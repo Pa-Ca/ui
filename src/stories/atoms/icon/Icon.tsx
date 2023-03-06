@@ -26,6 +26,8 @@ import checkCircle from '@iconify/icons-material-symbols/check-circle';
 import restaurantIcon from '@iconify/icons-material-symbols/restaurant';
 import baselineLocationOn from '@iconify/icons-ic/baseline-location-on';
 import questionMark from '@iconify/icons-material-symbols/question-mark';
+import keyboardArrowUp from '@iconify/icons-material-symbols/keyboard-arrow-up';
+import keyboardArrowDown from '@iconify/icons-material-symbols/keyboard-arrow-down';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 
 interface IconProps {
@@ -36,7 +38,7 @@ interface IconProps {
   'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
   'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
   'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food';
+  'fast-food' | 'down' | 'up';
   /**
    * Icon size
    */
@@ -211,6 +213,18 @@ export const Icon = ({
     case 'fast-food':
       return <Iconify
         icon={fastFood}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'down':
+      return <Iconify
+        icon={keyboardArrowDown}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'up':
+      return <Iconify
+        icon={keyboardArrowUp}
         style={{ fontSize: size }}
         color={color}
       />
