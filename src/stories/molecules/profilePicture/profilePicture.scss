@@ -1,0 +1,14 @@
+.profile-picture--container {
+  position: relative;
+}
+.profile-picture--icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 27.5%;
+  height: 27.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+}

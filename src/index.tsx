@@ -4,4 +4,6 @@ export { Icon } from './stories/atoms/icon/Icon';
 export { Range } from './stories/atoms/range/Range';
 export { Button } from './stories/atoms/button/Button';
 export { InputText } from './stories/molecules/inputText/InputText';
+export { InputDate } from './stories/molecules/inputDate/inputDate';
+export { BranchCard } from './stories/molecules/branchCard/branchCard';
 export { InputSelect } from './stories/molecules/inputSelect/InputSelect';

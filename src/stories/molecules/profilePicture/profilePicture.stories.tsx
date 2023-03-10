@@ -1,34 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { BranchCard } from './branchCard';
+import { ProfilePicture } from './profilePicture';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/BranchCard',
-  component: BranchCard,
+  title: 'Example/ProfilePicture',
+  component: ProfilePicture,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
-    onClick: {
-      table: {
-        disable: true
-      }
-    },
-    onFirstReserveClick: {
-      table: {
-        disable: true
-      }
-    },
-    onSecondReserveClick: {
-      table: {
-        disable: true
-      }
-    },
   },
-} as ComponentMeta<typeof BranchCard>;
+} as ComponentMeta<typeof ProfilePicture>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchCard> = (args: any) => {
-  return <BranchCard {...args} />;
+const Template: ComponentStory<typeof ProfilePicture> = (args: any) => {
+  return <ProfilePicture {...args} />;
 }
 
 export const Default = Template.bind({});

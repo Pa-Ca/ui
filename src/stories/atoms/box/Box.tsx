@@ -66,6 +66,10 @@ interface BoxProps {
    * Button content
    */
   children?: React.ReactNode;
+  /**
+   * Other props
+   */
+  props?: object;
 }
 
 /**
@@ -115,7 +119,7 @@ export const Box = ({
         ...style
       }}
     onClick={onClick}
-      {...props}
+    {...props}
     >
       {children}
     </div>

@@ -26,8 +26,8 @@ import checkCircle from '@iconify/icons-material-symbols/check-circle';
 import restaurantIcon from '@iconify/icons-material-symbols/restaurant';
 import baselineLocationOn from '@iconify/icons-ic/baseline-location-on';
 import questionMark from '@iconify/icons-material-symbols/question-mark';
-import keyboardArrowUp from '@iconify/icons-material-symbols/keyboard-arrow-up';
-import keyboardArrowDown from '@iconify/icons-material-symbols/keyboard-arrow-down';
+import roundKeyboardArrowUp from '@iconify/icons-ic/round-keyboard-arrow-up';
+import roundKeyboardArrowDown from '@iconify/icons-ic/round-keyboard-arrow-down';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 
 interface IconProps {
@@ -218,13 +218,13 @@ export const Icon = ({
       />
     case 'down':
       return <Iconify
-        icon={keyboardArrowDown}
+        icon={roundKeyboardArrowDown}
         style={{ fontSize: size }}
         color={color}
       />
     case 'up':
       return <Iconify
-        icon={keyboardArrowUp}
+        icon={roundKeyboardArrowUp}
         style={{ fontSize: size }}
         color={color}
       />
