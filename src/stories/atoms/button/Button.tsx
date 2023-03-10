@@ -28,12 +28,12 @@ interface ButtonProps {
   fullWidth?: boolean;
   /**
    * Optional click handler
-  */
- onClick?: () => void;
- /**
-  * Text content
-  */
- children?: React.ReactNode;
+   */
+  onClick?: () => void;
+  /**
+   * Text content
+   */
+  children?: React.ReactNode;
 }
 
 /**

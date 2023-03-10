@@ -23,6 +23,14 @@ interface TextProps {
    */
   uppercase?: boolean;
   /**
+   * Other Box styles
+   */
+  style?: object
+  /**
+   * Text className
+   */
+  className?: string
+  /**
    * Text content
    */
   children?: React.ReactNode;
@@ -37,6 +45,8 @@ export function Text({
   italic = false, 
   uppercase = false,
   color,
+  style,
+  className,
   children,
   ...props
 }: TextProps): JSX.Element {
@@ -48,8 +58,9 @@ export function Text({
         bold ? 'text--bold' : '',
         italic ? 'text--italic' : '',
         uppercase ? 'text--uppercase' : '',
+        className
       ].join(' ')}
-      style={{ color }}
+      style={{ color, ...style }}
       {...props}
     >
       {children}

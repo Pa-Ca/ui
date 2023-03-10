@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { MouseEventHandler } from 'react';
 import './box.scss';
 
 interface BoxProps {
@@ -23,7 +23,7 @@ interface BoxProps {
   */
   backgroundColor?: string;
   /**
-   * Box background image from a webpage
+   * Box background image from url
    */
   backgroundImage?: string;
   /**
@@ -51,6 +51,18 @@ interface BoxProps {
    */
   borderBottomLeftRadius?: string;
   /**
+   * Box on Click function
+   */
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  /**
+   * Other Box styles
+   */
+  style?: object;
+  /**
+   * Box Classname
+   */
+  className?: string;
+  /**
    * Button content
    */
   children?: React.ReactNode;
@@ -72,16 +84,20 @@ export const Box = ({
   borderTopRightRadius,
   borderBottomRightRadius,
   borderBottomLeftRadius,
+  onClick,
+  style,
+  className,
   children,
   ...props
 }: BoxProps): JSX.Element => {
-
+  
   return (
     <div
       className={[
         'box',
         strongShadow ? 'box--strong-shadow' : '',
         weakShadow ? 'box--weak-shadow' : '',
+        className
       ].join(' ')}
       style={{
         backgroundColor, 
@@ -89,14 +105,16 @@ export const Box = ({
         width, 
         height, 
         borderRadius, 
-        borderTopLeftRadius,
-        borderTopRightRadius,
-        borderBottomRightRadius,
-        borderBottomLeftRadius,
+        borderTopLeftRadius: borderTopLeftRadius ?? borderRadius,
+        borderTopRightRadius: borderTopRightRadius ?? borderRadius,
+        borderBottomRightRadius: borderBottomRightRadius ?? borderRadius,
+        borderBottomLeftRadius: borderBottomLeftRadius ?? borderRadius,
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        ...style
       }}
+    onClick={onClick}
       {...props}
     >
       {children}
