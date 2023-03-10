@@ -94,7 +94,8 @@ export const Box = ({
         borderBottomRightRadius,
         borderBottomLeftRadius,
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: '100% 100%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       }}
       {...props}
     >
