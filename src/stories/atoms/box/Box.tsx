@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './box.scss';
 
 interface BoxProps {
@@ -21,7 +21,11 @@ interface BoxProps {
   /**
    * Box background color
   */
- backgroundColor?: string;
+  backgroundColor?: string;
+  /**
+   * Box background image from a webpage
+   */
+  backgroundImage?: string;
   /**
     * Box padding
   */
@@ -61,6 +65,7 @@ export const Box = ({
   width,
   height,
   backgroundColor,
+  backgroundImage,
   padding,
   borderRadius,
   borderTopLeftRadius,
@@ -70,6 +75,7 @@ export const Box = ({
   children,
   ...props
 }: BoxProps): JSX.Element => {
+
   return (
     <div
       className={[
@@ -86,7 +92,9 @@ export const Box = ({
         borderTopLeftRadius,
         borderTopRightRadius,
         borderBottomRightRadius,
-        borderBottomLeftRadius
+        borderBottomLeftRadius,
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: '100% 100%',
       }}
       {...props}
     >
