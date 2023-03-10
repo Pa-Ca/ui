@@ -9,12 +9,17 @@ export default {
   component: Button,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: {
-      control: 'color'
+    onClick: {
+      table: {
+        disable: true
+      }
     },
-    values: {
-      child: { disable: true }
+    children: {
+      table: {
+        disable: true
+      }
     },
+    
   },
 } as ComponentMeta<typeof Button>;
 

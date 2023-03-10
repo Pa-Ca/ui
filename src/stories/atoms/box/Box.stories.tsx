@@ -8,7 +8,13 @@ export default {
   title: 'Example/Box',
   component: Box,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: { },
+  argTypes: { 
+    children: {
+      table: {
+        disable: true
+      }
+    },
+  },
 } as ComponentMeta<typeof Box>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

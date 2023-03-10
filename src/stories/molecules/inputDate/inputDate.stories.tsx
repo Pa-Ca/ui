@@ -8,6 +8,16 @@ export default {
   component: InputDate,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
+    date: {
+      table: {
+        disable: true
+      }
+    },
+    setDate: {
+      table: {
+        disable: true
+      }
+    },
   },
 } as ComponentMeta<typeof InputDate>;
 
