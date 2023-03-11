@@ -19,7 +19,7 @@ interface ProfilePictureProps {
   /**
    * Icon type
    */
-  icon?: 'pencil' | 'down';
+  icon?: 'pencil' | 'down' | 'up';
   /**
    * Main color
    */

@@ -27,8 +27,11 @@ import restaurantIcon from '@iconify/icons-material-symbols/restaurant';
 import baselineLocationOn from '@iconify/icons-ic/baseline-location-on';
 import questionMark from '@iconify/icons-material-symbols/question-mark';
 import roundKeyboardArrowUp from '@iconify/icons-ic/round-keyboard-arrow-up';
+import tableRestaurant from '@iconify/icons-material-symbols/table-restaurant';
 import roundKeyboardArrowDown from '@iconify/icons-ic/round-keyboard-arrow-down';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
+
+const Color = require('color');
 
 interface IconProps {
   /**
@@ -38,7 +41,7 @@ interface IconProps {
   'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
   'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
   'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food' | 'down' | 'up';
+  'fast-food' | 'down' | 'up' | 'table';
   /**
    * Icon size
    */
@@ -61,8 +64,12 @@ export const Icon = ({
 }: IconProps) => {
   switch (icon) {
     case 'pa-ca':
+      const paca_color = Color(color).hex() === Color('white').hex() ?
+        '/images/pa-ca-icon-white.png' :
+        '/images/pa-ca-icon.png';
+      
       return <img
-        src='/images/pa-ca-icon.png'
+        src={paca_color}
         width={size}
         height={size}
         {...props}
@@ -225,6 +232,12 @@ export const Icon = ({
     case 'up':
       return <Iconify
         icon={roundKeyboardArrowUp}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'table':
+      return <Iconify
+        icon={tableRestaurant}
         style={{ fontSize: size }}
         color={color}
       />

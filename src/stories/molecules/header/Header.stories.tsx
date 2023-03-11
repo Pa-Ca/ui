@@ -8,7 +8,7 @@ export default {
   component: Header,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
-    onFavoriteClick: {
+    onLeftSectionClick: {
       table: {
         disable: true
       }
@@ -23,7 +23,7 @@ export default {
         disable: true
       }
     },
-    onReserveClick: {
+    onRightSectionClick: {
       table: {
         disable: true
       }
