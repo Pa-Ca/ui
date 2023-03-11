@@ -28,6 +28,16 @@ export default {
         disable: true
       }
     },
+    onLoginClick: {
+      table: {
+        disable: true
+      }
+    },
+    onRegisterClick: {
+      table: {
+        disable: true
+      }
+    },
   },
 } as ComponentMeta<typeof Header>;
 

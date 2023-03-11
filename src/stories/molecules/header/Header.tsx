@@ -138,7 +138,7 @@ export const Header = ({
             <Text type='h6' className='header--text' color={logoColor}> Login </Text>
           </Box>
           <Box className='header--zone header--profile'>
-            <Button primary size='large' onClick={onRegisterClick} backgroundColor={dark ? 'white' : color}>
+            <Button primary  onClick={onRegisterClick} backgroundColor={dark ? 'white' : color}>
               <Text type='h6' style={{ fontWeight: '600' }} color={dark ? 'black' : 'white'}>
                 Regístrate
               </Text>
