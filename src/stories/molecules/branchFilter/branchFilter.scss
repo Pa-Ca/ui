@@ -1,0 +1,40 @@
+.branch-filter--container {
+  position: relative;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  min-width: 1050px;
+  min-height: 190px;
+}
+.branch-filter--filter-zone {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+.branch-filter--filter-date {
+  flex: 1.5; 
+  margin-left: 24px; 
+  margin-right: 24px;
+}
+.branch-filter--filter-hour {
+  flex: 1; 
+  margin-right: 24px;
+}
+.branch-filter--filter-persons {
+  flex: 1; 
+  margin-right: 24px;
+}
+.branch-filter--filter-search {
+  flex: 3.5; 
+  margin-right: 24px;
+}
+.branch-filter--button-zone {
+  position: absolute;
+  bottom: 32px;
+  right: 24px;
+}
+.branch-filter--button-text {
+  margin-left: 5px;
+}

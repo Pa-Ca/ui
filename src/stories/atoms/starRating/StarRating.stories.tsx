@@ -5,7 +5,7 @@ import { StarRating } from './StarRating';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/StarRating',
+  title: 'Design System/Atoms/StartRating',
   component: StarRating,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 

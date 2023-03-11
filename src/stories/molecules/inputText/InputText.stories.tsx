@@ -5,7 +5,7 @@ import { InputText } from './InputText';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/InputText',
+  title: 'Design System/Molecules/InputText',
   component: InputText,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 

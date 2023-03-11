@@ -96,14 +96,14 @@ export const InputSelect = ({
   const iconJSX = useMemo(() => {
     if (view) {
       return (
-        <view className="text-input--icon">
+        <view className="text-input--icon input-select--icon">
           <Icon icon='up' size='24' />
         </view>
       );
     }
     else {
       return (
-        <view className="text-input--icon">
+        <view className="text-input--icon input-select--icon">
           <Icon icon='down' size='24' />
         </view>
       );
@@ -125,47 +125,47 @@ export const InputSelect = ({
 
         {
           view ?
-          (
-            <div className='input-select--menu' style={{ width: `${containerWidth}px` }}>
-              {
-                options.map((option, index) => {
-                  // El background de los impares sera distinto de los pares 
-                  // para diferenciarlos
-                  const backgroundColor = index % 2 === 0 ? '#F1F1F1' : 'white';
-                  // La primera y ultima opcion deben tener bordes en la zona
-                  // superior e inferior respectivamente para adaptarse al 
-                  // menu
-                  const borderTopLeftRadius = index === 0 ? 4 : 0;
-                  const borderTopRightRadius = borderTopLeftRadius;
-                  const borderBottomLeftRadius = index === options.length - 1 ? 4 : 0;
-                  const borderBottomRightRadius = borderBottomLeftRadius;
-                  // Estilo de los bordes de la opcion
-                  const optionStyle = {
-                    borderTopLeftRadius,
-                    borderTopRightRadius,
-                    borderBottomLeftRadius,
-                    borderBottomRightRadius,
-                    height: `${containerHeight}px`,
-                    width: `${containerWidth}px`,
-                  }
+            (
+              <div className='input-select--menu' style={{ width: `${containerWidth}px` }}>
+                {
+                  options.map((option, index) => {
+                    // El background de los impares sera distinto de los pares 
+                    // para diferenciarlos
+                    const backgroundColor = index % 2 === 0 ? '#F1F1F1' : 'white';
+                    // La primera y ultima opcion deben tener bordes en la zona
+                    // superior e inferior respectivamente para adaptarse al 
+                    // menu
+                    const borderTopLeftRadius = index === 0 ? 4 : 0;
+                    const borderTopRightRadius = borderTopLeftRadius;
+                    const borderBottomLeftRadius = index === options.length - 1 ? 4 : 0;
+                    const borderBottomRightRadius = borderBottomLeftRadius;
+                    // Estilo de los bordes de la opcion
+                    const optionStyle = {
+                      borderTopLeftRadius,
+                      borderTopRightRadius,
+                      borderBottomLeftRadius,
+                      borderBottomRightRadius,
+                      height: `${containerHeight}px`,
+                      width: `${containerWidth}px`,
+                    }
 
-                  return (
-                  <view style={{ ...optionStyle }}>
-                    <button 
-                      className='input-select--option-button' 
-                      style={{ backgroundColor, ...optionStyle }}
-                      onClick={() => selectOption(option)}
-                    >
-                      <Text type='h6'>
-                        &nbsp;{option.name}&nbsp;
-                      </Text>
-                    </button>
-                  </view>
-                )})
-              }
-            </div>
-          ) :
-          null
+                    return (
+                    <view style={{ ...optionStyle }}>
+                      <button 
+                        className='input-select--option-button' 
+                        style={{ backgroundColor, ...optionStyle }}
+                        onClick={() => selectOption(option)}
+                      >
+                        <Text type='h6'>
+                          &nbsp;{option.name}&nbsp;
+                        </Text>
+                      </button>
+                    </view>
+                  )})
+                }
+              </div>
+            ) :
+            null
         }
       </div>
 

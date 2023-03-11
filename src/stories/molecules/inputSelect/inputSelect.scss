@@ -5,6 +5,9 @@
   width: 100%;
   top: calc(100% + 5px);
   left: 0;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   border-radius: 4px;
   border: 1px solid #79747e;
@@ -21,4 +24,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.input-select--icon {
+  width: 25px !important;
 }

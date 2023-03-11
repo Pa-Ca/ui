@@ -13,7 +13,7 @@ interface InputDateProps {
   /**
    * Function to select date
    */
-  setDate: (date: Date | null, event: SyntheticEvent<any, Event> | undefined) => void;
+  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
   /**
    * Label to be displayed at the top of the input
    */

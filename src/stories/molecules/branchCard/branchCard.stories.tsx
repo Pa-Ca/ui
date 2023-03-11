@@ -4,7 +4,7 @@ import { BranchCard } from './branchCard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/BranchCard',
+  title: 'Design System/Molecules/BranchCard',
   component: BranchCard,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 

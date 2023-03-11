@@ -17,7 +17,7 @@ interface InputTextProps {
   /**
    * Input type
    */
-  type?: 'text' | 'password';
+  type?: 'text' | 'number' | 'password';
   /**
    * Label to be displayed at the top of the input
    */

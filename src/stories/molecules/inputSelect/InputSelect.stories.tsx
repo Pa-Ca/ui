@@ -4,7 +4,7 @@ import { InputSelect, OptionObject } from './InputSelect';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/InputSelect',
+  title: 'Design System/Molecules/InputSelect',
   component: InputSelect,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 

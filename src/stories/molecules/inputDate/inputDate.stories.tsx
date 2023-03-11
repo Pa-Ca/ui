@@ -4,7 +4,7 @@ import { InputDate } from './inputDate';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/InputDate',
+  title: 'Design System/Molecules/InputDate',
   component: InputDate,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
