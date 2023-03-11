@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useMemo, MouseEventHandler } from 'react';
 import './profilePicture.scss'
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
@@ -24,6 +24,10 @@ interface ProfilePictureProps {
    * Main color
    */
   color?: string;
+  /**
+   * On click in profile
+   */
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 /**
@@ -35,6 +39,7 @@ export const ProfilePicture = ({
   border,
   icon,
   color,
+  onClick,
   ...props
 }: ProfilePictureProps) => {
   // useRef allows us to "store" the div in a constant, 
@@ -82,6 +87,7 @@ export const ProfilePicture = ({
       height={size}
       style={{ border: `${border} solid ${color}` }}
       className='profile-picture--container'
+      onClick={onClick}
     >
       <div
         className='profile-picture--icon'

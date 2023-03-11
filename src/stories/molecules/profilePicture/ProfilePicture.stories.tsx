@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProfilePicture } from './profilePicture';
+import { ProfilePicture } from './ProfilePicture';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -8,6 +8,11 @@ export default {
   component: ProfilePicture,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
+    onClick: {
+      table: {
+        disable: true
+      }
+    },
   },
 } as ComponentMeta<typeof ProfilePicture>;
 
@@ -19,4 +24,9 @@ const Template: ComponentStory<typeof ProfilePicture> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  picture: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg',
+  size: '200px',
+  border: '5px',
+  icon: 'down',
+  color: '#EF7A08'
 };

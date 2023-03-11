@@ -1,0 +1,66 @@
+.highlight-review--container {
+  background-color: transparent;
+  margin-right: 26px;
+  margin-bottom: 26px;
+}
+.highlight-review--card {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  border-radius: 10px;
+  min-width: 377px;
+  min-height: 534px;
+  background-color: white;
+}
+.highlight-review--title-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 48px;
+}
+.highlight-review--description-zone {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 12px;
+}
+.highlight-review--description {
+  opacity: 0.5;
+}
+.highlight-review--view-more-zone {
+  display: flex;
+  justify-content: flex-end;
+}
+.highlight-review--rating-zone {
+  margin-bottom: 20px;
+}
+.highlight-review--name-zone {
+  margin-bottom: 4px;
+}
+.highlight-review--person-zone {
+  margin-bottom: 12px;
+}
+.highlight-review--person {
+  opacity: 0.5;
+}
+.highlight-review--google-zone {
+  margin-bottom: 40px;
+}
+.highlight-review--google {
+  opacity: 0.4;
+  margin-left: 8px;
+}
+.highlight-review--img {
+  min-height: 200px;
+  flex: 1;
+}
+.highlight-review--shadow {
+  position: absolute;
+  top: 52px;
+  left: 52px;
+  z-index: -1;
+  border-radius: 10px;
+}

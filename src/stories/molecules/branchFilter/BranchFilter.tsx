@@ -1,11 +1,11 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent } from 'react';
 import './branchFilter.scss'
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
 import { InputText } from '../inputText/InputText';
-import { InputDate } from '../inputDate/inputDate';
+import { InputDate } from '../inputDate/InputDate';
 import { InputSelect, OptionObject } from '../inputSelect/InputSelect';
 
 interface BranchFilterProps {

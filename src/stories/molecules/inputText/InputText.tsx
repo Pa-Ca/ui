@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, KeyboardEvent } from 'react';
 import './inputText.scss';
 import '../../atoms/text/text.scss';
 import { Text } from '../../atoms/text/Text';
@@ -66,13 +66,13 @@ export const InputText = ({
     switch (icon) {
       case 'eye':
         return (
-          <button className="text-input--icon" onClick={changeType}>
+          <button className='text-input--icon' onClick={changeType}>
             <Icon icon={icon} size='24' />
           </button>
         );
       case 'eye-slash':
         return (
-          <button className="text-input--icon" onClick={changeType}>
+          <button className='text-input--icon' onClick={changeType}>
             <Icon icon={icon} size='24' />
           </button>
         );
@@ -80,13 +80,14 @@ export const InputText = ({
   }, [icon])
 
   return (
-    <div className="input-text--container" style={{ width, height }}>
-      <div className="input-text--content">
+    <div className='input-text--container' style={{ width, height }}>
+      <div className='input-text--content'>
         <input
           type={currentType}
           value={value}
           onChange={changeValue}
-          className="input-text--input text text--h6"
+          className='input-text--input text text--h6'
+          
         />
         <div className='input-text--label'>
           <Text type='h6'>

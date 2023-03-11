@@ -35,4 +35,8 @@ const Template: ComponentStory<typeof Range> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  min: 5,
+  max: 100,
+  minMark: '$5',
+  maxMark: '+$100',
 };

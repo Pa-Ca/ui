@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { BranchCard } from './branchCard';
+import { BranchCard } from './BranchCard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -34,4 +34,17 @@ const Template: ComponentStory<typeof BranchCard> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  name: 'Restaurant Name',
+  backgroundImage: 'https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg',
+  score: 3.7,
+  reviews: 42,
+  discount: true,
+  amenity: 'Italian',
+  location: 'Las Mercedes',
+  firstReserve: '8:00 pm',
+  secondReserve: '9:00 pm',
+  priceScore: 3,
+  width: '0px',
+  height: '0px',
+  color: '#EF7A08',
 };

@@ -18,4 +18,6 @@ const Template: ComponentStory<typeof Icon> = (args: any) => <Icon {...args} />;
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  icon: 'pa-ca',
+  size: '200px',
 };
