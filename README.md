@@ -7,10 +7,32 @@ $ npm install
 $ echo 'TARGET_ENV=production' > .env
 ```
 
+Si ocurre el error :
+
+```
+code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR!
+npm ERR! While resolving: rollup-plugin-terser@7.0.2
+npm ERR! Found: rollup@3.9.1
+...
+```
+
+Correr los siguientes comandos:
+
+```
+$ npm uninstall —legacy-peer-deps rollup-plugin-terser
+$ npm i @rollup/plugin-terser --save-dev  --legacy-peer-deps
+```
+
+
 ## Storybook
 ```
 $ npm run storybook
 ```
+
+
+
 
 Ejecuta Storybook en el navegador
 
