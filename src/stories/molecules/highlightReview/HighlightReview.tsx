@@ -1,8 +1,9 @@
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import React, { MouseEventHandler } from 'react';
 import './highlightReview.scss'
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Icon } from '../../atoms/icon/Icon';
+import useResizeObserver from '../../hooks/useResizeObserver';
 import { StarRating } from '../../atoms/starRating/StarRating';
 
 interface HighlightReviewProps {
@@ -69,49 +70,17 @@ export const HighlightReview = ({
   shadowColor,
   ...props
 }: HighlightReviewProps) => {
-  // useRef allows us to "store" the div in a constant, 
-  // and to access it via observedDiv.current
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
-
-  const handleContainerResized = () => {
-    if(containerRef.current!.offsetWidth !== containerWidth) {
-      setContainerWidth(containerRef.current!.offsetWidth - 2); 
-    }
-    if(containerRef.current!.offsetHeight !== containerHeight) {
-      setContainerHeight(containerRef.current!.offsetHeight);
-    }
-  }
-  
-  // we also instantiate the resizeObserver and we pass
-  // the event handler to the constructor
-  const resizeObserver = new ResizeObserver(handleContainerResized);
-
-  useEffect(() => {
-    // the code in useEffect will be executed when the component
-    // has mounted, so we are certain containerRef.current will contain
-    // the div we want to observe
-    resizeObserver.observe(containerRef.current!);
-
-
-    // if useEffect returns a function, it is called right before the
-    // component unmounts, so it is the right place to stop observing
-    // the div
-    return function cleanup() {
-      resizeObserver.disconnect();
-    }
-  })
+  const observer = useResizeObserver<HTMLDivElement>();
 
   return (
     <Box className='highlight-review--container'>
       <Box
         className='highlight-review--shadow'
-        style={{ width: containerWidth, height: containerHeight }}
+        style={{ width: observer.width, height: observer.height }}
         backgroundColor={shadowColor}
       />
       
-      <div className='highlight-review--card' style={{ width, height }} ref={containerRef}>
+      <Box className='highlight-review--card' style={{ width, height }} innerRef={observer.ref}>
         <Box className='highlight-review--title-zone'>
           <Text type='h5' bold color='#112211'>
             “{title}”
@@ -158,7 +127,7 @@ export const HighlightReview = ({
           borderRadius='8px'
           className='highlight-review--img'
         />
-      </div>
+      </Box>
     </Box>
   );
 };

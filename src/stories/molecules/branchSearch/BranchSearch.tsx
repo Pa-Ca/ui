@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import './branchFilter.scss'
+import './branchSearch.scss';
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
@@ -8,7 +8,7 @@ import { InputText } from '../inputText/InputText';
 import { InputDate } from '../inputDate/InputDate';
 import { InputSelect, OptionObject } from '../inputSelect/InputSelect';
 
-interface BranchFilterProps {
+interface BranchSearchProps {
   /**
    * Current date
    */
@@ -62,7 +62,7 @@ interface BranchFilterProps {
 /**
  * Primary UI component for user interaction
  */
-export const BranchFilter = ({
+export const BranchSearch = ({
   date,
   setDate,
   hour, 
@@ -76,33 +76,33 @@ export const BranchFilter = ({
   height,
   color,
   ...props
-}: BranchFilterProps) => {
+}: BranchSearchProps) => {
   return (
-    <Box className='branch-filter--container' style={{ width, height }}>
-      {/* Filters */}
-      <Box className='branch-filter--filter-zone'>
-        <Box className='branch-filter--filter-date'>
+    <Box className='branch-search--container' style={{ width, height }}>
+      {/* Searchs */}
+      <Box className='branch-search--search-zone'>
+        <Box className='branch-search--search-date'>
           <InputDate date={date} setDate={setDate} />
         </Box>
 
-        <Box className='branch-filter--filter-hour'>
+        <Box className='branch-search--search-hour'>
           <InputSelect option={hour} setOption={setHour} options={validHours} label='Hora'/>
         </Box>
 
-        <Box className='branch-filter--filter-persons'>
+        <Box className='branch-search--search-persons'>
           <InputText value={persons} setValue={setPersons} type='number' label='Personas' />
         </Box>
 
-        <Box className='branch-filter--filter-search'>
+        <Box className='branch-search--search-text'>
           <InputText value={search} setValue={setSearch} label='Locación, Restaurante, Cuisine'/>
         </Box>
       </Box>
 
       {/* Button */}
-      <Box className='branch-filter--button-zone'>
+      <Box className='branch-search--button-zone'>
         <Button primary={true} size='large' backgroundColor={color} >
           <Icon icon='paper-plane' size={'16px'} color='white' />
-          <Text className='branch-filter--button-text'>
+          <Text className='branch-search--button-text'>
             Muéstrame Locales
           </Text>
         </Button>

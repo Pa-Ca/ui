@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, RefObject } from 'react';
 import './box.scss';
 
 interface BoxProps {
@@ -67,6 +67,10 @@ interface BoxProps {
    */
   children?: React.ReactNode;
   /**
+   * Box reference
+   */
+  innerRef?: RefObject<HTMLDivElement>;
+  /**
    * Other props
    */
   props?: object;
@@ -91,6 +95,7 @@ export const Box = ({
   onClick,
   style,
   className,
+  innerRef,
   children,
   ...props
 }: BoxProps): JSX.Element => {
@@ -118,8 +123,9 @@ export const Box = ({
         backgroundPosition: 'center',
         ...style
       }}
-    onClick={onClick}
-    {...props}
+      ref={innerRef}
+      onClick={onClick}
+      {...props}
     >
       {children}
     </div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { BranchFilter } from './BranchFilter';
+import { BranchSearch } from './BranchSearch';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Design System/Molecules/BranchFilter',
-  component: BranchFilter,
+  title: 'Design System/Molecules/BranchSearch',
+  component: BranchSearch,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
     date: {
@@ -54,7 +54,7 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof BranchFilter>;
+} as ComponentMeta<typeof BranchSearch>;
 
 const validHours = [
   { value: '1', name: '9:00 am' },
@@ -77,14 +77,14 @@ const validHours = [
 ]
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchFilter> = (args: any) => {
+const Template: ComponentStory<typeof BranchSearch> = (args: any) => {
   const [date, setDate] = useState(new Date());
   const [hour, setHour] = useState(undefined);
   const [persons, setPersons] = useState('');
   const [search, setSearch] = useState('');
   
   return (
-    <BranchFilter
+    <BranchSearch
       date={date}
       setDate={setDate}
       hour={hour}

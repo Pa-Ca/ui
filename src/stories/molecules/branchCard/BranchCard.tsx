@@ -1,7 +1,8 @@
 import React, { MouseEventHandler } from 'react';
-import './branchCard.scss'
+import './branchCard.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
+import getDollars from '../../utils/getDollars';
 import { Button } from '../../atoms/button/Button';
 import { StarRating } from '../../atoms/starRating/StarRating';
 
@@ -94,43 +95,6 @@ export const BranchCard = ({
   backgroundImage,
   ...props
 }: BranchCardProps) => {
-  const getDollars = (nActiveDollars: number) => {
-    const dollars = [];
-    nActiveDollars = Math.floor(nActiveDollars);
-
-    for (let i = 0; i < Math.min(nActiveDollars, 4); i++) {
-      dollars.push((
-        <Text
-          key={`${name}-card-dollar=${i}`}
-          type='h7'
-          className='branch-card--summary-text'
-        >
-          $
-        </Text>
-      ));
-    }
-    for (let i = nActiveDollars; i < 4; i++) {
-      dollars.push((
-        <Text
-          key={`${name}-card-dollar=${i}`}
-          type='h7'
-          className='branch-card--summary-text'
-          color='#8D8D8D'
-        >
-          $
-        </Text>
-      ));
-    }
-
-    return (
-      <Text>
-        {
-          dollars.map((e) => e)
-        }
-      </Text>
-    );
-  }
-
   return (
     <Box className='branch-card--container' style={{ width, height }}>
       {/* Image Box */}
@@ -186,7 +150,7 @@ export const BranchCard = ({
           <Box className='branch-card--summary'>
             <Text type='h7' className='branch-card--summary-text'> {amenity} </Text>
             <Text type='h7' className='branch-card--summary-text'> &nbsp;•&nbsp; </Text>
-            <Text> {getDollars(priceScore ?? 0)} </Text>
+            <Text> {getDollars(priceScore ?? 0, name)} </Text>
             <Text type='h7' className='branch-card--summary-text'> &nbsp;•&nbsp; </Text>
             <Text type='h7' className='branch-card--summary-text'> {location} </Text>
           </Box>

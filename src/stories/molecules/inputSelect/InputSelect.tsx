@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 import './inputSelect.scss';
 import '../../atoms/text/text.scss';
 import '../inputText/inputText.scss';
+import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Icon } from '../../atoms/icon/Icon';
+import useResizeObserver from '../../hooks/useResizeObserver';
 
 export type OptionObject = {
   value: string;
@@ -49,12 +51,8 @@ export const InputSelect = ({
   height,
   ...props
 }: InputSelectProps) => {
-  // useRef allows us to "store" the div in a constant, 
-  // and to access it via observedDiv.current
-  const containerRef = useRef<HTMLDivElement>(null);
+  const observer = useResizeObserver<HTMLDivElement>();
   const [view, setView] = useState(false);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
 
   const selectDropdown = () => {
     setView((currentView) => !currentView)
@@ -64,34 +62,6 @@ export const InputSelect = ({
     setView(false);
     setOption(option);
   };
-
-  const handleContainerResized = () => {
-    if(containerRef.current!.offsetWidth !== containerWidth) {
-      setContainerWidth(containerRef.current!.offsetWidth - 2); 
-    }
-    if(containerRef.current!.offsetHeight !== containerHeight) {
-      setContainerHeight(containerRef.current!.offsetHeight);
-    }
-  }
-  
-  // we also instantiate the resizeObserver and we pass
-  // the event handler to the constructor
-  const resizeObserver = new ResizeObserver(handleContainerResized);
-
-  useEffect(() => {
-    // the code in useEffect will be executed when the component
-    // has mounted, so we are certain containerRef.current will contain
-    // the div we want to observe
-    resizeObserver.observe(containerRef.current!);
-
-
-    // if useEffect returns a function, it is called right before the
-    // component unmounts, so it is the right place to stop observing
-    // the div
-    return function cleanup() {
-      resizeObserver.disconnect();
-    }
-  })
 
   const iconJSX = useMemo(() => {
     if (view) {
@@ -111,7 +81,7 @@ export const InputSelect = ({
   }, [view])
 
   return (
-    <div className='input-text--container' style={{ width, height }} ref={containerRef}>
+    <Box className='input-text--container' style={{ width, height }} innerRef={observer.ref}>
       <div className='input-text--content'>
         <button className='text text--h6 input-text--input' onClick={selectDropdown}>
           {option.name}
@@ -126,7 +96,7 @@ export const InputSelect = ({
         {
           view ?
             (
-              <div className='input-select--menu' style={{ width: `${containerWidth}px` }}>
+              <Box className='input-select--menu' style={{ width: `${observer.width}px` }}>
                 {
                   options.map((option, index) => {
                     // El background de los impares sera distinto de los pares 
@@ -145,8 +115,8 @@ export const InputSelect = ({
                       borderTopRightRadius,
                       borderBottomLeftRadius,
                       borderBottomRightRadius,
-                      height: `${containerHeight}px`,
-                      width: `${containerWidth}px`,
+                      height: `${observer.height}px`,
+                      width: `${observer.width}px`,
                     }
 
                     return (
@@ -163,7 +133,7 @@ export const InputSelect = ({
                     </view>
                   )})
                 }
-              </div>
+              </Box>
             ) :
             null
         }
@@ -172,6 +142,6 @@ export const InputSelect = ({
       <button onClick={selectDropdown} style={{ backgroundColor: 'transparent', border: 0 }}>
         {iconJSX}
       </button>
-    </div>
+    </Box>
   );
 };
