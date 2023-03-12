@@ -1,56 +1,173 @@
-import React from 'react';
-
+import React, { MouseEventHandler } from 'react';
+import './header.scss'
+import { Box } from '../../atoms/box/Box';
+import { Icon } from '../../atoms/icon/Icon';
+import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
-import './header.css';
-
-type User = {
-  name: string;
-};
+import { ProfilePicture } from '../../molecules/profilePicture/ProfilePicture';
 
 interface HeaderProps {
-  user?: User;
-  onLogin: () => void;
-  onLogout: () => void;
-  onCreateAccount: () => void;
+  /**
+   * Profile picture
+   */
+  picture?: string;
+  /**
+   * User name
+   */
+  name?: string;
+  /**
+   * Profile icon
+   */
+  icon: 'down' | 'up';
+  /**
+   * Dark mode
+   */
+  dark?: boolean;
+  /**
+   * Left section of header
+   */
+  leftSection?: 'reserve' | 'perfil';
+  /**
+   * Left section of header
+   */
+  rightSection?: 'favorites' | 'reserves';
+  /**
+   * Is the user logged?
+   */
+  logged?: boolean;
+  /**
+   * On Left Section click function
+   */
+  onLeftSectionClick?: MouseEventHandler<HTMLDivElement>;
+  /**
+   * On PA-CA logo click function
+   */
+  onPacaClick?: MouseEventHandler<HTMLDivElement>;
+  /**
+   * On Right Section click function
+   */
+  onRightSectionClick?: MouseEventHandler<HTMLDivElement>;
+  /**
+   * On profile click function
+   */
+  onProfileClick?: MouseEventHandler<HTMLDivElement>;
+  /**
+   * On login click function
+   */
+  onLoginClick?: MouseEventHandler<HTMLDivElement>;
+  /**
+   * On register click function
+   */
+  onRegisterClick?: () => void;
+  /**
+   * Background color
+   */
+  backgroundColor?: string;
+  /**
+   * Main component color
+   */
+  color?: string;
+  /**
+   * Total component width
+   */
+  width?: string;
+  /**
+   * Total component height
+   */
+  height?: string;
 }
 
-export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
-  <header>
-    <div className="wrapper">
-      <div>
-        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
-            />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>Acme</h1>
-      </div>
-      <div>
-        {user ? (
-          <>
-            <span className="welcome">
-              Welcome, <b>{user.name}</b>!
-            </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
-          </>
-        ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
-          </>
-        )}
-      </div>
-    </div>
-  </header>
-);
+/**
+ * Primary UI component for user interaction
+ */
+export const Header = ({
+  picture,
+  name,
+  icon = 'down',
+  dark = false,
+  leftSection,
+  rightSection,
+  logged,
+  onLeftSectionClick,
+  onPacaClick,
+  onRightSectionClick,
+  onProfileClick,
+  onLoginClick,
+  onRegisterClick,
+  backgroundColor,
+  color,
+  width,
+  height,
+  ...props
+}: HeaderProps) => {
+  const logoColor = dark ? 'white' : 'black';
+  const leftSectionText = leftSection === 'reserve' ? 'Reservar' : 'Perfil';
+  const rightSectionText = rightSection === 'favorites' ? 'Favoritos' : 'Reservas';
+  const rightSectionIcon = rightSection === 'favorites' ? 'heart-fill' : 'table';
+
+  const rightSectionComponent = () => {
+    if (logged) {
+      return (
+        <>
+          <Box className='header--zone' onClick={onRightSectionClick}>
+            <Icon icon={rightSectionIcon} size='20px' color={logoColor} />
+            <Text type='h6' className='header--text' color={logoColor}> {rightSectionText} </Text>
+            <Text type='h6' className='header--text' color={logoColor}> &nbsp;&nbsp;| </Text>
+          </Box>
+          <Box className='header--zone header--profile' onClick={onProfileClick}>
+            <Box className='header--profile-picture'>
+              <ProfilePicture
+                size='40px'
+                border='0px'
+                icon={icon}
+                color={color}
+                picture={picture}
+              />
+            </Box>
+            <Box className='header--name'>
+              <Text type='h6' className='header--text header--name' color={logoColor}> {name} </Text>
+            </Box>
+          </Box>
+        </>
+      )
+    }
+    else {
+      return (
+        <>
+          <Box className='header--zone' onClick={onLoginClick}>
+            <Text type='h6' className='header--text' color={logoColor}> Login </Text>
+          </Box>
+          <Box className='header--zone header--profile'>
+            <Button primary  onClick={onRegisterClick} backgroundColor={dark ? 'white' : color}>
+              <Text type='h6' style={{ fontWeight: '600' }} color={dark ? 'black' : 'white'}>
+                Regístrate
+              </Text>
+            </Button>
+          </Box>
+        </>
+      )
+    }
+  }
+
+  return (
+    <Box className='header--container' style={{ width, height, backgroundColor }}>
+      <Box className='header--subcontainer'>
+        {/* Left section */}
+        <Box className='header--zone' onClick={onLeftSectionClick}>
+          <Icon icon='bell' size='20px' color={logoColor} />
+          <Text type='h6' className='header--text' color={logoColor}> {leftSectionText} </Text>
+        </Box>
+
+        {/* PA-CA */}
+        <Box className='header--pa-ca header--zone' onClick={onPacaClick}>
+          <Icon icon='pa-ca' size='41px' color={logoColor} />
+        </Box>
+
+        {/* Right section */}
+        <Box className='header--zone'>
+          {rightSectionComponent()}
+        </Box>
+      </Box>
+    </Box>
+  );
+};

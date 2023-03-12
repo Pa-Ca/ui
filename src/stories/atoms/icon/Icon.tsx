@@ -19,6 +19,7 @@ import fitnessCentre from '@iconify/icons-maki/fitness-centre';
 import googleIcon from '@iconify/icons-flat-color-icons/google';
 import personIcon from '@iconify/icons-material-symbols/person';
 import cancelIcon from '@iconify/icons-material-symbols/cancel';
+import checkBox from '@iconify/icons-material-symbols/check-box';
 import spaRounded from '@iconify/icons-material-symbols/spa-rounded';
 import instagramLogoFill from '@iconify/icons-ph/instagram-logo-fill';
 import roomService from '@iconify/icons-material-symbols/room-service';
@@ -30,6 +31,7 @@ import roundKeyboardArrowUp from '@iconify/icons-ic/round-keyboard-arrow-up';
 import tableRestaurant from '@iconify/icons-material-symbols/table-restaurant';
 import roundKeyboardArrowDown from '@iconify/icons-ic/round-keyboard-arrow-down';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
+import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outline-blank';
 
 const Color = require('color');
 
@@ -41,7 +43,7 @@ interface IconProps {
   'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
   'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
   'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food' | 'down' | 'up' | 'table';
+  'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox';
   /**
    * Icon size
    */
@@ -238,6 +240,18 @@ export const Icon = ({
     case 'table':
       return <Iconify
         icon={tableRestaurant}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'checkbox':
+      return <Iconify
+        icon={checkBox}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'uncheckbox':
+      return <Iconify
+        icon={checkBoxOutlineBlank}
         style={{ fontSize: size }}
         color={color}
       />

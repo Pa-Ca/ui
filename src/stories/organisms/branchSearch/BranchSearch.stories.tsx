@@ -4,7 +4,7 @@ import { BranchSearch } from './BranchSearch';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Design System/Molecules/BranchSearch',
+  title: 'Design System/Organisms/BranchSearch',
   component: BranchSearch,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 

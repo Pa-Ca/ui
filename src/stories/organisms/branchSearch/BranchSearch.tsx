@@ -4,9 +4,9 @@ import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
-import { InputText } from '../inputText/InputText';
-import { InputDate } from '../inputDate/InputDate';
-import { InputSelect, OptionObject } from '../inputSelect/InputSelect';
+import { InputText } from '../../molecules/inputText/InputText';
+import { InputDate } from '../../molecules/inputDate/InputDate';
+import { InputSelect, OptionObject } from '../../molecules/inputSelect/InputSelect';
 
 interface BranchSearchProps {
   /**
