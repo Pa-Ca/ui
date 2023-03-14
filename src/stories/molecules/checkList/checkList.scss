@@ -1,0 +1,10 @@
+.check-list--container {
+  display: flex;
+  flex-direction: column;
+}
+.check-list--item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 11px;
+  cursor: pointer;
+}
