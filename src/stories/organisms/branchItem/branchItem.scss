@@ -26,7 +26,6 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  max-width: 100%;
 }
 .branch-item--summary {
   display: flex;
@@ -41,9 +40,6 @@
   flex-direction: column;
   text-align: end;
   min-width: 83px;
-}
-.branch-item--opacity {
-  opacity: 0.75;
 }
 .branch-item--reserve-container {
   display: flex;
@@ -66,12 +62,6 @@
 }
 .branch-item--like-container {
   margin-right: 16px;
-}
-.branch-item--bold-text {
-  font-weight: 600;
-}
-.branch-item--tiny-text {
-  font-weight: 400;
 }
 .branch-item--reviews {
   margin-left: 5px;

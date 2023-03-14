@@ -115,7 +115,7 @@ export const BranchCard = ({
               borderRadius='5px'
               backgroundColor={color}
             >
-              <Text type='h7' bold={true} color='white'>
+              <Text type='h7' weight='700' color='white'>
                 %
               </Text>
             </Box>
@@ -132,7 +132,7 @@ export const BranchCard = ({
       >
         {/* Title */}
         <Box className='branch-card--title-zone' onClick={onClick}>
-          <Text color='#121212' className='branch-card--title'>
+          <Text weight='600' color='#121212' opacity={0.7}>
             {name}
           </Text>
         </Box>
@@ -142,17 +142,17 @@ export const BranchCard = ({
           <Box className='branch-card--reviews-zone' >
             <Box className='branch-card--reviews'>
               <StarRating size={20} rating={score} color={color} />
-              <Text type='h8' className='branch-card--reviews-text' >
+              <Text type='h8' weight='400' className='branch-card--reviews-text' >
                 {reviews} Reviews
               </Text>
             </Box>
           </Box>
           <Box className='branch-card--summary'>
-            <Text type='h7' className='branch-card--summary-text'> {amenity} </Text>
-            <Text type='h7' className='branch-card--summary-text'> &nbsp;•&nbsp; </Text>
+            <Text type='h7' weight='400'> {amenity} </Text>
+            <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
             <Text> {getDollars(priceScore ?? 0, name)} </Text>
-            <Text type='h7' className='branch-card--summary-text'> &nbsp;•&nbsp; </Text>
-            <Text type='h7' className='branch-card--summary-text'> {location} </Text>
+            <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
+            <Text type='h7' weight='400'> {location} </Text>
           </Box>
         </Box>
 
@@ -165,7 +165,7 @@ export const BranchCard = ({
               backgroundColor={color}
               onClick={onFirstReserveClick}
             >
-              <Text type='h7' bold={true}>
+              <Text type='h7' weight='700'>
                 {firstReserve}
               </Text>
             </Button>
@@ -178,7 +178,7 @@ export const BranchCard = ({
               backgroundColor={color}
               onClick={onSecondReserveClick}
             >
-              <Text type='h7' bold={true}>
+              <Text type='h7' weight='700'>
                 {secondReserve}
               </Text>
             </Button>

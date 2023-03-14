@@ -82,19 +82,19 @@ export const HighlightReview = ({
       
       <Box className='highlight-review--card' style={{ width, height }} innerRef={observer.ref}>
         <Box className='highlight-review--title-zone'>
-          <Text type='h5' bold color='#112211'>
+          <Text type='h5' weight='700' color='#112211'>
             “{title}”
           </Text>
         </Box>
 
         <Box className='highlight-review--description-zone'>
-          <Text color='#112211' className='highlight-review--description'>
+          <Text color='#112211' opacity={0.5}>
             {review}
           </Text>
         </Box>
 
         <Box className='highlight-review--view-more-zone' onClick={viewMore}>
-          <Text type='h6' bold>
+          <Text type='h6' weight='700'>
             View more
           </Text>
         </Box>
@@ -104,20 +104,20 @@ export const HighlightReview = ({
         </Box>
 
         <Box className='highlight-review--name-zone'>
-          <Text type='h6' bold color='#112211'>
+          <Text type='h6' weight='700' color='#112211'>
             {author}
           </Text>
         </Box>
 
         <Box className='highlight-review--person-zone'>
-          <Text type='h7' color='#112211' className='highlight-review--person'>
+          <Text type='h7' color='#112211' opacity={0.5}>
             {authorDescription}
           </Text>
         </Box>
 
         <Box className='highlight-review--google-zone'>
           <Icon icon='google' size='20px' />
-          <Text color='#112211' bold type='h7' className='highlight-review--google'>
+          <Text color='#112211' weight='700' type='h7' opacity={0.4} className='highlight-review--google'>
             Google
           </Text>
         </Box>

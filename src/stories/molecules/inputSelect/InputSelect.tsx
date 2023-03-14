@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './inputSelect.scss';
 import '../../atoms/text/text.scss';
 import '../inputText/inputText.scss';
@@ -79,6 +79,18 @@ export const InputSelect = ({
       );
     }
   }, [view])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (observer.ref.current && !observer.ref.current.contains(event.target as Node)) {
+        setView(false);
+      }
+    }
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [observer.ref]);
 
   return (
     <Box className='input-text--container' style={{ width, height }} innerRef={observer.ref}>

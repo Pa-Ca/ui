@@ -1,0 +1,72 @@
+.new-reserve--container {
+  background-color: white;
+  border-radius: 40px;
+  padding-top: 74px;
+  padding-bottom: 74px;
+  padding-left: 68px;
+  padding-right: 68px;
+  min-width: 900px;
+  min-height: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.new-reserve--details {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.new-reserve--data-container {
+  display: flex;
+  flex-direction: row;
+}
+.new-reserve--branch-data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  max-width: 100%;
+}
+.new-reserve--image {
+  width: 144px;
+  height: 144px;
+  margin-right: 16px;
+}
+.new-reserve--branch-type-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.new-reserve--data-text {
+  margin-left: 5px;
+}
+.new-reserve--price-container {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  min-width: 270px;
+}
+.new-reserve--input-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+.new-reserve--input1 {
+  margin-left: 16px;
+  z-index: 2;
+}
+.new-reserve--input2 {
+  margin-left: 24px;
+}
+.new-reserve--find-button-container {
+  margin-bottom: 32px;
+}
+.new-reserve--overview-container {
+  display: flex;
+  flex-direction: column;
+}
+.new-reserve--overview {
+  line-height: 20px;
+  text-align: justify;
+  overflow: ellipsis;
+}

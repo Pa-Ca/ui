@@ -53,6 +53,11 @@ export default {
         disable: true
       }
     },
+    onClick: {
+      table: {
+        disable: true
+      }
+    },
   },
 } as ComponentMeta<typeof BranchSearch>;
 

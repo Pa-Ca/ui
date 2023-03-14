@@ -109,7 +109,6 @@ export const BranchItem = ({
 }: BranchItemProps) => {
   const containerObserver = useResizeObserver<HTMLDivElement>();
   const leftSideObserver = useResizeObserver<HTMLDivElement>();
-
   const rightSizeWidth = containerObserver.width - leftSideObserver.width - 40;
 
   return (
@@ -129,28 +128,28 @@ export const BranchItem = ({
           backgroundImage='https://img.freepik.com/vector-premium/plantilla-diseno-logotipo-restaurante_79169-56.jpg?w=2000'
         />
 
-        <Box className='branch-item--summary-container' width={`${containerObserver.width - leftSideObserver.width - 40}px`}>
+        <Box className='branch-item--summary-container' width={`${rightSizeWidth}px`}>
           {/* Data */}
           <Box className='branch-item--summary-data'>
             <Box>
-              <Text className='branch-item--bold-text branch-item--opacity' color='#121212'>
+              <Text weight='600' opacity={0.75} color='#121212'>
                 {name}
               </Text>
             </Box>
 
             <Box>
-              <StarRating size={16} rating={score} />
-              <Text type='h8' color='#121212' className='branch-item--tiny-text branch-item--reviews'>
+              <StarRating size={16} rating={score} color={color} />
+              <Text type='h8' color='#121212' weight='400'>
                 {reviews} Reviews
               </Text>
             </Box>
 
             <Box className='branch-item--summary'>
-              <Text type='h7' className='branch-item--tiny-text'> {amenity} </Text>
-              <Text type='h7' className='branch-item--tiny-text'> &nbsp;•&nbsp; </Text>
+              <Text type='h7' weight='400'> {amenity} </Text>
+              <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
               <Text> {getDollars(priceScore, name)} </Text>
-              <Text type='h7' className='branch-item--tiny-text'> &nbsp;•&nbsp; </Text>
-              <Text type='h7' className='branch-item--tiny-text'> {location} </Text>
+              <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
+              <Text type='h7' weight='400'> {location} </Text>
             </Box>
 
             <Box className='branch-item--reserve-container'>
@@ -161,7 +160,7 @@ export const BranchItem = ({
                   onClick={onFirstReserveClick}
                   backgroundColor={color}
                 >
-                  <Text type='h7' bold={true}>
+                  <Text type='h7' weight='700'>
                     {firstReserve}
                   </Text>
                 </Button>
@@ -174,7 +173,7 @@ export const BranchItem = ({
                   onClick={onSecondReserveClick}
                   backgroundColor={color}
                 >
-                  <Text type='h7' bold={true}>
+                  <Text type='h7' weight='700'>
                     {secondReserve}
                   </Text>
                 </Button>
@@ -186,10 +185,10 @@ export const BranchItem = ({
 
           {/* Price */}
           <Box className='branch-item--price-container'>
-            <Text type='h7' color='#112211' className='branch-item--opacity'>
+            <Text type='h7' color='#112211' opacity={0.75}>
               Starting from
             </Text>
-            <Text type='h4' color={priceColor} bold>
+            <Text type='h4' color={priceColor} weight='700'>
               $104
             </Text>
           </Box>
@@ -210,7 +209,7 @@ export const BranchItem = ({
           </Box>
 
           <Button primary fullWidth size='large' onClick={onViewMoreClick} backgroundColor={color}>
-            <Text type='h6' className='branch-item--bold-text'>
+            <Text type='h6' weight='600'>
               Ver detalles
             </Text>
           </Button>

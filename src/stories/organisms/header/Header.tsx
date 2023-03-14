@@ -111,8 +111,8 @@ export const Header = ({
         <>
           <Box className='header--zone' onClick={onRightSectionClick}>
             <Icon icon={rightSectionIcon} size='20px' color={logoColor} />
-            <Text type='h6' className='header--text' color={logoColor}> {rightSectionText} </Text>
-            <Text type='h6' className='header--text' color={logoColor}> &nbsp;&nbsp;| </Text>
+            <Text type='h6' weight='600' className='header--text' color={logoColor}> {rightSectionText} </Text>
+            <Text type='h6' weight='600' className='header--text' color={logoColor}> &nbsp;&nbsp;| </Text>
           </Box>
           <Box className='header--zone header--profile' onClick={onProfileClick}>
             <Box className='header--profile-picture'>
@@ -125,7 +125,7 @@ export const Header = ({
               />
             </Box>
             <Box className='header--name'>
-              <Text type='h6' className='header--text header--name' color={logoColor}> {name} </Text>
+              <Text type='h6' weight='600' className='header--text header--name' color={logoColor}> {name} </Text>
             </Box>
           </Box>
         </>
@@ -135,7 +135,7 @@ export const Header = ({
       return (
         <>
           <Box className='header--zone' onClick={onLoginClick}>
-            <Text type='h6' className='header--text' color={logoColor}> Login </Text>
+            <Text type='h6' weight='600' className='header--text' color={logoColor}> Login </Text>
           </Box>
           <Box className='header--zone header--profile'>
             <Button primary  onClick={onRegisterClick} backgroundColor={dark ? 'white' : color}>
@@ -155,7 +155,7 @@ export const Header = ({
         {/* Left section */}
         <Box className='header--zone' onClick={onLeftSectionClick}>
           <Icon icon='bell' size='20px' color={logoColor} />
-          <Text type='h6' className='header--text' color={logoColor}> {leftSectionText} </Text>
+          <Text type='h6' weight='600' className='header--text' color={logoColor}> {leftSectionText} </Text>
         </Box>
 
         {/* PA-CA */}

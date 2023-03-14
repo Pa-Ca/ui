@@ -11,9 +11,13 @@ interface TextProps {
    */
   color?: string;
   /**
-   * Should the text be bold?
+   * Font weight
    */
-  bold?: boolean;
+  weight?: string;
+  /**
+   * Font opacity
+   */
+  opacity?: number;
   /**
    * Should the text be italic?
    */
@@ -41,7 +45,8 @@ interface TextProps {
  */
 export function Text({
   type = 'p',
-  bold = false,
+  weight = '500',
+  opacity,
   italic = false, 
   uppercase = false,
   color,
@@ -55,12 +60,11 @@ export function Text({
       className={[
         'text',
         `text--${type}`,
-        bold ? 'text--bold' : '',
         italic ? 'text--italic' : '',
         uppercase ? 'text--uppercase' : '',
         className
       ].join(' ')}
-      style={{ color, ...style }}
+      style={{ color, opacity, fontWeight: weight, ...style }}
       {...props}
     >
       {children}

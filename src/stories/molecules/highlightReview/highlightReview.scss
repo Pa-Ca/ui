@@ -27,9 +27,6 @@
   -webkit-line-clamp: 2;
   margin-bottom: 12px;
 }
-.highlight-review--description {
-  opacity: 0.5;
-}
 .highlight-review--view-more-zone {
   display: flex;
   justify-content: flex-end;
@@ -43,14 +40,10 @@
 .highlight-review--person-zone {
   margin-bottom: 12px;
 }
-.highlight-review--person {
-  opacity: 0.5;
-}
 .highlight-review--google-zone {
   margin-bottom: 40px;
 }
 .highlight-review--google {
-  opacity: 0.4;
   margin-left: 8px;
 }
 .highlight-review--img {

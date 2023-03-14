@@ -23,7 +23,7 @@ export default (nActiveDollars: number, name?: string) => {
         </Text>
       ));
     }
-    for (let i = nActiveDollars; i < 4; i++) {
+    for (let i = Math.max(nActiveDollars, 0); i < 4; i++) {
       dollars.push((
         <Text
           key={`${name}-card-dollar=${i}`}

@@ -46,6 +46,10 @@ interface BranchSearchProps {
    */
   setSearch?: Function;
   /**
+   * On search button click
+   */
+  onClick?: () => void;
+  /**
    * Total component width
    */
   width?: string;
@@ -72,6 +76,7 @@ export const BranchSearch = ({
   setPersons,
   search,
   setSearch,
+  onClick,
   width,
   height,
   color,
@@ -100,11 +105,13 @@ export const BranchSearch = ({
 
       {/* Button */}
       <Box className='branch-search--button-zone'>
-        <Button primary={true} size='large' backgroundColor={color} >
-          <Icon icon='paper-plane' size={'16px'} color='white' />
-          <Text className='branch-search--button-text'>
-            Muéstrame Locales
-          </Text>
+        <Button primary={true} size='large' backgroundColor={color} onClick={onClick}>
+          <Box className='branch-search--button' backgroundColor='transparent'>
+            <Icon icon='paper-plane' size={'16px'} color='white' />
+            <Text className='branch-search--button-text'>
+              Muéstrame Locales
+            </Text>
+          </Box>
         </Button>
       </Box>
     </Box>
