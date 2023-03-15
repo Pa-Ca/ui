@@ -54,12 +54,10 @@ export const ImagesCollage = ({
           {buttonTitle}
         </Text>
       </Button>
-      <div
-        className='images-collage--content'
-      >
+      <Box className='images-collage--content'>
       {listImages}
       
-      </div>
+      </Box>
     </div>
   );
 };
