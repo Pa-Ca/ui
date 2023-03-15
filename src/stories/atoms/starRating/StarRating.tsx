@@ -7,6 +7,10 @@ interface StarRatingProps {
    */
   rating?: number;
   /**
+   * Function to change rating
+   */
+  setRating?: (value: number) => void;
+  /**
    * Stars size
    */
   size?: number;
@@ -14,6 +18,10 @@ interface StarRatingProps {
    * Stars color
    */
   color?: string
+  /**
+   * Stars must be readonly
+   */
+  readonly?: boolean;
 }
 
 /**
@@ -21,11 +29,20 @@ interface StarRatingProps {
  */
 export const StarRating = ({
   rating,
+  setRating,
   size,
   color,
+  readonly,
   ...props
 }: StarRatingProps) => {
   return (
-    <Rating initialValue={rating} size={size} fillColor={color} allowFraction readonly/>
+    <Rating
+      initialValue={rating}
+      size={size}
+      fillColor={color}
+      allowFraction
+      readonly={readonly}
+      onClick={setRating}
+    />
   );
 };

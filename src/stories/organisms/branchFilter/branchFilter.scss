@@ -1,0 +1,38 @@
+.branch-filter--container {
+  display: flex;
+  flex-direction: column;
+}
+.branch-filter--title {
+  display: flex;
+  flex-direction: column;
+}
+.branch-filter--item-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+.branch-filter--range-header {
+  margin-bottom: 40px;
+}
+.branch-filter--item-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  justify-content: space-between;
+}
+.branch-filter--line {
+  opacity: 0.25;
+}
+.branch-filter--range {
+  margin-left: 35px;
+  margin-right: 35px;
+}
+.branch-filter--rating {
+  margin-right: 35px;
+}
+.branch-filter--check-list {
+  margin-right: 35px;
+}

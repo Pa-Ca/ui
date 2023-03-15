@@ -7,7 +7,7 @@ interface RangeProps {
    */
   values?: number[];
   /**
-   * 
+   * Function that set current values
    */
   setValues?: Function;
   /**
@@ -34,6 +34,18 @@ interface RangeProps {
    * Range color
    */
   color?: string;
+  /**
+   * Current label function
+   */
+  labelFunct?: (value: number, index: number) => string;
+  /**
+   * Always display labels
+   */
+  displayLabels?: boolean;
+  /**
+   * Range step
+   */
+  step?: number;
 }
 
 /**
@@ -48,6 +60,9 @@ export const Range = ({
   maxMark = '',
   size = 'medium',
   color,
+  labelFunct,
+  displayLabels,
+  step = 1,
   ...props
 }: RangeProps) => {
   const handleChangeRange = (
@@ -66,7 +81,6 @@ export const Range = ({
       max={max}
       size={size}
       onChange={handleChangeRange}
-      valueLabelDisplay="auto"
       style={{
         color: color
       }}
@@ -80,6 +94,9 @@ export const Range = ({
           label: maxMark
         },
       ]}
+      valueLabelFormat={labelFunct !== undefined ? labelFunct : undefined}
+      valueLabelDisplay={displayLabels ? 'on' : 'auto'}
+      step={step}
     />
   );
 };

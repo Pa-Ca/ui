@@ -208,7 +208,7 @@ export const NewReserve = ({
 
       {/* Inputs 1 */}
       <Box className='new-reserve--input-container'>
-        <Box width='100%'>
+        <Box width='100%' className='new-reserve--input-date'>
           <InputDate date={date} setDate={setDate} />
         </Box>
 
