@@ -1,0 +1,88 @@
+.category-card--container {
+  background-color: transparent;
+  min-width: 200px;
+  min-height: 250px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  padding-right: 5%;
+  padding-left: 5%;
+
+  
+}
+
+
+.category-card--overlay{
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) -25.51%, #000000 128.19%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+
+.category-card-title--zone{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat';
+  font-style: normal;
+  margin-top: 26px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  
+}
+
+.category-card--info-zone{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat';
+  font-style: normal;
+  margin-top: 26px;
+  margin-bottom: 10px;
+  z-index: 1;
+  padding-bottom: 5%;
+
+  
+}
+
+.category-card-description--zone {
+  display: -webkit-box;
+  flex-direction: column;
+
+  /* Montserrat/Regular/16px */
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.category-card--button-text {
+  margin-left: 5px;
+}
+
+.category-card-button--zone {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  min-width: 134px;
+  max-height: 48px;
+}
+
