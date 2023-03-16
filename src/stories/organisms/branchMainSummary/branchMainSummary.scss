@@ -1,0 +1,19 @@
+@import "../../assets/scss/variables.scss";
+
+.branch-main-summary--container {
+  display: flex;
+  flex-direction: column;
+  min-width: $branch-summary-min-width;
+}
+.branch-main-summary--promotions-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.branch-main-summary--promotion {
+  margin-bottom: 15px;
+}
+.branch-main-summary--overview-container {
+  margin-top: 10px;
+  margin-bottom: 32px;
+}

@@ -21,6 +21,7 @@ export { ImagesCollage } from './stories/molecules/imagesCollage/imagesCollage';
 export { ProfilePicture } from './stories/molecules/profilePicture/ProfilePicture';
 export { HighlightReview } from './stories/molecules/highlightReview/HighlightReview';
 export { BranchContentSummary } from './stories/molecules/branchContentSummary/BranchContentSummary';
+export { BranchContentOverview } from './stories/molecules/branchContentOverview/BranchContentOverview';
 
 // ORGANISM
 export { Header } from './stories/organisms/header/Header';
@@ -28,3 +29,4 @@ export { BranchItem } from './stories/organisms/branchItem/BranchItem';
 export { NewReserve } from './stories/organisms/newReserve/NewReserve';
 export { BranchSearch } from './stories/organisms/branchSearch/BranchSearch';
 export { BranchFilter } from './stories/organisms/branchFilter/BranchFilter';
+export { BranchMainSummary } from './stories/organisms/branchMainSummary/BranchMainSummary';

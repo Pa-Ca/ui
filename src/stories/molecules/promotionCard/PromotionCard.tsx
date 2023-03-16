@@ -18,6 +18,10 @@ interface PromotionCardProps {
    */
   buttonText?: string;
   /**
+   * On component click
+   */
+  onClick?: () => void;
+  /**
    * Component main color
    */
   color?: string;
@@ -42,8 +46,10 @@ export const PromotionCard = ({
   promotion,
   date,
   buttonText,
+  onClick,
   color,
-  secondaryColor='white',
+  secondaryColor = 'white',
+  
   width,
   height,
   ...props
@@ -53,6 +59,8 @@ export const PromotionCard = ({
       className='promotion-card--container'
       borderRadius='5px'
       backgroundColor={color}
+      onClick={onClick}
+      strongShadow
       style={{ width, height }}
     >
       <Box className='promotion-card--menu' backgroundColor='transparent'>
@@ -82,7 +90,7 @@ export const PromotionCard = ({
             {buttonText}
           </Text>
         </Button>
-    </Box>
+      </Box>
     </Box>
   );
 };

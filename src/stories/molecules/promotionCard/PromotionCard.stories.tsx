@@ -8,6 +8,11 @@ export default {
   component: PromotionCard,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
+    onClick: {
+      table: {
+        disable: true
+      }
+    },
   },
 } as ComponentMeta<typeof PromotionCard>;
 
