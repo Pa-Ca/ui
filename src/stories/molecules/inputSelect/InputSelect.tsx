@@ -6,6 +6,7 @@ import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Icon } from '../../atoms/icon/Icon';
 import useResizeObserver from '../../hooks/useResizeObserver';
+import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion'; 
 
 export type OptionObject = {
   value: string;
@@ -105,10 +106,17 @@ export const InputSelect = ({
           </Text>
         </div>
 
-        {
-          view ?
-            (
-              <Box className='input-select--menu' style={{ width: `${observer.width}px` }}>
+        <AnimatePresence>
+          {
+            view && (
+              <motion.div
+                initial={{ maxHeight: '0px' }}
+                animate={{ maxHeight: view ? '300px' : '0px', }}
+                exit={{ maxHeight: '0px' }}
+                transition={{ duration: 0.5 }}
+                className='input-select--menu'
+                style={{ width: `${observer.width}px` }}
+              >
                 {
                   options.map((option, index) => {
                     // El background de los impares sera distinto de los pares 
@@ -145,10 +153,10 @@ export const InputSelect = ({
                     </view>
                   )})
                 }
-              </Box>
-            ) :
-            null
-        }
+              </motion.div>
+            ) 
+          }
+        </AnimatePresence>
       </div>
 
       <button onClick={selectDropdown} style={{ backgroundColor: 'transparent', border: 0 }}>

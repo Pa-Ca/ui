@@ -5,7 +5,7 @@ import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import { Range } from '../../atoms/range/Range';
 import { StarRating } from '../../atoms/starRating/StarRating';
-import { AnimatePresence, motion } from "framer-motion/dist/framer-motion"; 
+import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion'; 
 import { CheckList, CheckObject } from '../../molecules/checkList/CheckList';
 
 interface BranchFilterProps {
@@ -111,7 +111,7 @@ export const BranchFilter = ({
     // Las 12 pm y 12 am no necesitan ser convertidas a 0
     hours = hours ? hours : 12;
   
-    // Formatear las horas y minutos en un string en el formato "h:mmam" o "h:mmpm"
+    // Formatear las horas y minutos en un string en el formato 'h:mmam' o 'h:mmpm'
     var formattedTime = hours + ':' + (mins < 10 ? '0' : '') + mins + ampm;
   
     return formattedTime;
