@@ -23,8 +23,8 @@ Default.args = {
   score: 3.7,
   reviews: 4273,
   amenity: 'Americano',
-  price: 15.99,
+  pricePerson: 15.99,
   location: 'Las Marcedes',
-  consumiblePrice: 10,
+  price: 10,
   color: '#EF7A08'
 };

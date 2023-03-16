@@ -2,12 +2,13 @@ import React, { SyntheticEvent, useState } from 'react';
 import './newReserve.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
+import { Icon } from '../../atoms/icon/Icon';
 import { Button } from '../../atoms/button/Button';
-import useResizeObserver from '../../hooks/useResizeObserver';
 import { InputText } from '../../molecules/inputText/InputText';
 import { InputDate } from '../../molecules/inputDate/InputDate';
 import { InputSelect, OptionObject } from '../../molecules/inputSelect/InputSelect';
 import { BranchContentSummary } from '../../molecules/branchContentSummary/BranchContentSummary';
+import { BranchContentOverview } from '../../molecules/branchContentOverview/BranchContentOverview';
 
 interface NewReserveProps {
   /**
@@ -29,7 +30,7 @@ interface NewReserveProps {
   /**
    * Price per person
    */
-  price?: number;
+  pricePerson?: number;
   /**
    * Branch location
    */
@@ -37,7 +38,7 @@ interface NewReserveProps {
   /**
    * Consumible price
    */
-  consumiblePrice?: number;
+  price?: number;
   /**
    * Branch overview
    */
@@ -128,9 +129,9 @@ export const NewReserve = ({
   score,
   reviews,
   amenity,
-  price,
+  pricePerson,
   location,
-  consumiblePrice,
+  price,
   overview,
   picture,
   date,
@@ -153,27 +154,31 @@ export const NewReserve = ({
   height,
   ...props
 }: NewReserveProps) => {
-  const containerObserver = useResizeObserver<HTMLDivElement>();
-  // Container width - 2*padding - imageWidth - priceWidth
-  const summaryWidth = containerObserver.width - 550;
-
   return (
-    <Box className='new-reserve--container' style={{ width, height }} innerRef={containerObserver.ref}>
+    <Box className='new-reserve--container' style={{ width, height }}>
       {/* Branch details */}
       <Box className='new-reserve--details'>
         <Box backgroundImage={picture} className='new-reserve--image'/>
         
-        <BranchContentSummary
-          name={name}
-          score={score}
-          reviews={reviews}
-          amenity={amenity}
-          price={price}
-          location={location}
-          consumiblePrice={consumiblePrice}
-          color={color}
-          width='100%'
-        />
+        <Box width='100%'>
+          <BranchContentSummary
+            name={name}
+            score={score}
+            reviews={reviews}
+            amenity={amenity}
+            price={price}
+            location={location}
+            pricePerson={pricePerson}
+            color={color}
+            width='100%'
+          />
+          <Box className='new-reserve--location'>
+            <Icon icon='location' size='18px' />
+            <Text type='h6' color='#112211' opacity={0.75} className='branch-content-summary--data-text'> 
+              {location}
+            </Text>
+          </Box>
+        </Box>
       </Box>
 
       {/* Inputs 1 */}
@@ -219,14 +224,8 @@ export const NewReserve = ({
       </Box>
 
       {/* Overview */}
-      <Box className='new-reserve--overview-container'>
-        <Text type='h5' color='#112211' weight='700'> Overview </Text>
-
-        <Box height='16px' />
-
-        <Text color='#112211' opacity={0.75} className='new-reserve--overview'>
-          {overview}
-        </Text>
+      <Box>
+        <BranchContentOverview overview={overview} />
       </Box>
     </Box>
   );

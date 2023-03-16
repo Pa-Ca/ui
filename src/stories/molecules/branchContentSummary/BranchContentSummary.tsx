@@ -25,15 +25,19 @@ interface BranchContentSummaryProps {
   /**
    * Price per person
    */
-  price?: number;
+  pricePerson?: number;
   /**
    * Branch location
    */
   location?: string;
   /**
-   * Consumible price
+   * Reservation price
    */
-  consumiblePrice?: number;
+  price?: number;
+  /**
+   * Indicates that card is a consumible
+   */
+  consumible?: boolean;
   /**
    * Component width
    */
@@ -56,9 +60,10 @@ export const BranchContentSummary = ({
   score,
   reviews,
   amenity,
-  price,
+  pricePerson,
   location,
-  consumiblePrice,
+  price,
+  consumible = false,
   color,
   width,
   height,
@@ -67,11 +72,11 @@ export const BranchContentSummary = ({
   return (
     <Box className='branch-content-summary--container' style={{ width, height }}>
       <Box className='branch-content-summary--data-container'>
-        <Text type='h3' color='#121212' weight='600' opacity={0.7}>
+        <Text type='h3' color='#121212' weight='600'>
           {name}
         </Text>
 
-        <Box>
+        <Box className='branch-content-summary--review'>
           <StarRating size={16} rating={score} color={color} />
           <Text type='h8' color='#121212' weight='400' className='branch-content-summary--data-text'>
             {reviews} Reviews
@@ -88,21 +93,14 @@ export const BranchContentSummary = ({
           
           <Icon icon='dollar' size='18px' />
           <Text type='h6' color='#112211' opacity={0.75} className='branch-content-summary--data-text'> 
-            {price}$ p/ Persona
-          </Text>
-        </Box>
-
-        <Box className='branch-content-summary--data'>
-          <Icon icon='location' size='18px' />
-          <Text type='h6' color='#112211' opacity={0.75} className='branch-content-summary--data-text'>
-            {location}
+            {pricePerson}$ p/ Persona
           </Text>
         </Box>
       </Box>
 
       <Box className='branch-content-summary--price-container'>
         <Text type='h3' color='#121212' weight='700'> Reserva</Text>
-        <Text type='h3' color={color} weight='700'> {consumiblePrice}$ Consumible </Text>
+        <Text type='h3' color={color} weight='700'> {price}$ {consumible ? 'Consumible' : ''} </Text>
       </Box>
     </Box>
   );

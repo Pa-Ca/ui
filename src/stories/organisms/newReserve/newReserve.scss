@@ -6,7 +6,7 @@
   padding-left: 68px;
   padding-right: 68px;
   min-width: 900px;
-  min-height: 600px;
+  min-height: 580px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -17,9 +17,15 @@
   margin-bottom: 32px;
 }
 .new-reserve--image {
-  width: 144px;
-  height: 144px;
+  min-width: 124px;
+  min-height: 124px;
   margin-right: 16px;
+}
+.new-reserve--location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
 }
 .new-reserve--input-container {
   display: flex;
@@ -38,13 +44,4 @@
 }
 .new-reserve--find-button-container {
   margin-bottom: 32px;
-}
-.new-reserve--overview-container {
-  display: flex;
-  flex-direction: column;
-}
-.new-reserve--overview {
-  line-height: 20px;
-  text-align: justify;
-  overflow: ellipsis;
 }

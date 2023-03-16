@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   overflow: hidden;
-  min-height: 120px;
+  min-height: 80px;
   min-width: 600px;
 }
 .branch-content-summary--data-container {
@@ -17,6 +17,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.branch-content-summary--review {
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 .branch-content-summary--data-text {
   margin-left: 5px;
