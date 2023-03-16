@@ -10,10 +10,12 @@ export { StarRating } from './stories/atoms/starRating/StarRating';
 // MOLECULES
 export { InputText } from './stories/molecules/inputText/InputText';
 export { CheckList } from './stories/molecules/checkList/CheckList';
+export { BranchNav } from './stories/molecules/branchNav/BranchNav';
 export { InputDate } from './stories/molecules/inputDate/InputDate';
 export { BranchCard } from './stories/molecules/branchCard/BranchCard';
 export { InputSelect } from './stories/molecules/inputSelect/InputSelect';
 export { CategoryCard } from './stories/molecules/categoryCard/categoryCard';
+export { PromotionCard } from './stories/molecules/promotionCard/PromotionCard';
 export { ImagesCollage } from './stories/molecules/imagesCollage/imagesCollage';
 export { ProfilePicture } from './stories/molecules/profilePicture/ProfilePicture';
 export { HighlightReview } from './stories/molecules/highlightReview/HighlightReview';
