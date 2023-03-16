@@ -1,0 +1,9 @@
+.branch-content-overview--container {
+  display: flex;
+  flex-direction: column;
+}
+.branch-content-overview--overview {
+  line-height: 20px;
+  text-align: justify;
+  overflow: ellipsis;
+}
