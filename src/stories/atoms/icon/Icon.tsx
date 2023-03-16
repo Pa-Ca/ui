@@ -36,15 +36,17 @@ import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outl
 
 const Color = require('color');
 
+export type IconType = 'pa-ca' | 'facebook' | 'twitter' | 'youtube' | 'instagram' |
+'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
+'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
+'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
+'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox' | 'share';
+
 interface IconProps {
   /**
    * Icon name
    */
-  icon?: 'pa-ca' | 'facebook' | 'twitter' | 'youtube' | 'instagram' |
-  'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
-  'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
-  'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox' | 'share';
+  icon?: IconType;
   /**
    * Icon size
    */

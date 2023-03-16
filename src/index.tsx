@@ -14,6 +14,7 @@ export { BranchNav } from './stories/molecules/branchNav/BranchNav';
 export { InputDate } from './stories/molecules/inputDate/InputDate';
 export { BranchCard } from './stories/molecules/branchCard/BranchCard';
 export { InputSelect } from './stories/molecules/inputSelect/InputSelect';
+export { AmenityList } from './stories/molecules/amenityList/AmenityList';
 export { CategoryCard } from './stories/molecules/categoryCard/categoryCard';
 export { PromotionCard } from './stories/molecules/promotionCard/PromotionCard';
 export { ImagesCollage } from './stories/molecules/imagesCollage/imagesCollage';
