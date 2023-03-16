@@ -120,226 +120,228 @@ export const BranchFilter = ({
   return (
     <Box className='branch-filter--container' style={{ width, height }}>
       <Box>
-        <Text type='h5' weight='600'> Filtros </Text>
+        <Box>
+          <Text type='h5' weight='600'> Filtros </Text>
+        </Box>
+
+        <motion.div
+          className='branch-filter--item-container'
+          initial={{ flex: 0 }}
+          animate={{ flex: pricesView ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Box 
+            className='branch-filter--item-header branch-filter--range-header' 
+            onClick={() => setPricesView(!pricesView)}
+          >
+            <Text> Precio </Text>
+            <Icon icon={pricesView ? 'up' : 'down'} size='24px'/>
+          </Box>
+
+          <AnimatePresence>
+            {
+              pricesView && (
+                <motion.div
+                  initial={{ opacity: 0, y: -50, height: '0px' }}
+                  animate={{ opacity: 1, y: pricesView ? 0 : -50, height: '80px' }}
+                  exit={{ opacity: 0, y: -50, height: '0px' }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Box className='branch-filter--range'>
+                    <Range
+                      values={prices}
+                      setValues={setPrices}
+                      min={min}
+                      max={max}
+                      minMark={`$${min}`}
+                      maxMark={`+$${max}`}
+                      labelFunct={(price: number) => `$${price}`}
+                      displayLabels
+                      color={color}
+                    />
+                  </Box>
+                </motion.div>
+              )
+            }
+          </AnimatePresence>
+
+          <Box
+            backgroundColor='#112211'
+            height='0.5px'
+            width='100%'
+            className='branch-filter--line'
+          />
+        </motion.div>
+
+        <motion.div
+          className='branch-filter--item-container'
+          initial={{ flex: 0 }}
+          animate={{ flex: hoursView ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Box 
+            className='branch-filter--item-header branch-filter--range-header' 
+            onClick={() => setHoursView(!hoursView)}
+          >
+            <Text> Horarios </Text>
+            <Icon icon={hoursView ? 'up' : 'down'} size='24px'/>
+          </Box>
+
+          <AnimatePresence>
+            {
+              hoursView && (
+                <motion.div
+                  initial={{ opacity: 0, y: -50, height: '0px' }}
+                  animate={{ opacity: 1, y: hoursView ? 0 : -50, height: '80px' }}
+                  exit={{ opacity: 0, y: -50, height: '0px' }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Box className='branch-filter--range'>
+                    <Range
+                      values={hours}
+                      setValues={setHours}
+                      min={0}
+                      max={1410}
+                      minMark={`${formatTime(0)}`}
+                      maxMark={`${formatTime(1410)}`}
+                      labelFunct={formatTime}
+                      step={30}
+                      displayLabels
+                      color={color}
+                    />
+                  </Box>
+                </motion.div>
+              )
+            }
+          </AnimatePresence>
+
+          <Box
+            backgroundColor='#112211'
+            height='0.5px'
+            width='100%'
+            className='branch-filter--line'
+          />
+        </motion.div>
+
+        <motion.div
+          className='branch-filter--item-container'
+          initial={{ flex: 0 }}
+          animate={{ flex: ratingView ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Box className='branch-filter--item-header' onClick={() => setRatingView(!ratingView)}>
+            <Text> Rating </Text>
+            <Icon icon={ratingView ? 'up' : 'down'} size='24px'/>
+          </Box>
+
+          <AnimatePresence>
+            {
+              ratingView && (
+                <motion.div
+                  initial={{ opacity: 0, y: -50, height: '0px' }}
+                  animate={{ opacity: 1, y: ratingView ? 0 : -50, height: '70px' }}
+                  exit={{ opacity: 0, y: -50, height: '0px' }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Box className='branch-filter--rating'>
+                    <StarRating
+                      rating={rating}
+                      setRating={setRating}
+                      size={37.5}
+                      color={color}
+                    />
+                  </Box>
+                </motion.div>
+              )
+            }
+          </AnimatePresence>
+
+          <Box
+            backgroundColor='#112211'
+            height='0.5px'
+            width='100%'
+            className='branch-filter--line'
+          />
+        </motion.div>
+
+        <motion.div
+          className='branch-filter--item-container'
+          initial={{ flex: 0 }}
+          animate={{ flex: cousineView ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Box className='branch-filter--item-header' onClick={() => setCousineView(!cousineView)}>
+            <Text> Cocina </Text>
+            <Icon icon={cousineView ? 'up' : 'down'} size='24px'/>
+          </Box>
+
+          <AnimatePresence>
+            {
+              cousineView && (
+                <motion.div
+                  initial={{ opacity: 0, y: -50, height: '0px' }}
+                  animate={{ opacity: 1, y: cousineView ? 0 : -50, height: `${checkboxHeight(cousines.length)}` }}
+                  exit={{ opacity: 0, y: -50, height: '0px' }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Box className='branch-filter--check-list'>
+                    <CheckList
+                      items={cousines}
+                      setItems={setCousines}
+                    />
+                  </Box>
+                </motion.div>
+              )
+            }
+          </AnimatePresence>
+
+          <Box
+            backgroundColor='#112211'
+            height='0.5px'
+            width='100%'
+            className='branch-filter--line'
+          />
+        </motion.div>
+
+        <motion.div
+          className='branch-filter--item-container'
+          initial={{ flex: 0 }}
+          animate={{ flex: zoneView ? 1 : 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Box className='branch-filter--item-header' onClick={() => setZoneView(!zoneView)}>
+            <Text> Zona </Text>
+            <Icon icon={zoneView ? 'up' : 'down'} size='24px'/>
+          </Box>
+
+          <AnimatePresence>
+            {
+              zoneView && (
+                <motion.div
+                  initial={{ opacity: 0, y: -50, height: '0px' }}
+                  animate={{ opacity: 1, y: zoneView ? 0 : -50, height: `${checkboxHeight(zones.length)}` }}
+                  exit={{ opacity: 0, y: -50, height: '0px' }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Box className='branch-filter--check-list'>
+                    <CheckList
+                      items={zones}
+                      setItems={setZones}
+                    />
+                  </Box>
+                </motion.div>
+              )
+            }
+          </AnimatePresence>
+
+          <Box
+            backgroundColor='#112211'
+            height='0.5px'
+            width='100%'
+            className='branch-filter--line'
+          />
+        </motion.div>
       </Box>
-
-      <motion.div
-        className='branch-filter--item-container'
-        initial={{ flex: 0 }}
-        animate={{ flex: pricesView ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Box 
-          className='branch-filter--item-header branch-filter--range-header' 
-          onClick={() => setPricesView(!pricesView)}
-        >
-          <Text> Precio </Text>
-          <Icon icon={pricesView ? 'up' : 'down'} size='24px'/>
-        </Box>
-
-        <AnimatePresence>
-          {
-            pricesView && (
-              <motion.div
-                initial={{ opacity: 0, y: -50, height: '0px' }}
-                animate={{ opacity: 1, y: pricesView ? 0 : -50, height: '80px' }}
-                exit={{ opacity: 0, y: -50, height: '0px' }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Box className='branch-filter--range'>
-                  <Range
-                    values={prices}
-                    setValues={setPrices}
-                    min={min}
-                    max={max}
-                    minMark={`$${min}`}
-                    maxMark={`+$${max}`}
-                    labelFunct={(price: number) => `$${price}`}
-                    displayLabels
-                    color={color}
-                  />
-                </Box>
-              </motion.div>
-            )
-          }
-        </AnimatePresence>
-
-        <Box
-          backgroundColor='#112211'
-          height='0.5px'
-          width='100%'
-          className='branch-filter--line'
-        />
-      </motion.div>
-
-      <motion.div
-        className='branch-filter--item-container'
-        initial={{ flex: 0 }}
-        animate={{ flex: hoursView ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Box 
-          className='branch-filter--item-header branch-filter--range-header' 
-          onClick={() => setHoursView(!hoursView)}
-        >
-          <Text> Horarios </Text>
-          <Icon icon={hoursView ? 'up' : 'down'} size='24px'/>
-        </Box>
-
-        <AnimatePresence>
-          {
-            hoursView && (
-              <motion.div
-                initial={{ opacity: 0, y: -50, height: '0px' }}
-                animate={{ opacity: 1, y: hoursView ? 0 : -50, height: '80px' }}
-                exit={{ opacity: 0, y: -50, height: '0px' }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Box className='branch-filter--range'>
-                  <Range
-                    values={hours}
-                    setValues={setHours}
-                    min={0}
-                    max={1410}
-                    minMark={`${formatTime(0)}`}
-                    maxMark={`${formatTime(1410)}`}
-                    labelFunct={formatTime}
-                    step={30}
-                    displayLabels
-                    color={color}
-                  />
-                </Box>
-              </motion.div>
-            )
-          }
-        </AnimatePresence>
-
-        <Box
-          backgroundColor='#112211'
-          height='0.5px'
-          width='100%'
-          className='branch-filter--line'
-        />
-      </motion.div>
-
-      <motion.div
-        className='branch-filter--item-container'
-        initial={{ flex: 0 }}
-        animate={{ flex: ratingView ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Box className='branch-filter--item-header' onClick={() => setRatingView(!ratingView)}>
-          <Text> Rating </Text>
-          <Icon icon={ratingView ? 'up' : 'down'} size='24px'/>
-        </Box>
-
-        <AnimatePresence>
-          {
-            ratingView && (
-              <motion.div
-                initial={{ opacity: 0, y: -50, height: '0px' }}
-                animate={{ opacity: 1, y: ratingView ? 0 : -50, height: '70px' }}
-                exit={{ opacity: 0, y: -50, height: '0px' }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Box className='branch-filter--rating'>
-                  <StarRating
-                    rating={rating}
-                    setRating={setRating}
-                    size={37.5}
-                    color={color}
-                  />
-                </Box>
-              </motion.div>
-            )
-          }
-        </AnimatePresence>
-
-        <Box
-          backgroundColor='#112211'
-          height='0.5px'
-          width='100%'
-          className='branch-filter--line'
-        />
-      </motion.div>
-
-      <motion.div
-        className='branch-filter--item-container'
-        initial={{ flex: 0 }}
-        animate={{ flex: cousineView ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Box className='branch-filter--item-header' onClick={() => setCousineView(!cousineView)}>
-          <Text> Cocina </Text>
-          <Icon icon={cousineView ? 'up' : 'down'} size='24px'/>
-        </Box>
-
-        <AnimatePresence>
-          {
-            cousineView && (
-              <motion.div
-                initial={{ opacity: 0, y: -50, height: '0px' }}
-                animate={{ opacity: 1, y: cousineView ? 0 : -50, height: `${checkboxHeight(cousines.length)}` }}
-                exit={{ opacity: 0, y: -50, height: '0px' }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Box className='branch-filter--check-list'>
-                  <CheckList
-                    items={cousines}
-                    setItems={setCousines}
-                  />
-                </Box>
-              </motion.div>
-            )
-          }
-        </AnimatePresence>
-
-        <Box
-          backgroundColor='#112211'
-          height='0.5px'
-          width='100%'
-          className='branch-filter--line'
-        />
-      </motion.div>
-
-      <motion.div
-        className='branch-filter--item-container'
-        initial={{ flex: 0 }}
-        animate={{ flex: zoneView ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Box className='branch-filter--item-header' onClick={() => setZoneView(!zoneView)}>
-          <Text> Zona </Text>
-          <Icon icon={zoneView ? 'up' : 'down'} size='24px'/>
-        </Box>
-
-        <AnimatePresence>
-          {
-            zoneView && (
-              <motion.div
-                initial={{ opacity: 0, y: -50, height: '0px' }}
-                animate={{ opacity: 1, y: zoneView ? 0 : -50, height: `${checkboxHeight(zones.length)}` }}
-                exit={{ opacity: 0, y: -50, height: '0px' }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Box className='branch-filter--check-list'>
-                  <CheckList
-                    items={zones}
-                    setItems={setZones}
-                  />
-                </Box>
-              </motion.div>
-            )
-          }
-        </AnimatePresence>
-
-        <Box
-          backgroundColor='#112211'
-          height='0.5px'
-          width='100%'
-          className='branch-filter--line'
-        />
-      </motion.div>
     </Box>
   );
 };

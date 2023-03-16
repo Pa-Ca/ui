@@ -2,13 +2,12 @@ import React, { SyntheticEvent, useState } from 'react';
 import './newReserve.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
-import { Icon } from '../../atoms/icon/Icon';
 import { Button } from '../../atoms/button/Button';
 import useResizeObserver from '../../hooks/useResizeObserver';
-import { StarRating } from '../../atoms/starRating/StarRating';
 import { InputText } from '../../molecules/inputText/InputText';
 import { InputDate } from '../../molecules/inputDate/InputDate';
 import { InputSelect, OptionObject } from '../../molecules/inputSelect/InputSelect';
+import { BranchContentSummary } from '../../molecules/branchContentSummary/BranchContentSummary';
 
 interface NewReserveProps {
   /**
@@ -162,48 +161,19 @@ export const NewReserve = ({
     <Box className='new-reserve--container' style={{ width, height }} innerRef={containerObserver.ref}>
       {/* Branch details */}
       <Box className='new-reserve--details'>
-        <Box className='new-reserve--data-container'>
-          <Box backgroundImage={picture} className='new-reserve--image'/>
-
-          <Box className='new-reserve--branch-data-container' width={`${summaryWidth}px`}>
-            <Text type='h3' color='#121212' weight='600' opacity={0.7}>
-              {name}
-            </Text>
-
-            <Box>
-              <StarRating size={16} rating={score} color={color} />
-              <Text type='h8' color='#121212' weight='400' className='new-reserve--data-text'>
-                {reviews} Reviews
-              </Text>
-            </Box>
-
-            <Box className='new-reserve--branch-type-container'>
-              <Icon icon='bell' size='18px' />
-              <Text type='h6' color='#112211' opacity={0.75} className='new-reserve--data-text'> 
-                {amenity}
-              </Text>
-
-              <Box width='16px' />
-              
-              <Icon icon='dollar' size='18px' />
-              <Text type='h6' color='#112211' opacity={0.75} className='new-reserve--data-text'> 
-                {price}$ p/ Persona
-              </Text>
-            </Box>
-
-            <Box className='new-reserve--branch-type-container'>
-              <Icon icon='location' size='18px' />
-              <Text type='h6' color='#112211' opacity={0.75} className='new-reserve--data-text'>
-                {location}
-              </Text>
-            </Box>
-          </Box>
-        </Box>
-
-        <Box className='new-reserve--price-container'>
-          <Text type='h3' color='#121212' weight='700'> Reserva</Text>
-          <Text type='h3' color={color} weight='700'> {consumiblePrice}$ Consumible </Text>
-        </Box>
+        <Box backgroundImage={picture} className='new-reserve--image'/>
+        
+        <BranchContentSummary
+          name={name}
+          score={score}
+          reviews={reviews}
+          amenity={amenity}
+          price={price}
+          location={location}
+          consumiblePrice={consumiblePrice}
+          color={color}
+          width='100%'
+        />
       </Box>
 
       {/* Inputs 1 */}

@@ -1,0 +1,29 @@
+.branch-content-summary--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  min-height: 120px;
+  min-width: 600px;
+}
+.branch-content-summary--data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  max-width: 100%;
+}
+.branch-content-summary--data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-content-summary--data-text {
+  margin-left: 5px;
+}
+.branch-content-summary--price-container {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  min-width: 270px;
+}
