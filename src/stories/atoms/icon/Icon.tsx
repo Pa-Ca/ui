@@ -15,6 +15,7 @@ import facebookIcon from '@iconify/icons-mdi/facebook';
 import paperPlane from '@iconify/icons-ion/paper-plane';
 import eyeSlashFill from '@iconify/icons-bi/eye-slash-fill';
 import wifiHighBold from '@iconify/icons-ph/wifi-high-bold';
+import shareIcon from '@iconify/icons-material-symbols/share';
 import fitnessCentre from '@iconify/icons-maki/fitness-centre';
 import googleIcon from '@iconify/icons-flat-color-icons/google';
 import personIcon from '@iconify/icons-material-symbols/person';
@@ -43,7 +44,7 @@ interface IconProps {
   'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
   'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
   'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox';
+  'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox' | 'share';
   /**
    * Icon size
    */
@@ -252,6 +253,12 @@ export const Icon = ({
     case 'uncheckbox':
       return <Iconify
         icon={checkBoxOutlineBlank}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'share':
+      return <Iconify
+        icon={shareIcon}
         style={{ fontSize: size }}
         color={color}
       />

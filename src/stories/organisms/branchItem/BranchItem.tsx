@@ -203,7 +203,7 @@ export const BranchItem = ({
         {/* Buttons */}
         <Box className='branch-item--button-container'>
           <Box className='branch-item--like-container'> 
-            <Button size='box' primary={like} borderColor={color} onClick={onLikeClick}>
+            <Button size='box' primary={like} borderColor={color} backgroundColor={color} onClick={onLikeClick}>
               <Icon icon={like ? 'heart-fill' : 'heart'} size='20px' color={like ? 'white' : 'black'} />
             </Button>
           </Box>
