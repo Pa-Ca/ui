@@ -26,6 +26,10 @@ interface ReviewProps {
    */
   image?: string;
   /**
+   * On flag click function
+   */
+  onFlagClick?: () => void;
+  /**
    * Total component width
    */
   width?: string;
@@ -40,6 +44,7 @@ export const Review = ({
   author,
   review,
   image,
+  onFlagClick,
   width,
   ...props
 }: ReviewProps) => { 
@@ -68,7 +73,7 @@ export const Review = ({
        </Box>
      </Box>
 
-     <Box className='review--flag'>
+     <Box className='review--flag' onClick={onFlagClick}>
        <Icon icon='flag' size='17.5px' color='#112211' />
      </Box>
    </Box>

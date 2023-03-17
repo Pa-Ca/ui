@@ -8,7 +8,7 @@ export default {
   component: Review,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
-    textClassName: {
+    onFlagClick: {
       table: {
         disable: true
       }
