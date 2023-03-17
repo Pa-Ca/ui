@@ -27,7 +27,7 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   score: 4.5,
-  scoreText: 'Amazing',
+  author: 'Giovanni Giorgio',
   review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   image: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg'
 };

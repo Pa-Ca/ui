@@ -3,16 +3,13 @@ import './review.scss';
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
+import scoreString from '../../utils/scoreString';
 
 interface ReviewProps {
   /**
    * Review score
    */
   score?: number;
-  /**
-   * Review score text
-   */
-  scoreText?: string;
   /**
    * Review author
    */
@@ -40,7 +37,6 @@ interface ReviewProps {
 */
 export const Review = ({
   score,
-  scoreText,
   author,
   review,
   image,
@@ -62,7 +58,7 @@ export const Review = ({
 
      <Box className='review--data-container'>
        <Box className='review--data-header'>
-         <Text weight='700' color='#112211'> {score} {scoreText} </Text>
+         <Text weight='700' color='#112211'> {score} {scoreString(score ?? 0)} </Text>
          <Text weight='400' color='#112211'> &nbsp;&nbsp;|&nbsp; {author} </Text>
        </Box>
 

@@ -32,6 +32,8 @@ import questionMark from '@iconify/icons-material-symbols/question-mark';
 import roundKeyboardArrowUp from '@iconify/icons-ic/round-keyboard-arrow-up';
 import tableRestaurant from '@iconify/icons-material-symbols/table-restaurant';
 import roundKeyboardArrowDown from '@iconify/icons-ic/round-keyboard-arrow-down';
+import iosArrowLeft24Filled from '@iconify/icons-fluent/ios-arrow-left-24-filled';
+import iosArrowRight24Filled from '@iconify/icons-fluent/ios-arrow-right-24-filled';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outline-blank';
 
@@ -41,8 +43,8 @@ export type IconType = 'pa-ca' | 'facebook' | 'twitter' | 'youtube' | 'instagram
   'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
   'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
   'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox' | 'share' |
-  'flag';
+  'fast-food' | 'down' | 'up' | 'left' | 'right' | 'table' | 'checkbox' |
+  'uncheckbox' | 'share' | 'flag';
 
 interface IconProps {
   /**
@@ -239,6 +241,18 @@ export const Icon = ({
     case 'up':
       return <Iconify
         icon={roundKeyboardArrowUp}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'left':
+      return <Iconify
+        icon={iosArrowLeft24Filled}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'right':
+      return <Iconify
+        icon={iosArrowRight24Filled}
         style={{ fontSize: size }}
         color={color}
       />
