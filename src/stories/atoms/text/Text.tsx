@@ -56,7 +56,7 @@ export function Text({
   ...props
 }: TextProps): JSX.Element {
   return (
-    <span
+    <div
       className={[
         'text',
         `text--${type}`,
@@ -68,6 +68,6 @@ export function Text({
       {...props}
     >
       {children}
-    </span>
+    </div>
   );
 };
