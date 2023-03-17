@@ -21,6 +21,10 @@ interface PlateProps {
    */
   image?: string;
   /**
+   * On component click
+   */
+  onClick?: () => void;
+  /**
    * Card width
    */
   width?: string;
@@ -42,13 +46,14 @@ export const Plate = ({
   title,
   description,
   image,
+  onClick,
   width,
   height,
   color,
   ...props
 }: PlateProps) => {
   return (
-    <Box className='plate--container' weakShadow style={{ width, height }}>
+    <Box className='plate--container' weakShadow style={{ width, height }} onClick={onClick}>
       <Box backgroundImage={image} className='plate--image' />
 
       <Box className='plate--summary-container'>

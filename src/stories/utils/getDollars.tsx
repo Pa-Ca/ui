@@ -14,30 +14,21 @@ export default (nActiveDollars: number, name?: string) => {
 
     for (let i = 0; i < Math.min(nActiveDollars, 4); i++) {
       dollars.push((
-        <Text
-          key={`${name}-card-dollar=${i}`}
-          type='h7'
-          className='branch-card--summary-text'
-        >
+        <Text key={`${name}-card-dollar=${i}`} type='h7' weight='400'>
           $
         </Text>
       ));
     }
     for (let i = Math.max(nActiveDollars, 0); i < 4; i++) {
       dollars.push((
-        <Text
-          key={`${name}-card-dollar=${i}`}
-          type='h7'
-          className='branch-card--summary-text'
-          color='#8D8D8D'
-        >
+        <Text key={`${name}-card-dollar=${i}`} type='h7' weight='400' color='#8D8D8D'>
           $
         </Text>
       ));
     }
 
     return (
-      <Text>
+      <Text style={{ display: 'flex', flexDirection: 'row' }}>
         {
           dollars.map((e) => e)
         }
