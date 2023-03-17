@@ -88,7 +88,7 @@ export const FastReserveBox = ({
 
       return (
         
-        <Box className='fast-reserve-box--container' backgroundColor='white' style={{ width, height }}>
+        <Box className='fast-reserve-box--container' backgroundColor='white' strongShadow style={{ width, height }}>
             
           {/* The title of the box */}
           <Box className='fast-reserve-box--title' backgroundColor='transparent'>

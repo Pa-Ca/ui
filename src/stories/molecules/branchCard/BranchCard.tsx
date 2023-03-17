@@ -46,7 +46,7 @@ interface BranchCardProps {
   /**
    * On click in image or title
    */
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  onClick?: () => void;
   /**
    * On first reserve click
    */
@@ -141,7 +141,7 @@ export const BranchCard = ({
         <Box className='branch-card--info'>
           <Box className='branch-card--reviews-zone' >
             <Box className='branch-card--reviews'>
-              <StarRating size={20} rating={score} color={color} />
+              <StarRating size={20} rating={score} color={color} readonly />
               <Text type='h8' weight='400' className='branch-card--reviews-text' >
                 {reviews} Reviews
               </Text>
