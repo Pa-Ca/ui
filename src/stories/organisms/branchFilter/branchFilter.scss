@@ -31,6 +31,20 @@
   margin-left: 35px;
   margin-right: 35px;
 }
+.branch-filter--hours-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-filter--hour { 
+  display: flex; 
+  flex: 1; 
+  z-index: 3;
+}
+.branch-filter--hour-conector { 
+  margin-left: 8px;
+  margin-right: 8px;
+}
 .branch-filter--rating {
   margin-right: 35px;
 }

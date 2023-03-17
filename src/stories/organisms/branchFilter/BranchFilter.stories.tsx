@@ -19,12 +19,22 @@ export default {
         disable: true
       }
     },
-    hours: {
+    startHour: {
       table: {
         disable: true
       }
     },
-    setHours: {
+    setStartHour: {
+      table: {
+        disable: true
+      }
+    },
+    endHour: {
+      table: {
+        disable: true
+      }
+    },
+    setEndHour: {
       table: {
         disable: true
       }
@@ -103,12 +113,12 @@ const zones_: CheckObject[] = [
   },
 ];
 
-
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchFilter> = (args: any) => {
   const [rating, setRating] = useState(0);
   const [zones, setZones] = useState(zones_);
-  const [hours, setHours] = useState([0, 1410]);
+  const [startHour, setStartHour] = useState({ value: '', name: '' });
+  const [endHour, setEndHour] = useState({ value: '', name: '' });
   const [prices, setPrices] = useState([args.min, args.max]);
   const [cousines, setCousines] = useState(cousines_);
   
@@ -118,8 +128,10 @@ const Template: ComponentStory<typeof BranchFilter> = (args: any) => {
       setRating={setRating}
       zones={zones}
       setZones={setZones}
-      hours={hours}
-      setHours={setHours}
+      startHour={startHour}
+      setStartHour={setStartHour}
+      endHour={endHour}
+      setEndHour={setEndHour}
       prices={prices}
       setPrices={setPrices}
       cousines={cousines}

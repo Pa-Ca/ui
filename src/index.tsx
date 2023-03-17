@@ -29,6 +29,7 @@ export * from './stories/molecules/branchContentOverview/BranchContentOverview';
 export * from './stories/organisms/header/Header';
 export * from './stories/organisms/branchItem/BranchItem';
 export * from './stories/organisms/newReserve/NewReserve';
+export * from './stories/organisms/menuPreview/MenuPreview';
 export * from './stories/organisms/branchSearch/BranchSearch';
 export * from './stories/organisms/branchFilter/BranchFilter';
 export * from './stories/organisms/branchMainSummary/BranchMainSummary';

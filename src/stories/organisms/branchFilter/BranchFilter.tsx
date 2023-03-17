@@ -7,6 +7,7 @@ import { Range } from '../../atoms/range/Range';
 import { StarRating } from '../../atoms/starRating/StarRating';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion'; 
 import { CheckList, CheckObject } from '../../molecules/checkList/CheckList';
+import { InputSelect, OptionObject } from '../../molecules/inputSelect/InputSelect';
 
 interface BranchFilterProps {
   /**
@@ -26,13 +27,21 @@ interface BranchFilterProps {
    */
   setPrices: () => void;
   /**
-   * Current hour range
+   * Current start hour 
    */
-  hours: number[];
+  startHour: OptionObject;
   /**
-   * Function that change hour range
+   * Function that change start hour
    */
-  setHours: () => void;
+  setStartHour: Function;
+  /**
+   * Current end hour 
+   */
+  endHour: OptionObject;
+  /**
+   * Function that change end hour
+   */
+  setEndHour: Function;
   /**
    * Current minimum rating 
    */
@@ -71,6 +80,57 @@ interface BranchFilterProps {
   height?: string;
 }
 
+const validHours = [
+  { value: '00:00', name: '12:00 am' },
+  { value: '00:30', name: '12:30 am' },
+  { value: '01:00', name: '1:00 am' },
+  { value: '01:30', name: '1:30 am' },
+  { value: '02:00', name: '2:00 am' },
+  { value: '02:30', name: '2:30 am' },
+  { value: '03:00', name: '3:00 am' },
+  { value: '03:30', name: '3:30 am' },
+  { value: '04:00', name: '4:00 am' },
+  { value: '04:30', name: '4:30 am' },
+  { value: '05:00', name: '5:00 am' },
+  { value: '05:30', name: '5:30 am' },
+  { value: '06:00', name: '6:00 am' },
+  { value: '06:30', name: '6:30 am' },
+  { value: '07:00', name: '7:00 am' },
+  { value: '07:30', name: '7:30 am' },
+  { value: '08:00', name: '8:00 am' },
+  { value: '08:30', name: '8:30 am' },
+  { value: '09:00', name: '9:00 am' },
+  { value: '09:30', name: '9:30 am' },
+  { value: '10:00', name: '10:00 am' },
+  { value: '10:30', name: '10:30 am' },
+  { value: '11:00', name: '11:00 am' },
+  { value: '11:30', name: '11:30 am' },
+  { value: '12:00', name: '12:00 pm' },
+  { value: '12:30', name: '12:30 pm' },
+  { value: '13:00', name: '1:00 pm' },
+  { value: '13:30', name: '1:30 pm' },
+  { value: '14:00', name: '2:00 pm' },
+  { value: '14:30', name: '2:30 pm' },
+  { value: '15:00', name: '3:00 pm' },
+  { value: '15:30', name: '3:30 pm' },
+  { value: '16:00', name: '4:00 pm' },
+  { value: '16:30', name: '4:30 pm' },
+  { value: '17:00', name: '5:00 pm' },
+  { value: '17:30', name: '5:30 pm' },
+  { value: '18:00', name: '6:00 pm' },
+  { value: '18:30', name: '6:30 pm' },
+  { value: '19:00', name: '7:00 pm' },
+  { value: '19:30', name: '7:30 pm' },
+  { value: '20:00', name: '8:00 pm' },
+  { value: '20:30', name: '8:30 pm' },
+  { value: '21:00', name: '9:00 pm' },
+  { value: '21:30', name: '9:30 pm' },
+  { value: '22:00', name: '10:00 pm' },
+  { value: '22:30', name: '10:30 pm' },
+  { value: '23:00', name: '11:00 pm' },
+  { value: '23:30', name: '11:30 pm' },
+]
+
 /**
  * Primary UI component for user interaction
  */
@@ -79,8 +139,10 @@ export const BranchFilter = ({
   max,
   prices,
   setPrices,
-  hours,
-  setHours,
+  startHour,
+  setStartHour,
+  endHour,
+  setEndHour,
   rating,
   setRating,
   cousines,
@@ -99,23 +161,6 @@ export const BranchFilter = ({
   const [cousineView, setCousineView] = useState(false);
 
   const checkboxHeight = (length: number) => `${length * 29 + 32}px`;
-
-  const formatTime = (minutes: number) => {
-    // Convertir minutos a horas y minutos
-    var hours = Math.floor(minutes / 60);
-    var mins = minutes % 60;
-  
-    // Convertir horas a formato de 12 horas (am o pm)
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    // Las 12 pm y 12 am no necesitan ser convertidas a 0
-    hours = hours ? hours : 12;
-  
-    // Formatear las horas y minutos en un string en el formato 'h:mmam' o 'h:mmpm'
-    var formattedTime = hours + ':' + (mins < 10 ? '0' : '') + mins + ampm;
-  
-    return formattedTime;
-  };
   
   return (
     <Box className='branch-filter--container' style={{ width, height }}>
@@ -196,19 +241,32 @@ export const BranchFilter = ({
                   exit={{ opacity: 0, y: -50, height: '0px' }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <Box className='branch-filter--range'>
-                    <Range
-                      values={hours}
-                      setValues={setHours}
-                      min={0}
-                      max={1410}
-                      minMark={`${formatTime(0)}`}
-                      maxMark={`${formatTime(1410)}`}
-                      labelFunct={formatTime}
-                      step={30}
-                      displayLabels
-                      color={color}
-                    />
+                  <Box className='branch-filter--hours-container'>
+                    <Box className='branch-filter--hour'>
+                      <InputSelect
+                        label='Mínimo'
+                        option={startHour}
+                        setOption={setStartHour}
+                        options={validHours}
+                        width='100%'
+                      />
+                    </Box>
+
+                    <Box className='branch-filter--hour-conector'>
+                      <Text>
+                        a
+                      </Text>
+                    </Box>
+
+                    <Box className='branch-filter--hour'>
+                      <InputSelect
+                        label='Máximo'
+                        option={endHour}
+                        setOption={setEndHour}
+                        options={validHours}
+                        width='100%'
+                      />
+                    </Box>
                   </Box>
                 </motion.div>
               )
