@@ -8,6 +8,7 @@ export * from './stories/atoms/checkbox/Checkbox';
 export * from './stories/atoms/starRating/StarRating';
 
 // MOLECULES
+export * from './stories/molecules/plate/Plate';
 export * from './stories/molecules/review/Review';
 export * from './stories/molecules/inputText/InputText';
 export * from './stories/molecules/checkList/CheckList';

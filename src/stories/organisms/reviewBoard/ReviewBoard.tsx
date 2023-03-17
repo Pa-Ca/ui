@@ -8,10 +8,10 @@ import { Review } from '../../molecules/review/Review';
 import { Icon } from '../../atoms/icon/Icon';
 
 export type ReviewObject = {
-  score: number,
-  author: string,
-  review: string,
-  image: string
+  score: number;
+  author: string;
+  review: string;
+  image: string;
 };
 
 interface ReviewBoardProps {

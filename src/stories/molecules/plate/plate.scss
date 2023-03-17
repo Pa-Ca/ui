@@ -1,8 +1,8 @@
 .plate--container {
   border-radius: 5px;
   overflow: hidden;
-  min-height: 280px;
-  min-width: 300px;
+  min-height: 260px;
+  min-width: 200px;
   display: grid;
   position: relative;
   grid-template-rows: 6fr 4fr;
@@ -33,4 +33,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: #969AB0;
+  line-height: 12px;
 }
