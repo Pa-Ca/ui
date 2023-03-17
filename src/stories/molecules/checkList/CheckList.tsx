@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import './checkList.scss';
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';

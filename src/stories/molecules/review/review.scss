@@ -1,0 +1,38 @@
+.review--container {
+  display: flex;
+  flex-direction: row;
+  min-width: 436px;
+  min-height: 59px;
+}
+.review--data-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.review--data-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.review--data-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.review--image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.review--image {
+  margin-right: 40px;
+  min-width: 45px;
+}
+.review--flag {
+  cursor: pointer;
+  margin-left: 16px;
+  min-width: 16px;
+}

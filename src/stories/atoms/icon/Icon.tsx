@@ -13,6 +13,7 @@ import twitterIcon from '@iconify/icons-mdi/twitter';
 import youtubeIcon from '@iconify/icons-mdi/youtube';
 import facebookIcon from '@iconify/icons-mdi/facebook';
 import paperPlane from '@iconify/icons-ion/paper-plane';
+import flagFilled from '@iconify/icons-tabler/flag-filled';
 import eyeSlashFill from '@iconify/icons-bi/eye-slash-fill';
 import wifiHighBold from '@iconify/icons-ph/wifi-high-bold';
 import shareIcon from '@iconify/icons-material-symbols/share';
@@ -37,10 +38,11 @@ import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outl
 const Color = require('color');
 
 export type IconType = 'pa-ca' | 'facebook' | 'twitter' | 'youtube' | 'instagram' |
-'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
-'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
-'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox' | 'share';
+  'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
+  'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
+  'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
+  'fast-food' | 'down' | 'up' | 'table' | 'checkbox' | 'uncheckbox' | 'share' |
+  'flag';
 
 interface IconProps {
   /**
@@ -261,6 +263,12 @@ export const Icon = ({
     case 'share':
       return <Iconify
         icon={shareIcon}
+        style={{ fontSize: size }}
+        color={color}
+      />
+    case 'flag':
+      return <Iconify
+        icon={flagFilled}
         style={{ fontSize: size }}
         color={color}
       />
