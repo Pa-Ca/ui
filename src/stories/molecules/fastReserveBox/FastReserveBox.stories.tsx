@@ -81,12 +81,20 @@ export default {
   
   // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
   const Template: ComponentStory<typeof FastReserveBox> = (args: any) => {
-    const [date, setDate] = useState(new Date());
-    const [hour, setHour] = useState(undefined);
-    const [persons, setPersons]  =  useState('1');
+    const [date, setDate]        = useState(new Date());
+    const [hour, setHour]        = useState(undefined);
+    const [persons, setPersons]  = useState('1');
     
+    const modifyPersons = (value : string ) => {
 
-
+      if (parseInt(value) < 1){
+        setPersons('1');
+      }
+      else {
+        setPersons(value);
+      }
+      
+    }
 
 
     return <FastReserveBox 
@@ -96,7 +104,7 @@ export default {
       setHour={setHour}
       validHours={validHours}
       persons={persons}
-      setPersons={setPersons}
+      setPersons={modifyPersons}
       {...args} />; 
   }
   

@@ -96,9 +96,12 @@ export const FastReserveBox = ({
               {title}
             </Text>
           </Box>
+
+
+          <Box className='fast-reserve-box--input-container'>
           {/*The box of the InputSelect components*/}
           {/* There should be 3 input select componetes*/}
-          <Box className='fast-reserve-box--input-select' backgroundColor='transparent'>
+          
           {/*Line between the tile and inputs */}
           <Box height='1px' backgroundColor='#000000' className='fast-reserve-box--line'/> 
             <Box className='fast-reserve-box--input-select-top' backgroundColor='transparent'>
@@ -128,11 +131,9 @@ export const FastReserveBox = ({
                 />
               </Box>
             </Box>
-          </Box>
 
 
           {/* The box of the two buttons */}
-        <Box className='fast-reserve-box--button-box'>
           <Box className='fast-reserve-box--reserve-button-box' backgroundColor='transparent'  width='100%'>
             <Button
               onClick={onClickReserve}
@@ -163,7 +164,6 @@ export const FastReserveBox = ({
             </Button>
           </Box>
         </Box>
-
         </Box>
       );
     };
