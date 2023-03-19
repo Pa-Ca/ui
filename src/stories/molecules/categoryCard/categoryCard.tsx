@@ -97,14 +97,17 @@ interface CategoryCardProps {
                 backgroundColor={buttonColor}
                 primary={true}
                 size='large'
-                onClick={onClick}>
-                <Icon icon='paper-plane' size={'16px'} color='white' />
-                <Text className='category-card--button-text'>
-                  Muéstrame
-                </Text>
+                onClick={onClick}
+              >
+                <Box className='category-card--button'>
+                  <Icon icon='paper-plane' size={'16px'} color='white' />
+                  <Text className='category-card--button-text'>
+                    Muéstrame
+                  </Text>
+                </Box>
                 </Button>
             </Box>
-            </Box>
+          </Box>
         
           
     </Box>

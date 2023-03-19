@@ -24,9 +24,9 @@ interface BranchCardProps {
    */
   discount?: boolean;
   /**
-   * Branch main amenity
+   * Branch main category
    */
-  amenity?: string;
+  category?: string;
   /**
    * Branch location
    */
@@ -81,7 +81,7 @@ export const BranchCard = ({
   score,
   reviews,
   discount,
-  amenity,
+  category,
   location,
   firstReserve,
   secondReserve,
@@ -148,7 +148,7 @@ export const BranchCard = ({
             </Box>
           </Box>
           <Box className='branch-card--summary'>
-            <Text type='h7' weight='400'> {amenity} </Text>
+            <Text type='h7' weight='400'> {category} </Text>
             <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
             <Text> {getDollars(priceScore ?? 0, name)} </Text>
             <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>

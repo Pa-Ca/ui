@@ -33,5 +33,5 @@ export * from './stories/organisms/newReserve/NewReserve';
 export * from './stories/organisms/menuPreview/MenuPreview';
 export * from './stories/organisms/branchSearch/BranchSearch';
 export * from './stories/organisms/branchFilter/BranchFilter';
-export * from './stories/organisms/amenityPreview/AmenityPreview';
+export * from './stories/organisms/categoryPreview/CategoryPreview';
 export * from './stories/organisms/branchMainSummary/BranchMainSummary';

@@ -39,7 +39,7 @@ Default.args = {
   score: 3.7,
   reviews: 42,
   discount: true,
-  amenity: 'Italian',
+  category: 'Italian',
   location: 'Las Mercedes',
   firstReserve: '8:00 pm',
   secondReserve: '9:00 pm',

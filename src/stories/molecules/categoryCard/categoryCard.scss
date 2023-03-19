@@ -72,6 +72,11 @@
   -webkit-line-clamp: 3;
 }
 
+.category-card--button {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+}
 .category-card--button-text {
   margin-left: 5px;
 }

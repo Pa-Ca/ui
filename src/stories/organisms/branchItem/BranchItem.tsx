@@ -22,9 +22,9 @@ interface BranchItemProps {
    */
   reviews?: number;
   /**
-   * Branch main amenity
+   * Branch main category
    */
-  amenity?: string;
+  category?: string;
   /**
    * Branch location
    */
@@ -90,7 +90,7 @@ export const BranchItem = ({
   name,
   score,
   reviews,
-  amenity,
+  category,
   location,
   firstReserve,
   secondReserve,
@@ -145,7 +145,7 @@ export const BranchItem = ({
             </Box>
 
             <Box className='branch-item--summary'>
-              <Text type='h7' weight='400'> {amenity} </Text>
+              <Text type='h7' weight='400'> {category} </Text>
               <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
               <Text> {getDollars(priceScore, name)} </Text>
               <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>

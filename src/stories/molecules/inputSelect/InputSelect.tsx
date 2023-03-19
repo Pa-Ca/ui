@@ -140,7 +140,7 @@ export const InputSelect = ({
                     }
 
                     return (
-                    <view style={{ ...optionStyle }}>
+                    <view style={{ ...optionStyle }} key={`input-select--option-${option.name}`}>
                       <button 
                         className='input-select--option-button' 
                         style={{ backgroundColor, ...optionStyle }}

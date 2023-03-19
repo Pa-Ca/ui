@@ -27,9 +27,9 @@ interface BranchMainSummaryProps {
    */
   reviews?: number;
   /**
-   * Main branch amenity
+   * Main branch category
    */
-  amenity?: string;
+  category?: string;
   /**
    * Price per person
    */
@@ -79,7 +79,7 @@ export const BranchMainSummary = ({
   name,
   score,
   reviews,
-  amenity,
+  category,
   pricePerson,
   location,
   price,
@@ -99,7 +99,7 @@ export const BranchMainSummary = ({
           name={name}
           score={score}
           reviews={reviews}
-          amenity={amenity}
+          category={category}
           pricePerson={pricePerson}
           location={location}
           price={price}
@@ -111,7 +111,7 @@ export const BranchMainSummary = ({
         {
           promotions.map(promotion => {
             return (
-              <Box className='branch-main-summary--promotion'>
+              <Box className='branch-main-summary--promotion' key={`branch-main-summay--promotions-${promotion.promotion}`}>
                 <PromotionCard
                   color={color}
                   {...promotion}

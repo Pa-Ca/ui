@@ -51,7 +51,7 @@ export const MenuPreview = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   const nPlates = useMemo(() => {
-    return Math.max(1, Math.round(observer.width / 312));
+    return Math.max(1, Math.floor(observer.width / 312));
   }, [observer.width]);
 
   return (
@@ -71,7 +71,11 @@ export const MenuPreview = ({
       <Box className='menu-preview--content'>
         {
           plates?.slice(0, nPlates).map((plate, index) => (
-            <Box className='menu-preview--plate' style={{ marginLeft: index === 0 ? '0px' : '8px'}}>
+            <Box
+              className='menu-preview--plate'
+              style={{ marginLeft: index === 0 ? '0px' : '8px' }}
+              key={`menu-preview--plate-${plate.title}`}
+            >
               <Plate {...plate} color={color} />
             </Box>
           ))

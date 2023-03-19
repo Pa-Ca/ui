@@ -1,29 +1,34 @@
-.amenity-preview--container {
+.category-preview--container {
   display: flex;
   flex-direction: column;
   min-width: 312px;
+  background-color: transparent;
 }
-.amenity-preview--header {
+.category-preview--header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
   height: 75px;
+  background-color: transparent;
 }
-.amenity-preview--summary {
+.category-preview--summary {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  background-color: transparent;
 }
-.amenity-preview--content {
+.category-preview--content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: transparent;
 }
-.amenity-preview--plate {
+.category-preview--plate {
   display: flex;
   flex: 1;
   max-width: 280px;
+  background-color: transparent;
 }

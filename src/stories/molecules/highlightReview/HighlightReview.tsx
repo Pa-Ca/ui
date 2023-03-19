@@ -34,7 +34,7 @@ interface HighlightReviewProps {
   /**
    * On click in "View more"
    */
-  viewMore: MouseEventHandler<HTMLDivElement>;
+  viewMore?: () => void;
   /**
    * Card width
    */
@@ -74,60 +74,62 @@ export const HighlightReview = ({
 
   return (
     <Box className='highlight-review--container'>
+      <Box className='highlight-review--card-container' weakShadow style={{ width, height }} innerRef={observer.ref}>
+        <Box className='highlight-review--card'>
+          <Box className='highlight-review--title-zone'>
+            <Text type='h5' weight='700' color='#112211'>
+              “{title}”
+            </Text>
+          </Box>
+
+          <Box className='highlight-review--description-zone'>
+            <Text color='#112211' opacity={0.5}>
+              {review}
+            </Text>
+          </Box>
+
+          <Box className='highlight-review--view-more-zone' onClick={viewMore}>
+            <Text type='h6' weight='700'>
+              View more
+            </Text>
+          </Box>
+
+          <Box className='highlight-review--rating-zone'>
+            <StarRating size={24} rating={score} color={color} readonly />
+          </Box>
+
+          <Box className='highlight-review--name-zone'>
+            <Text type='h6' weight='700' color='#112211'>
+              {author}
+            </Text>
+          </Box>
+
+          <Box className='highlight-review--person-zone'>
+            <Text type='h7' color='#112211' opacity={0.5}>
+              {authorDescription}
+            </Text>
+          </Box>
+
+          <Box className='highlight-review--google-zone'>
+            <Icon icon='google' size='20px' />
+            <Text color='#112211' weight='700' type='h7' opacity={0.4} className='highlight-review--google'>
+              Google
+            </Text>
+          </Box>
+
+          <Box
+            backgroundImage={image}
+            borderRadius='8px'
+            className='highlight-review--img'
+          />
+        </Box>
+      </Box>
+
       <Box
         className='highlight-review--shadow'
         style={{ width: observer.width, height: observer.height }}
         backgroundColor={shadowColor}
       />
-      
-      <Box className='highlight-review--card' style={{ width, height }} innerRef={observer.ref}>
-        <Box className='highlight-review--title-zone'>
-          <Text type='h5' weight='700' color='#112211'>
-            “{title}”
-          </Text>
-        </Box>
-
-        <Box className='highlight-review--description-zone'>
-          <Text color='#112211' opacity={0.5}>
-            {review}
-          </Text>
-        </Box>
-
-        <Box className='highlight-review--view-more-zone' onClick={viewMore}>
-          <Text type='h6' weight='700'>
-            View more
-          </Text>
-        </Box>
-
-        <Box className='highlight-review--rating-zone'>
-          <StarRating size={24} rating={score} color={color} />
-        </Box>
-
-        <Box className='highlight-review--name-zone'>
-          <Text type='h6' weight='700' color='#112211'>
-            {author}
-          </Text>
-        </Box>
-
-        <Box className='highlight-review--person-zone'>
-          <Text type='h7' color='#112211' opacity={0.5}>
-            {authorDescription}
-          </Text>
-        </Box>
-
-        <Box className='highlight-review--google-zone'>
-          <Icon icon='google' size='20px' />
-          <Text color='#112211' weight='700' type='h7' opacity={0.4} className='highlight-review--google'>
-            Google
-          </Text>
-        </Box>
-
-        <Box
-          backgroundImage={image}
-          borderRadius='8px'
-          className='highlight-review--img'
-        />
-      </Box>
     </Box>
   );
 };

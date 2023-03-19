@@ -4,6 +4,7 @@ import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import { Range } from '../../atoms/range/Range';
+import getValidHours from '../../utils/getValidHours';
 import { StarRating } from '../../atoms/starRating/StarRating';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion'; 
 import { CheckList, CheckObject } from '../../molecules/checkList/CheckList';
@@ -79,57 +80,6 @@ interface BranchFilterProps {
    */
   height?: string;
 }
-
-const validHours = [
-  { value: '00:00', name: '12:00 am' },
-  { value: '00:30', name: '12:30 am' },
-  { value: '01:00', name: '1:00 am' },
-  { value: '01:30', name: '1:30 am' },
-  { value: '02:00', name: '2:00 am' },
-  { value: '02:30', name: '2:30 am' },
-  { value: '03:00', name: '3:00 am' },
-  { value: '03:30', name: '3:30 am' },
-  { value: '04:00', name: '4:00 am' },
-  { value: '04:30', name: '4:30 am' },
-  { value: '05:00', name: '5:00 am' },
-  { value: '05:30', name: '5:30 am' },
-  { value: '06:00', name: '6:00 am' },
-  { value: '06:30', name: '6:30 am' },
-  { value: '07:00', name: '7:00 am' },
-  { value: '07:30', name: '7:30 am' },
-  { value: '08:00', name: '8:00 am' },
-  { value: '08:30', name: '8:30 am' },
-  { value: '09:00', name: '9:00 am' },
-  { value: '09:30', name: '9:30 am' },
-  { value: '10:00', name: '10:00 am' },
-  { value: '10:30', name: '10:30 am' },
-  { value: '11:00', name: '11:00 am' },
-  { value: '11:30', name: '11:30 am' },
-  { value: '12:00', name: '12:00 pm' },
-  { value: '12:30', name: '12:30 pm' },
-  { value: '13:00', name: '1:00 pm' },
-  { value: '13:30', name: '1:30 pm' },
-  { value: '14:00', name: '2:00 pm' },
-  { value: '14:30', name: '2:30 pm' },
-  { value: '15:00', name: '3:00 pm' },
-  { value: '15:30', name: '3:30 pm' },
-  { value: '16:00', name: '4:00 pm' },
-  { value: '16:30', name: '4:30 pm' },
-  { value: '17:00', name: '5:00 pm' },
-  { value: '17:30', name: '5:30 pm' },
-  { value: '18:00', name: '6:00 pm' },
-  { value: '18:30', name: '6:30 pm' },
-  { value: '19:00', name: '7:00 pm' },
-  { value: '19:30', name: '7:30 pm' },
-  { value: '20:00', name: '8:00 pm' },
-  { value: '20:30', name: '8:30 pm' },
-  { value: '21:00', name: '9:00 pm' },
-  { value: '21:30', name: '9:30 pm' },
-  { value: '22:00', name: '10:00 pm' },
-  { value: '22:30', name: '10:30 pm' },
-  { value: '23:00', name: '11:00 pm' },
-  { value: '23:30', name: '11:30 pm' },
-]
 
 /**
  * Primary UI component for user interaction
@@ -247,7 +197,7 @@ export const BranchFilter = ({
                         label='Mínimo'
                         option={startHour}
                         setOption={setStartHour}
-                        options={validHours}
+                        options={getValidHours()}
                         width='100%'
                       />
                     </Box>
@@ -263,7 +213,7 @@ export const BranchFilter = ({
                         label='Máximo'
                         option={endHour}
                         setOption={setEndHour}
-                        options={validHours}
+                        options={getValidHours()}
                         width='100%'
                       />
                     </Box>

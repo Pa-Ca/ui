@@ -24,9 +24,9 @@ interface NewReserveProps {
    */
   reviews?: number;
   /**
-   * Main branch amenity
+   * Main branch category
    */
-  amenity?: string;
+  category?: string;
   /**
    * Price per person
    */
@@ -128,7 +128,7 @@ export const NewReserve = ({
   name,
   score,
   reviews,
-  amenity,
+  category,
   pricePerson,
   location,
   price,
@@ -165,7 +165,7 @@ export const NewReserve = ({
             name={name}
             score={score}
             reviews={reviews}
-            amenity={amenity}
+            category={category}
             price={price}
             location={location}
             pricePerson={pricePerson}

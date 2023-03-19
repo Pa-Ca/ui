@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import './amenityPreview.scss';
+import './categoryPreview.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
@@ -11,7 +11,7 @@ export type BranchObject = {
   score: number;
   reviews: number;
   discount: boolean;
-  amenity: string;
+  category: string;
   location: string;
   firstReserve: string;
   secondReserve: string;
@@ -22,17 +22,17 @@ export type BranchObject = {
   onSecondReserveClick: () => void;
 }
 
-interface AmenityPreviewProps {
+interface CategoryPreviewProps {
   /**
-   * Amenity title
+   * Category title
    */
   title?: string;
   /**
-   * Amenity short description
+   * Category short description
    */
   description?: string;
   /**
-   * Branches that have this amenity
+   * Branches that have this category
    */
   branches?: BranchObject[];
   /**
@@ -56,7 +56,7 @@ interface AmenityPreviewProps {
 /**
  * Primary UI component for user interaction
  */
-export const AmenityPreview = ({
+export const CategoryPreview = ({
   title,
   description,
   branches,
@@ -65,7 +65,7 @@ export const AmenityPreview = ({
   height,
   color,
   ...props
-}: AmenityPreviewProps) => {
+}: CategoryPreviewProps) => {
   const observer = useResizeObserver<HTMLDivElement>();
 
   const nPlates = useMemo(() => {
@@ -73,16 +73,16 @@ export const AmenityPreview = ({
   }, [observer.width]);
 
   return (
-    <Box className='amenity-preview--container' style={{ width, height }} innerRef={observer.ref}>
-      <Box className='amenity-preview--header'>
-        <Box className='amenity-preview--summary'>
-          <Box>
+    <Box className='category-preview--container' style={{ width, height }} innerRef={observer.ref}>
+      <Box className='category-preview--header'>
+        <Box className='category-preview--summary'>
+          <Box backgroundColor='transparent'>
             <Text type='h3' weight='600'>
               {title}
             </Text>
           </Box>
 
-          <Box>
+          <Box backgroundColor='transparent'>
             <Text color='#112211' weight='400' opacity={0.75}>
               {description}
             </Text>
@@ -96,10 +96,14 @@ export const AmenityPreview = ({
         </Button>
       </Box>
 
-      <Box className='amenity-preview--content'>
+      <Box className='category-preview--content'>
         {
-          branches?.slice(0, nPlates).map((branch, index) => (
-            <Box className='amenity-preview--branch' >
+          branches?.slice(0, nPlates).map((branch) => (
+            <Box
+              className='category-preview--branch'
+              backgroundColor='transparent'
+              key={`category-preview--branch-${branch.name}`}
+            >
               <BranchCard {...branch} color={color} width='100%' />
             </Box>
           ))

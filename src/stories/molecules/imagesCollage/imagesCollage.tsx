@@ -35,8 +35,9 @@ export const ImagesCollage = ({
     'quintuple'
   ]
 
-  const listImages = (images && images.length > 0) ? images.map(image => {
+  const listImages = (images && images.length > 0) ? images.map((image, index) => {
     return <Box 
+      key={`image-collage--image-index-${index}`}
       backgroundImage={image}
       className={galleryMode[Math.min(Math.max(images.length - 1, 0), 4)]}
     />

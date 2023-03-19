@@ -45,7 +45,7 @@ Default.args = {
   image: 'https://img.freepik.com/vector-premium/plantilla-diseno-logotipo-restaurante_79169-56.jpg?w=2000',
   score: 3.7,
   reviews: 4273,
-  amenity: 'Italiana',
+  category: 'Italiana',
   location: 'Las Mercedes',
   firstReserve: '8:00 pm',
   secondReserve: '10:00 pm',

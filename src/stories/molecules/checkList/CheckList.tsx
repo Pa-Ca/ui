@@ -54,11 +54,11 @@ export const CheckList = ({
  };
  
  return (
-   <Box className='branch-filter--container' backgroundColor='transparent'>
+   <Box className='check-list--container' backgroundColor='transparent'>
      {
        items.map(item => (
          <Box
-           key={`branch-filter-${item.value}`}
+           key={`check-list--item-${item.value}`}
            className='check-list--item'
            backgroundColor='transparent'
            onClick={() => onSelect(item.value)}

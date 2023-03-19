@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import './header.scss'
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
@@ -18,7 +18,7 @@ interface HeaderProps {
   /**
    * Profile icon
    */
-  icon: 'down' | 'up';
+  icon?: 'down' | 'up';
   /**
    * Dark mode
    */
@@ -38,23 +38,23 @@ interface HeaderProps {
   /**
    * On Left Section click function
    */
-  onLeftSectionClick?: MouseEventHandler<HTMLDivElement>;
+  onLeftSectionClick?: () => void;
   /**
    * On PA-CA logo click function
    */
-  onPacaClick?: MouseEventHandler<HTMLDivElement>;
+  onPacaClick?: () => void;
   /**
    * On Right Section click function
    */
-  onRightSectionClick?: MouseEventHandler<HTMLDivElement>;
+  onRightSectionClick?: () => void;
   /**
    * On profile click function
    */
-  onProfileClick?: MouseEventHandler<HTMLDivElement>;
+  onProfileClick?: () => void;
   /**
    * On login click function
    */
-  onLoginClick?: MouseEventHandler<HTMLDivElement>;
+  onLoginClick?: () => void;
   /**
    * On register click function
    */
@@ -117,7 +117,7 @@ export const Header = ({
           <Box className='header--zone header--profile' onClick={onProfileClick}>
             <Box className='header--profile-picture'>
               <ProfilePicture
-                size='40px'
+                size='45px'
                 border='0px'
                 icon={icon}
                 color={color}

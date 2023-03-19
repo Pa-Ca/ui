@@ -59,8 +59,8 @@ export const ReviewBoard = ({
     return reviews.reduce((sum, review) => sum + review.score, 0) / reviews.length;
   }, [reviews]);
 
-  const line = (
-    <Box backgroundColor='#112211' height='0.5px' className='review-board--line'/>
+  const line = (key?: string) => (
+    <Box backgroundColor='#112211' height='0.5px' className='review-board--line' key={key} />
   );
 
   const goToNextPage = () => {
@@ -103,12 +103,12 @@ export const ReviewBoard = ({
       </Box>
 
       <Box className='review-board--content'>
-        {line}
+        {line()}
         {
-          paginatedReviews.map(review => (
+          paginatedReviews.map((review, index) => (
             <>
-              <Review {...review} />
-              {line}
+              <Review key={`review-board--review-index-${index}`} {...review} />
+              {line(`review-board--line-index-${index}`)}
             </>
           ))
         }

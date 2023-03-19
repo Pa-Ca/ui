@@ -1,9 +1,10 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import './branchSearch.scss';
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
+import getValidHours from '../../utils/getValidHours';
 import { InputText } from '../../molecules/inputText/InputText';
 import { InputDate } from '../../molecules/inputDate/InputDate';
 import { InputSelect, OptionObject } from '../../molecules/inputSelect/InputSelect';
@@ -16,7 +17,7 @@ interface BranchSearchProps {
   /**
    * Function that changes the date
    */
-  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
+  setDate?: (date: Date) => void;
   /**
    * Current hour
    */
@@ -25,10 +26,6 @@ interface BranchSearchProps {
    * Function that changes the hour
    */
   setHour?: Function;
-  /**
-   * Valid hours
-   */
-  validHours?: OptionObject[];
   /**
    * Current persons number
    */
@@ -68,10 +65,9 @@ interface BranchSearchProps {
  */
 export const BranchSearch = ({
   date,
-  setDate,
+  setDate = () => {},
   hour, 
   setHour,
-  validHours,
   persons,
   setPersons,
   search,
@@ -87,11 +83,11 @@ export const BranchSearch = ({
       {/* Searchs */}
       <Box className='branch-search--search-zone'>
         <Box className='branch-search--search-date'>
-          <InputDate date={date} setDate={setDate} />
+          <InputDate date={date} setDate={setDate} minDate={new Date()} />
         </Box>
 
         <Box className='branch-search--search-hour'>
-          <InputSelect option={hour} setOption={setHour} options={validHours} label='Hora'/>
+          <InputSelect option={hour} setOption={setHour} options={getValidHours()} label='Hora'/>
         </Box>
 
         <Box className='branch-search--search-persons'>

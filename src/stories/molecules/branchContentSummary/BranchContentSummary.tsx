@@ -19,9 +19,9 @@ interface BranchContentSummaryProps {
    */
   reviews?: number;
   /**
-   * Main branch amenity
+   * Main branch category
    */
-  amenity?: string;
+  category?: string;
   /**
    * Price per person
    */
@@ -59,7 +59,7 @@ export const BranchContentSummary = ({
   name,
   score,
   reviews,
-  amenity,
+  category,
   pricePerson,
   location,
   price,
@@ -86,7 +86,7 @@ export const BranchContentSummary = ({
         <Box className='branch-content-summary--data'>
           <Icon icon='bell' size='18px' />
           <Text type='h6' color='#112211' opacity={0.75} className='branch-content-summary--data-text'> 
-            {amenity}
+            {category}
           </Text>
 
           <Box width='16px' />

@@ -20,6 +20,10 @@ interface InputDateProps {
    */
   label?: string;
   /**
+   * Minimun date
+   */
+  minDate?: Date;
+  /**
    * Input width
    */
   width?: string;
@@ -36,6 +40,7 @@ export const InputDate = ({
   date,
   setDate,
   label = 'Fecha',
+  minDate,
   width,
   height,
   ...props
@@ -60,7 +65,9 @@ export const InputDate = ({
         <DatePicker
           selected={date}
           onChange={setDate}
+          onSelect={setDate}
           customInput={<DateInputButton />}
+          minDate={minDate}
         />
         
         <div className='input-text--label'>

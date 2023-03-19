@@ -1,7 +1,14 @@
 .highlight-review--container {
   background-color: transparent;
-  margin-right: 26px;
-  margin-bottom: 26px;
+  position: relative;
+}
+.highlight-review--card-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  min-width: 377px;
+  min-height: 534px;
+  background-color: white;
 }
 .highlight-review--card {
   display: flex;
@@ -11,6 +18,7 @@
   min-width: 377px;
   min-height: 534px;
   background-color: white;
+  z-index: 1;
 }
 .highlight-review--title-zone {
   display: flex;
@@ -30,6 +38,7 @@
 .highlight-review--view-more-zone {
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 .highlight-review--rating-zone {
   margin-bottom: 20px;
@@ -42,6 +51,9 @@
 }
 .highlight-review--google-zone {
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .highlight-review--google {
   margin-left: 8px;
@@ -52,8 +64,7 @@
 }
 .highlight-review--shadow {
   position: absolute;
-  top: 52px;
-  left: 52px;
-  z-index: -1;
+  top: 26px;
+  left: 26px;
   border-radius: 10px;
 }

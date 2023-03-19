@@ -18,12 +18,16 @@
   width: 100%;
   overflow: hidden;
 }
+.header--pa-ca {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .header--zone {
   cursor: pointer;
   display: flex;
   align-items: center;
   margin-left: 10px;
-  margin-right: 10px;
   background-color: transparent;
 }
 .header--text {
@@ -31,6 +35,7 @@
 }
 .header--profile {
   margin-left: 10px;
+  margin-right: 0px;
   background-color: transparent;
 }
 .header--profile-picture {
@@ -44,4 +49,5 @@
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  margin-left: 5px;
 }

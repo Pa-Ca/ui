@@ -49,7 +49,7 @@ export const AmenityList = ({
   const showList = useMemo(() => {
     const showList_ = amenityList.map((e) => {
       return (
-        <Box className='amenity-list--item'>
+        <Box className='amenity-list--item' key={`amenity-list--item-${e.name}`}>
           <Icon icon={e.icon} size='24px' />
           <Box width='10px' />
           <Text> {e.name} </Text>
