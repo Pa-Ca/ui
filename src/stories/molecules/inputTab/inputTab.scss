@@ -1,0 +1,28 @@
+.input-tab--container {
+  position: relative;
+  display: flex;
+  min-height: 80px;
+}
+.input-tab--tab {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  cursor: pointer;
+}
+.input-tab--separator {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  border: 1px solid #D7E2EE;
+}
+.input-tab--line {
+  position: absolute;
+  height: 0;
+  border: 2px solid;
+  bottom: 0;
+}

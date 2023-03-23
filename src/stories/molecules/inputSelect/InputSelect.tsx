@@ -97,9 +97,9 @@ export const InputSelect = ({
         setView(false);
       }
     };
-    window.addEventListener("click", handleClickOutside);
+    window.addEventListener("mousedown", handleClickOutside);
     return () => {
-      window.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("mousedown", handleClickOutside);
     };
   }, [observer.ref]);
 

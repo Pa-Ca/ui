@@ -161,10 +161,9 @@ export const BranchFilter = ({
           </AnimatePresence>
 
           <Box
-            backgroundColor='#112211'
+            backgroundColor='#C4C8C4'
             height='0.5px'
             width='100%'
-            className='branch-filter--line'
           />
         </motion.div>
 
@@ -224,10 +223,9 @@ export const BranchFilter = ({
           </AnimatePresence>
 
           <Box
-            backgroundColor='#112211'
+            backgroundColor='#C4C8C4'
             height='0.5px'
             width='100%'
-            className='branch-filter--line'
           />
         </motion.div>
 
@@ -265,10 +263,9 @@ export const BranchFilter = ({
           </AnimatePresence>
 
           <Box
-            backgroundColor='#112211'
+            backgroundColor='#C4C8C4'
             height='0.5px'
             width='100%'
-            className='branch-filter--line'
           />
         </motion.div>
 
@@ -304,10 +301,9 @@ export const BranchFilter = ({
           </AnimatePresence>
 
           <Box
-            backgroundColor='#112211'
+            backgroundColor='#C4C8C4'
             height='0.5px'
             width='100%'
-            className='branch-filter--line'
           />
         </motion.div>
 
@@ -343,10 +339,9 @@ export const BranchFilter = ({
           </AnimatePresence>
 
           <Box
-            backgroundColor='#112211'
+            backgroundColor='#C4C8C4'
             height='0.5px'
             width='100%'
-            className='branch-filter--line'
           />
         </motion.div>
       </Box>
