@@ -83,7 +83,7 @@ export const CategoryPreview = ({
           </Box>
 
           <Box backgroundColor='transparent'>
-            <Text color='#112211' weight='400' opacity={0.75}>
+            <Text color='#5a675b' weight='400'>
               {description}
             </Text>
           </Box>

@@ -1,14 +1,18 @@
-import React, { useMemo, useState } from 'react';
-import './home.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import getValidHours from '../../utils/getValidHours';
-import { Header } from '../../organisms/header/Header';
-import useResizeObserver from '../../hooks/useResizeObserver';
-import { BranchSearch } from '../../organisms/branchSearch/BranchSearch';
-import { CategoryCard } from '../../molecules/categoryCard/categoryCard';
-import { HighlightReview } from '../../molecules/highlightReview/HighlightReview';
-import { CategoryPreview, BranchObject } from '../../organisms/categoryPreview/CategoryPreview';
+import React, { useMemo, useState, useRef } from "react";
+import "./home.scss";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import getValidHours from "../../utils/getValidHours";
+import { Header } from "../../organisms/header/Header";
+import { useDraggable } from "react-use-draggable-scroll";
+import useResizeObserver from "../../hooks/useResizeObserver";
+import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
+import { CategoryCard } from "../../molecules/categoryCard/categoryCard";
+import { HighlightReview } from "../../molecules/highlightReview/HighlightReview";
+import {
+  CategoryPreview,
+  BranchObject,
+} from "../../organisms/categoryPreview/CategoryPreview";
 
 type ClientData = {
   logged: boolean;
@@ -16,21 +20,21 @@ type ClientData = {
   name?: string;
   surname?: string;
   picture?: string;
-}
+};
 
 type CategoryReviewObject = {
   title: string;
   description: string;
   branches: BranchObject[];
   onButtonClick: () => void;
-}
+};
 
 type CategoryCardObject = {
   title: string;
   description: string;
   backgroundImage: string;
   onClick: () => void;
-}
+};
 
 type HighlightReviewObject = {
   title: string;
@@ -40,13 +44,13 @@ type HighlightReviewObject = {
   authorDescription: string;
   image: string;
   viewMore: () => void;
-}
+};
 
 interface HomeProps {
   /**
    * Main picture that appears in the header
    */
-  headerPicture?: string
+  headerPicture?: string;
   /**
    * Get user data
    */
@@ -54,7 +58,12 @@ interface HomeProps {
   /**
    * On search button click
    */
-  onSearch: (date: Date | undefined, hour: string, persons: number, search: string) => void;
+  onSearch: (
+    date: Date | undefined,
+    hour: string,
+    persons: number,
+    search: string
+  ) => void;
   /**
    * On Reserve function
    */
@@ -102,24 +111,30 @@ interface HomeProps {
  */
 export const Home = ({
   headerPicture,
-  getClientData = () => { return { logged: false } },
+  getClientData = () => {
+    return { logged: false };
+  },
   onHeaderReserveClick,
   onPacaClick,
   onFavoritesClick,
   onProfileClick,
   onLoginClick,
   onRegisterClick,
-  onSearch = () => { },
+  onSearch = () => {},
   getCategoryReviews = () => [],
   getCategoryCards = () => [],
   getHihgLightReviews = () => [],
   color,
   ...props
 }: HomeProps) => {
-  const [search, setSearch] = useState('');
-  const [persons, setPersons] = useState('');
+  const [search, setSearch] = useState("");
+  const [persons, setPersons] = useState("");
   const [hour, setHour] = useState(getValidHours()[0]);
   const [date, setDate] = useState<Date | undefined>(undefined);
+
+  const ref =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const { events } = useDraggable(ref);
 
   const observer = useResizeObserver<HTMLDivElement>();
 
@@ -132,32 +147,31 @@ export const Home = ({
   }, [observer.width]);
 
   const selectPersons = (value: string) => {
-    if (value === '' || parseInt(value) > 1) setPersons(value);
-    else setPersons('1');
+    if (value === "" || parseInt(value) > 1) setPersons(value);
+    else setPersons("1");
   };
 
   const selectDate = (selectedDate: Date) => {
     if (date !== undefined && selectedDate.getTime() === date.getTime()) {
       setDate(undefined);
-    }
-    else {
+    } else {
       setDate(selectedDate);
     }
-  }
+  };
 
   return (
-    <Box className='home--container'>
+    <Box className="home--container">
       {/* Header */}
-      <Box className='home--header-container'>
+      <Box className="home--header-container">
         <Box
           backgroundImage={headerPicture}
-          width='100%'
-          height='600px'
-          borderRadius='24px'
-          className='home--header-image-container'
+          width="100%"
+          height="600px"
+          borderRadius="24px"
+          className="home--header-image-container"
         >
           <Header
-            dark 
+            dark
             name={`${client.name} ${client.surname?.slice(0, 1)}.`}
             logged={client.logged}
             picture={client.picture}
@@ -167,24 +181,41 @@ export const Home = ({
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
-            leftSection='reserve'
-            rightSection='favorites'
-            backgroundColor='transparent'
+            leftSection="reserve"
+            rightSection="favorites"
+            backgroundColor="transparent"
           />
-          
-          <Box className='home--header-text-container' backgroundColor='transparent' height='33%'>
-            <Box backgroundColor='transparent'>
-              <Text type='h2' color='white' weight='400'> ¡Hola! </Text>
+
+          <Box
+            className="home--header-text-container"
+            backgroundColor="transparent"
+            height="33%"
+          >
+            <Box backgroundColor="transparent">
+              <Text type="h2" color="white" weight="400">
+                {" "}
+                ¡Hola!{" "}
+              </Text>
             </Box>
-            <Box backgroundColor='transparent'>
-              <Text type='h1' color='white' weight='700' italic uppercase> ¿A DONDE VAMOS HOY? </Text>
+            <Box backgroundColor="transparent">
+              <Text type="h1" color="white" weight="700" italic uppercase>
+                {" "}
+                ¿A DONDE VAMOS HOY?{" "}
+              </Text>
             </Box>
-            <Box backgroundColor='transparent'>
-              <Text type='h5' color='white' weight='600'> Ofertas especiales todos los días </Text>
+            <Box backgroundColor="transparent">
+              <Text type="h5" color="white" weight="600">
+                {" "}
+                Ofertas especiales todos los días{" "}
+              </Text>
             </Box>
           </Box>
 
-          <Box className='home--branch-searcher' backgroundColor='transparent' width='100%'>
+          <Box
+            className="home--branch-searcher"
+            backgroundColor="transparent"
+            width="100%"
+          >
             <BranchSearch
               date={date}
               setDate={(date: Date) => selectDate(date)}
@@ -194,8 +225,10 @@ export const Home = ({
               setPersons={selectPersons}
               search={search}
               setSearch={setSearch}
-              onClick={() => onSearch(date, hour.value, parseInt(persons), search)}
-              width='85%'
+              onClick={() =>
+                onSearch(date, hour.value, parseInt(persons), search)
+              }
+              width="85%"
               color={color}
             />
           </Box>
@@ -203,59 +236,62 @@ export const Home = ({
       </Box>
 
       {/* Content */}
-      <Box className='home--content'>
-        <Box backgroundColor='transparent'>
-          {
-            getCategoryReviews().map(category => (
-              <Box className='home--category-preview' key={`home--category-preview-${category.title}`}>
-                <CategoryPreview {...category} color={color} />
-              </Box>
-            ))
-          }
+      <Box className="home--content">
+        <Box backgroundColor="transparent">
+          {getCategoryReviews().map((category) => (
+            <Box
+              className="home--category-preview"
+              key={`home--category-preview-${category.title}`}
+            >
+              <CategoryPreview {...category} color={color} />
+            </Box>
+          ))}
         </Box>
 
-        <Box className='home--categories-card-container' innerRef={observer.ref}>
-          {
-            categoryCards?.slice(0, nCategories).map((category, index) => (
-              <Box
-                className='home--category-card'
-                style={{ marginLeft: index === 0 ? '0px' : '24px' }}
-                key={`home--category-card-${category.title}`}
-              >
-                <CategoryCard {...category} height='560px' buttonColor={color} />
-              </Box>
-            ))
-          }
+        <Box
+          className="home--categories-card-container"
+          innerRef={observer.ref}
+        >
+          {categoryCards?.slice(0, nCategories).map((category, index) => (
+            <Box
+              className="home--category-card"
+              style={{ marginLeft: index === 0 ? "0px" : "24px" }}
+              key={`home--category-card-${category.title}`}
+            >
+              <CategoryCard {...category} height="560px" buttonColor={color} />
+            </Box>
+          ))}
         </Box>
 
-        <Box className='home--highlight-reviews-container'>
-          <Box className='home--highlight-reviews-container-header' height='72px'>
-            <Text type='h3' weight='600'>
+        <Box className="home--highlight-reviews-container">
+          <Box
+            className="home--highlight-reviews-container-header"
+            height="72px"
+          >
+            <Text type="h3" weight="600">
               Críticas destacadas
             </Text>
-            <Text weight='400'>
+            <Text weight="400">
               Conoce sobre los restaurantes destacados de la zona
             </Text>
           </Box>
 
-          <Box className='home--highlight-reviews-carrousel'>
-            {
-              highlightReviews.map((review, index) => (
-                <Box
-                  style={{ marginLeft: index === 0 ? '0px' : '50px' }}
-                  key={`home--highlight-review-${review.title}`}
-                >
-                  <HighlightReview
-                    {...review}
-                    viewMore={() => { }}
-                    width='425px'
-                    shadowColor='rgba(239, 122, 8, 0.4)'
-                    color={color}
-                  />
-                </Box>
-              ))
-            }
-          </Box>
+          <div className="home--highlight-reviews-carousel" ref={ref} {...events}>
+            {highlightReviews.map((review, index) => (
+              <Box
+                style={{ marginLeft: index === 0 ? "0px" : "50px" }}
+                key={`home--highlight-review-${review.title}`}
+              >
+                <HighlightReview
+                  {...review}
+                  viewMore={() => {}}
+                  width="425px"
+                  shadowColor="rgba(239, 122, 8, 0.4)"
+                  color={color}
+                />
+              </Box>
+            ))}
+          </div>
         </Box>
       </Box>
     </Box>

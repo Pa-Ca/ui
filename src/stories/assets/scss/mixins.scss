@@ -1,20 +1,31 @@
 // For Mobile-First Design
-@mixin screen-min($min) { 
-    @media (min-width: $min) { 
-      @content 
-    } 
-  };
-  
+@mixin screen-min($min) {
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
 // For Desktop-First Design
-@mixin screen-max($max) { 
-    @media (max-width: $max - 1) { 
-        @content 
-    } 
-};
+@mixin screen-max($max) {
+  @media (max-width: $max) {
+    @content;
+  }
+}
 
 // For Hybrid Design
-@mixin screen-minmax($min, $max){ 
-    @media (min-width: $min) and (max-width: $max - 1){ 
-        @content 
-    }
-};
+@mixin screen-minmax($min, $max) {
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+// Hide scrollbar
+@mixin hide-scroll() {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

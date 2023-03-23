@@ -1,3 +1,4 @@
+@import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.scss";
 
 .home--container {
@@ -6,6 +7,7 @@
   flex-direction: column;
   min-width: 1245px;
   background-color: $background-color;
+  flex: 1;
 }
 .home--header-container {
   margin-left: 30px;
@@ -30,6 +32,7 @@
   top: calc(100% - 97px);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
 }
 .home--content {
   display: flex;
@@ -67,7 +70,7 @@
   background-color: transparent;
   margin-bottom: 40px;
 }
-.home--highlight-reviews-carrousel {
+.home--highlight-reviews-carousel {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
@@ -75,4 +78,6 @@
   background-color: transparent;
   padding-bottom: 60px;
   margin-bottom: 115px;
+
+  @include hide-scroll();
 }

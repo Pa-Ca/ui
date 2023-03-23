@@ -112,7 +112,7 @@ export const HighlightReview = ({
 
           <Box className='highlight-review--google-zone'>
             <Icon icon='google' size='20px' />
-            <Text color='#112211' weight='700' type='h7' opacity={0.4} className='highlight-review--google'>
+            <Text color='#112211' weight='700' type='h7' opacity={0.75} className='highlight-review--google'>
               Google
             </Text>
           </Box>
