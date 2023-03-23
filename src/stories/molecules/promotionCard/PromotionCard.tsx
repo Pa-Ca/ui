@@ -4,23 +4,23 @@ import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
 
-interface PromotionCardProps {
+export interface PromotionCardProps {
   /**
    * Promotion text
    */
-  promotion?: string;
+  promotion: string;
   /**
    * Date text
    */
-  date?: string;
+  date: string;
   /**
    * Button text
    */
-  buttonText?: string;
+  buttonText: string;
   /**
    * On component click
    */
-  onClick?: () => void;
+  onClick: () => void;
   /**
    * Component main color
    */

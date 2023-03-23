@@ -1,64 +1,39 @@
 import React from "react";
 import "./branchListing.scss";
 import { Box } from "../../atoms/box/Box";
-import { headerObject, BasicPage } from "../basicPage/BasicPage";
-import { CheckObject } from "../../molecules/checkList/CheckList";
-import { OptionObject } from "../../molecules/inputSelect/InputSelect";
-import { BranchFilter } from "../../organisms/branchFilter/BranchFilter";
+import { BasicPage } from "../basicPage/BasicPage";
+import { HeaderProps } from "../../organisms/header/Header";
+import { BranchBoard } from "../../organisms/branchBoard/BranchBoard";
+import { BranchItemProps } from "../../organisms/branchItem/BranchItem";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
 import {
-  branchObject,
-  BranchBoard,
-  exampleLongBranchList,
-} from "../../organisms/branchBoard/BranchBoard";
-
-
-export type BranchFilterObject = {
-  min: number;
-  max: number;
-  prices: number[];
-  setPrices: () => void;
-  startHour: OptionObject;
-  setStartHour: Function;
-  endHour: OptionObject;
-  setEndHour: Function;
-  rating: number;
-  setRating: () => void;
-  cousines: CheckObject[];
-  setCousines: () => void;
-  zones: CheckObject[];
-  setZones: () => void;
-  color?: string;
-};
+  BranchFilter,
+  BranchFilterProps,
+} from "../../organisms/branchFilter/BranchFilter";
 
 interface BranchListing {
   /**
    * Component width
    */
-  headerArgs?: headerObject;
+  headerArgs?: HeaderProps;
 
   /**
    * All branch reviews
    */
-  branches?: branchObject[];
+  branches?: BranchItemProps[];
 
   /**
    * Branch filter object for the branch filter component
    */
-  branchFilter?: BranchFilterObject;
+  branchFilter?: BranchFilterProps;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const BranchListing = ({
-  headerArgs = {
-    icon: "down",
-    picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-    name: "Jonh D.",
-    color: "#EF7A08",
-  },
-  branches = exampleLongBranchList,
+  headerArgs,
+  branches,
   branchFilter = {
     min: 0,
     max: 100,

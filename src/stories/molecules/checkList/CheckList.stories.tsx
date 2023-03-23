@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CheckList, CheckObject } from './CheckList';
+import { CheckList } from './CheckList';
+import CheckObject from '../../utils/objects/CheckObject';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

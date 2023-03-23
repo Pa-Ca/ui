@@ -1,16 +1,12 @@
-import React, { SyntheticEvent } from 'react';
-import './fastReserveBox.scss';
-import { Box } from '../../atoms/box/Box';
-import { Icon } from '../../atoms/icon/Icon';
-import { Text } from '../../atoms/text/Text';
-import { InputSelect, OptionObject } from '../inputSelect/InputSelect';
-import { InputDate } from '../inputDate/InputDate';
-import { Button } from '../../atoms/button/Button';
-import { InputText } from '../inputText/InputText';
-import useResizeObserver from '../../hooks/useResizeObserver';
-
-
-
+import React, { SyntheticEvent } from "react";
+import "./fastReserveBox.scss";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import { InputDate } from "../inputDate/InputDate";
+import { Button } from "../../atoms/button/Button";
+import { InputText } from "../inputText/InputText";
+import { InputSelect } from "../inputSelect/InputSelect";
+import OptionObject from "../../utils/objects/OptionObject";
 
 interface FastReserveBoxProps {
   /*
@@ -63,107 +59,129 @@ interface FastReserveBoxProps {
    * On Find Hour button click
    */
   onClickFindHour?: () => void;
-
-  
-
-  }
+}
 
 export const FastReserveBox = ({
-    height,
-    width,
-    title = 'Haz una Reserva',
-    onClickReserve,
-    onClickFindHour,
-    date,
-    setDate,
-    hour,
-    setHour,
-    validHours,
-    persons,
-    setPersons,
-    ...props
-    }: FastReserveBoxProps) => {
+  height,
+  width,
+  title = "Haz una Reserva",
+  onClickReserve,
+  onClickFindHour,
+  date,
+  setDate,
+  hour,
+  setHour,
+  validHours,
+  persons,
+  setPersons,
+  ...props
+}: FastReserveBoxProps) => {
+  return (
+    <Box
+      className="fast-reserve-box--container"
+      backgroundColor="white"
+      strongShadow
+      style={{ width, height }}
+    >
+      {/* The title of the box */}
+      <Box className="fast-reserve-box--title" backgroundColor="transparent">
+        <Text className="fast-reserve-box--title-text" type="h4" weight="700">
+          {title}
+        </Text>
+      </Box>
 
-      
+      <Box className="fast-reserve-box--input-container">
+        {/*The box of the InputSelect components*/}
+        {/* There should be 3 input select componetes*/}
 
-      return (
-        
-        <Box className='fast-reserve-box--container' backgroundColor='white' strongShadow style={{ width, height }}>
-            
-          {/* The title of the box */}
-          <Box className='fast-reserve-box--title' backgroundColor='transparent'>
-            <Text className='fast-reserve-box--title-text' type='h4' weight = "700">
-              {title}
+        {/*Line between the tile and inputs */}
+        <Box
+          height="1px"
+          backgroundColor="#000000"
+          className="fast-reserve-box--line"
+        />
+        <Box
+          className="fast-reserve-box--input-select-top"
+          backgroundColor="transparent"
+        >
+          <InputText
+            label="Tamaño de Reserva"
+            setValue={setPersons}
+            value={persons}
+            type="number"
+          />
+        </Box>
+
+        <Box
+          className="fast-reserve-box--input-select-bottom"
+          backgroundColor="transparent"
+        >
+          <Box
+            className="fast-reserve-box--input-select-bottom-left"
+            backgroundColor="transparent"
+          >
+            <InputDate label="Fecha" setDate={setDate} date={date} />
+          </Box>
+
+          <Box
+            className="fast-reserve-box--input-select-bottom-right"
+            backgroundColor="transparent"
+          >
+            <InputSelect
+              label="Hora"
+              option={hour}
+              options={validHours}
+              setOption={setHour}
+            />
+          </Box>
+        </Box>
+
+        {/* The box of the two buttons */}
+        <Box
+          className="fast-reserve-box--reserve-button-box"
+          backgroundColor="transparent"
+          width="100%"
+        >
+          <Button
+            onClick={onClickReserve}
+            backgroundColor="#EF7A08"
+            borderColor="white"
+            fullWidth
+            size="large"
+            primary={true}
+          >
+            <Text
+              className="fast-reserve-box--button-text"
+              color="white"
+              weight="600"
+            >
+              Reserva Ahora
             </Text>
-          </Box>
-
-
-          <Box className='fast-reserve-box--input-container'>
-          {/*The box of the InputSelect components*/}
-          {/* There should be 3 input select componetes*/}
-          
-          {/*Line between the tile and inputs */}
-          <Box height='1px' backgroundColor='#000000' className='fast-reserve-box--line'/> 
-            <Box className='fast-reserve-box--input-select-top' backgroundColor='transparent'>
-              <InputText
-                label = 'Tamaño de Reserva'
-                setValue={setPersons}
-                value={persons}
-                type='number'
-              />
-            </Box>
-            
-            <Box className='fast-reserve-box--input-select-bottom' backgroundColor='transparent'>    
-              <Box className='fast-reserve-box--input-select-bottom-left' backgroundColor='transparent'>
-                <InputDate
-                  label = 'Fecha'
-                  setDate = {setDate}
-                  date = {date}
-                />
-              </Box>
-                
-              <Box className='fast-reserve-box--input-select-bottom-right' backgroundColor='transparent'>
-                <InputSelect
-                  label = 'Hora'
-                  option= {hour}
-                  options={validHours}
-                  setOption={setHour}
-                />
-              </Box>
-            </Box>
-
-
-          {/* The box of the two buttons */}
-          <Box className='fast-reserve-box--reserve-button-box' backgroundColor='transparent'  width='100%'>
-            <Button
-              onClick={onClickReserve}
-              backgroundColor = "#EF7A08"
-              borderColor = "white"
-              fullWidth 
-              size='large'
-              primary = {true}
-            >
-              <Text className='fast-reserve-box--button-text' color = 'white' weight='600'>
-                Reserva Ahora
-              </Text>
-            </Button>
-          </Box>
-          
-          <Box className='fast-reserve-box--find-hour-button-box' backgroundColor='transparent'  width='100%'>
-            <Button
-              onClick={onClickFindHour}
-              backgroundColor = 'white'
-              borderColor='transparent'
-              fullWidth 
-              size='large'
-
-            >
-              <Text className='fast-reserve-box--button-text' color='black' weight='600'>
-                Encontrar una Hora
-              </Text>
-            </Button>
-          </Box>
+          </Button>
         </Box>
+
+        <Box
+          className="fast-reserve-box--find-hour-button-box"
+          backgroundColor="transparent"
+          width="100%"
+        >
+          <Button
+            onClick={onClickFindHour}
+            backgroundColor="white"
+            borderColor="transparent"
+            fullWidth
+            size="large"
+          >
+            <Text
+              className="fast-reserve-box--button-text"
+              color="black"
+              weight="600"
+            >
+              Encontrar una Hora
+            </Text>
+          </Button>
         </Box>
-      );
-    };
+      </Box>
+    </Box>
+  );
+};

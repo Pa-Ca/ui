@@ -3,12 +3,7 @@ import './checkList.scss';
 import { Box } from '../../atoms/box/Box';
 import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
-
-export type CheckObject = {
-  value: string;
-  name: string;
-  selected: boolean;
-}
+import CheckObject from '../../utils/objects/CheckObject';
 
 interface CheckListProps {
   /**

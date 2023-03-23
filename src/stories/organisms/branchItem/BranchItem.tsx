@@ -8,63 +8,63 @@ import { Button } from '../../atoms/button/Button';
 import useResizeObserver from '../../hooks/useResizeObserver';
 import { StarRating } from '../../atoms/starRating/StarRating';
 
-interface BranchItemProps {
+export interface BranchItemProps {
   /**
    * Branch name
    */
-  name?: string;
+  name: string;
   /**
    * Branch score
    */
-  score?: number;
+  score: number;
   /**
    * Number of branch reviews
    */
-  reviews?: number;
+  reviews: number;
   /**
    * Branch main category
    */
-  category?: string;
+  category: string;
   /**
    * Branch location
    */
-  location?: string;
+  location: string;
   /**
    * First reserve hour
    */
-  firstReserve?: string;
+  firstReserve: string;
   /**
    * Second reserve hour
    */
-  secondReserve?: string;
+  secondReserve: string;
   /**
    * Price score
    */
-  priceScore?: number;
+  priceScore: number;
   /**
    * Does the user like this branch?
    */
-  like?: boolean;
+  like: boolean;
   /**
    * Branch image from url
    */
-  image?: string;
+  image: string;
   /**
    * On click in view more button
    */
-  onViewMoreClick?: () => void;
+  onViewMoreClick: () => void;
   /**
    * On first reserve click
    */
-  onFirstReserveClick?: () => void;
+  onFirstReserveClick: () => void;
   /**
    * On first reserve click
    */
-  onLikeClick?: () => void;
+  onLikeClick: () => void;
   /**
    * On second reserve click
    */
-  onSecondReserveClick?: () => void;
+  onSecondReserveClick: () => void;
   /**
    * Card width
    */
@@ -82,6 +82,121 @@ interface BranchItemProps {
    */
   priceColor?: string;
 }
+
+// Do a list of branch objects to use as a placeholder
+const branchItemList = [
+  {
+    name: "Branch 1 Nombre Largo",
+    score: 4.5,
+    reviews: 100,
+    amenity: "Amenity 1",
+    location: "Location 1",
+    firstReserve: "1:00 am",
+    secondReserve: "2:00 am",
+    priceScore: 4.5,
+    category: "Category 1",
+    like: true,
+    image:
+      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+  },
+  {
+    name: "Branch 2",
+    score: 4.5,
+    reviews: 420,
+    amenity: "Amenity 2",
+    location: "Location 2",
+    firstReserve: "2:00 am",
+    secondReserve: "10:00 am",
+    priceScore: 4.5,
+    category: "Category 1",
+    like: true,
+    image:
+      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+  },
+  {
+    name: "Branch 3",
+    score: 4.5,
+    reviews: 69,
+    amenity: "Amenity 3",
+    location: "Location 3",
+    firstReserve: "3:00 am",
+    secondReserve: "10:00 am",
+    category: "Category 2",
+    priceScore: 4.5,
+    like: true,
+    image:
+      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+  },
+  {
+    name: "Branch 4",
+    score: 4.5,
+    reviews: 100,
+    amenity: "Amenity 4",
+    location: "Location 4",
+    firstReserve: " 4:00 pm",
+    secondReserve: "10:00 am",
+    category: "Category 2",
+    priceScore: 4.5,
+    like: true,
+    image:
+      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+  },
+  {
+    name: "Branch 5",
+    score: 4.5,
+    reviews: 100,
+    amenity: "Amenity 5",
+    location: "Location 5",
+    firstReserve: " 4:00 pm",
+    secondReserve: "10:00 am",
+    category: "Category 5",
+    priceScore: 4.5,
+    like: true,
+    image:
+      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+  },
+];
+
+// Do a list of branch objects to use as a placeholder (This will be the
+// concatenation of the branchItemList and the longBranchList)
+export const exampleLongBranchList = [
+  branchItemList[0],
+  branchItemList[1],
+  branchItemList[2],
+  branchItemList[3],
+  branchItemList[4],
+  branchItemList[4],
+  branchItemList[2],
+  branchItemList[3],
+  branchItemList[0],
+  branchItemList[1],
+  branchItemList[4],
+  branchItemList[2],
+  branchItemList[2],
+  branchItemList[1],
+  branchItemList[0],
+];
+
 
 /**
  * Primary UI component for user interaction

@@ -3,27 +3,27 @@ import './plate.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 
-interface PlateProps {
+export interface PlateProps {
   /**
    * Plate price 
    */
-  price?: number;
+  price: number;
   /**
    * Plate name
    */
-  title?: string;
+  title: string;
   /**
    * Plate description
    */
-  description?: string;
+  description: string;
   /**
    * Plate image example
    */
-  image?: string;
+  image: string;
   /**
    * On component click
    */
-  onClick?: () => void;
+  onClick: () => void;
   /**
    * Card width
    */

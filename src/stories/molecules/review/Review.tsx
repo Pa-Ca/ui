@@ -5,23 +5,23 @@ import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import scoreString from '../../utils/scoreString';
 
-interface ReviewProps {
+export interface ReviewProps {
   /**
    * Review score
    */
-  score?: number;
+  score: number;
   /**
    * Review author
    */
-  author?: string;
+  author: string;
   /**
    * Review text
    */
-  review?: string;
+  review: string;
   /**
    * Author image
    */
-  image?: string;
+  image: string;
   /**
    * On flag click function
    */

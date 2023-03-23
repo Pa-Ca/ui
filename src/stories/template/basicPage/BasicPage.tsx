@@ -1,25 +1,8 @@
 import React from "react";
+import "./basicPage.scss";
 import { Box } from "../../atoms/box/Box";
 import { Header } from "../../organisms/header/Header";
-
-import "./basicPage.scss";
-
-export type headerObject = {
-  icon?: "up" | "down";
-  picture?: string;
-  name?: string;
-  color?: string;
-  dark?: boolean;
-  logged?: boolean;
-  leftSection?: "reserve" | "perfil";
-  rightSection?: "favorites" | "reserves";
-  onPacaClick?: () => void;
-  onProfileClick?: () => void;
-  onLoginClick?: () => void;
-  onRegisterClick?: () => void;
-  onLeftSectionClick?: () => void;
-  onRightSectionClick?: () => void;
-};
+import { HeaderProps } from "../../organisms/header/Header";
 
 interface BasicPage {
   /**
@@ -29,7 +12,7 @@ interface BasicPage {
   /**
    * Header object
    * */
-  headerArgs?: headerObject;
+  headerArgs?: HeaderProps;
 }
 
 /**
@@ -38,10 +21,8 @@ interface BasicPage {
 export const BasicPage = ({
   children,
   headerArgs = {
-    icon: "down",
-    picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-    name: "Jonh D.",
-    color: "#EF7A08",
+    logged: false,
+    onPacaClick: () => {},
   },
   ...props
 }: BasicPage) => {

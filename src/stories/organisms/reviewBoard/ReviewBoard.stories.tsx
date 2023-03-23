@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ReviewBoard } from './ReviewBoard';
-import { CheckObject } from '../../molecules/checkList/CheckList';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

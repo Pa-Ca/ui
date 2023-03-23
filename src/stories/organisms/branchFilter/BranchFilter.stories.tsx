@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { BranchFilter } from './BranchFilter';
-import { CheckObject } from '../../molecules/checkList/CheckList';
+import CheckObject from '../../utils/objects/CheckObject';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

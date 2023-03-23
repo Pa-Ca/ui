@@ -21,6 +21,9 @@
   align-items: center;
 }
 .branch-content-summary--review {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: 5px;
   margin-bottom: 10px;
 }

@@ -1,26 +1,10 @@
-import React, { useMemo } from 'react';
-import './categoryPreview.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import { Button } from '../../atoms/button/Button';
-import useResizeObserver from '../../hooks/useResizeObserver';
-import { BranchCard } from '../../molecules/branchCard/BranchCard';
-
-export type BranchObject = {
-  name: string;
-  score: number;
-  reviews: number;
-  discount: boolean;
-  category: string;
-  location: string;
-  firstReserve: string;
-  secondReserve: string;
-  priceScore: number;
-  backgroundImage?: string;
-  onClick: () => void;
-  onFirstReserveClick: () => void;
-  onSecondReserveClick: () => void;
-}
+import React, { useMemo } from "react";
+import "./categoryPreview.scss";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import { Button } from "../../atoms/button/Button";
+import useResizeObserver from "../../hooks/useResizeObserver";
+import { BranchCard, BranchCardProps } from "../../molecules/branchCard/BranchCard";
 
 interface CategoryPreviewProps {
   /**
@@ -34,7 +18,7 @@ interface CategoryPreviewProps {
   /**
    * Branches that have this category
    */
-  branches?: BranchObject[];
+  branches?: BranchCardProps[];
   /**
    * On menu button click
    */
@@ -73,41 +57,43 @@ export const CategoryPreview = ({
   }, [observer.width]);
 
   return (
-    <Box className='category-preview--container' style={{ width, height }} innerRef={observer.ref}>
-      <Box className='category-preview--header'>
-        <Box className='category-preview--summary'>
-          <Box backgroundColor='transparent'>
-            <Text type='h3' weight='600'>
+    <Box
+      className="category-preview--container"
+      style={{ width, height }}
+      innerRef={observer.ref}
+    >
+      <Box className="category-preview--header">
+        <Box className="category-preview--summary">
+          <Box backgroundColor="transparent">
+            <Text type="h3" weight="600">
               {title}
             </Text>
           </Box>
 
-          <Box backgroundColor='transparent'>
-            <Text color='#5a675b' weight='400'>
+          <Box backgroundColor="transparent">
+            <Text color="#5a675b" weight="400">
               {description}
             </Text>
           </Box>
         </Box>
 
         <Button primary={false} backgroundColor={color} onClick={onButtonClick}>
-          <Text type='h6' color='#112211' weight='500'>
+          <Text type="h6" color="#112211" weight="500">
             Ver Más
           </Text>
         </Button>
       </Box>
 
-      <Box className='category-preview--content'>
-        {
-          branches?.slice(0, nPlates).map((branch) => (
-            <Box
-              className='category-preview--branch'
-              backgroundColor='transparent'
-              key={`category-preview--branch-${branch.name}`}
-            >
-              <BranchCard {...branch} color={color} width='100%' />
-            </Box>
-          ))
-        }
+      <Box className="category-preview--content">
+        {branches?.slice(0, nPlates).map((branch) => (
+          <Box
+            className="category-preview--branch"
+            backgroundColor="transparent"
+            key={`category-preview--branch-${branch.name}`}
+          >
+            <BranchCard {...branch} color={color} width="100%" />
+          </Box>
+        ))}
       </Box>
     </Box>
   );

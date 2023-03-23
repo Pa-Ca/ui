@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AmenityList, AmenityObject } from './AmenityList';
+import { AmenityList } from './AmenityList';
+import AmenityObject from '../../utils/objects/AmenityObject';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

@@ -6,7 +6,7 @@ import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
 import { ProfilePicture } from '../../molecules/profilePicture/ProfilePicture';
 
-interface HeaderProps {
+export interface HeaderProps {
   /**
    * Profile picture
    */
@@ -34,7 +34,7 @@ interface HeaderProps {
   /**
    * Is the user logged?
    */
-  logged?: boolean;
+  logged: boolean;
   /**
    * On Left Section click function
    */
@@ -42,7 +42,7 @@ interface HeaderProps {
   /**
    * On PA-CA logo click function
    */
-  onPacaClick?: () => void;
+  onPacaClick: () => void;
   /**
    * On Right Section click function
    */

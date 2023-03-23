@@ -1,17 +1,10 @@
-import React from 'react';
-import './branchMainSummary.scss';
-import { Box } from '../../atoms/box/Box';
-import { PromotionCard } from '../../molecules/promotionCard/PromotionCard';
-import { ImagesCollage } from '../../molecules/imagesCollage/imagesCollage';
-import { BranchContentSummary } from '../../molecules/branchContentSummary/BranchContentSummary';
-import { BranchContentOverview } from '../../molecules/branchContentOverview/BranchContentOverview';
-
-export type PromotionObject = {
-  promotion: string;
-  date: string;
-  buttonText: string;
-  onClick: () => void;
-}
+import React from "react";
+import "./branchMainSummary.scss";
+import { Box } from "../../atoms/box/Box";
+import { ImagesCollage } from "../../molecules/imagesCollage/imagesCollage";
+import { PromotionCard, PromotionCardProps } from "../../molecules/promotionCard/PromotionCard";
+import { BranchContentSummary } from "../../molecules/branchContentSummary/BranchContentSummary";
+import { BranchContentOverview } from "../../molecules/branchContentOverview/BranchContentOverview";
 
 interface BranchMainSummaryProps {
   /**
@@ -45,7 +38,7 @@ interface BranchMainSummaryProps {
   /**
    * Branch promotion list
    */
-  promotions?: PromotionObject[];
+  promotions?: PromotionCardProps[];
   /**
    * Branch overview
    */
@@ -93,9 +86,9 @@ export const BranchMainSummary = ({
   ...props
 }: BranchMainSummaryProps) => {
   return (
-    <Box className='branch-main-summary--container' style={{ width, height }}>
+    <Box className="branch-main-summary--container" style={{ width, height }}>
       <Box>
-        <BranchContentSummary 
+        <BranchContentSummary
           name={name}
           score={score}
           reviews={reviews}
@@ -107,31 +100,29 @@ export const BranchMainSummary = ({
         />
       </Box>
 
-      <Box className='branch-main-summary--promotions-container'>
-        {
-          promotions.map(promotion => {
-            return (
-              <Box className='branch-main-summary--promotion' key={`branch-main-summay--promotions-${promotion.promotion}`}>
-                <PromotionCard
-                  color={color}
-                  {...promotion}
-                />
-              </Box>
-            )
-          })
-        }
+      <Box className="branch-main-summary--promotions-container">
+        {promotions.map((promotion) => {
+          return (
+            <Box
+              className="branch-main-summary--promotion"
+              key={`branch-main-summay--promotions-${promotion.promotion}`}
+            >
+              <PromotionCard color={color} {...promotion} />
+            </Box>
+          );
+        })}
       </Box>
 
-      <Box className='branch-main-summary--overview-container'>
+      <Box className="branch-main-summary--overview-container">
         <BranchContentOverview overview={overview} />
       </Box>
 
       <Box>
         <ImagesCollage
           images={images}
-          buttonTitle='Ver Fotos'
+          buttonTitle="Ver Fotos"
           buttonColor={color}
-          buttonSize='large'
+          buttonSize="large"
           onButtonClick={onImagesButtonClick}
         />
       </Box>

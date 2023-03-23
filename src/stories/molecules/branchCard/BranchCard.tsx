@@ -6,55 +6,55 @@ import getDollars from '../../utils/getDollars';
 import { Button } from '../../atoms/button/Button';
 import { StarRating } from '../../atoms/starRating/StarRating';
 
-interface BranchCardProps {
+export interface BranchCardProps {
   /**
    * Branch name
    */
-  name?: string;
+  name: string;
   /**
    * Branch score
    */
-  score?: number;
+  score: number;
   /**
    * Number of branch reviews
    */
-  reviews?: number;
+  reviews: number;
   /**
    * Indicates if the branch has discounts
    */
-  discount?: boolean;
+  discount: boolean;
   /**
    * Branch main category
    */
-  category?: string;
+  category: string;
   /**
    * Branch location
    */
-  location?: string;
+  location: string;
   /**
    * First reserve hour
    */
-  firstReserve?: string;
+  firstReserve: string;
   /**
    * Second reserve hour
    */
-  secondReserve?: string;
+  secondReserve: string;
   /**
    * Price score
    */
-  priceScore?: number;
+  priceScore: number;
   /**
    * On click in image or title
    */
-  onClick?: () => void;
+  onClick: () => void;
   /**
    * On first reserve click
    */
-  onFirstReserveClick?: () => void;
+  onFirstReserveClick: () => void;
   /**
    * On second reserve click
    */
-  onSecondReserveClick?: () => void;
+  onSecondReserveClick: () => void;
   /**
    * Card width
    */
@@ -70,7 +70,7 @@ interface BranchCardProps {
   /**
    * Card background image from url
    */
-  backgroundImage?: string;
+  backgroundImage: string;
 }
 
 /**

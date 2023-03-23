@@ -4,28 +4,17 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import getValidHours from "../../utils/getValidHours";
 import { Header } from "../../organisms/header/Header";
+import ClientData from "../../utils/objects/ClientData";
 import { useDraggable } from "react-use-draggable-scroll";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
 import { CategoryCard } from "../../molecules/categoryCard/categoryCard";
 import { HighlightReview } from "../../molecules/highlightReview/HighlightReview";
-import {
-  CategoryPreview,
-  BranchObject,
-} from "../../organisms/categoryPreview/CategoryPreview";
-
-type ClientData = {
-  logged: boolean;
-  id?: number;
-  name?: string;
-  surname?: string;
-  picture?: string;
-};
+import { CategoryPreview } from "../../organisms/categoryPreview/CategoryPreview";
 
 type CategoryReviewObject = {
   title: string;
   description: string;
-  branches: BranchObject[];
   onButtonClick: () => void;
 };
 
@@ -71,7 +60,7 @@ interface HomeProps {
   /**
    * On PA-CA logo click function
    */
-  onPacaClick?: () => void;
+  onPacaClick: () => void;
   /**
    * On Favorites function
    */
@@ -276,7 +265,11 @@ export const Home = ({
             </Text>
           </Box>
 
-          <div className="home--highlight-reviews-carousel" ref={ref} {...events}>
+          <div
+            className="home--highlight-reviews-carousel"
+            ref={ref}
+            {...events}
+          >
             {highlightReviews.map((review, index) => (
               <Box
                 style={{ marginLeft: index === 0 ? "0px" : "50px" }}

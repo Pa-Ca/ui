@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { InputSelect, OptionObject } from './InputSelect';
+import { InputSelect } from './InputSelect';
+import OptionObject from '../../utils/objects/OptionObject';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

@@ -5,12 +5,14 @@ import { Icon } from '../../atoms/icon/Icon';
 import { Text } from '../../atoms/text/Text';
 import { Range } from '../../atoms/range/Range';
 import getValidHours from '../../utils/getValidHours';
+import CheckObject from '../../utils/objects/CheckObject';
+import OptionObject from '../../utils/objects/OptionObject';
 import { StarRating } from '../../atoms/starRating/StarRating';
+import { CheckList } from '../../molecules/checkList/CheckList';
+import { InputSelect } from '../../molecules/inputSelect/InputSelect';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion'; 
-import { CheckList, CheckObject } from '../../molecules/checkList/CheckList';
-import { InputSelect, OptionObject } from '../../molecules/inputSelect/InputSelect';
 
-interface BranchFilterProps {
+export interface BranchFilterProps {
   /**
    * Minimum price
    */

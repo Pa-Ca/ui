@@ -6,13 +6,9 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { useDraggable } from "react-use-draggable-scroll";
+import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
-
-export type OptionObject = {
-  value: string;
-  name: string;
-};
 
 interface InputSelectProps {
   /**
@@ -60,7 +56,7 @@ export const InputSelect = ({
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref, {
-    isMounted: view, 
+    isMounted: view,
   });
 
   const selectDropdown = () => {

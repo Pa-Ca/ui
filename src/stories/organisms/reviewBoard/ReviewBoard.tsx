@@ -2,23 +2,16 @@ import React, { useMemo, useState } from 'react';
 import './reviewBoard.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
+import { Icon } from '../../atoms/icon/Icon';
 import scoreString from '../../utils/scoreString';
 import { Button } from '../../atoms/button/Button';
-import { Review } from '../../molecules/review/Review';
-import { Icon } from '../../atoms/icon/Icon';
-
-export type ReviewObject = {
-  score: number;
-  author: string;
-  review: string;
-  image: string;
-};
+import { Review, ReviewProps } from '../../molecules/review/Review';
 
 interface ReviewBoardProps {
   /**
    * All branch reviews
    */
-  reviews?: ReviewObject[];
+  reviews?: ReviewProps[];
   /**
    * Number of reviews per page
    */

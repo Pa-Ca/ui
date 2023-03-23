@@ -1,6 +1,5 @@
 import React from 'react';
 import { Icon as Iconify } from '@iconify/react';
-
 import poolIcon from '@iconify/icons-mdi/pool';
 import wineIcon from '@iconify/icons-ion/wine';
 import heartIcon from '@iconify/icons-ph/heart';
@@ -39,12 +38,42 @@ import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outl
 
 const Color = require('color');
 
-export type IconType = 'pa-ca' | 'facebook' | 'twitter' | 'youtube' | 'instagram' |
-  'bell' | 'heart' | 'heart-fill' | 'paper-plane' | 'dollar' | 'location' |
-  'eye' | 'eye-slash' | 'google' | 'person' | 'cancel' | 'check' | 'pencil' |
-  'pool' | 'spa' | 'restaurant' | 'fitness' | 'wine' | 'wifi' | 'coffee' |
-  'fast-food' | 'down' | 'up' | 'left' | 'right' | 'table' | 'checkbox' |
-  'uncheckbox' | 'share' | 'flag';
+export type IconType =
+  | "pa-ca"
+  | "facebook"
+  | "twitter"
+  | "youtube"
+  | "instagram"
+  | "bell"
+  | "heart"
+  | "heart-fill"
+  | "paper-plane"
+  | "dollar"
+  | "location"
+  | "eye"
+  | "eye-slash"
+  | "google"
+  | "person"
+  | "cancel"
+  | "check"
+  | "pencil"
+  | "pool"
+  | "spa"
+  | "restaurant"
+  | "fitness"
+  | "wine"
+  | "wifi"
+  | "coffee"
+  | "fast-food"
+  | "down"
+  | "up"
+  | "left"
+  | "right"
+  | "table"
+  | "checkbox"
+  | "uncheckbox"
+  | "share"
+  | "flag";
 
 interface IconProps {
   /**

@@ -4,7 +4,7 @@ import { Home } from './Home';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Design System/Template/Home',
+  title: 'Design System/Templates/Home',
   component: Home,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
