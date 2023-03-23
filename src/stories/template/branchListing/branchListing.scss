@@ -1,0 +1,41 @@
+
+
+.branch-listing--columns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap : 1rem;
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.branch-listing--right-column{
+    display: flex;
+    // Make it so that the component occupies the entire width of the parent
+    flex: 3;
+    flex-direction: column;
+    justify-content: space-between;
+    gap : 1rem;  
+}
+
+
+.branch-listing--vertical-line{
+    
+    border-left: rgba( #112211, .25) 1px solid;
+    height: 100%;
+    margin-right: 0;
+    margin-left: 1rem;
+    // Make so it is a lighter grey
+    
+
+}
+
+.branch-listing--left-column{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: left;
+    gap : 1rem;  
+}
+
+
