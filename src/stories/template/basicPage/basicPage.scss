@@ -6,19 +6,9 @@
   gap: 1em;
 }
 
-.basic-page--content-container-zone {
-  padding-top: 1em;
+.basic-page--content-container {
   padding-left: $horizontal-padding;
   padding-right: $horizontal-padding;
   display: flex;
-  background-color: "#8D8D8D";
-}
-
-.basic-page--content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border-radius: 10px;
-  // Add a flag that makes it occupy all the space of the parent
-  flex: 1;
+  padding-top: 54px;
 }

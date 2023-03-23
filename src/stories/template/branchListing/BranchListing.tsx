@@ -55,19 +55,21 @@ export const BranchListing = ({
 }: BranchListing) => {
   return (
     <BasicPage headerArgs={headerArgs}>
-      <BranchSearch />
+      <Box className="branch-listing--container" weakShadow>
+        <BranchSearch />
 
-      <Box className="branch-listing--columns">
-        <Box className="branch-listing--left-column">
-          <BranchFilter {...branchFilter} />
+        <Box className="branch-listing--columns">
+          <Box className="branch-listing--left-column">
+            <BranchFilter {...branchFilter} />
 
-          {/*Create a vertical line */}
-        </Box>
+            {/*Create a vertical line */}
+          </Box>
 
-        <Box className="branch-listing--vertical-line" />
+          <Box className="branch-listing--vertical-line" />
 
-        <Box className="branch-listing--right-column">
-          <BranchBoard branches={branches} />
+          <Box className="branch-listing--right-column">
+            <BranchBoard branches={branches} />
+          </Box>
         </Box>
       </Box>
     </BasicPage>

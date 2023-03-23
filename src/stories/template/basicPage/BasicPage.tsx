@@ -31,11 +31,7 @@ export const BasicPage = ({
       <Box weakShadow>
         <Header {...headerArgs} />
       </Box>
-      <Box className="basic-page--content-container-zone">
-        <Box className="basic-page--content-container" weakShadow>
-          {children}
-        </Box>
-      </Box>
+      <Box className="basic-page--content-container">{children}</Box>
     </Box>
   );
 };
