@@ -17,7 +17,7 @@ export * from './stories/molecules/inputDate/InputDate';
 export * from './stories/molecules/branchCard/BranchCard';
 export * from './stories/molecules/inputSelect/InputSelect';
 export * from './stories/molecules/amenityList/AmenityList';
-export * from './stories/molecules/categoryCard/categoryCard';
+export * from './stories/molecules/categoryCard/CategoryCard';
 export * from './stories/molecules/promotionCard/PromotionCard';
 export * from './stories/molecules/imagesCollage/imagesCollage';
 export * from './stories/molecules/profilePicture/ProfilePicture';

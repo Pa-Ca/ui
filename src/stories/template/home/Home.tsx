@@ -8,32 +8,11 @@ import ClientData from "../../utils/objects/ClientData";
 import { useDraggable } from "react-use-draggable-scroll";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
-import { CategoryCard } from "../../molecules/categoryCard/categoryCard";
-import { HighlightReview } from "../../molecules/highlightReview/HighlightReview";
+import { CategoryCard } from "../../molecules/categoryCard/CategoryCard";
+import { CategoryCardProps } from "../../molecules/categoryCard/CategoryCard";
 import { CategoryPreview } from "../../organisms/categoryPreview/CategoryPreview";
-
-type CategoryReviewObject = {
-  title: string;
-  description: string;
-  onButtonClick: () => void;
-};
-
-type CategoryCardObject = {
-  title: string;
-  description: string;
-  backgroundImage: string;
-  onClick: () => void;
-};
-
-type HighlightReviewObject = {
-  title: string;
-  review: string;
-  score: number;
-  author: string;
-  authorDescription: string;
-  image: string;
-  viewMore: () => void;
-};
+import { CategoryPreviewProps } from "../../organisms/categoryPreview/CategoryPreview";
+import { HighlightReview, HighlightReviewProps } from "../../molecules/highlightReview/HighlightReview";
 
 interface HomeProps {
   /**
@@ -80,15 +59,15 @@ interface HomeProps {
   /**
    * Get category previews data
    */
-  getCategoryReviews?: () => CategoryReviewObject[];
+  getCategoryPreviews?: () => CategoryPreviewProps[];
   /**
    * Get category cards data
    */
-  getCategoryCards?: () => CategoryCardObject[];
+  getCategoryCards?: () => CategoryCardProps[];
   /**
    * Get highlight reviews data
    */
-  getHihgLightReviews?: () => HighlightReviewObject[];
+  getHihgLightReviews?: () => HighlightReviewProps[];
   /**
    * Component main color
    */
@@ -110,7 +89,7 @@ export const Home = ({
   onLoginClick,
   onRegisterClick,
   onSearch = () => {},
-  getCategoryReviews = () => [],
+  getCategoryPreviews = () => [],
   getCategoryCards = () => [],
   getHihgLightReviews = () => [],
   color,
@@ -227,7 +206,7 @@ export const Home = ({
       {/* Content */}
       <Box className="home--content">
         <Box backgroundColor="transparent">
-          {getCategoryReviews().map((category) => (
+          {getCategoryPreviews().map((category) => (
             <Box
               className="home--category-preview"
               key={`home--category-preview-${category.title}`}

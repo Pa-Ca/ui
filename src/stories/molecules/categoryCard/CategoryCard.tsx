@@ -1,19 +1,19 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import './categoryCard.scss'
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
 import {Icon} from '../../atoms/icon/Icon'
 
-interface CategoryCardProps {
+export interface CategoryCardProps {
   /**
    * Category name
    */
-  title?: string;
+  title: string;
   /**
    * Category description
    */
-  description?: string;
+  description: string;
   /**
    * Card width
    */
@@ -33,11 +33,11 @@ interface CategoryCardProps {
   /**
    * Card background image from url
    */
-  backgroundImage?: string;
+  backgroundImage: string;
   /**
    * On click in the button
    */
-  onClick?: () => void;
+  onClick: () => void;
   }
   
   

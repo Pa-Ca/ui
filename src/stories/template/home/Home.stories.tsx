@@ -76,7 +76,7 @@ const Template: ComponentStory<typeof Home> = (args: any) => {
 const globalArgs = {
   color: '#EF7A08',
   headerPicture: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg',
-  getCategoryReviews: () => [
+  getCategoryPreviews: () => [
     {
       title: 'Perfectos en pareja',
       description: 'Diviertete en una salida perfecta en pareja',

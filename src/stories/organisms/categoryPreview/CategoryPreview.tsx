@@ -6,23 +6,23 @@ import { Button } from "../../atoms/button/Button";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchCard, BranchCardProps } from "../../molecules/branchCard/BranchCard";
 
-interface CategoryPreviewProps {
+export interface CategoryPreviewProps {
   /**
    * Category title
    */
-  title?: string;
+  title: string;
   /**
    * Category short description
    */
-  description?: string;
+  description: string;
   /**
    * Branches that have this category
    */
-  branches?: BranchCardProps[];
+  branches: BranchCardProps[];
   /**
    * On menu button click
    */
-  onButtonClick?: () => void;
+  onButtonClick: () => void;
   /**
    * Component width
    */

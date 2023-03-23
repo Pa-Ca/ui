@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import './highlightReview.scss'
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
@@ -6,35 +6,35 @@ import { Icon } from '../../atoms/icon/Icon';
 import useResizeObserver from '../../hooks/useResizeObserver';
 import { StarRating } from '../../atoms/starRating/StarRating';
 
-interface HighlightReviewProps {
+export interface HighlightReviewProps {
   /**
    * Review title
    */
-  title?: string;
+  title: string;
   /**
    * Review text
    */
-  review?: string;
+  review: string;
   /**
    * Review score
    */
-  score?: number;
+  score: number;
   /**
    * Review author name
    */
-  author?: string;
+  author: string;
   /**
    * Review author description
    */
-  authorDescription?: string;
+  authorDescription: string;
   /**
    * Review image
    */
-  image?: string;
+  image: string;
   /**
    * On click in "View more"
    */
-  viewMore?: () => void;
+  viewMore: () => void;
   /**
    * Card width
    */
