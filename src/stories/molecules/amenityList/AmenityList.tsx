@@ -3,7 +3,6 @@ import "./amenityList.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import { motion } from "framer-motion/dist/framer-motion";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import AmenityObject from "../../utils/objects/AmenityObject";
 
@@ -43,11 +42,11 @@ export const AmenityList = ({
   }, [observer.width]);
 
   const showList = useMemo(() => {
-    const showList_ = amenityList.map((e) => {
+    const showList_ = amenityList.map((e, i) => {
       return (
         <Box
           className="amenity-list--item"
-          key={`amenity-list--item-${e.name}`}
+          key={`amenity-list--item-${i}-${e.name}`}
         >
           <Icon icon={e.icon} size="24px" />
           <Box width="10px" />
@@ -96,9 +95,11 @@ export const AmenityList = ({
   }, [viewMore, nColumns]);
 
   const amenitiesHeight = useMemo(() => {
-    if (amenityList.length < MAX_SHOW)
-      return Math.round((49 * amenityList.length) / nColumns);
-    else if (viewMore) return (49 * showList.length) / nColumns;
+    if (amenityList.length < MAX_SHOW) {
+      return Math.ceil((49 * amenityList.length) / nColumns);
+    } else if (viewMore) {
+      return (49 * showList.length) / nColumns;
+    }
     return (49 * (MAX_SHOW + 1)) / nColumns;
   }, [viewMore, nColumns]);
 
@@ -114,15 +115,12 @@ export const AmenityList = ({
         </Text>
       </Box>
 
-      <motion.div
-        initial={{ height: "0px" }}
-        animate={{ height: `${amenitiesHeight}px` }}
-        exit={{ height: `${amenitiesHeight}px` }}
-        transition={{ duration: 0.5 }}
+      <Box
+        style={{ height: `${amenitiesHeight}px` }}
         className="amenity-list--amenity-container"
       >
         {showList}
-      </motion.div>
+      </Box>
     </Box>
   );
 };
