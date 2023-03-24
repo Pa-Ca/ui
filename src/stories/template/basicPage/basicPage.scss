@@ -10,5 +10,6 @@
   padding-left: $horizontal-padding;
   padding-right: $horizontal-padding;
   display: flex;
+  flex-direction: column;
   padding-top: 54px;
 }

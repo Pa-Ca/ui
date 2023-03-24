@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import "./inputTab.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { motion } from "framer-motion/dist/framer-motion";
 import useResizeObserver from "../../hooks/useResizeObserver";
 
 interface InputTabProps {
@@ -56,14 +55,14 @@ export const InputTab = ({
         </Box>
       ))}
 
-      <motion.div
-          initial={{ left: `${lineLeft}px`, width: `${lineWidth}px` }}
-          animate={{ left: `${lineLeft}px`, width: `${lineWidth}px` }}
-          exit={{ left: `${lineLeft}px`, width: `${lineWidth}px` }}
-          transition={{ duration: 0.5 }}
-          className="input-tab--line"
-          style={{ borderColor: "#8DD3BB" }}
-        />
+      <Box
+        className="input-tab--line"
+        style={{
+          borderColor: "#8DD3BB",
+          left: `${lineLeft}px`,
+          width: `${lineWidth}px`,
+        }}
+      />
     </Box>
   );
 };

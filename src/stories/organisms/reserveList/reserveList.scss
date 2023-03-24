@@ -1,0 +1,44 @@
+.reserve-list--container {
+  display: flex;
+  flex-direction: column;
+  min-width: 931px;
+}
+.reserve-list--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+.reserve-list--active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.reserve-list--type {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.reserve-list--reservations {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: space-between;
+}
+.reserve-list--reservation {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+.reserve-list--date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
