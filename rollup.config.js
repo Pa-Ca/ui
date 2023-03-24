@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from "@rollup/plugin-commonjs"
 import html from "@rollup/plugin-html";
 import replace from "@rollup/plugin-replace";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import analyze from "rollup-plugin-analyzer";
 import scss from 'rollup-plugin-scss'
 
