@@ -1,0 +1,16 @@
+.branch-reserve--header {
+  margin-bottom: 30px;
+}
+.branch-reserve--content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.branch-reserve--content {
+  display: flex;
+  flex-direction: row;
+}
+.branch-reserve--animation {
+  transition: width 500ms ease-in-out;
+}
