@@ -18,6 +18,13 @@ const Template: ComponentStory<typeof BranchReserves> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  header: {
+    logged: true,
+    onPacaClick: () => {},
+    picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+    name: "Jonh D.",
+    color: "#EF7A08",
+  },
   reservations: [
     {
       date: "12 de Febrero",

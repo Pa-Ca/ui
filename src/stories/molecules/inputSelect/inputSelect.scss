@@ -1,4 +1,5 @@
 @import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/variables.scss";
 
 .input-select--menu {
   display: flex;
@@ -18,10 +19,10 @@
   @include hide-scroll();
 }
 .input-select--menu-in {
-  transition: max-height 500ms ease-in-out, opacity 5ms;
+  transition: max-height $animation-duration ease-in-out, opacity 5ms;
 }
 .input-select--menu-out {
-  transition: opacity 5ms linear 500ms, max-height 500ms ease-in-out;
+  transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
 }
 .input-select--option-button {
   width: 100%;
