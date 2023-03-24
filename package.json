@@ -45,6 +45,7 @@
     "react-slick": "^0.29.0",
     "react-use-draggable-scroll": "^0.4.7",
     "rollup": "^3.9.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "sass": "^1.58.3",
     "sass-loader": "^10.1.1",
     "slick-carousel": "^1.8.1",
@@ -52,6 +53,11 @@
     "style-loader": "^2.0.0",
     "styled-components": "^5.3.8",
     "typescript": "^4.9.4"
+  },
+  "peerDependencies": {
+    "@iconify/icons-fluent": "^1.2.18",
+    "@iconify/icons-tabler": "^1.2.67",
+    "@iconify/react": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

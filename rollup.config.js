@@ -6,6 +6,7 @@ import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import analyze from "rollup-plugin-analyzer";
 import scss from 'rollup-plugin-scss'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const { TARGET_ENV } = process.env;
 
@@ -20,6 +21,9 @@ export default {
     }
   ],
   plugins: [
+    peerDepsExternal({
+      includeDependencies: true
+    }),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify (
@@ -39,5 +43,6 @@ export default {
       hideDeps: true,
       summaryOnly: true
     })
-  ]
+  ],
+  //external: ['framer-motion/dist/framer-motion']
 }
