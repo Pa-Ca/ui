@@ -1,3 +1,4 @@
+@import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.scss";
 
 .branch-reserve--header {
@@ -6,13 +7,13 @@
 .branch-reserve--content-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-margin-left: 100%;
+
+  @include hide-scroll();
 }
 .branch-reserve--content {
   display: flex;
   flex-direction: row;
-}
-.branch-reserve--animation {
-  transition: width $animation-duration ease-in-out;
 }
