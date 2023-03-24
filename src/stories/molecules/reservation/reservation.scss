@@ -1,0 +1,53 @@
+.reservation--container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  padding-left: 16px;
+  padding-right: 46px;
+  margin-bottom: 32px;
+  min-width: 700px;
+}
+.reservation--details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.reservation--start {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-right: 16px;
+}
+.reservation--dot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.reservation--button {
+  min-width: 110px;
+}
+.reservation--action {
+  display: flex;
+  flex-direction: row;
+
+}
+.reservation--icon-container {
+  margin-right: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.reservation--icon {
+  margin-left: 12px;
+  cursor: pointer;
+}
