@@ -1,3 +1,5 @@
+@import "../../assets/scss/variables.scss";
+
 .amenity-list--container {
   display: flex;
   flex-direction: column;
@@ -5,58 +7,84 @@
 }
 .amenity-list--title {
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.amenity-list--editable-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+#root {
+  $amenity-list--color: black;
+}
+@keyframes amenity-list--edit-animation {
+  from {
+    transform: rotate(0deg);
+    color: black;
+  }
+  to {
+    transform: rotate(-90deg);
+    color: var(--amenity-list-color);
+  }
+}
+@keyframes amenity-list--edit-animation-reverse {
+  from {
+    transform: rotate(-90deg);
+    color: var(--amenity-list-color);
+  }
+  to {
+    transform: rotate(0deg);
+    color: black;
+  }
+}
+.amenity-list--edit-button-container {
+  position: relative;
+  overflow: hidden;
+  margin-left: 20px;
+  width: 220px;
+}
+.amenity-list--edit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  transition: width $animation-duration ease-in-out;
 }
 .amenity-list--amenity-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  transition: height 300ms ease-in-out;
+  transition: height 700ms ease-out;
 }
 .amenity-list--amenity-container > * {
   width: calc(33.33% - 10px);
   margin-bottom: 24px;
-
-  &:nth-child(3n + 1) {
-    justify-content: flex-start;
-  }
-  &:nth-child(3n + 2) {
-    justify-content: center;
-  }
-  &:nth-child(3n + 3) {
-    justify-content: flex-end;
-  }
+  justify-content: flex-start;
 }
 .amenity-list--view {
   display: flex;
   height: 25px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
 }
 @media (max-width: 950px) {
   .amenity-list--amenity-container > * {
     width: calc(50% - 10px);
-
-    &:nth-child(2n + 1) {
-      justify-content: flex-start;
-    }
-    &:nth-child(2n + 2) {
-      justify-content: flex-end;
-    }
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 500px) {
   .amenity-list--amenity-container > * {
     width: 100%;
-    
-    &:nth-child(n) {
-      justify-content: center;
-    }
+    justify-content: flex-start;
   }
 
   .amenity-list--view {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 .amenity-list--item {
@@ -64,4 +92,8 @@
   flex-direction: row;
   align-items: center;
   height: 25px;
+}
+.amenity-list--check {
+  overflow: hidden;
+  transition: width 500ms ease-out;
 }
