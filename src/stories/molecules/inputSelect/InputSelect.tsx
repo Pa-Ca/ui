@@ -113,15 +113,19 @@ export const InputSelect = ({
         </button>
 
         <div className="input-text--label">
-          <Text type="h6">&nbsp;{label}&nbsp;</Text>
+          <Text type="h6" weight="400">
+            &nbsp;{label}&nbsp;
+          </Text>
         </div>
 
         <div
-          className={"input-select--menu input-select--menu-" + (view ? "in" : "out")}
+          className={
+            "input-select--menu input-select--menu-" + (view ? "in" : "out")
+          }
           style={{
             width: `${observer.width}px`,
             maxHeight: view ? "300px" : "0px",
-            opacity: view ? "1" : "0"
+            opacity: view ? "1" : "0",
           }}
           {...events}
           ref={ref}

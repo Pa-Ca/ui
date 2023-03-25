@@ -16,7 +16,7 @@ interface ImagesCarouselProps {
   /**
    * Component main color
    */
-  color: string;
+  color?: string;
   /**
    * Images width
    */
@@ -32,7 +32,7 @@ interface ImagesCarouselProps {
  */
 export const ImagesCarousel = ({
   images,
-  interval,
+  interval = 3000,
   color,
   width,
   height,
@@ -45,7 +45,7 @@ export const ImagesCarousel = ({
 
   useEffect(() => {
     if (observer.ref.current) {
-      observer.ref.current.scrollLeft = currentImage * (observer.width + 5);
+      observer.ref.current.scrollLeft = currentImage * (observer.width + 20) + 10;
     }
   }, [observer.width, currentImage]);
 
@@ -100,7 +100,7 @@ export const ImagesCarousel = ({
       >
         {images.map((image, index) => (
           <Box
-            style={{ minWidth: `${observer.width + 5}px` }}
+            style={{ minWidth: `${observer.width + 20}px` }}
             height={`${observer.height}px`}
             backgroundImage={image}
             className="images-carousel--image"
