@@ -22,7 +22,7 @@ Default.args = {
   name: 'Nombre Rest',
   score: 3.7,
   reviews: 4273,
-  category: 'Americano',
+  category: 'Americana',
   pricePerson: 15.99,
   location: 'Las Marcedes',
   price: 10,

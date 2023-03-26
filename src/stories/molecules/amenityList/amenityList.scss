@@ -11,47 +11,6 @@
   flex-direction: row;
   align-items: center;
 }
-.amenity-list--editable-icon {
-  margin-left: 10px;
-  cursor: pointer;
-}
-#root {
-  $amenity-list--color: black;
-}
-@keyframes amenity-list--edit-animation {
-  from {
-    transform: rotate(0deg);
-    color: black;
-  }
-  to {
-    transform: rotate(-90deg);
-    color: var(--amenity-list-color);
-  }
-}
-@keyframes amenity-list--edit-animation-reverse {
-  from {
-    transform: rotate(-90deg);
-    color: var(--amenity-list-color);
-  }
-  to {
-    transform: rotate(0deg);
-    color: black;
-  }
-}
-.amenity-list--edit-button-container {
-  position: relative;
-  overflow: hidden;
-  margin-left: 20px;
-  width: 220px;
-}
-.amenity-list--edit-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  overflow: hidden;
-  transition: width $animation-duration ease-in-out;
-}
 .amenity-list--amenity-container {
   display: flex;
   flex-wrap: wrap;

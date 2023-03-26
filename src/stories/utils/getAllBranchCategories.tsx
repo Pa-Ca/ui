@@ -1,0 +1,38 @@
+import OptionObject from "./objects/OptionObject";
+
+export default (): { value: number, name: string }[] => {
+  return [
+    { value: 0, name: "Italiana" },
+    { value: 1, name: "Mexicana" },
+    { value: 2, name: "Española" },
+    { value: 3, name: "Japonesa" },
+    { value: 4, name: "China" },
+    { value: 5, name: "Francesa" },
+    { value: 6, name: "Americana" },
+    { value: 7, name: "Vegetariana" },
+    { value: 8, name: "Vegana" },
+    { value: 9, name: "Sin gluten" },
+    { value: 10, name: "Comida rápida" },
+    { value: 11, name: "Gourmet" },
+    { value: 12, name: "Internacional" },
+    { value: 13, name: "Mariscos" },
+    { value: 14, name: "Al aire libre" },
+    { value: 15, name: "En familia" },
+    { value: 16, name: "Para parejas" },
+    { value: 17, name: "Romántica" },
+    { value: 18, name: "Para grupos" },
+    { value: 19, name: "Para llevar" },
+    { value: 20, name: "Bar" },
+    { value: 21, name: "Brunch" },
+    { value: 22, name: "Desayuno" },
+    { value: 23, name: "Almuerzo" },
+    { value: 24, name: "Cena" },
+    { value: 25, name: "Sushi" },
+    { value: 26, name: "Postres" },
+    { value: 27, name: "Pastelería" },
+    { value: 28, name: "Helados" },
+    { value: 29, name: "Barbacoa" },
+    { value: 30, name: "Comida casera" },
+    { value: 31, name: "Parrilla" },
+  ];
+};

@@ -3,7 +3,7 @@ import "./amenityList.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import { Button } from "../../atoms/button/Button";
+import { Editable } from "../editable/Editable";
 import getAllAmenities from "../../utils/getAllAmenities";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import AmenityObject from "../../utils/objects/AmenityObject";
@@ -227,12 +227,11 @@ export const AmenityList = ({
     let length = 0;
     if (edit) {
       length += allAmenities.length;
-    }
-    else {
+    } else {
       length += currentAmenityList.length;
     }
 
-    length += (length % nColumns === 0 ? 2 : 1)
+    length += length % nColumns === 0 ? 2 : 1;
 
     if (length < MAX_SHOW) {
       return Math.ceil((49 * length) / nColumns) - 10;
@@ -240,7 +239,7 @@ export const AmenityList = ({
       return (49 * (length + 1)) / nColumns - 10;
     }
     return (49 * (MAX_SHOW + 1)) / nColumns - 10;
-  }, [viewMore, nColumns, allAmenities,currentAmenityList, edit]);
+  }, [viewMore, nColumns, allAmenities, currentAmenityList, edit]);
 
   return (
     <Box
@@ -252,38 +251,14 @@ export const AmenityList = ({
         <Text type="h5" color="#112211" weight="700">
           Servicios
         </Text>
-        {editable && (
-          <Box
-            className="amenity-list--editable-icon"
-            onClick={selectEdit}
-            style={{ "--amenity-list-color": color }}
-          >
-            <Icon
-              icon="pencil"
-              size="25px"
-              style={{
-                animation: edit
-                  ? "amenity-list--edit-animation 500ms linear forwards"
-                  : "amenity-list--edit-animation-reverse 500ms linear forwards",
-              }}
-            />
-          </Box>
-        )}
-        <Box className="amenity-list--edit-button-container">
-          <Box
-            className="amenity-list--edit-buttons"
-            style={{
-              width: edit ? "220px" : "0",
-            }}
-          >
-            <Button borderColor={color} onClick={onCancelClick}>
-              <Text> Cancelar </Text>
-            </Button>
-            <Button backgroundColor={color} primary onClick={onSaveClick}>
-              <Text> Guardar </Text>
-            </Button>
-          </Box>
-        </Box>
+        <Editable
+          editable={editable}
+          edit={edit}
+          onPencilClick={selectEdit}
+          onSaveClick={onSaveClick}
+          onCancelClick={onCancelClick}
+          color={color}
+        />
       </Box>
 
       <Box

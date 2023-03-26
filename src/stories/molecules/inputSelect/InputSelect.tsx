@@ -40,7 +40,7 @@ interface InputSelectProps {
  * Primary UI component for user interaction
  */
 export const InputSelect = ({
-  option = { value: "", name: "" },
+  option = { value: 0, name: "" },
   setOption = () => {},
   options = [],
   label = "Text select",
@@ -70,13 +70,13 @@ export const InputSelect = ({
   const iconJSX = useMemo(() => {
     if (view) {
       return (
-        <view className="text-input--icon input-select--icon">
+        <view className="input-select--icon">
           <Icon icon="up" size="24" />
         </view>
       );
     } else {
       return (
-        <view className="text-input--icon input-select--icon">
+        <view className="input-select--icon">
           <Icon icon="down" size="24" />
         </view>
       );
@@ -113,9 +113,11 @@ export const InputSelect = ({
         </button>
 
         <div className="input-text--label">
-          <Text type="h6" weight="400">
-            &nbsp;{label}&nbsp;
-          </Text>
+          {label.length > 0 && (
+            <Text type="h6" weight="400">
+              &nbsp;{label}&nbsp;
+            </Text>
+          )}
         </div>
 
         <div
@@ -171,7 +173,7 @@ export const InputSelect = ({
 
       <button
         onClick={selectDropdown}
-        style={{ backgroundColor: "transparent", border: 0 }}
+        className="input-select--button"
       >
         {iconJSX}
       </button>
