@@ -3,4 +3,4 @@ type OptionObject = {
   name: string;
 };
 
-export { OptionObject as default };
+export { type OptionObject as default };

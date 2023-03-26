@@ -5,4 +5,4 @@ type ReservationList = {
   reservations: ReservationProps[];
 };
 
-export { ReservationList as default };
+export { type ReservationList as default };
