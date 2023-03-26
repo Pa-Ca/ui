@@ -56,7 +56,8 @@
   "peerDependencies": {
     "@iconify/icons-fluent": "^1.2.18",
     "@iconify/icons-tabler": "^1.2.67",
-    "@iconify/react": "^4.1.0"
+    "@iconify/react": "^4.1.0",
+    "@types/react-datepicker": "^4.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -76,7 +77,6 @@
     "@storybook/manager-webpack4": "^6.5.15",
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "0.0.13",
-    "@types/react-datepicker": "^4.10.0",
     "babel-loader": "^8.3.0",
     "node-sass": "^8.0.0",
     "rollup-plugin-analyzer": "^4.0.0",
