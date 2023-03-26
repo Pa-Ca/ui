@@ -13,7 +13,7 @@ interface BranchContentSummaryProps {
   /**
    * Branch name
    */
-  name?: string;
+  name: string;
   /**
    * Branch score
    */
@@ -29,7 +29,7 @@ interface BranchContentSummaryProps {
   /**
    * Price per person
    */
-  pricePerson?: number;
+  pricePerson: number;
   /**
    * Branch location
    */
@@ -37,7 +37,7 @@ interface BranchContentSummaryProps {
   /**
    * Reservation price
    */
-  price?: number;
+  price: number;
   /**
    * Indicates that card is a consumible
    */

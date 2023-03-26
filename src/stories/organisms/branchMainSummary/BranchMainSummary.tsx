@@ -13,13 +13,13 @@ interface BranchMainSummaryProps {
   /**
    * Branch name
    */
-  name?: string;
+  name: string;
   /**
    * Branch score
    */
   score?: number;
   /**
-   * Nomber of branch reviews
+   * Number of branch reviews
    */
   reviews?: number;
   /**
@@ -29,7 +29,7 @@ interface BranchMainSummaryProps {
   /**
    * Price per person
    */
-  pricePerson?: number;
+  pricePerson: number;
   /**
    * Branch location
    */
@@ -37,7 +37,7 @@ interface BranchMainSummaryProps {
   /**
    * Consumible price
    */
-  price?: number;
+  price: number;
   /**
    * Branch promotion list
    */
@@ -45,7 +45,7 @@ interface BranchMainSummaryProps {
   /**
    * Branch overview
    */
-  overview?: string;
+  overview: string;
   /**
    * Branch images
    */
