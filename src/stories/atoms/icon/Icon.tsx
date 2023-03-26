@@ -78,10 +78,6 @@ export type IconType =
 
 interface IconProps {
   /**
-   * Icon url
-   */
-  url?: string;
-  /**
    * Icon name
    */
   icon?: IconType;
@@ -104,22 +100,12 @@ interface IconProps {
  * Icon component
  */
 export const Icon = ({
-  url = undefined,
   icon = 'pa-ca',
   size = '1x',
   color = '#000',
   style,
   ...props
 }: IconProps) => {
-  if (url != '') {
-    return <img
-      src={url}
-      width={size}
-      height={size}
-      {...props}
-    />
-  }
-
   switch (icon) {
     case 'pa-ca':
       const paca_color = Color(color).hex() === Color('white').hex() ?
