@@ -3,7 +3,11 @@ import "./branchBoard.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import { BranchItem, BranchItemProps, exampleLongBranchList } from "../branchItem/BranchItem";
+import {
+  BranchItem,
+  BranchItemProps,
+  exampleLongBranchList,
+} from "../branchItem/BranchItem";
 
 interface BranchBoard {
   /**
@@ -60,20 +64,6 @@ export const BranchBoard = ({
     const fin = inicio + branchesPerPage;
     return branches.slice(inicio, fin);
   }, [page, branches, branchesPerPage]);
-
-  const totalScore = useMemo(() => {
-    return (
-      branches.reduce((sum, branch) => sum + branch.score, 0) / branches.length
-    );
-  }, [branches]);
-
-  const line = (
-    <Box
-      backgroundColor="#112211"
-      height="0.5px"
-      className="branch-board--line"
-    />
-  );
 
   const goToNextPage = () => {
     if (page > totalPages - 1) return;

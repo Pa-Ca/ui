@@ -14,13 +14,38 @@ export default {
         disable: true,
       },
     },
+    onSave: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof AmenityList>;
 
-const list: AmenityObject[] = [];
-for (let i = 0; i < 37; i++) {
-  list.push({ name: `${i} Spa and wellness center`, icon: "spa" });
-}
+const list: AmenityObject[] = [
+  { name: "Piscina al aire libre", icon: "pool" },
+  { name: "Piscina interior", icon: "pool" },
+  { name: "Centro de spa", icon: "spa" },
+  { name: "Bar/Salón", icon: "wine" },
+  { name: "Wifi libre", icon: "wifi" },
+  { name: "Wifi libre2", icon: "wifi" },
+  { name: "Wifi libre3", icon: "wifi" },
+  { name: "Wifi libre4", icon: "wifi" },
+  { name: "Wifi libre8", icon: "wifi" },
+  { name: "Wifi libre9", icon: "wifi" },
+  { name: "Wifi libre10", icon: "wifi" },
+  { name: "Wifi libre11", icon: "wifi" },
+  { name: "Wifi libre12", icon: "wifi" },
+  { name: "Wifi libre13", icon: "wifi" },
+  { name: "Wifi libre20", icon: "wifi" },
+  { name: "Wifi libre21", icon: "wifi" },
+  { name: "Wifi libre22", icon: "wifi" },
+  { name: "Wifi libre23", icon: "wifi" },
+  { name: "Wifi libre24", icon: "wifi" },
+  { name: "Wifi libre25", icon: "wifi" },
+  { name: "Wifi libre26", icon: "wifi" },
+  { name: "Wifi libre27", icon: "wifi" },
+];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof AmenityList> = (args: any) => {
@@ -31,4 +56,5 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   color: "#EF7A08",
+  onSave: (amenities) => console.log(amenities),
 };
