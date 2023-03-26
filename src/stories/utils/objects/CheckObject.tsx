@@ -4,4 +4,4 @@ type CheckObject = {
   selected: boolean;
 };
 
-export { CheckObject as default };
+export { type CheckObject as default };

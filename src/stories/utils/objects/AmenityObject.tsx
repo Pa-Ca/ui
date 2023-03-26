@@ -5,4 +5,4 @@ type AmenityObject = {
   icon: IconType;
 };
 
-export { AmenityObject as default };
+export { type AmenityObject as default };

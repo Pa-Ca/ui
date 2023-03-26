@@ -6,4 +6,4 @@ type ClientData = {
   picture?: string;
 };
 
-export { ClientData as default };
+export { type ClientData as default };

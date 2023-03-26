@@ -35,6 +35,7 @@ import iosArrowLeft24Filled from '@iconify/icons-fluent/ios-arrow-left-24-filled
 import iosArrowRight24Filled from '@iconify/icons-fluent/ios-arrow-right-24-filled';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outline-blank';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 const Color = require('color');
 
@@ -77,6 +78,10 @@ export type IconType =
 
 interface IconProps {
   /**
+   * Icon url
+   */
+  url?: string;
+  /**
    * Icon name
    */
   icon?: IconType;
@@ -99,12 +104,22 @@ interface IconProps {
  * Icon component
  */
 export const Icon = ({
+  url = undefined,
   icon = 'pa-ca',
   size = '1x',
   color = '#000',
   style,
   ...props
 }: IconProps) => {
+  if (url != '') {
+    return <img
+      src={url}
+      width={size}
+      height={size}
+      {...props}
+    />
+  }
+
   switch (icon) {
     case 'pa-ca':
       const paca_color = Color(color).hex() === Color('white').hex() ?
