@@ -7,12 +7,23 @@ import terser from "@rollup/plugin-terser";
 import analyze from "rollup-plugin-analyzer";
 import scss from 'rollup-plugin-scss'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import pkg from './package.json' assert { type: "json" };
 
 const { TARGET_ENV } = process.env;
+
 
 export default {
   input: './src/index.tsx',
   output: [
+    /* {
+      name: 'listree',
+      file: pkg.browser,
+      format: 'umd',
+    },
+    { 
+        file: pkg.module,
+        format: 'es' 
+    },*/
     {
       file: './dist/bundle.js',
       format: 'iife',
@@ -43,6 +54,5 @@ export default {
       hideDeps: true,
       summaryOnly: true
     })
-  ],
-  //external: ['framer-motion/dist/framer-motion']
+  ]
 }
