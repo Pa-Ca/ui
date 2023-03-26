@@ -18,7 +18,7 @@ interface BranchContentOverviewProps {
   /**
    * On save editions
    */
-  onSave: (overview: string) => void;
+  onSave?: (overview: string) => void;
   /**
    * Component width
    */
@@ -39,7 +39,7 @@ interface BranchContentOverviewProps {
 export const BranchContentOverview = ({
   overview,
   editable = false,
-  onSave,
+  onSave = () => {},
   width,
   height,
   color,

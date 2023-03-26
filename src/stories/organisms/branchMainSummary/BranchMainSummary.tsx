@@ -2,7 +2,10 @@ import React from "react";
 import "./branchMainSummary.scss";
 import { Box } from "../../atoms/box/Box";
 import { ImagesCollage } from "../../molecules/imagesCollage/imagesCollage";
-import { PromotionCard, PromotionCardProps } from "../../molecules/promotionCard/PromotionCard";
+import {
+  PromotionCard,
+  PromotionCardProps,
+} from "../../molecules/promotionCard/PromotionCard";
 import { BranchContentSummary } from "../../molecules/branchContentSummary/BranchContentSummary";
 import { BranchContentOverview } from "../../molecules/branchContentOverview/BranchContentOverview";
 
@@ -10,31 +13,31 @@ interface BranchMainSummaryProps {
   /**
    * Branch name
    */
-  name?: string;
+  name: string;
   /**
    * Branch score
    */
-  score?: number;
+  score: number;
   /**
    * Nomber of branch reviews
    */
-  reviews?: number;
+  reviews: number;
   /**
    * Main branch category
    */
-  category?: string;
+  category: string;
   /**
    * Price per person
    */
-  pricePerson?: number;
+  pricePerson: number;
   /**
    * Branch location
    */
-  location?: string;
+  location: string;
   /**
    * Consumible price
    */
-  price?: number;
+  price: number;
   /**
    * Branch promotion list
    */
@@ -42,7 +45,7 @@ interface BranchMainSummaryProps {
   /**
    * Branch overview
    */
-  overview?: string;
+  overview: string;
   /**
    * Branch images
    */
@@ -51,6 +54,10 @@ interface BranchMainSummaryProps {
    * On view all images click
    */
   onImagesButtonClick?: () => void;
+  /**
+   * Indicates if the data is editable
+   */
+  editable?: boolean;
   /**
    * Component main color
    */
@@ -80,6 +87,7 @@ export const BranchMainSummary = ({
   overview,
   images = [],
   onImagesButtonClick,
+  editable,
   color,
   width,
   height,
@@ -87,7 +95,7 @@ export const BranchMainSummary = ({
 }: BranchMainSummaryProps) => {
   return (
     <Box className="branch-main-summary--container" style={{ width, height }}>
-      <Box>
+      <Box className="branch-main-summary--content">
         <BranchContentSummary
           name={name}
           score={score}
@@ -96,6 +104,7 @@ export const BranchMainSummary = ({
           pricePerson={pricePerson}
           location={location}
           price={price}
+          editable={editable}
           color={color}
         />
       </Box>
@@ -114,7 +123,11 @@ export const BranchMainSummary = ({
       </Box>
 
       <Box className="branch-main-summary--overview-container">
-        <BranchContentOverview overview={overview} />
+        <BranchContentOverview
+          overview={overview}
+          editable={editable}
+          color={color}
+        />
       </Box>
 
       <Box>

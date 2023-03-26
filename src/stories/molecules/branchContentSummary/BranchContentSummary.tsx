@@ -49,7 +49,7 @@ interface BranchContentSummaryProps {
   /**
    * On save editions
    */
-  onSave: (
+  onSave?: (
     name: string,
     price: number,
     pricePerson: number,
@@ -82,7 +82,7 @@ export const BranchContentSummary = ({
   price,
   consumible = false,
   editable = false,
-  onSave,
+  onSave = () => {},
   color,
   width,
   height,
