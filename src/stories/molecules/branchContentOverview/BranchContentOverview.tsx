@@ -10,7 +10,7 @@ interface BranchContentOverviewProps {
   /**
    * Branch overview
    */
-  overview: string;
+  overview?: string;
   /**
    * Indicates if the data is editable
    */
