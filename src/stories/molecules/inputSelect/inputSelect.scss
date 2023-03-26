@@ -37,5 +37,15 @@
   text-overflow: ellipsis;
 }
 .input-select--icon {
-  width: 25px !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 90%;
+  outline: none;
+}
+.input-select--button {
+  background-color: transparent; 
+  border: 0; 
+  height: "100%";
+  outline: none;
 }

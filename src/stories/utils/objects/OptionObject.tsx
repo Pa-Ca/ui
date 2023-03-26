@@ -1,5 +1,5 @@
 type OptionObject = {
-  value: string;
+  value: string | number;
   name: string;
 };
 
