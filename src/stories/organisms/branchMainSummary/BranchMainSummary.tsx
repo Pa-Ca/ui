@@ -17,15 +17,15 @@ interface BranchMainSummaryProps {
   /**
    * Branch score
    */
-  score: number;
+  score?: number;
   /**
-   * Nomber of branch reviews
+   * Number of branch reviews
    */
-  reviews: number;
+  reviews?: number;
   /**
    * Main branch category
    */
-  category: string;
+  category?: string;
   /**
    * Price per person
    */
@@ -33,7 +33,7 @@ interface BranchMainSummaryProps {
   /**
    * Branch location
    */
-  location: string;
+  location?: string;
   /**
    * Consumible price
    */
