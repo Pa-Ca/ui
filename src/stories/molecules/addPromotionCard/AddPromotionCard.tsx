@@ -47,7 +47,6 @@ export const AddPromotionCard = ({
       className='promotion-card--container'
       borderRadius='5px'
       backgroundColor={color}
-      onClick={onClick}
       strongShadow
       style={{ width, height }}
     >
@@ -63,12 +62,13 @@ export const AddPromotionCard = ({
           </Text>
         </Box>
       </Box>
-      
+
       <Box className='add-promotion-card--menu-button' backgroundColor={secondaryColor} weakShadow onClick={onClick}>
-          <Text type='h6' weight='700' color={color}>
-            {"+"}
-          </Text>
+        <Text type='h6' weight='700' color={color}>
+          {"+"}
+        </Text>
       </Box>
+
     </Box>
   );
 };
