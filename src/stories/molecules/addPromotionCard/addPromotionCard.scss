@@ -1,0 +1,30 @@
+.add-promotion-card--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px;
+  overflow: hidden;
+  min-width: 500px;
+  min-height: 20px;
+  cursor: pointer;
+
+
+}
+.add-promotion-card--text-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 100px;
+  
+}
+.add-promotion-card--menu-text {
+  margin-right: 12px;
+  
+}
+.add-promotion-card--menu-button {
+  display: flex;
+  margin-left: 15px;
+  border-radius: 100px;
+  padding: 6px 10px;
+  height: 1.1em;
+  }
