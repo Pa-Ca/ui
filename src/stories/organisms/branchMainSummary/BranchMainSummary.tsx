@@ -116,7 +116,7 @@ export const BranchMainSummary = ({
               className="branch-main-summary--promotion"
               key={`branch-main-summay--promotions-${promotion.promotion}`}
             >
-              <PromotionCard color={color} {...promotion} />
+              <PromotionCard color={color} editable={editable} {...promotion} />
             </Box>
           );
         })}

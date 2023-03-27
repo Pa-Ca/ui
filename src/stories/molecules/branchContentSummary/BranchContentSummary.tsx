@@ -271,7 +271,10 @@ export const BranchContentSummary = ({
         </Box>
       </Box>
 
-      <Box className="branch-content-summary--price-container">
+      <Box
+        className="branch-content-summary--price-container"
+        style={{ minWidth: consumible ? "270px" : "135px" }}
+      >
         <Text type="h3" color="#121212" weight="700">
           Reserva
         </Text>

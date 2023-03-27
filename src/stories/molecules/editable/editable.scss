@@ -4,32 +4,31 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color: transparent;
 }
 .editable--editable-icon {
   margin-left: 10px;
   cursor: pointer;
-}
-#root {
-  $editable--color: black;
+  background-color: transparent;
 }
 @keyframes editable--edit-animation {
   from {
     transform: rotate(0deg);
-    color: black;
+    color: var(--editable-end-color);
   }
   to {
     transform: rotate(-90deg);
-    color: var(--editable-color);
+    color: var(--editable-initial-color);
   }
 }
 @keyframes editable--edit-animation-reverse {
   from {
     transform: rotate(-90deg);
-    color: var(--editable-color);
+    color: var(--editable-initial-color);
   }
   to {
     transform: rotate(0deg);
-    color: black;
+    color: var(--editable-end-color);
   }
 }
 .editable--edit-button-container {
@@ -37,6 +36,7 @@
   overflow: hidden;
   margin-left: 20px;
   width: 220px;
+  background-color: transparent;
 }
 .editable--edit-buttons {
   display: flex;
@@ -45,4 +45,9 @@
   width: 100%;
   overflow: hidden;
   transition: width $animation-duration ease-in-out;
+  background-color: transparent;
+}
+.editable--action-icon {
+  cursor: pointer;
+  background-color: transparent;
 }
