@@ -1,6 +1,6 @@
 type OptionObject = {
-  value: string;
+  value: string | number;
   name: string;
 };
 
-export { OptionObject as default };
+export { type OptionObject as default };

@@ -15,7 +15,7 @@ interface NewReserveProps {
   /**
    * Branch name
    */
-  name?: string;
+  name: string;
   /**
    * Branch score
    */
@@ -31,7 +31,7 @@ interface NewReserveProps {
   /**
    * Price per person
    */
-  pricePerson?: number;
+  pricePerson: number;
   /**
    * Branch location
    */
@@ -39,11 +39,11 @@ interface NewReserveProps {
   /**
    * Consumible price
    */
-  price?: number;
+  price: number;
   /**
    * Branch overview
    */
-  overview?: string;
+  overview: string;
   /**
    * Branch picture from uri
    */

@@ -8,7 +8,6 @@ import { Icon } from "../../atoms/icon/Icon";
 import { useDraggable } from "react-use-draggable-scroll";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
-import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 interface InputSelectProps {
   /**
@@ -41,7 +40,7 @@ interface InputSelectProps {
  * Primary UI component for user interaction
  */
 export const InputSelect = ({
-  option = { value: "", name: "" },
+  option = { value: 0, name: "" },
   setOption = () => {},
   options = [],
   label = "Text select",
@@ -71,13 +70,13 @@ export const InputSelect = ({
   const iconJSX = useMemo(() => {
     if (view) {
       return (
-        <view className="text-input--icon input-select--icon">
+        <view className="input-select--icon">
           <Icon icon="up" size="24" />
         </view>
       );
     } else {
       return (
-        <view className="text-input--icon input-select--icon">
+        <view className="input-select--icon">
           <Icon icon="down" size="24" />
         </view>
       );
@@ -114,66 +113,67 @@ export const InputSelect = ({
         </button>
 
         <div className="input-text--label">
-          <Text type="h6">&nbsp;{label}&nbsp;</Text>
+          {label.length > 0 && (
+            <Text type="h6" weight="400">
+              &nbsp;{label}&nbsp;
+            </Text>
+          )}
         </div>
 
-        <AnimatePresence>
-          {view && (
-            <motion.div
-              initial={{ maxHeight: "0px" }}
-              animate={{ maxHeight: view ? "300px" : "0px" }}
-              exit={{ maxHeight: "0px" }}
-              transition={{ duration: 0.5 }}
-              className="input-select--menu scrollbar-hide"
-              style={{ width: `${observer.width}px` }}
-              {...events}
-              ref={ref}
-            >
-              {options.map((option, index) => {
-                // El background de los impares sera distinto de los pares
-                // para diferenciarlos
-                const backgroundColor = index % 2 === 0 ? "#F1F1F1" : "white";
-                // La primera y ultima opcion deben tener bordes en la zona
-                // superior e inferior respectivamente para adaptarse al
-                // menu
-                const borderTopLeftRadius = index === 0 ? 4 : 0;
-                const borderTopRightRadius = borderTopLeftRadius;
-                const borderBottomLeftRadius =
-                  index === options.length - 1 ? 4 : 0;
-                const borderBottomRightRadius = borderBottomLeftRadius;
-                // Estilo de los bordes de la opcion
-                const optionStyle = {
-                  borderTopLeftRadius,
-                  borderTopRightRadius,
-                  borderBottomLeftRadius,
-                  borderBottomRightRadius,
-                  height: `${observer.height}px`,
-                  width: `${observer.width}px`,
-                };
+        <div
+          className={
+            "input-select--menu input-select--menu-" + (view ? "in" : "out")
+          }
+          style={{
+            width: `${observer.width}px`,
+            maxHeight: view ? "300px" : "0px",
+            opacity: view ? "1" : "0",
+          }}
+          {...events}
+          ref={ref}
+        >
+          {options.map((option, index) => {
+            // El background de los impares sera distinto de los pares
+            // para diferenciarlos
+            const backgroundColor = index % 2 === 0 ? "#F1F1F1" : "white";
+            // La primera y ultima opcion deben tener bordes en la zona
+            // superior e inferior respectivamente para adaptarse al
+            // menu
+            const borderTopLeftRadius = index === 0 ? 4 : 0;
+            const borderTopRightRadius = borderTopLeftRadius;
+            const borderBottomLeftRadius = index === options.length - 1 ? 4 : 0;
+            const borderBottomRightRadius = borderBottomLeftRadius;
+            // Estilo de los bordes de la opcion
+            const optionStyle = {
+              borderTopLeftRadius,
+              borderTopRightRadius,
+              borderBottomLeftRadius,
+              borderBottomRightRadius,
+              height: `${observer.height}px`,
+              width: `${observer.width}px`,
+            };
 
-                return (
-                  <div
-                    style={{ ...optionStyle }}
-                    key={`input-select--option-${option.name}`}
-                  >
-                    <button
-                      className="input-select--option-button"
-                      style={{ backgroundColor, ...optionStyle }}
-                      onClick={() => selectOption(option)}
-                    >
-                      <Text type="h6">&nbsp;{option.name}&nbsp;</Text>
-                    </button>
-                  </div>
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
+            return (
+              <div
+                style={{ ...optionStyle }}
+                key={`input-select--option-${option.name}`}
+              >
+                <button
+                  className="input-select--option-button"
+                  style={{ backgroundColor, ...optionStyle }}
+                  onClick={() => selectOption(option)}
+                >
+                  <Text type="h6">&nbsp;{option.name}&nbsp;</Text>
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <button
         onClick={selectDropdown}
-        style={{ backgroundColor: "transparent", border: 0 }}
+        className="input-select--button"
       >
         {iconJSX}
       </button>

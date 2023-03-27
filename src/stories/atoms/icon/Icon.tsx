@@ -35,6 +35,7 @@ import iosArrowLeft24Filled from '@iconify/icons-fluent/ios-arrow-left-24-filled
 import iosArrowRight24Filled from '@iconify/icons-fluent/ios-arrow-right-24-filled';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outline-blank';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 const Color = require('color');
 
@@ -88,6 +89,10 @@ interface IconProps {
    * Icon color
    */
   color?: string;
+  /**
+   * Other icon style
+   */
+  style?: React.CSSProperties;
 }
 
 
@@ -98,6 +103,7 @@ export const Icon = ({
   icon = 'pa-ca',
   size = '1x',
   color = '#000',
+  style,
   ...props
 }: IconProps) => {
   switch (icon) {
@@ -115,73 +121,73 @@ export const Icon = ({
     case 'facebook': 
       return <Iconify
         icon={facebookIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'twitter': 
       return <Iconify
         icon={twitterIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'youtube': 
       return <Iconify
         icon={youtubeIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'instagram': 
       return <Iconify
         icon={instagramLogoFill}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'bell':
       return <Iconify
         icon={roomService}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'heart':
       return <Iconify
         icon={heartIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'heart-fill':
       return <Iconify
         icon={heartFill}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'paper-plane':
       return <Iconify
         icon={paperPlane}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'dollar':
       return <Iconify
         icon={currencyCircleDollarFill}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'location':
       return <Iconify
         icon={baselineLocationOn}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'eye':
       return <Iconify
         icon={eyeFill}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'eye-slash':
       return <Iconify
         icon={eyeSlashFill}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'google':
@@ -192,133 +198,133 @@ export const Icon = ({
     case 'person':
       return <Iconify
         icon={personIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'cancel':
       return <Iconify
         icon={cancelIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'check':
       return <Iconify
         icon={checkCircle}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'pencil':
       return <Iconify
         icon={pencilIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'pool':
       return <Iconify
         icon={poolIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'spa':
       return <Iconify
         icon={spaRounded}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'restaurant':
       return <Iconify
         icon={restaurantIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'fitness':
       return <Iconify
         icon={fitnessCentre}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'wine':
       return <Iconify
         icon={wineIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'wifi':
       return <Iconify
         icon={wifiHighBold}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'coffee':
       return <Iconify
         icon={coffeeIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'fast-food':
       return <Iconify
         icon={fastFood}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'down':
       return <Iconify
         icon={roundKeyboardArrowDown}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'up':
       return <Iconify
         icon={roundKeyboardArrowUp}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'left':
       return <Iconify
         icon={iosArrowLeft24Filled}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'right':
       return <Iconify
         icon={iosArrowRight24Filled}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'table':
       return <Iconify
         icon={tableRestaurant}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'checkbox':
       return <Iconify
         icon={checkBox}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'uncheckbox':
       return <Iconify
         icon={checkBoxOutlineBlank}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'share':
       return <Iconify
         icon={shareIcon}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     case 'flag':
       return <Iconify
         icon={flagFilled}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
     default:
       return <Iconify
         icon={questionMark}
-        style={{ fontSize: size }}
+        style={{ fontSize: size, ...style }}
         color={color}
       />
   }

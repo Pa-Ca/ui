@@ -1,10 +1,10 @@
-import React, { forwardRef, SyntheticEvent } from 'react';
-import './inputDate.scss';
-import '../../atoms/text/text.scss';
-import DatePicker from 'react-datepicker';
-import { Text } from '../../atoms/text/Text';
-import 'react-datepicker/dist/react-datepicker.css';
-import useResizeObserver from '../../hooks/useResizeObserver';
+import React, { forwardRef, SyntheticEvent } from "react";
+import "./inputDate.scss";
+import "../../atoms/text/text.scss";
+import DatePicker from "react-datepicker";
+import { Text } from "../../atoms/text/Text";
+import "react-datepicker/dist/react-datepicker.css";
+import useResizeObserver from "../../hooks/useResizeObserver";
 
 interface InputDateProps {
   /**
@@ -39,7 +39,7 @@ interface InputDateProps {
 export const InputDate = ({
   date,
   setDate,
-  label = 'Fecha',
+  label = "Fecha",
   minDate,
   width,
   height,
@@ -48,20 +48,26 @@ export const InputDate = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   type ButtonProps = React.HTMLProps<HTMLButtonElement>;
-  const DateInputButton = forwardRef<HTMLButtonElement, ButtonProps>(({ value, onClick }, ref) => (
-    <button
-      className="text text--h6 input-text--input"
-      style={{ height: `${observer.height}px` }}
-      onClick={onClick}
-      ref={ref}
-    >
-      {value}
-    </button>
-  ));
+  const DateInputButton = forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ value, onClick }, ref) => (
+      <button
+        className="text text--h6 input-text--input"
+        style={{ height: `${observer.height}px` }}
+        onClick={onClick}
+        ref={ref}
+      >
+        {value}
+      </button>
+    )
+  );
 
   return (
-    <div className='input-text--container' style={{ width, height }} ref={observer.ref}>
-      <div className='input-text--content'>
+    <div
+      className="input-text--container"
+      style={{ width, height }}
+      ref={observer.ref}
+    >
+      <div className="input-text--content">
         <DatePicker
           selected={date}
           onChange={setDate}
@@ -69,13 +75,12 @@ export const InputDate = ({
           customInput={<DateInputButton />}
           minDate={minDate}
         />
-        
-        <div className='input-text--label'>
-          <Text type='h6'>
+
+        <div className="input-text--label">
+          <Text type="h6" weight="400">
             &nbsp;{label}&nbsp;
           </Text>
         </div>
-
       </div>
     </div>
   );

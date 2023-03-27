@@ -1,0 +1,48 @@
+@import "../../assets/scss/variables.scss";
+
+.editable--container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.editable--editable-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+#root {
+  $editable--color: black;
+}
+@keyframes editable--edit-animation {
+  from {
+    transform: rotate(0deg);
+    color: black;
+  }
+  to {
+    transform: rotate(-90deg);
+    color: var(--editable-color);
+  }
+}
+@keyframes editable--edit-animation-reverse {
+  from {
+    transform: rotate(-90deg);
+    color: var(--editable-color);
+  }
+  to {
+    transform: rotate(0deg);
+    color: black;
+  }
+}
+.editable--edit-button-container {
+  position: relative;
+  overflow: hidden;
+  margin-left: 20px;
+  width: 220px;
+}
+.editable--edit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  transition: width $animation-duration ease-in-out;
+}
