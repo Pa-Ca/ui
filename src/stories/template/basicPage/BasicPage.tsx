@@ -3,6 +3,7 @@ import "./basicPage.scss";
 import { Box } from "../../atoms/box/Box";
 import { Header } from "../../organisms/header/Header";
 import { HeaderProps } from "../../organisms/header/Header";
+import { Footer } from "../../organisms/footer/Footer";
 
 interface BasicPage {
   /**
@@ -32,6 +33,7 @@ export const BasicPage = ({
         <Header {...headerArgs} />
       </Box>
       <Box className="basic-page--content-container">{children}</Box>
+      <Footer/>
     </Box>
   );
 };
