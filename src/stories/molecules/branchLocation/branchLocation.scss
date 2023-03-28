@@ -1,0 +1,26 @@
+.branch-location--container {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  background-color: transparent;
+}
+.branch-location--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+  justify-content: space-between;
+}
+.branch-location--image {
+  flex: 1;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: transparent;
+}
+.branch-location--footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+}

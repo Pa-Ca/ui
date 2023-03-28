@@ -7,7 +7,7 @@ import { Button } from "../../atoms/button/Button";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { InputText } from "../../molecules/inputText/InputText";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
-import { ImagesCarousel } from "../../molecules/imagesCarousel/imagesCarousel";
+import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
 export interface LoginComponentProps {
   /**

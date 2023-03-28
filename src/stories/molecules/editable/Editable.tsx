@@ -57,12 +57,18 @@ export const Editable = ({
   const width = useMemo(() => (useIcons ? "70px" : "220px"), [useIcons]);
 
   return (
-    <Box className="editable--container">
+    <Box
+      className="editable--container"
+      style={{ display: editable ? "flex" : "none" }}
+    >
       {editable && (
         <Box
           className="editable--editable-icon"
           onClick={onPencilClick}
-          style={{ "--editable-initial-color": initialColor, "--editable-end-color": color }}
+          style={{
+            "--editable-initial-color": initialColor,
+            "--editable-end-color": color,
+          }}
         >
           <Icon
             icon="pencil"
