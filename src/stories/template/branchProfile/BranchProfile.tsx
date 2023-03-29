@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./branchProfile.scss";
 import { Box } from "../../atoms/box/Box";
+import { Path } from "../../molecules/path/Path";
 import UserData from "../../utils/objects/UserData";
 import getValidHours from "../../utils/getValidHours";
 import { Footer } from "../../organisms/footer/Footer";
@@ -54,6 +55,10 @@ interface BranchProfileProps {
    */
   locationImage: string;
   /**
+   * Path from Home to current page
+   */
+  path: { name: string; onClick: () => void }[];
+  /**
    * Component main color
    */
   color?: string;
@@ -74,6 +79,7 @@ export const BranchProfile = ({
   onLoginClick,
   onRegisterClick,
   locationImage,
+  path,
   color,
   ...props
 }: BranchProfileProps) => {
@@ -133,6 +139,13 @@ export const BranchProfile = ({
             userRole={user.role}
             backgroundColor="transparent"
             color={color}
+          />
+        </Box>
+        <Box className="branch-profile--path">
+          <Path
+            path={path.concat([{ name: branch.name, onClick: () => {} }])}
+            color="white"
+            secondaryColor="white"
           />
         </Box>
       </Box>

@@ -392,6 +392,16 @@ const globalArgs = {
       ],
     };
   },
+  path: [
+    {
+      name: "Home",
+      onClick: () => {},
+    },
+    {
+      name: "Buscar restaurantes",
+      onClick: () => {},
+    },
+  ],
 };
 
 export const Guest = Template.bind({});

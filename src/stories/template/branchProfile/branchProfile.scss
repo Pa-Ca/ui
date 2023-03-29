@@ -15,6 +15,10 @@
   padding-left: calc($horizontal-padding - 35px);
   padding-right: calc($horizontal-padding - 35px);
 }
+.branch-profile--path {
+  margin-top: 40px;
+  padding-left: calc($horizontal-padding + 50px);
+}
 .branch-profile--content {
   display: flex;
   flex-direction: column;
