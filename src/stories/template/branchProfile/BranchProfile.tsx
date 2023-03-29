@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./branchProfile.scss";
 import { Box } from "../../atoms/box/Box";
-import getValidHours from "../../utils/getValidHours";
-import { Header } from "../../organisms/header/Header";
 import UserData from "../../utils/objects/UserData";
+import getValidHours from "../../utils/getValidHours";
+import { Footer } from "../../organisms/footer/Footer";
+import { Header } from "../../organisms/header/Header";
 import BranchData from "../../utils/objects/BranchData";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
@@ -214,6 +215,8 @@ export const BranchProfile = ({
           </Box>
         </Box>
       </Box>
+
+      <Footer color={color} />
     </Box>
   );
 };

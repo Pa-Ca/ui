@@ -5,6 +5,7 @@ import { Text } from "../../atoms/text/Text";
 import UserData from "../../utils/objects/UserData";
 import getValidHours from "../../utils/getValidHours";
 import { Header } from "../../organisms/header/Header";
+import { Footer } from "../../organisms/footer/Footer";
 import { useDraggable } from "react-use-draggable-scroll";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
@@ -278,6 +279,8 @@ export const Home = ({
           </div>
         </Box>
       </Box>
+
+      <Footer color={color} />
     </Box>
   );
 };
