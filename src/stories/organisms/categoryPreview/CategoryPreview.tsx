@@ -85,11 +85,11 @@ export const CategoryPreview = ({
       </Box>
 
       <Box className="category-preview--content">
-        {branches?.slice(0, nPlates).map((branch) => (
+        {branches?.slice(0, nPlates).map((branch, index) => (
           <Box
             className="category-preview--branch"
             backgroundColor="transparent"
-            key={`category-preview--branch-${branch.name}`}
+            key={`category-preview--branch-${index}-${branch.name}`}
           >
             <BranchCard {...branch} color={color} width="100%" />
           </Box>

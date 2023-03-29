@@ -219,10 +219,10 @@ export const Home = ({
       {/* Content */}
       <Box className="home--content">
         <Box backgroundColor="transparent">
-          {getCategoryPreviews().map((category) => (
+          {getCategoryPreviews().map((category, index) => (
             <Box
               className="home--category-preview"
-              key={`home--category-preview-${category.title}`}
+              key={`home--category-preview-${index}-${category.title}`}
             >
               <CategoryPreview {...category} color={color} />
             </Box>
@@ -237,7 +237,7 @@ export const Home = ({
             <Box
               className="home--category-card"
               style={{ marginLeft: index === 0 ? "0px" : "24px" }}
-              key={`home--category-card-${category.title}`}
+              key={`home--category-card-${index}-${category.title}`}
             >
               <CategoryCard {...category} height="560px" buttonColor={color} />
             </Box>
@@ -265,7 +265,7 @@ export const Home = ({
             {highlightReviews.map((review, index) => (
               <Box
                 style={{ marginLeft: index === 0 ? "0px" : "50px" }}
-                key={`home--highlight-review-${review.title}`}
+                key={`home--highlight-review-${index}-${review.title}`}
               >
                 <HighlightReview
                   {...review}
