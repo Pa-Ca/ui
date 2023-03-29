@@ -70,15 +70,15 @@ export const InputSelect = ({
   const iconJSX = useMemo(() => {
     if (view) {
       return (
-        <view className="input-select--icon">
+        <div className="input-select--icon">
           <Icon icon="up" size="24" />
-        </view>
+        </div>
       );
     } else {
       return (
-        <view className="input-select--icon">
+        <div className="input-select--icon">
           <Icon icon="down" size="24" />
-        </view>
+        </div>
       );
     }
   }, [view]);

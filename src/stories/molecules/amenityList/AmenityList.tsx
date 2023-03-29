@@ -176,11 +176,11 @@ export const AmenityList = ({
           i < nColumns - (currentAmenityList.length % nColumns) - 1;
           i++
         ) {
-          showList_.push(<Box />);
+          showList_.push(<Box key={`amenity-list--item-${i}-empty`} />);
         }
       } else if (currentAmenityList.length % nColumns === 0) {
         for (let i = 0; nColumns - 1; i++) {
-          showList_.push(<Box />);
+          showList_.push(<Box key={`amenity-list--item-${i}-empty`} />);
         }
       }
 
@@ -190,6 +190,7 @@ export const AmenityList = ({
         showList_.push(
           <Box
             className="amenity-list--view"
+            key={`amenity-list--item-view-less`}
             onClick={() => setViewMore(false)}
           >
             <Text weight="600" color={color}>
@@ -200,7 +201,7 @@ export const AmenityList = ({
       }
       // Otherwise, it is filled with another Box
       else {
-        showList_.push(<Box />);
+        showList_.push(<Box key={`amenity-list--item-empty`} />);
       }
     }
     // If fewer are displayed, a "View more" will be inserted in the last
@@ -209,7 +210,11 @@ export const AmenityList = ({
       showList_.splice(
         viewMorePositon,
         0,
-        <Box className="amenity-list--view" onClick={() => setViewMore(true)}>
+        <Box
+          className="amenity-list--view"
+          onClick={() => setViewMore(true)}
+          key={`amenity-list--item-view-more`}
+        >
           <Text weight="600" color={color}>
             {`Ver ${currentAmenityList.length - MAX_SHOW} más`}
           </Text>

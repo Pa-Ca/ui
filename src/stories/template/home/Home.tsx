@@ -2,9 +2,9 @@ import React, { useMemo, useState, useRef } from "react";
 import "./home.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import UserData from "../../utils/objects/UserData";
 import getValidHours from "../../utils/getValidHours";
 import { Header } from "../../organisms/header/Header";
-import ClientData from "../../utils/objects/ClientData";
 import { useDraggable } from "react-use-draggable-scroll";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
@@ -12,7 +12,10 @@ import { CategoryCard } from "../../molecules/categoryCard/CategoryCard";
 import { CategoryCardProps } from "../../molecules/categoryCard/CategoryCard";
 import { CategoryPreview } from "../../organisms/categoryPreview/CategoryPreview";
 import { CategoryPreviewProps } from "../../organisms/categoryPreview/CategoryPreview";
-import { HighlightReview, HighlightReviewProps } from "../../molecules/highlightReview/HighlightReview";
+import {
+  HighlightReview,
+  HighlightReviewProps,
+} from "../../molecules/highlightReview/HighlightReview";
 
 interface HomeProps {
   /**
@@ -22,7 +25,7 @@ interface HomeProps {
   /**
    * Get user data
    */
-  getClientData: () => ClientData;
+  getUserData: () => UserData;
   /**
    * On search button click
    */
@@ -79,7 +82,7 @@ interface HomeProps {
  */
 export const Home = ({
   headerPicture,
-  getClientData = () => {
+  getUserData = () => {
     return { logged: false };
   },
   onHeaderReserveClick,
@@ -106,9 +109,19 @@ export const Home = ({
 
   const observer = useResizeObserver<HTMLDivElement>();
 
-  const client = getClientData();
+  const user = getUserData();
   const categoryCards = getCategoryCards();
   const highlightReviews = getHihgLightReviews();
+  const name = !user.logged
+    ? ""
+    : user.role === "business"
+    ? user.business?.name
+    : `${user.client?.name} ${user.client?.surname.slice(0, 1)}.`;
+  const picture = !user.logged
+    ? ""
+    : user.role === "business"
+    ? user.business?.picture
+    : user.client?.picture;
 
   const nCategories = useMemo(() => {
     return Math.max(1, Math.floor(observer.width / 530));
@@ -140,17 +153,16 @@ export const Home = ({
         >
           <Header
             dark
-            name={`${client.name} ${client.surname?.slice(0, 1)}.`}
-            logged={client.logged}
-            picture={client.picture}
+            name={name}
+            logged={user.logged}
+            picture={picture}
             onLeftSectionClick={onHeaderReserveClick}
             onPacaClick={onPacaClick}
             onRightSectionClick={onFavoritesClick}
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
-            leftSection="reserve"
-            rightSection="favorites"
+            userRole={user.role}
             backgroundColor="transparent"
           />
 

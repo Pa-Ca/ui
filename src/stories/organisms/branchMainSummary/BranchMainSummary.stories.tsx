@@ -12,6 +12,11 @@ export default {
       table: {
         disable: true
       }
+    },
+    addPromotion: {
+      table: {
+        disable: true
+      }
     }
   },
 } as ComponentMeta<typeof BranchMainSummary>;

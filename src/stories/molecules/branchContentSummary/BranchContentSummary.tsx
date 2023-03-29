@@ -31,10 +31,6 @@ interface BranchContentSummaryProps {
    */
   pricePerson: number;
   /**
-   * Branch location
-   */
-  location?: string;
-  /**
    * Reservation price
    */
   price: number;
@@ -78,7 +74,6 @@ export const BranchContentSummary = ({
   reviews,
   category,
   pricePerson,
-  location,
   price,
   consumible = false,
   editable = false,

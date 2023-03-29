@@ -92,7 +92,7 @@ export const MenuPreview = ({
           <Box
             className="menu-preview--plate"
             style={{ marginLeft: index === 0 ? "0px" : "8px" }}
-            key={`menu-preview--plate-${plate.title}`}
+            key={`menu-preview--plate-${index}-${plate.title}`}
           >
             <Plate {...plate} color={color} />
           </Box>
