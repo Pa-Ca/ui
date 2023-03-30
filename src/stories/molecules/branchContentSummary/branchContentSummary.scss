@@ -35,7 +35,6 @@
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  min-width: 270px;
 }
 .branch-content-summary--price-sub-container {
   display: flex;
@@ -45,6 +44,5 @@
 .branch-content-summary--input {
   border: 1px solid #79747e;
   border-radius: 6px;
-  background-color: transparent;
   outline: none;
 }

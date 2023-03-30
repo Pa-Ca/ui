@@ -1,10 +1,10 @@
-import React from 'react';
-import './header.scss'
-import { Box } from '../../atoms/box/Box';
-import { Icon } from '../../atoms/icon/Icon';
-import { Text } from '../../atoms/text/Text';
-import { Button } from '../../atoms/button/Button';
-import { ProfilePicture } from '../../molecules/profilePicture/ProfilePicture';
+import React from "react";
+import "./header.scss";
+import { Box } from "../../atoms/box/Box";
+import { Icon } from "../../atoms/icon/Icon";
+import { Text } from "../../atoms/text/Text";
+import { Button } from "../../atoms/button/Button";
+import { ProfilePicture } from "../../molecules/profilePicture/ProfilePicture";
 
 export interface HeaderProps {
   /**
@@ -18,19 +18,15 @@ export interface HeaderProps {
   /**
    * Profile icon
    */
-  icon?: 'down' | 'up';
+  icon?: "down" | "up";
   /**
    * Dark mode
    */
   dark?: boolean;
   /**
-   * Left section of header
+   * Logged user role
    */
-  leftSection?: 'reserve' | 'perfil';
-  /**
-   * Left section of header
-   */
-  rightSection?: 'favorites' | 'reserves';
+  userRole?: "client" | "business";
   /**
    * Is the user logged?
    */
@@ -83,10 +79,9 @@ export interface HeaderProps {
 export const Header = ({
   picture,
   name,
-  icon = 'down',
+  icon = "down",
   dark = false,
-  leftSection,
-  rightSection,
+  userRole,
   logged,
   onLeftSectionClick,
   onPacaClick,
@@ -100,73 +95,120 @@ export const Header = ({
   height,
   ...props
 }: HeaderProps) => {
-  const logoColor = dark ? 'white' : 'black';
-  const leftSectionText = leftSection === 'reserve' ? 'Reservar' : 'Perfil';
-  const rightSectionText = rightSection === 'favorites' ? 'Favoritos' : 'Reservas';
-  const rightSectionIcon = rightSection === 'favorites' ? 'heart-fill' : 'table';
+  const logoColor = dark ? "white" : "black";
+  const leftSectionText =
+    !logged || userRole === "client" ? "Reservar" : "Perfil";
+  const rightSectionText = userRole === "client" ? "Favoritos" : "Reservas";
+  const rightSectionIcon = userRole === "client" ? "heart-fill" : "table";
 
   const rightSectionComponent = () => {
     if (logged) {
       return (
         <>
-          <Box className='header--zone' onClick={onRightSectionClick}>
-            <Icon icon={rightSectionIcon} size='20px' color={logoColor} />
-            <Text type='h6' weight='600' className='header--text' color={logoColor}> {rightSectionText} </Text>
-            <Text type='h6' weight='600' className='header--text' color={logoColor}> &nbsp;&nbsp;| </Text>
+          <Box className="header--zone" onClick={onRightSectionClick}>
+            <Icon icon={rightSectionIcon} size="20px" color={logoColor} />
+            <Text
+              type="h6"
+              weight="600"
+              className="header--text"
+              color={logoColor}
+            >
+              {rightSectionText}
+            </Text>
+            <Text
+              type="h6"
+              weight="600"
+              className="header--text"
+              color={logoColor}
+            >
+              &nbsp;&nbsp;|
+            </Text>
           </Box>
-          <Box className='header--zone header--profile' onClick={onProfileClick}>
-            <Box className='header--profile-picture'>
+          <Box
+            className="header--zone header--profile"
+            onClick={onProfileClick}
+          >
+            <Box className="header--profile-picture">
               <ProfilePicture
-                size='45px'
-                border='0px'
+                size="45px"
+                border="0px"
                 icon={icon}
                 color={color}
                 picture={picture}
               />
             </Box>
-            <Box className='header--name'>
-              <Text type='h6' weight='600' className='header--text header--name' color={logoColor}> {name} </Text>
+            <Box className="header--name">
+              <Text
+                type="h6"
+                weight="600"
+                className="header--text header--name"
+                color={logoColor}
+              >
+                {name}
+              </Text>
             </Box>
           </Box>
         </>
-      )
-    }
-    else {
+      );
+    } else {
       return (
         <>
-          <Box className='header--zone' onClick={onLoginClick}>
-            <Text type='h6' weight='600' className='header--text' color={logoColor}> Login </Text>
+          <Box className="header--zone" onClick={onLoginClick}>
+            <Text
+              type="h6"
+              weight="600"
+              className="header--text"
+              color={logoColor}
+            >
+              Login
+            </Text>
           </Box>
-          <Box className='header--zone header--profile'>
-            <Button primary  onClick={onRegisterClick} backgroundColor={dark ? 'white' : color}>
-              <Text type='h6' style={{ fontWeight: '600' }} color={dark ? 'black' : 'white'}>
+          <Box className="header--zone header--profile">
+            <Button
+              primary
+              onClick={onRegisterClick}
+              backgroundColor={dark ? "white" : color}
+            >
+              <Text
+                type="h6"
+                style={{ fontWeight: "600" }}
+                color={dark ? "black" : "white"}
+              >
                 Regístrate
               </Text>
             </Button>
           </Box>
         </>
-      )
+      );
     }
-  }
+  };
 
   return (
-    <Box className='header--container' style={{ width, height, backgroundColor }}>
-      <Box className='header--subcontainer'>
+    <Box
+      className="header--container"
+      style={{ width, height, backgroundColor }}
+    >
+      <Box className="header--subcontainer">
         {/* Left section */}
-        <Box className='header--zone' onClick={onLeftSectionClick}>
-          <Icon icon='bell' size='20px' color={logoColor} />
-          <Text type='h6' weight='600' className='header--text' color={logoColor}> {leftSectionText} </Text>
+        <Box className="header--zone" onClick={onLeftSectionClick}>
+          <Icon icon="bell" size="20px" color={logoColor} />
+          <Text
+            type="h6"
+            weight="600"
+            className="header--text"
+            color={logoColor}
+          >
+            {leftSectionText}
+          </Text>
         </Box>
 
         {/* PA-CA */}
-        <Box className='header--pa-ca header--zone' onClick={onPacaClick}>
-          <Icon icon='pa-ca' size='41px' color={logoColor} />
+        <Box className="header--pa-ca header--zone" onClick={onPacaClick}>
+          <Icon icon="pa-ca" size="41px" color={logoColor} />
         </Box>
 
         {/* Right section */}
-        <Box className='header--zone'>
-          {rightSectionComponent()}
-        </Box>
+        <Box className="header--zone">{rightSectionComponent()}</Box>
       </Box>
     </Box>
   );

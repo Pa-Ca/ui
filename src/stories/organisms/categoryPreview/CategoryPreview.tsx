@@ -4,7 +4,10 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import useResizeObserver from "../../hooks/useResizeObserver";
-import { BranchCard, BranchCardProps } from "../../molecules/branchCard/BranchCard";
+import {
+  BranchCard,
+  BranchCardProps,
+} from "../../molecules/branchCard/BranchCard";
 
 export interface CategoryPreviewProps {
   /**
@@ -64,13 +67,13 @@ export const CategoryPreview = ({
     >
       <Box className="category-preview--header">
         <Box className="category-preview--summary">
-          <Box backgroundColor="transparent">
+          <Box>
             <Text type="h3" weight="600">
               {title}
             </Text>
           </Box>
 
-          <Box backgroundColor="transparent">
+          <Box>
             <Text color="#5a675b" weight="400">
               {description}
             </Text>
@@ -85,11 +88,10 @@ export const CategoryPreview = ({
       </Box>
 
       <Box className="category-preview--content">
-        {branches?.slice(0, nPlates).map((branch) => (
+        {branches?.slice(0, nPlates).map((branch, index) => (
           <Box
             className="category-preview--branch"
-            backgroundColor="transparent"
-            key={`category-preview--branch-${branch.name}`}
+            key={`category-preview--branch-${index}-${branch.name}`}
           >
             <BranchCard {...branch} color={color} width="100%" />
           </Box>

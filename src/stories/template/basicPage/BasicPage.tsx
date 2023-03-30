@@ -3,8 +3,9 @@ import "./basicPage.scss";
 import { Box } from "../../atoms/box/Box";
 import { Header } from "../../organisms/header/Header";
 import { HeaderProps } from "../../organisms/header/Header";
+import { Footer } from "../../organisms/footer/Footer";
 
-interface BasicPage {
+interface BasicPageProps {
   /**
      Element to be displayed in the page
     */
@@ -25,13 +26,14 @@ export const BasicPage = ({
     onPacaClick: () => {},
   },
   ...props
-}: BasicPage) => {
+}: BasicPageProps) => {
   return (
     <Box {...props} className="basic-page--container">
       <Box weakShadow>
         <Header {...headerArgs} />
       </Box>
       <Box className="basic-page--content-container">{children}</Box>
+      <Footer />
     </Box>
   );
 };

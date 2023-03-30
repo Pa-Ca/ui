@@ -9,27 +9,24 @@
   margin-left: 10px;
   cursor: pointer;
 }
-#root {
-  $editable--color: black;
-}
 @keyframes editable--edit-animation {
   from {
     transform: rotate(0deg);
-    color: black;
+    color: var(--editable-initial-color);
   }
   to {
     transform: rotate(-90deg);
-    color: var(--editable-color);
+    color: var(--editable-end-color);
   }
 }
 @keyframes editable--edit-animation-reverse {
   from {
     transform: rotate(-90deg);
-    color: var(--editable-color);
+    color: var(--editable-end-color);
   }
   to {
     transform: rotate(0deg);
-    color: black;
+    color: var(--editable-initial-color);
   }
 }
 .editable--edit-button-container {
@@ -45,4 +42,7 @@
   width: 100%;
   overflow: hidden;
   transition: width $animation-duration ease-in-out;
+}
+.editable--action-icon {
+  cursor: pointer;
 }

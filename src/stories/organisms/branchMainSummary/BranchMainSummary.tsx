@@ -2,12 +2,13 @@ import React from "react";
 import "./branchMainSummary.scss";
 import { Box } from "../../atoms/box/Box";
 import { ImagesCollage } from "../../molecules/imagesCollage/imagesCollage";
+import { AddPromotionCard } from "../../molecules/addPromotionCard/AddPromotionCard";
+import { BranchContentSummary } from "../../molecules/branchContentSummary/BranchContentSummary";
+import { BranchContentOverview } from "../../molecules/branchContentOverview/BranchContentOverview";
 import {
   PromotionCard,
   PromotionCardProps,
 } from "../../molecules/promotionCard/PromotionCard";
-import { BranchContentSummary } from "../../molecules/branchContentSummary/BranchContentSummary";
-import { BranchContentOverview } from "../../molecules/branchContentOverview/BranchContentOverview";
 
 interface BranchMainSummaryProps {
   /**
@@ -17,23 +18,19 @@ interface BranchMainSummaryProps {
   /**
    * Branch score
    */
-  score?: number;
+  score: number;
   /**
    * Number of branch reviews
    */
-  reviews?: number;
+  reviews: number;
   /**
    * Main branch category
    */
-  category?: string;
+  category: string;
   /**
    * Price per person
    */
   pricePerson: number;
-  /**
-   * Branch location
-   */
-  location?: string;
   /**
    * Consumible price
    */
@@ -41,7 +38,7 @@ interface BranchMainSummaryProps {
   /**
    * Branch promotion list
    */
-  promotions?: PromotionCardProps[];
+  promotions: PromotionCardProps[];
   /**
    * Branch overview
    */
@@ -49,11 +46,15 @@ interface BranchMainSummaryProps {
   /**
    * Branch images
    */
-  images?: string[];
+  images: string[];
   /**
    * On view all images click
    */
   onImagesButtonClick?: () => void;
+  /**
+   * Add promotion function
+   */
+  addPromotion: () => void;
   /**
    * Indicates if the data is editable
    */
@@ -81,12 +82,12 @@ export const BranchMainSummary = ({
   reviews,
   category,
   pricePerson,
-  location,
   price,
   promotions = [],
   overview,
   images = [],
   onImagesButtonClick,
+  addPromotion,
   editable,
   color,
   width,
@@ -102,7 +103,6 @@ export const BranchMainSummary = ({
           reviews={reviews}
           category={category}
           pricePerson={pricePerson}
-          location={location}
           price={price}
           editable={editable}
           color={color}
@@ -110,16 +110,26 @@ export const BranchMainSummary = ({
       </Box>
 
       <Box className="branch-main-summary--promotions-container">
-        {promotions.map((promotion) => {
+        {promotions.map((promotion, index) => {
           return (
             <Box
               className="branch-main-summary--promotion"
-              key={`branch-main-summay--promotions-${promotion.promotion}`}
+              key={`branch-main-summay--promotions-${index}-${promotion.promotion}`}
             >
-              <PromotionCard color={color} {...promotion} />
+              <PromotionCard color={color} editable={editable} {...promotion} />
             </Box>
           );
         })}
+        {editable && (
+          <Box className="branch-main-summary--promotion">
+            <AddPromotionCard
+              text="Agregar Promoción"
+              onClick={addPromotion}
+              color="#A5A5A5"
+              secondaryColor="white"
+            />
+          </Box>
+        )}
       </Box>
 
       <Box className="branch-main-summary--overview-container">

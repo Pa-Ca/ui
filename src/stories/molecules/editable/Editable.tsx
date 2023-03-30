@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./editable.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
@@ -27,6 +27,14 @@ interface EditableProps {
    */
   onCancelClick: () => void;
   /**
+   * Use icons instead of buttons
+   */
+  useIcons?: boolean;
+  /**
+   * Pencil initial color
+   */
+  initialColor?: string;
+  /**
    * Component main color
    */
   color?: string;
@@ -41,16 +49,26 @@ export const Editable = ({
   onPencilClick,
   onSaveClick,
   onCancelClick,
+  useIcons = false,
+  initialColor,
   color,
   ...props
 }: EditableProps) => {
+  const width = useMemo(() => (useIcons ? "70px" : "220px"), [useIcons]);
+
   return (
-    <Box className="editable--container">
+    <Box
+      className="editable--container"
+      style={{ display: editable ? "flex" : "none" }}
+    >
       {editable && (
         <Box
           className="editable--editable-icon"
           onClick={onPencilClick}
-          style={{ "--editable-color": color }}
+          style={{
+            "--editable-initial-color": initialColor,
+            "--editable-end-color": color,
+          }}
         >
           <Icon
             icon="pencil"
@@ -63,19 +81,32 @@ export const Editable = ({
           />
         </Box>
       )}
-      <Box className="editable--edit-button-container">
+      <Box className="editable--edit-button-container" width={width}>
         <Box
           className="editable--edit-buttons"
           style={{
-            width: edit ? "220px" : "0",
+            width: edit ? width : "0",
           }}
         >
-          <Button borderColor={color} onClick={onCancelClick}>
-            <Text> Cancelar </Text>
-          </Button>
-          <Button backgroundColor={color} primary onClick={onSaveClick}>
-            <Text> Guardar </Text>
-          </Button>
+          {useIcons ? (
+            <>
+              <Box onClick={onCancelClick} className="editable--action-icon">
+                <Icon icon="cancel" color={color} size="30px" />
+              </Box>
+              <Box onClick={onSaveClick} className="editable--action-icon">
+                <Icon icon="check" color={color} size="30px" />
+              </Box>
+            </>
+          ) : (
+            <>
+              <Button borderColor={color} onClick={onCancelClick}>
+                <Text> Cancelar </Text>
+              </Button>
+              <Button backgroundColor={color} primary onClick={onSaveClick}>
+                <Text> Guardar </Text>
+              </Button>
+            </>
+          )}
         </Box>
       </Box>
     </Box>

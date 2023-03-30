@@ -25,8 +25,8 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   promotion: '2X1 en Aperoles',
-  date: '3 de Marzo del 2023',
-  buttonText: 'Gratis',
+  date: new Date(),
+  cost: 0,
   color: '#EF7A08',
   secondaryColor: 'white'
 };

@@ -1,3 +1,5 @@
+@import "../../assets/scss/mixins.scss";
+
 .add-promotion-card--container {
   display: flex;
   flex-direction: row;
@@ -6,24 +8,17 @@
   overflow: hidden;
   min-width: 500px;
   min-height: 20px;
-  -webkit-user-select: none;
-  user-select: none;
+  @include unselectable();
 }
-.add-promotion-card--text-container{
+.add-promotion-card--text-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 100px;
-  
-  
-  
 }
 .add-promotion-card--menu-text {
   margin-right: 12px;
-  -webkit-user-select: none;
-  user-select: none;
-  
-  
+  @include unselectable();
 }
 
 .add-promotion-card--menu-button {
@@ -33,22 +28,20 @@
   padding: 6px 10px;
   height: 1.1em;
   cursor: pointer;
-  -webkit-user-select: none;
-  user-select: none;
-  
-  }
+  @include unselectable();
+}
 
-  .add-promotion-card--menu-button:active {
-    animation: click 0.5s;
+.add-promotion-card--menu-button:active {
+  animation: click 0.5s;
+}
+@keyframes click {
+  0% {
+    transform: scale(1);
   }
-  @keyframes click {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(0.8);
-    }
-    100% {
-      transform: scale(1);
-    }
+  50% {
+    transform: scale(0.8);
   }
+  100% {
+    transform: scale(1);
+  }
+}

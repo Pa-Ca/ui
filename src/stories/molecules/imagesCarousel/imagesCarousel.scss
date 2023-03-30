@@ -3,7 +3,6 @@
 .images-carousel--container {
   position: relative;
   overflow: hidden;
-  background-color: transparent;
   width: 616px;
   height: 816px;
 }
@@ -29,7 +28,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: transparent;
 }
 .images-carousel--dot {
   margin-left: 5px;

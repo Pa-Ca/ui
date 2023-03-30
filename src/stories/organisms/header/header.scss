@@ -12,8 +12,7 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  background-color: transparent;
-  justify-content: space-between;
+    justify-content: space-between;
   align-items: center;
   width: 100%;
   overflow: hidden;
@@ -28,23 +27,19 @@
   display: flex;
   align-items: center;
   margin-left: 10px;
-  background-color: transparent;
-}
+  }
 .header--text {
   margin-left: 5px;
 }
 .header--profile {
   margin-left: 10px;
   margin-right: 0px;
-  background-color: transparent;
-}
+  }
 .header--profile-picture {
-  background-color: transparent;
-  width: 40px;
+    width: 40px;
 }
 .header--name {
-  background-color: transparent;
-  display: -webkit-box;
+    display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;

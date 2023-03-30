@@ -31,10 +31,6 @@ interface BranchContentSummaryProps {
    */
   pricePerson: number;
   /**
-   * Branch location
-   */
-  location?: string;
-  /**
    * Reservation price
    */
   price: number;
@@ -78,7 +74,6 @@ export const BranchContentSummary = ({
   reviews,
   category,
   pricePerson,
-  location,
   price,
   consumible = false,
   editable = false,
@@ -271,7 +266,10 @@ export const BranchContentSummary = ({
         </Box>
       </Box>
 
-      <Box className="branch-content-summary--price-container">
+      <Box
+        className="branch-content-summary--price-container"
+        style={{ minWidth: consumible ? "270px" : "135px" }}
+      >
         <Text type="h3" color="#121212" weight="700">
           Reserva
         </Text>

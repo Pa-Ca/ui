@@ -79,6 +79,7 @@
     "@storybook/manager-webpack4": "^6.5.15",
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "0.0.13",
+    "@types/react-datepicker": "^4.10.0",
     "babel-loader": "^8.3.0",
     "node-sass": "^8.0.0",
     "rollup-plugin-analyzer": "^4.0.0",

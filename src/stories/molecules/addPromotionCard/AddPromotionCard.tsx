@@ -49,6 +49,7 @@ export const AddPromotionCard = ({
       backgroundColor={color}
       strongShadow
       style={{ width, height }}
+      onClick = {onClick}
     >
       <Box className='promotion-card--text-container' backgroundColor='transparent'>
         <Box backgroundColor='transparent'>

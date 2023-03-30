@@ -2,9 +2,10 @@ import React, { useMemo, useState, useRef } from "react";
 import "./home.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import UserData from "../../utils/objects/UserData";
 import getValidHours from "../../utils/getValidHours";
 import { Header } from "../../organisms/header/Header";
-import ClientData from "../../utils/objects/ClientData";
+import { Footer } from "../../organisms/footer/Footer";
 import { useDraggable } from "react-use-draggable-scroll";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
@@ -12,7 +13,10 @@ import { CategoryCard } from "../../molecules/categoryCard/CategoryCard";
 import { CategoryCardProps } from "../../molecules/categoryCard/CategoryCard";
 import { CategoryPreview } from "../../organisms/categoryPreview/CategoryPreview";
 import { CategoryPreviewProps } from "../../organisms/categoryPreview/CategoryPreview";
-import { HighlightReview, HighlightReviewProps } from "../../molecules/highlightReview/HighlightReview";
+import {
+  HighlightReview,
+  HighlightReviewProps,
+} from "../../molecules/highlightReview/HighlightReview";
 
 interface HomeProps {
   /**
@@ -22,7 +26,7 @@ interface HomeProps {
   /**
    * Get user data
    */
-  getClientData: () => ClientData;
+  getUserData: () => UserData;
   /**
    * On search button click
    */
@@ -79,7 +83,7 @@ interface HomeProps {
  */
 export const Home = ({
   headerPicture,
-  getClientData = () => {
+  getUserData = () => {
     return { logged: false };
   },
   onHeaderReserveClick,
@@ -106,9 +110,19 @@ export const Home = ({
 
   const observer = useResizeObserver<HTMLDivElement>();
 
-  const client = getClientData();
+  const user = getUserData();
   const categoryCards = getCategoryCards();
   const highlightReviews = getHihgLightReviews();
+  const name = !user.logged
+    ? ""
+    : user.role === "business"
+    ? user.business?.name
+    : `${user.client?.name} ${user.client?.surname.slice(0, 1)}.`;
+  const picture = !user.logged
+    ? ""
+    : user.role === "business"
+    ? user.business?.picture
+    : user.client?.picture;
 
   const nCategories = useMemo(() => {
     return Math.max(1, Math.floor(observer.width / 530));
@@ -140,38 +154,33 @@ export const Home = ({
         >
           <Header
             dark
-            name={`${client.name} ${client.surname?.slice(0, 1)}.`}
-            logged={client.logged}
-            picture={client.picture}
+            name={name}
+            logged={user.logged}
+            picture={picture}
             onLeftSectionClick={onHeaderReserveClick}
             onPacaClick={onPacaClick}
             onRightSectionClick={onFavoritesClick}
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
-            leftSection="reserve"
-            rightSection="favorites"
+            userRole={user.role}
             backgroundColor="transparent"
           />
 
-          <Box
-            className="home--header-text-container"
-            backgroundColor="transparent"
-            height="33%"
-          >
-            <Box backgroundColor="transparent">
+          <Box className="home--header-text-container" height="33%">
+            <Box>
               <Text type="h2" color="white" weight="400">
                 {" "}
                 ¡Hola!{" "}
               </Text>
             </Box>
-            <Box backgroundColor="transparent">
+            <Box>
               <Text type="h1" color="white" weight="700" italic uppercase>
                 {" "}
                 ¿A DONDE VAMOS HOY?{" "}
               </Text>
             </Box>
-            <Box backgroundColor="transparent">
+            <Box>
               <Text type="h5" color="white" weight="600">
                 {" "}
                 Ofertas especiales todos los días{" "}
@@ -179,11 +188,7 @@ export const Home = ({
             </Box>
           </Box>
 
-          <Box
-            className="home--branch-searcher"
-            backgroundColor="transparent"
-            width="100%"
-          >
+          <Box className="home--branch-searcher" width="100%">
             <BranchSearch
               date={date}
               setDate={(date: Date) => selectDate(date)}
@@ -205,11 +210,11 @@ export const Home = ({
 
       {/* Content */}
       <Box className="home--content">
-        <Box backgroundColor="transparent">
-          {getCategoryPreviews().map((category) => (
+        <Box>
+          {getCategoryPreviews().map((category, index) => (
             <Box
               className="home--category-preview"
-              key={`home--category-preview-${category.title}`}
+              key={`home--category-preview-${index}-${category.title}`}
             >
               <CategoryPreview {...category} color={color} />
             </Box>
@@ -224,7 +229,7 @@ export const Home = ({
             <Box
               className="home--category-card"
               style={{ marginLeft: index === 0 ? "0px" : "24px" }}
-              key={`home--category-card-${category.title}`}
+              key={`home--category-card-${index}-${category.title}`}
             >
               <CategoryCard {...category} height="560px" buttonColor={color} />
             </Box>
@@ -252,7 +257,7 @@ export const Home = ({
             {highlightReviews.map((review, index) => (
               <Box
                 style={{ marginLeft: index === 0 ? "0px" : "50px" }}
-                key={`home--highlight-review-${review.title}`}
+                key={`home--highlight-review-${index}-${review.title}`}
               >
                 <HighlightReview
                   {...review}
@@ -266,6 +271,8 @@ export const Home = ({
           </div>
         </Box>
       </Box>
+
+      <Footer color={color} />
     </Box>
   );
 };

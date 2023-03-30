@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BasicPage } from "./BasicPage";
 
@@ -26,6 +26,7 @@ export const Default = Template.bind({});
 Default.args = {
   headerArgs: {
     logged: true,
+    userRole: 'client',
     onPacaClick: () => {},
     icon: "down",
     picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
