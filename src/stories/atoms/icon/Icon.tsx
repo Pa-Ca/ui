@@ -35,6 +35,9 @@ import iosArrowLeft24Filled from '@iconify/icons-fluent/ios-arrow-left-24-filled
 import iosArrowRight24Filled from '@iconify/icons-fluent/ios-arrow-right-24-filled';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outline-blank';
+import zelleIcon from '@iconify/icons-simple-icons/zelle';
+import ccVisa from '@iconify/icons-cib/cc-visa';
+import phoneAndroid from '@iconify/icons-material-symbols/phone-android';
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 const Color = require('color');
@@ -74,7 +77,11 @@ export type IconType =
   | "checkbox"
   | "uncheckbox"
   | "share"
-  | "flag";
+  | "flag"
+  | "zelle"
+  | "visa"
+  | "smartPhone"
+  ;
 
 interface IconProps {
   /**
@@ -318,6 +325,24 @@ export const Icon = ({
     case 'flag':
       return <Iconify
         icon={flagFilled}
+        style={{ fontSize: size, ...style }}
+        color={color}
+      />
+    case 'zelle':
+      return <Iconify
+        icon={zelleIcon}
+        style={{ fontSize: size, ...style }}
+        color={color}
+      />
+    case 'zelle':
+      return <Iconify
+        icon={ccVisa}
+        style={{ fontSize: size, ...style }}
+        color={color}
+      />
+    case 'zelle':
+      return <Iconify
+        icon={phoneAndroid}
         style={{ fontSize: size, ...style }}
         color={color}
       />

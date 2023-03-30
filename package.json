@@ -61,7 +61,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@iconify/icons-cib": "^1.2.4",
     "@iconify/icons-fluent": "^1.2.18",
+    "@iconify/icons-simple-icons": "^1.2.46",
     "@iconify/icons-tabler": "^1.2.67",
     "@iconify/react": "^4.1.0",
     "@rollup/plugin-commonjs": "^24.0.0",
