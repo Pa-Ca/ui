@@ -1,0 +1,20 @@
+.add-friends--container {
+  display: flex;
+  position: relative;
+  direction: row;
+  }
+  
+.add-friends--plus-button {
+  padding: 30px;
+}
+
+.add-friends--friends{
+  display : flex;
+  flex-direction: row;
+  padding: 30px;
+}
+.add-friends--image{
+  margin-left: -10px;
+  border: 1px solid white;
+}
+
