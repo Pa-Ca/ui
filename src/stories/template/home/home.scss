@@ -40,34 +40,28 @@
   padding-left: $horizontal-padding;
   padding-right: $horizontal-padding;
   padding-top: 103px;
-  background-color: transparent;
 }
 .home--category-preview {
   margin-top: 50px;
-  background-color: transparent;
 }
 .home--categories-card-container {
   display: flex;
   flex-direction: row;
   margin-top: 50px;
   justify-content: space-between;
-  background-color: transparent;
 }
 .home--category-card {
   flex: 1;
-  background-color: transparent;
 }
 .home--highlight-reviews-container {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  background-color: transparent;
 }
 .home--highlight-reviews-container-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: transparent;
   margin-bottom: 40px;
 }
 .home--highlight-reviews-carousel {
@@ -75,7 +69,6 @@
   flex-direction: row;
   overflow-x: scroll;
   overflow-y: auto;
-  background-color: transparent;
   padding-bottom: 60px;
   margin-bottom: 115px;
 

@@ -158,7 +158,7 @@ export const BranchProfile = ({
       >
         <Box className="branch-profile--main-content">
           <Box className="branch-profile--main-content-left">
-            <Box innerRef={navObserver.ref} backgroundColor="transparent">
+            <Box innerRef={navObserver.ref}>
               <BranchNav
                 like={like}
                 showLike={!editable}

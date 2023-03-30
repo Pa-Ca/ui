@@ -127,6 +127,7 @@ export const ReserveList = ({
               className="reserve-list--reservations"
               borderRadius="16px"
               weakShadow
+              backgroundColor="white"
             >
               {group.reservations.map((reservation) => (
                 <Reservation

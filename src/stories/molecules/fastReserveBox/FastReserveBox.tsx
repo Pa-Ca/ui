@@ -84,7 +84,7 @@ export const FastReserveBox = ({
       style={{ width, height }}
     >
       {/* The title of the box */}
-      <Box className="fast-reserve-box--title" backgroundColor="transparent">
+      <Box className="fast-reserve-box--title">
         <Text className="fast-reserve-box--title-text" type="h4" weight="700">
           {title}
         </Text>
@@ -100,10 +100,7 @@ export const FastReserveBox = ({
           backgroundColor="#000000"
           className="fast-reserve-box--line"
         />
-        <Box
-          className="fast-reserve-box--input-select-top"
-          backgroundColor="transparent"
-        >
+        <Box className="fast-reserve-box--input-select-top">
           <InputText
             label="Tamaño de Reserva"
             setValue={setPersons}
@@ -112,21 +109,12 @@ export const FastReserveBox = ({
           />
         </Box>
 
-        <Box
-          className="fast-reserve-box--input-select-bottom"
-          backgroundColor="transparent"
-        >
-          <Box
-            className="fast-reserve-box--input-select-bottom-left"
-            backgroundColor="transparent"
-          >
+        <Box className="fast-reserve-box--input-select-bottom">
+          <Box className="fast-reserve-box--input-select-bottom-left">
             <InputDate label="Fecha" setDate={setDate} date={date} />
           </Box>
 
-          <Box
-            className="fast-reserve-box--input-select-bottom-right"
-            backgroundColor="transparent"
-          >
+          <Box className="fast-reserve-box--input-select-bottom-right">
             <InputSelect
               label="Hora"
               option={hour}
@@ -137,11 +125,7 @@ export const FastReserveBox = ({
         </Box>
 
         {/* The box of the two buttons */}
-        <Box
-          className="fast-reserve-box--reserve-button-box"
-          backgroundColor="transparent"
-          width="100%"
-        >
+        <Box className="fast-reserve-box--reserve-button-box" width="100%">
           <Button
             onClick={onClickReserve}
             backgroundColor="#EF7A08"
@@ -160,11 +144,7 @@ export const FastReserveBox = ({
           </Button>
         </Box>
 
-        <Box
-          className="fast-reserve-box--find-hour-button-box"
-          backgroundColor="transparent"
-          width="100%"
-        >
+        <Box className="fast-reserve-box--find-hour-button-box" width="100%">
           <Button
             onClick={onClickFindHour}
             backgroundColor="white"

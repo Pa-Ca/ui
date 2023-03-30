@@ -160,8 +160,8 @@ export const PromotionCard = ({
       strongShadow
       style={{ width, height }}
     >
-      <Box className="promotion-card--menu" backgroundColor="transparent">
-        <Box backgroundColor="transparent">
+      <Box className="promotion-card--menu">
+        <Box>
           {edit ? (
             <input
               type="text"
@@ -181,7 +181,7 @@ export const PromotionCard = ({
             </Text>
           )}
         </Box>
-        <Box backgroundColor="transparent">
+        <Box>
           {edit ? (
             <DatePicker
               selected={currentDate}
@@ -202,7 +202,7 @@ export const PromotionCard = ({
         </Box>
       </Box>
 
-      <Box className="promotion-card--menu" backgroundColor="transparent">
+      <Box className="promotion-card--menu">
         {edit ? (
           <input
             type="number"
