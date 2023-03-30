@@ -10,42 +10,6 @@ import { InputLongText } from '../../molecules/inputLongText/InputLongText';
 
 interface ReserveDetailsProps {
   /**
-   * Branch name
-   */
-  name: string;
-  /**
-   * Branch score
-   */
-  score?: number;
-  /**
-   * Nomber of branch reviews
-   */
-  reviews?: number;
-  /**
-   * Main branch category
-   */
-  category?: string;
-  /**
-   * Price per person
-   */
-  pricePerson: number;
-  /**
-   * Branch location
-   */
-  location?: string;
-  /**
-   * Consumible price
-   */
-  price: number;
-  /**
-   * Branch overview
-   */
-  overview: string;
-  /**
-   * Branch picture from uri
-   */
-  picture?: string;
-  /**
    * Current date
    */
   date?: Date;
@@ -127,15 +91,6 @@ interface ReserveDetailsProps {
  * Primary UI component for user interaction
  */
 export const ReserveDetails = ({
-  name,
-  score,
-  reviews,
-  category,
-  pricePerson,
-  location,
-  price,
-  overview,
-  picture,
   date,
   setDate,
   hourIn,
@@ -154,14 +109,35 @@ export const ReserveDetails = ({
   color,
   width,
   height,
+  mode = 'free',
   ...props
 }: ReserveDetailsProps) => {
+
+  if (mode === 'paid') {
+    var  component_title =  'Detalles de la reserva';
+    var centering = 'flex-start';
+  } else {
+    var  component_title =  'Completa tus datos para reservar';
+    var centering = 'center';
+  };
+
   return (
-    <Box className='reserve-details--container' style={{ width, height }}>
+    <Box className='reserve-details--container' style={{ width, height }} backgroundColor = "white" weakShadow {...props}>
       {/* Branch details */}
-      <Box className='reserve-details--title'>
-      <Text type="h4" color="#112211" weight="700">
-          {" "}Detalles de la reserva{" "}
+      
+     
+      
+        <Box className='reserve-details--title' style = {
+        {
+          justifyContent:  centering
+  
+        }}>
+          
+
+
+
+      <Text type="h4" color="#112211" weight="700" >
+          {" "}{component_title}{" "}
         </Text>
         </Box>
       {/* Inputs 1 */}
@@ -185,7 +161,7 @@ export const ReserveDetails = ({
 
       
       <Text type="h5" color="#112211" weight="700">
-          {" "}Petición Especial{" "}
+          {" "}Petición Especial (Opcional){" "}
         </Text>
       <InputLongText
         value={petition}
