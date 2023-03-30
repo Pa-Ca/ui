@@ -77,6 +77,8 @@ export type IconType =
   | "checkbox"
   | "uncheckbox"
   | "share"
+  | "plus-circle"
+  | "plus-circle"
   | "flag"
   | "zelle"
   | "visa"
@@ -343,6 +345,18 @@ export const Icon = ({
     case 'zelle':
       return <Iconify
         icon={phoneAndroid}
+        style={{ fontSize: size, ...style }}
+        color={color}
+      />
+    case 'plus-circle':
+      return <Iconify
+        icon="octicon:plus-circle-24"
+        style={{ fontSize: size, ...style }}
+        color={color}
+      />
+    case 'plus-circle':
+      return <Iconify
+        icon="octicon:plus-circle-24"
         style={{ fontSize: size, ...style }}
         color={color}
       />
