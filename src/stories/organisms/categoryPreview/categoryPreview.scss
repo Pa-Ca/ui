@@ -1,0 +1,29 @@
+.category-preview--container {
+  display: flex;
+  flex-direction: column;
+  min-width: 312px;
+}
+.category-preview--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  height: 75px;
+}
+.category-preview--summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.category-preview--content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.category-preview--plate {
+  display: flex;
+  flex: 1;
+  max-width: 280px;
+}

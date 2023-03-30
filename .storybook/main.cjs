@@ -9,5 +9,7 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/preset-scss"
   ],
-  "framework": "@storybook/react"
+  "framework": "@storybook/react",
+  "staticDirs": [
+    '../src/stories/assets'],
 }

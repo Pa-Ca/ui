@@ -1,0 +1,16 @@
+@import "../../assets/scss/variables.scss";
+
+.basic-page--container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: $background-color;
+}
+
+.basic-page--content-container {
+  padding-left: $horizontal-padding;
+  padding-right: $horizontal-padding;
+  display: flex;
+  flex-direction: column;
+  padding-top: 54px;
+}

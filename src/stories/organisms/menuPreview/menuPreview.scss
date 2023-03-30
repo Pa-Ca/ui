@@ -1,0 +1,27 @@
+.menu-preview--container {
+  display: flex;
+  flex-direction: column;
+  min-width: 312px;
+}
+.menu-preview--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.menu-preview--title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.menu-preview--content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.menu-preview--plate {
+  display: flex;
+  flex: 1;
+  max-width: 312px;
+}

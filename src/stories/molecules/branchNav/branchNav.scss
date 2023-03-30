@@ -1,0 +1,26 @@
+@import "../../assets/scss/variables.scss";
+
+.branch-nav--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  overflow: hidden;
+  min-width: 450px;
+  min-height: 30px;
+  background-color: $background-color;
+}
+.branch-nav--menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-nav--item {
+  cursor: pointer;
+}
+.branch-nav--menu-text {
+  margin-right: 20px;
+}
+.branch-nav--menu-button {
+  margin-left: 15px;
+}

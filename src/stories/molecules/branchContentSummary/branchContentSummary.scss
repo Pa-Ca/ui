@@ -1,0 +1,48 @@
+@import "../../assets/scss/variables.scss";
+
+.branch-content-summary--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 80px;
+  min-width: $branch-summary-min-width;
+}
+.branch-content-summary--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-content-summary--data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100%;
+}
+.branch-content-summary--data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-content-summary--review {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.branch-content-summary--price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+.branch-content-summary--price-sub-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-content-summary--input {
+  border: 1px solid #79747e;
+  border-radius: 6px;
+  outline: none;
+}

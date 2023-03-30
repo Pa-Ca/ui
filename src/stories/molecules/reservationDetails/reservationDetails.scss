@@ -1,0 +1,77 @@
+@import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/variables.scss";
+
+.details-card--container {
+  min-width: 250px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.details-card--summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail--line {
+  opacity: 0.25;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.score-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.score-box-with-border{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 4px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.resumen-box-text{
+  padding: 10px 0px;
+
+  .text:nth-child(1){
+    margin-bottom: 5px;
+  }
+}
+
+.details-title{
+  margin-bottom: 16px;
+}
+
+.detail-element{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.detail-image{
+  border-radius: 12px;
+  min-width: 162px;
+  height: 120px;
+}
+
+@include screen-max($screen-sm) {
+  .detail-image{
+    width: 100%;
+  }
+  .details-card--summary {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}

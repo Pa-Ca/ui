@@ -1,0 +1,55 @@
+.branch-filter--container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  overflow: hidden;
+}
+.branch-filter--title {
+  display: flex;
+  flex-direction: column;
+}
+.branch-filter--item-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  height: 100px;
+}
+.branch-filter--item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: flex 800ms ease-in-out;
+}
+.branch-filter--range {
+  margin-left: 35px;
+  margin-right: 35px;
+  margin-top: 40px;
+}
+.branch-filter--hours-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.branch-filter--hour { 
+  display: flex; 
+  flex: 1; 
+  z-index: 3;
+}
+.branch-filter--hour-conector { 
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.branch-filter--rating {
+  margin-right: 35px;
+}
+.branch-filter--check-list {
+  margin-right: 35px;
+}
+.branch-filter--animation {
+  transition: opacity 400ms ease-in-out, top 400ms ease-in-out, height 400ms ease-in-out, display 400ms;
+}

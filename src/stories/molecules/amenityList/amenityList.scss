@@ -1,0 +1,58 @@
+@import "../../assets/scss/variables.scss";
+
+.amenity-list--container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.amenity-list--title {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.amenity-list--amenity-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  transition: height 700ms ease-out;
+}
+.amenity-list--amenity-container > * {
+  width: calc(33.33% - 10px);
+  margin-bottom: 24px;
+  justify-content: flex-start;
+}
+.amenity-list--view {
+  display: flex;
+  height: 25px;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+@media (max-width: 950px) {
+  .amenity-list--amenity-container > * {
+    width: calc(50% - 10px);
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 500px) {
+  .amenity-list--amenity-container > * {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .amenity-list--view {
+    justify-content: flex-start;
+  }
+}
+.amenity-list--item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 25px;
+}
+.amenity-list--check {
+  overflow: hidden;
+  transition: width 500ms ease-out;
+}

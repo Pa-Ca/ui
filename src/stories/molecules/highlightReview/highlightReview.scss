@@ -1,0 +1,69 @@
+.highlight-review--container {
+  position: relative;
+}
+.highlight-review--card-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  min-width: 377px;
+  min-height: 534px;
+  background-color: white;
+}
+.highlight-review--card {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  border-radius: 10px;
+  min-width: 377px;
+  min-height: 534px;
+  background-color: white;
+  z-index: 1;
+}
+.highlight-review--title-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 48px;
+}
+.highlight-review--description-zone {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 12px;
+}
+.highlight-review--view-more-zone {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.highlight-review--rating-zone {
+  margin-bottom: 20px;
+}
+.highlight-review--name-zone {
+  margin-bottom: 4px;
+}
+.highlight-review--person-zone {
+  margin-bottom: 12px;
+}
+.highlight-review--google-zone {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.highlight-review--google {
+  margin-left: 8px;
+}
+.highlight-review--img {
+  min-height: 200px;
+  flex: 1;
+}
+.highlight-review--shadow {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  border-radius: 10px;
+}

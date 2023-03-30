@@ -1,0 +1,68 @@
+.branch-item--container {
+  min-width: 500px;
+  min-height: 220px;
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: 2fr 1fr;
+}
+.branch-item--row-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+.branch-item--image {
+  margin: 15px;
+  min-width: 70.34px;
+}
+.branch-item--summary-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-left: 0px;
+  padding-right: 40px;
+}
+.branch-item--summary-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.branch-item--summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.branch-item--price-container {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  min-width: 83px;
+}
+.branch-item--reserve-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.branch-item--line {
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  right: 40px;
+  opacity: 0.25;
+}
+.branch-item--button-container {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+  padding-right: 40px;
+}
+.branch-item--like-container {
+  margin-right: 16px;
+}
+.branch-item--reviews {
+  margin-left: 5px;
+}

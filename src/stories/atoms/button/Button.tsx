@@ -11,17 +11,29 @@ interface ButtonProps {
    */
   backgroundColor?: string;
   /**
+   * What border color to use
+   */
+  borderColor?: string;
+  /**
    * How large should the button be?
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'extra-small' | 'small' | 'box' | 'medium' | 'large' | 'extra-large';
   /**
-   * Button contents
+   * How state should the button be?
    */
-  label: string;
+  state?: 'normal' | 'selected' | 'active' | 'inactive';
+  /**
+   * Does the button have to be full width?
+   */
+  fullWidth?: boolean;
   /**
    * Optional click handler
    */
   onClick?: () => void;
+  /**
+   * Text content
+   */
+  children?: React.ReactNode;
 }
 
 /**
@@ -30,19 +42,27 @@ interface ButtonProps {
 export const Button = ({
   primary = false,
   size = 'medium',
+  state = 'normal',
+  fullWidth = false,
   backgroundColor,
-  label,
+  borderColor,
+  children,
   ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+}: ButtonProps): JSX.Element => {
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+      className={[
+        'button',
+        `button--${size}`,
+        primary   ? `button--state-${state}` : '',
+        fullWidth ? 'button--full-width'     : '',
+        primary   ? 'button--primary'        : 'button--secondary'
+      ].join(' ')}
+      style={{ backgroundColor, borderColor }}
       {...props}
     >
-      {label}
+      {children}
     </button>
   );
 };

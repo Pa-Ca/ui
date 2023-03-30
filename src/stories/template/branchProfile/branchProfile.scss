@@ -1,0 +1,72 @@
+@import "../../assets/scss/variables.scss";
+
+.branch-profile--container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: $background-color;
+}
+.branch-profile--header-container {
+  width: 100%;
+  position: absolute;
+  height: 590px;
+}
+.branch-profile--header {
+  padding-left: calc($horizontal-padding - 35px);
+  padding-right: calc($horizontal-padding - 35px);
+}
+.branch-profile--path {
+  margin-top: 40px;
+  padding-left: calc($horizontal-padding + 50px);
+}
+.branch-profile--content {
+  display: flex;
+  flex-direction: column;
+  padding-left: $horizontal-padding;
+  padding-right: $horizontal-padding;
+  z-index: 1;
+}
+.branch-profile--main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.branch-profile--main-content-left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.branch-profile--nav-line {
+  background-color: #8D8E8E; 
+  height: 1px;
+  align-self: center;
+}
+.branch-profile--summary-container {
+  display: flex;
+  align-items: center;
+  width: 93%;
+  align-self: center;
+  margin-top: 20px;
+}
+.branch-profile--main-content-right {
+  display: flex;
+  flex-direction: column;
+}
+.branch-profile--location-container {
+  margin-top: 50px;
+}
+.branch-profile--secondary-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.branch-profile--menu-container {
+  margin-bottom: 60px;
+}
+.branch-profile--amenities-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.branch-profile--reviews-container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}

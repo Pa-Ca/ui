@@ -1,0 +1,22 @@
+.footer--container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 73.59px 104px ;
+    overflow: hidden;
+    min-width: 500px;
+    min-height: 20px;
+}
+
+.footer--1st-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap : 10px;
+}
+
+.footer--social-media-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}

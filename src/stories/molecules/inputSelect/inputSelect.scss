@@ -1,0 +1,51 @@
+@import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/variables.scss";
+
+.input-select--menu {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  top: calc(100% + 5px);
+  left: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  border-radius: 4px;
+  border: 1px solid #79747e;
+  justify-content: flex-start;
+  
+  @include hide-scroll();
+}
+.input-select--menu-in {
+  transition: max-height $animation-duration ease-in-out, opacity 5ms;
+}
+.input-select--menu-out {
+  transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
+}
+.input-select--option-button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 0px;
+  border: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.input-select--icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 90%;
+  outline: none;
+}
+.input-select--button {
+  background-color: transparent; 
+  border: 0; 
+  height: "100%";
+  outline: none;
+}
