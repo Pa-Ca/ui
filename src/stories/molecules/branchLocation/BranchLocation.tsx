@@ -50,12 +50,12 @@ export const BranchLocation = ({
   return (
     <Box className="branch-location--container">
       <Box className="branch-location--header">
-        <Box backgroundColor="transparent">
+        <Box>
           <Text type="h5" color="#112211" weight="700">
             Location/Map
           </Text>
 
-          <Box height="5px" backgroundColor="transparent" />
+          <Box height="5px" />
 
           <Editable
             edit={edit}

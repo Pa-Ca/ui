@@ -33,7 +33,7 @@ export const BasicPage = ({
         <Header {...headerArgs} />
       </Box>
       <Box className="basic-page--content-container">{children}</Box>
-      <Footer/>
+      <Footer />
     </Box>
   );
 };

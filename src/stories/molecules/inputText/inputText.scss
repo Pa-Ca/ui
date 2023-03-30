@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color: white;
 }
 .input-text--content {
   flex: 1;
@@ -29,9 +30,9 @@
   width: 100%;
   height: 100%;
   justify-content: flex-start;
-  background-color: transparent;
   overflow: hidden;
   text-overflow: ellipsis;
+  background-color: transparent;
 }
 .input-text--label {
   display: flex;
@@ -41,6 +42,7 @@
   margin: 0 !important;
   justify-content: flex-start;
   background-color: white;
+  border-radius: 3px;
   
   top: -10px;
   left: 12px;

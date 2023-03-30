@@ -103,6 +103,7 @@ export const InputSelect = ({
       className="input-text--container"
       style={{ width, height }}
       innerRef={observer.ref}
+      backgroundColor="white"
     >
       <div className="input-text--content">
         <button

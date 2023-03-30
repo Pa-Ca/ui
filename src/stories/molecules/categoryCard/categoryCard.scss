@@ -1,5 +1,4 @@
 .category-card--container {
-  background-color: transparent;
   min-width: 200px;
   min-height: 250px;
   border-radius: 10px;
@@ -10,14 +9,15 @@
   position: relative;
   padding-right: 5%;
   padding-left: 5%;
-
-  
 }
 
-
-.category-card--overlay{
+.category-card--overlay {
   /*background-color: rgba(0, 0, 0, 0.5);*/
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) -25.51%, #000000 128.19%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) -25.51%,
+    #000000 128.19%
+  );
   position: absolute;
   top: 0;
   left: 0;
@@ -27,29 +27,25 @@
   border-radius: 10px;
 }
 
-
-.category-card-title--zone{
+.category-card-title--zone {
   display: flex;
   flex-direction: column;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   margin-top: 26px;
   margin-bottom: 10px;
   overflow: hidden;
-  
 }
 
-.category-card--info-zone{
+.category-card--info-zone {
   display: flex;
   flex-direction: column;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   margin-top: 26px;
   margin-bottom: 10px;
   z-index: 1;
   padding-bottom: 5%;
-
-  
 }
 
 .category-card-description--zone {
@@ -58,7 +54,7 @@
 
   /* Montserrat/Regular/16px */
 
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -75,7 +71,6 @@
 .category-card--button {
   display: flex;
   flex-direction: row;
-  background-color: transparent;
 }
 .category-card--button-text {
   margin-left: 5px;
@@ -90,4 +85,3 @@
   min-width: 134px;
   max-height: 48px;
 }
-
