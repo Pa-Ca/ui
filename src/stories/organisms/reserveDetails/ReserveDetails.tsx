@@ -66,10 +66,6 @@ interface ReserveDetailsProps {
    */
   setPetition?: Function;
   /**
-   * On reservation button click
-   */
-  onClick?: () => void;
-  /**
    * Component width
    */
   width?: string;
@@ -105,10 +101,9 @@ export const ReserveDetails = ({
   setOccasion,
   petition,
   setPetition,
-  onClick,
-  color,
   width,
   height,
+  color = "white",
   mode = 'free',
   ...props
 }: ReserveDetailsProps) => {
@@ -122,20 +117,13 @@ export const ReserveDetails = ({
   };
 
   return (
-    <Box className='reserve-details--container' style={{ width, height }} backgroundColor = "white" weakShadow {...props}>
+    <Box className='reserve-details--container' style={{ width, height }} backgroundColor = {color} weakShadow {...props}>
       {/* Branch details */}
-      
-     
-      
         <Box className='reserve-details--title' style = {
         {
           justifyContent:  centering
   
         }}>
-          
-
-
-
       <Text type="h4" color="#112211" weight="700" >
           {" "}{component_title}{" "}
         </Text>
@@ -161,18 +149,15 @@ export const ReserveDetails = ({
 
       
       <Text type="h5" color="#112211" weight="700">
-          {" "}Petición Especial (Opcional){" "}
-        </Text>
+        {" "}Petición Especial (Opcional){" "}
+      </Text>
       <InputLongText
         value={petition}
         setValue={setPetition}
         maxLength={480}
         maxRows={6}
         minRows={6}
-
       />
-
-
     </Box>
   );
 };
