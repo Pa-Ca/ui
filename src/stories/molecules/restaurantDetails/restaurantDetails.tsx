@@ -15,6 +15,10 @@ interface RestaurantDetailsProps {
    */
   location?: string;
   /**
+   * Zone name
+   */
+  zone?: string;
+  /**
    * Reservation price
    */
   price?: number;
@@ -62,6 +66,7 @@ interface RestaurantDetailsProps {
 export const RestaurantDetails = ({
   onClick,
   branchName,
+  zone,
   textColor,
   buttonColor,
   borderColor,
@@ -93,8 +98,8 @@ export const RestaurantDetails = ({
             className="detail-image"
           >
           </Box>
-          <Text type="h4" weight="600" color={textColor}>
-            {}
+          <Text type="h4" weight="600">
+            {zone}
           </Text>
         </Box>
         <Box className='amenity-box'>
@@ -106,7 +111,7 @@ export const RestaurantDetails = ({
             >
               <Icon icon={icon.icon} size="24px" />
               {index !== iconList.length -1 ?
-                <Box className="branch-listing--vertical-line"/> : null
+                <Box className="branch-amenity--vertical-line"/> : null
               }
             </Box>
           ))
@@ -127,7 +132,6 @@ export const RestaurantDetails = ({
           </Box>
         </Button>
       </Box>
-
     </Box>
   );
 };

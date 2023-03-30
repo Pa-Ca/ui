@@ -29,6 +29,7 @@ Default.args = {
   backgroundImage: 'https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg',
   width: '0px',
   height: '0px',
+  zone: "Zona Estándar",
   price: 10,
   buttonColor: '#EF7A08',
   location: 'Las Mercedes',
