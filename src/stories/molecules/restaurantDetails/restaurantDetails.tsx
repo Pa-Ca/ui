@@ -9,7 +9,7 @@ interface RestaurantDetailsProps {
   /**
    * Branch name
    */
-  name?: string;
+  branchName?: string;
   /**
    * Location name
    */
@@ -61,7 +61,7 @@ interface RestaurantDetailsProps {
  */
 export const RestaurantDetails = ({
   onClick,
-  name,
+  branchName,
   textColor,
   buttonColor,
   borderColor,
@@ -79,7 +79,7 @@ export const RestaurantDetails = ({
 
       <Box className='name-and-price-box'>
           <Text type="h4" weight="700">
-            {name}
+            {branchName}
           </Text>
           <Text type="h4" weight="700" color={textColor}>
             {price === 0 ? "Gratis" : "Consumible $"+price}
@@ -93,6 +93,9 @@ export const RestaurantDetails = ({
             className="detail-image"
           >
           </Box>
+          <Text type="h4" weight="600" color={textColor}>
+            {}
+          </Text>
         </Box>
         <Box className='amenity-box'>
           {
@@ -117,7 +120,7 @@ export const RestaurantDetails = ({
           {location}
         </Text>
         <Button primary={true} size='large' backgroundColor={buttonColor} onClick={onClick}>
-          <Box backgroundColor='transparent'>
+          <Box>
             <Text>
               Ver en Google Maps
             </Text>
