@@ -78,7 +78,6 @@ export type IconType =
   | "uncheckbox"
   | "share"
   | "plus-circle"
-  | "plus-circle"
   | "flag"
   | "zelle"
   | "visa"
