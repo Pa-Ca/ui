@@ -7,6 +7,7 @@ import { InputText } from '../../molecules/inputText/InputText';
 import { InputDate } from '../../molecules/inputDate/InputDate';
 import { InputSelect } from '../../molecules/inputSelect/InputSelect';
 import { InputLongText } from '../../molecules/inputLongText/InputLongText';
+import { AddFriends, AddFriendsProps } from '../../molecules/addFriends/AddFriends';
 
 interface ReserveDetailsProps {
   /**
@@ -81,6 +82,10 @@ interface ReserveDetailsProps {
    * Mode
    */
   mode?: 'free' | 'paid';
+  /**
+   * Add friends component props
+   */
+  invitedFriendsProps?: AddFriendsProps;
 }
 
 /**
@@ -105,6 +110,7 @@ export const ReserveDetails = ({
   height,
   color = "white",
   mode = 'free',
+  invitedFriendsProps,
   ...props
 }: ReserveDetailsProps) => {
 
@@ -139,24 +145,30 @@ export const ReserveDetails = ({
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>
-          <InputSelect option={hourIn} setOption={setHourIn} options={validHoursIn} label='Hora de Llegada'/>
+          <InputSelect option={hourIn} setOption={setHourIn} options={validHoursIn} label='Llegada'/>
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>
-          <InputSelect option={hourOut} setOption={setHourOut} options={validHoursOut} label='Hora de Salida (Opcional)'/>
+          <InputSelect option={hourOut} setOption={setHourOut} options={validHoursOut} label='Salida (Opcional)'/>
         </Box>
+      </Box>
+      <Box className='reserve-details--invite-friends'>
+        <Text  type="p" color="#112211" weight="700">
+          Invita a tus amigos
+        </Text>
+        <AddFriends {...invitedFriendsProps} />
       </Box>
 
       
-      <Text type="h5" color="#112211" weight="700">
+      <Text type="h6" color="#112211" weight="700">
         {" "}Petición Especial (Opcional){" "}
       </Text>
       <InputLongText
         value={petition}
         setValue={setPetition}
-        maxLength={480}
-        maxRows={6}
-        minRows={6}
+        maxLength={430}
+        maxRows={5}
+        minRows={5}
       />
     </Box>
   );
