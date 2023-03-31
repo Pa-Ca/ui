@@ -47,12 +47,12 @@ export interface AddFriendsProps {
 
 const  friends = [
   {
-    name: 'John Doe',
-    profilePic: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg',
+    name: 'Juan Perez',
+    profilePic: 'https://images.generated.photos/ISFmKHIfRZO75QFJEhpaVGjSZHk7py234IE-ts_--Us/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NjA1MTg3LmpwZw.jpg',
   },
   {
-    name: 'Jane Doe',
-    profilePic: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg',
+    name: 'Maria Gomez',
+    profilePic: 'https://images.generated.photos/firxKQOxuvVLe9RQ5nPcMvTh6SrtJMovsMXs0G2LCok/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzQwMDc0LmpwZw.jpg',
   },
 ];
 
