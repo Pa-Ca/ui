@@ -3,6 +3,7 @@ import { Icon as Iconify } from '@iconify/react';
 import poolIcon from '@iconify/icons-mdi/pool';
 import wineIcon from '@iconify/icons-ion/wine';
 import heartIcon from '@iconify/icons-ph/heart';
+import ccVisa from '@iconify/icons-cib/cc-visa';
 import eyeFill from '@iconify/icons-bi/eye-fill';
 import pencilIcon from '@iconify/icons-mdi/pencil';
 import coffeeIcon from '@iconify/icons-mdi/coffee';
@@ -12,22 +13,27 @@ import twitterIcon from '@iconify/icons-mdi/twitter';
 import youtubeIcon from '@iconify/icons-mdi/youtube';
 import facebookIcon from '@iconify/icons-mdi/facebook';
 import paperPlane from '@iconify/icons-ion/paper-plane';
+import zelleIcon from '@iconify/icons-simple-icons/zelle';
 import flagFilled from '@iconify/icons-tabler/flag-filled';
 import eyeSlashFill from '@iconify/icons-bi/eye-slash-fill';
 import wifiHighBold from '@iconify/icons-ph/wifi-high-bold';
+import circleSlice8 from '@iconify/icons-mdi/circle-slice-8';
 import shareIcon from '@iconify/icons-material-symbols/share';
 import fitnessCentre from '@iconify/icons-maki/fitness-centre';
 import googleIcon from '@iconify/icons-flat-color-icons/google';
 import personIcon from '@iconify/icons-material-symbols/person';
 import cancelIcon from '@iconify/icons-material-symbols/cancel';
+import plusCircle24 from '@iconify/icons-octicon/plus-circle-24';
 import checkBox from '@iconify/icons-material-symbols/check-box';
 import spaRounded from '@iconify/icons-material-symbols/spa-rounded';
 import instagramLogoFill from '@iconify/icons-ph/instagram-logo-fill';
+import lensOutline from '@iconify/icons-material-symbols/lens-outline';
 import roomService from '@iconify/icons-material-symbols/room-service';
 import checkCircle from '@iconify/icons-material-symbols/check-circle';
 import restaurantIcon from '@iconify/icons-material-symbols/restaurant';
 import baselineLocationOn from '@iconify/icons-ic/baseline-location-on';
 import questionMark from '@iconify/icons-material-symbols/question-mark';
+import phoneAndroid from '@iconify/icons-material-symbols/phone-android';
 import roundKeyboardArrowUp from '@iconify/icons-ic/round-keyboard-arrow-up';
 import tableRestaurant from '@iconify/icons-material-symbols/table-restaurant';
 import roundKeyboardArrowDown from '@iconify/icons-ic/round-keyboard-arrow-down';
@@ -35,10 +41,6 @@ import iosArrowLeft24Filled from '@iconify/icons-fluent/ios-arrow-left-24-filled
 import iosArrowRight24Filled from '@iconify/icons-fluent/ios-arrow-right-24-filled';
 import currencyCircleDollarFill from '@iconify/icons-ph/currency-circle-dollar-fill';
 import checkBoxOutlineBlank from '@iconify/icons-material-symbols/check-box-outline-blank';
-import zelleIcon from '@iconify/icons-simple-icons/zelle';
-import ccVisa from '@iconify/icons-cib/cc-visa';
-import phoneAndroid from '@iconify/icons-material-symbols/phone-android';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 const Color = require('color');
 
@@ -82,6 +84,8 @@ export type IconType =
   | "zelle"
   | "visa"
   | "smartPhone"
+  | "circle"
+  | "double-circle"
   ;
 
 interface IconProps {
@@ -335,13 +339,13 @@ export const Icon = ({
         style={{ fontSize: size, ...style }}
         color={color}
       />
-    case 'zelle':
+    case 'visa':
       return <Iconify
         icon={ccVisa}
         style={{ fontSize: size, ...style }}
         color={color}
       />
-    case 'zelle':
+    case 'smartPhone':
       return <Iconify
         icon={phoneAndroid}
         style={{ fontSize: size, ...style }}
@@ -349,13 +353,19 @@ export const Icon = ({
       />
     case 'plus-circle':
       return <Iconify
-        icon="octicon:plus-circle-24"
+        icon={plusCircle24}
         style={{ fontSize: size, ...style }}
         color={color}
       />
-    case 'plus-circle':
+    case 'circle':
       return <Iconify
-        icon="octicon:plus-circle-24"
+        icon={lensOutline}
+        style={{ fontSize: size, ...style }}
+        color={color}
+      />
+    case 'double-circle':
+      return <Iconify
+        icon={circleSlice8}
         style={{ fontSize: size, ...style }}
         color={color}
       />

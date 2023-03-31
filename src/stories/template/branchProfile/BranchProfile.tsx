@@ -27,17 +27,17 @@ interface BranchProfileProps {
    */
   getBranchData: () => BranchData;
   /**
-   * On Reserve function
+   * On Header left section button click function
    */
-  onHeaderReserveClick?: () => void;
+  onHeaderLeftClick?: () => void;
   /**
    * On PA-CA logo click function
    */
   onPacaClick: () => void;
   /**
-   * On Favorites function
+   * On Header right section button click function
    */
-  onFavoritesClick?: () => void;
+  onHeaderRightClick?: () => void;
   /**
    * On profile click function
    */
@@ -72,9 +72,9 @@ export const BranchProfile = ({
     return { logged: false };
   },
   getBranchData,
-  onHeaderReserveClick,
+  onHeaderLeftClick,
   onPacaClick,
-  onFavoritesClick,
+  onHeaderRightClick,
   onProfileClick,
   onLoginClick,
   onRegisterClick,
@@ -130,9 +130,9 @@ export const BranchProfile = ({
             name={name}
             logged={user.logged}
             picture={picture}
-            onLeftSectionClick={onHeaderReserveClick}
+            onLeftSectionClick={onHeaderLeftClick}
             onPacaClick={onPacaClick}
-            onRightSectionClick={onFavoritesClick}
+            onRightSectionClick={onHeaderRightClick}
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
