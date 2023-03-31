@@ -74,6 +74,18 @@ interface BoxProps {
    * Other props
    */
   props?: object;
+  /**
+   * Box on mouse enter function
+   * @default () => {}
+   * @type () => void
+   * */
+  onMouseEnter?: () => void;
+  /**
+   * Box on mouse leave function
+   * @default () => {}
+   * @type () => void
+   * */
+  onMouseLeave?: () => void;
 }
 
 /**
@@ -97,6 +109,8 @@ export const Box = ({
   className,
   innerRef,
   children,
+  onMouseEnter,
+  onMouseLeave,
   ...props
 }: BoxProps): JSX.Element => {
   
@@ -125,6 +139,8 @@ export const Box = ({
       }}
       ref={innerRef}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       {...props}
     >
       {children}
