@@ -23,6 +23,10 @@ interface PayMethodProps {
    */
   activeCard?: number;
   /**
+   * On component click
+   */
+  onClick?: () => void;
+  /**
    * Component main color
    */
   color?: string;
@@ -37,9 +41,10 @@ interface PayMethodProps {
  */
 export const PayMethod = ({
   method,
-  active,
+  active = false,
   cards = [],
   activeCard,
+  onClick,
   color,
   secondaryColor,
   ...props
@@ -60,7 +65,7 @@ export const PayMethod = ({
   }, [method]);
 
   return (
-    <Box className="pay-method--container">
+    <Box className="pay-method--container" onClick={onClick}>
       <Box className="pay-method--header" backgroundColor={currentColor}>
         <Box className="pay-method--method-container">
           <Icon icon={icon} color="white" size="32px" />

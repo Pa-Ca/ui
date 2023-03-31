@@ -1,27 +1,25 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { PayMethod } from "./PayMethod";
+import { PayMethodSelector } from "./PayMethodSelector";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Molecules/PayMethod",
-  component: PayMethod,
+  title: "Design System/Organisms/PayMethodSelector",
+  component: PayMethodSelector,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
   },
-} as ComponentMeta<typeof PayMethod>;
+} as ComponentMeta<typeof PayMethodSelector>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof PayMethod> = (args: any) => {
-  return <PayMethod {...args} />;
+const Template: ComponentStory<typeof PayMethodSelector> = (args: any) => {
+  return <PayMethodSelector {...args} />;
 };
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  method: "visa",
   color: "#EF7A08",
-  active: false,
   secondaryColor: "#B5B5B5",
   cards: [
     { lastDigits: "4321", expirationDate: new Date() },
