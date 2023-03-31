@@ -59,7 +59,7 @@ const  friends = [
 
 export const AddFriends = ({
   width,
-  height = "100px",
+  height = "55px",
   invitedFriends = friends,
   maxFriends = 5,
   onClick = () => {},
@@ -73,18 +73,31 @@ export const AddFriends = ({
   
   //Calculate the size of the icon based on the add-friends--container size
 
-  const icon_size = useMemo(() => {
+  const friends_size = useMemo(() => {
     const size = parseInt(height) - 10;
     return size.toString() + 'px';
   }, [height]);
 
+  const icon_size = useMemo(() => {
+    const size = parseInt(height)*0.45;
+    return size.toString() + 'px';
+  }, [height]);
+
+  const separtation = useMemo(() => {
+    const size = parseInt(height)*0.5;
+    return size.toString() + 'px';
+  }, [height]);
   const [hoveredDiv, setHoveredDiv] = useState(-1);
 
 
   return (
     <Box className="add-friends--container" style={{ width, height }} {...props}>
       
-      <Box className="add-friends--icon" onClick={onClick}>
+      <Box className="add-friends--icon" style={
+        {
+          marginRight: parseInt(separtation) + 'px',
+        }
+      }>
         <Box className="add-friends--icon-sub-container" onClick={onClick} >
           <Icon icon="plus-circle" size = {icon_size} />
         </Box>
@@ -95,15 +108,15 @@ export const AddFriends = ({
             
             <Box className="add-friends--image" 
               backgroundImage={friend.profilePic} 
-              width={icon_size}
-              height={icon_size}
+              width={friends_size}
+              height={friends_size}
               onMouseEnter={() => setHoveredDiv(index)} 
               onMouseLeave={() => setHoveredDiv(-1)}
              
             >
               {hoveredDiv === index && 
                 <Box className='add-friends--hover-text' strongShadow>
-                  <Text>{friend.name}</Text>
+                  <Text type = "h8">{friend.name}</Text>
                   
                 </Box>
               }
