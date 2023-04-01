@@ -1,0 +1,30 @@
+.reserve-details--container
+{
+  display: flex;
+  flex-direction: column;
+  gap : 24px;
+  padding: 32px 24px;
+  border-radius: 12px;
+}
+.reserve-details--title{
+  display : flex;
+  align-items: center;
+}
+.reserve-details--input-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+.reserve-details--input1 {
+  margin-left: 16px;
+  z-index: 2;
+}
+
+.reserve-details--invite-friends{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

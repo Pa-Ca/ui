@@ -1,0 +1,49 @@
+.add-friends--container {
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+  }
+  
+.add-friends--icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: column;
+  //margin-right: 100px;
+}
+.add-friends--icon-sub-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-friends--friends-vertical{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: column;
+}
+
+.add-friends--friends{
+  display : flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.add-friends--image{
+  margin-left: -10px;
+  border: 1px solid white;
+  border-radius: 50%;
+  align-items: center;
+}
+
+.add-friends--hover-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+
