@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./branchProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Path } from "../../molecules/path/Path";
@@ -117,12 +117,27 @@ export const BranchProfile = ({
     <Box className="branch-profile--nav-line" width={width} />
   );
 
+  const totalScore = useMemo(() => {
+    return parseFloat(
+      (
+        branch.reviewsData.reduce((sum, review) => sum + review.score, 0) /
+        branch.reviewsData.length
+      ).toFixed(1)
+    );
+  }, [branch.reviewsData]);
+
   return (
     <Box className="branch-profile--container">
       <Box
         className="branch-profile--header-container"
         backgroundImage={branch.mainImage}
+      />
+      <div className="branch-profile--overlay" />
+
+      <Box
+        className="branch-profile--header-container"
         innerRef={headerObserver.ref}
+        style={{ zIndex: 3 }}
       >
         <Box className="branch-profile--header">
           <Header
@@ -171,6 +186,8 @@ export const BranchProfile = ({
             <Box className="branch-profile--summary-container">
               <BranchMainSummary
                 {...branch}
+                score={totalScore}
+                reviews={branch.reviewsData.length}
                 addPromotion={() => {}}
                 color={color}
                 editable={editable}
