@@ -35,10 +35,6 @@ interface RestaurantDetailsProps {
    */
   borderColor?: string;
   /**
-   * Branch score
-   */
-  text?: string;
-  /**
    * Card width
    */
   width?: string;
@@ -71,7 +67,6 @@ export const RestaurantDetails = ({
   buttonColor,
   borderColor,
   price,
-  text,
   width,
   height,
   backgroundImage,

@@ -41,5 +41,4 @@ Default.args = {
   ],
   textColor: '#FF8682',
   borderColor: '#8DD3BB',
-  text: "Tu reserva está protegida por Pa´Ca",
 };

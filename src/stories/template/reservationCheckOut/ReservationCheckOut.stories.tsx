@@ -50,9 +50,10 @@ const globalArgs = {
       }),
       amenities,
       reviewsData: [],
-      thumbnail: "",
+      thumbnail: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
     };
   },
+  
   path: [
     {
       name: "Home",
@@ -63,6 +64,9 @@ const globalArgs = {
       onClick: () => {},
     },
   ],
+  getReservationDetails: () => {
+    return [{name: "tarifa", price: 14.3},{name: "comision", price: 0.7}];
+  },
 };
 
 export const Default = Template.bind({});

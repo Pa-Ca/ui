@@ -42,3 +42,13 @@
   justify-content: left;
   gap: 1rem;
 }
+
+.branch-profile--main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.branch-profile--main-content-left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}

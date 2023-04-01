@@ -243,6 +243,7 @@ const globalArgs = {
           image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
         })
       ),
+      thumbnail: "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
     };
   },
   path: [
