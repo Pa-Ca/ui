@@ -3,7 +3,6 @@ import "./branchLocation.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import { Editable } from "../editable/Editable";
 import { Button } from "../../atoms/button/Button";
 
 interface BranchLocationProps {
@@ -56,15 +55,6 @@ export const BranchLocation = ({
           </Text>
 
           <Box height="5px" />
-
-          <Editable
-            edit={edit}
-            color={color}
-            editable={!!editable}
-            onPencilClick={() => setEdit(true)}
-            onSaveClick={() => setEdit(false)}
-            onCancelClick={() => setEdit(false)}
-          />
         </Box>
 
         <Button primary backgroundColor={color}>

@@ -2,7 +2,7 @@ import ClientData from "./ClientData";
 import BusinessData from "./BusinessData";
 
 type UserData = {
-  logged: boolean,
+  logged: boolean;
   role?: 'client' | 'business';
   client?: ClientData;
   business?: BusinessData;
