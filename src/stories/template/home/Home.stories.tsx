@@ -80,7 +80,7 @@ const ParrillaBranches = [
     score: 3.7,
     reviews: 332,
     discount: false,
-    amenity: "Carnes",
+    category: "Carnes",
     location: "Las Mercedes",
     firstReserve: "2:00 pm",
     secondReserve: "4:00 pm",
