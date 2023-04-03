@@ -10,6 +10,7 @@ import { ReservationDetails } from "../../molecules/reservationDetails/reservati
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { SignUpForm } from "../../molecules/signUpForm/SignUpForm";
 import ReservationDetail from '../../utils/objects/ReservationDetail';
+import { Button } from "@mui/material";
 
 interface ReservationCheckOut {
   /**
@@ -48,6 +49,10 @@ interface ReservationCheckOut {
    * Get Reservation details
    */
   getReservationDetails: () => ReservationDetail[];
+  /**
+   * On submit
+   */
+  onSubmit: () => void;
 }
 
 /**
@@ -116,6 +121,11 @@ export const ReservationCheckOut = ({
                 width="600px"
                 height="350px"
               />
+            </Box>
+            <Box>
+              <Button>
+                
+              </Button>
             </Box>
           </Box>
           <Box>
