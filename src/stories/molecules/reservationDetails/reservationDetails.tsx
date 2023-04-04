@@ -14,6 +14,10 @@ interface ReservationDetailsProps {
    */
   color?: string;
   /**
+   * Main card color
+   */
+  backgroundColor?: string;
+  /**
    * Branch score
    */
   text?: string;
@@ -55,6 +59,7 @@ export const ReservationDetails = ({
   width,
   height,
   backgroundImage,
+  backgroundColor="white",
   detailsList,
   ...props
 }: ReservationDetailsProps) => {
@@ -66,7 +71,7 @@ export const ReservationDetails = ({
   }, [detailsList]);
 
   return (
-    <Box className='details-card--container' weakShadow style={{ width }}>
+    <Box className='details-card--container' weakShadow backgroundColor={backgroundColor} style={{ width }}>
       <Box className='details-card--summary'>
         {/* Image Box */}
         <Box

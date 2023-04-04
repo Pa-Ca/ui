@@ -35,6 +35,10 @@ interface RestaurantDetailsProps {
    */
   borderColor?: string;
   /**
+   * Main card color
+   */
+  backgroundColor?: string;
+  /**
    * Card width
    */
   width?: string;
@@ -70,12 +74,13 @@ export const RestaurantDetails = ({
   width,
   height,
   backgroundImage,
+  backgroundColor='white',
   iconList,
   location,
   ...props
 }: RestaurantDetailsProps) => {
   return (
-    <Box className='details-card--container' weakShadow style={{ width }}>
+    <Box className='details-card--container' weakShadow backgroundColor = {backgroundColor} style={{ width }}>
 
       <Box className='name-and-price-box'>
           <Text type="h4" weight="700">
