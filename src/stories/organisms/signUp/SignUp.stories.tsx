@@ -45,6 +45,7 @@ Default.args = {
         onGoogleSignUp : () => {},
         color: "#EF7A08",
         secondaryColor: "#FF8682",
-        otherLoginsColor: "#8DD3BB",
+        otherLoginsColor: "#8DD3BB"
       },
+      width:"1500px",
 };
