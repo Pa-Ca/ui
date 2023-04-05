@@ -24,7 +24,7 @@ Default.args = {
   reviews: 4273,
   category: 'Americana',
   pricePerson: 15.99,
-  location: 'Las Marcedes',
+  location: 'Las Mercedes',
   price: 10,
   color: '#EF7A08'
 };
