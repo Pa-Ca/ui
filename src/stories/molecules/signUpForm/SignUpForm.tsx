@@ -6,7 +6,7 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 
-interface SignUpFormProps {
+export interface SignUpFormProps {
   /**
    * On login button click
    */
