@@ -95,7 +95,7 @@ export const RestaurantDetails = ({
         <Box className="score-box-with-border" style={{borderColor: borderColor}}>
           <Box
             backgroundImage={backgroundImage}
-            className="detail-image"
+            className="restaurant-detail-image"
           >
           </Box>
           <Text type="h4" weight="600">

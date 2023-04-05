@@ -76,7 +76,7 @@ export const ReservationDetails = ({
         {/* Image Box */}
         <Box
           backgroundImage={backgroundImage}
-          className="detail-image"
+          className="reservation-detail-image"
         >
         </Box>
         <Box className='resumen-box-text'>

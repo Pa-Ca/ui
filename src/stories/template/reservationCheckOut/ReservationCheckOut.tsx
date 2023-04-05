@@ -177,7 +177,7 @@ export const ReservationCheckOut = ({
         <Box>
           <ReservationDetails
             branchName={branch.name}
-            color="#EF7A08"
+            color="#8DD3BB"
             text="Tu reserva está protegida por Pa´Ca"
             score={branch.score}
             reviews={branch.reviews}
