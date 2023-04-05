@@ -34,7 +34,7 @@ export interface SignUpFormProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
   /**
    * Component width
    */
@@ -67,16 +67,24 @@ export const SignUpForm = ({
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [terms, setTerms] = useState(false);
-  
+
   return (
     <Box className="sign-up-form--container" style={{ width, height }}>
       <Box className="sign-up-form--content">
         <Box className="two-inputs-box">
           <Box className="sign-up-form--input">
-            <InputText value={firstName} setValue={setFirstName} label="Nombre" />
+            <InputText
+              value={firstName}
+              setValue={setFirstName}
+              label="Nombre"
+            />
           </Box>
           <Box className="sign-up-form--input">
-            <InputText value={lastName} setValue={setLastName} label="Apellido" />
+            <InputText
+              value={lastName}
+              setValue={setLastName}
+              label="Apellido"
+            />
           </Box>
         </Box>
         <Box className="two-inputs-box">
@@ -113,7 +121,7 @@ export const SignUpForm = ({
             </Box>
             <Box width="8px" />
             <Text weight="500" type="h6" color="#112211">
-              Acepto todos los 
+              Acepto todos los
             </Text>
             <Box className="sign-up-form--pointer" onClick={onSignUp}>
               <Text color={secondaryColor} type="h6" weight="600">
@@ -170,10 +178,7 @@ export const SignUpForm = ({
             size="large"
             onClick={onGoogleSignUp}
           >
-            <Box
-              className="sign-up-form--other-logins-container"
-              width="100%"
-            >
+            <Box className="sign-up-form--other-logins-container" width="100%">
               <Box className="sign-up-form--other-login-button">
                 <Icon icon="google" size="24px" />
                 <Text> &nbsp;&nbsp;&nbsp;Registrate con Google </Text>
