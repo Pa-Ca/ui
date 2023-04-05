@@ -12,7 +12,7 @@ import {
   ImagesCarouselProps,
 } from "../../molecules/imagesCarousel/ImagesCarousel";
 
-interface SignUpProps {
+interface SignUpComponentProps {
   /**
    * height of the component
    */
@@ -36,13 +36,13 @@ interface SignUpProps {
 /**
  * Primary UI component for user interaction
  */
-export const SignUp = ({
+export const SignUpComponent = ({
   imagesCarouselProps,
   signUpFormProps,
   height,
   width,
   ...props
-}: SignUpProps) => {
+}: SignUpComponentProps) => {
   return (
     <Box className="sign-up--container" style={{ height, width }}>
       <Box className="sign-up--caroussel">

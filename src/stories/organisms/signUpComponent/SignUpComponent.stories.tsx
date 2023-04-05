@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { SignUp } from './SignUp';
+import { SignUpComponent } from './SignUpComponent';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Design System/Organisms/SignUp',
-  component: SignUp,
+  title: 'Design System/Organisms/SignUpComponent',
+  component: SignUpComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
     onButtonClick: {
@@ -14,12 +14,12 @@ export default {
       }
     }
   },
-} as ComponentMeta<typeof SignUp>;
+} as ComponentMeta<typeof SignUpComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SignUp> = (args: any) => {
+const Template: ComponentStory<typeof SignUpComponent> = (args: any) => {
   return (
-    <SignUp {...args} />
+    <SignUpComponent {...args} />
   );
 }
 

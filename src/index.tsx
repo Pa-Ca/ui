@@ -42,7 +42,7 @@ export * from './stories/molecules/branchContentSummary/BranchContentSummary';
 export * from './stories/molecules/branchContentOverview/BranchContentOverview';
 
 // ORGANISM
-export * from './stories/organisms/signUp/SignUp';
+export * from './stories/organisms/signUpComponent/SignUpComponent';
 export * from './stories/organisms/footer/Footer';
 export * from './stories/organisms/header/Header';
 export * from './stories/organisms/menuView/MenuView';
