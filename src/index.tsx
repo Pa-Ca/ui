@@ -42,7 +42,6 @@ export * from './stories/molecules/branchContentSummary/BranchContentSummary';
 export * from './stories/molecules/branchContentOverview/BranchContentOverview';
 
 // ORGANISM
-export * from './stories/organisms/signUpComponent/SignUpComponent';
 export * from './stories/organisms/footer/Footer';
 export * from './stories/organisms/header/Header';
 export * from './stories/organisms/menuView/MenuView';
@@ -56,6 +55,7 @@ export * from './stories/organisms/branchSearch/BranchSearch';
 export * from './stories/organisms/branchFilter/BranchFilter';
 export * from './stories/organisms/loginComponent/LoginComponent';
 export * from './stories/organisms/reserveDetails/ReserveDetails';
+export * from './stories/organisms/signUpComponent/SignUpComponent';
 export * from './stories/organisms/categoryPreview/CategoryPreview';
 export * from './stories/organisms/payMethodSelector/PayMethodSelector';
 export * from './stories/organisms/branchMainSummary/BranchMainSummary';
