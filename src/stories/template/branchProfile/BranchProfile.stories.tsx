@@ -243,6 +243,7 @@ const globalArgs = {
           image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
         })
       ),
+      thumbnail: "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
     };
   },
   path: [
@@ -275,9 +276,9 @@ Client.args = {
       role: "client",
       client: {
         id: 1,
-        name: "Jonh",
-        surname: "Dane",
-        picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+        name: "Daniel",
+        surname: "Rodríguez",
+        picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
       },
     };
   },
@@ -293,8 +294,8 @@ Business.args = {
       role: "business",
       business: {
         id: 1,
-        name: "Restaurant",
-        picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+        name: "Sempre Dritto",
+        picture: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
         verified: true,
         tier: 1,
       },
