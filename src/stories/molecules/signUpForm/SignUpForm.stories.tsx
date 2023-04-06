@@ -13,7 +13,7 @@ export default {
         disable: true,
       },
     },
-    onForgotClick: {
+    onTermsAndConditionsClick: {
       table: {
         disable: true,
       },

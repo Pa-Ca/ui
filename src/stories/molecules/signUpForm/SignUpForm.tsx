@@ -12,13 +12,19 @@ export interface SignUpFormProps {
    */
   onLogin: () => void;
   /**
-   * On forgot password click
+   * On termas and conditions click
    */
-  onForgotClick: () => void;
+  onTermsAndConditionsClick: () => void;
   /**
    * On sign up click
    */
-  onSignUp: () => void;
+  onSignUp: (
+    name: string,
+    surname: string,
+    email: string,
+    phone: string,
+    password: string
+  ) => void;
   /**
    * On sign up using Google click
    */
@@ -50,7 +56,7 @@ export interface SignUpFormProps {
  */
 export const SignUpForm = ({
   onLogin,
-  onForgotClick,
+  onTermsAndConditionsClick,
   onSignUp,
   onGoogleSignUp,
   color,
@@ -123,7 +129,10 @@ export const SignUpForm = ({
             <Text weight="500" type="h6" color="#112211">
               Acepto todos los
             </Text>
-            <Box className="sign-up-form--pointer" onClick={onSignUp}>
+            <Box
+              className="sign-up-form--pointer"
+              onClick={onTermsAndConditionsClick}
+            >
               <Text color={secondaryColor} type="h6" weight="600">
                 &nbsp;Términos y Condiciones
               </Text>
@@ -136,7 +145,9 @@ export const SignUpForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={onLogin}
+            onClick={() =>
+              onSignUp(firstName, lastName, email, phone, password)
+            }
           >
             <Box className="sign-up-form--button-text">
               <Text color="white" type="h6" weight="600">
@@ -151,7 +162,7 @@ export const SignUpForm = ({
             {" "}
             ¿Ya tiene una cuenta?{" "}
           </Text>
-          <Box className="sign-up-form--pointer" onClick={onSignUp}>
+          <Box className="sign-up-form--pointer" onClick={onLogin}>
             <Text color={secondaryColor} type="h6" weight="600">
               &nbsp;Inicia Sesión
             </Text>
