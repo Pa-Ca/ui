@@ -5,8 +5,57 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import styles from "../../assets/scss/variables.module.scss";
 
 export interface SignUpFormProps {
+  /**
+   * Indicates if there is an error with the client first name
+   */
+  firstNameError?: boolean;
+  /**
+   * Indicates if there is an error with the client last name
+   */
+  lastNameError?: boolean;
+  /**
+   * Indicates if there is an error with the business name
+   */
+  nameError?: boolean;
+  /**
+   * Indicates if there is an error with the email
+   */
+  emailError?: boolean;
+  /**
+   * Indicates if there is an error with the client phone number
+   */
+  phoneError?: boolean;
+  /**
+   * Indicates if there is an error with the password
+   */
+  passwordError?: boolean;
+  /**
+   * Message displayed if there is an error with the client first name
+   */
+  firstNameErrorMessage?: string;
+  /**
+   * Message displayed if there is an error with the client last name
+   */
+  lastNameErrorMessage?: string;
+  /**
+   * Message displayed if there is an error with the business name
+   */
+  nameErrorMessage?: string;
+  /**
+   * Message displayed if there is an error with the email
+   */
+  emailErrorMessage?: string;
+  /**
+   * Message displayed if there is an error with the client phone number
+   */
+  phoneErrorMessage?: string;
+  /**
+   * Message displayed if there is an error with the password
+   */
+  passwordErrorMessage?: string;
   /**
    * On login button click
    */
@@ -16,9 +65,9 @@ export interface SignUpFormProps {
    */
   onTermsAndConditionsClick: () => void;
   /**
-   * On sign up click
+   * On client sign up click
    */
-  onSignUp: (
+  onClientSignUp?: (
     name: string,
     surname: string,
     email: string,
@@ -26,9 +75,18 @@ export interface SignUpFormProps {
     password: string
   ) => void;
   /**
+   * On business sign up click
+   */
+  onBusinessSignUp?: (name: string, email: string, password: string) => void;
+  /**
    * On sign up using Google click
    */
   onGoogleSignUp: () => void;
+  /**
+   * Indicates if the user to register is a business. Otherwise, it will
+   * be considered a client
+   */
+  business?: boolean;
   /**
    * Component main color
    */
@@ -55,10 +113,24 @@ export interface SignUpFormProps {
  * Primary UI component for user interaction
  */
 export const SignUpForm = ({
+  firstNameError = false,
+  lastNameError = false,
+  nameError = false,
+  emailError = false,
+  phoneError = false,
+  passwordError = false,
+  firstNameErrorMessage = "",
+  lastNameErrorMessage = "",
+  nameErrorMessage = "",
+  emailErrorMessage = "",
+  phoneErrorMessage = "",
+  passwordErrorMessage = "",
   onLogin,
   onTermsAndConditionsClick,
-  onSignUp,
+  onClientSignUp = () => {},
+  onBusinessSignUp = () => {},
   onGoogleSignUp,
+  business = false,
   color,
   secondaryColor,
   otherLoginsColor,
@@ -66,76 +138,175 @@ export const SignUpForm = ({
   height,
   ...props
 }: SignUpFormProps) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [termsAndConditionsError, setTermsAndConditionsError] = useState(false);
+
+  // User data
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [terms, setTerms] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [terms, setTerms] = useState(false);
+
+  // Client data
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  // Business data
+  const [name, setName] = useState("");
+
+  const submit = () => {
+    let error = false;
+
+    if (confirmPassword !== password) {
+      setConfirmPasswordError(true);
+      error = true;
+    }
+    else {
+      setConfirmPasswordError(false);
+    }
+
+    if (!terms) {
+      setTermsAndConditionsError(true);
+      error = true;
+    }
+    else {
+      setTermsAndConditionsError(false);
+    }
+
+    if (error) return;
+
+    if (business) {
+      onBusinessSignUp(name, email, password);
+    } else {
+      onClientSignUp(firstName, lastName, email, phone, password);
+    }
+  };
 
   return (
     <Box className="sign-up-form--container" style={{ width, height }}>
       <Box className="sign-up-form--content">
-        <Box className="two-inputs-box">
-          <Box className="sign-up-form--input">
-            <InputText
-              value={firstName}
-              setValue={setFirstName}
-              label="Nombre"
-            />
+        {business ? (
+          <Box className="two-inputs-box">
+            <Box className="sign-up-form--input">
+              <InputText
+                value={name}
+                setValue={setName}
+                label="Nombre"
+                error={nameError}
+                errorMessage={nameErrorMessage}
+              />
+            </Box>
+            <Box className="sign-up-form--input">
+              <InputText
+                value={email}
+                setValue={setEmail}
+                label="Correo"
+                error={emailError}
+                errorMessage={emailErrorMessage}
+              />
+            </Box>
           </Box>
-          <Box className="sign-up-form--input">
-            <InputText
-              value={lastName}
-              setValue={setLastName}
-              label="Apellido"
-            />
+        ) : (
+          <Box className="two-inputs-box">
+            <Box className="sign-up-form--input">
+              <InputText
+                value={firstName}
+                setValue={setFirstName}
+                label="Nombre"
+                error={firstNameError}
+                errorMessage={firstNameErrorMessage}
+              />
+            </Box>
+            <Box className="sign-up-form--input">
+              <InputText
+                value={lastName}
+                setValue={setLastName}
+                label="Apellido"
+                error={lastNameError}
+                errorMessage={lastNameErrorMessage}
+              />
+            </Box>
           </Box>
-        </Box>
-        <Box className="two-inputs-box">
-          <Box className="sign-up-form--input">
-            <InputText value={email} setValue={setEmail} label="Correo" />
+        )}
+
+        {!business && (
+          <Box className="two-inputs-box">
+            <Box className="sign-up-form--input">
+              <InputText
+                value={email}
+                setValue={setEmail}
+                label="Correo"
+                error={emailError}
+                errorMessage={emailErrorMessage}
+              />
+            </Box>
+            <Box className="sign-up-form--input">
+              <InputText
+                value={phone}
+                setValue={setPhone}
+                label="Teléfono"
+                error={phoneError}
+                errorMessage={phoneErrorMessage}
+              />
+            </Box>
           </Box>
-          <Box className="sign-up-form--input">
-            <InputText value={phone} setValue={setPhone} label="Teléfono" />
-          </Box>
-        </Box>
+        )}
+
         <Box className="sign-up-form--input">
           <InputText
             type="password"
             value={password}
             setValue={setPassword}
             label="Contraseña"
+            error={passwordError}
+            errorMessage={passwordErrorMessage}
           />
         </Box>
+
         <Box className="sign-up-form--input">
           <InputText
             type="password"
             value={confirmPassword}
             setValue={setConfirmPassword}
             label="Confirmar contraseña"
+            error={confirmPasswordError}
+            errorMessage={"Las contraseñas no coinciden ¡Inténtalo de nuevo!"}
           />
         </Box>
+
         <Box className="sign-up-form--input">
-          <Box className="terms-input-box">
-            <Box
-              className="sign-up-form--pointer"
-              onClick={() => setTerms((oldTerms) => !oldTerms)}
-            >
-              <Icon icon={terms ? "checkbox" : "uncheckbox"} size="24px" />
-            </Box>
-            <Box width="8px" />
-            <Text weight="500" type="h6" color="#112211">
-              Acepto todos los
-            </Text>
-            <Box
-              className="sign-up-form--pointer"
-              onClick={onTermsAndConditionsClick}
-            >
-              <Text color={secondaryColor} type="h6" weight="600">
-                &nbsp;Términos y Condiciones
+          <Box className="terms-input-container">
+            <Box className="terms-input-box">
+              <Box
+                className="sign-up-form--pointer"
+                onClick={() => setTerms((oldTerms) => !oldTerms)}
+              >
+                <Icon icon={terms ? "checkbox" : "uncheckbox"} size="24px" />
+              </Box>
+              <Box width="8px" />
+              <Text weight="500" type="h6" color="#112211">
+                Acepto todos los
               </Text>
+              <Box
+                className="sign-up-form--pointer"
+                onClick={onTermsAndConditionsClick}
+              >
+                <Text color={secondaryColor} type="h6" weight="600">
+                  &nbsp;Términos y Condiciones
+                </Text>
+              </Box>
+            </Box>
+            <Box className="input-text--error-container">
+              {termsAndConditionsError && (
+                <>
+                  <Icon icon="alert" color={styles.errorColor} size="20px" />
+                  <Box style={{ width: "10px" }} />
+                  <Text type="h6" color={styles.errorColor}>
+                    Por favor acepte los Términos y Condiciones
+                  </Text>
+                </>
+              )}
             </Box>
           </Box>
         </Box>
@@ -145,9 +316,7 @@ export const SignUpForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={() =>
-              onSignUp(firstName, lastName, email, phone, password)
-            }
+            onClick={() => submit()}
           >
             <Box className="sign-up-form--button-text">
               <Text color="white" type="h6" weight="600">

@@ -46,7 +46,7 @@ export const SignUpComponent = ({
   return (
     <Box className="sign-up-component--container" style={{ height, width }}>
       <Box className="sign-up-component--caroussel">
-        <ImagesCarousel {...imagesCarouselProps} />
+        <ImagesCarousel {...imagesCarouselProps} height="100%"/>
       </Box>
       <Box className="sign-up-component--login-form-container">
         <Box className="sign-up-component--icon">

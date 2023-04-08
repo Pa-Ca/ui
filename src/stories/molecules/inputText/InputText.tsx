@@ -1,8 +1,9 @@
-import React, { useState, useMemo, KeyboardEvent } from "react";
+import React, { useState, useMemo } from "react";
 import "./inputText.scss";
 import "../../atoms/text/text.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "../../assets/scss/variables.module.scss";
 
 interface InputTextProps {
   /**
@@ -22,6 +23,14 @@ interface InputTextProps {
    */
   label?: string;
   /**
+   * Indicates whether the input should display an error message
+   */
+  error?: boolean;
+  /**
+   * Message displayed when there is an error
+   */
+  errorMessage?: string;
+  /**
    * Input width
    */
   width?: string;
@@ -39,6 +48,8 @@ export const InputText = ({
   setValue = () => {},
   type = "text",
   label = "Text input",
+  error = false,
+  errorMessage = "",
   width,
   height,
   ...props
@@ -65,13 +76,13 @@ export const InputText = ({
     switch (icon) {
       case "eye":
         return (
-          <button className="text-input--icon" onClick={changeType}>
+          <button className="input-text--icon" onClick={changeType}>
             <Icon icon={icon} size="24" />
           </button>
         );
       case "eye-slash":
         return (
-          <button className="text-input--icon" onClick={changeType}>
+          <button className="input-text--icon" onClick={changeType}>
             <Icon icon={icon} size="24" />
           </button>
         );
@@ -79,26 +90,52 @@ export const InputText = ({
   }, [icon]);
 
   return (
-    <div className="input-text--container" style={{ width, height }}>
-      <div className="input-text--content">
-        <input
-          type={currentType}
-          value={value}
-          onChange={changeValue}
-          className="input-text--input text text--h6"
-        />
-        <div className="input-text--label">
-          <Text type="h6" weight="400">
-            &nbsp;{label}&nbsp;
-          </Text>
+    <div className="input-text--container">
+      <div
+        className="input-text--input-container"
+        style={{
+          width,
+          height,
+          borderColor: error ? styles.errorColor : undefined,
+          borderWidth: error ? "2.5px" : undefined,
+        }}
+      >
+        <div className="input-text--content">
+          <input
+            type={currentType}
+            value={value}
+            onChange={changeValue}
+            className="input-text--input text text--h6"
+          />
+          <div className="input-text--label">
+            <Text
+              type="h6"
+              weight={error ? "600" : "400"}
+              color={error ? styles.errorColor : undefined}
+            >
+              &nbsp;{label}&nbsp;
+            </Text>
+          </div>
         </div>
+
+        {type === "password" ? (
+          <div>{iconJSX}</div>
+        ) : (
+          <div style={{ width: 16 }} />
+        )}
       </div>
 
-      {type === "password" ? (
-        <div>{iconJSX}</div>
-      ) : (
-        <div style={{ width: 16 }} />
-      )}
+      <div className="input-text--error-container">
+        {error && (
+          <>
+            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.errorColor}>
+              {errorMessage}
+            </Text>
+          </>
+        )}
+      </div>
     </div>
   );
 };

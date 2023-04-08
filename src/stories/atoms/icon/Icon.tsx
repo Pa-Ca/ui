@@ -13,6 +13,7 @@ import twitterIcon from "@iconify/icons-mdi/twitter";
 import youtubeIcon from "@iconify/icons-mdi/youtube";
 import facebookIcon from "@iconify/icons-mdi/facebook";
 import paperPlane from "@iconify/icons-ion/paper-plane";
+import alertCircle from "@iconify/icons-mdi/alert-circle";
 import zelleIcon from "@iconify/icons-simple-icons/zelle";
 import flagFilled from "@iconify/icons-tabler/flag-filled";
 import eyeSlashFill from "@iconify/icons-bi/eye-slash-fill";
@@ -87,7 +88,8 @@ export type IconType =
   | "smartPhone"
   | "circle"
   | "double-circle"
-  | "parking";
+  | "parking"
+  | "alert";
 
 interface IconProps {
   /**
@@ -444,6 +446,14 @@ export const Icon = ({
       return (
         <Iconify
           icon={localParking}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "alert":
+      return (
+        <Iconify
+          icon={alertCircle}
           style={{ fontSize: size, ...style }}
           color={color}
         />

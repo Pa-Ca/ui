@@ -18,7 +18,12 @@ export default {
         disable: true,
       },
     },
-    onSignUp: {
+    onClientSignUp: {
+      table: {
+        disable: true,
+      },
+    },
+    onBusinessSignUp: {
       table: {
         disable: true,
       },

@@ -1,4 +1,10 @@
+@import "../../assets/scss/variables.module.scss";
+
 .input-text--container {
+  display: flex;
+  flex-direction: column;
+}
+.input-text--input-container {
   height: 56px;
   position: relative;
 
@@ -48,7 +54,7 @@
   left: 12px;
   z-index: 1;
 }
-.text-input--icon {
+.input-text--icon {
   flex-shrink: 0;
   width: 48px;
   height: 48px;
@@ -61,5 +67,10 @@
   align-items: center;
   justify-content: center;
 }
-
+.input-text--error-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 25px;
+}
 
