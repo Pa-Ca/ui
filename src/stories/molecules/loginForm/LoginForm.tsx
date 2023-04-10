@@ -10,7 +10,7 @@ interface LoginFormProps {
   /**
    * On login button click
    */
-  onLogin: () => void;
+  onLogin: (email: string, password: string) => void;
   /**
    * On forgot password click
    */
@@ -103,7 +103,7 @@ export const LoginForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={onLogin}
+            onClick={() => onLogin(email, password)}
           >
             <Box className="login-form--button-text">
               <Text color="white" type="h6" weight="600">

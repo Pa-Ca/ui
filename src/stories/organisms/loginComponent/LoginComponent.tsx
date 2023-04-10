@@ -17,7 +17,7 @@ export interface LoginComponentProps {
   /**
    * On login button click
    */
-  onLogin: () => void;
+  onLogin: (email: string, password: string) => void;
   /**
    * On forgot password click
    */
