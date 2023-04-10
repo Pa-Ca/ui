@@ -63,7 +63,7 @@ export const InputDate = ({
 
   return (
     <div
-      className="input-text--container"
+      className="input-text--input-container"
       style={{ width, height }}
       ref={observer.ref}
     >
