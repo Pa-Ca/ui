@@ -297,7 +297,7 @@ Business.args = {
         name: "Sempre Dritto",
         picture: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
         verified: true,
-        tier: 1,
+        tier: "basic",
       },
     };
   },
