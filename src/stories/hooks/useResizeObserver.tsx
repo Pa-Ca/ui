@@ -11,12 +11,10 @@ export default <T extends HTMLElement>() => {
   const [height, setHeight] = useState<number>(0);
 
   const handleResized = () => {
-    if (!!ref.current) return;
-
-    if(ref.current!.offsetWidth !== width) {
+    if(!!ref.current && ref.current.offsetWidth !== width) {
       setWidth(ref.current!.offsetWidth - 2); 
     }
-    if(ref.current!.offsetHeight !== height) {
+    if(!!ref.current && ref.current.offsetHeight !== height) {
       setHeight(ref.current!.offsetHeight);
     }
   }
