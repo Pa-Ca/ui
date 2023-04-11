@@ -5,8 +5,13 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import styles from "../../assets/scss/variables.module.scss";
 
 interface LoginFormProps {
+  /**
+   * Indicates if there is a credencial error
+   */
+  error?: boolean;
   /**
    * On login button click
    */
@@ -34,7 +39,7 @@ interface LoginFormProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
   /**
    * Component width
    */
@@ -49,6 +54,7 @@ interface LoginFormProps {
  * Primary UI component for user interaction
  */
 export const LoginForm = ({
+  error,
   onLogin,
   onForgotClick,
   onSignUp,
@@ -63,7 +69,7 @@ export const LoginForm = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  
+
   return (
     <Box className="login-form--container" style={{ width, height }}>
       <Box className="login-form--content">
@@ -95,6 +101,18 @@ export const LoginForm = ({
               Olvidé mi contraseña
             </Text>
           </Box>
+        </Box>
+
+        <Box className="input-text--error-container">
+          {error && (
+            <>
+              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <Box style={{ width: "10px" }} />
+              <Text type="h6" color={styles.errorColor}>
+                Credenciales inválidas, inténtelo de nuevo.
+              </Text>
+            </>
+          )}
         </Box>
 
         <Box className="login-form--input">
@@ -145,10 +163,7 @@ export const LoginForm = ({
             size="large"
             onClick={onGoogleSignUp}
           >
-            <Box
-              className="login-form--other-logins-container"
-              width="100%"
-            >
+            <Box className="login-form--other-logins-container" width="100%">
               <Box className="login-form--other-login-button">
                 <Icon icon="google" size="24px" />
                 <Text> &nbsp;&nbsp;&nbsp;Inicia Sesión con Google </Text>
