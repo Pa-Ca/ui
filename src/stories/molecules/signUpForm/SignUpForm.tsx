@@ -57,6 +57,24 @@ export interface SignUpFormProps {
    */
   passwordErrorMessage?: string;
   /**
+   * Indicate if the client data is valid
+   */
+  validateClientData?: (
+    name: string,
+    surname: string,
+    email: string,
+    phone: string,
+    password: string
+  ) => boolean;
+  /**
+   * On business sign up click
+   */
+  validateBusinessData?: (
+    name: string,
+    email: string,
+    password: string
+  ) => boolean;
+  /**
    * On login button click
    */
   onLogin: () => void;
@@ -125,6 +143,8 @@ export const SignUpForm = ({
   emailErrorMessage = "",
   phoneErrorMessage = "",
   passwordErrorMessage = "",
+  validateClientData = () => true,
+  validateBusinessData = () => true,
   onLogin,
   onTermsAndConditionsClick,
   onClientSignUp = () => {},
@@ -161,17 +181,26 @@ export const SignUpForm = ({
     if (confirmPassword !== password) {
       setConfirmPasswordError(true);
       error = true;
-    }
-    else {
+    } else {
       setConfirmPasswordError(false);
     }
 
     if (!terms) {
       setTermsAndConditionsError(true);
       error = true;
-    }
-    else {
+    } else {
       setTermsAndConditionsError(false);
+    }
+
+    if (business && !validateBusinessData(name, email, password)) {
+      error = true;
+    }
+
+    if (
+      !business &&
+      !validateClientData(firstName, lastName, email, phone, password)
+    ) {
+      error = true;
     }
 
     if (error) return;
