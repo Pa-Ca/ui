@@ -1,5 +1,5 @@
-import React from 'react';
-import './button.scss';
+import React, { useState } from "react";
+import "./button.scss";
 
 interface ButtonProps {
   /**
@@ -17,11 +17,11 @@ interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: 'extra-small' | 'small' | 'box' | 'medium' | 'large' | 'extra-large';
+  size?: "extra-small" | "small" | "box" | "medium" | "large" | "extra-large";
   /**
    * How state should the button be?
    */
-  state?: 'normal' | 'selected' | 'active' | 'inactive';
+  state?: "normal" | "selected" | "active" | "inactive";
   /**
    * Does the button have to be full width?
    */
@@ -41,25 +41,37 @@ interface ButtonProps {
  */
 export const Button = ({
   primary = false,
-  size = 'medium',
-  state = 'normal',
+  size = "medium",
+  state = "normal",
   fullWidth = false,
   backgroundColor,
   borderColor,
   children,
   ...props
 }: ButtonProps): JSX.Element => {
+  const [currentState, setCurrentState] = useState(state);
+
+  const mouseDown = () => {
+    if (state === "normal") setCurrentState("selected");
+  };
+
+  const mouseUp = () => {
+    if (state === "normal") setCurrentState("normal");
+  };
+
   return (
     <button
       type="button"
       className={[
-        'button',
+        "button",
         `button--${size}`,
-        primary   ? `button--state-${state}` : '',
-        fullWidth ? 'button--full-width'     : '',
-        primary   ? 'button--primary'        : 'button--secondary'
-      ].join(' ')}
+        primary ? `button--state-${currentState}` : "",
+        fullWidth ? "button--full-width" : "",
+        primary ? "button--primary" : "button--secondary",
+      ].join(" ")}
       style={{ backgroundColor, borderColor }}
+      onMouseDown={mouseDown}
+      onMouseUp={mouseUp}
       {...props}
     >
       {children}
