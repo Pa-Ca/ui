@@ -125,7 +125,14 @@ export const InputText = ({
         )}
       </div>
 
-      <div className="input-text--error-container">
+      <div
+        className={
+          "input-text--error-container " +
+          (error
+            ? "input-text--error-animation"
+            : "input-text--error-no-animation")
+        }
+      >
         {error && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />

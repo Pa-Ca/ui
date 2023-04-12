@@ -326,7 +326,14 @@ export const SignUpForm = ({
                 </Text>
               </Box>
             </Box>
-            <Box className="input-text--error-container">
+            <Box
+              className={
+                "input-text--error-container " +
+                (termsAndConditionsError
+                  ? "input-text--error-animation"
+                  : "input-text--error-no-animation")
+              }
+            >
               {termsAndConditionsError && (
                 <>
                   <Icon icon="alert" color={styles.errorColor} size="20px" />
