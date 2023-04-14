@@ -25,5 +25,5 @@ const Template: ComponentStory<typeof BranchListing> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  branches: exampleLongBranchList,
+  branches: exampleLongBranchList
 };
