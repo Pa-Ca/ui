@@ -103,7 +103,14 @@ export const LoginForm = ({
           </Box>
         </Box>
 
-        <Box className="input-text--error-container">
+        <Box
+          className={
+            "input-text--error-container " +
+            (error
+              ? "input-text--error-animation"
+              : "input-text--error-no-animation")
+          }
+        >
           {error && (
             <>
               <Icon icon="alert" color={styles.errorColor} size="20px" />

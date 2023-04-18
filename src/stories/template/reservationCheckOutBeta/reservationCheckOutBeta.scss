@@ -1,0 +1,28 @@
+.branch-listing--container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 10px;
+  background-color: "#8D8D8D";
+  // Add a flag that makes it occupy all the space of the parent
+  flex: 1;
+}
+
+.white-background-box{
+  min-width: 250px;
+  overflow: hidden;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.left-content-box{
+  margin-right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// .left-content-box > * {
+//   margin-bottom: 24px;
+// }

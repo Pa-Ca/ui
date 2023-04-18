@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUpForm.scss";
+import "./signUpForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
@@ -56,6 +56,24 @@ export interface SignUpFormProps {
    * Message displayed if there is an error with the password
    */
   passwordErrorMessage?: string;
+  /**
+   * Indicate if the client data is valid
+   */
+  validateClientData?: (
+    name: string,
+    surname: string,
+    email: string,
+    phone: string,
+    password: string
+  ) => boolean;
+  /**
+   * On business sign up click
+   */
+  validateBusinessData?: (
+    name: string,
+    email: string,
+    password: string
+  ) => boolean;
   /**
    * On login button click
    */
@@ -125,6 +143,8 @@ export const SignUpForm = ({
   emailErrorMessage = "",
   phoneErrorMessage = "",
   passwordErrorMessage = "",
+  validateClientData = () => true,
+  validateBusinessData = () => true,
   onLogin,
   onTermsAndConditionsClick,
   onClientSignUp = () => {},
@@ -161,17 +181,26 @@ export const SignUpForm = ({
     if (confirmPassword !== password) {
       setConfirmPasswordError(true);
       error = true;
-    }
-    else {
+    } else {
       setConfirmPasswordError(false);
     }
 
     if (!terms) {
       setTermsAndConditionsError(true);
       error = true;
-    }
-    else {
+    } else {
       setTermsAndConditionsError(false);
+    }
+
+    if (business && !validateBusinessData(name, email, password)) {
+      error = true;
+    }
+
+    if (
+      !business &&
+      !validateClientData(firstName, lastName, email, phone, password)
+    ) {
+      error = true;
     }
 
     if (error) return;
@@ -297,7 +326,14 @@ export const SignUpForm = ({
                 </Text>
               </Box>
             </Box>
-            <Box className="input-text--error-container">
+            <Box
+              className={
+                "input-text--error-container " +
+                (termsAndConditionsError
+                  ? "input-text--error-animation"
+                  : "input-text--error-no-animation")
+              }
+            >
               {termsAndConditionsError && (
                 <>
                   <Icon icon="alert" color={styles.errorColor} size="20px" />

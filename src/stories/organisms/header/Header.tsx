@@ -128,15 +128,6 @@ export const Header = ({
             className="header--zone header--profile"
             onClick={onProfileClick}
           >
-            <Box className="header--profile-picture">
-              <ProfilePicture
-                size="45px"
-                border="0px"
-                icon={icon}
-                color={color}
-                picture={picture}
-              />
-            </Box>
             <Box className="header--name">
               <Text
                 type="h6"
@@ -146,6 +137,15 @@ export const Header = ({
               >
                 {name}
               </Text>
+            </Box>
+            <Box className="header--profile-picture">
+              <ProfilePicture
+                size="45px"
+                border="0px"
+                icon={icon}
+                color={color}
+                picture={picture}
+              />
             </Box>
           </Box>
         </>
