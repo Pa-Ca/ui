@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./reservationCheckOut.scss";
+import "./reservationCheckOutBeta.scss";
 import { Box } from "../../atoms/box/Box";
 import { BasicPage } from "../basicPage/BasicPage";
 import { HeaderProps } from "../../organisms/header/Header";
@@ -14,8 +14,9 @@ import { Button } from "../../atoms/button/Button";
 import { Text } from "../../atoms/text/Text";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import OptionObject from "../../utils/objects/OptionObject";
+import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 
-interface ReservationCheckOut {
+interface ReservationCheckOutBeta {
   /**
    * Component width
    */
@@ -36,25 +37,9 @@ interface ReservationCheckOut {
    */
   onMapsClick: () => void;
   /**
-   * On login button click
-   */
-  onLogin: () => void;
-  /**
    * On forgot password click
    */
   onForgotClick: () => void;
-  /**
-   * On sign up click
-   */
-  onSignUp: () => void;
-  /**
-   * On sign up using Google click
-   */
-  onGoogleSignUp: () => void;
-  /**
-   * Get Reservation details
-   */
-  getReservationPrice: () => ReservationDetail[];
   /**
    * On submit
    */
@@ -64,25 +49,20 @@ interface ReservationCheckOut {
 /**
  * Primary UI component for user interaction
  */
-export const ReservationCheckOut = ({
+export const ReservationCheckOutBeta = ({
   getBranchData,
   onMapsClick,
-  onLogin,
   onForgotClick,
-  onSignUp,
   onSubmit,
-  onGoogleSignUp,
-  getReservationPrice,
   headerArgs,
   color,
   path,
   validHoursIn,
   validHoursOut,
   ...props
-}: ReservationCheckOut) => {
+}: ReservationCheckOutBeta) => {
 
   const branch = getBranchData();
-  const reservationPrice = getReservationPrice();
 
   const [date, setDate] = useState<Date|undefined>(undefined);
   const [hourIn, setHourIn] = useState<OptionObject|undefined>(undefined);
@@ -93,16 +73,9 @@ export const ReservationCheckOut = ({
 
   return (
     <BasicPage headerArgs={headerArgs}>
-      <Box className="path-box">
-        <Path
-          path={path.concat([{ name: branch.name, onClick: () => {} }, { name: "Check Out", onClick: () => {} }])}
-          color="orange"
-          secondaryColor="black"
-        />
-      </Box>
-      <Box className="branch-profile--main-content">
+      <Box>
         <Box className="left-content-box">
-          <Box className="RestaurantDetails-box">
+          <Box>
             <RestaurantDetails
               onClick={onMapsClick}
               branchName={branch.name}
@@ -116,30 +89,13 @@ export const ReservationCheckOut = ({
               location={branch.location}
             />
           </Box>
-          {/* <Box className="auth-form-box">
-            <LoginForm
-              onLogin={onLogin}
-              onForgotClick={onForgotClick}
-              onSignUp={onSignUp}
-              onGoogleSignUp={onSignUp}
-              color="#EF7A08"
-              secondaryColor="#FF8682"
-              otherLoginsColor="#8DD3BB"
-              width="600px"
-              height="350px"
+          <Box className="white-background-box" weakShadow>
+            <ClientInfoForm
+              color= "#EF7A08"
+              secondaryColor= "#FF8682"
+              otherLoginsColor= "#8DD3BB"
             />
-            <SignUpForm
-              onLogin={onLogin}
-              onForgotClick={onForgotClick}
-              onSignUp={onSignUp}
-              onGoogleSignUp={onSignUp}
-              color="#EF7A08"
-              secondaryColor="#FF8682"
-              otherLoginsColor="#8DD3BB"
-              width="600px"
-              height="350px"
-            />
-          </Box> */}
+          </Box>
           <Box>
             <ReserveDetails
               date={date}
@@ -159,7 +115,7 @@ export const ReservationCheckOut = ({
               showInviteFriends={false}
             />
           </Box>
-          <Box className="button-box" weakShadow>
+          <Box className="white-background-box" weakShadow>
             <Button
               fullWidth
               primary
@@ -174,17 +130,6 @@ export const ReservationCheckOut = ({
               </Box>
             </Button>
           </Box>
-        </Box>
-        <Box>
-          <ReservationDetails
-            branchName={branch.name}
-            color="#8DD3BB"
-            text="Tu reserva está protegida por Pa´Ca"
-            score={branch.score}
-            reviews={branch.reviews}
-            backgroundImage={branch.thumbnail}
-            detailsList={reservationPrice}
-          />
         </Box>
       </Box>
     </BasicPage>

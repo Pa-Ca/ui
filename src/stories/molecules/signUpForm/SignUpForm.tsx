@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUpForm.scss";
+import "./signUpForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
