@@ -21,6 +21,7 @@ import wifiHighBold from "@iconify/icons-ph/wifi-high-bold";
 import circleSlice8 from "@iconify/icons-mdi/circle-slice-8";
 import shareIcon from "@iconify/icons-material-symbols/share";
 import fitnessCentre from "@iconify/icons-maki/fitness-centre";
+import logoutIcon from '@iconify/icons-material-symbols/logout';
 import googleIcon from "@iconify/icons-flat-color-icons/google";
 import personIcon from "@iconify/icons-material-symbols/person";
 import cancelIcon from "@iconify/icons-material-symbols/cancel";
@@ -89,7 +90,9 @@ export type IconType =
   | "circle"
   | "double-circle"
   | "parking"
-  | "alert";
+  | "alert"
+  | "logout"
+  ;
 
 interface IconProps {
   /**
@@ -454,6 +457,14 @@ export const Icon = ({
       return (
         <Iconify
           icon={alertCircle}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "logout":
+      return (
+        <Iconify
+          icon={logoutIcon}
           style={{ fontSize: size, ...style }}
           color={color}
         />

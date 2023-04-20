@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useEffect, useRef, MouseEventHandler } from "react";
-import './profilePicture.scss'
+import './profileDropdown.scss'
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text'; 
 import { Icon } from '../../atoms/icon/Icon';
 import useResizeObserver from '../../hooks/useResizeObserver';
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 
-interface ProfilePictureProps {
+interface ProfileDropdownProps {
   /**
    * Profile picture
    */
@@ -36,9 +36,9 @@ interface ProfilePictureProps {
    */
   dropdownOptions?: UserDropdownElement[];
   /**
-   * Boolean controls
+   * Controls if dropdown shows
    */
-  view?: Boolean;
+  view: boolean;
   /**
    * On click in profile
    */
@@ -48,7 +48,7 @@ interface ProfilePictureProps {
 /**
  * Primary UI component for user interaction
  */
-export const ProfilePicture = ({
+export const ProfileDropdown = ({
   size,
   border,
   icon,
@@ -56,10 +56,9 @@ export const ProfilePicture = ({
   picture,
   userName,
   dropdownOptions  = [],
-  view,
-  onClick,
+  view = false,
   ...props
-}: ProfilePictureProps) => {
+}: ProfileDropdownProps) => {
   const observer = useResizeObserver<HTMLDivElement>();
 
   const iconProportion = useMemo(() => {
@@ -70,30 +69,35 @@ export const ProfilePicture = ({
   }, [icon])
 
   return (
-    <div style={{position: "relative", width: size}}>
-      <Box
-        backgroundImage={picture}
-        borderRadius='100%'
-        width={size}
-        height={size}
-        style={{ border: `${border} solid ${color}` }}
-        className='profile-picture--container'
-        onClick={onClick}
-      >
-        <Box
-          className='profile-picture--icon'
-          style={{ backgroundColor: color }}
-          innerRef={observer.ref}
-        >
-          <div
-            className="input-select--button"
-          >
-            <div className="dropdown-input-select--icon">
-              <Icon icon= {view ? "up" : "down"} size={`${observer.width * iconProportion!}px`} />
-            </div>
+    <Box strongShadow  className={
+          "dropdown-input-select--menu dropdown-input-select--menu-" + (view ? "in" : "out")
+        }
+        style={{
+          width: "300px",
+          maxHeight: view ? "300px" : "0px",
+          opacity: view ? "1" : "0",
+        }}
+        innerRef={observer.ref}>
+      <ul>
+        <div>
+          <Box
+          backgroundImage={picture}
+          borderRadius='100%'
+          width={"45px"}
+          height={"45px"}
+          />
+          <Text weight="500">{userName}</Text>
+        </div>
+
+        <hr />
+
+        {dropdownOptions.map((option, index) =>  (<li onClick={() => (option.func())} key={`profile-dropdown--item-${index}-${option.name}`}>
+          <div style={{display: "flex", alignItems: "center"}}>
+            <Icon icon={option.icon} size="24px"/>
+            <Text type="h7" weight="400" >{option.name}</Text>
           </div>
-        </Box>
-      </Box>
-    </div>
+        </li>) )}
+      </ul>
+    </Box>
   );
-};
+}

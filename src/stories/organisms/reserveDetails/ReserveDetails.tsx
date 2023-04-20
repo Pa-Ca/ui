@@ -142,7 +142,7 @@ export const ReserveDetails = ({
       {/* Inputs 1 */}
       <Box className='reserve-details--input-container'>
         <Box width='100%' className='reserve-details--input-date'>
-          <InputDate date={date} setDate={setDate} />
+          <InputDate date={date} setDate={setDate} minDate={new Date()}/>
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>

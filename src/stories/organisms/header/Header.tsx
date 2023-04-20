@@ -1,10 +1,13 @@
-import React from "react";
+import React , {useState, useEffect} from "react";
 import "./header.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
+import useResizeObserver from '../../hooks/useResizeObserver';
+import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 import { ProfilePicture } from "../../molecules/profilePicture/ProfilePicture";
+import { ProfileDropdown } from "../../molecules/profileDropdown/ProfileDropdown";
 
 export interface HeaderProps {
   /**
@@ -15,6 +18,10 @@ export interface HeaderProps {
    * User name
    */
   name?: string;
+  /**
+   * Elements to show in dropdown
+   */
+  dropdownOptions?: UserDropdownElement[];
   /**
    * Profile icon
    */
@@ -79,6 +86,7 @@ export interface HeaderProps {
 export const Header = ({
   picture,
   name,
+  dropdownOptions,
   icon = "down",
   dark = false,
   userRole,
@@ -100,6 +108,33 @@ export const Header = ({
     !logged || userRole === "client" ? "Reservar" : "Perfil";
   const rightSectionText = userRole === "client" ? "Favoritos" : "Reservas";
   const rightSectionIcon = userRole === "client" ? "heart-fill" : "table";
+
+  const [view, setView] = useState(false);
+
+  const dropdownObserver = useResizeObserver<HTMLDivElement>();
+  const pictureObserver = useResizeObserver<HTMLDivElement>();
+
+  // const selectOption = (option: UserDropdownElement) => {
+  //   setView(false);
+  //   option.func;
+  // };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownObserver.ref.current &&
+        !dropdownObserver.ref.current.contains(event.target as Node) &&
+        pictureObserver.ref.current &&
+        !pictureObserver.ref.current.contains(event.target as Node)
+      ) {
+        setView(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownObserver.ref, pictureObserver.ref]);
 
   const rightSectionComponent = () => {
     if (logged) {
@@ -128,7 +163,7 @@ export const Header = ({
             className="header--zone header--profile"
             onClick={onProfileClick}
           >
-            <Box className="header--name">
+            {/* <Box className="header--name">
               <Text
                 type="h6"
                 weight="600"
@@ -137,14 +172,19 @@ export const Header = ({
               >
                 {name}
               </Text>
-            </Box>
-            <Box className="header--profile-picture">
+            </Box> */}
+            <Box className="header--profile-picture"
+            innerRef={pictureObserver.ref}>
               <ProfilePicture
                 size="45px"
                 border="0px"
                 icon={icon}
                 color={color}
                 picture={picture}
+                userName={name}
+                dropdownOptions={dropdownOptions}
+                onClick={()=> setView((currentView)=>!currentView)}
+                view={view}
               />
             </Box>
           </Box>
@@ -184,6 +224,7 @@ export const Header = ({
   };
 
   return (
+    <>
     <Box
       className="header--container"
       style={{ width, height, backgroundColor }}
@@ -211,5 +252,19 @@ export const Header = ({
         <Box className="header--zone">{rightSectionComponent()}</Box>
       </Box>
     </Box>
+      {logged && <Box className="header--dropdown" innerRef={dropdownObserver.ref}>
+        <ProfileDropdown
+          size="45px"
+          border="0px"
+          icon={icon}
+          color={color}
+          picture={picture}
+          userName={name}
+          dropdownOptions={dropdownOptions}
+          view={view}
+        />
+      </Box>
+      }
+    </>
   );
 };

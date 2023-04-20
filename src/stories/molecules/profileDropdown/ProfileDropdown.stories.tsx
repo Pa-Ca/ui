@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProfilePicture } from './ProfilePicture';
+import { ProfileDropdown } from './ProfileDropdown';
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Design System/Molecules/ProfilePicture',
-  component: ProfilePicture,
+  title: 'Design System/Molecules/ProfileDropdown',
+  component: ProfileDropdown,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
     onClick: {
@@ -16,11 +16,11 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof ProfilePicture>;
+} as ComponentMeta<typeof ProfileDropdown>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ProfilePicture> = (args: any) => {
-  return <ProfilePicture {...args} />;
+const Template: ComponentStory<typeof ProfileDropdown> = (args: any) => {
+  return <ProfileDropdown {...args} />;
 }
 
 const dropdownOptions: UserDropdownElement[] = [
