@@ -112,7 +112,7 @@ export const Header = ({
   const [view, setView] = useState(false);
 
   const dropdownObserver = useResizeObserver<HTMLDivElement>();
-  const pictureObserver = useResizeObserver<HTMLDivElement>();
+  const pictureObserver = logged ? useResizeObserver<HTMLDivElement>() :null;
 
   // const selectOption = (option: UserDropdownElement) => {
   //   setView(false);
@@ -124,7 +124,7 @@ export const Header = ({
       if (
         dropdownObserver.ref.current &&
         !dropdownObserver.ref.current.contains(event.target as Node) &&
-        pictureObserver.ref.current &&
+        !!pictureObserver && pictureObserver.ref.current &&
         !pictureObserver.ref.current.contains(event.target as Node)
       ) {
         setView(false);
@@ -134,7 +134,7 @@ export const Header = ({
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownObserver.ref, pictureObserver.ref]);
+  }, [dropdownObserver.ref, pictureObserver]);
 
   const rightSectionComponent = () => {
     if (logged) {
@@ -163,18 +163,8 @@ export const Header = ({
             className="header--zone header--profile"
             onClick={onProfileClick}
           >
-            {/* <Box className="header--name">
-              <Text
-                type="h6"
-                weight="600"
-                className="header--text header--name"
-                color={logoColor}
-              >
-                {name}
-              </Text>
-            </Box> */}
             <Box className="header--profile-picture"
-            innerRef={pictureObserver.ref}>
+            innerRef={pictureObserver!.ref}>
               <ProfilePicture
                 size="45px"
                 border="0px"
@@ -252,19 +242,21 @@ export const Header = ({
         <Box className="header--zone">{rightSectionComponent()}</Box>
       </Box>
     </Box>
-      {logged && <Box className="header--dropdown" innerRef={dropdownObserver.ref}>
-        <ProfileDropdown
-          size="45px"
-          border="0px"
-          icon={icon}
-          color={color}
-          picture={picture}
-          userName={name}
-          dropdownOptions={dropdownOptions}
-          view={view}
-        />
+      <Box innerRef={dropdownObserver.ref}>
+        {logged && <Box className="header--dropdown">
+          <ProfileDropdown
+            size="45px"
+            border="0px"
+            icon={icon}
+            color={color}
+            picture={picture}
+            userName={name}
+            dropdownOptions={dropdownOptions}
+            view={view}
+          />
+        </Box>
+        }
       </Box>
-      }
     </>
   );
 };
