@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import "./clientInfoForm.scss";
 import { Box } from "../../atoms/box/Box";
-import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
-import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import styles from "../../assets/scss/variables.module.scss";
 
 export interface ClientInfoFormProps {
   /**
@@ -55,7 +52,7 @@ export interface ClientInfoFormProps {
     name: string,
     surname: string,
     email: string,
-    phone: string,
+    phone: string
   ) => boolean;
   /**
    * On client sign up click
@@ -64,7 +61,7 @@ export interface ClientInfoFormProps {
     name: string,
     surname: string,
     email: string,
-    phone: string,
+    phone: string
   ) => void;
   /**
    * Form title
@@ -126,7 +123,7 @@ export const ClientInfoForm = ({
   return (
     <Box className="client-info-form--container" style={{ width, height }}>
       <Box className="client-info-form--content">
-        <Box className='form--title'>
+        <Box className="form--title">
           <Text type="h4" color="#112211" weight="700">
             {formTitle}
           </Text>

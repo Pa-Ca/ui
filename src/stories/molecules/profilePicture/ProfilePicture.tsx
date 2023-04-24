@@ -1,9 +1,8 @@
-import React, { useState, useMemo, useEffect, useRef, MouseEventHandler } from "react";
-import './profilePicture.scss'
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text'; 
-import { Icon } from '../../atoms/icon/Icon';
-import useResizeObserver from '../../hooks/useResizeObserver';
+import React, { useMemo, MouseEventHandler } from "react";
+import "./profilePicture.scss";
+import { Box } from "../../atoms/box/Box";
+import { Icon } from "../../atoms/icon/Icon";
+import useResizeObserver from "../../hooks/useResizeObserver";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 
 interface ProfilePictureProps {
@@ -26,7 +25,7 @@ interface ProfilePictureProps {
   /**
    * Icon type
    */
-  icon?: 'pencil' | 'down' | 'up';
+  icon?: "pencil" | "down" | "up";
   /**
    * Main color
    */
@@ -55,7 +54,7 @@ export const ProfilePicture = ({
   color,
   picture,
   userName,
-  dropdownOptions  = [],
+  dropdownOptions = [],
   view,
   onClick,
   ...props
@@ -64,32 +63,35 @@ export const ProfilePicture = ({
 
   const iconProportion = useMemo(() => {
     switch (icon) {
-      case 'pencil': return 0.7;
-      case 'down': return 1;
+      case "pencil":
+        return 0.7;
+      case "down":
+        return 1;
     }
-  }, [icon])
+  }, [icon]);
 
   return (
-    <div style={{position: "relative", width: size}}>
+    <div style={{ position: "relative", width: size }}>
       <Box
         backgroundImage={picture}
-        borderRadius='100%'
+        borderRadius="100%"
         width={size}
         height={size}
         style={{ border: `${border} solid ${color}` }}
-        className='profile-picture--container'
+        className="profile-picture--container"
         onClick={onClick}
       >
         <Box
-          className='profile-picture--icon'
+          className="profile-picture--icon"
           style={{ backgroundColor: color }}
           innerRef={observer.ref}
         >
-          <div
-            className="input-select--button"
-          >
+          <div className="input-select--button">
             <div className="dropdown-input-select--icon">
-              <Icon icon= {view ? "up" : "down"} size={`${observer.width * iconProportion!}px`} />
+              <Icon
+                icon={view ? "up" : "down"}
+                size={`${observer.width * iconProportion!}px`}
+              />
             </div>
           </div>
         </Box>

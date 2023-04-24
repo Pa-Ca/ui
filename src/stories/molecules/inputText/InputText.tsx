@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from "react";
 import "./inputText.scss";
 import "../../atoms/text/text.scss";
+import styles from "variables.module.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import styles from "../../assets/scss/variables.module.scss";
 
 interface InputTextProps {
   /**

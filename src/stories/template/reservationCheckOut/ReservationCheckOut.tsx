@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import "./reservationCheckOut.scss";
 import { Box } from "../../atoms/box/Box";
-import { BasicPage } from "../basicPage/BasicPage";
-import { HeaderProps } from "../../organisms/header/Header";
+import { Text } from "../../atoms/text/Text";
 import { Path } from "../../molecules/path/Path";
+import { Button } from "../../atoms/button/Button";
+import { BasicPage } from "../basicPage/BasicPage";
 import BranchData from "../../utils/objects/BranchData";
+import { HeaderProps } from "../../organisms/header/Header";
+import OptionObject from "../../utils/objects/OptionObject";
+import ReservationDetail from '../../utils/objects/ReservationDetail';
+import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
 import { ReservationDetails } from "../../molecules/reservationDetails/reservationDetails";
-import { LoginForm } from "../../molecules/loginForm/LoginForm";
-import { SignUpForm } from "../../molecules/signUpForm/SignUpForm";
-import ReservationDetail from '../../utils/objects/ReservationDetail';
-import { Button } from "../../atoms/button/Button";
-import { Text } from "../../atoms/text/Text";
-import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
-import OptionObject from "../../utils/objects/OptionObject";
 
 interface ReservationCheckOut {
   /**
@@ -165,7 +163,20 @@ export const ReservationCheckOut = ({
               primary
               size="large"
               backgroundColor={color}
-              onClick={() => onSubmit(date,persons, hourIn, hourOut, petition, occasion)}
+              onClick={() =>
+                onSubmit(
+                  date!,
+                  parseInt(persons!),
+                  typeof hourIn!.value === "string"
+                    ? hourIn!.value
+                    : hourIn!.value.toString(),
+                  typeof hourOut!.value === "string"
+                    ? hourOut!.value
+                    : hourOut!.value.toString(),
+                  petition!,
+                  occasion!
+                )
+              }
             >
               <Box className="login-form--button-text">
                 <Text color="white" type="h6" weight="600">

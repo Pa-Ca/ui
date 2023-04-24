@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import "./reservationCheckOutBeta.scss";
 import { Box } from "../../atoms/box/Box";
-import { BasicPage } from "../basicPage/BasicPage";
-import { HeaderProps } from "../../organisms/header/Header";
-import { Path } from "../../molecules/path/Path";
-import BranchData from "../../utils/objects/BranchData";
-import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
-import { ReservationDetails } from "../../molecules/reservationDetails/reservationDetails";
-import { LoginForm } from "../../molecules/loginForm/LoginForm";
-import { SignUpForm } from "../../molecules/signUpForm/SignUpForm";
-import ReservationDetail from '../../utils/objects/ReservationDetail';
-import { Button } from "../../atoms/button/Button";
 import { Text } from "../../atoms/text/Text";
-import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
+import { BasicPage } from "../basicPage/BasicPage";
+import { Button } from "../../atoms/button/Button";
+import BranchData from "../../utils/objects/BranchData";
+import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
+import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
+import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
 
 interface ReservationCheckOutBeta {
   /**
@@ -43,7 +38,14 @@ interface ReservationCheckOutBeta {
   /**
    * On submit
    */
-  onSubmit: (date:Date,persons:number,hourIn:string,hourOut:string|null, petition:string|null, occasion:string|null,) => void;
+  onSubmit: (
+    date: Date,
+    persons: number,
+    hourIn: string,
+    hourOut: string | null,
+    petition: string | null,
+    occasion: string | null
+  ) => void;
 }
 
 /**
@@ -61,15 +63,14 @@ export const ReservationCheckOutBeta = ({
   validHoursOut,
   ...props
 }: ReservationCheckOutBeta) => {
-
   const branch = getBranchData();
 
-  const [date, setDate] = useState<Date|undefined>(undefined);
-  const [hourIn, setHourIn] = useState<OptionObject|undefined>(undefined);
-  const [hourOut, setHourOut] = useState<OptionObject|undefined>(undefined);
-  const [persons, setPersons] = useState<string|undefined>(undefined);
-  const [occasion, setOccasion] = useState<string|undefined>(undefined);
-  const [petition, setPetition] = useState<string|undefined>(undefined);
+  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [hourIn, setHourIn] = useState<OptionObject | undefined>(undefined);
+  const [hourOut, setHourOut] = useState<OptionObject | undefined>(undefined);
+  const [persons, setPersons] = useState<string | undefined>(undefined);
+  const [occasion, setOccasion] = useState<string | undefined>(undefined);
+  const [petition, setPetition] = useState<string | undefined>(undefined);
 
   return (
     <BasicPage headerArgs={headerArgs}>
@@ -91,9 +92,9 @@ export const ReservationCheckOutBeta = ({
           </Box>
           <Box className="white-background-box" weakShadow>
             <ClientInfoForm
-              color= "#EF7A08"
-              secondaryColor= "#FF8682"
-              otherLoginsColor= "#8DD3BB"
+              color="#EF7A08"
+              secondaryColor="#FF8682"
+              otherLoginsColor="#8DD3BB"
             />
           </Box>
           <Box>
@@ -121,7 +122,20 @@ export const ReservationCheckOutBeta = ({
               primary
               size="large"
               backgroundColor={color}
-              onClick={() => onSubmit(date,persons, hourIn, hourOut, petition, occasion)}
+              onClick={() =>
+                onSubmit(
+                  date!,
+                  parseInt(persons!),
+                  typeof hourIn!.value === "string"
+                    ? hourIn!.value
+                    : hourIn!.value.toString(),
+                  typeof hourOut!.value === "string"
+                    ? hourOut!.value
+                    : hourOut!.value.toString(),
+                  petition!,
+                  occasion!
+                )
+              }
             >
               <Box className="login-form--button-text">
                 <Text color="white" type="h6" weight="600">
