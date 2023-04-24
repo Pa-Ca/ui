@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./loginForm.scss";
 import { Box } from "../../atoms/box/Box";
-import styles from "variables.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import styles from "../../assets/scss/variables.module.scss";
 
 interface LoginFormProps {
   /**
