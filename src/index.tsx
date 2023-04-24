@@ -59,6 +59,8 @@ export * from './stories/organisms/signUpComponent/SignUpComponent';
 export * from './stories/organisms/categoryPreview/CategoryPreview';
 export * from './stories/organisms/payMethodSelector/PayMethodSelector';
 export * from './stories/organisms/branchMainSummary/BranchMainSummary';
+export * from './stories/organisms/resetPasswordComponent/ResetPasswordComponent';
+export * from './stories/organisms/forgotPasswordComponent/ForgotPasswordComponent';
 
 // TEMPLATES
 export * from './stories/template/home/Home';
