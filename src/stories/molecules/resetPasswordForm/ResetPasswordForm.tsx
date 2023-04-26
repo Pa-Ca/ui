@@ -13,13 +13,17 @@ interface ResetPasswordFormProps {
    */
   error?: boolean;
   /**
+   * Indicates if there is an error with the password
+   */
+  passwordError?: boolean;
+  /**
+   * Message displayed if there is an error with the password
+   */
+  passwordErrorMessage?: string;
+  /**
    * On submit button click
    */
-  onSubmit: (email: string) => void;
-  /**
-   * On login using Google click
-   */
-  onGoogleLogin: () => void;
+  onSubmit: (password: string) => void;
   /**
    * Component main color
    */
@@ -28,10 +32,6 @@ interface ResetPasswordFormProps {
    * Component secondary color
    */
   secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
   /**
    * Component width
    */
@@ -46,23 +46,60 @@ interface ResetPasswordFormProps {
  * Primary UI component for user interaction
  */
 export const ResetPasswordForm = ({
-  error,
+  error = false,
+  passwordError = false,
+  passwordErrorMessage = "",
   onSubmit,
-  onGoogleLogin,
   color,
   secondaryColor,
-  otherLoginsColor,
   width,
   height,
   ...props
 }: ResetPasswordFormProps) => {
-  const [email, setEmail] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
+  // User data
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const submit = () => {
+    let error = false;
+
+    if (confirmPassword !== password) {
+      setConfirmPasswordError(true);
+      error = true;
+    } else {
+      setConfirmPasswordError(false);
+    }
+
+    if (error) return;
+
+    onSubmit(password);
+  };
 
   return (
     <Box className="reset-password-form--container" style={{ width, height }}>
       <Box className="reset-password-form--content">
-        <Box>
-          <InputText value={email} setValue={setEmail} label="Correo" />
+        <Box className="reset-password-form--input">
+          <InputText
+            type="password"
+            value={password}
+            setValue={setPassword}
+            label="Contraseña"
+            error={passwordError}
+            errorMessage={passwordErrorMessage}
+          />
+        </Box>
+
+        <Box className="reset-password-form--input">
+          <InputText
+            type="password"
+            value={confirmPassword}
+            setValue={setConfirmPassword}
+            label="Confirmar contraseña"
+            error={confirmPasswordError}
+            errorMessage={"Las contraseñas no coinciden ¡Inténtalo de nuevo!"}
+          />
         </Box>
 
         <Box
@@ -83,53 +120,18 @@ export const ResetPasswordForm = ({
             </>
           )}
         </Box>
-
         <Box className="reset-password-form--input">
           <Button
             fullWidth
             primary
             size="large"
             backgroundColor={color}
-            onClick={() => onSubmit(email)}
+            onClick={submit}
           >
             <Box className="reset-password-form--button-text">
               <Text color="white" type="h6" weight="600">
-                Enviar
+                Cambiar contraseña
               </Text>
-            </Box>
-          </Button>
-        </Box>
-      </Box>
-      <Box className="reset-password-form--login-with">
-        <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
-        <Box className="reset-password-form--login-with-text">
-          <Text weight="400" type="h6" color="#889188">
-            Ó
-          </Text>
-        </Box>
-        <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
-      </Box>
-
-      <Box
-        className="reset-password-form--other-logins-container"
-        height="100%"
-      >
-        <Box className="reset-password-form--other-login" width="100%">
-          <Button
-            primary={false}
-            borderColor={otherLoginsColor}
-            fullWidth
-            size="large"
-            onClick={onGoogleLogin}
-          >
-            <Box
-              className="reset-password-form--other-logins-container"
-              width="100%"
-            >
-              <Box className="reset-password-form--other-login-button">
-                <Icon icon="google" size="24px" />
-                <Text> &nbsp;&nbsp;&nbsp;Inicia Sesión con Google </Text>
-              </Box>
             </Box>
           </Button>
         </Box>

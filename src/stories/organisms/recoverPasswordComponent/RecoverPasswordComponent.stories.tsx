@@ -1,14 +1,19 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { ResetPasswordComponent } from "./ResetPasswordComponent";
+import { RecoverPasswordComponent } from "./RecoverPasswordComponent";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Organisms/ResetPasswordComponent",
-  component: ResetPasswordComponent,
+  title: "Design System/Organisms/RecoverPasswordComponent",
+  component: RecoverPasswordComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     onBackToLogin: {
+      table: {
+        disable: true,
+      },
+    },
+    onGoogleLogin: {
       table: {
         disable: true,
       },
@@ -19,11 +24,11 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ResetPasswordComponent>;
+} as ComponentMeta<typeof RecoverPasswordComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ResetPasswordComponent> = (args: any) => {
-  return <ResetPasswordComponent {...args} />;
+const Template: ComponentStory<typeof RecoverPasswordComponent> = (args: any) => {
+  return <RecoverPasswordComponent {...args} />;
 };
 
 export const Default = Template.bind({});

@@ -1,13 +1,13 @@
 import React from "react";
-import "./resetPasswordComponent.scss";
+import "./recoverPasswordComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
-import { ResetPasswordForm } from "../../molecules/resetPasswordForm/ResetPasswordForm";
+import { RecoverPasswordForm } from "../../molecules/recoverPasswordForm/RecoverPasswordForm";
 
-export interface ResetPasswordComponentProps {
+export interface RecoverPasswordComponentProps {
   /**
    * Indicates if there is a credencial error
    */
@@ -25,6 +25,10 @@ export interface ResetPasswordComponentProps {
    */
   onSubmit: (email: string) => void;
   /**
+   * On login using Google click
+   */
+  onGoogleLogin: () => void;
+  /**
    * Component main color
    */
   color?: string;
@@ -41,49 +45,53 @@ export interface ResetPasswordComponentProps {
 /**
  * Primary UI component for user interaction
  */
-export const ResetPasswordComponent = ({
+export const RecoverPasswordComponent = ({
   error = false,
   images = [],
   onBackToLogin,
   onSubmit,
+  onGoogleLogin,
   color,
   secondaryColor,
   otherLoginsColor,
   ...props
-}: ResetPasswordComponentProps) => {
+}: RecoverPasswordComponentProps) => {
   const observer = useResizeObserver<HTMLDivElement>();
 
   return (
-    <Box className="reset-password-component--container">
+    <Box className="recover-password-component--container">
       <Box
-        className="reset-password-component--left-container"
+        className="recover-password-component--left-container"
         width={`${observer.width + 2}px`}
       >
         <Icon icon="pa-ca" size="70px" />
 
-        <Box className="reset-password-component--content">
-          <Box className="reset-password-component--back-to-login" onClick={onBackToLogin}>
+        <Box className="recover-password-component--content">
+          <Box className="recover-password-component--back-to-login" onClick={onBackToLogin}>
             <Icon icon="left" size="18px" />
             <Box width="5px" />
             <Text weight="400">
               Iniciar sesión
             </Text>
           </Box>
-          <Box className="reset-password-component--title">
+          <Box className="recover-password-component--title">
             <Text weight="700" type="h2">
-              Cambiar contraseña
+              ¿Olvidaste tu contraseña?
             </Text>
           </Box>
-          <Box className="reset-password-component--subtitle">
+          <Box className="recover-password-component--subtitle">
             <Text color="#4D594D" weight="400">
+              No te preocupes, nos pasa a todos. Ingresa tu correo abajo para recuperar tu contraseña.
             </Text>
           </Box>
 
-          <ResetPasswordForm
+          <RecoverPasswordForm
             error={error}
             onSubmit={onSubmit}
+            onGoogleLogin={onGoogleLogin}
             color={color}
             secondaryColor={secondaryColor}
+            otherLoginsColor={otherLoginsColor}
           />
         </Box>
       </Box>
