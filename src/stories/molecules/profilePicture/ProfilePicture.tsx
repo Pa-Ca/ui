@@ -73,7 +73,7 @@ export const ProfilePicture = ({
   return (
     <div style={{ position: "relative", width: size }}>
       <Box
-        backgroundImage={picture}
+        backgroundImage={picture == "" ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" : picture}
         borderRadius="100%"
         width={size}
         height={size}
