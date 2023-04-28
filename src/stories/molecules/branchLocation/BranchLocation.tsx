@@ -4,16 +4,28 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Button } from "../../atoms/button/Button";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
-interface BranchLocationProps {
+
+export interface BranchLocationProps {
+  /**
+   * Google Maps API Key
+   * */
+  apiKey: string;
+  /**
+   * Latitude in decimal format
+   * 
+   */
+  lat: number;
+  /**
+   * Longitude in decimal format
+   * 
+    */
+  lng: number;
   /**
    * Location text
    */
   location: string;
-  /**
-   * Location image
-   */
-  image: string;
   /**
    * Indicates if the data is editable
    */
@@ -36,15 +48,35 @@ interface BranchLocationProps {
  * Primary UI component for user interaction
  */
 export const BranchLocation = ({
+  apiKey,
+  lat,
+  lng,
   location,
-  image,
   editable,
   color,
   width,
   height,
   ...props
 }: BranchLocationProps) => {
-  const [edit, setEdit] = useState(false);
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: apiKey,
+    libraries: ["places"],
+    language: "es"
+  })
+
+  let center = {
+    lat: lat,
+    lng: lng
+  }
+
+  const containerStyle = {
+    flex: "1",
+    display: "flex",
+    margin_top: "20px",
+    margin_bottom: "20px",
+  }
 
   return (
     <Box className="branch-location--container">
@@ -57,16 +89,32 @@ export const BranchLocation = ({
           <Box height="5px" />
         </Box>
 
-        <Button primary backgroundColor={color}>
+        <Button primary backgroundColor={color} onClick={
+          () => window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, "_blank")
+        }>
           <Text type="h6" weight="600">Ver en Google Maps</Text>
         </Button>
       </Box>
 
-      <Box
-        borderRadius="10px"
-        className="branch-location--image"
-        backgroundImage={image}
-      />
+        {isLoaded ? (
+        <GoogleMap
+          options = {{
+            disableDefaultUI: true,
+            zoomControl: true,
+            zoomControlOptions: {
+              position: 9
+            }
+          }}
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={16}
+          onClick={(e) => console.log(e)}
+        >
+          {
+            Marker && <Marker position={center} />
+          }
+        </GoogleMap>
+      ) : <></>}
 
       <Box className="branch-location--footer">
         <Icon icon="location" size="20px" />
@@ -75,3 +123,6 @@ export const BranchLocation = ({
     </Box>
   );
 };
+
+
+
