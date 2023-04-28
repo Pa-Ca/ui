@@ -14,10 +14,6 @@ export interface ClientInfoFormProps {
    */
   lastNameError?: boolean;
   /**
-   * Indicates if there is an error with the business name
-   */
-  nameError?: boolean;
-  /**
    * Indicates if there is an error with the email
    */
   emailError?: boolean;
@@ -33,10 +29,6 @@ export interface ClientInfoFormProps {
    * Message displayed if there is an error with the client last name
    */
   lastNameErrorMessage?: string;
-  /**
-   * Message displayed if there is an error with the business name
-   */
-  nameErrorMessage?: string;
   /**
    * Message displayed if there is an error with the email
    */
@@ -95,12 +87,10 @@ export interface ClientInfoFormProps {
 export const ClientInfoForm = ({
   firstNameError = false,
   lastNameError = false,
-  nameError = false,
   emailError = false,
   phoneError = false,
   firstNameErrorMessage = "",
   lastNameErrorMessage = "",
-  nameErrorMessage = "",
   emailErrorMessage = "",
   phoneErrorMessage = "",
   formTitle = "Datos Del Cliente",

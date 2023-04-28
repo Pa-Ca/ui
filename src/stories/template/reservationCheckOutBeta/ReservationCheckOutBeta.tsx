@@ -16,10 +16,6 @@ interface ReservationCheckOutBeta {
    * Component width
    */
   headerArgs?: HeaderProps;
-  /**
-   * Path from Home to current page
-   */
-  path: { name: string; onClick: () => void }[];
   color: string;
   validHoursIn: OptionObject[];
   validHoursOut: OptionObject[];
@@ -31,10 +27,6 @@ interface ReservationCheckOutBeta {
    * On Header left section button click function
    */
   onMapsClick: () => void;
-  /**
-   * On forgot password click
-   */
-  onForgotClick: () => void;
   /**
    * On submit
    */
@@ -54,11 +46,9 @@ interface ReservationCheckOutBeta {
 export const ReservationCheckOutBeta = ({
   getBranchData,
   onMapsClick,
-  onForgotClick,
   onSubmit,
   headerArgs,
   color,
-  path,
   validHoursIn,
   validHoursOut,
   ...props
