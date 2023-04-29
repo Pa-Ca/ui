@@ -14,7 +14,7 @@ import { MenuPreview } from "../../organisms/menuPreview/MenuPreview";
 import { AmenityList } from "../../molecules/amenityList/AmenityList";
 import { ReviewBoard } from "../../organisms/reviewBoard/ReviewBoard";
 import { FastReserveBox } from "../../molecules/fastReserveBox/FastReserveBox";
-import { BranchLocation } from "../../molecules/branchLocation/BranchLocation";
+import { BranchLocation , BranchLocationProps} from "../../molecules/branchLocation/BranchLocation";
 import { BranchMainSummary } from "../../organisms/branchMainSummary/BranchMainSummary";
 
 interface BranchProfileProps {
@@ -51,10 +51,6 @@ interface BranchProfileProps {
    */
   onRegisterClick?: () => void;
   /**
-   * Location image in google maps
-   */
-  locationImage: string;
-  /**
    * Path from Home to current page
    */
   path: { name: string; onClick: () => void }[];
@@ -62,6 +58,10 @@ interface BranchProfileProps {
    * Component main color
    */
   color?: string;
+  /**
+   * Branch Location props
+   * */
+  branchLocationProps: BranchLocationProps;
 }
 
 /**
@@ -78,9 +78,9 @@ export const BranchProfile = ({
   onProfileClick,
   onLoginClick,
   onRegisterClick,
-  locationImage,
   path,
   color,
+  branchLocationProps,
   ...props
 }: BranchProfileProps) => {
   const user = getUserData();
@@ -210,9 +210,8 @@ export const BranchProfile = ({
 
             <Box className="branch-profile--location-container">
               <BranchLocation
-                location={branch.location}
-                image={locationImage}
-                editable={editable}
+               {...branchLocationProps} 
+                
               />
             </Box>
           </Box>
