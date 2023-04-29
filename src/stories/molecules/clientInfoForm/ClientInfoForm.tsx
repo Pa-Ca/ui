@@ -102,13 +102,12 @@ export const ClientInfoForm = ({
   height,
   ...props
 }: ClientInfoFormProps) => {
-  // User data
-  const [email, setEmail] = useState("");
-
+  
   // Client data
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <Box className="client-info-form--container" style={{ width, height }}>

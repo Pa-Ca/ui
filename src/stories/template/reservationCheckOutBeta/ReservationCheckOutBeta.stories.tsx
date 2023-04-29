@@ -26,6 +26,12 @@ const amenities: AmenityObject[] = [
 
 const globalArgs = {
   color: "#EF7A08",
+
+  firstNameErrorMessage : "firstNameErrorMessage",
+  lastNameErrorMessage : "lastNameErrorMessage",
+  emailErrorMessage : "emailErrorMessage",
+  phoneErrorMessage : "phoneErrorMessage",
+
   getBranchData: () => {
     return {
       businessId: 1,

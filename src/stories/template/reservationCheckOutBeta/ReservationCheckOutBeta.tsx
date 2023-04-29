@@ -16,9 +16,27 @@ interface ReservationCheckOutBeta {
    * Component width
    */
   headerArgs?: HeaderProps;
-  color: string;
+  /**
+   * Color of Submit button
+   */
+  submitButtonColor: string;
+  /**
+   * Valid start hour for reservation
+   */
   validHoursIn: OptionObject[];
+  /**
+   * Valid end hour for reservation
+   */
   validHoursOut: OptionObject[];
+
+  /**
+   * Text for error message in client form
+   */
+  firstNameErrorMessage : string;
+  lastNameErrorMessage : string;
+  emailErrorMessage : string;
+  phoneErrorMessage : string;
+
   /**
    * Get Branch data
    */
@@ -48,9 +66,13 @@ export const ReservationCheckOutBeta = ({
   onMapsClick,
   onSubmit,
   headerArgs,
-  color,
+  submitButtonColor,
   validHoursIn,
   validHoursOut,
+  firstNameErrorMessage,
+  lastNameErrorMessage,
+  emailErrorMessage,
+  phoneErrorMessage,
   ...props
 }: ReservationCheckOutBeta) => {
   const branch = getBranchData();
@@ -85,6 +107,10 @@ export const ReservationCheckOutBeta = ({
               color="#EF7A08"
               secondaryColor="#FF8682"
               otherLoginsColor="#8DD3BB"
+              firstNameErrorMessage = {firstNameErrorMessage}
+              lastNameErrorMessage = {lastNameErrorMessage}
+              emailErrorMessage = {emailErrorMessage}
+              phoneErrorMessage = {phoneErrorMessage}
             />
           </Box>
           <Box>
@@ -111,7 +137,7 @@ export const ReservationCheckOutBeta = ({
               fullWidth
               primary
               size="large"
-              backgroundColor={color}
+              backgroundColor={submitButtonColor}
               onClick={() =>
                 onSubmit(
                   date!,
