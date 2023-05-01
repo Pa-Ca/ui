@@ -100,7 +100,7 @@ export const InputSelect = ({
 
   return (
     <Box
-      className="input-text--container"
+      className="input-text--input-container"
       style={{ width, height }}
       innerRef={observer.ref}
       backgroundColor="white"

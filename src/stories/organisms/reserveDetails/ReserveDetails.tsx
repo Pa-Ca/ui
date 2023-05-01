@@ -86,6 +86,10 @@ interface ReserveDetailsProps {
    * Add friends component props
    */
   invitedFriendsProps?: AddFriendsProps;
+  /**
+   * Show invite friends
+   */
+  showInviteFriends?: boolean;
 }
 
 /**
@@ -111,6 +115,7 @@ export const ReserveDetails = ({
   color = "white",
   mode = 'free',
   invitedFriendsProps,
+  showInviteFriends = true,
   ...props
 }: ReserveDetailsProps) => {
 
@@ -137,7 +142,7 @@ export const ReserveDetails = ({
       {/* Inputs 1 */}
       <Box className='reserve-details--input-container'>
         <Box width='100%' className='reserve-details--input-date'>
-          <InputDate date={date} setDate={setDate} />
+          <InputDate date={date} setDate={setDate} minDate={new Date()}/>
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>
@@ -152,13 +157,15 @@ export const ReserveDetails = ({
           <InputSelect option={hourOut} setOption={setHourOut} options={validHoursOut} label='Salida (Opcional)'/>
         </Box>
       </Box>
-      <Box className='reserve-details--invite-friends'>
-        <Text  type="p" color="#112211" weight="700">
-          Invita a tus amigos
-        </Text>
-        <AddFriends {...invitedFriendsProps} />
-      </Box>
-
+      {
+        showInviteFriends &&
+        <Box className='reserve-details--invite-friends'>
+          <Text  type="p" color="#112211" weight="700">
+            Invita a tus amigos
+          </Text>
+          <AddFriends {...invitedFriendsProps} />
+        </Box>
+      }
       
       <Text type="h6" color="#112211" weight="700">
         {" "}Petición Especial (Opcional){" "}
