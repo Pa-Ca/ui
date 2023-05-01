@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./branchProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Path } from "../../molecules/path/Path";
@@ -14,7 +14,7 @@ import { MenuPreview } from "../../organisms/menuPreview/MenuPreview";
 import { AmenityList } from "../../molecules/amenityList/AmenityList";
 import { ReviewBoard } from "../../organisms/reviewBoard/ReviewBoard";
 import { FastReserveBox } from "../../molecules/fastReserveBox/FastReserveBox";
-import { BranchLocation } from "../../molecules/branchLocation/BranchLocation";
+import { BranchLocation , BranchLocationProps} from "../../molecules/branchLocation/BranchLocation";
 import { BranchMainSummary } from "../../organisms/branchMainSummary/BranchMainSummary";
 
 interface BranchProfileProps {
@@ -51,10 +51,6 @@ interface BranchProfileProps {
    */
   onRegisterClick?: () => void;
   /**
-   * Location image in google maps
-   */
-  locationImage: string;
-  /**
    * Path from Home to current page
    */
   path: { name: string; onClick: () => void }[];
@@ -62,6 +58,10 @@ interface BranchProfileProps {
    * Component main color
    */
   color?: string;
+  /**
+   * Branch Location props
+   * */
+  branchLocationProps: BranchLocationProps;
 }
 
 /**
@@ -78,9 +78,9 @@ export const BranchProfile = ({
   onProfileClick,
   onLoginClick,
   onRegisterClick,
-  locationImage,
   path,
   color,
+  branchLocationProps,
   ...props
 }: BranchProfileProps) => {
   const user = getUserData();
@@ -117,12 +117,27 @@ export const BranchProfile = ({
     <Box className="branch-profile--nav-line" width={width} />
   );
 
+  const totalScore = useMemo(() => {
+    return parseFloat(
+      (
+        branch.reviewsData.reduce((sum, review) => sum + review.score, 0) /
+        branch.reviewsData.length
+      ).toFixed(1)
+    );
+  }, [branch.reviewsData]);
+
   return (
     <Box className="branch-profile--container">
       <Box
         className="branch-profile--header-container"
         backgroundImage={branch.mainImage}
+      />
+      <div className="branch-profile--overlay" />
+
+      <Box
+        className="branch-profile--header-container"
         innerRef={headerObserver.ref}
+        style={{ zIndex: 3 }}
       >
         <Box className="branch-profile--header">
           <Header
@@ -171,6 +186,8 @@ export const BranchProfile = ({
             <Box className="branch-profile--summary-container">
               <BranchMainSummary
                 {...branch}
+                score={totalScore}
+                reviews={branch.reviewsData.length}
                 addPromotion={() => {}}
                 color={color}
                 editable={editable}
@@ -193,9 +210,8 @@ export const BranchProfile = ({
 
             <Box className="branch-profile--location-container">
               <BranchLocation
-                location={branch.location}
-                image={locationImage}
-                editable={editable}
+               {...branchLocationProps} 
+                
               />
             </Box>
           </Box>

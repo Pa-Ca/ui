@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ProfilePicture } from './ProfilePicture';
+import UserDropdownElement from "../../utils/objects/UserDropdownElement";
+
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -21,6 +23,19 @@ const Template: ComponentStory<typeof ProfilePicture> = (args: any) => {
   return <ProfilePicture {...args} />;
 }
 
+const dropdownOptions: UserDropdownElement[] = [
+  {
+    name: 'Edit Profile',
+    func: () => {},
+    icon: "pencil",
+  },
+  {
+    name: 'Logout',
+    func: () => {},
+    icon: "logout",
+  },
+];
+
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
@@ -28,5 +43,7 @@ Default.args = {
   size: '200px',
   border: '5px',
   icon: 'down',
-  color: '#EF7A08'
+  color: '#EF7A08',
+  dropdownOptions: dropdownOptions,
+  userName: "Ricardo Milano"
 };

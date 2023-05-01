@@ -13,12 +13,17 @@ export default {
         disable: true,
       },
     },
-    onForgotClick: {
+    onTermsAndConditionsClick: {
       table: {
         disable: true,
       },
     },
-    onSignUp: {
+    onClientSignUp: {
+      table: {
+        disable: true,
+      },
+    },
+    onBusinessSignUp: {
       table: {
         disable: true,
       },

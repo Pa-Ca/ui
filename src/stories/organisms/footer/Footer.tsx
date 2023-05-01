@@ -16,6 +16,8 @@ export interface FooterProps {
   secondaryColor?: string;
 }
 
+
+
 /**
  * Primary UI component for user interaction
  */
@@ -24,6 +26,13 @@ export const Footer = ({
   secondaryColor = "white",
   ...props
 }: FooterProps) => {
+  const footerLinks = {
+    instargam : "" ,
+    facebook : "" ,
+    twitter : "" ,
+    youtube : ""
+  }
+  
   return (
     <Box className="footer--container" backgroundColor={color} {...props}>
       <Box className="footer--content-container">
@@ -33,10 +42,18 @@ export const Footer = ({
             <Text color={secondaryColor}>Contactanos!</Text>
           </Box>
           <Box className="footer--social-media-container">
-            <Icon icon="facebook" color={secondaryColor} size="30px" />
-            <Icon icon="twitter" color={secondaryColor} size="30px" />
-            <Icon icon="youtube" color={secondaryColor} size="30px" />
-            <Icon icon="instagram" color={secondaryColor} size="30px" />
+            <Box  onClick={() => window.open(footerLinks.facebook, "_blank")}>
+              <Icon icon="facebook" color={secondaryColor} size="30px"  />
+            </Box>
+            <Box  onClick={() => window.open(footerLinks.twitter, "_blank")}>
+              <Icon icon="twitter" color={secondaryColor} size="30px" />
+            </Box>
+            <Box  onClick={() => window.open(footerLinks.youtube, "_blank")}>
+              <Icon icon="youtube" color={secondaryColor} size="30px" />
+            </Box>
+            <Box  onClick={() => window.open(footerLinks.instargam, "_blank")}>
+              <Icon icon="instagram" color={secondaryColor} size="30px" />
+            </Box>
           </Box>
           <Text className="footer__text" color={secondaryColor}>
             © 2022 - Todos los derechos reservados

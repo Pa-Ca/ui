@@ -1,10 +1,11 @@
 @import "../../assets/scss/mixins.scss";
-@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/variables.module.scss";
 
 .details-card--container {
   min-width: 250px;
   overflow: hidden;
   padding: 24px;
+  border-radius: 12px;
 }
 
 .details-card--summary {
@@ -91,10 +92,10 @@
   margin-left: 16px;
 }
 
-.detail-image{
+.restaurant-detail-image{
   border-radius: 12px;
   min-width: 162px;
-  height: 58px;
+  height: 75px;
 }
 
 .branch-amenity--vertical-line {

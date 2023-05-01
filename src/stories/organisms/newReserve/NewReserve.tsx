@@ -168,7 +168,6 @@ export const NewReserve = ({
             reviews={reviews}
             category={category}
             price={price}
-            location={location}
             pricePerson={pricePerson}
             color={color}
             width='100%'

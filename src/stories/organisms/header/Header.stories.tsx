@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Header } from './Header';
+import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -48,10 +49,24 @@ const Template: ComponentStory<typeof Header> = (args: any) => {
   );
 }
 
+const dropdownOptions: UserDropdownElement[] = [
+  {
+    name: 'Edit Profile',
+    func: () => {},
+    icon: "pencil",
+  },
+  {
+    name: 'Logout',
+    func: () => {console.log("logout")},
+    icon: "logout",
+  },
+];
+
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  picture: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg',
-  name: 'Jonh D.',
-  color: '#EF7A08'
+  name: "Daniel Rodríguez",
+  picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
+  color: '#EF7A08',
+  dropdownOptions: dropdownOptions,
 };

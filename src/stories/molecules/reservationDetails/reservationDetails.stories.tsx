@@ -19,13 +19,13 @@ const Template: ComponentStory<typeof ReservationDetails> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  name: 'Restaurant Name',
-  backgroundImage: 'https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg',
+  branchName: 'Sempre Dritto',
+  backgroundImage: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg',
   score: 4.2,
   reviews: 42,
   width: '0px',
   height: '0px',
-  detailsList: [{name: "drogas", price: 500},{name: "masDrogas", price: 500}],
+  detailsList: [{name: "servicio", price: 14.3},{name: "impuestos", price: 0.7}],
   color: '#8DD3BB',
   text: "Tu reserva está protegida por Pa´Ca",
 };
