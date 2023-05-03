@@ -13,6 +13,10 @@ export interface RecoverPasswordComponentProps {
    */
   error?: boolean;
   /**
+   * Indicates if the recovery email has already been sent
+   */
+  completed?: boolean;
+  /**
    * Images to be displayed in the carousel
    */
   images: string[];
@@ -39,7 +43,7 @@ export interface RecoverPasswordComponentProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
 }
 
 /**
@@ -47,6 +51,7 @@ export interface RecoverPasswordComponentProps {
  */
 export const RecoverPasswordComponent = ({
   error = false,
+  completed = false,
   images = [],
   onBackToLogin,
   onSubmit,
@@ -66,33 +71,55 @@ export const RecoverPasswordComponent = ({
       >
         <Icon icon="pa-ca" size="70px" />
 
-        <Box className="recover-password-component--content">
-          <Box className="recover-password-component--back-to-login" onClick={onBackToLogin}>
+        <Box
+          className="recover-password-component--content"
+          style={{ paddingRight: completed ? "0" : "100px" }}
+        >
+          <Box
+            className="recover-password-component--back-to-login"
+            onClick={onBackToLogin}
+          >
             <Icon icon="left" size="18px" />
             <Box width="5px" />
-            <Text weight="400">
-              Iniciar sesión
-            </Text>
-          </Box>
-          <Box className="recover-password-component--title">
-            <Text weight="700" type="h2">
-              ¿Olvidaste tu contraseña?
-            </Text>
-          </Box>
-          <Box className="recover-password-component--subtitle">
-            <Text color="#4D594D" weight="400">
-              No te preocupes, nos pasa a todos. Ingresa tu correo abajo para recuperar tu contraseña.
-            </Text>
+            <Text weight="400">Iniciar sesión</Text>
           </Box>
 
-          <RecoverPasswordForm
-            error={error}
-            onSubmit={onSubmit}
-            onGoogleLogin={onGoogleLogin}
-            color={color}
-            secondaryColor={secondaryColor}
-            otherLoginsColor={otherLoginsColor}
-          />
+          {!completed ? (
+            <Box className="recover-password-component--form">
+              <Box className="recover-password-component--title">
+                <Text weight="700" type="h2">
+                  ¿Olvidaste tu contraseña?
+                </Text>
+              </Box>
+              <Box className="recover-password-component--subtitle">
+                <Text color="#4D594D" weight="400">
+                  No te preocupes, nos pasa a todos. Ingresa tu correo abajo
+                  para recuperar tu contraseña.
+                </Text>
+              </Box>
+
+              <RecoverPasswordForm
+                error={error}
+                onSubmit={onSubmit}
+                onGoogleLogin={onGoogleLogin}
+                color={color}
+                secondaryColor={secondaryColor}
+                otherLoginsColor={otherLoginsColor}
+              />
+            </Box>
+          ) : (
+            <Box className="recover-password-component--email-sent">
+              <Icon icon="email-sent" size="300px" />
+
+              <Box height="50px" />
+
+              <Text type="h6">
+                Te hemos enviado un email de verificación
+                <br />
+                Revisa tu correo para continuar con el cambio de contraseña
+              </Text>
+            </Box>
+          )}
         </Box>
       </Box>
 
