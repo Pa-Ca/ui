@@ -1,7 +1,9 @@
 import React from "react";
+import classnames from 'classnames';
 import "./inputLongText.scss";
 import { TextareaAutosize } from '@mui/material';
 import { Box } from "../../atoms/box/Box";
+
 
 interface InputLongTextProps {
   /**
@@ -37,6 +39,16 @@ interface InputLongTextProps {
    * @default 800
    */
   maxLength?: number;
+
+  /**
+   * Class name
+   * */
+  className?: string;
+
+  /**
+   * Style
+   * */
+  style?: React.CSSProperties;
   
 
 
@@ -50,6 +62,8 @@ export const InputLongText = ({
   width = "100%",
   height = "100%",
   maxLength = 800,
+  className,
+  style,
   ...props
 }: InputLongTextProps) => {
   
@@ -61,12 +75,13 @@ return (
     <TextareaAutosize
       value={value}
       onChange={(event) => { setValue(event.target.value);}}
-      style={{ opacity: "0.75", lineHeight: "20px" }}
-      className="input-long-text"
+      style={{ opacity: "0.75", lineHeight: "20px" , ...style}}
+      className = {classnames('input-long-text', className)}
       hidden={true}
       minRows={minRows}
       maxRows={maxRows}
-      maxLength={maxLength}    />
+      maxLength={maxLength}  
+        />
 
   </Box>
 )
