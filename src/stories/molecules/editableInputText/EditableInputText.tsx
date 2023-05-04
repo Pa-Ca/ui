@@ -219,7 +219,7 @@ export const EditableInputText = ({
       select_enabled ? 
         (
           <Select
-            className = {classnames( "editable-input-text--select" , className)}
+            className = {classnames("editable-input-text--select", className)}
             value={selectedOption}
             options= {options}
             onChange={handleChange}
