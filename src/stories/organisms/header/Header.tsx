@@ -1,10 +1,10 @@
-import React , {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./header.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
-import useResizeObserver from '../../hooks/useResizeObserver';
+import useResizeObserver from "../../hooks/useResizeObserver";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 import { ProfilePicture } from "../../molecules/profilePicture/ProfilePicture";
 import { ProfileDropdown } from "../../molecules/profileDropdown/ProfileDropdown";
@@ -112,7 +112,7 @@ export const Header = ({
   const [view, setView] = useState(false);
 
   const dropdownObserver = useResizeObserver<HTMLDivElement>();
-  const pictureObserver = logged ? useResizeObserver<HTMLDivElement>() :null;
+  const pictureObserver = logged ? useResizeObserver<HTMLDivElement>() : null;
 
   // const selectOption = (option: UserDropdownElement) => {
   //   setView(false);
@@ -124,7 +124,8 @@ export const Header = ({
       if (
         dropdownObserver.ref.current &&
         !dropdownObserver.ref.current.contains(event.target as Node) &&
-        !!pictureObserver && pictureObserver.ref.current &&
+        !!pictureObserver &&
+        pictureObserver.ref.current &&
         !pictureObserver.ref.current.contains(event.target as Node)
       ) {
         setView(false);
@@ -163,8 +164,10 @@ export const Header = ({
             className="header--zone header--profile"
             onClick={onProfileClick}
           >
-            <Box className="header--profile-picture"
-            innerRef={pictureObserver!.ref}>
+            <Box
+              className="header--profile-picture"
+              innerRef={pictureObserver!.ref}
+            >
               <ProfilePicture
                 size="45px"
                 border="0px"
@@ -173,7 +176,7 @@ export const Header = ({
                 picture={picture}
                 userName={name}
                 dropdownOptions={dropdownOptions}
-                onClick={()=> setView((currentView)=>!currentView)}
+                onClick={() => setView((currentView) => !currentView)}
                 view={view}
               />
             </Box>
@@ -215,47 +218,48 @@ export const Header = ({
 
   return (
     <>
-    <Box
-      className="header--container"
-      style={{ width, height, backgroundColor }}
-    >
-      <Box className="header--subcontainer">
-        {/* Left section */}
-        <Box className="header--zone" onClick={onLeftSectionClick}>
-          <Icon icon="bell" size="20px" color={logoColor} />
-          <Text
-            type="h6"
-            weight="600"
-            className="header--text"
-            color={logoColor}
-          >
-            {leftSectionText}
-          </Text>
-        </Box>
+      <Box
+        className="header--container"
+        style={{ width, height, backgroundColor }}
+      >
+        <Box className="header--subcontainer">
+          {/* Left section */}
+          <Box className="header--zone" onClick={onLeftSectionClick}>
+            <Icon icon="bell" size="20px" color={logoColor} />
+            <Text
+              type="h6"
+              weight="600"
+              className="header--text"
+              color={logoColor}
+            >
+              {leftSectionText}
+            </Text>
+          </Box>
 
-        {/* PA-CA */}
-        <Box className="header--pa-ca header--zone" onClick={onPacaClick}>
-          <Icon icon="pa-ca" size="41px" color={logoColor} />
-        </Box>
+          {/* PA-CA */}
+          <Box className="header--pa-ca header--zone" onClick={onPacaClick}>
+            <Icon icon="pa-ca" size="41px" color={logoColor} />
+          </Box>
 
-        {/* Right section */}
-        <Box className="header--zone">{rightSectionComponent()}</Box>
+          {/* Right section */}
+          <Box className="header--zone">{rightSectionComponent()}</Box>
+        </Box>
       </Box>
-    </Box>
       <Box innerRef={dropdownObserver.ref}>
-        {logged && <Box className="header--dropdown">
-          <ProfileDropdown
-            size="45px"
-            border="0px"
-            icon={icon}
-            color={color}
-            picture={picture}
-            userName={name}
-            dropdownOptions={dropdownOptions}
-            view={view}
-          />
-        </Box>
-        }
+        {logged && (
+          <Box className="header--dropdown">
+            <ProfileDropdown
+              size="45px"
+              border="0px"
+              icon={icon}
+              color={color}
+              picture={picture}
+              userName={name}
+              dropdownOptions={dropdownOptions}
+              view={view}
+            />
+          </Box>
+        )}
       </Box>
     </>
   );

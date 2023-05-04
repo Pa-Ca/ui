@@ -13,6 +13,10 @@ export interface ResetPasswordComponentProps {
    */
   error?: boolean;
   /**
+   * Indicates if the password was changed successfully
+   */
+  completed?: boolean;
+  /**
    * Images to be displayed in the carousel
    */
   images: string[];
@@ -35,7 +39,7 @@ export interface ResetPasswordComponentProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
 }
 
 /**
@@ -43,6 +47,7 @@ export interface ResetPasswordComponentProps {
  */
 export const ResetPasswordComponent = ({
   error = false,
+  completed = false,
   images = [],
   onBackToLogin,
   onSubmit,
@@ -61,30 +66,46 @@ export const ResetPasswordComponent = ({
       >
         <Icon icon="pa-ca" size="70px" />
 
-        <Box className="reset-password-component--content">
-          <Box className="reset-password-component--back-to-login" onClick={onBackToLogin}>
+        <Box className="reset-password-component--content" style={{ paddingRight: completed ? "0" : "100px" }}>
+          <Box
+            className="reset-password-component--back-to-login"
+            onClick={onBackToLogin}
+          >
             <Icon icon="left" size="18px" />
             <Box width="5px" />
-            <Text weight="400">
-              Iniciar sesión
-            </Text>
-          </Box>
-          <Box className="reset-password-component--title">
-            <Text weight="700" type="h2">
-              Cambiar contraseña
-            </Text>
-          </Box>
-          <Box className="reset-password-component--subtitle">
-            <Text color="#4D594D" weight="400">
-            </Text>
+            <Text weight="400">Iniciar sesión</Text>
           </Box>
 
-          <ResetPasswordForm
-            error={error}
-            onSubmit={onSubmit}
-            color={color}
-            secondaryColor={secondaryColor}
-          />
+          {!completed ? (
+            <Box className="reset-password-component--form">
+              <Box className="reset-password-component--title">
+                <Text weight="700" type="h2">
+                  Cambiar contraseña
+                </Text>
+              </Box>
+              <Box className="reset-password-component--subtitle">
+                <Text color="#4D594D" weight="400"></Text>
+              </Box>
+
+              <ResetPasswordForm
+                error={error}
+                onSubmit={onSubmit}
+                color={color}
+                secondaryColor={secondaryColor}
+              />
+            </Box>
+          ) : (
+            <Box className="reset-password-component--password-changed">
+              <Icon icon="check-outline" size="300px" />
+
+              <Box height="50px" />
+
+              <Text type="h6">
+                Tu contraseña se ha restablecido <br />
+                Vuelve a Iniciar Sesión para poder acceder a tu cuenta
+              </Text>
+            </Box>
+          )}
         </Box>
       </Box>
 
