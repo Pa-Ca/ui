@@ -5,7 +5,7 @@ import { Text } from "../../atoms/text/Text";
 import { Editable } from "../editable/Editable";
 import classnames from "classnames";
 import "./editableInputText.scss";
-
+import { validateEmail, validatePhoneNumber, validateUrl } from "../../utils/stringValidation";
 interface OptionType {
   label: string;
   value: string;
@@ -28,50 +28,59 @@ interface EditableInputTextProps {
    * Component color
    * */
   color?: string;
-
   /**
    * Value of the input
    * */
   currentValue?: string;
-
-  /**
-   * Current select value use only if input type is select
-   */
-  currentSelectValue?: OptionType;
-
   /**
    * Idicates if the field is editable
    * */
   editable?: boolean;
-
   /**
    * Input type
    * */
-  type?: "text" | "email" | "number" | "positiveNumber" | "positiveInteger" | "phoneNumber" | "select";
-
+  type?: "text" | "email" | "number" | "positiveNumber" | "positiveInteger" | "phoneNumber" | "select" | "url";
   /**
    * Indicates if the edit icons are shown or if false if instead of icons buttons are shown
    * */
   useEditIcons?: boolean;
 
   /**
+   * Options for the select type
+   * */
+  options?: OptionType[];
+  
+  /**
    * Function to save the value
    * */
   saveValueFunction: (value: string) => void;
-
-
-
   /*
     * Class name for the text
-
     */
   className?: string;
+
+  /*
+    * Class name for the container
+
+      */
+  containerClassName?: string;
 
   /*
     * Style for the text
 
       */
   style?: React.CSSProperties;
+
+  /*
+    * Hide text after editing
+  */
+  hideTextAfterEditing?: boolean;
+
+  /*
+    * Default text to show when the value is empty or the hideTextAfterEditing is true
+  */
+  defaultText?: string;
+
 
 }
 
@@ -82,17 +91,34 @@ export const EditableInputText = ({
   color,
   currentValue,
   saveValueFunction,
-  currentSelectValue,
   type,
   editable = true,
   useEditIcons = false,
   className,
+  containerClassName,
   style,
-
+  options,
+  hideTextAfterEditing = false,
+  defaultText = "Click to edit",
   ...props
 }: EditableInputTextProps) => {
 
+
+
   const select_enabled = useMemo(() => type === "select", [type]);
+
+  const hideText = useMemo(() => hideTextAfterEditing , [hideTextAfterEditing]);
+
+
+  const optionsMap = useMemo(() => {
+    const map = new Map<string, string>();
+    if (options) {
+      options.forEach((option) => {
+        map.set(option.value, option.label);
+      });
+    }
+    return map;
+  }, [options]);
 
   const valueRef = useRef<HTMLInputElement>(null);
 
@@ -134,25 +160,15 @@ export const EditableInputText = ({
     setValue(event.target.value);
   };
 
-
-
-  function validateEmail(email: string | any) {
-    const regex = /^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}){1,}$/;
-    return regex.test(email);
-  }
-
-  function validatePhoneNumber(phoneNumber: string | any) {
-    const regex = /^(\+?\d{1,3}[- ]?)?\d{10}$/;
-    return regex.test(phoneNumber);
-  }
-
-
   function validateInput(input: string | any) {
     if (type === "email") {
       return validateEmail(input);
     } else if (type === "phoneNumber") {
       return validatePhoneNumber(input);
-    } else {
+    } else if (type === "url") {
+      return validateUrl(input);
+    }
+    else {
       return true;
     }
   }
@@ -175,52 +191,38 @@ export const EditableInputText = ({
       setValue("");
       return;
     }
-    // We pass the value to the parent component (to backend)
-    if (select_enabled) {
-      saveValueFunction(selectedOption?.value || "");
-    } else 
-    {
-      saveValueFunction(value)
-    }
+    saveValueFunction(value)
   }
 
   const onCancelClick = () => {
     // We first disable the edit mode
     setEditValue(false);
     // We set the value to the current value (the unedited value)
-    if (select_enabled) {
-      setSelectedOption(currentSelectValue || null);
-    } else {
     setValue(currentValue);
-    }
   }
-
-  const [selectedOption, setSelectedOption] = useState<OptionType | null>(currentSelectValue || null);
-
-  const options: OptionType[] = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
 
   function handleChange(selectedOption: SingleValue<OptionType>, 
                         actionMeta    : ActionMeta<OptionType>) {
     if (selectedOption === null) {
-      setSelectedOption(null);
+      setValue("")
     } else {
-      setSelectedOption(selectedOption as OptionType);
+      setValue(selectedOption.value);
     }
   }
 
-
-  return (<Box className= {classnames("editable-input-text--container", className)}  style={{width: width, height: height,color: color,}}>
+  return (<Box className= {classnames("editable-input-text--container", className, containerClassName)}  style={{width: width, height: height,color: color,}}>
 
     {editValue ?
       select_enabled ? 
         (
           <Select
             className = {classnames("editable-input-text--select", className)}
-            value={selectedOption}
+            value={
+              {
+                value : value || "",
+                label : optionsMap.get(value || "") || ""
+              }
+            }
             options= {options}
             onChange={handleChange}
             styles={
@@ -246,7 +248,6 @@ export const EditableInputText = ({
           />
         ) 
       :
-
       (<input
         type="text"
         ref={valueRef}
@@ -256,6 +257,14 @@ export const EditableInputText = ({
         style={{  ...style}}        
       />
       ) : (
+        hideText ? (<>
+          <Text className={classnames("editable-input-text--text",className)} 
+                type = "h5"  
+                weight="600"
+                style={{...style }}  >
+              {defaultText} 
+          </Text>
+        </>): 
         <>
           <Text className={classnames("editable-input-text--text",className)} 
                 type = "h5"  
@@ -263,7 +272,7 @@ export const EditableInputText = ({
                 style={{...style }}  >
             {
               select_enabled ?
-                (selectedOption?.label)
+                (optionsMap.get(value || "") || "")
                 :
                 (value)
             }
