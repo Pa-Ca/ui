@@ -90,6 +90,20 @@ interface ReserveDetailsProps {
    * Show invite friends
    */
   showInviteFriends?: boolean;
+
+  /**
+   * Show error message in reservation form
+   */
+  dateError  : boolean;
+  hourInError  : boolean;
+  personsError  : boolean;
+
+  /**
+   * Text for error message in reservation form
+   */
+  dateErrorMessage : string;
+  hourInErrorMessage : string;
+  personsErrorMessage : string;
 }
 
 /**
@@ -98,14 +112,20 @@ interface ReserveDetailsProps {
 export const ReserveDetails = ({
   date,
   setDate,
+  dateError = false,
+  dateErrorMessage,
   hourIn,
   setHourIn,
+  hourInError = false,
+  hourInErrorMessage,
   validHoursIn,
   hourOut,
   setHourOut,
   validHoursOut,
   persons,
   setPersons,
+  personsError = false,
+  personsErrorMessage,
   occasion,
   setOccasion,
   petition,
@@ -142,15 +162,35 @@ export const ReserveDetails = ({
       {/* Inputs 1 */}
       <Box className='reserve-details--input-container'>
         <Box width='100%' className='reserve-details--input-date'>
-          <InputDate date={date} setDate={setDate} minDate={new Date()}/>
+          <InputDate 
+            date={date}
+            setDate={setDate}
+            minDate={new Date()}
+            error={dateError}
+            errorMessage={dateErrorMessage}
+          />
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>
-          <InputText value={persons} setValue={setPersons} type='number' label='Personas'/>
+          <InputText
+            value={persons}
+            setValue={setPersons}
+            type='number'
+            label='Personas'
+            error={personsError}
+            errorMessage={personsErrorMessage}
+          />
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>
-          <InputSelect option={hourIn} setOption={setHourIn} options={validHoursIn} label='Llegada'/>
+          <InputSelect 
+            option={hourIn}
+            setOption={setHourIn}
+            options={validHoursIn}
+            label='Llegada'
+            error={hourInError}
+            errorMessage={hourInErrorMessage}
+          />
         </Box>
 
         <Box width='100%' className='reserve-details--input1'>

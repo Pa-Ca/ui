@@ -8,6 +8,7 @@ import { Icon } from "../../atoms/icon/Icon";
 import { useDraggable } from "react-use-draggable-scroll";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
+import styles from "../../assets/scss/variables.module.scss";
 
 interface InputSelectProps {
   /**
@@ -27,6 +28,14 @@ interface InputSelectProps {
    */
   label?: string;
   /**
+   * Indicates whether the input should display an error message
+   */
+  error?: boolean;
+  /**
+   * Message displayed when there is an error
+   */
+  errorMessage?: string;
+  /**
    * Input width
    */
   width?: string;
@@ -44,6 +53,8 @@ export const InputSelect = ({
   setOption = () => {},
   options = [],
   label = "Text select",
+  error = false,
+  errorMessage = "",
   width,
   height,
   ...props
@@ -99,85 +110,110 @@ export const InputSelect = ({
   }, [observer.ref]);
 
   return (
-    <Box
-      className="input-text--input-container"
-      style={{ width, height }}
-      innerRef={observer.ref}
-      backgroundColor="white"
-    >
-      <div className="input-text--content">
-        <button
-          className="text text--h6 input-text--input"
-          onClick={selectDropdown}
-        >
-          {option.name}
-        </button>
-
-        <div className="input-text--label">
-          {label.length > 0 && (
-            <Text type="h6" weight="400">
-              &nbsp;{label}&nbsp;
-            </Text>
-          )}
-        </div>
-
-        <div
-          className={
-            "input-select--menu input-select--menu-" + (view ? "in" : "out")
-          }
-          style={{
-            width: `${observer.width}px`,
-            maxHeight: view ? "300px" : "0px",
-            opacity: view ? "1" : "0",
-          }}
-          {...events}
-          ref={ref}
-        >
-          {options.map((option, index) => {
-            // El background de los impares sera distinto de los pares
-            // para diferenciarlos
-            const backgroundColor = index % 2 === 0 ? "#F1F1F1" : "white";
-            // La primera y ultima opcion deben tener bordes en la zona
-            // superior e inferior respectivamente para adaptarse al
-            // menu
-            const borderTopLeftRadius = index === 0 ? 4 : 0;
-            const borderTopRightRadius = borderTopLeftRadius;
-            const borderBottomLeftRadius = index === options.length - 1 ? 4 : 0;
-            const borderBottomRightRadius = borderBottomLeftRadius;
-            // Estilo de los bordes de la opcion
-            const optionStyle = {
-              borderTopLeftRadius,
-              borderTopRightRadius,
-              borderBottomLeftRadius,
-              borderBottomRightRadius,
-              height: `${observer.height}px`,
-              width: `${observer.width}px`,
-            };
-
-            return (
-              <div
-                style={{ ...optionStyle }}
-                key={`input-select--option-${option.name}`}
-              >
-                <button
-                  className="input-select--option-button"
-                  style={{ backgroundColor, ...optionStyle }}
-                  onClick={() => selectOption(option)}
-                >
-                  <Text type="h6">&nbsp;{option.name}&nbsp;</Text>
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <button
-        onClick={selectDropdown}
-        className="input-select--button"
+    <div>
+      <Box
+        className="input-text--input-container"
+        style={{
+          width,
+          height,
+          borderColor: error ? styles.errorColor : undefined,
+          borderWidth: error ? "2.5px" : undefined,
+        }}
+        innerRef={observer.ref}
+        backgroundColor="white"
       >
-        {iconJSX}
-      </button>
-    </Box>
+        <div className="input-text--content">
+          <button
+            className="text text--h6 input-text--input"
+            onClick={selectDropdown}
+          >
+            {option.name}
+          </button>
+
+          <div className="input-text--label">
+            {label.length > 0 && (
+              <Text type="h6" weight="400">
+                &nbsp;{label}&nbsp;
+              </Text>
+            )}
+          </div>
+
+          <div
+            className={
+              "input-select--menu input-select--menu-" + (view ? "in" : "out")
+            }
+            style={{
+              width: `${observer.width}px`,
+              maxHeight: view ? "300px" : "0px",
+              opacity: view ? "1" : "0",
+            }}
+            {...events}
+            ref={ref}
+          >
+            {options.map((option, index) => {
+              // El background de los impares sera distinto de los pares
+              // para diferenciarlos
+              const backgroundColor = index % 2 === 0 ? "#F1F1F1" : "white";
+              // La primera y ultima opcion deben tener bordes en la zona
+              // superior e inferior respectivamente para adaptarse al
+              // menu
+              const borderTopLeftRadius = index === 0 ? 4 : 0;
+              const borderTopRightRadius = borderTopLeftRadius;
+              const borderBottomLeftRadius = index === options.length - 1 ? 4 : 0;
+              const borderBottomRightRadius = borderBottomLeftRadius;
+              // Estilo de los bordes de la opcion
+              const optionStyle = {
+                borderTopLeftRadius,
+                borderTopRightRadius,
+                borderBottomLeftRadius,
+                borderBottomRightRadius,
+                height: `${observer.height}px`,
+                width: `${observer.width}px`,
+              };
+
+              return (
+                <div
+                  style={{ ...optionStyle }}
+                  key={`input-select--option-${option.name}`}
+                >
+                  <button
+                    className="input-select--option-button"
+                    style={{ backgroundColor, ...optionStyle }}
+                    onClick={() => selectOption(option)}
+                  >
+                    <Text type="h6">&nbsp;{option.name}&nbsp;</Text>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <button
+          onClick={selectDropdown}
+          className="input-select--button"
+        >
+          {iconJSX}
+        </button>
+      </Box>
+      <div
+        className={
+          "input-text--error-container " +
+          (error
+            ? "input-text--error-animation"
+            : "input-text--error-no-animation")
+        }
+      >
+        {error && (
+          <>
+            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.errorColor}>
+              {errorMessage}
+            </Text>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
