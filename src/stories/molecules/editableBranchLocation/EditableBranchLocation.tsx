@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./editableBranchLocation.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
@@ -58,43 +58,33 @@ export const EditableBranchLocation = ({
     language: "es"
   })
 
-  // const containerStyle = {
-  //   flex: "1",
-  //   display: "flex",
-  //   margin_top: "20px",
-  //   margin_bottom: "20px",
-  // }
 
-  // Use The foollowing regex to get the lat and lng from the google maps link
-  // Latitude:  ll=(-?[\d\.]*) 
-  // Longitude:  ll=[-?\d\.]*\,([-?\d\.]*) 
-  
-  let latitude  = googleMapsLink.match(/ll=(-?[\d\.]*)/);
-  let longitude = googleMapsLink.match(/ll=[-?\d\.]*\,([-?\d\.]*)/);
+  const latitude  = useMemo(() =>{
+    let lat = googleMapsLink.match(/ll=(-?[\d\.]*)/);
+    if (!lat) {
+      lat = googleMapsLink.match(/\@(-?[\d\.]*)/);
+    }
+    return lat ? parseFloat(lat[1]) : 0 ;
+  }, [googleMapsLink]);
 
-  // If the response is null, try the following regex
-  // Latitude: \@(-?[\d\.]*)
-  // Longitude:  \@[-?\d\.]*\,([-?\d\.]*)
-
-  if (!latitude || !longitude) {
-    latitude  = googleMapsLink.match(/\@(-?[\d\.]*)/);
-    longitude = googleMapsLink.match(/\@[-?\d\.]*\,([-?\d\.]*)/);
-  }
+  const longitude = useMemo(() => {
+    let long = googleMapsLink.match(/ll=[-?\d\.]*\,([-?\d\.]*)/);
+    if (!long) {
+      long = googleMapsLink.match(/\@[-?\d\.]*\,([-?\d\.]*)/);
+    } 
+    return long ? parseFloat(long[1]) : 0 ;
+    }, [googleMapsLink]);
 
 
-  // Convert the latitude and longitude to decimal format
-  const latDecimal = latitude  ? parseFloat(latitude[1]) : 0;
+  const  center = useMemo(() => {
+    return {
+    lat: latitude,
+    lng: longitude
+    }
+  }, [latitude, longitude]);
 
-  const lngDecimal = longitude ? parseFloat(longitude[1]) : 0;
-
-  let center = {
-    lat: latDecimal,
-    lng: lngDecimal
-  }
-
-  return (
+  return ( 
     <Box className={classnames("editable-branch-location--container" , className)}>
-
         {isLoaded ? (
         <GoogleMap
           options = {{
