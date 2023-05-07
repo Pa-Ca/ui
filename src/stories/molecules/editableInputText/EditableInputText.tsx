@@ -3,9 +3,11 @@ import Select, { ActionMeta, SingleValue } from 'react-select';
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Editable } from "../editable/Editable";
+import { Icon } from "../../atoms/icon/Icon";
 import classnames from "classnames";
 import "./editableInputText.scss";
 import { validateEmail, validatePhoneNumber, validateUrl } from "../../utils/stringValidation";
+import styles from "../../assets/scss/variables.module.scss";
 interface OptionType {
   label: string;
   value: string;
@@ -81,6 +83,11 @@ interface EditableInputTextProps {
   */
   defaultText?: string;
 
+  /*
+    * Error message to show when the value is not valid
+  */
+  errorMessage?: string;
+
 
 }
 
@@ -100,9 +107,10 @@ export const EditableInputText = ({
   options,
   hideTextAfterEditing = false,
   defaultText = "Click to edit",
+  errorMessage = "Valor inválido",
   ...props
 }: EditableInputTextProps) => {
-
+  
 
 
   const select_enabled = useMemo(() => type === "select", [type]);
@@ -124,8 +132,10 @@ export const EditableInputText = ({
 
   const [value, setValue] = useState(currentValue);
   const [editValue, setEditValue] = useState(false);
+  const [error, setError] = useState(false);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setError(false);
     // This part of the function is to restrict the input to the type specified type
     if (type === "positiveNumber") {
       // If the the input is a positive number we apply the following rules:
@@ -179,18 +189,19 @@ export const EditableInputText = ({
   }
 
   const onSaveClick = () => {
-    // We first disable the edit mode
-    setEditValue(false);
     // If the value is undefined, it means that the user has not changed the value
     if (value === undefined) {
       return;
     }
     // We validate the input
-    // If its not valid, we set the value to empty
+    // If its not valid, we show an error message and we do not save the value
     if (!validateInput(value)) {
-      setValue("");
+      setError(true);
       return;
     }
+    // We  disable the edit mode
+    setEditValue(false);
+    // Save the value
     saveValueFunction(value)
   }
 
@@ -210,8 +221,11 @@ export const EditableInputText = ({
     }
   }
 
-  return (<Box className= {classnames("editable-input-text--container", className, containerClassName)}  style={{width: width, height: height,color: color,}}>
-
+  return (
+  
+  
+  <Box className= {classnames("editable-input-text--container", className, containerClassName)}  style={{width: width, height: height,color: color,}}>
+    <Box className= {classnames("editable-input-text--input-container", className)}>
     {editValue ?
       select_enabled ? 
         (
@@ -254,7 +268,10 @@ export const EditableInputText = ({
         value={value}
         onChange={onChange}
         className={classnames("editable-input-text--input", className)} 
-        style={{  ...style}}        
+        style={{ 
+          borderColor: error ? styles.errorColor : undefined,
+          borderWidth: error ? "2.5px" : undefined, 
+          ...style}}        
       />
       ) : (
         hideText ? (<>
@@ -277,9 +294,10 @@ export const EditableInputText = ({
                 (value)
             }
           </Text>
+          
         </>
       )}
-
+      
     <Editable
       editable={editable}
       edit={editValue}
@@ -288,7 +306,27 @@ export const EditableInputText = ({
       onCancelClick={() => onCancelClick()}
       useIcons={useEditIcons}
     />
+  </Box>
+      <Box className={classnames("editable-intput-text--error-message", className, 
+        (error
+          ? "editable-input-text--animation"
+          : "editable-input-text--no-animation")
+      )}>
+        {
+          error && (
+            <>
+              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <div style={{ width: "10px" }} />
+              <Text type="h6" color={styles.errorColor}>
+                {errorMessage}
+              </Text>
+            </>
+          )
+        }
+      </Box>
 
+
+      
   </Box>
   )
 }

@@ -3,14 +3,35 @@
 
 .editable-input-text--container {
   display: flex;
+  flex-direction: column;
+
+}
+
+.editable-input-text--input-container{
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+.editable-input-text--input:focus {
+  outline: none;
+}
+
+
+
+.editable-intput-text--error-message{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  animation-name: shake;
+  animation-duration: 0.15s;
+  animation-iteration-count: 2;
 
 }
 
 .editable-input-text--select{
-
   font-family  : 'Montserrat';
   font-weight  : 600;
   font-size: 20px;
@@ -48,8 +69,6 @@
   
 }
 
-
-
 @keyframes shake {
   0% {
     transform: translateX(-3px);
@@ -61,3 +80,13 @@
     transform: translateX(-3px);
   }
 }
+
+.editable-input-text--animation {
+  animation-name: shake;
+}
+.editable-input-text--no-animation {
+  animation-name: none;
+}
+
+
+
