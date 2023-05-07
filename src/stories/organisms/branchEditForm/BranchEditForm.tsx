@@ -104,7 +104,7 @@ export const BranchEdit = ({
 }: BranchEditProps) => {
 
 
-
+  const [branchMapLinkCurrentVal, setBranchMapLinkCurrentVal] = useState(branchMapsLink);
 
   return (
     <Box className="branch-edit--container">
@@ -224,17 +224,17 @@ export const BranchEdit = ({
         <EditableInputText 
             width="100%"
             height="100%"
-            currentValue={branchMapsLink}
-            saveValueFunction={() => {}}
+            currentValue={branchMapLinkCurrentVal}
+            saveValueFunction={setBranchMapLinkCurrentVal}
             editable={true}
             hideTextAfterEditing={true}
-            type="url"
+            type="text"
             defaultText="Enlace de Google Maps"
             containerClassName="branch-edit--input-item"
           />
           <EditableBranchLocation
             apiKey={MapsApiKey}
-            googleMapsLink={branchMapsLink || ""}
+            googleMapsLink={branchMapLinkCurrentVal || ""}
             className="branch-edit--precise-location-map"
           />
       </Box>
