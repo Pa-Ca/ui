@@ -95,7 +95,11 @@ export const InputDate = ({
             />
 
           <div className="input-text--label">
-            <Text type="h6" weight="400">
+            <Text 
+              type="h6"
+              weight="400"
+              color={error ? styles.errorColor : undefined}
+            >
               &nbsp;{label}&nbsp;
             </Text>
           </div>
