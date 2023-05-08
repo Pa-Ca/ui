@@ -97,7 +97,7 @@ export const CategoryCard = ({
         >
           <Button
             backgroundColor={buttonColor}
-            primary={true}
+            primary
             size="large"
             onClick={onClick}
           >

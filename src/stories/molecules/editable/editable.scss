@@ -34,6 +34,7 @@
   overflow: hidden;
   margin-left: 20px;
   width: 220px;
+  transition: width $animation-duration ease-in-out;
 }
 .editable--edit-buttons {
   display: flex;

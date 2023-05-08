@@ -1,0 +1,15 @@
+.modal--container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.modal--content {
+  display: flex;
+  padding: 16px;
+  border-radius: 16px;
+  flex-direction: column;
+  background-color: white;
+}
