@@ -24,10 +24,6 @@ interface ProfileDropdownProps {
    */
   border?: string;
   /**
-   * Icon type
-   */
-  icon?: "pencil" | "down" | "up";
-  /**
    * Main color
    */
   color?: string;
@@ -51,7 +47,6 @@ interface ProfileDropdownProps {
 export const ProfileDropdown = ({
   size,
   border,
-  icon,
   color,
   picture,
   userName,
@@ -60,15 +55,6 @@ export const ProfileDropdown = ({
   ...props
 }: ProfileDropdownProps) => {
   const observer = useResizeObserver<HTMLDivElement>();
-
-  const iconProportion = useMemo(() => {
-    switch (icon) {
-      case "pencil":
-        return 0.7;
-      case "down":
-        return 1;
-    }
-  }, [icon]);
 
   return (
     <Box

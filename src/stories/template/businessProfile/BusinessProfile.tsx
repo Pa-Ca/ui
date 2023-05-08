@@ -195,7 +195,7 @@ export const BusinessProfile = ({
             width={`${3 * tabObserver.width}px`}
             className="business-profile--content"
           >
-            <Box width={`${tabObserver.width - 40}px`}>
+            <Box width={`${tabObserver.width - 10}px`}>
               <BusinessAccountInfo
                 currentName={name}
                 currentEmail={email}
@@ -208,16 +208,15 @@ export const BusinessProfile = ({
                 color={color}
               />
             </Box>
-            <Box width="40px" />
+            <Box width="12px" />
 
-            <Box width={`${tabObserver.width - 40}px`}>
+            <Box width={`${tabObserver.width - 10}px`}>
               <Text type="h3" weight="700">
                 {branchName}
               </Text>
               <Box height="16px" />
-              
+
               <BranchEditForm
-                width="100%"
                 branchName={branchName}
                 branchDescription={branchDescription}
                 branchLocation={branchLocation}
@@ -232,24 +231,13 @@ export const BusinessProfile = ({
                 MapsApiKey={MapsApiKey}
               />
             </Box>
-            <Box width="40px" />
+            <Box width="12px" />
 
-            <Box width={`${tabObserver.width - 40}px`}>
-              <BranchEditForm
-                width="100%"
-                branchName={branchName}
-                branchDescription={branchDescription}
-                branchLocation={branchLocation}
-                branchPhone={branchPhone}
-                branchCapacity={branchCapacity}
-                branchAverageReserveTime={branchAverageReserveTime}
-                branchPrice={branchPrice}
-                branchMapsLink={branchMapsLink}
-                branchType={branchType}
-                branchTypeOptions={branchTypeOptions}
-                branchLocationOptions={branchLocationOptions}
-                MapsApiKey={MapsApiKey}
-              />
+            <Box width={`${tabObserver.width - 10}px`}>
+              <Text type="h3" weight="700">
+                Métodos de pago
+              </Text>
+              <Box height="16px" />
             </Box>
           </Box>
         </Box>

@@ -55,7 +55,6 @@ export const ProfilePicture = ({
   picture,
   userName,
   dropdownOptions = [],
-  view,
   onClick,
   ...props
 }: ProfilePictureProps) => {
@@ -89,7 +88,7 @@ export const ProfilePicture = ({
           <div className="input-select--button">
             <div className="dropdown-input-select--icon">
               <Icon
-                icon={view ? "up" : "down"}
+                icon={icon}
                 size={`${observer.width * iconProportion!}px`}
               />
             </div>
