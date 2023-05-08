@@ -6,71 +6,77 @@ import { InputText } from "../inputText/InputText";
 
 export interface ClientInfoFormProps {
   /**
+   * Client first name
+   */
+  firstName?: string;
+  /**
+   * Function that changes the first name
+   */
+  setFirstName?: Function;
+  /**
    * Indicates if there is an error with the client first name
    */
   firstNameError?: boolean;
+  /**
+   * Message displayed if there is an error with the client first name
+   */
+  firstNameErrorMessage?: string;
+
+  /**
+   * Client last name
+   */
+  lastName?: string;
+  /**
+   * Function that changes the last name
+   */
+  setLastName?: Function;
   /**
    * Indicates if there is an error with the client last name
    */
   lastNameError?: boolean;
   /**
-   * Indicates if there is an error with the email
-   */
-  emailError?: boolean;
-  /**
-   * Indicates if there is an error with the client phone number
-   */
-  phoneError?: boolean;
-  /**
-   * Message displayed if there is an error with the client first name
-   */
-  firstNameErrorMessage?: string;
-  /**
    * Message displayed if there is an error with the client last name
    */
   lastNameErrorMessage?: string;
+
   /**
-   * Message displayed if there is an error with the email
+   * Client email
+   */
+  email?: string;
+  /**
+   * Function that changes the email
+   */
+  setEmail?: Function;
+  /**
+   * Indicates if there is an error with the client email
+   */
+  emailError?: boolean;
+  /**
+   * Message displayed if there is an error with the client email
    */
   emailErrorMessage?: string;
+
   /**
-   * Message displayed if there is an error with the client phone number
+   * Client phone
+   */
+  phone?: string;
+  /**
+   * Function that changes the phone
+   */
+  setPhone?: Function;
+  /**
+   * Indicates if there is an error with the client phone
+   */
+  phoneError?: boolean;
+  /**
+   * Message displayed if there is an error with the client phone
    */
   phoneErrorMessage?: string;
-  /**
-   * Indicate if the client data is valid
-   */
-  validateClientData?: (
-    name: string,
-    surname: string,
-    email: string,
-    phone: string
-  ) => boolean;
-  /**
-   * On client sign up click
-   */
-  onClientSignUp?: (
-    name: string,
-    surname: string,
-    email: string,
-    phone: string
-  ) => void;
+
   /**
    * Form title
    */
   formTitle?: string;
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
   /**
    * Component width
    */
@@ -85,29 +91,31 @@ export interface ClientInfoFormProps {
  * Primary UI component for user interaction
  */
 export const ClientInfoForm = ({
+  firstName,
+  setFirstName,
   firstNameError = false,
-  lastNameError = false,
-  emailError = false,
-  phoneError = false,
   firstNameErrorMessage = "",
+
+  lastName,
+  setLastName,
+  lastNameError = false,
   lastNameErrorMessage = "",
+
+  email,
+  setEmail,
+  emailError = false,
   emailErrorMessage = "",
+
+  phone,
+  setPhone,
+  phoneError = false,
   phoneErrorMessage = "",
+
   formTitle = "Datos Del Cliente",
-  validateClientData = () => true,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   width,
   height,
   ...props
 }: ClientInfoFormProps) => {
-  
-  // Client data
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
 
   return (
     <Box className="client-info-form--container" style={{ width, height }}>
