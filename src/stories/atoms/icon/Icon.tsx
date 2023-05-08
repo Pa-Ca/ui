@@ -29,6 +29,7 @@ import plusCircle24 from "@iconify/icons-octicon/plus-circle-24";
 import checkBox from "@iconify/icons-material-symbols/check-box";
 import spaRounded from "@iconify/icons-material-symbols/spa-rounded";
 import instagramLogoFill from "@iconify/icons-ph/instagram-logo-fill";
+import cloudUpload from "@iconify/icons-material-symbols/cloud-upload";
 import lensOutline from "@iconify/icons-material-symbols/lens-outline";
 import roomService from "@iconify/icons-material-symbols/room-service";
 import checkCircle from "@iconify/icons-material-symbols/check-circle";
@@ -95,7 +96,8 @@ export type IconType =
   | "parking"
   | "alert"
   | "logout"
-  | "email-sent";
+  | "email-sent"
+  | "upload";
 
 interface IconProps {
   /**
@@ -484,6 +486,14 @@ export const Icon = ({
       return (
         <Iconify
           icon={emailCheckOutline}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "upload":
+      return (
+        <Iconify
+          icon={cloudUpload}
           style={{ fontSize: size, ...style }}
           color={color}
         />

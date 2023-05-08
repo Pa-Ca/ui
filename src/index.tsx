@@ -29,6 +29,7 @@ export * from './stories/molecules/categoryCard/CategoryCard';
 export * from './stories/molecules/inputLongText/InputLongText';
 export * from './stories/molecules/promotionCard/PromotionCard';
 export * from './stories/molecules/imagesCollage/imagesCollage';
+export * from './stories/molecules/businessHeader/BusinessHeader';
 export * from './stories/molecules/branchLocation/BranchLocation';
 export * from './stories/molecules/fastReserveBox/FastReserveBox';
 export * from './stories/molecules/imagesCarousel/ImagesCarousel';
@@ -65,6 +66,7 @@ export * from './stories/organisms/recoverPasswordComponent/RecoverPasswordCompo
 
 // TEMPLATES
 export * from './stories/template/home/Home';
+export * from './stories/template/terms/Terms';
 export * from './stories/template/basicPage/BasicPage';
 export * from './stories/template/branchListing/BranchListing';
 export * from './stories/template/branchProfile/BranchProfile';
