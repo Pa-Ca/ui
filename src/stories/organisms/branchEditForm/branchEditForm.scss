@@ -1,4 +1,4 @@
-.branch-edit--container {
+.branch-edit-form--container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,12 +9,11 @@
   padding-bottom: 32px;
   padding-left: 24px;
   padding-right: 24px;
-  width: 1232px;
   height: 1157px;
 
 }
 
-.branch-edit--two-column-row {
+.branch-edit-form--two-column-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   //gap: 24px;
@@ -22,18 +21,18 @@
   direction: row;
 }
 
-.branch-edit--name-input{
+.branch-edit-form--name-input{
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 
-.branch-edit--input-label{
+.branch-edit-form--input-label{
   opacity: 0.75;
 }
 
-.branch-edit--description-container{
+.branch-edit-form--description-container{
   width: 100%;
   height: 220px;
   display: flex;
@@ -43,7 +42,7 @@
   padding: 10px;
 }
 
-.branch-edit--precise-location-container{
+.branch-edit-form--precise-location-container{
   width: 100%;
   height: 220px;
   display: flex;
@@ -53,13 +52,13 @@
   padding: 10px;
 }
 
-.branch-edit--precise-location-map{
-  width: 1012px;
+.branch-edit-form--precise-location-map{
+  width: 100%;
   height: 377px;
   border-radius: 16px;
   display: flex;
 }
 
-.branch-edit--input-item{
+.branch-edit-form--input-item{
   padding-top: 8px;
 }
