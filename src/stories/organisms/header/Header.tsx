@@ -19,9 +19,9 @@ export interface HeaderProps {
    */
   name?: string;
   /**
-   * Elements to show in dropdown
+   * Logout function
    */
-  dropdownOptions?: UserDropdownElement[];
+  onLogout?: () => void;
   /**
    * Dark mode
    */
@@ -82,7 +82,7 @@ export interface HeaderProps {
 export const Header = ({
   picture,
   name,
-  dropdownOptions,
+  onLogout = () => {},
   dark = false,
   userRole,
   logged,
@@ -108,6 +108,13 @@ export const Header = ({
 
   const dropdownObserver = useResizeObserver<HTMLDivElement>();
   const pictureObserver = logged ? useResizeObserver<HTMLDivElement>() : null;
+
+  const dropdownOptions: UserDropdownElement[] = [
+    {
+      name: 'Logout',
+      func: onLogout,
+      icon: "logout",
+    },]
 
   // const selectOption = (option: UserDropdownElement) => {
   //   setView(false);

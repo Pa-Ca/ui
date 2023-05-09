@@ -59,7 +59,7 @@ interface ReservationCheckOutBeta {
    * Setter for reserve form variables
    */
   setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
-  setHourIn: Function;
+  setHourIn : Function;
   setHourOut : Function;
   setPersons :  Function;
   setOccasion :  Function;
