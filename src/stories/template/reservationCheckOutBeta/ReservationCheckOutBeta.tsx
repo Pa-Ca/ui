@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import "./reservationCheckOutBeta.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
@@ -30,6 +30,42 @@ interface ReservationCheckOutBeta {
   validHoursOut: OptionObject[];
 
   /**
+   * Client form variables
+   */
+  firstName : string;
+  lastName : string;
+  phone : string;
+  email : string;
+
+  /**
+   * Reserve form variables
+   */
+  date : Date;
+  hourIn : OptionObject;
+  hourOut : OptionObject;
+  persons : string;
+  occasion : string;
+  petition : string;
+
+  /**
+   * Setter for client form variables
+   */
+  setFirstName: Function;
+  setLastName: Function;
+  setEmail : Function;
+  setPhone :  Function;
+
+  /**
+   * Setter for reserve form variables
+   */
+  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
+  setHourIn: Function;
+  setHourOut : Function;
+  setPersons :  Function;
+  setOccasion :  Function;
+  setPetition :  Function;
+
+  /**
    * Show error message in client form
    */
   firstNameError  : boolean;
@@ -37,6 +73,9 @@ interface ReservationCheckOutBeta {
   emailError  : boolean;
   phoneError  : boolean;
 
+  /**
+   * Show error message in reservation form
+   */
   dateError  : boolean;
   hourInError  : boolean;
   personsError  : boolean;
@@ -49,9 +88,13 @@ interface ReservationCheckOutBeta {
   emailErrorMessage : string;
   phoneErrorMessage : string;
 
+  /**
+   * Show error message in reservation form
+   */
   dateErrorMessage : string;
   hourInErrorMessage : string;
   personsErrorMessage : string;
+
   /**
    * Get Branch data
    */
@@ -95,39 +138,52 @@ export const ReservationCheckOutBeta = ({
   submitButtonColor,
   validHoursIn,
   validHoursOut,
+  
+  firstName,
+  setFirstName,
   firstNameError,
   firstNameErrorMessage,
+
+  lastName,
+  setLastName,
   lastNameError,
   lastNameErrorMessage,
+
+  email,
+  setEmail,
   emailError,
   emailErrorMessage,
+
+  phone,
+  setPhone,
   phoneError,
   phoneErrorMessage,
 
+  date,
+  setDate,
   dateError,
   dateErrorMessage,
+
+  hourIn,
+  setHourIn,
   hourInError,
   hourInErrorMessage,
+
+  hourOut,
+  setHourOut,
+  persons,
+  setPersons,
   personsError,
   personsErrorMessage,
 
+  occasion,
+  setOccasion,
+  petition,
+  setPetition,
+  
   ...props
 }: ReservationCheckOutBeta) => {
   const branch = getBranchData();
-
-  // Reservation data
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const [hourIn, setHourIn] = useState<OptionObject | undefined>(undefined);
-  const [hourOut, setHourOut] = useState<OptionObject | undefined>(undefined);
-  const [persons, setPersons] = useState<string | undefined>(undefined);
-  const [occasion, setOccasion] = useState<string | undefined>(undefined);
-  const [petition, setPetition] = useState<string | undefined>(undefined);
-
-  // Client data
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
 
   return (
     <BasicPage headerArgs={headerArgs}>
