@@ -6,7 +6,11 @@ import { Editable } from "../editable/Editable";
 import { Icon } from "../../atoms/icon/Icon";
 import classnames from "classnames";
 import "./editableInputText.scss";
-import { validateEmail, validatePhoneNumber, validateUrl } from "../../utils/stringValidation";
+import {
+  validateEmail,
+  validatePhoneNumber,
+  validateUrl,
+} from "../../utils/stringValidation";
 import styles from "../../assets/scss/variables.module.scss";
 interface OptionType {
   label: string;
@@ -41,7 +45,15 @@ interface EditableInputTextProps {
   /**
    * Input type
    * */
-  type?: "text" | "email" | "number" | "positiveNumber" | "positiveInteger" | "phoneNumber" | "select" | "url";
+  type?:
+    | "text"
+    | "email"
+    | "number"
+    | "positiveNumber"
+    | "positiveInteger"
+    | "phoneNumber"
+    | "select"
+    | "url";
   /**
    * Indicates if the edit icons are shown or if false if instead of icons buttons are shown
    * */
@@ -50,14 +62,14 @@ interface EditableInputTextProps {
    * Options for the select type
    * */
   options?: OptionType[];
-  
+
   /**
    * Function to save the value
    * */
   saveValueFunction: (value: string) => void;
   /*
-    * Class name for the text
-    */
+   * Class name for the text
+   */
   className?: string;
 
   /*
@@ -73,21 +85,19 @@ interface EditableInputTextProps {
   style?: React.CSSProperties;
 
   /*
-    * Hide text after editing
-  */
+   * Hide text after editing
+   */
   hideTextAfterEditing?: boolean;
 
   /*
-    * Default text to show when the value is empty or the hideTextAfterEditing is true
-  */
+   * Default text to show when the value is empty or the hideTextAfterEditing is true
+   */
   defaultText?: string;
 
   /*
-    * Error message to show when the value is not valid
-  */
+   * Error message to show when the value is not valid
+   */
   errorMessage?: string;
-
-
 }
 
 export const EditableInputText = ({
@@ -108,13 +118,9 @@ export const EditableInputText = ({
   errorMessage = "Valor inválido",
   ...props
 }: EditableInputTextProps) => {
-  
-
-
   const select_enabled = useMemo(() => type === "select", [type]);
 
-  const hideText = useMemo(() => hideTextAfterEditing , [hideTextAfterEditing]);
-
+  const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
 
   const optionsMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -179,8 +185,7 @@ export const EditableInputText = ({
       return validatePhoneNumber(input);
     } else if (type === "url") {
       return validateUrl(input);
-    }
-    else {
+    } else {
       return true;
     }
   }
@@ -204,129 +209,137 @@ export const EditableInputText = ({
     // We  disable the edit mode
     setEditValue(false);
     // Save the value
-    saveValueFunction(value)
-  }
+    saveValueFunction(value);
+  };
 
   const onCancelClick = () => {
     // We first disable the edit mode
     setEditValue(false);
     // We set the value to the current value (the unedited value)
     setValue(currentValue);
-  }
+  };
 
-  function handleChange(selectedOption: SingleValue<OptionType>, 
-                        actionMeta    : ActionMeta<OptionType>) {
+  function handleChange(
+    selectedOption: SingleValue<OptionType>,
+    actionMeta: ActionMeta<OptionType>
+  ) {
     if (selectedOption === null) {
-      setValue("")
+      setValue("");
     } else {
       setValue(selectedOption.value);
     }
   }
 
   return (
-  
-  
-  <Box className= {classnames("editable-input-text--container", className, containerClassName)}  style={{width: width, height: height,color: color,}}>
-    <Box className= {classnames("editable-input-text--input-container", className)}>
-    {editValue ?
-      select_enabled ? 
-        (
-          <Select
-            className = {classnames("editable-input-text--select", className)}
-            value={
-              {
-                value : value || "",
-                label : optionsMap.get(value || "") || ""
-              }
-            }
-            options= {options}
-            onChange={handleChange}
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                boxShadow: "none",
-                "&:hover": {
-                  borderColor: "grey",
-                },
-                ...style,
-              }),
-              option: (baseStyles) => ({
-                ...baseStyles,
-                ...style,
-              }),
-              menu: (baseStyles) => ({
-                ...baseStyles,
-                ...style,
-              }),
-            }}
-          />
-        ) 
-      :
-      (<input
-        type="text"
-        ref={valueRef}
-        value={value}
-        onChange={onChange}
-        className={classnames("editable-input-text--input", className)} 
-        style={{ 
-          borderColor: error ? styles.errorColor : undefined,
-          borderWidth: error ? "2.5px" : undefined, 
-          ...style}}        
-      />
-      ) : (
-        hideText ? (<>
-          <Text className={classnames("editable-input-text--text",className)} 
-                type = "h5"  
-                weight="600"
-                style={{...style }}  >
-              {defaultText} 
-          </Text>
-        </>): 
-        <>
-          <Text className={classnames("editable-input-text--text",className)} 
-                type = "h5"  
-                weight="600"
-                style={{...style }}  >
-            {
-              select_enabled ?
-                (optionsMap.get(value || "") || "")
-                :
-                (value)
-            }
-          </Text>
-          
-        </>
+    <Box
+      className={classnames(
+        "editable-input-text--container",
+        className,
+        containerClassName
       )}
-      
-    <Editable
-      editable={editable}
-      edit={editValue}
-      onPencilClick={() => onPenClick()}
-      onSaveClick={() => onSaveClick()}
-      onCancelClick={() => onCancelClick()}
-      useIcons={useEditIcons}
-    />
-  </Box>
-      <Box className={classnames("editable-intput-text--error-message", className, 
-        (error
-          ? "editable-input-text--animation"
-          : "editable-input-text--no-animation")
-      )}>
-        {
-          error && (
-            <>
-              <Icon icon="alert" color={styles.errorColor} size="20px" />
-              <div style={{ width: "10px" }} />
-              <Text type="h6" color={styles.errorColor}>
-                {errorMessage}
-              </Text>
-            </>
+      style={{ width: width, height: height, color: color }}
+    >
+      <Box
+        className={classnames(
+          "editable-input-text--input-container",
+          className
+        )}
+      >
+        {editValue ? (
+          select_enabled ? (
+            <Select
+              className={classnames("editable-input-text--select", className)}
+              value={{
+                value: value || "",
+                label: optionsMap.get(value || "") || "",
+              }}
+              options={options}
+              onChange={handleChange}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  boxShadow: "none",
+                  "&:hover": {
+                    borderColor: "grey",
+                  },
+                  ...style,
+                }),
+                option: (baseStyles) => ({
+                  ...baseStyles,
+                  ...style,
+                }),
+                menu: (baseStyles) => ({
+                  ...baseStyles,
+                  ...style,
+                }),
+              }}
+            />
+          ) : (
+            <input
+              type="text"
+              ref={valueRef}
+              value={value}
+              onChange={onChange}
+              className={classnames("editable-input-text--input", className)}
+              style={{
+                borderColor: error ? styles.errorColor : undefined,
+                borderWidth: error ? "2.5px" : undefined,
+                ...style,
+              }}
+            />
           )
-        }
+        ) : hideText ? (
+          <>
+            <Text
+              className={classnames("editable-input-text--text", className)}
+              type="h5"
+              weight="600"
+              style={{ ...style }}
+            >
+              {defaultText}
+            </Text>
+          </>
+        ) : (
+          <>
+            <Text
+              className={classnames("editable-input-text--text", className)}
+              type="h5"
+              weight="600"
+              style={{ ...style }}
+            >
+              {select_enabled ? optionsMap.get(value || "") || "" : value}
+            </Text>
+          </>
+        )}
+
+        <Editable
+          editable={editable}
+          edit={editValue}
+          onPencilClick={() => onPenClick()}
+          onSaveClick={() => onSaveClick()}
+          onCancelClick={() => onCancelClick()}
+          useIcons={useEditIcons}
+        />
       </Box>
-
-
-      
-  </Box>
-  )
-}
+      <Box
+        className={classnames(
+          "editable-intput-text--error-message",
+          className,
+          error
+            ? "editable-input-text--animation"
+            : "editable-input-text--no-animation"
+        )}
+      >
+        {error && (
+          <>
+            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.errorColor}>
+              {errorMessage}
+            </Text>
+          </>
+        )}
+      </Box>
+    </Box>
+  );
+};

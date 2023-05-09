@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { BranchEdit } from "./BranchEditForm";
+import { BranchEditForm } from "./BranchEditForm";
 import credentials from '../../../../credentials';
 
 export default {
   title: 'Design System/organisms/BranchEditForm',
-  component: BranchEdit,
+  component: BranchEditForm,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     saveBranchMapsLink: {
@@ -55,12 +55,12 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof BranchEdit>;
+} as ComponentMeta<typeof BranchEditForm>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchEdit> = (args: any) => {
+const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
   return (
-    <BranchEdit {...args} />
+    <BranchEditForm {...args} />
   );
 }
 

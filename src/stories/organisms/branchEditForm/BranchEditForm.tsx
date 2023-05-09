@@ -1,18 +1,18 @@
-import React, { useMemo, useState, useRef } from "react";
+import React, { useState } from "react";
 import "./branchEditForm.scss";
+import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
-import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";	
+import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
-import classnames from "classnames";
-interface OptionType {
+
+export interface OptionType {
   label: string;
   value: string;
 }
 
-interface BranchEditProps {
+interface BranchEditFormProps {
   /**
    * Component width
    *  */
@@ -122,7 +122,7 @@ interface BranchEditProps {
   /**
    * Options for the branch type
    * */
-  branchTypeOptions : OptionType[];
+  branchTypeOptions: OptionType[];
 
   /**
    * Options for the branch location
@@ -134,7 +134,7 @@ interface BranchEditProps {
   branchLocationHeight?: string;
 }
 
-export const BranchEdit = ({
+export const BranchEditForm = ({
   width,
   height = "1125px",
   branchName,
@@ -160,10 +160,9 @@ export const BranchEdit = ({
   MapsApiKey,
   branchLocationHeight = "377px",
   ...props
-}: BranchEditProps) => {
-
-
-  const [branchMapLinkCurrentVal, setBranchMapLinkCurrentVal] = useState(branchMapsLink);
+}: BranchEditFormProps) => {
+  const [branchMapLinkCurrentVal, setBranchMapLinkCurrentVal] =
+    useState(branchMapsLink);
 
   return (
     <Box className="branch-edit--container" style={{width, height}}>
@@ -180,78 +179,84 @@ export const BranchEdit = ({
           />
         </Box>
 
-      
-
-      <Box className="branch-edit--two-column-row">
-
-        <Box className={classnames( "branch-edit--capacity-input")}>
-          <Text className="branch-edit--input-label"> Capacidad </Text>
-          <EditableInputText 
+      <Box className="branch-edit-form--two-column-row">
+        <Box className={classnames("branch-edit-form--capacity-input")}>
+          <Text className="branch-edit-form--input-label"> Capacidad </Text>
+          <EditableInputText
             currentValue={branchCapacity}
             saveValueFunction={() => {}}
             editable={true}
             type="positiveInteger"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
 
-        <Box className={classnames("branch-edit--input-item", "branch-edit--average-reserve-time")}>
-          <Text className="branch-edit--input-label"> Tiempo promedio de reserva (en horas) </Text>
-          <EditableInputText 
+        <Box
+          className={classnames(
+            "branch-edit-form--input-item",
+            "branch-edit-form--average-reserve-time"
+          )}
+        >
+          <Text className="branch-edit-form--input-label">
+            {" "}
+            Tiempo promedio de reserva (en horas){" "}
+          </Text>
+          <EditableInputText
             currentValue={branchAverageReserveTime}
             saveValueFunction={() => {}}
             editable={true}
             type="positiveInteger"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
-
       </Box>
 
-      <Box className="branch-edit--two-column-row">
-
-        <Box className={classnames("branch-edit--type-input")}>
-          <Text className="branch-edit--input-label"> Tipo </Text>
-          <EditableInputText 
+      <Box className="branch-edit-form--two-column-row">
+        <Box className={classnames("branch-edit-form--type-input")}>
+          <Text className="branch-edit-form--input-label"> Tipo </Text>
+          <EditableInputText
             currentValue={branchType}
             options={branchTypeOptions}
             saveValueFunction={() => {}}
             editable={true}
             type="select"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
 
-        <Box className="branch-edit--cost-per-person-input">
-          <Text className="branch-edit--input-label"> Coste por persona </Text>
-          <EditableInputText 
+        <Box className="branch-edit-form--cost-per-person-input">
+          <Text className="branch-edit-form--input-label">
+            {" "}
+            Coste por persona{" "}
+          </Text>
+          <EditableInputText
             currentValue={branchPrice}
             saveValueFunction={() => {}}
             editable={true}
             type="positiveNumber"
-            containerClassName="branch-edit--input-item"
-
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
-
       </Box>
 
-      <Box className="branch-edit--two-column-row">
-
-        <Box className={classnames("branch-edit--phone-number-input")}>
-          <Text className="branch-edit--input-label"> Número de teléfono Local </Text>
-          <EditableInputText 
+      <Box className="branch-edit-form--two-column-row">
+        <Box className={classnames("branch-edit-form--phone-number-input")}>
+          <Text className="branch-edit-form--input-label">
+            {" "}
+            Número de teléfono Local{" "}
+          </Text>
+          <EditableInputText
             currentValue={branchPhone}
             saveValueFunction={() => {}}
             editable={true}
             type="phoneNumber"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
 
-        <Box className={classnames("branch-edit--location-input")}>
-          <Text className="branch-edit--input-label"> Ubicación </Text>
-          <EditableInputText 
+        <Box className={classnames("branch-edit-form--location-input")}>
+          <Text className="branch-edit-form--input-label"> Ubicación </Text>
+          <EditableInputText
             width="100%"
             height="100%"
             currentValue={branchLocation}
@@ -259,27 +264,26 @@ export const BranchEdit = ({
             saveValueFunction={() => {}}
             editable={true}
             type="select"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
-
       </Box>
-        
-      <Box className="branch-edit--description-container">
-      <Text className="branch-edit--input-label"> Descripción </Text>
-          <EditableInputLongText
+
+      <Box className="branch-edit-form--description-container">
+        <Text className="branch-edit-form--input-label"> Descripción </Text>
+        <EditableInputLongText
           currentValue={branchDescription}
-          minRows= {6}
-          maxRows= {6}
-          width= "100%"
-          height= "100%"
-          maxLength ={480}  
-          saveValueFunction = {(value: string) => {}}
-          />
+          minRows={6}
+          maxRows={6}
+          width="100%"
+          height="100%"
+          maxLength={480}
+          saveValueFunction={(value: string) => {}}
+        />
       </Box>
 
       <Box className="branch-edit--precise-location-container">
-      <Text className="branch-edit--input-label"> Ubicación precisa</Text>
+      <Text className="branch-edit--input-label"> {" "}Ubicación precisa</Text>
         <EditableInputText 
             width="100%"
             height="100%"

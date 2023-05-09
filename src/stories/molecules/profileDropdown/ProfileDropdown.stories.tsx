@@ -1,19 +1,18 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProfileDropdown } from './ProfileDropdown';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ProfileDropdown } from "./ProfileDropdown";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
-
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Design System/Molecules/ProfileDropdown',
+  title: "Design System/Molecules/ProfileDropdown",
   component: ProfileDropdown,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: { 
+  argTypes: {
     onClick: {
       table: {
-        disable: true
-      }
+        disable: true,
+      },
     },
   },
 } as ComponentMeta<typeof ProfileDropdown>;
@@ -21,16 +20,16 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof ProfileDropdown> = (args: any) => {
   return <ProfileDropdown {...args} />;
-}
+};
 
 const dropdownOptions: UserDropdownElement[] = [
   {
-    name: 'Edit Profile',
+    name: "Edit Profile",
     func: () => {},
     icon: "pencil",
   },
   {
-    name: 'Logout',
+    name: "Logout",
     func: () => {},
     icon: "logout",
   },
@@ -39,11 +38,10 @@ const dropdownOptions: UserDropdownElement[] = [
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  picture: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg',
-  size: '200px',
-  border: '5px',
-  icon: 'down',
-  color: '#EF7A08',
+  picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+  size: "200px",
+  border: "5px",
+  color: "#EF7A08",
   dropdownOptions: dropdownOptions,
-  userName: "Ricardo Milano"
+  userName: "Ricardo Milano",
 };
