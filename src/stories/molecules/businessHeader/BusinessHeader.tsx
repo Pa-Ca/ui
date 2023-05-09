@@ -14,7 +14,7 @@ interface BusinessHeaderProps {
   /**
    * Business profile picture
    */
-  proficePicture: string;
+  profilePicture: string;
   /**
    * Business name
    */
@@ -38,7 +38,7 @@ interface BusinessHeaderProps {
  */
 export const BusinessHeader = ({
   mainImage,
-  proficePicture,
+  profilePicture,
   name,
   email,
   color,
@@ -67,7 +67,7 @@ export const BusinessHeader = ({
       <Box className="business-header--profile-picture">
         <ProfilePicture
           size="160px"
-          picture={proficePicture}
+          picture={profilePicture}
           color={secondaryColor}
           border="5px"
           icon="pencil"

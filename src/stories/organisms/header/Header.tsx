@@ -23,10 +23,6 @@ export interface HeaderProps {
    */
   dropdownOptions?: UserDropdownElement[];
   /**
-   * Profile icon
-   */
-  icon?: "down" | "up";
-  /**
    * Dark mode
    */
   dark?: boolean;
@@ -87,7 +83,6 @@ export const Header = ({
   picture,
   name,
   dropdownOptions,
-  icon = "down",
   dark = false,
   userRole,
   logged,
@@ -171,7 +166,7 @@ export const Header = ({
               <ProfilePicture
                 size="45px"
                 border="0px"
-                icon={icon}
+                icon={view ? "up" : "down"}
                 color={color}
                 picture={picture}
                 userName={name}
@@ -251,7 +246,6 @@ export const Header = ({
             <ProfileDropdown
               size="45px"
               border="0px"
-              icon={icon}
               color={color}
               picture={picture}
               userName={name}
