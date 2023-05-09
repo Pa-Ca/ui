@@ -71,6 +71,7 @@ Default.args = {
   branchDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
   branchLocation: "chacao",
   branchPhone: "+32 14521452",
+  //branchLocationHeight : ""
   branchCapacity: "5",
   branchAverageReserveTime: "5",
   branchPrice: "5",

@@ -136,7 +136,7 @@ interface BranchEditFormProps {
 
 export const BranchEditForm = ({
   width,
-  height = "1125px",
+  height,
   branchName,
   saveBranchName,
   branchDescription,
@@ -158,16 +158,16 @@ export const BranchEditForm = ({
   branchTypeOptions,
   branchLocationOptions,
   MapsApiKey,
-  branchLocationHeight = "377px",
+  branchLocationHeight,
   ...props
 }: BranchEditFormProps) => {
   const [branchMapLinkCurrentVal, setBranchMapLinkCurrentVal] =
     useState(branchMapsLink);
 
   return (
-    <Box className="branch-edit--container" style={{width, height}}>
-        <Box className={classnames("branch-edit--name-input")}>
-          <Text className="branch-edit--input-label"> Nombre </Text> 
+    <Box className="branch-edit-form--container" style={{width, height}} backgroundColor="white">
+        <Box className={classnames("branch-edit-form--name-input")}>
+          <Text className="branch-edit-form--input-label"> Nombre </Text> 
           <EditableInputText 
             width="100%"
             height="100%"
@@ -175,7 +175,7 @@ export const BranchEditForm = ({
             editable={true}
             saveValueFunction={() => {}}
             type="text"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
         </Box>
 
@@ -193,7 +193,6 @@ export const BranchEditForm = ({
 
         <Box
           className={classnames(
-            "branch-edit-form--input-item",
             "branch-edit-form--average-reserve-time"
           )}
         >
@@ -282,8 +281,8 @@ export const BranchEditForm = ({
         />
       </Box>
 
-      <Box className="branch-edit--precise-location-container">
-      <Text className="branch-edit--input-label"> {" "}Ubicación precisa</Text>
+      <Box className="branch-edit-form--precise-location-container">
+      <Text className="branch-edit-form--input-label"> {" "}Ubicación precisa</Text>
         <EditableInputText 
             width="100%"
             height="100%"
@@ -293,14 +292,14 @@ export const BranchEditForm = ({
             hideTextAfterEditing={true}
             type="text"
             defaultText="Enlace de Google Maps"
-            containerClassName="branch-edit--input-item"
+            containerClassName="branch-edit-form--input-item"
           />
           <EditableBranchLocation
             width = {width}
             height = {branchLocationHeight}
             apiKey = {MapsApiKey}
             googleMapsLink={branchMapLinkCurrentVal || ""}
-            className="branch-edit--precise-location-map"
+            className="branch-edit-form--precise-location-map"
           />
       </Box>
     </Box>
