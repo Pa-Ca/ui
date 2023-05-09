@@ -84,7 +84,11 @@ export const EditableBranchLocation = ({
   }, [latitude, longitude]);
 
   return ( 
-    <Box className={classnames("editable-branch-location--container" , className)}>
+    <Box className={classnames("editable-branch-location--container" , className)}
+    style={{
+      width: width,
+      height: height,
+    }}>
         {isLoaded ? (
         <GoogleMap
           options = {{
@@ -98,6 +102,10 @@ export const EditableBranchLocation = ({
           center={center}
           zoom={16}
           mapContainerClassName= {classnames("editable-branch-location--container" , className)}
+          mapContainerStyle={{
+            width: width,
+            height: height,
+          }}
         >
           {
             Marker && <Marker position={center} />

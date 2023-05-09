@@ -28,9 +28,19 @@ interface BranchEditFormProps {
   branchName?: string;
 
   /**
+   * Function to save the branch name
+   * */
+  saveBranchName: (value: string) => void;
+
+  /**
    * Description of the branch
    * */
   branchDescription?: string;
+
+  /**
+   * Function to save the branch description
+   */
+  saveBranchDescription: (value: string) => void;
 
   /**
    * Location of the branch
@@ -38,9 +48,20 @@ interface BranchEditFormProps {
   branchLocation?: string;
 
   /**
+   * Function to save the branch location
+   * */
+  saveBranchLocation: (value: string) => void;
+
+
+  /**
    * Phone of the branch
    * */
   branchPhone?: string;
+
+  /**
+   * Function to save the branch phone
+   */
+  saveBranchPhone: (value: string) => void;
 
   /**
    * Capacity of the branch
@@ -48,9 +69,19 @@ interface BranchEditFormProps {
   branchCapacity?: string;
 
   /**
+   * Function to save the branch capacity
+   */
+  saveBranchCapacity: (value: string) => void;
+
+  /**
    * Average reserve time of the branch (in hours)
    * */
   branchAverageReserveTime?: string;
+
+  /**
+   * Function to save the branch average reserve time
+   */
+  saveBranchAverageReserveTime: (value: string) => void;
 
   /**
    * Average price per person of the branch (in USD)
@@ -58,14 +89,30 @@ interface BranchEditFormProps {
   branchPrice?: string;
 
   /**
+   * Function to save the branch price
+   * */
+  saveBranchPrice: (value: string) => void;
+
+
+  /**
    * Branch type
    * */
   branchType?: string;
 
   /**
+   * Function to save the branch type
+   */
+  saveBranchType: (value: string) => void;
+
+  /**
    * Precise location of the branch (Google maps link)
    * */
   branchMapsLink?: string;
+
+  /**
+   * Function to save the branch precise location
+   */
+  saveBranchMapsLink: (value: string) => void;
 
   /**
    * Google maps API key
@@ -80,43 +127,57 @@ interface BranchEditFormProps {
   /**
    * Options for the branch location
    * */
-  branchLocationOptions: OptionType[];
+  branchLocationOptions : OptionType[];
+  /**
+   * Height of the branch location
+   * */
+  branchLocationHeight?: string;
 }
 
 export const BranchEditForm = ({
   width,
-  height,
+  height = "1125px",
   branchName,
+  saveBranchName,
   branchDescription,
+  saveBranchDescription,
   branchLocation,
+  saveBranchLocation,
   branchPhone,
+  saveBranchPhone,
   branchCapacity,
+  saveBranchCapacity,
   branchAverageReserveTime,
+  saveBranchAverageReserveTime,
   branchPrice,
+  saveBranchPrice,
   branchMapsLink,
+  saveBranchMapsLink,
   branchType,
+  saveBranchType,
   branchTypeOptions,
   branchLocationOptions,
   MapsApiKey,
+  branchLocationHeight = "377px",
   ...props
 }: BranchEditFormProps) => {
   const [branchMapLinkCurrentVal, setBranchMapLinkCurrentVal] =
     useState(branchMapsLink);
 
   return (
-    <Box className="branch-edit-form--container" width={width} height={height}>
-      <Box className={classnames("branch-edit-form--name-input")}>
-        <Text className="branch-edit-form--input-label"> Nombre </Text>
-        <EditableInputText
-          width="100%"
-          height="100%"
-          currentValue={branchName}
-          editable={true}
-          saveValueFunction={() => {}}
-          type="text"
-          containerClassName="branch-edit-form--input-item"
-        />
-      </Box>
+    <Box className="branch-edit--container" style={{width, height}}>
+        <Box className={classnames("branch-edit--name-input")}>
+          <Text className="branch-edit--input-label"> Nombre </Text> 
+          <EditableInputText 
+            width="100%"
+            height="100%"
+            currentValue={branchName}
+            editable={true}
+            saveValueFunction={() => {}}
+            type="text"
+            containerClassName="branch-edit--input-item"
+          />
+        </Box>
 
       <Box className="branch-edit-form--two-column-row">
         <Box className={classnames("branch-edit-form--capacity-input")}>
@@ -221,27 +282,26 @@ export const BranchEditForm = ({
         />
       </Box>
 
-      <Box className="branch-edit-form--precise-location-container">
-        <Text className="branch-edit-form--input-label">
-          {" "}
-          Ubicación precisa
-        </Text>
-        <EditableInputText
-          width="100%"
-          height="100%"
-          currentValue={branchMapLinkCurrentVal}
-          saveValueFunction={setBranchMapLinkCurrentVal}
-          editable={true}
-          hideTextAfterEditing={true}
-          type="text"
-          defaultText="Enlace de Google Maps"
-          containerClassName="branch-edit-form--input-item"
-        />
-        <EditableBranchLocation
-          apiKey={MapsApiKey}
-          googleMapsLink={branchMapLinkCurrentVal || ""}
-          className="branch-edit-form--precise-location-map"
-        />
+      <Box className="branch-edit--precise-location-container">
+      <Text className="branch-edit--input-label"> {" "}Ubicación precisa</Text>
+        <EditableInputText 
+            width="100%"
+            height="100%"
+            currentValue={branchMapLinkCurrentVal}
+            saveValueFunction={setBranchMapLinkCurrentVal}
+            editable={true}
+            hideTextAfterEditing={true}
+            type="text"
+            defaultText="Enlace de Google Maps"
+            containerClassName="branch-edit--input-item"
+          />
+          <EditableBranchLocation
+            width = {width}
+            height = {branchLocationHeight}
+            apiKey = {MapsApiKey}
+            googleMapsLink={branchMapLinkCurrentVal || ""}
+            className="branch-edit--precise-location-map"
+          />
       </Box>
     </Box>
   );
