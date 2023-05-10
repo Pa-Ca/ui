@@ -279,8 +279,7 @@ export const BusinessProfile = ({
                 onSaveAverageReserveTime={onSaveAverageReserveTime}
                 onSavePrice={onSavePrice}
                 onSaveType={onSaveType}
-                onSaveMapsLink={onSaveMapsLink}
-              />
+                onSaveMapsLink={onSaveMapsLink} />
             </Box>
             <Box width="12px" />
 

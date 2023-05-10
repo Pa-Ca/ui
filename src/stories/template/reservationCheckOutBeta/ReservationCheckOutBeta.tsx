@@ -4,13 +4,13 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
 import { Button } from "../../atoms/button/Button";
+import useInputForm from "../../hooks/useInputForm";
 import BranchData from "../../utils/objects/BranchData";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
-import useInputForm from "../../hooks/useInputForm";
 
 interface ReservationCheckOutBeta {
   /**

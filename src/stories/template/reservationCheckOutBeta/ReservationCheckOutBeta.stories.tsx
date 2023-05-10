@@ -134,11 +134,9 @@ Default.args = {
     logged: true,
     userRole: 'client',
     onPacaClick: () => {},
-    icon: "down",
     name: "Daniel Rodríguez",
     picture: "",  
     color: "#EF7A08",
-    dropdownOptions: dropdownOptions,
   },
   ...globalArgs,
 };

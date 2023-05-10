@@ -59,26 +59,34 @@ interface BranchEditFormProps {
    * Description of the branch
    */
   onSaveDescription: (value: string) => void;
+
   /**
    * Location of the branch
    */
   onSaveLocation: (value: string) => void;
+
+
   /**
    * Phone of the branch
    */
   onSavePhone: (value: string) => void;
+
   /**
    * Capacity of the branch
    */
   onSaveCapacity: (value: string) => void;
+
   /**
    * Average reserve time of the branch (in hours)
    */
   onSaveAverageReserveTime: (value: string) => void;
+
   /**
    * Average price per person of the branch (in USD)
    */
   onSavePrice: (value: string) => void;
+
+
   /**
    * Branch type
    */
@@ -167,7 +175,6 @@ export const BranchEditForm = ({
 
         <Box
           className={classnames(
-            "branch-edit-form--input-item",
             "branch-edit-form--average-reserve-time"
           )}
         >

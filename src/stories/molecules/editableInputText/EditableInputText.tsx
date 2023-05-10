@@ -198,6 +198,8 @@ export const EditableInputText = ({
   const onCancelClick = () => {
     // We first disable the edit mode
     setEditValue(false);
+    // Disabele the error message
+    setError(false);
     // We set the value to the current value (the unedited value)
     inputHook.setValue(backup);
   };
