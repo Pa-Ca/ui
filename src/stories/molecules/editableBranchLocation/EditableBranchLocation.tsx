@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import classnames from "classnames";
 import "./editableBranchLocation.scss";
 import { Box } from "../../atoms/box/Box";
@@ -47,6 +47,8 @@ export const EditableBranchLocation = ({
   className,
   ...props
 }: EditableBranchLocationProps) => {
+  const [mapRef, setMapRef] = useState<google.maps.Map | null>(null);
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
@@ -55,6 +57,7 @@ export const EditableBranchLocation = ({
   });
 
   const [error, setError] = useState(false);
+  const [center, setCenter] = useState({ lat: 0, lng: 0 })
 
   const latitude = useMemo(() => {
     let lat = googleMapsLink.match(/ll=(-?[\d\.]*)/);
@@ -63,6 +66,9 @@ export const EditableBranchLocation = ({
     }
     if (!lat) {
       setError(true);
+    }
+    else {
+      setError(false);
     }
 
     return lat ? parseFloat(lat[1]) : 0;
@@ -76,20 +82,35 @@ export const EditableBranchLocation = ({
     if (!long) {
       setError(true);
     }
+    else {
+      setError(false);
+    }
 
     return long ? parseFloat(long[1]) : 0;
   }, [googleMapsLink]);
 
-  const center = useMemo(() => {
-    return {
+  useEffect(() => {
+    setCenter({
       lat: latitude,
       lng: longitude,
-    };
+    });
   }, [latitude, longitude]);
+
+  const handleCenterChanged = () => {
+    if (mapRef) {
+      const newCenter = mapRef.getCenter();
+      if (newCenter?.lat() !== center.lat || newCenter?.lng() !== center.lng) {
+        setCenter({
+          lat: latitude,
+          lng: longitude,
+        });
+      }
+    }
+  };
 
   return (
     <Box
-      className={classnames("editable-branch-location--container", className)}
+      className={classnames("editable-branch-location--container")}
     >
       <div
         className={
@@ -111,6 +132,7 @@ export const EditableBranchLocation = ({
       </div>
       {isLoaded ? (
         <GoogleMap
+          onLoad={(map) => setMapRef(map)}
           options={{
             disableDefaultUI: true,
             zoomControl: true,
@@ -121,12 +143,20 @@ export const EditableBranchLocation = ({
           }}
           center={center}
           zoom={16}
+          onCenterChanged={handleCenterChanged}
           mapContainerClassName={classnames(
             "editable-branch-location--container",
             className
           )}
         >
-          {Marker && <Marker position={center} />}
+          {Marker && (
+            <Marker
+              onClick={() => {
+                latitude && longitude && window.open(googleMapsLink);
+              }}
+              position={center}
+            />
+          )}
         </GoogleMap>
       ) : (
         <></>

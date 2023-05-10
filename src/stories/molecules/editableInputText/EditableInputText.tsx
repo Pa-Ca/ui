@@ -60,6 +60,10 @@ interface EditableInputTextProps {
    */
   hideTextAfterEditing?: boolean;
   /**
+   * Indicates if the space should be placed to show possible errors
+   */
+  showError?: boolean;
+  /**
    * Component width
    */
   width?: string;
@@ -94,6 +98,7 @@ export const EditableInputText = ({
   options,
   defaultText = "Click to edit",
   hideTextAfterEditing = false,
+  showError = true,
   width,
   height,
   color,
@@ -199,7 +204,7 @@ export const EditableInputText = ({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    setError(false);
+    inputHook.setError(false);
     // We set the value to the current value (the unedited value)
     inputHook.setValue(backup);
   };
@@ -314,6 +319,7 @@ export const EditableInputText = ({
             ? "editable-input-text--animation"
             : "editable-input-text--no-animation"
         )}
+        style={{ height: showError ? undefined : "0px" }}
       >
         {inputHook.error && (
           <>

@@ -4,7 +4,7 @@
   //align-items: center;
   border-radius: 10px;
   background-color: #fff;
-  gap : 32px;
+  gap: 32px;
   padding-top: 32px;
   padding-bottom: 32px;
   padding-left: 24px;
@@ -20,29 +20,26 @@
   direction: row;
 }
 
-.branch-edit-form--name-input{
+.branch-edit-form--name-input {
   //width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-
-.branch-edit-form--input-label{
+.branch-edit-form--input-label {
   opacity: 0.75;
 }
 
-.branch-edit-form--description-container{
-  
+.branch-edit-form--description-container {
   height: 220px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   //padding: 10px;
-  
 }
 
-.branch-edit-form--precise-location-container{
+.branch-edit-form--precise-location-container {
   height: 220px;
   display: flex;
   flex-direction: column;
@@ -50,13 +47,12 @@
   justify-content: flex-start;
 }
 
-.branch-edit-form--precise-location-map{
-
+.branch-edit-form--precise-location-map {
   height: 377px;
   border-radius: 16px;
   display: flex;
 }
 
-.branch-edit-form--input-item{
+.branch-edit-form--input-item {
   padding-top: 8px;
 }

@@ -25,7 +25,7 @@ interface InputSelectProps {
    */
   label?: string;
   /**
-   * indicates if the space should be placed to show possible errors
+   * Indicates if the space should be placed to show possible errors
    */
   showError?: boolean;
   /**

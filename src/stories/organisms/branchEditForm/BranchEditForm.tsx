@@ -270,11 +270,11 @@ export const BranchEditForm = ({
         </Text>
         <EditableInputText
           width="100%"
-          height="100%"
           inputHook={mapsLink}
           editable={true}
           hideTextAfterEditing={true}
           type="text"
+          showError={false}
           defaultText="Enlace de Google Maps"
           saveValueFunction={onSaveMapsLink}
           containerClassName="branch-edit-form--input-item"

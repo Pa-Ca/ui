@@ -254,7 +254,7 @@ export const BusinessProfile = ({
 
             <Box width={`${tabObserver.width - 10}px`}>
               <Text type="h3" weight="700">
-                {branchName.value}
+                Detalles del local
               </Text>
               <Box height="16px" />
 

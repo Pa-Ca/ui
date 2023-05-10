@@ -3,7 +3,7 @@
 
 .business-profile--content-container {
   display: flex;
-  overflow-x: scroll;
+  overflow: hidden;
   flex-direction: column;
   scroll-behavior: smooth;
   scroll-margin-left: 100%;
