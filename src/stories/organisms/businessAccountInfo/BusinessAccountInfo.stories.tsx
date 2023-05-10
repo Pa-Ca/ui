@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from "react";
+import useInputForm from "../../hooks/useInputForm";
 import { BusinessAccountInfo } from "./BusinessAccountInfo";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,26 +19,49 @@ export default {
         disable: true,
       },
     },
+    name: {
+      table: {
+        disable: true,
+      },
+    },
+    email: {
+      table: {
+        disable: true,
+      },
+    },
+    phoneNumber: {
+      table: {
+        disable: true,
+      },
+    },
+    password: {
+      table: {
+        disable: true,
+      },
+    },
+    newPassword: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BusinessAccountInfo>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BusinessAccountInfo> = (args: any) => {
-  const [date, setDate] = useState(new Date());
-  const [hour, setHour] = useState(undefined);
-  const [persons, setPersons] = useState("");
-  const [search, setSearch] = useState("");
+  const name = useInputForm("");
+  const email = useInputForm("");
+  const phoneNumber = useInputForm("");
+  const password = useInputForm("");
+  const newPassword = useInputForm("");
 
   return (
     <BusinessAccountInfo
-      date={date}
-      setDate={setDate}
-      hour={hour}
-      setHour={setHour}
-      persons={persons}
-      setPersons={setPersons}
-      search={search}
-      setSearch={setSearch}
+      name={name}
+      email={email}
+      phoneNumber={phoneNumber}
+      password={password}
+      newPassword={newPassword}
       {...args}
     />
   );

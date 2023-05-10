@@ -1,13 +1,11 @@
 import React, { useMemo, useState } from "react";
+import classnames from "classnames";
 import "./editableBranchLocation.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import { Button } from "../../atoms/button/Button";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import classnames from "classnames";
-import { EditableInputText } from "../editableInputText/EditableInputText";
-import { Editable } from "../editable/Editable";
+import styles from "../../assets/scss/variables.module.scss";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 export interface EditableBranchLocationProps {
   /**
@@ -35,7 +33,6 @@ export interface EditableBranchLocationProps {
    * Class name
    * */
   className?: string;
-
 }
 
 /**
@@ -50,63 +47,90 @@ export const EditableBranchLocation = ({
   className,
   ...props
 }: EditableBranchLocationProps) => {
-
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: "google-map-script",
     googleMapsApiKey: apiKey,
     libraries: ["places"],
-    language: "es"
-  })
+    language: "es",
+  });
 
+  const [error, setError] = useState(false);
 
-  const latitude  = useMemo(() =>{
+  const latitude = useMemo(() => {
     let lat = googleMapsLink.match(/ll=(-?[\d\.]*)/);
     if (!lat) {
       lat = googleMapsLink.match(/\@(-?[\d\.]*)/);
     }
-    return lat ? parseFloat(lat[1]) : 0 ;
+    if (!lat) {
+      setError(true);
+    }
+
+    return lat ? parseFloat(lat[1]) : 0;
   }, [googleMapsLink]);
 
   const longitude = useMemo(() => {
     let long = googleMapsLink.match(/ll=[-?\d\.]*\,([-?\d\.]*)/);
     if (!long) {
       long = googleMapsLink.match(/\@[-?\d\.]*\,([-?\d\.]*)/);
-    } 
-    return long ? parseFloat(long[1]) : 0 ;
-    }, [googleMapsLink]);
-
-
-  const  center = useMemo(() => {
-    return {
-    lat: latitude,
-    lng: longitude
     }
+    if (!long) {
+      setError(true);
+    }
+
+    return long ? parseFloat(long[1]) : 0;
+  }, [googleMapsLink]);
+
+  const center = useMemo(() => {
+    return {
+      lat: latitude,
+      lng: longitude,
+    };
   }, [latitude, longitude]);
 
-  return ( 
-    <Box className={classnames("editable-branch-location--container" , className)}>
-        {isLoaded ? (
+  return (
+    <Box
+      className={classnames("editable-branch-location--container", className)}
+    >
+      <div
+        className={
+          "input-text--error-container " +
+          (error
+            ? "input-text--error-animation"
+            : "input-text--error-no-animation")
+        }
+      >
+        {error && (
+          <>
+            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.errorColor}>
+              No se pudo cargar la ubicación de Google Maps
+            </Text>
+          </>
+        )}
+      </div>
+      {isLoaded ? (
         <GoogleMap
-          options = {{
+          options={{
             disableDefaultUI: true,
             zoomControl: true,
             zoomControlOptions: {
-              position: 9
+              position: 9,
             },
             draggable: false,
           }}
           center={center}
           zoom={16}
-          mapContainerClassName= {classnames("editable-branch-location--container" , className)}
+          mapContainerClassName={classnames(
+            "editable-branch-location--container",
+            className
+          )}
         >
-          {
-            Marker && <Marker position={center} />
-          }
+          {Marker && <Marker position={center} />}
         </GoogleMap>
-      ) : <></>}
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };
-
-
-

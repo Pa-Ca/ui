@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./reservationCheckOut.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
@@ -8,10 +8,11 @@ import { BasicPage } from "../basicPage/BasicPage";
 import BranchData from "../../utils/objects/BranchData";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
-import ReservationDetail from '../../utils/objects/ReservationDetail';
+import ReservationDetail from "../../utils/objects/ReservationDetail";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
 import { ReservationDetails } from "../../molecules/reservationDetails/reservationDetails";
+import useInputForm from "../../hooks/useInputForm";
 
 interface ReservationCheckOut {
   /**
@@ -56,7 +57,14 @@ interface ReservationCheckOut {
   /**
    * On submit
    */
-  onSubmit: (date:Date,persons:number,hourIn:string,hourOut:string|null, petition:string|null, occasion:string|null,) => void;
+  onSubmit: (
+    date: Date,
+    persons: number,
+    hourIn: string,
+    hourOut: string | null,
+    petition: string | null,
+    occasion: string | null
+  ) => void;
 }
 
 /**
@@ -78,22 +86,24 @@ export const ReservationCheckOut = ({
   validHoursOut,
   ...props
 }: ReservationCheckOut) => {
-
   const branch = getBranchData();
   const reservationPrice = getReservationPrice();
 
-  const [date, setDate] = useState<Date|undefined>(undefined);
-  const [hourIn, setHourIn] = useState<OptionObject|undefined>(undefined);
-  const [hourOut, setHourOut] = useState<OptionObject|undefined>(undefined);
-  const [persons, setPersons] = useState<string|undefined>(undefined);
-  const [occasion, setOccasion] = useState<string|undefined>(undefined);
-  const [petition, setPetition] = useState<string|undefined>(undefined);
+  const date = useInputForm<Date>(new Date());
+  const hourIn = useInputForm<OptionObject>({ name: "", value: "" });
+  const hourOut = useInputForm<OptionObject>({ name: "", value: "" });
+  const persons = useInputForm<string>("");
+  const occasion = useInputForm<string>("");
+  const petition = useInputForm<string>("");
 
   return (
     <BasicPage headerArgs={headerArgs}>
       <Box className="path-box">
         <Path
-          path={path.concat([{ name: branch.name, onClick: () => {} }, { name: "Check Out", onClick: () => {} }])}
+          path={path.concat([
+            { name: branch.name, onClick: () => {} },
+            { name: "Check Out", onClick: () => {} },
+          ])}
           color="orange"
           secondaryColor="black"
         />
@@ -141,19 +151,13 @@ export const ReservationCheckOut = ({
           <Box>
             <ReserveDetails
               date={date}
-              setDate={setDate}
               hourIn={hourIn}
-              setHourIn={setHourIn}
               validHoursIn={validHoursIn}
               hourOut={hourOut}
-              setHourOut={setHourOut}
               validHoursOut={validHoursOut}
               persons={persons}
-              setPersons={setPersons}
               occasion={occasion}
-              setOccasion={setOccasion}
               petition={petition}
-              setPetition={setPetition}
               showInviteFriends={false}
             />
           </Box>
@@ -165,16 +169,16 @@ export const ReservationCheckOut = ({
               backgroundColor={color}
               onClick={() =>
                 onSubmit(
-                  date!,
-                  parseInt(persons!),
-                  typeof hourIn!.value === "string"
-                    ? hourIn!.value
-                    : hourIn!.value.toString(),
-                  typeof hourOut!.value === "string"
-                    ? hourOut!.value
-                    : hourOut!.value.toString(),
-                  petition!,
-                  occasion!
+                  date.value,
+                  parseInt(persons.value),
+                  typeof hourIn.value.value === "string"
+                    ? hourIn.value.value
+                    : hourIn.value.value.toString(),
+                  typeof hourOut.value.value === "string"
+                    ? hourOut.value.value
+                    : hourOut.value.value.toString(),
+                  petition.value,
+                  occasion.value
                 )
               }
             >

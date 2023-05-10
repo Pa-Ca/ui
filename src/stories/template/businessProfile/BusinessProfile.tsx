@@ -3,6 +3,7 @@ import "./businessProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
+import { InputFormHook } from "../../hooks/useInputForm";
 import { HeaderProps } from "../../organisms/header/Header";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
@@ -26,73 +27,69 @@ interface BusinessProfileProps {
    * Business profile picture
    */
   profilePicture: string;
-  /**
-   * Business name
-   */
-  name: string;
-  /**
-   * Business email
-   */
-  email: string;
-  /**
-   * Business phone number
-   */
-  phoneNumber: string;
 
   /**
-   * Indicates if there is an error with the current password
+   * Business name input hook
    */
-  currentPasswordError: boolean;
+  name: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the new password
+   * Business email input hook
    */
-  passwordError: boolean;
+  email: InputFormHook<string>;
   /**
-   * Message displayed if there is an error with the password
+   * Business phone number input hook
    */
-  passwordErrorMessage?: string;
+  phoneNumber: InputFormHook<string>;
+  /**
+   * Business password input hook
+   */
+  password: InputFormHook<string>;
+  /**
+   * Business new password input hook
+   */
+  newPassword: InputFormHook<string>;
   /**
    * Function that validates the current password
    */
-  validateCurrentPassword: (currentPassword: string) => boolean;
+  validateCurrentPassword: () => boolean;
   /**
    * Function that changes the user's password
    */
-  onChangePassword: (newPassword: string) => void;
+  onChangePassword: () => void;
 
 
   /**
    * Name of the branch
    * */
-  branchName?: string;
+  branchName: InputFormHook<string>;
   /**
    * Description of the branch
    * */
-  branchDescription?: string;
+  branchDescription: InputFormHook<string>;
   /**
    * Location of the branch
    * */
-  branchLocation?: string;
+  branchLocation: InputFormHook<string>;
   /**
    * Phone of the branch
    * */
-  branchPhone?: string;
+  branchPhone: InputFormHook<string>;
   /**
    * Capacity of the branch
    * */
-  branchCapacity?: string;
+  branchCapacity: InputFormHook<string>;
   /**
    * Average reserve time of the branch (in hours)
    * */
-  branchAverageReserveTime?: string;
+  branchAverageReserveTime: InputFormHook<string>;
   /**
    * Average price per person of the branch (in USD)
    * */
-  branchPrice?: string;
+  branchPrice: InputFormHook<string>;
   /**
    * Branch type
    * */
-  branchType?: string;
+  branchType: InputFormHook<string>;
   /**
    * Options for the branch type
    * */
@@ -104,11 +101,48 @@ interface BusinessProfileProps {
   /**
    * Precise location of the branch (Google maps link)
    * */
-  branchMapsLink?: string;
+  branchMapsLink: InputFormHook<string>;
   /**
    * Google maps API key
    * */
-  MapsApiKey: string;
+  mapsApiKey: string;
+
+  /**
+   * Function that is executed when the name is saved
+   */
+  onSaveName: (value: string) => void;
+  /**
+   * Description of the branch
+   */
+  onSaveDescription: (value: string) => void;
+  /**
+   * Location of the branch
+   */
+  onSaveLocation: (value: string) => void;
+  /**
+   * Phone of the branch
+   */
+  onSavePhone: (value: string) => void;
+  /**
+   * Capacity of the branch
+   */
+  onSaveCapacity: (value: string) => void;
+  /**
+   * Average reserve time of the branch (in hours)
+   */
+  onSaveAverageReserveTime: (value: string) => void;
+  /**
+   * Average price per person of the branch (in USD)
+   */
+  onSavePrice: (value: string) => void;
+  /**
+   * Branch type
+   */
+  onSaveType: (value: string) => void;
+  /**
+   * Precise location of the branch (Google maps link)
+   */
+  onSaveMapsLink: (value: string) => void;
 
   /**
    * Component main color
@@ -127,13 +161,12 @@ export const BusinessProfile = ({
   header,
   mainImage,
   profilePicture,
+
   name,
   email,
   phoneNumber,
-
-  currentPasswordError,
-  passwordError,
-  passwordErrorMessage,
+  password,
+  newPassword,
   validateCurrentPassword,
   onChangePassword,
 
@@ -148,7 +181,17 @@ export const BusinessProfile = ({
   branchType,
   branchTypeOptions,
   branchLocationOptions,
-  MapsApiKey,
+  mapsApiKey,
+
+  onSaveName,
+  onSaveDescription,
+  onSaveLocation,
+  onSavePhone,
+  onSaveCapacity,
+  onSaveAverageReserveTime,
+  onSavePrice,
+  onSaveType,
+  onSaveMapsLink,
 
   color,
   secondaryColor,
@@ -170,8 +213,8 @@ export const BusinessProfile = ({
         <BusinessHeader
           mainImage={mainImage}
           profilePicture={profilePicture}
-          name={name}
-          email={email}
+          name={name.value}
+          email={email.value}
           color={color}
           secondaryColor={secondaryColor}
         />
@@ -197,12 +240,11 @@ export const BusinessProfile = ({
           >
             <Box width={`${tabObserver.width - 10}px`}>
               <BusinessAccountInfo
-                currentName={name}
-                currentEmail={email}
-                currentPhoneNumber={phoneNumber}
-                currentPasswordError={currentPasswordError}
-                passwordError={passwordError}
-                passwordErrorMessage={passwordErrorMessage}
+                name={name}
+                email={email}
+                phoneNumber={phoneNumber}
+                password={password}
+                newPassword={newPassword}
                 validateCurrentPassword={validateCurrentPassword}
                 onChangePassword={onChangePassword}
                 color={color}
@@ -212,23 +254,32 @@ export const BusinessProfile = ({
 
             <Box width={`${tabObserver.width - 10}px`}>
               <Text type="h3" weight="700">
-                {branchName}
+                {branchName.value}
               </Text>
               <Box height="16px" />
 
               <BranchEditForm
-                branchName={branchName}
-                branchDescription={branchDescription}
-                branchLocation={branchLocation}
-                branchPhone={branchPhone}
-                branchCapacity={branchCapacity}
-                branchAverageReserveTime={branchAverageReserveTime}
-                branchPrice={branchPrice}
-                branchMapsLink={branchMapsLink}
-                branchType={branchType}
-                branchTypeOptions={branchTypeOptions}
-                branchLocationOptions={branchLocationOptions}
-                MapsApiKey={MapsApiKey}
+                name={branchName}
+                description={branchDescription}
+                location={branchLocation}
+                phone={branchPhone}
+                capacity={branchCapacity}
+                averageReserveTime={branchAverageReserveTime}
+                price={branchPrice}
+                mapsLink={branchMapsLink}
+                type={branchType}
+                typeOptions={branchTypeOptions}
+                locationOptions={branchLocationOptions}
+                mapsApiKey={mapsApiKey}
+                onSaveName={onSaveName}
+                onSaveDescription={onSaveDescription}
+                onSaveLocation={onSaveLocation}
+                onSavePhone={onSavePhone}
+                onSaveCapacity={onSaveCapacity}
+                onSaveAverageReserveTime={onSaveAverageReserveTime}
+                onSavePrice={onSavePrice}
+                onSaveType={onSaveType}
+                onSaveMapsLink={onSaveMapsLink}
               />
             </Box>
             <Box width="12px" />

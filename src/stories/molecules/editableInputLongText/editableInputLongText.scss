@@ -1,5 +1,11 @@
 @import "../../assets/scss/variables.module.scss";
 
+.editable-input-long-text--super-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 .editable-input-long-text--container {
   display: flex;

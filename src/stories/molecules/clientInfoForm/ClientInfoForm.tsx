@@ -1,78 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import "./clientInfoForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { InputText } from "../inputText/InputText";
+import { InputFormHook } from "../../hooks/useInputForm";
 
 export interface ClientInfoFormProps {
   /**
-   * Client first name
+   * First name input hook
    */
-  firstName?: string;
+  firstName: InputFormHook<string>;
   /**
-   * Function that changes the first name
+   * Last name input hook
    */
-  setFirstName?: Function;
+  lastName: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the client first name
+   * Email input hook
    */
-  firstNameError?: boolean;
+  email: InputFormHook<string>;
   /**
-   * Message displayed if there is an error with the client first name
+   * Phone input hook
    */
-  firstNameErrorMessage?: string;
-
-  /**
-   * Client last name
-   */
-  lastName?: string;
-  /**
-   * Function that changes the last name
-   */
-  setLastName?: Function;
-  /**
-   * Indicates if there is an error with the client last name
-   */
-  lastNameError?: boolean;
-  /**
-   * Message displayed if there is an error with the client last name
-   */
-  lastNameErrorMessage?: string;
-
-  /**
-   * Client email
-   */
-  email?: string;
-  /**
-   * Function that changes the email
-   */
-  setEmail?: Function;
-  /**
-   * Indicates if there is an error with the client email
-   */
-  emailError?: boolean;
-  /**
-   * Message displayed if there is an error with the client email
-   */
-  emailErrorMessage?: string;
-
-  /**
-   * Client phone
-   */
-  phone?: string;
-  /**
-   * Function that changes the phone
-   */
-  setPhone?: Function;
-  /**
-   * Indicates if there is an error with the client phone
-   */
-  phoneError?: boolean;
-  /**
-   * Message displayed if there is an error with the client phone
-   */
-  phoneErrorMessage?: string;
-
+  phone: InputFormHook<string>;
   /**
    * Form title
    */
@@ -92,31 +41,14 @@ export interface ClientInfoFormProps {
  */
 export const ClientInfoForm = ({
   firstName,
-  setFirstName,
-  firstNameError = false,
-  firstNameErrorMessage = "",
-
   lastName,
-  setLastName,
-  lastNameError = false,
-  lastNameErrorMessage = "",
-
   email,
-  setEmail,
-  emailError = false,
-  emailErrorMessage = "",
-
   phone,
-  setPhone,
-  phoneError = false,
-  phoneErrorMessage = "",
-
   formTitle = "Datos Del Cliente",
   width,
   height,
   ...props
 }: ClientInfoFormProps) => {
-
   return (
     <Box className="client-info-form--container" style={{ width, height }}>
       <Box className="client-info-form--content">
@@ -126,34 +58,10 @@ export const ClientInfoForm = ({
           </Text>
         </Box>
         <Box className="client-info-form-inputs-box">
-          <InputText
-            value={firstName}
-            setValue={setFirstName}
-            label="Nombre"
-            error={firstNameError}
-            errorMessage={firstNameErrorMessage}
-          />
-          <InputText
-            value={lastName}
-            setValue={setLastName}
-            label="Apellido"
-            error={lastNameError}
-            errorMessage={lastNameErrorMessage}
-          />
-          <InputText
-            value={email}
-            setValue={setEmail}
-            label="Correo"
-            error={emailError}
-            errorMessage={emailErrorMessage}
-          />
-          <InputText
-            value={phone}
-            setValue={setPhone}
-            label="Teléfono"
-            error={phoneError}
-            errorMessage={phoneErrorMessage}
-          />
+          <InputText inputHook={firstName} label="Nombre" />
+          <InputText inputHook={lastName} label="Apellido" />
+          <InputText inputHook={email} label="Correo" />
+          <InputText inputHook={phone} label="Teléfono" />
         </Box>
       </Box>
     </Box>

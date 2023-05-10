@@ -1,17 +1,18 @@
 import React, { useMemo, useState, useRef } from "react";
-import Select, { ActionMeta, SingleValue } from "react-select";
+import "./editableInputText.scss";
+import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { Editable } from "../editable/Editable";
 import { Icon } from "../../atoms/icon/Icon";
-import classnames from "classnames";
-import "./editableInputText.scss";
+import { Editable } from "../editable/Editable";
+import { InputFormHook } from "../../hooks/useInputForm";
+import styles from "../../assets/scss/variables.module.scss";
+import Select, { ActionMeta, SingleValue } from "react-select";
 import {
   validateEmail,
   validatePhoneNumber,
   validateUrl,
 } from "../../utils/stringValidation";
-import styles from "../../assets/scss/variables.module.scss";
 interface OptionType {
   label: string;
   value: string;
@@ -19,32 +20,16 @@ interface OptionType {
 
 interface EditableInputTextProps {
   /**
-   * Input name
+   * Value input hook
    */
-  name?: string;
-  /**
-   * Component width
-   * */
-  width?: string;
-  /**
-   * Component height
-   * */
-  height?: string;
-  /**
-   * Component color
-   * */
-  color?: string;
-  /**
-   * Value of the input
-   * */
-  currentValue?: string;
+  inputHook: InputFormHook<string>;
   /**
    * Idicates if the field is editable
-   * */
+   */
   editable?: boolean;
   /**
    * Input type
-   * */
+   */
   type?:
     | "text"
     | "email"
@@ -55,67 +40,66 @@ interface EditableInputTextProps {
     | "select"
     | "url";
   /**
+   * Function to save the value
+   */
+  saveValueFunction: (value: string) => void;
+  /**
    * Indicates if the edit icons are shown or if false if instead of icons buttons are shown
-   * */
+   */
   useEditIcons?: boolean;
   /**
    * Options for the select type
-   * */
+   */
   options?: OptionType[];
-
   /**
-   * Function to save the value
-   * */
-  saveValueFunction: (value: string) => void;
+   * Default text to show when the value is empty or the hideTextAfterEditing is true
+   */
+  defaultText?: string;
+  /**
+   * Hide text after editing
+   */
+  hideTextAfterEditing?: boolean;
+  /**
+   * Component width
+   */
+  width?: string;
+  /**
+   * Component height
+   */
+  height?: string;
+  /**
+   * Component color
+   */
+  color?: string;
   /*
    * Class name for the text
    */
   className?: string;
-
-  /*
-    * Class name for the container
-
-      */
+  /**
+   * Class name for the container
+   */
   containerClassName?: string;
-
-  /*
-    * Style for the text
-
-      */
+  /**
+   * Style for the text
+   */
   style?: React.CSSProperties;
-
-  /*
-   * Hide text after editing
-   */
-  hideTextAfterEditing?: boolean;
-
-  /*
-   * Default text to show when the value is empty or the hideTextAfterEditing is true
-   */
-  defaultText?: string;
-
-  /*
-   * Error message to show when the value is not valid
-   */
-  errorMessage?: string;
 }
 
 export const EditableInputText = ({
+  inputHook,
+  editable = true,
+  type,
+  saveValueFunction = () => {},
+  useEditIcons = false,
+  options,
+  defaultText = "Click to edit",
+  hideTextAfterEditing = false,
   width,
   height,
   color,
-  currentValue,
-  saveValueFunction,
-  type,
-  editable = true,
-  useEditIcons = false,
   className,
   containerClassName,
   style,
-  options,
-  hideTextAfterEditing = false,
-  defaultText = "Click to edit",
-  errorMessage = "Valor inválido",
   ...props
 }: EditableInputTextProps) => {
   const select_enabled = useMemo(() => type === "select", [type]);
@@ -134,12 +118,10 @@ export const EditableInputText = ({
 
   const valueRef = useRef<HTMLInputElement>(null);
 
-  const [value, setValue] = useState(currentValue);
+  const [backup, setBackup] = useState(inputHook.value);
   const [editValue, setEditValue] = useState(false);
-  const [error, setError] = useState(false);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
     // This part of the function is to restrict the input to the type specified type
     if (type === "positiveNumber") {
       // If the the input is a positive number we apply the following rules:
@@ -175,7 +157,7 @@ export const EditableInputText = ({
     // This part of the function is to resize the input to the length of the value
     //event.target.size = Math.max(event.target.value.length, 3000);
     // We set the value to the input container (It is not send to the parent component yet)
-    setValue(event.target.value);
+    inputHook.setValue(event.target.value);
   };
 
   function validateInput(input: string | any) {
@@ -197,26 +179,27 @@ export const EditableInputText = ({
 
   const onSaveClick = () => {
     // If the value is undefined, it means that the user has not changed the value
-    if (value === undefined) {
+    if (inputHook.value === undefined) {
       return;
     }
     // We validate the input
     // If its not valid, we show an error message and we do not save the value
-    if (!validateInput(value)) {
-      setError(true);
+    if (!validateInput(inputHook.value)) {
+      inputHook.setError(true);
       return;
     }
-    // We  disable the edit mode
+    // We disable the edit mode
     setEditValue(false);
     // Save the value
-    saveValueFunction(value);
+    saveValueFunction(inputHook.value);
+    setBackup(inputHook.value);
   };
 
   const onCancelClick = () => {
     // We first disable the edit mode
     setEditValue(false);
     // We set the value to the current value (the unedited value)
-    setValue(currentValue);
+    inputHook.setValue(backup);
   };
 
   function handleChange(
@@ -224,9 +207,9 @@ export const EditableInputText = ({
     actionMeta: ActionMeta<OptionType>
   ) {
     if (selectedOption === null) {
-      setValue("");
+      inputHook.setValue("");
     } else {
-      setValue(selectedOption.value);
+      inputHook.setValue(selectedOption.value);
     }
   }
 
@@ -250,8 +233,8 @@ export const EditableInputText = ({
             <Select
               className={classnames("editable-input-text--select", className)}
               value={{
-                value: value || "",
-                label: optionsMap.get(value || "") || "",
+                value: inputHook.value || "",
+                label: optionsMap.get(inputHook.value || "") || "",
               }}
               options={options}
               onChange={handleChange}
@@ -278,12 +261,12 @@ export const EditableInputText = ({
             <input
               type="text"
               ref={valueRef}
-              value={value}
+              value={inputHook.value}
               onChange={onChange}
               className={classnames("editable-input-text--input", className)}
               style={{
-                borderColor: error ? styles.errorColor : undefined,
-                borderWidth: error ? "2.5px" : undefined,
+                borderColor: inputHook.error ? styles.errorColor : undefined,
+                borderWidth: inputHook.error ? "2.5px" : undefined,
                 ...style,
               }}
             />
@@ -307,7 +290,7 @@ export const EditableInputText = ({
               weight="600"
               style={{ ...style }}
             >
-              {select_enabled ? optionsMap.get(value || "") || "" : value}
+              {select_enabled ? optionsMap.get(inputHook.value || "") || "" : inputHook.value}
             </Text>
           </>
         )}
@@ -325,17 +308,17 @@ export const EditableInputText = ({
         className={classnames(
           "editable-intput-text--error-message",
           className,
-          error
+          inputHook.error
             ? "editable-input-text--animation"
             : "editable-input-text--no-animation"
         )}
       >
-        {error && (
+        {inputHook.error && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
-              {errorMessage}
+              {inputHook.errorMessage}
             </Text>
           </>
         )}

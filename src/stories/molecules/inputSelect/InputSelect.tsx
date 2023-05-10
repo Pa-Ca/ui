@@ -5,20 +5,17 @@ import "../inputText/inputText.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import { InputFormHook } from "../../hooks/useInputForm";
 import { useDraggable } from "react-use-draggable-scroll";
 import OptionObject from "../../utils/objects/OptionObject";
-import useResizeObserver from "../../hooks/useResizeObserver";
 import styles from "../../assets/scss/variables.module.scss";
+import useResizeObserver from "../../hooks/useResizeObserver";
 
 interface InputSelectProps {
   /**
-   * Current input option
+   * Input hook
    */
-  option?: OptionObject;
-  /**
-   * Function that changes the option each time the input select is updated
-   */
-  setOption?: Function;
+  inputHook: InputFormHook<OptionObject>;
   /**
    * Possible options
    */
@@ -28,13 +25,9 @@ interface InputSelectProps {
    */
   label?: string;
   /**
-   * Indicates whether the input should display an error message
+   * indicates if the space should be placed to show possible errors
    */
-  error?: boolean;
-  /**
-   * Message displayed when there is an error
-   */
-  errorMessage?: string;
+  showError?: boolean;
   /**
    * Input width
    */
@@ -49,12 +42,10 @@ interface InputSelectProps {
  * Primary UI component for user interaction
  */
 export const InputSelect = ({
-  option = { value: 0, name: "" },
-  setOption = () => {},
+  inputHook,
   options = [],
   label = "Text select",
-  error = false,
-  errorMessage = "",
+  showError = true,
   width,
   height,
   ...props
@@ -75,7 +66,7 @@ export const InputSelect = ({
 
   const selectOption = (option: OptionObject) => {
     setView(false);
-    setOption(option);
+    inputHook.setValue(option);
   };
 
   const iconJSX = useMemo(() => {
@@ -110,24 +101,25 @@ export const InputSelect = ({
   }, [observer.ref]);
 
   return (
-    <div>
+    <Box
+      style={{
+        width,
+        borderColor: inputHook.error ? styles.errorColor : undefined,
+        borderWidth: inputHook.error ? "2.5px" : undefined,
+      }}
+    >
       <Box
         className="input-text--input-container"
-        style={{
-          width,
-          height,
-          borderColor: error ? styles.errorColor : undefined,
-          borderWidth: error ? "2.5px" : undefined,
-        }}
         innerRef={observer.ref}
         backgroundColor="white"
+        style={{ height, width }}
       >
         <div className="input-text--content">
           <button
             className="text text--h6 input-text--input"
             onClick={selectDropdown}
           >
-            {option.name}
+            {inputHook.value.name}
           </button>
 
           <div className="input-text--label">
@@ -135,7 +127,7 @@ export const InputSelect = ({
               <Text
                 type="h6"
                 weight="400"
-                color={error ? styles.errorColor : undefined}
+                color={inputHook.error ? styles.errorColor : undefined}
               >
                 &nbsp;{label}&nbsp;
               </Text>
@@ -163,7 +155,8 @@ export const InputSelect = ({
               // menu
               const borderTopLeftRadius = index === 0 ? 4 : 0;
               const borderTopRightRadius = borderTopLeftRadius;
-              const borderBottomLeftRadius = index === options.length - 1 ? 4 : 0;
+              const borderBottomLeftRadius =
+                index === options.length - 1 ? 4 : 0;
               const borderBottomRightRadius = borderBottomLeftRadius;
               // Estilo de los bordes de la opcion
               const optionStyle = {
@@ -193,31 +186,29 @@ export const InputSelect = ({
           </div>
         </div>
 
-        <button
-          onClick={selectDropdown}
-          className="input-select--button"
-        >
+        <button onClick={selectDropdown} className="input-select--button">
           {iconJSX}
         </button>
       </Box>
       <div
         className={
           "input-text--error-container " +
-          (error
+          (inputHook.error
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
         }
+        style={{ height: showError ? undefined : "0px" }}
       >
-        {error && (
+        {inputHook.error && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
-              {errorMessage}
+              {inputHook.errorMessage}
             </Text>
           </>
         )}
       </div>
-    </div>
+    </Box>
   );
 };

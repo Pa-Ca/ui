@@ -6,41 +6,38 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
 import { InputText } from "../../molecules/inputText/InputText";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
 
 interface BusinessAccountInfoProps {
   /**
-   * Current business name
+   * Business name input hook
    */
-  currentName: string;
+  name: InputFormHook<string>;
   /**
-   * Current business email
+   * Business email input hook
    */
-  currentEmail: string;
+  email: InputFormHook<string>;
   /**
-   * Current business phone number
+   * Business phone number input hook
    */
-  currentPhoneNumber: string;
+  phoneNumber: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the current password
+   * Business password input hook
    */
-  currentPasswordError: boolean;
+  password: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the new password
+   * Business new password input hook
    */
-  passwordError: boolean;
-  /**
-   * Message displayed if there is an error with the password
-   */
-  passwordErrorMessage?: string;
+  newPassword: InputFormHook<string>;
   /**
    * Function that validates the current password
    */
-  validateCurrentPassword: (currentPassword: string) => boolean;
+  validateCurrentPassword: () => boolean;
   /**
    * Function that changes the user's password
    */
-  onChangePassword: (newPassword: string) => void;
+  onChangePassword: () => void;
   /**
    * Component main color
    */
@@ -51,43 +48,40 @@ interface BusinessAccountInfoProps {
  * Primary UI component for user interaction
  */
 export const BusinessAccountInfo = ({
-  currentName,
-  currentEmail,
-  currentPhoneNumber,
-  currentPasswordError = false,
-  passwordError = false,
-  passwordErrorMessage = "",
+  name,
+  email,
+  phoneNumber,
+  password,
+  newPassword,
   validateCurrentPassword,
   onChangePassword,
   color,
   ...props
 }: BusinessAccountInfoProps) => {
-  const [name, setName] = useState(currentName);
-  const [email, setEmail] = useState(currentEmail);
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
+  const confirmPassword = useInputForm(
+    "",
+    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
+  );
   const [changePassword, setChangePassword] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(currentPhoneNumber);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
   const submit = () => {
     let error = false;
 
-    if (confirmPassword !== newPassword) {
-      setConfirmPasswordError(true);
+    if (confirmPassword.value !== password.value) {
+      confirmPassword.setError(true);
       error = true;
     } else {
-      setConfirmPasswordError(false);
+      confirmPassword.setError(false);
     }
 
-    if (!validateCurrentPassword(newPassword)) {
+    if (!validateCurrentPassword()) {
+      password.setError(true);
       error = true;
     }
 
     if (error) return;
 
-    onChangePassword(newPassword);
+    onChangePassword();
   };
 
   return (
@@ -105,9 +99,9 @@ export const BusinessAccountInfo = ({
           <EditableInputText
             width="100%"
             height="100%"
-            currentValue={name}
+            inputHook={name}
             editable
-            saveValueFunction={(value: string) => setName(value)}
+            saveValueFunction={(value: string) => {}}
             type="text"
           />
         </Box>
@@ -120,9 +114,9 @@ export const BusinessAccountInfo = ({
           <EditableInputText
             width="100%"
             height="100%"
-            currentValue={email}
+            inputHook={email}
             editable={false}
-            saveValueFunction={(value: string) => setEmail(value)}
+            saveValueFunction={(value: string) => {}}
             type="email"
           />
         </Box>
@@ -135,9 +129,9 @@ export const BusinessAccountInfo = ({
           <EditableInputText
             width="100%"
             height="100%"
-            currentValue={phoneNumber}
+            inputHook={phoneNumber}
             editable={true}
-            saveValueFunction={(value: string) => setPhoneNumber(value)}
+            saveValueFunction={(value: string) => {}}
             type="phoneNumber"
           />
         </Box>
@@ -167,29 +161,20 @@ export const BusinessAccountInfo = ({
 
         <InputText
           width="600px"
-          value={currentPassword}
-          setValue={setCurrentPassword}
+          inputHook={password}
           label="Contraseña actual"
-          error={currentPasswordError}
-          errorMessage="La contraseña actual indicada es incorrecta."
         />
 
         <InputText
           width="600px"
-          value={newPassword}
-          setValue={setNewPassword}
+          inputHook={newPassword}
           label="Contraseña nueva"
-          error={currentPasswordError}
-          errorMessage={passwordErrorMessage}
         />
 
         <InputText
           width="600px"
-          value={confirmPassword}
-          setValue={setConfirmPassword}
+          inputHook={confirmPassword}
           label="Repetir contraseña nueva"
-          error={confirmPasswordError}
-          errorMessage="Las contraseñas no coinciden ¡Inténtalo de nuevo!"
         />
 
         <Box height="20px" />

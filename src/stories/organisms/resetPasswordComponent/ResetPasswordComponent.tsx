@@ -3,11 +3,16 @@ import "./resetPasswordComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import { InputFormHook } from "../../hooks/useInputForm";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { ResetPasswordForm } from "../../molecules/resetPasswordForm/ResetPasswordForm";
 
 export interface ResetPasswordComponentProps {
+  /**
+   * Password input hook
+   */
+  password: InputFormHook<string>;
   /**
    * Indicates if there is a credencial error
    */
@@ -27,7 +32,7 @@ export interface ResetPasswordComponentProps {
   /**
    * On submit button click
    */
-  onSubmit: (email: string) => void;
+  onSubmit: () => void;
   /**
    * Component main color
    */
@@ -46,6 +51,7 @@ export interface ResetPasswordComponentProps {
  * Primary UI component for user interaction
  */
 export const ResetPasswordComponent = ({
+  password,
   error = false,
   completed = false,
   images = [],
@@ -88,6 +94,7 @@ export const ResetPasswordComponent = ({
               </Box>
 
               <ResetPasswordForm
+                password={password}
                 error={error}
                 onSubmit={onSubmit}
                 color={color}

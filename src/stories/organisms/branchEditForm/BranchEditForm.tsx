@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./branchEditForm.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
@@ -14,95 +15,129 @@ export interface OptionType {
 
 interface BranchEditFormProps {
   /**
-   * Component width
-   *  */
-  width?: string;
-  /**
-   * Component height
-   * */
-  height?: string;
-
-  /**
    * Name of the branch
-   * */
-  branchName?: string;
-
+   */
+  name: InputFormHook<string>;
   /**
    * Description of the branch
-   * */
-  branchDescription?: string;
-
+   */
+  description: InputFormHook<string>;
   /**
    * Location of the branch
-   * */
-  branchLocation?: string;
-
+   */
+  location: InputFormHook<string>;
   /**
    * Phone of the branch
-   * */
-  branchPhone?: string;
-
+   */
+  phone: InputFormHook<string>;
   /**
    * Capacity of the branch
-   * */
-  branchCapacity?: string;
-
+   */
+  capacity: InputFormHook<string>;
   /**
    * Average reserve time of the branch (in hours)
-   * */
-  branchAverageReserveTime?: string;
-
+   */
+  averageReserveTime: InputFormHook<string>;
   /**
    * Average price per person of the branch (in USD)
-   * */
-  branchPrice?: string;
-
+   */
+  price: InputFormHook<string>;
   /**
    * Branch type
-   * */
-  branchType?: string;
-
+   */
+  type: InputFormHook<string>;
   /**
    * Precise location of the branch (Google maps link)
-   * */
-  branchMapsLink?: string;
+   */
+  mapsLink: InputFormHook<string>;
+
+  /**
+   * Function that is executed when the name is saved
+   */
+  onSaveName: (value: string) => void;
+  /**
+   * Description of the branch
+   */
+  onSaveDescription: (value: string) => void;
+  /**
+   * Location of the branch
+   */
+  onSaveLocation: (value: string) => void;
+  /**
+   * Phone of the branch
+   */
+  onSavePhone: (value: string) => void;
+  /**
+   * Capacity of the branch
+   */
+  onSaveCapacity: (value: string) => void;
+  /**
+   * Average reserve time of the branch (in hours)
+   */
+  onSaveAverageReserveTime: (value: string) => void;
+  /**
+   * Average price per person of the branch (in USD)
+   */
+  onSavePrice: (value: string) => void;
+  /**
+   * Branch type
+   */
+  onSaveType: (value: string) => void;
+  /**
+   * Precise location of the branch (Google maps link)
+   */
+  onSaveMapsLink: (value: string) => void;
 
   /**
    * Google maps API key
-   * */
-  MapsApiKey: string;
-
+   */
+  mapsApiKey: string;
   /**
    * Options for the branch type
-   * */
-  branchTypeOptions: OptionType[];
-
+   */
+  typeOptions: OptionType[];
   /**
    * Options for the branch location
-   * */
-  branchLocationOptions: OptionType[];
+   */
+  locationOptions: OptionType[];
+  /**
+   * Component width
+   */
+  width?: string;
+  /**
+   * Component height
+   */
+  height?: string;
 }
 
 export const BranchEditForm = ({
+  name,
+  description,
+  location,
+  phone,
+  capacity,
+  averageReserveTime,
+  price,
+  mapsLink,
+  type,
+
+  onSaveName = () => {},
+  onSaveDescription = () => {},
+  onSaveLocation = () => {},
+  onSavePhone = () => {},
+  onSaveCapacity = () => {},
+  onSaveAverageReserveTime = () => {},
+  onSavePrice = () => {},
+  onSaveType = () => {},
+  onSaveMapsLink = () => {},
+
+  typeOptions,
+  locationOptions,
+  mapsApiKey,
   width,
   height,
-  branchName,
-  branchDescription,
-  branchLocation,
-  branchPhone,
-  branchCapacity,
-  branchAverageReserveTime,
-  branchPrice,
-  branchMapsLink,
-  branchType,
-  branchTypeOptions,
-  branchLocationOptions,
-  MapsApiKey,
   ...props
 }: BranchEditFormProps) => {
-  const [branchMapLinkCurrentVal, setBranchMapLinkCurrentVal] =
-    useState(branchMapsLink);
-
   return (
     <Box className="branch-edit-form--container" width={width} height={height}>
       <Box className={classnames("branch-edit-form--name-input")}>
@@ -110,9 +145,9 @@ export const BranchEditForm = ({
         <EditableInputText
           width="100%"
           height="100%"
-          currentValue={branchName}
+          inputHook={name}
           editable={true}
-          saveValueFunction={() => {}}
+          saveValueFunction={onSaveName}
           type="text"
           containerClassName="branch-edit-form--input-item"
         />
@@ -122,8 +157,8 @@ export const BranchEditForm = ({
         <Box className={classnames("branch-edit-form--capacity-input")}>
           <Text className="branch-edit-form--input-label"> Capacidad </Text>
           <EditableInputText
-            currentValue={branchCapacity}
-            saveValueFunction={() => {}}
+            inputHook={capacity}
+            saveValueFunction={onSaveCapacity}
             editable={true}
             type="positiveInteger"
             containerClassName="branch-edit-form--input-item"
@@ -141,8 +176,8 @@ export const BranchEditForm = ({
             Tiempo promedio de reserva (en horas){" "}
           </Text>
           <EditableInputText
-            currentValue={branchAverageReserveTime}
-            saveValueFunction={() => {}}
+            inputHook={averageReserveTime}
+            saveValueFunction={onSaveAverageReserveTime}
             editable={true}
             type="positiveInteger"
             containerClassName="branch-edit-form--input-item"
@@ -154,9 +189,9 @@ export const BranchEditForm = ({
         <Box className={classnames("branch-edit-form--type-input")}>
           <Text className="branch-edit-form--input-label"> Tipo </Text>
           <EditableInputText
-            currentValue={branchType}
-            options={branchTypeOptions}
-            saveValueFunction={() => {}}
+            inputHook={type}
+            options={typeOptions}
+            saveValueFunction={onSaveType}
             editable={true}
             type="select"
             containerClassName="branch-edit-form--input-item"
@@ -169,8 +204,8 @@ export const BranchEditForm = ({
             Coste por persona{" "}
           </Text>
           <EditableInputText
-            currentValue={branchPrice}
-            saveValueFunction={() => {}}
+            inputHook={price}
+            saveValueFunction={onSavePrice}
             editable={true}
             type="positiveNumber"
             containerClassName="branch-edit-form--input-item"
@@ -185,8 +220,8 @@ export const BranchEditForm = ({
             Número de teléfono Local{" "}
           </Text>
           <EditableInputText
-            currentValue={branchPhone}
-            saveValueFunction={() => {}}
+            inputHook={phone}
+            saveValueFunction={onSavePhone}
             editable={true}
             type="phoneNumber"
             containerClassName="branch-edit-form--input-item"
@@ -198,9 +233,9 @@ export const BranchEditForm = ({
           <EditableInputText
             width="100%"
             height="100%"
-            currentValue={branchLocation}
-            options={branchLocationOptions}
-            saveValueFunction={() => {}}
+            inputHook={location}
+            options={locationOptions}
+            saveValueFunction={onSaveLocation}
             editable={true}
             type="select"
             containerClassName="branch-edit-form--input-item"
@@ -211,13 +246,13 @@ export const BranchEditForm = ({
       <Box className="branch-edit-form--description-container">
         <Text className="branch-edit-form--input-label"> Descripción </Text>
         <EditableInputLongText
-          currentValue={branchDescription}
+          inputHook={description}
           minRows={6}
           maxRows={6}
           width="100%"
           height="100%"
           maxLength={480}
-          saveValueFunction={(value: string) => {}}
+          saveValueFunction={onSaveDescription}
         />
       </Box>
 
@@ -229,17 +264,17 @@ export const BranchEditForm = ({
         <EditableInputText
           width="100%"
           height="100%"
-          currentValue={branchMapLinkCurrentVal}
-          saveValueFunction={setBranchMapLinkCurrentVal}
+          inputHook={mapsLink}
           editable={true}
           hideTextAfterEditing={true}
           type="text"
           defaultText="Enlace de Google Maps"
+          saveValueFunction={onSaveMapsLink}
           containerClassName="branch-edit-form--input-item"
         />
         <EditableBranchLocation
-          apiKey={MapsApiKey}
-          googleMapsLink={branchMapLinkCurrentVal || ""}
+          apiKey={mapsApiKey}
+          googleMapsLink={mapsLink.value || ""}
           className="branch-edit-form--precise-location-map"
         />
       </Box>

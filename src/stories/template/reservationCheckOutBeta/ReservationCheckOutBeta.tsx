@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./reservationCheckOutBeta.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
@@ -10,6 +10,7 @@ import OptionObject from "../../utils/objects/OptionObject";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
+import useInputForm from "../../hooks/useInputForm";
 
 interface ReservationCheckOutBeta {
   /**
@@ -28,30 +29,6 @@ interface ReservationCheckOutBeta {
    * Valid end hour for reservation
    */
   validHoursOut: OptionObject[];
-
-  /**
-   * Show error message in client form
-   */
-  firstNameError  : boolean;
-  lastNameError  : boolean;
-  emailError  : boolean;
-  phoneError  : boolean;
-
-  dateError  : boolean;
-  hourInError  : boolean;
-  personsError  : boolean;
-
-  /**
-   * Text for error message in client form
-   */
-  firstNameErrorMessage : string;
-  lastNameErrorMessage : string;
-  emailErrorMessage : string;
-  phoneErrorMessage : string;
-
-  dateErrorMessage : string;
-  hourInErrorMessage : string;
-  personsErrorMessage : string;
   /**
    * Get Branch data
    */
@@ -95,39 +72,23 @@ export const ReservationCheckOutBeta = ({
   submitButtonColor,
   validHoursIn,
   validHoursOut,
-  firstNameError,
-  firstNameErrorMessage,
-  lastNameError,
-  lastNameErrorMessage,
-  emailError,
-  emailErrorMessage,
-  phoneError,
-  phoneErrorMessage,
-
-  dateError,
-  dateErrorMessage,
-  hourInError,
-  hourInErrorMessage,
-  personsError,
-  personsErrorMessage,
-
   ...props
 }: ReservationCheckOutBeta) => {
   const branch = getBranchData();
 
   // Reservation data
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const [hourIn, setHourIn] = useState<OptionObject | undefined>(undefined);
-  const [hourOut, setHourOut] = useState<OptionObject | undefined>(undefined);
-  const [persons, setPersons] = useState<string | undefined>(undefined);
-  const [occasion, setOccasion] = useState<string | undefined>(undefined);
-  const [petition, setPetition] = useState<string | undefined>(undefined);
+  const date = useInputForm<Date >(new Date());
+  const hourIn = useInputForm<OptionObject >({ value: "", name: "" });
+  const hourOut = useInputForm<OptionObject >({ value: "", name: "" });
+  const persons = useInputForm<string >("");
+  const occasion = useInputForm<string >("");
+  const petition = useInputForm<string >("");
 
   // Client data
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const firstName = useInputForm("");
+  const lastName = useInputForm("");
+  const phone = useInputForm("");
+  const email = useInputForm("");
 
   return (
     <BasicPage headerArgs={headerArgs}>
@@ -152,21 +113,9 @@ export const ReservationCheckOutBeta = ({
           <Box className="white-background-box" weakShadow>
             <ClientInfoForm
               firstName = {firstName}
-              setFirstName = {setFirstName}
-              firstNameError = {firstNameError}
-              firstNameErrorMessage = {firstNameErrorMessage}
               lastName = {lastName}
-              setLastName = {setLastName}
-              lastNameError = {lastNameError}
-              lastNameErrorMessage = {lastNameErrorMessage}
               email = {email}
-              setEmail = {setEmail}
-              emailError = {emailError}
-              emailErrorMessage = {emailErrorMessage}
-              phone = {phone}
-              setPhone = {setPhone}
-              phoneError = {phoneError}
-              phoneErrorMessage = {phoneErrorMessage}
+              phone={phone}
             />
           </Box>
 
@@ -174,25 +123,12 @@ export const ReservationCheckOutBeta = ({
           <Box>
             <ReserveDetails
               date={date}
-              setDate={setDate}
-              dateError={dateError}
-              dateErrorMessage={dateErrorMessage}
               hourIn={hourIn}
-              setHourIn={setHourIn}
-              hourInError={hourInError}
-              hourInErrorMessage={hourInErrorMessage}
               validHoursIn={validHoursIn}
               hourOut={hourOut}
-              setHourOut={setHourOut}
-              validHoursOut={validHoursOut}
               persons={persons}
-              setPersons={setPersons}
-              personsError={personsError}
-              personsErrorMessage={personsErrorMessage}
               occasion={occasion}
-              setOccasion={setOccasion}
               petition={petition}
-              setPetition={setPetition}
               showInviteFriends={false}
             />
           </Box>
@@ -206,16 +142,16 @@ export const ReservationCheckOutBeta = ({
               backgroundColor={submitButtonColor}
               onClick={() =>
                 onSubmit(
-                  date!,
-                  parseInt(persons!),
+                  date.value,
+                  parseInt(persons.value),
                   typeof hourIn!.value === "string"
                     ? hourIn!.value
                     : hourIn!.value.toString(),
                   typeof hourOut!.value === "string"
                     ? hourOut!.value
                     : hourOut!.value.toString(),
-                  petition!,
-                  occasion!
+                  petition.value,
+                  occasion.value
                 )
               }
             >

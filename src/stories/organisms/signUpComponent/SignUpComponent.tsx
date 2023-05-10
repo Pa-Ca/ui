@@ -24,12 +24,12 @@ interface SignUpComponentProps {
   /**
    * SignUpForm props
    * @see SignUpFormProps
-   * */
+   */
   signUpFormProps: SignUpFormProps;
   /**
    * ImagesCarousel props
    * @see ImagesCarouselProps
-   * */
+   */
   imagesCarouselProps: ImagesCarouselProps;
 }
 

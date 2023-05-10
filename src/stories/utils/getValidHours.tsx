@@ -1,4 +1,6 @@
-export default () => {
+import OptionObject from "./objects/OptionObject";
+
+export default (): OptionObject[] => {
   return [
     { value: '', name: ''},
     { value: '00:00', name: '12:00 am' },
