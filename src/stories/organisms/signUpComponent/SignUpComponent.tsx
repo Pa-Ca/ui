@@ -14,27 +14,27 @@ interface SignUpComponentProps {
   /**
    * Client first name input hook
    */
-  firstName: InputFormHook<string>;
+  firstName?: InputFormHook<string>;
   /**
    * Client last name input hook
    */
-  lastName: InputFormHook<string>;
+  lastName?: InputFormHook<string>;
   /**
    * Business name input hook
    */
-  businessName: InputFormHook<string>;
+  businessName?: InputFormHook<string>;
   /**
    * Email input hook
    */
-  email: InputFormHook<string>;
+  email?: InputFormHook<string>;
   /**
    * Phone input hook
    */
-  phone: InputFormHook<string>;
+  phone?: InputFormHook<string>;
   /**
    * Password input hook
    */
-  password: InputFormHook<string>;
+  password?: InputFormHook<string>;
   /**
    * Indicates if the user to register is a business. Otherwise, it will
    * be considered a client
@@ -153,13 +153,14 @@ export const SignUpComponent = ({
           Let’s get you all st up so you can access your personal account.
         </Text>
         <SignUpForm
-          firstName={firstName}
-          lastName={lastName}
-          businessName={businessName}
+          business={business}
+          
           email={email}
           phone={phone}
+          lastName={lastName}
           password={password}
-          business={business}
+          firstName={firstName}
+          businessName={businessName}
 
           validateClientData={validateClientData}
           validateBusinessData={validateBusinessData}
