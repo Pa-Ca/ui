@@ -75,5 +75,5 @@ export * from './stories/template/businessProfile/BusinessProfile';
 export * from './stories/template/reservationCheckOutBeta/ReservationCheckOutBeta';
 
 // UTILS
-export * from './stories/utils/stringValidation';
 export * from './stories/hooks/useInputForm';
+export * from './stories/utils/stringValidation';

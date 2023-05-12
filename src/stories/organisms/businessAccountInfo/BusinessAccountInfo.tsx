@@ -31,6 +31,14 @@ interface BusinessAccountInfoProps {
    */
   newPassword: InputFormHook<string>;
   /**
+   * Function that is executed when the name is saved
+   */
+  onSaveName: (value: string) => void;
+  /**
+   * Function that is executed when the phone number is saved
+   */
+  onSavePhoneNumber: (value: string) => void;
+  /**
    * Function that validates the current password
    */
   validateCurrentPassword: () => boolean;
@@ -53,6 +61,8 @@ export const BusinessAccountInfo = ({
   phoneNumber,
   password,
   newPassword,
+  onSaveName,
+  onSavePhoneNumber,
   validateCurrentPassword,
   onChangePassword,
   color,
@@ -101,7 +111,7 @@ export const BusinessAccountInfo = ({
             height="100%"
             inputHook={name}
             editable
-            saveValueFunction={(value: string) => {}}
+            saveValueFunction={(value: string) => onSaveName(value)}
             type="text"
           />
         </Box>
@@ -116,7 +126,7 @@ export const BusinessAccountInfo = ({
             height="100%"
             inputHook={email}
             editable={false}
-            saveValueFunction={(value: string) => {}}
+            saveValueFunction={(value: string) => onSavePhoneNumber(value)}
             type="email"
           />
         </Box>

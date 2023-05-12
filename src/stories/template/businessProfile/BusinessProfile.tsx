@@ -49,6 +49,14 @@ interface BusinessProfileProps {
    */
   newPassword: InputFormHook<string>;
   /**
+   * Function that is executed when the business name is saved
+   */
+  onSaveName: (value: string) => void;
+  /**
+   * Function that is executed when the business phone number is saved
+   */
+  onSavePhoneNumber: (value: string) => void;
+  /**
    * Function that validates the current password
    */
   validateCurrentPassword: () => boolean;
@@ -111,41 +119,41 @@ interface BusinessProfileProps {
   mapsApiKey: string;
 
   /**
-   * Function that is executed when the name is saved
+   * Function that is executed when the branch name is saved
    */
-  onSaveName: (value: string) => void;
+  onSaveBranchName: (value: string) => void;
   /**
-   * Description of the branch
+   * Function that is executed when the branch description is saved
    */
-  onSaveDescription: (value: string) => void;
+  onSaveBranchDescription: (value: string) => void;
   /**
-   * Location of the branch
+   * Function that is executed when the branch location is saved
    */
-  onSaveLocation: (value: string) => void;
+  onSaveBranchLocation: (value: string) => void;
   /**
-   * Phone of the branch
+   * Function that is executed when the branch phone number is saved
    */
-  onSavePhone: (value: string) => void;
+  onSaveBranchPhone: (value: string) => void;
   /**
-   * Capacity of the branch
+   * Function that is executed when the branch capacity is saved
    */
-  onSaveCapacity: (value: string) => void;
+  onSaveBranchCapacity: (value: string) => void;
   /**
-   * Average reserve time of the branch (in hours)
+   * Function that is executed when the branch average reserve time is saved
    */
-  onSaveAverageReserveTime: (value: string) => void;
+  onSaveBranchAverageReserveTime: (value: string) => void;
   /**
-   * Average price per person of the branch (in USD)
+   * Function that is executed when the branch reservation price is saved
    */
-  onSavePrice: (value: string) => void;
+  onSaveBranchPrice: (value: string) => void;
   /**
-   * Branch type
+   * Function that is executed when the branch type is saved
    */
-  onSaveType: (value: string) => void;
+  onSaveBranchType: (value: string) => void;
   /**
-   * Precise location of the branch (Google maps link)
+   * Function that is executed when the branch google maps link is saved
    */
-  onSaveMapsLink: (value: string) => void;
+  onSaveBranchMapsLink: (value: string) => void;
 
   /**
    * Component main color
@@ -170,6 +178,8 @@ export const BusinessProfile = ({
   phoneNumber,
   password,
   newPassword,
+  onSaveName,
+  onSavePhoneNumber,
   validateCurrentPassword,
   onChangePassword,
 
@@ -187,15 +197,15 @@ export const BusinessProfile = ({
   branchLocationOptions,
   mapsApiKey,
 
-  onSaveName,
-  onSaveDescription,
-  onSaveLocation,
-  onSavePhone,
-  onSaveCapacity,
-  onSaveAverageReserveTime,
-  onSavePrice,
-  onSaveType,
-  onSaveMapsLink,
+  onSaveBranchName,
+  onSaveBranchDescription,
+  onSaveBranchLocation,
+  onSaveBranchPhone,
+  onSaveBranchCapacity,
+  onSaveBranchAverageReserveTime,
+  onSaveBranchPrice,
+  onSaveBranchType,
+  onSaveBranchMapsLink,
 
   color,
   secondaryColor,
@@ -249,6 +259,8 @@ export const BusinessProfile = ({
                 phoneNumber={phoneNumber}
                 password={password}
                 newPassword={newPassword}
+                onSaveName={onSaveName}
+                onSavePhoneNumber={onSavePhoneNumber}
                 validateCurrentPassword={validateCurrentPassword}
                 onChangePassword={onChangePassword}
                 color={color}
@@ -275,15 +287,15 @@ export const BusinessProfile = ({
                   typeOptions={branchTypeOptions}
                   locationOptions={branchLocationOptions}
                   mapsApiKey={mapsApiKey}
-                  onSaveName={onSaveName}
-                  onSaveDescription={onSaveDescription}
-                  onSaveLocation={onSaveLocation}
-                  onSavePhone={onSavePhone}
-                  onSaveCapacity={onSaveCapacity}
-                  onSaveAverageReserveTime={onSaveAverageReserveTime}
-                  onSavePrice={onSavePrice}
-                  onSaveType={onSaveType}
-                  onSaveMapsLink={onSaveMapsLink}
+                  onSaveName={onSaveBranchName}
+                  onSaveDescription={onSaveBranchDescription}
+                  onSaveLocation={onSaveBranchLocation}
+                  onSavePhone={onSaveBranchPhone}
+                  onSaveCapacity={onSaveBranchCapacity}
+                  onSaveAverageReserveTime={onSaveBranchAverageReserveTime}
+                  onSavePrice={onSaveBranchPrice}
+                  onSaveType={onSaveBranchType}
+                  onSaveMapsLink={onSaveBranchMapsLink}
                 />
               ) : (
                 <Box>

@@ -40,6 +40,16 @@ export default {
         disable: true,
       },
     },
+    onSaveName: {
+      table: {
+        disable: true,
+      },
+    },
+    onSavePhoneNumber: {
+      table: {
+        disable: true,
+      },
+    },
     validateCurrentPassword: {
       table: {
         disable: true,
@@ -110,47 +120,47 @@ export default {
         disable: true,
       },
     },
-    onSaveName: {
+    onSaveBranchName: {
       table: {
         disable: true,
       },
     },
-    onSaveDescription: {
+    onSaveBranchDescription: {
       table: {
         disable: true,
       },
     },
-    onSaveLocation: {
+    onSaveBranchLocation: {
       table: {
         disable: true,
       },
     },
-    onSavePhone: {
+    onSaveBranchPhone: {
       table: {
         disable: true,
       },
     },
-    onSaveCapacity: {
+    onSaveBranchCapacity: {
       table: {
         disable: true,
       },
     },
-    onSaveAverageReserveTime: {
+    onSaveBranchAverageReserveTime: {
       table: {
         disable: true,
       },
     },
-    onSavePrice: {
+    onSaveBranchPrice: {
       table: {
         disable: true,
       },
     },
-    onSaveType: {
+    onSaveBranchType: {
       table: {
         disable: true,
       },
     },
-    onSaveMapsLink: {
+    onSaveBranchMapsLink: {
       table: {
         disable: true,
       },
