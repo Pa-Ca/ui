@@ -12,27 +12,27 @@ export interface SignUpFormProps {
   /**
    * Client first name input hook
    */
-  firstName: InputFormHook<string>;
+  firstName?: InputFormHook<string>;
   /**
    * Client last name input hook
    */
-  lastName: InputFormHook<string>;
+  lastName?: InputFormHook<string>;
   /**
    * Business name input hook
    */
-  businessName: InputFormHook<string>;
+  businessName?: InputFormHook<string>;
   /**
    * Email input hook
    */
-  email: InputFormHook<string>;
+  email?: InputFormHook<string>;
   /**
    * Phone input hook
    */
-  phone: InputFormHook<string>;
+  phone?: InputFormHook<string>;
   /**
    * Password input hook
    */
-  password: InputFormHook<string>;
+  password?: InputFormHook<string>;
 
   /**
    * Indicate if the client data is valid
@@ -129,7 +129,7 @@ export const SignUpForm = ({
   const submit = () => {
     let error = false;
 
-    if (confirmPassword.value !== password.value) {
+    if (confirmPassword.value !== password!.value) {
       confirmPassword.setError(true);
       error = true;
     } else {
@@ -172,19 +172,19 @@ export const SignUpForm = ({
         {business ? (
           <Box className="two-inputs-box">
             <Box className="sign-up-form--input">
-              <InputText inputHook={businessName} label="Nombre" />
+              <InputText inputHook={businessName!} label="Nombre" />
             </Box>
             <Box className="sign-up-form--input">
-              <InputText inputHook={email} label="Correo" />
+              <InputText inputHook={email!} label="Correo" />
             </Box>
           </Box>
         ) : (
           <Box className="two-inputs-box">
             <Box className="sign-up-form--input">
-              <InputText inputHook={firstName} label="Nombre" />
+              <InputText inputHook={firstName!} label="Nombre" />
             </Box>
             <Box className="sign-up-form--input">
-              <InputText inputHook={lastName} label="Apellido" />
+              <InputText inputHook={lastName!} label="Apellido" />
             </Box>
           </Box>
         )}
@@ -192,16 +192,16 @@ export const SignUpForm = ({
         {!business && (
           <Box className="two-inputs-box">
             <Box className="sign-up-form--input">
-              <InputText inputHook={email} label="Correo" />
+              <InputText inputHook={email!} label="Correo" />
             </Box>
             <Box className="sign-up-form--input">
-              <InputText inputHook={phone} label="Teléfono" />
+              <InputText inputHook={phone!} label="Teléfono" />
             </Box>
           </Box>
         )}
 
         <Box className="sign-up-form--input">
-          <InputText type="password" inputHook={password} label="Contraseña" />
+          <InputText type="password" inputHook={password!} label="Contraseña" />
         </Box>
 
         <Box className="sign-up-form--input">

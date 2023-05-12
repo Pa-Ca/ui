@@ -72,7 +72,9 @@ export * from './stories/template/basicPage/BasicPage';
 export * from './stories/template/branchListing/BranchListing';
 export * from './stories/template/branchProfile/BranchProfile';
 export * from './stories/template/branchReserves/BranchReserves';
+export * from './stories/template/businessProfile/BusinessProfile';
 export * from './stories/template/reservationCheckOutBeta/ReservationCheckOutBeta';
 
 // UTILS
 export * from './stories/utils/stringValidation';
+export * from './stories/hooks/useInputForm';

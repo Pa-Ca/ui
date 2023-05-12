@@ -10,7 +10,147 @@ export default {
   component: BusinessProfile,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    getUserData: {
+    header: {
+      table: {
+        disable: true,
+      },
+    },
+    name: {
+      table: {
+        disable: true,
+      },
+    },
+    email: {
+      table: {
+        disable: true,
+      },
+    },
+    phoneNumber: {
+      table: {
+        disable: true,
+      },
+    },
+    password: {
+      table: {
+        disable: true,
+      },
+    },
+    newPassword: {
+      table: {
+        disable: true,
+      },
+    },
+    validateCurrentPassword: {
+      table: {
+        disable: true,
+      },
+    },
+    onChangePassword: {
+      table: {
+        disable: true,
+      },
+    },
+    branchName: {
+      table: {
+        disable: true,
+      },
+    },
+    branchDescription: {
+      table: {
+        disable: true,
+      },
+    },
+    branchLocation: {
+      table: {
+        disable: true,
+      },
+    },
+    branchPhone: {
+      table: {
+        disable: true,
+      },
+    },
+    branchCapacity: {
+      table: {
+        disable: true,
+      },
+    },
+    branchAverageReserveTime: {
+      table: {
+        disable: true,
+      },
+    },
+    branchPrice: {
+      table: {
+        disable: true,
+      },
+    },
+    branchMapsLink: {
+      table: {
+        disable: true,
+      },
+    },
+    branchType: {
+      table: {
+        disable: true,
+      },
+    },
+    branchTypeOptions: {
+      table: {
+        disable: true,
+      },
+    },
+    branchLocationOptions: {
+      table: {
+        disable: true,
+      },
+    },
+    mapsApiKey: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveName: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveDescription: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveLocation: {
+      table: {
+        disable: true,
+      },
+    },
+    onSavePhone: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveCapacity: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveAverageReserveTime: {
+      table: {
+        disable: true,
+      },
+    },
+    onSavePrice: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveType: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveMapsLink: {
       table: {
         disable: true,
       },
