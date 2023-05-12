@@ -44,7 +44,7 @@ export const ClientInfoForm = ({
   lastName,
   email,
   phone,
-  formTitle = "Datos Del Cliente",
+  formTitle = "Datos Personales",
   width,
   height,
   ...props
@@ -58,10 +58,10 @@ export const ClientInfoForm = ({
           </Text>
         </Box>
         <Box className="client-info-form-inputs-box">
-          <InputText inputHook={firstName} label="Nombre" />
-          <InputText inputHook={lastName} label="Apellido" />
-          <InputText inputHook={email} label="Correo" />
-          <InputText inputHook={phone} label="Teléfono" />
+          <InputText inputHook={firstName} label="* Nombre" />
+          <InputText inputHook={lastName} label="* Apellido" />
+          <InputText inputHook={email} label="* Correo" />
+          <InputText inputHook={phone} label="* Teléfono" />
         </Box>
       </Box>
     </Box>
