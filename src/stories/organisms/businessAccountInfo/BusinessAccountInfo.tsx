@@ -126,7 +126,7 @@ export const BusinessAccountInfo = ({
             height="100%"
             inputHook={email}
             editable={false}
-            saveValueFunction={(value: string) => onSavePhoneNumber(value)}
+            saveValueFunction={(value: string) => {}}
             type="email"
           />
         </Box>
@@ -141,7 +141,7 @@ export const BusinessAccountInfo = ({
             height="100%"
             inputHook={phoneNumber}
             editable={true}
-            saveValueFunction={(value: string) => {}}
+            saveValueFunction={(value: string) => onSavePhoneNumber(value)}
             type="phoneNumber"
           />
         </Box>
