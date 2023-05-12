@@ -57,7 +57,10 @@ interface BusinessProfileProps {
    */
   onChangePassword: () => void;
 
-
+  /**
+   * Indicates if any branch is being shown
+   */
+  haveBranch?: boolean;
   /**
    * Name of the branch
    * */
@@ -170,6 +173,7 @@ export const BusinessProfile = ({
   validateCurrentPassword,
   onChangePassword,
 
+  haveBranch = true,
   branchName,
   branchDescription,
   branchLocation,
@@ -257,29 +261,36 @@ export const BusinessProfile = ({
                 Detalles del local
               </Text>
               <Box height="16px" />
-
-              <BranchEditForm
-                name={branchName}
-                description={branchDescription}
-                location={branchLocation}
-                phone={branchPhone}
-                capacity={branchCapacity}
-                averageReserveTime={branchAverageReserveTime}
-                price={branchPrice}
-                mapsLink={branchMapsLink}
-                type={branchType}
-                typeOptions={branchTypeOptions}
-                locationOptions={branchLocationOptions}
-                mapsApiKey={mapsApiKey}
-                onSaveName={onSaveName}
-                onSaveDescription={onSaveDescription}
-                onSaveLocation={onSaveLocation}
-                onSavePhone={onSavePhone}
-                onSaveCapacity={onSaveCapacity}
-                onSaveAverageReserveTime={onSaveAverageReserveTime}
-                onSavePrice={onSavePrice}
-                onSaveType={onSaveType}
-                onSaveMapsLink={onSaveMapsLink} />
+              {haveBranch ? (
+                <BranchEditForm
+                  name={branchName}
+                  description={branchDescription}
+                  location={branchLocation}
+                  phone={branchPhone}
+                  capacity={branchCapacity}
+                  averageReserveTime={branchAverageReserveTime}
+                  price={branchPrice}
+                  mapsLink={branchMapsLink}
+                  type={branchType}
+                  typeOptions={branchTypeOptions}
+                  locationOptions={branchLocationOptions}
+                  mapsApiKey={mapsApiKey}
+                  onSaveName={onSaveName}
+                  onSaveDescription={onSaveDescription}
+                  onSaveLocation={onSaveLocation}
+                  onSavePhone={onSavePhone}
+                  onSaveCapacity={onSaveCapacity}
+                  onSaveAverageReserveTime={onSaveAverageReserveTime}
+                  onSavePrice={onSavePrice}
+                  onSaveType={onSaveType}
+                  onSaveMapsLink={onSaveMapsLink}
+                />
+              ) : (
+                <Box>
+                  {" "}
+                  <Text> Parece que no tienes ningún local asociado. </Text>
+                </Box>
+              )}
             </Box>
             <Box width="12px" />
 

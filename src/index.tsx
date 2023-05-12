@@ -60,6 +60,7 @@ export * from './stories/organisms/signUpComponent/SignUpComponent';
 export * from './stories/organisms/categoryPreview/CategoryPreview';
 export * from './stories/organisms/payMethodSelector/PayMethodSelector';
 export * from './stories/organisms/branchMainSummary/BranchMainSummary';
+export * from './stories/organisms/createReservationModal/CreateReservationModal';
 export * from './stories/organisms/resetPasswordComponent/ResetPasswordComponent';
 export * from './stories/organisms/forgotPasswordComponent/ForgotPasswordComponent';
 export * from './stories/organisms/recoverPasswordComponent/RecoverPasswordComponent';
@@ -71,7 +72,9 @@ export * from './stories/template/basicPage/BasicPage';
 export * from './stories/template/branchListing/BranchListing';
 export * from './stories/template/branchProfile/BranchProfile';
 export * from './stories/template/branchReserves/BranchReserves';
+export * from './stories/template/businessProfile/BusinessProfile';
 export * from './stories/template/reservationCheckOutBeta/ReservationCheckOutBeta';
 
 // UTILS
 export * from './stories/utils/stringValidation';
+export * from './stories/hooks/useInputForm';

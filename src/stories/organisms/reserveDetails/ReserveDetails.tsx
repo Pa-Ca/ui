@@ -43,10 +43,6 @@ interface ReserveDetailsProps {
    */
   occasion: InputFormHook<string>;
   /**
-   * Special petiton in the reservation
-   */
-  petition: InputFormHook<string>;
-  /**
    * Component width
    */
   width?: string;
@@ -54,10 +50,6 @@ interface ReserveDetailsProps {
    * Component height
    */
   height?: string;
-  /**
-   * Component main color
-   */
-  color?: string;
   /**
    * Mode
    */
@@ -83,20 +75,18 @@ export const ReserveDetails = ({
   validHoursOut,
   persons,
   occasion,
-  petition,
   width,
   height,
-  color = "white",
   mode = "free",
   invitedFriendsProps,
   showInviteFriends = true,
   ...props
 }: ReserveDetailsProps) => {
   if (mode === "paid") {
-    var component_title = "Detalles de la reserva";
+    var component_title = "Datos de la reserva";
     var centering = "flex-start";
   } else {
-    var component_title = "Completa tus datos para reservar";
+    var component_title = "Datos de la reserva";
     var centering = "center";
   }
 
@@ -104,8 +94,6 @@ export const ReserveDetails = ({
     <Box
       className="reserve-details--container"
       style={{ width, height }}
-      backgroundColor={color}
-      weakShadow
       {...props}
     >
       {/* Branch details */}
@@ -123,18 +111,23 @@ export const ReserveDetails = ({
       {/* Inputs 1 */}
       <Box className="reserve-details--input-container">
         <Box width="100%" className="reserve-details--input-date">
-          <InputDate inputHook={date} minDate={new Date()} />
+          <InputDate 
+            inputHook={date} 
+            minDate={new Date()} />
         </Box>
 
         <Box width="100%" className="reserve-details--input1">
-          <InputText inputHook={persons} type="number" label="Personas" />
+          <InputText 
+              inputHook={persons}
+              type="number" 
+              label="* Personas" />
         </Box>
 
         <Box width="100%" className="reserve-details--input1">
           <InputSelect
             inputHook={hourIn}
             options={validHoursIn}
-            label="Llegada"
+            label="* Llegada"
           />
         </Box>
 
@@ -142,7 +135,7 @@ export const ReserveDetails = ({
           <InputSelect
             inputHook={hourOut}
             options={validHoursOut}
-            label="Salida (Opcional)"
+            label="Salida"
           />
         </Box>
       </Box>
@@ -155,13 +148,10 @@ export const ReserveDetails = ({
         </Box>
       )}
 
-      <Text type="h6" color="#112211" weight="700">
-        {" "}
-        Petición Especial (Opcional){" "}
-      </Text>
       <InputLongText
-        value={petition.value}
-        setValue={petition.setValue}
+        label = "Ocasión Especial"
+        value={occasion.value}
+        setValue={occasion.setValue}
         maxLength={430}
         maxRows={5}
         minRows={5}

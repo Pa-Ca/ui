@@ -2,9 +2,14 @@ import React from "react";
 import "./inputLongText.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
 import { TextareaAutosize } from "@mui/material";
 
 interface InputLongTextProps {
+  /**
+   * Label to be displayed at the top of the input
+   */
+  label?: string;
   /**
    * Input value
    */
@@ -49,6 +54,7 @@ interface InputLongTextProps {
 }
 
 export const InputLongText = ({
+  label = "",
   value,
   setValue = () => {},
   minRows = undefined,
@@ -66,6 +72,18 @@ export const InputLongText = ({
       style={{ width, height }}
       {...props}
     >
+      {
+        label != "" &&
+        <div className="input-text--label">
+          <Text
+            type="h6"
+            weight={"400"}
+            color={undefined}
+          >
+            &nbsp;{label}&nbsp;
+          </Text>
+        </div>
+      }
       <TextareaAutosize
         value={value}
         onChange={(event) => {
