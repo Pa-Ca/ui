@@ -13,10 +13,7 @@ import {
   validatePhoneNumber,
   validateUrl,
 } from "../../utils/stringValidation";
-interface OptionType {
-  label: string;
-  value: string;
-}
+import OptionType from "../../utils/objects/OptionType";
 
 interface EditableInputTextProps {
   /**
