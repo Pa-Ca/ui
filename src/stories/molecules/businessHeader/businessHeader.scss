@@ -18,8 +18,11 @@
   margin-bottom: 26px;
 }
 .business-header--profile-picture {
+  display: flex;
   margin-top: -80px;
   text-align: center;
+  align-items: center;
+  flex-direction: column;
 }
 .business-header--button {
   display: flex;

@@ -70,7 +70,7 @@ export const ProfilePicture = ({
   }, [icon]);
 
   return (
-    <div style={{ position: "relative", width: size }}>
+    <div style={{ position: "relative", width: size, display: "flex", alignItems: "center" }}>
       <Box
         backgroundImage={picture == "" ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" : picture}
         borderRadius="100%"
