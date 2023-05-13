@@ -49,6 +49,10 @@ interface BusinessProfileProps {
    */
   newPassword: InputFormHook<string>;
   /**
+   * Indicates that the change has already been made
+   */
+  done: boolean;
+  /**
    * Function that is executed when the business name is saved
    */
   onSaveName: (value: string) => void;
@@ -59,7 +63,7 @@ interface BusinessProfileProps {
   /**
    * Function that changes the user's password
    */
-  onChangePassword: () => void;
+  onChangePassword: () => Promise<boolean>;
 
   /**
    * Indicates if any branch is being shown
@@ -174,6 +178,7 @@ export const BusinessProfile = ({
   phoneNumber,
   password,
   newPassword,
+  done,
   onSaveName,
   onSavePhoneNumber,
   onChangePassword,
@@ -254,6 +259,7 @@ export const BusinessProfile = ({
                 phoneNumber={phoneNumber}
                 password={password}
                 newPassword={newPassword}
+                done={done}
                 onSaveName={onSaveName}
                 onSavePhoneNumber={onSavePhoneNumber}
                 onChangePassword={onChangePassword}

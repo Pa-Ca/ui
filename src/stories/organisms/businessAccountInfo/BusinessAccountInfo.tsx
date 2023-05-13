@@ -31,6 +31,10 @@ interface BusinessAccountInfoProps {
    */
   newPassword: InputFormHook<string>;
   /**
+   * Indicates that the change has already been made
+   */
+  done: boolean;
+  /**
    * Function that is executed when the name is saved
    */
   onSaveName: (value: string) => void;
@@ -41,7 +45,7 @@ interface BusinessAccountInfoProps {
   /**
    * Function that changes the user's password
    */
-  onChangePassword: () => void;
+  onChangePassword: () => Promise<boolean>;
   /**
    * Component main color
    */
@@ -57,6 +61,7 @@ export const BusinessAccountInfo = ({
   phoneNumber,
   password,
   newPassword,
+  done,
   onSaveName,
   onSavePhoneNumber,
   onChangePassword,
@@ -69,7 +74,7 @@ export const BusinessAccountInfo = ({
   );
   const [changePassword, setChangePassword] = useState(false);
 
-  const submit = () => {
+  const submit = async () => {
     let error = false;
 
     if (confirmPassword.value !== newPassword.value) {
@@ -81,7 +86,9 @@ export const BusinessAccountInfo = ({
 
     if (error) return;
 
-    onChangePassword();
+    if (!! await onChangePassword()) {
+      confirmPassword.setValue("");
+    };
   };
 
   return (
@@ -181,10 +188,22 @@ export const BusinessAccountInfo = ({
           inputHook={confirmPassword}
           label="Repetir contraseña nueva"
         />
-
         <Box height="20px" />
 
-        <Button fullWidth primary onClick={submit} backgroundColor={color}>
+        <Box height="20px">
+          {done && (
+            <Text weight="400" type="h6">
+              ¡Contraseña cambiada exitosamente!
+            </Text>
+          )}
+        </Box>
+        <Button
+          fullWidth
+          primary
+          onClick={submit}
+          backgroundColor={color}
+          state={done ? "inactive" : "normal"}
+        >
           <Box className="business-account-info--modal-change-password-button">
             <Text type="h6" weight="600">
               Cambiar contraseña

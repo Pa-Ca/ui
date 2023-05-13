@@ -44,6 +44,16 @@ export default {
         disable: true,
       },
     },
+    onSaveName: {
+      table: {
+        disable: true,
+      },
+    },
+    onSavePhoneNumber: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BusinessAccountInfo>;
 
