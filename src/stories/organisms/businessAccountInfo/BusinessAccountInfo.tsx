@@ -72,7 +72,7 @@ export const BusinessAccountInfo = ({
   const submit = () => {
     let error = false;
 
-    if (confirmPassword.value !== password.value) {
+    if (confirmPassword.value !== newPassword.value) {
       confirmPassword.setError(true);
       error = true;
     } else {
@@ -165,6 +165,7 @@ export const BusinessAccountInfo = ({
           inputHook={password}
           label="Contraseña actual"
         />
+        <Box height="10px" />
 
         <InputText
           width="600px"
@@ -172,6 +173,7 @@ export const BusinessAccountInfo = ({
           inputHook={newPassword}
           label="Contraseña nueva"
         />
+        <Box height="10px" />
 
         <InputText
           width="600px"
