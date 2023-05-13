@@ -39,10 +39,6 @@ interface BusinessAccountInfoProps {
    */
   onSavePhoneNumber: (value: string) => void;
   /**
-   * Function that validates the current password
-   */
-  validateCurrentPassword: () => boolean;
-  /**
    * Function that changes the user's password
    */
   onChangePassword: () => void;
@@ -63,7 +59,6 @@ export const BusinessAccountInfo = ({
   newPassword,
   onSaveName,
   onSavePhoneNumber,
-  validateCurrentPassword,
   onChangePassword,
   color,
   ...props
@@ -82,11 +77,6 @@ export const BusinessAccountInfo = ({
       error = true;
     } else {
       confirmPassword.setError(false);
-    }
-
-    if (!validateCurrentPassword()) {
-      password.setError(true);
-      error = true;
     }
 
     if (error) return;

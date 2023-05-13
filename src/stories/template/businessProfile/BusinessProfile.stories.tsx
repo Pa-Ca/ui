@@ -50,11 +50,6 @@ export default {
         disable: true,
       },
     },
-    validateCurrentPassword: {
-      table: {
-        disable: true,
-      },
-    },
     onChangePassword: {
       table: {
         disable: true,

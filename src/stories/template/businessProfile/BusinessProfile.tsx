@@ -57,10 +57,6 @@ interface BusinessProfileProps {
    */
   onSavePhoneNumber: (value: string) => void;
   /**
-   * Function that validates the current password
-   */
-  validateCurrentPassword: () => boolean;
-  /**
    * Function that changes the user's password
    */
   onChangePassword: () => void;
@@ -180,7 +176,6 @@ export const BusinessProfile = ({
   newPassword,
   onSaveName,
   onSavePhoneNumber,
-  validateCurrentPassword,
   onChangePassword,
 
   haveBranch = true,
@@ -261,7 +256,6 @@ export const BusinessProfile = ({
                 newPassword={newPassword}
                 onSaveName={onSaveName}
                 onSavePhoneNumber={onSavePhoneNumber}
-                validateCurrentPassword={validateCurrentPassword}
                 onChangePassword={onChangePassword}
                 color={color}
               />
