@@ -60,7 +60,6 @@ export * from './stories/organisms/signUpComponent/SignUpComponent';
 export * from './stories/organisms/categoryPreview/CategoryPreview';
 export * from './stories/organisms/payMethodSelector/PayMethodSelector';
 export * from './stories/organisms/branchMainSummary/BranchMainSummary';
-export * from './stories/organisms/createReservationModal/CreateReservationModal';
 export * from './stories/organisms/resetPasswordComponent/ResetPasswordComponent';
 export * from './stories/organisms/forgotPasswordComponent/ForgotPasswordComponent';
 export * from './stories/organisms/recoverPasswordComponent/RecoverPasswordComponent';
