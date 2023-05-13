@@ -161,18 +161,21 @@ export const BusinessAccountInfo = ({
 
         <InputText
           width="600px"
+          type="password"
           inputHook={password}
           label="Contraseña actual"
         />
 
         <InputText
           width="600px"
+          type="password"
           inputHook={newPassword}
           label="Contraseña nueva"
         />
 
         <InputText
           width="600px"
+          type="password"
           inputHook={confirmPassword}
           label="Repetir contraseña nueva"
         />
