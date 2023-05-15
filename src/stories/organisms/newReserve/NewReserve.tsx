@@ -1,9 +1,10 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React from 'react';
 import './newReserve.scss';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Icon } from '../../atoms/icon/Icon';
 import { Button } from '../../atoms/button/Button';
+import useInputForm, { InputFormHook } from '../../hooks/useInputForm';
 import OptionObject from '../../utils/objects/OptionObject';
 import { InputText } from '../../molecules/inputText/InputText';
 import { InputDate } from '../../molecules/inputDate/InputDate';
@@ -51,19 +52,11 @@ interface NewReserveProps {
   /**
    * Current date
    */
-  date?: Date;
-  /**
-   * Function that changes the date
-   */
-  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
+  date: InputFormHook<Date>;
   /**
    * Current entry hour
    */
-  hourIn?: OptionObject;
-  /**
-   * Function that changes the entry hour
-   */
-  setHourIn?: Function;
+  hourIn: InputFormHook<OptionObject>;
   /**
    * Valid entry hours
    */
@@ -71,11 +64,7 @@ interface NewReserveProps {
   /**
    * Current departure hour
    */
-  hourOut?: OptionObject;
-  /**
-   * Function that changes the departure hour
-   */
-  setHourOut?: Function;
+  hourOut: InputFormHook<OptionObject>;
   /**
    * Valid departure hours
    */
@@ -83,27 +72,15 @@ interface NewReserveProps {
   /**
    * Number of people in the reservation
    */
-  persons?: string;
-  /**
-   * Function that changes the number of people in the reservation
-   */
-  setPersons?: Function;
+  persons: InputFormHook<string>;
   /**
    * Special occasion in the reservation
    */
-  occasion?: string;
-  /**
-   * Function that changes the special occasion in the reservation
-   */
-  setOccasion?: Function;
+  occasion: InputFormHook<string>;
   /**
    * Special petiton in the reservation
    */
-  petition?: string;
-  /**
-   * Function that changes the special petiton in the reservation
-   */
-  setPetition?: Function;
+  petition: InputFormHook<string>;
   /**
    * On reservation button click
    */
@@ -136,19 +113,13 @@ export const NewReserve = ({
   overview,
   picture,
   date,
-  setDate,
   hourIn,
-  setHourIn,
   validHoursIn,
   hourOut,
-  setHourOut,
   validHoursOut,
   persons,
-  setPersons,
   occasion,
-  setOccasion,
   petition,
-  setPetition,
   onClick,
   color,
   width,
@@ -184,30 +155,30 @@ export const NewReserve = ({
       {/* Inputs 1 */}
       <Box className='new-reserve--input-container'>
         <Box width='100%' className='new-reserve--input-date'>
-          <InputDate date={date} setDate={setDate} />
+          <InputDate inputHook={date}/>
         </Box>
 
         <Box width='100%' className='new-reserve--input1'>
-          <InputText value={persons} setValue={setPersons} type='number' label='Personas'/>
+          <InputText inputHook={persons} type='number' label='Personas'/>
         </Box>
 
         <Box width='100%' className='new-reserve--input1'>
-          <InputSelect option={hourIn} setOption={setHourIn} options={validHoursIn} label='Hora de Llegada'/>
+          <InputSelect inputHook={hourIn} options={validHoursIn} label='Hora de Llegada'/>
         </Box>
 
         <Box width='100%' className='new-reserve--input1'>
-          <InputSelect option={hourOut} setOption={setHourOut} options={validHoursOut} label='Hora de Salida (Opcional)'/>
+          <InputSelect inputHook={hourOut} options={validHoursOut} label='Hora de Salida (Opcional)'/>
         </Box>
       </Box>
 
       {/* Inputs 2 */}
       <Box className='new-reserve--input-container'>
         <Box width='100%'>
-          <InputText value={occasion} setValue={setOccasion} type='text' label='Ocasión Especial (Opcional)'/>
+          <InputText inputHook={occasion} type='text' label='Ocasión Especial (Opcional)'/>
         </Box>
 
         <Box width='100%' className='new-reserve--input2'>
-          <InputText value={petition} setValue={setPetition} type='text' label='Petición Especial (Opcional)'/>
+          <InputText inputHook={petition} type='text' label='Petición Especial (Opcional)'/>
         </Box>
       </Box>
 

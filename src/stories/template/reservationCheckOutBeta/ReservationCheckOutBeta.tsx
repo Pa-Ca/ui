@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./reservationCheckOutBeta.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
 import { Button } from "../../atoms/button/Button";
+import useInputForm from "../../hooks/useInputForm";
 import BranchData from "../../utils/objects/BranchData";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
@@ -28,15 +29,6 @@ interface ReservationCheckOutBeta {
    * Valid end hour for reservation
    */
   validHoursOut: OptionObject[];
-
-  /**
-   * Text for error message in client form
-   */
-  firstNameErrorMessage : string;
-  lastNameErrorMessage : string;
-  emailErrorMessage : string;
-  phoneErrorMessage : string;
-
   /**
    * Get Branch data
    */
@@ -45,6 +37,17 @@ interface ReservationCheckOutBeta {
    * On Header left section button click function
    */
   onMapsClick: () => void;
+
+  /**
+   * Indicate if the client data is valid
+   */
+  validateClientData?: (
+    name: string,
+    surname: string,
+    email: string,
+    phone: string
+  ) => boolean;
+
   /**
    * On submit
    */
@@ -69,20 +72,23 @@ export const ReservationCheckOutBeta = ({
   submitButtonColor,
   validHoursIn,
   validHoursOut,
-  firstNameErrorMessage,
-  lastNameErrorMessage,
-  emailErrorMessage,
-  phoneErrorMessage,
   ...props
 }: ReservationCheckOutBeta) => {
   const branch = getBranchData();
 
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const [hourIn, setHourIn] = useState<OptionObject | undefined>(undefined);
-  const [hourOut, setHourOut] = useState<OptionObject | undefined>(undefined);
-  const [persons, setPersons] = useState<string | undefined>(undefined);
-  const [occasion, setOccasion] = useState<string | undefined>(undefined);
-  const [petition, setPetition] = useState<string | undefined>(undefined);
+  // Reservation data
+  const date = useInputForm<Date >(new Date());
+  const hourIn = useInputForm<OptionObject >({ value: "", name: "" });
+  const hourOut = useInputForm<OptionObject >({ value: "", name: "" });
+  const persons = useInputForm<string >("");
+  const occasion = useInputForm<string >("");
+  const petition = useInputForm<string >("");
+
+  // Client data
+  const firstName = useInputForm("");
+  const lastName = useInputForm("");
+  const phone = useInputForm("");
+  const email = useInputForm("");
 
   return (
     <BasicPage headerArgs={headerArgs}>
@@ -102,36 +108,32 @@ export const ReservationCheckOutBeta = ({
               location={branch.location}
             />
           </Box>
+
+          {/* Client Form */}
           <Box className="white-background-box" weakShadow>
             <ClientInfoForm
-              color="#EF7A08"
-              secondaryColor="#FF8682"
-              otherLoginsColor="#8DD3BB"
-              firstNameErrorMessage = {firstNameErrorMessage}
-              lastNameErrorMessage = {lastNameErrorMessage}
-              emailErrorMessage = {emailErrorMessage}
-              phoneErrorMessage = {phoneErrorMessage}
+              firstName = {firstName}
+              lastName = {lastName}
+              email = {email}
+              phone={phone}
             />
           </Box>
+
+          {/* Reservation Form */}
           <Box>
             <ReserveDetails
               date={date}
-              setDate={setDate}
               hourIn={hourIn}
-              setHourIn={setHourIn}
               validHoursIn={validHoursIn}
               hourOut={hourOut}
-              setHourOut={setHourOut}
-              validHoursOut={validHoursOut}
               persons={persons}
-              setPersons={setPersons}
               occasion={occasion}
-              setOccasion={setOccasion}
               petition={petition}
-              setPetition={setPetition}
               showInviteFriends={false}
             />
           </Box>
+
+          {/* Submit Button */}
           <Box className="white-background-box" weakShadow>
             <Button
               fullWidth
@@ -140,16 +142,16 @@ export const ReservationCheckOutBeta = ({
               backgroundColor={submitButtonColor}
               onClick={() =>
                 onSubmit(
-                  date!,
-                  parseInt(persons!),
+                  date.value,
+                  parseInt(persons.value),
                   typeof hourIn!.value === "string"
                     ? hourIn!.value
                     : hourIn!.value.toString(),
                   typeof hourOut!.value === "string"
                     ? hourOut!.value
                     : hourOut!.value.toString(),
-                  petition!,
-                  occasion!
+                  petition.value,
+                  occasion.value
                 )
               }
             >

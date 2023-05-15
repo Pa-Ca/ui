@@ -91,7 +91,7 @@ export const RestaurantDetails = ({
           </Text>
       </Box>
 
-      <Box className='img-and-icons-box'>
+      {/* <Box className='img-and-icons-box'>
         <Box className="score-box-with-border" style={{borderColor: borderColor}}>
           <Box
             backgroundImage={backgroundImage}
@@ -117,7 +117,7 @@ export const RestaurantDetails = ({
           ))
           }
         </Box>
-      </Box>
+      </Box> */}
 
       {/* Button */}
       <Box className='branch-search--button-box'>

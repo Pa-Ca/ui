@@ -21,7 +21,7 @@ import wifiHighBold from "@iconify/icons-ph/wifi-high-bold";
 import circleSlice8 from "@iconify/icons-mdi/circle-slice-8";
 import shareIcon from "@iconify/icons-material-symbols/share";
 import fitnessCentre from "@iconify/icons-maki/fitness-centre";
-import logoutIcon from '@iconify/icons-material-symbols/logout';
+import logoutIcon from "@iconify/icons-material-symbols/logout";
 import googleIcon from "@iconify/icons-flat-color-icons/google";
 import personIcon from "@iconify/icons-material-symbols/person";
 import cancelIcon from "@iconify/icons-material-symbols/cancel";
@@ -29,9 +29,11 @@ import plusCircle24 from "@iconify/icons-octicon/plus-circle-24";
 import checkBox from "@iconify/icons-material-symbols/check-box";
 import spaRounded from "@iconify/icons-material-symbols/spa-rounded";
 import instagramLogoFill from "@iconify/icons-ph/instagram-logo-fill";
+import cloudUpload from "@iconify/icons-material-symbols/cloud-upload";
 import lensOutline from "@iconify/icons-material-symbols/lens-outline";
 import roomService from "@iconify/icons-material-symbols/room-service";
 import checkCircle from "@iconify/icons-material-symbols/check-circle";
+import emailCheckOutline from "@iconify/icons-mdi/email-check-outline";
 import restaurantIcon from "@iconify/icons-material-symbols/restaurant";
 import baselineLocationOn from "@iconify/icons-ic/baseline-location-on";
 import questionMark from "@iconify/icons-material-symbols/question-mark";
@@ -43,6 +45,7 @@ import roundKeyboardArrowDown from "@iconify/icons-ic/round-keyboard-arrow-down"
 import iosArrowLeft24Filled from "@iconify/icons-fluent/ios-arrow-left-24-filled";
 import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-filled";
 import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-fill";
+import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
 
 const Color = require("color");
@@ -65,6 +68,7 @@ export type IconType =
   | "person"
   | "cancel"
   | "check"
+  | "check-outline"
   | "pencil"
   | "pool"
   | "spa"
@@ -92,7 +96,8 @@ export type IconType =
   | "parking"
   | "alert"
   | "logout"
-  ;
+  | "email-sent"
+  | "upload";
 
 interface IconProps {
   /**
@@ -249,6 +254,14 @@ export const Icon = ({
       return (
         <Iconify
           icon={checkCircle}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "check-outline":
+      return (
+        <Iconify
+          icon={checkCircleOutline}
           style={{ fontSize: size, ...style }}
           color={color}
         />
@@ -465,6 +478,22 @@ export const Icon = ({
       return (
         <Iconify
           icon={logoutIcon}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "email-sent":
+      return (
+        <Iconify
+          icon={emailCheckOutline}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "upload":
+      return (
+        <Iconify
+          icon={cloudUpload}
           style={{ fontSize: size, ...style }}
           color={color}
         />

@@ -3,6 +3,7 @@ import { BranchProfile } from "./BranchProfile";
 import AmenityObject from "../../utils/objects/AmenityObject";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import credentials from "../../../../credentials";
+import useInputForm from "../../hooks/useInputForm";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -50,7 +51,11 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchProfile> = (args: any) => {
-  return <BranchProfile {...args} />;
+  const date = useInputForm(new Date());
+  const hour = useInputForm({ name: "", value: "" });
+  const persons = useInputForm("");
+
+  return <BranchProfile date={date} hour={hour} persons={persons} {...args} />;
 };
 
 const amenities: AmenityObject[] = [
@@ -244,7 +249,8 @@ const globalArgs = {
           image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
         })
       ),
-      thumbnail: "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
+      thumbnail:
+        "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
     };
   },
   path: [
@@ -259,12 +265,11 @@ const globalArgs = {
   ],
   branchLocationProps: {
     color: "#EF7A08",
-    lat: 10.42673633648665, 
-    lng:  -66.87739422453691,
+    lat: 10.42673633648665,
+    lng: -66.87739422453691,
     location: "El Hatillo, Caracas, Venezuela",
     apiKey: credentials.maps_key,
   },
-
 };
 
 export const Guest = Template.bind({});
@@ -287,7 +292,8 @@ Client.args = {
         id: 1,
         name: "Daniel",
         surname: "Rodríguez",
-        picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
+        picture:
+          "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
       },
     };
   },
@@ -304,7 +310,8 @@ Business.args = {
       business: {
         id: 1,
         name: "Sempre Dritto",
-        picture: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
+        picture:
+          "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
         verified: true,
         tier: "basic",
       },

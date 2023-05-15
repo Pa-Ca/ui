@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./button.scss";
 
 interface ButtonProps {
@@ -49,15 +49,14 @@ export const Button = ({
   children,
   ...props
 }: ButtonProps): JSX.Element => {
-  const [currentState, setCurrentState] = useState(state);
+  const [mouseDown, setMouseDown] = useState(false);
 
-  const mouseDown = () => {
-    if (state === "normal") setCurrentState("selected");
-  };
-
-  const mouseUp = () => {
-    if (state === "normal") setCurrentState("normal");
-  };
+  const currentState = useMemo(() => {
+    if (state === "normal" && mouseDown) {
+      return "selected";
+    }
+    return state;
+  }, [state, mouseDown]);
 
   return (
     <button
@@ -70,8 +69,8 @@ export const Button = ({
         primary ? "button--primary" : "button--secondary",
       ].join(" ")}
       style={{ backgroundColor, borderColor }}
-      onMouseDown={mouseDown}
-      onMouseUp={mouseUp}
+      onMouseDown={() => setMouseDown(true)}
+      onMouseUp={() => setMouseDown(false)}
       {...props}
     >
       {children}

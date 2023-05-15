@@ -3,17 +3,14 @@ import "./inputText.scss";
 import "../../atoms/text/text.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import { InputFormHook } from "../../hooks/useInputForm";
 import styles from "../../assets/scss/variables.module.scss";
 
 interface InputTextProps {
   /**
-   * Input value
+   * Input value hook
    */
-  value?: string;
-  /**
-   * Function that changes the value each time the input is updated
-   */
-  setValue?: Function;
+  inputHook: InputFormHook<string>;
   /**
    * Input type
    */
@@ -22,14 +19,6 @@ interface InputTextProps {
    * Label to be displayed at the top of the input
    */
   label?: string;
-  /**
-   * Indicates whether the input should display an error message
-   */
-  error?: boolean;
-  /**
-   * Message displayed when there is an error
-   */
-  errorMessage?: string;
   /**
    * Input width
    */
@@ -44,12 +33,9 @@ interface InputTextProps {
  * Primary UI component for user interaction
  */
 export const InputText = ({
-  value,
-  setValue = () => {},
+  inputHook,
   type = "text",
   label = "Text input",
-  error = false,
-  errorMessage = "",
   width,
   height,
   ...props
@@ -58,7 +44,7 @@ export const InputText = ({
   const [currentType, setCurrentType] = useState(type);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    inputHook.setValue(event.target.value);
   };
 
   const changeType = () => {
@@ -96,22 +82,22 @@ export const InputText = ({
         style={{
           width,
           height,
-          borderColor: error ? styles.errorColor : undefined,
-          borderWidth: error ? "2.5px" : undefined,
+          borderColor: inputHook.error ? styles.errorColor : undefined,
+          borderWidth: inputHook.error ? "2.5px" : undefined,
         }}
       >
         <div className="input-text--content">
           <input
             type={currentType}
-            value={value}
+            value={inputHook.value}
             onChange={changeValue}
             className="input-text--input text text--h6"
           />
           <div className="input-text--label">
             <Text
               type="h6"
-              weight={error ? "600" : "400"}
-              color={error ? styles.errorColor : undefined}
+              weight={inputHook.error ? "600" : "400"}
+              color={inputHook.error ? styles.errorColor : undefined}
             >
               &nbsp;{label}&nbsp;
             </Text>
@@ -128,17 +114,17 @@ export const InputText = ({
       <div
         className={
           "input-text--error-container " +
-          (error
+          (inputHook.error
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
         }
       >
-        {error && (
+        {inputHook.error && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
-              {errorMessage}
+              {inputHook.errorMessage}
             </Text>
           </>
         )}

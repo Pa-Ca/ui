@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./recoverPasswordForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import useInputForm from "../../hooks/useInputForm";
 import styles from "../../assets/scss/variables.module.scss";
 
 interface RecoverPasswordFormProps {
@@ -56,13 +57,13 @@ export const RecoverPasswordForm = ({
   height,
   ...props
 }: RecoverPasswordFormProps) => {
-  const [email, setEmail] = useState("");
+  const email = useInputForm("");
 
   return (
     <Box className="recover-password-form--container" style={{ width, height }}>
       <Box className="recover-password-form--content">
         <Box>
-          <InputText value={email} setValue={setEmail} label="Correo" />
+          <InputText inputHook={email} label="Correo" />
         </Box>
 
         <Box
@@ -90,7 +91,7 @@ export const RecoverPasswordForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={() => onSubmit(email)}
+            onClick={() => onSubmit(email.value)}
           >
             <Box className="recover-password-form--button-text">
               <Text color="white" type="h6" weight="600">

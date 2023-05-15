@@ -6,74 +6,42 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import styles from "../../assets/scss/variables.module.scss";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
 export interface SignUpFormProps {
   /**
-   * Indicates if there is an error with the client first name
+   * Client first name input hook
    */
-  firstNameError?: boolean;
+  firstName?: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the client last name
+   * Client last name input hook
    */
-  lastNameError?: boolean;
+  lastName?: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the business name
+   * Business name input hook
    */
-  nameError?: boolean;
+  businessName?: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the email
+   * Email input hook
    */
-  emailError?: boolean;
+  email?: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the client phone number
+   * Phone input hook
    */
-  phoneError?: boolean;
+  phone?: InputFormHook<string>;
   /**
-   * Indicates if there is an error with the password
+   * Password input hook
    */
-  passwordError?: boolean;
-  /**
-   * Message displayed if there is an error with the client first name
-   */
-  firstNameErrorMessage?: string;
-  /**
-   * Message displayed if there is an error with the client last name
-   */
-  lastNameErrorMessage?: string;
-  /**
-   * Message displayed if there is an error with the business name
-   */
-  nameErrorMessage?: string;
-  /**
-   * Message displayed if there is an error with the email
-   */
-  emailErrorMessage?: string;
-  /**
-   * Message displayed if there is an error with the client phone number
-   */
-  phoneErrorMessage?: string;
-  /**
-   * Message displayed if there is an error with the password
-   */
-  passwordErrorMessage?: string;
+  password?: InputFormHook<string>;
+
   /**
    * Indicate if the client data is valid
    */
-  validateClientData?: (
-    name: string,
-    surname: string,
-    email: string,
-    phone: string,
-    password: string
-  ) => boolean;
+  validateClientData?: () => boolean;
   /**
    * On business sign up click
    */
-  validateBusinessData?: (
-    name: string,
-    email: string,
-    password: string
-  ) => boolean;
+  validateBusinessData?: () => boolean;
   /**
    * On login button click
    */
@@ -85,21 +53,16 @@ export interface SignUpFormProps {
   /**
    * On client sign up click
    */
-  onClientSignUp?: (
-    name: string,
-    surname: string,
-    email: string,
-    phone: string,
-    password: string
-  ) => void;
+  onClientSignUp?: () => void;
   /**
    * On business sign up click
    */
-  onBusinessSignUp?: (name: string, email: string, password: string) => void;
+  onBusinessSignUp?: () => void;
   /**
    * On sign up using Google click
    */
   onGoogleSignUp: () => void;
+
   /**
    * Indicates if the user to register is a business. Otherwise, it will
    * be considered a client
@@ -131,25 +94,21 @@ export interface SignUpFormProps {
  * Primary UI component for user interaction
  */
 export const SignUpForm = ({
-  firstNameError = false,
-  lastNameError = false,
-  nameError = false,
-  emailError = false,
-  phoneError = false,
-  passwordError = false,
-  firstNameErrorMessage = "",
-  lastNameErrorMessage = "",
-  nameErrorMessage = "",
-  emailErrorMessage = "",
-  phoneErrorMessage = "",
-  passwordErrorMessage = "",
+  firstName,
+  lastName,
+  businessName,
+  email,
+  phone,
+  password,
+
   validateClientData = () => true,
   validateBusinessData = () => true,
-  onLogin,
+  onLogin = () => {},
   onTermsAndConditionsClick,
   onClientSignUp = () => {},
   onBusinessSignUp = () => {},
-  onGoogleSignUp,
+  onGoogleSignUp = () => {},
+
   business = false,
   color,
   secondaryColor,
@@ -158,47 +117,42 @@ export const SignUpForm = ({
   height,
   ...props
 }: SignUpFormProps) => {
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [termsAndConditionsError, setTermsAndConditionsError] = useState(false);
-
-  // User data
-  const [email, setEmail] = useState("");
-  const [terms, setTerms] = useState(false);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  // Client data
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-
-  // Business data
-  const [name, setName] = useState("");
+  const terms = useInputForm<boolean>(
+    false,
+    "Por favor acepte los Términos y Condiciones"
+  );
+  const confirmPassword = useInputForm<string>(
+    "",
+    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
+  );
 
   const submit = () => {
     let error = false;
 
-    if (confirmPassword !== password) {
-      setConfirmPasswordError(true);
+    if (confirmPassword.value !== password!.value) {
+      confirmPassword.setError(true);
       error = true;
     } else {
-      setConfirmPasswordError(false);
+      confirmPassword.setError(false);
     }
 
-    if (!terms) {
-      setTermsAndConditionsError(true);
+    if (!terms.value) {
+      terms.setValue(true);
       error = true;
     } else {
-      setTermsAndConditionsError(false);
+      terms.setValue(false);
     }
 
-    if (business && !validateBusinessData(name, email, password)) {
+    if (
+      business &&
+      !validateBusinessData()
+    ) {
       error = true;
     }
 
     if (
       !business &&
-      !validateClientData(firstName, lastName, email, phone, password)
+      !validateClientData()
     ) {
       error = true;
     }
@@ -206,9 +160,9 @@ export const SignUpForm = ({
     if (error) return;
 
     if (business) {
-      onBusinessSignUp(name, email, password);
+      onBusinessSignUp();
     } else {
-      onClientSignUp(firstName, lastName, email, phone, password);
+      onClientSignUp();
     }
   };
 
@@ -218,43 +172,19 @@ export const SignUpForm = ({
         {business ? (
           <Box className="two-inputs-box">
             <Box className="sign-up-form--input">
-              <InputText
-                value={name}
-                setValue={setName}
-                label="Nombre"
-                error={nameError}
-                errorMessage={nameErrorMessage}
-              />
+              <InputText inputHook={businessName!} label="Nombre" />
             </Box>
             <Box className="sign-up-form--input">
-              <InputText
-                value={email}
-                setValue={setEmail}
-                label="Correo"
-                error={emailError}
-                errorMessage={emailErrorMessage}
-              />
+              <InputText inputHook={email!} label="Correo" />
             </Box>
           </Box>
         ) : (
           <Box className="two-inputs-box">
             <Box className="sign-up-form--input">
-              <InputText
-                value={firstName}
-                setValue={setFirstName}
-                label="Nombre"
-                error={firstNameError}
-                errorMessage={firstNameErrorMessage}
-              />
+              <InputText inputHook={firstName!} label="Nombre" />
             </Box>
             <Box className="sign-up-form--input">
-              <InputText
-                value={lastName}
-                setValue={setLastName}
-                label="Apellido"
-                error={lastNameError}
-                errorMessage={lastNameErrorMessage}
-              />
+              <InputText inputHook={lastName!} label="Apellido" />
             </Box>
           </Box>
         )}
@@ -262,45 +192,23 @@ export const SignUpForm = ({
         {!business && (
           <Box className="two-inputs-box">
             <Box className="sign-up-form--input">
-              <InputText
-                value={email}
-                setValue={setEmail}
-                label="Correo"
-                error={emailError}
-                errorMessage={emailErrorMessage}
-              />
+              <InputText inputHook={email!} label="Correo" />
             </Box>
             <Box className="sign-up-form--input">
-              <InputText
-                value={phone}
-                setValue={setPhone}
-                label="Teléfono"
-                error={phoneError}
-                errorMessage={phoneErrorMessage}
-              />
+              <InputText inputHook={phone!} label="Teléfono" />
             </Box>
           </Box>
         )}
 
         <Box className="sign-up-form--input">
-          <InputText
-            type="password"
-            value={password}
-            setValue={setPassword}
-            label="Contraseña"
-            error={passwordError}
-            errorMessage={passwordErrorMessage}
-          />
+          <InputText type="password" inputHook={password!} label="Contraseña" />
         </Box>
 
         <Box className="sign-up-form--input">
           <InputText
             type="password"
-            value={confirmPassword}
-            setValue={setConfirmPassword}
+            inputHook={confirmPassword}
             label="Confirmar contraseña"
-            error={confirmPasswordError}
-            errorMessage={"Las contraseñas no coinciden ¡Inténtalo de nuevo!"}
           />
         </Box>
 
@@ -309,7 +217,7 @@ export const SignUpForm = ({
             <Box className="terms-input-box">
               <Box
                 className="sign-up-form--pointer"
-                onClick={() => setTerms((oldTerms) => !oldTerms)}
+                onClick={() => terms.setValue(!terms.value)}
               >
                 <Icon icon={terms ? "checkbox" : "uncheckbox"} size="24px" />
               </Box>
@@ -329,12 +237,12 @@ export const SignUpForm = ({
             <Box
               className={
                 "input-text--error-container " +
-                (termsAndConditionsError
+                (terms.error
                   ? "input-text--error-animation"
                   : "input-text--error-no-animation")
               }
             >
-              {termsAndConditionsError && (
+              {terms.error && (
                 <>
                   <Icon icon="alert" color={styles.errorColor} size="20px" />
                   <Box style={{ width: "10px" }} />

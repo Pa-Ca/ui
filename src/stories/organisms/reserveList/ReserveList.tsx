@@ -20,6 +20,7 @@ interface ReserveListProps {
    * Main color
    */
   color?: string;
+  setShowModal: (open: boolean) => void;
 }
 
 /**
@@ -29,6 +30,7 @@ export const ReserveList = ({
   reservations = [],
   state,
   color,
+  setShowModal,
   ...props
 }: ReserveListProps) => {
   const reservationsToShow = useMemo(() => {
@@ -79,9 +81,10 @@ export const ReserveList = ({
               <Button
                 primary
                 backgroundColor={color}
+                onClick={() => setShowModal(true)}
               >
                 <Text type="h6" color="#112211">
-                  Cerrar mesa
+                  Añadir Reserva
                 </Text>
               </Button>
             </Box>
