@@ -47,23 +47,6 @@ export const BusinessHeader = ({
 }: BusinessHeaderProps) => {
   return (
     <Box className="business-header--container">
-      <Box className="business-header--main-image" backgroundImage={mainImage} >
-        <Box className="business-header--button-container">
-          <Button
-            primary
-            backgroundColor={color}
-          >
-            <Box className="business-header--button">
-              <Icon icon="upload" color="#112211" size="20px" />
-              <Box width="5px"/>
-              <Text color="#112211" type="h6" weight="500">
-                Upload new cover
-              </Text>
-            </Box>
-          </Button>
-        </Box>
-      </Box>
-
       <Box className="business-header--profile-picture">
         <ProfilePicture
           size="160px"
@@ -80,6 +63,16 @@ export const BusinessHeader = ({
         <Text color="#112211" weight="400">
           {email}
         </Text>
+      </Box>
+
+      <Box className="business-header--button-container">
+        <Button primary backgroundColor={color} size="large">
+          <Box className="business-header--button">
+            <Text color="#112211" type="h6" weight="500">
+              Crear Local
+            </Text>
+          </Box>
+        </Button>
       </Box>
     </Box>
   );
