@@ -35,6 +35,10 @@ interface BusinessAccountInfoProps {
    */
   done: boolean;
   /**
+   * Indicates that an email was sent to change the password
+   */
+  emailSent: boolean;
+  /**
    * Indicates that the password change modal is active
    */
   changePassword: boolean;
@@ -78,6 +82,7 @@ export const BusinessAccountInfo = ({
   password,
   newPassword,
   done,
+  emailSent,
   changePassword,
   setChangePassword,
   onSaveName,
@@ -110,7 +115,7 @@ export const BusinessAccountInfo = ({
 
   useEffect(() => {
     confirmPassword.setValue("");
-  }, [changePassword])
+  }, [changePassword]);
 
   return (
     <Box className="business-account-info--container">
@@ -205,14 +210,28 @@ export const BusinessAccountInfo = ({
           inputHook={confirmPassword}
           label="Repetir contraseña nueva"
         />
-        <Box className="business-account-info--forgot-password" onClick={onForgotPassword}>
+        <Box
+          className="business-account-info--forgot-password"
+          onClick={onForgotPassword}
+        >
           <Text color={secondaryColor} type="h6">
             ¿Olvidaste tu Contraseña?
           </Text>
         </Box>
+        <Box height="20px">
+          {emailSent && (
+            <Text type="h6" color="#112211" weight="400">
+              Te hemos enviado un correo para cambiar tu contraseña.
+            </Text>
+          )}
+        </Box>
 
-        <Box height="48px" width="100%" className="business-account-info--modal-line">
-          <Box width="100%" height="1px" backgroundColor="#DADCDA"/>
+        <Box
+          height="48px"
+          width="100%"
+          className="business-account-info--modal-line"
+        >
+          <Box width="100%" height="1px" backgroundColor="#DADCDA" />
         </Box>
 
         <Button

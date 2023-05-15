@@ -57,6 +57,10 @@ interface BusinessProfileProps {
    */
   newPassword: InputFormHook<string>;
   /**
+   * Indicates that an email was sent to change the password
+   */
+  emailSent: boolean;
+  /**
    * Indicates that the change has already been made
    */
   done: boolean;
@@ -192,6 +196,7 @@ export const BusinessProfile = ({
   phoneNumber,
   password,
   newPassword,
+  emailSent,
   done,
   onSaveName,
   onSavePhoneNumber,
@@ -282,6 +287,7 @@ export const BusinessProfile = ({
                 phoneNumber={phoneNumber}
                 password={password}
                 newPassword={newPassword}
+                emailSent={emailSent}
                 done={done}
                 changePassword={changePassword}
                 setChangePassword={setChangePassword}
