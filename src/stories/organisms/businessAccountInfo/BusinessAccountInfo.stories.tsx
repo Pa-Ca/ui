@@ -44,6 +44,16 @@ export default {
         disable: true,
       },
     },
+    setChangePassword: {
+      table: {
+        disable: true,
+      },
+    },
+    onForgotPassword: {
+      table: {
+        disable: true,
+      },
+    },
     onSaveName: {
       table: {
         disable: true,
