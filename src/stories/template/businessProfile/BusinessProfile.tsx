@@ -296,6 +296,7 @@ export const BusinessProfile = ({
                   onSavePrice={onSaveBranchPrice}
                   onSaveType={onSaveBranchType}
                   onSaveMapsLink={onSaveBranchMapsLink}
+                  color={color}
                 />
               ) : (
                 <Box>

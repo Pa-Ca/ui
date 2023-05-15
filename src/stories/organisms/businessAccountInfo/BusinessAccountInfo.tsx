@@ -110,6 +110,7 @@ export const BusinessAccountInfo = ({
             editable
             saveValueFunction={(value: string) => onSaveName(value)}
             type="text"
+            color={color}
           />
         </Box>
 
@@ -125,6 +126,7 @@ export const BusinessAccountInfo = ({
             editable={false}
             saveValueFunction={(value: string) => {}}
             type="email"
+            color={color}
           />
         </Box>
 
@@ -140,6 +142,7 @@ export const BusinessAccountInfo = ({
             editable={true}
             saveValueFunction={(value: string) => onSavePhoneNumber(value)}
             type="phoneNumber"
+            color={color}
           />
         </Box>
 

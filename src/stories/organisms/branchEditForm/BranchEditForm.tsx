@@ -65,7 +65,6 @@ interface BranchEditFormProps {
    */
   onSaveLocation: (value: string) => void;
 
-
   /**
    * Phone of the branch
    */
@@ -85,7 +84,6 @@ interface BranchEditFormProps {
    * Average price per person of the branch (in USD)
    */
   onSavePrice: (value: string) => void;
-
 
   /**
    * Branch type
@@ -116,6 +114,10 @@ interface BranchEditFormProps {
    * Component height
    */
   height?: string;
+  /**
+   * Component main color
+   */
+  color?: string;
 }
 
 export const BranchEditForm = ({
@@ -144,6 +146,7 @@ export const BranchEditForm = ({
   mapsApiKey,
   width,
   height,
+  color,
   ...props
 }: BranchEditFormProps) => {
   return (
@@ -158,6 +161,7 @@ export const BranchEditForm = ({
           saveValueFunction={onSaveName}
           type="text"
           containerClassName="branch-edit-form--input-item"
+          color={color}
         />
       </Box>
 
@@ -170,14 +174,11 @@ export const BranchEditForm = ({
             editable={true}
             type="positiveInteger"
             containerClassName="branch-edit-form--input-item"
+            color={color}
           />
         </Box>
 
-        <Box
-          className={classnames(
-            "branch-edit-form--average-reserve-time"
-          )}
-        >
+        <Box className={classnames("branch-edit-form--average-reserve-time")}>
           <Text className="branch-edit-form--input-label">
             {" "}
             Tiempo promedio de reserva (en horas){" "}
@@ -188,6 +189,7 @@ export const BranchEditForm = ({
             editable={true}
             type="positiveInteger"
             containerClassName="branch-edit-form--input-item"
+            color={color}
           />
         </Box>
       </Box>
@@ -202,6 +204,7 @@ export const BranchEditForm = ({
             editable={true}
             type="select"
             containerClassName="branch-edit-form--input-item"
+            color={color}
           />
         </Box>
 
@@ -216,6 +219,7 @@ export const BranchEditForm = ({
             editable={true}
             type="positiveNumber"
             containerClassName="branch-edit-form--input-item"
+            color={color}
           />
         </Box>
       </Box>
@@ -232,6 +236,7 @@ export const BranchEditForm = ({
             editable={true}
             type="phoneNumber"
             containerClassName="branch-edit-form--input-item"
+            color={color}
           />
         </Box>
 
@@ -246,6 +251,7 @@ export const BranchEditForm = ({
             editable={true}
             type="select"
             containerClassName="branch-edit-form--input-item"
+            color={color}
           />
         </Box>
       </Box>
@@ -260,6 +266,7 @@ export const BranchEditForm = ({
           height="100%"
           maxLength={480}
           saveValueFunction={onSaveDescription}
+          color={color}
         />
       </Box>
 
@@ -278,6 +285,7 @@ export const BranchEditForm = ({
           defaultText="Enlace de Google Maps"
           saveValueFunction={onSaveMapsLink}
           containerClassName="branch-edit-form--input-item"
+          color={color}
         />
         <EditableBranchLocation
           apiKey={mapsApiKey}
