@@ -5,7 +5,7 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "../../assets/scss/variables.module.scss";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 
 export interface EditableBranchLocationProps {
   /**
@@ -149,14 +149,12 @@ export const EditableBranchLocation = ({
             className
           )}
         >
-          {Marker && (
-            <Marker
-              onClick={() => {
-                latitude && longitude && window.open(googleMapsLink);
-              }}
-              position={center}
-            />
-          )}
+          <MarkerF
+            onClick={() => {
+              latitude && longitude && window.open(googleMapsLink);
+            }}
+            position={center}
+          />
         </GoogleMap>
       ) : (
         <></>

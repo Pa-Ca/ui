@@ -238,7 +238,7 @@ export const BusinessProfile = ({
           <InputTab
             index={page}
             setIndex={setPage}
-            tabs={["Cuenta", "Local", "Métodos de pago"]}
+            tabs={["Cuenta", "Local"]}
           />
         </Box>
 
@@ -296,6 +296,7 @@ export const BusinessProfile = ({
                   onSavePrice={onSaveBranchPrice}
                   onSaveType={onSaveBranchType}
                   onSaveMapsLink={onSaveBranchMapsLink}
+                  color={color}
                 />
               ) : (
                 <Box>

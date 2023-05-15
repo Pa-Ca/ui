@@ -118,7 +118,7 @@ export const EditableInputLongText = ({
     <Box className="editable-input-long-text--super-container">
       <Box
         className={classnames("editable-input-long-text--container", className)}
-        style={{ width: width, height: height, color: color }}
+        style={{ width, height  }}
       >
         {editValue ? (
           <Box
@@ -160,6 +160,8 @@ export const EditableInputLongText = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
+          initialColor="black"
+          color={color}
         />
       </Box>
       <div

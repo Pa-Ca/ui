@@ -224,7 +224,7 @@ export const EditableInputText = ({
         className,
         containerClassName
       )}
-      style={{ width: width, height: height, color: color }}
+      style={{ width, height }}
     >
       <Box
         className={classnames(
@@ -306,6 +306,8 @@ export const EditableInputText = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
+          initialColor="black"
+          color={color}
         />
       </Box>
       <Box
