@@ -78,10 +78,6 @@ interface NewReserveProps {
    */
   occasion: InputFormHook<string>;
   /**
-   * Special petiton in the reservation
-   */
-  petition: InputFormHook<string>;
-  /**
    * On reservation button click
    */
   onClick?: () => void;
@@ -119,7 +115,6 @@ export const NewReserve = ({
   validHoursOut,
   persons,
   occasion,
-  petition,
   onClick,
   color,
   width,
@@ -175,10 +170,6 @@ export const NewReserve = ({
       <Box className='new-reserve--input-container'>
         <Box width='100%'>
           <InputText inputHook={occasion} type='text' label='Ocasión Especial (Opcional)'/>
-        </Box>
-
-        <Box width='100%' className='new-reserve--input2'>
-          <InputText inputHook={petition} type='text' label='Petición Especial (Opcional)'/>
         </Box>
       </Box>
 
