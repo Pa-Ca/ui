@@ -55,6 +55,11 @@ export default {
         disable: true,
       },
     },
+    onForgotPassword: {
+      table: {
+        disable: true,
+      },
+    },
     branchName: {
       table: {
         disable: true,
