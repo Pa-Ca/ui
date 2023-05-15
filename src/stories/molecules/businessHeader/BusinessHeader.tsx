@@ -24,6 +24,14 @@ interface BusinessHeaderProps {
    */
   email: string;
   /**
+   * On create new branch button click
+   */
+  onCreateBranch: () => void;
+  /**
+   * Function that is executed when clicking on the profile picture
+   */
+  onPictureClick: () => void;
+  /**
    * Component main color
    */
   color?: string;
@@ -41,6 +49,8 @@ export const BusinessHeader = ({
   profilePicture,
   name,
   email,
+  onCreateBranch,
+  onPictureClick,
   color,
   secondaryColor,
   ...props
@@ -54,6 +64,7 @@ export const BusinessHeader = ({
           color={secondaryColor}
           border="5px"
           icon="pencil"
+          onClick={onPictureClick}
         />
         <Box height="20px" />
         <Text color="#112211" type="h4" weight="600">
@@ -66,7 +77,7 @@ export const BusinessHeader = ({
       </Box>
 
       <Box className="business-header--button-container">
-        <Button primary backgroundColor={color} size="large">
+        <Button primary backgroundColor={color} size="large" onClick={onCreateBranch}>
           <Box className="business-header--button">
             <Text color="#112211" type="h6" weight="500">
               Crear Local
