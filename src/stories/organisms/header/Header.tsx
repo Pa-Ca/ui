@@ -21,6 +21,10 @@ export interface HeaderProps {
    */
   name?: string;
   /**
+   * Edit profile function
+   */
+  onEditProfile?: () => void;
+  /**
    * Logout function
    */
   onLogout?: () => void;
@@ -94,6 +98,7 @@ export const Header = ({
   picture,
   name,
   onLogout = () => { },
+  onEditProfile = () => { },
   dark = false,
   userRole,
   logged,
@@ -165,10 +170,16 @@ export const Header = ({
 
   const dropdownOptions: UserDropdownElement[] = [
     {
-      name: 'Logout',
+      name: 'Editar Perfil',
+      func: onEditProfile,
+      icon: "pencil",
+    },
+    {
+      name: 'Cerrar Sesión',
       func: onLogout,
       icon: "logout",
-    }]
+    },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
