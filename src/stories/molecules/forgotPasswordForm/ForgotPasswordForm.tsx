@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./forgotPasswordForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import useInputForm from "../../hooks/useInputForm";
 import styles from "../../assets/scss/variables.module.scss";
 
 interface ForgotPasswordFormProps {
@@ -56,14 +57,14 @@ export const ForgotPasswordForm = ({
   height,
   ...props
 }: ForgotPasswordFormProps) => {
-  const [email, setEmail] = useState("");
+  const email = useInputForm("");
 
   return (
     <Box className="forgot-password-form--container" style={{ width, height }}>
       <Box className="forgot-password-form--content">
         
         <Box className="forgot-password-form--input-email">
-          <InputText value={email} setValue={setEmail} label="Correo" />
+          <InputText inputHook={email} label="Correo" />
         </Box>
 
 
@@ -92,7 +93,7 @@ export const ForgotPasswordForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={() => onSubmit(email)}
+            onClick={() => onSubmit(email.value)}
           >
             <Box className="forgot-password-form--button-text">
               <Text color="white" type="h6" weight="600">

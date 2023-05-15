@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./resetPasswordForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
@@ -6,6 +6,7 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import styles from "../../assets/scss/variables.module.scss";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
 interface ResetPasswordFormProps {
   /**
@@ -13,17 +14,13 @@ interface ResetPasswordFormProps {
    */
   error?: boolean;
   /**
-   * Indicates if there is an error with the password
+   * Password input hook
    */
-  passwordError?: boolean;
-  /**
-   * Message displayed if there is an error with the password
-   */
-  passwordErrorMessage?: string;
+  password: InputFormHook<string>;
   /**
    * On submit button click
    */
-  onSubmit: (password: string) => void;
+  onSubmit: () => void;
   /**
    * Component main color
    */
@@ -47,8 +44,7 @@ interface ResetPasswordFormProps {
  */
 export const ResetPasswordForm = ({
   error = false,
-  passwordError = false,
-  passwordErrorMessage = "",
+  password,
   onSubmit,
   color,
   secondaryColor,
@@ -56,49 +52,38 @@ export const ResetPasswordForm = ({
   height,
   ...props
 }: ResetPasswordFormProps) => {
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-
-  // User data
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const confirmPassword = useInputForm(
+    "",
+    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
+  );
 
   const submit = () => {
     let error = false;
 
     if (confirmPassword !== password) {
-      setConfirmPasswordError(true);
+      confirmPassword.setError(true);
       error = true;
     } else {
-      setConfirmPasswordError(false);
+      confirmPassword.setError(false);
     }
 
     if (error) return;
 
-    onSubmit(password);
+    onSubmit();
   };
 
   return (
     <Box className="reset-password-form--container" style={{ width, height }}>
       <Box className="reset-password-form--content">
         <Box className="reset-password-form--input">
-          <InputText
-            type="password"
-            value={password}
-            setValue={setPassword}
-            label="Contraseña"
-            error={passwordError}
-            errorMessage={passwordErrorMessage}
-          />
+          <InputText type="password" inputHook={password} label="Contraseña" />
         </Box>
 
         <Box className="reset-password-form--input">
           <InputText
             type="password"
-            value={confirmPassword}
-            setValue={setConfirmPassword}
+            inputHook={confirmPassword}
             label="Confirmar contraseña"
-            error={confirmPasswordError}
-            errorMessage={"Las contraseñas no coinciden ¡Inténtalo de nuevo!"}
           />
         </Box>
 

@@ -1,31 +1,27 @@
-import React, { SyntheticEvent, useState } from 'react';
-import './reserveDetails.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import OptionObject from '../../utils/objects/OptionObject';
-import { InputText } from '../../molecules/inputText/InputText';
-import { InputDate } from '../../molecules/inputDate/InputDate';
-import { InputSelect } from '../../molecules/inputSelect/InputSelect';
-import { InputLongText } from '../../molecules/inputLongText/InputLongText';
-import { AddFriends, AddFriendsProps } from '../../molecules/addFriends/AddFriends';
+import React from "react";
+import "./reserveDetails.scss";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import { InputFormHook } from "../../hooks/useInputForm";
+import OptionObject from "../../utils/objects/OptionObject";
+import { InputText } from "../../molecules/inputText/InputText";
+import { InputDate } from "../../molecules/inputDate/InputDate";
+import { InputSelect } from "../../molecules/inputSelect/InputSelect";
+import { InputLongText } from "../../molecules/inputLongText/InputLongText";
+import {
+  AddFriends,
+  AddFriendsProps,
+} from "../../molecules/addFriends/AddFriends";
 
 interface ReserveDetailsProps {
   /**
    * Current date
    */
-  date?: Date;
-  /**
-   * Function that changes the date
-   */
-  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
+  date: InputFormHook<Date>;
   /**
    * Current entry hour
    */
-  hourIn?: OptionObject;
-  /**
-   * Function that changes the entry hour
-   */
-  setHourIn?: Function;
+  hourIn: InputFormHook<OptionObject>;
   /**
    * Valid entry hours
    */
@@ -33,11 +29,7 @@ interface ReserveDetailsProps {
   /**
    * Current departure hour
    */
-  hourOut?: OptionObject;
-  /**
-   * Function that changes the departure hour
-   */
-  setHourOut?: Function;
+  hourOut: InputFormHook<OptionObject>;
   /**
    * Valid departure hours
    */
@@ -45,27 +37,11 @@ interface ReserveDetailsProps {
   /**
    * Number of people in the reservation
    */
-  persons?: string;
-  /**
-   * Function that changes the number of people in the reservation
-   */
-  setPersons?: Function;
+  persons: InputFormHook<string>;
   /**
    * Special occasion in the reservation
    */
-  occasion?: string;
-  /**
-   * Function that changes the special occasion in the reservation
-   */
-  setOccasion?: Function;
-  /**
-   * Special petiton in the reservation
-   */
-  petition?: string;
-  /**
-   * Function that changes the special petiton in the reservation
-   */
-  setPetition?: Function;
+  occasion: InputFormHook<string>;
   /**
    * Component width
    */
@@ -75,13 +51,9 @@ interface ReserveDetailsProps {
    */
   height?: string;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
    * Mode
    */
-  mode?: 'free' | 'paid';
+  mode?: "free" | "paid";
   /**
    * Add friends component props
    */
@@ -97,82 +69,89 @@ interface ReserveDetailsProps {
  */
 export const ReserveDetails = ({
   date,
-  setDate,
   hourIn,
-  setHourIn,
   validHoursIn,
   hourOut,
-  setHourOut,
   validHoursOut,
   persons,
-  setPersons,
   occasion,
-  setOccasion,
-  petition,
-  setPetition,
   width,
   height,
-  color = "white",
-  mode = 'free',
+  mode = "free",
   invitedFriendsProps,
   showInviteFriends = true,
   ...props
 }: ReserveDetailsProps) => {
-
-  if (mode === 'paid') {
-    var  component_title =  'Detalles de la reserva';
-    var centering = 'flex-start';
+  if (mode === "paid") {
+    var component_title = "Datos de la reserva";
+    var centering = "flex-start";
   } else {
-    var  component_title =  'Completa tus datos para reservar';
-    var centering = 'center';
-  };
+    var component_title = "Datos de la reserva";
+    var centering = "center";
+  }
 
   return (
-    <Box className='reserve-details--container' style={{ width, height }} backgroundColor = {color} weakShadow {...props}>
+    <Box
+      className="reserve-details--container"
+      style={{ width, height }}
+      {...props}
+    >
       {/* Branch details */}
-        <Box className='reserve-details--title' style = {
-        {
-          justifyContent:  centering
-  
-        }}>
-      <Text type="h4" color="#112211" weight="700" >
-          {" "}{component_title}{" "}
+      <Box
+        className="reserve-details--title"
+        style={{
+          justifyContent: centering,
+        }}
+      >
+        <Text type="h4" color="#112211" weight="700">
+          {" "}
+          {component_title}{" "}
         </Text>
-        </Box>
+      </Box>
       {/* Inputs 1 */}
-      <Box className='reserve-details--input-container'>
-        <Box width='100%' className='reserve-details--input-date'>
-          <InputDate date={date} setDate={setDate} minDate={new Date()}/>
+      <Box className="reserve-details--input-container">
+        <Box width="100%" className="reserve-details--input-date">
+          <InputDate 
+            inputHook={date} 
+            minDate={new Date()} />
         </Box>
 
-        <Box width='100%' className='reserve-details--input1'>
-          <InputText value={persons} setValue={setPersons} type='number' label='Personas'/>
+        <Box width="100%" className="reserve-details--input1">
+          <InputText 
+              inputHook={persons}
+              type="number" 
+              label="* Personas" />
         </Box>
 
-        <Box width='100%' className='reserve-details--input1'>
-          <InputSelect option={hourIn} setOption={setHourIn} options={validHoursIn} label='Llegada'/>
+        <Box width="100%" className="reserve-details--input1">
+          <InputSelect
+            inputHook={hourIn}
+            options={validHoursIn}
+            label="* Llegada"
+          />
         </Box>
 
-        <Box width='100%' className='reserve-details--input1'>
-          <InputSelect option={hourOut} setOption={setHourOut} options={validHoursOut} label='Salida (Opcional)'/>
+        <Box width="100%" className="reserve-details--input1">
+          <InputSelect
+            inputHook={hourOut}
+            options={validHoursOut}
+            label="Salida"
+          />
         </Box>
       </Box>
-      {
-        showInviteFriends &&
-        <Box className='reserve-details--invite-friends'>
-          <Text  type="p" color="#112211" weight="700">
+      {showInviteFriends && (
+        <Box className="reserve-details--invite-friends">
+          <Text type="p" color="#112211" weight="700">
             Invita a tus amigos
           </Text>
           <AddFriends {...invitedFriendsProps} />
         </Box>
-      }
-      
-      <Text type="h6" color="#112211" weight="700">
-        {" "}Petición Especial (Opcional){" "}
-      </Text>
+      )}
+
       <InputLongText
-        value={petition}
-        setValue={setPetition}
+        label = "Ocasión Especial"
+        value={occasion.value}
+        setValue={occasion.setValue}
         maxLength={430}
         maxRows={5}
         minRows={5}

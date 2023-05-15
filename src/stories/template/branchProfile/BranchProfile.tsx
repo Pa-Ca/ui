@@ -7,6 +7,7 @@ import getValidHours from "../../utils/getValidHours";
 import { Footer } from "../../organisms/footer/Footer";
 import { Header } from "../../organisms/header/Header";
 import BranchData from "../../utils/objects/BranchData";
+import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchNav } from "../../molecules/branchNav/BranchNav";
@@ -14,10 +15,34 @@ import { MenuPreview } from "../../organisms/menuPreview/MenuPreview";
 import { AmenityList } from "../../molecules/amenityList/AmenityList";
 import { ReviewBoard } from "../../organisms/reviewBoard/ReviewBoard";
 import { FastReserveBox } from "../../molecules/fastReserveBox/FastReserveBox";
-import { BranchLocation , BranchLocationProps} from "../../molecules/branchLocation/BranchLocation";
 import { BranchMainSummary } from "../../organisms/branchMainSummary/BranchMainSummary";
+import {
+  BranchLocation,
+  BranchLocationProps,
+} from "../../molecules/branchLocation/BranchLocation";
 
 interface BranchProfileProps {
+  /**
+   * Current date input hook
+   */
+  date: InputFormHook<Date>;
+  /**
+   * Current hour input hook
+   */
+  hour: InputFormHook<OptionObject>;
+  /**
+   * Current persons number input hook
+   */
+  persons: InputFormHook<string>;
+  /**
+   * On Reserve button click
+   */
+  onClickReserve?: () => void;
+  /**
+   * On Find Hour button click
+   */
+  onClickFindHour?: () => void;
+
   /**
    * Get user data
    */
@@ -68,6 +93,11 @@ interface BranchProfileProps {
  * Primary UI component for user interaction
  */
 export const BranchProfile = ({
+  date,
+  hour,
+  persons,
+  onClickReserve,
+  onClickFindHour,
   getUserData = () => {
     return { logged: false };
   },
@@ -102,13 +132,6 @@ export const BranchProfile = ({
     user.business?.id === branch.businessId;
 
   const [like, setLike] = useState(false);
-  const [reserveDate, setReserveDate] = useState<Date | undefined>(undefined);
-  const [reservePersons, setReservePersons] =
-    useState<string | undefined>(undefined);
-  const [reserveHour, setReserveHour] = useState<OptionObject>({
-    value: "",
-    name: "",
-  });
 
   const headerObserver = useResizeObserver<HTMLDivElement>();
   const navObserver = useResizeObserver<HTMLDivElement>();
@@ -199,20 +222,16 @@ export const BranchProfile = ({
           <Box className="branch-profile--main-content-right">
             <FastReserveBox
               title="Haz una Reserva"
-              date={reserveDate}
-              setDate={setReserveDate}
-              hour={reserveHour}
-              setHour={setReserveHour}
+              date={date}
+              hour={hour}
+              persons={persons}
               validHours={validHours}
-              persons={reservePersons}
-              setPersons={setReservePersons}
+              onClickReserve={onClickReserve}
+              onClickFindHour={onClickFindHour}
             />
 
             <Box className="branch-profile--location-container">
-              <BranchLocation
-               {...branchLocationProps} 
-                
-              />
+              <BranchLocation {...branchLocationProps} />
             </Box>
           </Box>
         </Box>

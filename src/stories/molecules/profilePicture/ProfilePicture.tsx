@@ -55,7 +55,6 @@ export const ProfilePicture = ({
   picture,
   userName,
   dropdownOptions = [],
-  view,
   onClick,
   ...props
 }: ProfilePictureProps) => {
@@ -71,7 +70,7 @@ export const ProfilePicture = ({
   }, [icon]);
 
   return (
-    <div style={{ position: "relative", width: size }}>
+    <div style={{ position: "relative", width: size, display: "flex", alignItems: "center" }}>
       <Box
         backgroundImage={picture == "" ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" : picture}
         borderRadius="100%"
@@ -89,7 +88,7 @@ export const ProfilePicture = ({
           <div className="input-select--button">
             <div className="dropdown-input-select--icon">
               <Icon
-                icon={view ? "up" : "down"}
+                icon={icon}
                 size={`${observer.width * iconProportion!}px`}
               />
             </div>

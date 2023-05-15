@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./loginForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import useInputForm from "../../hooks/useInputForm";
 import styles from "../../assets/scss/variables.module.scss";
 
 interface LoginFormProps {
@@ -66,28 +67,23 @@ export const LoginForm = ({
   height,
   ...props
 }: LoginFormProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const email = useInputForm("");
+  const password = useInputForm("");
+  const rememberMe = useInputForm(false);
 
   return (
     <Box className="login-form--container" style={{ width, height }}>
       <Box className="login-form--content">
         <Box className="login-form--input">
-          <InputText value={email} setValue={setEmail} label="Correo" />
+          <InputText inputHook={email} label="Correo" />
         </Box>
         <Box className="login-form--input">
-          <InputText
-            type="password"
-            value={password}
-            setValue={setPassword}
-            label="Contraseña"
-          />
+          <InputText type="password" inputHook={password} label="Contraseña" />
         </Box>
         <Box className="login-form--login-options">
           <Box
             className="login-form--remember-me"
-            onClick={() => setRememberMe((oldRememberMe) => !oldRememberMe)}
+            onClick={() => rememberMe.setValue(!rememberMe.value)}
           >
             <Icon icon={rememberMe ? "checkbox" : "uncheckbox"} size="24px" />
             <Box width="8px" />
@@ -128,7 +124,7 @@ export const LoginForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={() => onLogin(email, password)}
+            onClick={() => onLogin(email.value, password.value)}
           >
             <Box className="login-form--button-text">
               <Text color="white" type="h6" weight="600">

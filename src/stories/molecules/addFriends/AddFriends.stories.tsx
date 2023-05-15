@@ -8,7 +8,12 @@ export default {
   component: AddFriends,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    onButtonClick: {
+    invitedFriends: {
+      table: {
+        disable: true,
+      },
+    },
+    onClick: {
       table: {
         disable: true,
       },

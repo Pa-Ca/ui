@@ -1,4 +1,5 @@
 import React from "react";
+import useInputForm from "../../hooks/useInputForm";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ResetPasswordComponent } from "./ResetPasswordComponent";
 
@@ -18,12 +19,18 @@ export default {
         disable: true,
       },
     },
+    password: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof ResetPasswordComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof ResetPasswordComponent> = (args: any) => {
-  return <ResetPasswordComponent {...args} />;
+  const password = useInputForm("");
+  return <ResetPasswordComponent password={password} {...args} />;
 };
 
 export const Default = Template.bind({});
