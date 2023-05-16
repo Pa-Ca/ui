@@ -65,7 +65,7 @@ export const ProfileDropdown = ({
       }
       style={{
         width: "300px",
-        maxHeight: view ? "300px" : "0px",
+        maxHeight: view ? `${73 + Math.min(9.5, dropdownOptions.length) * 52}px` : "0px",
         opacity: view ? "1" : "0",
       }}
       innerRef={observer.ref}
