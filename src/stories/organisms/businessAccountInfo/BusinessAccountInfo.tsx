@@ -227,7 +227,7 @@ export const BusinessAccountInfo = ({
         </Box>
 
         <Box
-          height="48px"
+          height="24px"
           width="100%"
           className="business-account-info--modal-line"
         >
