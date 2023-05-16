@@ -81,100 +81,285 @@ export interface BranchItemProps {
    * Price color
    */
   priceColor?: string;
+  /**
+   * Starting price
+   */
+  startingPrice?: number;
 }
 
 // Do a list of branch objects to use as a placeholder
 const branchItemList = [
   {
-    name: "Branch 1 Nombre Largo",
-    score: 4.5,
-    reviews: 100,
-    amenity: "Amenity 1",
-    location: "Location 1",
-    firstReserve: "1:00 am",
-    secondReserve: "2:00 am",
-    priceScore: 4.5,
-    category: "Category 1",
+    name: 'La Nonna',
+    score: 4.7,
+    reviews: 56,
+    amenity: 'Bar',
+    location: 'El Paraíso',
+    firstReserve: '02:00 pm',
+    secondReserve: '08:00 pm',
+    priceScore: 2,
+    category: 'Comida Italiana',
     like: true,
-    image:
-      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    image: '/images/branch-listing-resources/1.jpg',
     onViewMoreClick: () => console.log("View more"),
     onFirstReserveClick: () => console.log(""),
     onLikeClick: () => console.log("Like"),
     onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 7
   },
   {
-    name: "Branch 2",
-    score: 4.5,
-    reviews: 420,
-    amenity: "Amenity 2",
-    location: "Location 2",
-    firstReserve: "2:00 am",
-    secondReserve: "10:00 am",
-    priceScore: 4.5,
-    category: "Category 1",
-    like: true,
-    image:
-      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    name: 'Ciao Ciao',
+    score: 4.4,
+    reviews: 87,
+    amenity: 'Bar',
+    location: 'El Paraíso',
+    firstReserve: '04:00 pm',
+    secondReserve: '05:00 pm',
+    priceScore: 4,
+    category: 'Comida Italiana',
+    like: false,
+    image: '/images/branch-listing-resources/2.jpg',
     onViewMoreClick: () => console.log("View more"),
     onFirstReserveClick: () => console.log(""),
     onLikeClick: () => console.log("Like"),
     onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 25
   },
   {
-    name: "Branch 3",
-    score: 4.5,
-    reviews: 69,
-    amenity: "Amenity 3",
-    location: "Location 3",
-    firstReserve: "3:00 am",
-    secondReserve: "10:00 am",
-    category: "Category 2",
-    priceScore: 4.5,
+    name: 'Lassi',
+    score: 3.5,
+    reviews: 78,
+    amenity: 'Música en vivo',
+    location: 'Chacao',
+    firstReserve: '06:00 pm',
+    secondReserve: '04:00 pm',
+    priceScore: 4,
+    category: 'Comida India',
     like: true,
-    image:
-      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    image: '/images/branch-listing-resources/3.jpg',
     onViewMoreClick: () => console.log("View more"),
     onFirstReserveClick: () => console.log(""),
     onLikeClick: () => console.log("Like"),
     onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 14
   },
   {
-    name: "Branch 4",
-    score: 4.5,
-    reviews: 100,
-    amenity: "Amenity 4",
-    location: "Location 4",
-    firstReserve: " 4:00 pm",
-    secondReserve: "10:00 am",
-    category: "Category 2",
-    priceScore: 4.5,
+    name: "Lima's fish",
+    score: 3.8,
+    reviews: 36,
+    amenity: 'Salón',
+    location: 'La Candelaria',
+    firstReserve: '03:00 pm',
+    secondReserve: '06:00 pm',
+    priceScore: 1,
+    category: 'Vida Nocturna',
     like: true,
-    image:
-      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    image: '/images/branch-listing-resources/4.jpg',
     onViewMoreClick: () => console.log("View more"),
     onFirstReserveClick: () => console.log(""),
     onLikeClick: () => console.log("Like"),
     onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 12
   },
   {
-    name: "Branch 5",
-    score: 4.5,
-    reviews: 100,
-    amenity: "Amenity 5",
-    location: "Location 5",
-    firstReserve: " 4:00 pm",
-    secondReserve: "10:00 am",
-    category: "Category 5",
-    priceScore: 4.5,
-    like: true,
-    image:
-      "https://images.unsplash.com/photo-1610394560928-8b5f5b0b5f1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    name: 'Churrosko',
+    score: 4.7,
+    reviews: 59,
+    amenity: 'Valet Parking',
+    location: 'Los Palos Grandes',
+    firstReserve: '02:00 pm',
+    secondReserve: '08:00 pm',
+    priceScore: 2,
+    category: 'Comida Americana',
+    like: false,
+    image: '/images/branch-listing-resources/5.jpg',
     onViewMoreClick: () => console.log("View more"),
     onFirstReserveClick: () => console.log(""),
     onLikeClick: () => console.log("Like"),
     onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 50
   },
+  {
+    name: 'El Rincón de la India',
+    score: 3.7,
+    reviews: 75,
+    amenity: 'Música en vivo',
+    location: 'Chacao',
+    firstReserve: '04:00 pm',
+    secondReserve: '04:00 pm',
+    priceScore: 2,
+    category: 'Comida India',
+    like: true,
+    image: '/images/branch-listing-resources/6.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 65
+  },
+  {
+    name: 'Kofta',
+    score: 4.1,
+    reviews: 88,
+    amenity: 'Música en vivo',
+    location: 'Chacao',
+    firstReserve: '01:00 pm',
+    secondReserve: '09:00 pm',
+    priceScore: 2,
+    category: 'Comida India',
+    like: false,
+    image: '/images/branch-listing-resources/7.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 33
+  },
+  {
+    name: "Croquetas pa' ti",
+    score: 3.6,
+    reviews: 66,
+    amenity: 'wifi',
+    location: 'Las Mercedes',
+    firstReserve: '04:00 pm',
+    secondReserve: '03:00 pm',
+    priceScore: 1,
+    category: 'Restaurante',
+    like: true,
+    image: '/images/branch-listing-resources/8.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 16
+  },
+  {
+    name: 'Artillero de Ron',
+    score: 4.8,
+    reviews: 32,
+    amenity: 'pet-friendly',
+    location: 'Altamira',
+    firstReserve: '04:00 pm',
+    secondReserve: '05:00 pm',
+    priceScore: 2,
+    category: 'Bar',
+    like: true,
+    image: '/images/branch-listing-resources/9.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 5
+  },
+  {
+    name: 'Rudy Bar',
+    score: 4.9,
+    reviews: 36,
+    amenity: 'Valet Parking',
+    location: 'Los Palos Grandes',
+    firstReserve: '01:00 pm',
+    secondReserve: '08:00 pm',
+    priceScore: 1,
+    category: 'Comida Americana',
+    like: true,
+    image: '/images/branch-listing-resources/10.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 10
+  },
+  {
+    name: 'Comiendo con Mariachis',
+    score: 4.2,
+    reviews: 2,
+    amenity: 'pet-friendly',
+    location: 'Altamira',
+    firstReserve: '00:00 pm',
+    secondReserve: '04:00 pm',
+    priceScore: 4,
+    category: 'Bar',
+    like: false,
+    image: '/images/branch-listing-resources/11.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 13
+  },
+  {
+    name: 'Torre di pizza',
+    score: 3.7,
+    reviews: 15,
+    amenity: 'Valet Parking',
+    location: 'Los Palos Grandes',
+    firstReserve: '02:00 pm',
+    secondReserve: '07:00 pm',
+    priceScore: 2,
+    category: 'Comida Americana',
+    like: true,
+    image: '/images/branch-listing-resources/12.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 12
+  },
+  {
+    name: 'Burger House',
+    score: 3.5,
+    reviews: 32,
+    amenity: 'Valet Parking',
+    location: 'Los Palos Grandes',
+    firstReserve: '03:00 pm',
+    secondReserve: '03:00 pm',
+    priceScore: 4,
+    category: 'Comida Americana',
+    like: true,
+    image: '/images/branch-listing-resources/13.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 55
+  },
+  {
+    name: "Shibuya's Ramen",
+    score: 5,
+    reviews: 3,
+    amenity: 'wifi',
+    location: 'Las Mercedes',
+    firstReserve: '00:00 pm',
+    secondReserve: '05:00 pm',
+    priceScore: 3,
+    category: 'Restaurante',
+    like: true,
+    image: '/images/branch-listing-resources/14.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 23
+  },
+  {
+    name: 'Comer & Beber',
+    score: 4,
+    reviews: 27,
+    amenity: 'Valet Parking',
+    location: 'Los Palos Grandes',
+    firstReserve: '02:00 pm',
+    secondReserve: '04:00 pm',
+    priceScore: 4,
+    category: 'Comida Americana',
+    like: false,
+    image: '/images/branch-listing-resources/15.jpg',
+    onViewMoreClick: () => console.log("View more"),
+    onFirstReserveClick: () => console.log(""),
+    onLikeClick: () => console.log("Like"),
+    onSecondReserveClick: () => console.log("Second Reserve"),
+    startingPrice: 6
+  }
+  
 ];
 
 // Do a list of branch objects to use as a placeholder (This will be the
@@ -185,16 +370,16 @@ export const exampleLongBranchList = [
   branchItemList[2],
   branchItemList[3],
   branchItemList[4],
-  branchItemList[4],
-  branchItemList[2],
-  branchItemList[3],
-  branchItemList[0],
-  branchItemList[1],
-  branchItemList[4],
-  branchItemList[2],
-  branchItemList[2],
-  branchItemList[1],
-  branchItemList[0],
+  branchItemList[5],
+  branchItemList[6],
+  branchItemList[7],
+  branchItemList[8],
+  branchItemList[9],
+  branchItemList[10],
+  branchItemList[11],
+  branchItemList[12],
+  branchItemList[13],
+  branchItemList[14],
 ];
 
 
@@ -220,6 +405,7 @@ export const BranchItem = ({
   height,
   color,
   priceColor,
+  startingPrice,
   ...props
 }: BranchItemProps) => {
   const containerObserver = useResizeObserver<HTMLDivElement>();
@@ -240,7 +426,8 @@ export const BranchItem = ({
         {/* Image */}
         <Box
           className='branch-item--image'
-          backgroundImage='https://img.freepik.com/vector-premium/plantilla-diseno-logotipo-restaurante_79169-56.jpg?w=2000'
+          borderRadius='12px'
+          backgroundImage={image}
         />
 
         <Box className='branch-item--summary-container' width={`${rightSizeWidth}px`}>
@@ -304,7 +491,7 @@ export const BranchItem = ({
               Starting from
             </Text>
             <Text type='h4' color={priceColor} weight='700'>
-              $104
+              {startingPrice ? `$${startingPrice}` : "$104"}
             </Text>
           </Box>
         </Box>

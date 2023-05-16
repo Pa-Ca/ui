@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BranchEditForm } from "./BranchEditForm";
-import credentials from "../../../../credentials";
 import useInputForm from "../../hooks/useInputForm";
 
 export default {
@@ -180,5 +179,5 @@ Default.args = {
       value: "chacao",
     },
   ],
-  mapsApiKey: credentials.maps_key,
+  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
 };
