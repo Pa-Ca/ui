@@ -44,7 +44,7 @@
   margin-top: 20px;
 }
 
-.score-box-with-border{
+.score-box-with-border {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -55,19 +55,19 @@
   border-radius: 12px;
 }
 
-.resumen-box-text{
+.resumen-box-text {
   padding: 10px 0px;
 
-  .text:nth-child(1){
+  .text:nth-child(1) {
     margin-bottom: 5px;
   }
 }
 
-.details-title{
+.details-title {
   margin-bottom: 16px;
 }
 
-.amenity-box{
+.amenity-box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -77,14 +77,14 @@
 .branch-search--button-box {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
-  .text:nth-child(1){
+  .text:nth-child(1) {
     margin-right: 16px;
   }
 }
 
-.map-button-box{
+.map-button-box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -92,7 +92,7 @@
   margin-left: 16px;
 }
 
-.restaurant-detail-image{
+.restaurant-detail-image {
   border-radius: 12px;
   min-width: 162px;
   height: 75px;

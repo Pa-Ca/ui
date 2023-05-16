@@ -35,6 +35,8 @@ export interface EditableBranchLocationProps {
   className?: string;
 }
 
+const libraries: ("places")[] = ["places"];
+
 /**
  * Primary UI component for user interaction
  */
@@ -52,7 +54,7 @@ export const EditableBranchLocation = ({
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
-    libraries: ["places"],
+    libraries: libraries,
     language: "es",
   });
 
