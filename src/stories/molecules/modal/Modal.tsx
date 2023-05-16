@@ -26,7 +26,7 @@ export const Modal = ({
 }: ModalProps) => {
   return (
     <MuiModal open={open} onClose={() => setOpen(false)}>
-      <Box
+      <div
         className="modal--container"
         onClick={() => setOpen(false)}
       >
@@ -36,7 +36,7 @@ export const Modal = ({
         >
           {children}
         </Box>
-      </Box>
+      </div>
     </MuiModal>
   );
 };

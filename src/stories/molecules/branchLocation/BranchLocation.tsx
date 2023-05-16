@@ -44,6 +44,8 @@ export interface BranchLocationProps {
   height?: string;
 }
 
+const libraries: ("places")[] = ["places"];
+
 /**
  * Primary UI component for user interaction
  */
@@ -58,11 +60,10 @@ export const BranchLocation = ({
   height,
   ...props
 }: BranchLocationProps) => {
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
-    libraries: ["places"],
+    libraries: libraries,
     language: "es"
   })
 
