@@ -2,7 +2,6 @@ import React from "react";
 import { BranchProfile } from "./BranchProfile";
 import AmenityObject from "../../utils/objects/AmenityObject";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import credentials from "../../../../credentials";
 import useInputForm from "../../hooks/useInputForm";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -268,7 +267,7 @@ const globalArgs = {
     lat: 10.42673633648665,
     lng: -66.87739422453691,
     location: "El Hatillo, Caracas, Venezuela",
-    apiKey: credentials.maps_key,
+    apiKey: process.env.GOOGLE_MAPS_API_KEY,
   },
 };
 
