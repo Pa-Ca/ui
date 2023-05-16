@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./branchEditForm.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
@@ -149,6 +149,15 @@ export const BranchEditForm = ({
   color,
   ...props
 }: BranchEditFormProps) => {
+  const locationName = useMemo(() => {
+    const match = mapsLink.value.match(/\/place\/(.*?)\//);
+    if (match) {
+      const placeName = match[1].replace(/\+/g, " ");
+      return placeName;
+    }
+    return "";
+  }, [mapsLink]);
+
   return (
     <Box className="branch-edit-form--container" width={width} height={height}>
       <Box className={classnames("branch-edit-form--name-input")}>
@@ -282,7 +291,7 @@ export const BranchEditForm = ({
           hideTextAfterEditing={true}
           type="text"
           showError={false}
-          defaultText="Enlace de Google Maps"
+          defaultText={locationName}
           saveValueFunction={onSaveMapsLink}
           containerClassName="branch-edit-form--input-item"
           color={color}
