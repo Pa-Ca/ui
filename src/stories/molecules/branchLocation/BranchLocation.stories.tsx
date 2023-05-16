@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BranchLocation } from "./BranchLocation";
-import credentials from "../../../../credentials";
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -24,5 +23,5 @@ Default.args = {
   lat: 10.4302,
   lng: -66.8771,
   location: "El Hatillo, Caracas, Venezuela",
-  apiKey: credentials.maps_key,
+  apiKey: process.env.GOOGLE_MAPS_API_KEY,
 };
