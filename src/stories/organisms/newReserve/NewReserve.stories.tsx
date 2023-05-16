@@ -44,11 +44,6 @@ export default {
         disable: true,
       },
     },
-    petition: {
-      table: {
-        disable: true,
-      },
-    },
     onClick: {
       table: {
         disable: true,
@@ -84,7 +79,6 @@ const Template: ComponentStory<typeof NewReserve> = (args: any) => {
   const hourOut = useInputForm({ name: "", value: "" });
   const persons = useInputForm("");
   const occasion = useInputForm("");
-  const petition = useInputForm("");
 
   return (
     <NewReserve
@@ -96,7 +90,6 @@ const Template: ComponentStory<typeof NewReserve> = (args: any) => {
       validHoursOut={validHours}
       persons={persons}
       occasion={occasion}
-      petition={petition}
     />
   );
 };

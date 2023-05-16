@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./businessAccountInfo.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
@@ -35,6 +35,18 @@ interface BusinessAccountInfoProps {
    */
   done: boolean;
   /**
+   * Indicates that an email was sent to change the password
+   */
+  emailSent: boolean;
+  /**
+   * Indicates that the password change modal is active
+   */
+  changePassword: boolean;
+  /**
+   * Function to change the variable that indicates if the password change modal is active
+   */
+  setChangePassword: (value: boolean) => void;
+  /**
    * Function that is executed when the name is saved
    */
   onSaveName: (value: string) => void;
@@ -45,11 +57,19 @@ interface BusinessAccountInfoProps {
   /**
    * Function that changes the user's password
    */
-  onChangePassword: () => Promise<boolean>;
+  onChangePassword: () => void;
+  /**
+   * Function that will be executed when clicking on you forgot your password
+   */
+  onForgotPassword: () => void;
   /**
    * Component main color
    */
   color?: string;
+  /**
+   * Component secondary color
+   */
+  secondaryColor?: string;
 }
 
 /**
@@ -62,17 +82,21 @@ export const BusinessAccountInfo = ({
   password,
   newPassword,
   done,
+  emailSent,
+  changePassword,
+  setChangePassword,
   onSaveName,
   onSavePhoneNumber,
   onChangePassword,
+  onForgotPassword,
   color,
+  secondaryColor,
   ...props
 }: BusinessAccountInfoProps) => {
   const confirmPassword = useInputForm(
     "",
     "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
   );
-  const [changePassword, setChangePassword] = useState(false);
 
   const submit = async () => {
     let error = false;
@@ -86,10 +110,12 @@ export const BusinessAccountInfo = ({
 
     if (error) return;
 
-    if (!! await onChangePassword()) {
-      confirmPassword.setValue("");
-    };
+    onChangePassword();
   };
+
+  useEffect(() => {
+    confirmPassword.setValue("");
+  }, [changePassword]);
 
   return (
     <Box className="business-account-info--container">
@@ -157,20 +183,13 @@ export const BusinessAccountInfo = ({
 
       <Modal open={changePassword} setOpen={setChangePassword}>
         <Box className="business-account-info--modal-title">
-          <Text type="h5" weight="700">
-            Cambiar contraseña
+          <Text type="h5" weight="700" color="#112211">
+            Cambio de Contraseña
           </Text>
-
-          <Box
-            className="business-account-info--modal-cancel"
-            onClick={() => setChangePassword(false)}
-          >
-            <Icon icon="cancel" size="25px" />
-          </Box>
         </Box>
 
         <InputText
-          width="600px"
+          width="410px"
           type="password"
           inputHook={password}
           label="Contraseña actual"
@@ -178,7 +197,7 @@ export const BusinessAccountInfo = ({
         <Box height="10px" />
 
         <InputText
-          width="600px"
+          width="410px"
           type="password"
           inputHook={newPassword}
           label="Contraseña nueva"
@@ -186,20 +205,35 @@ export const BusinessAccountInfo = ({
         <Box height="10px" />
 
         <InputText
-          width="600px"
+          width="410px"
           type="password"
           inputHook={confirmPassword}
           label="Repetir contraseña nueva"
         />
-        <Box height="20px" />
-
+        <Box
+          className="business-account-info--forgot-password"
+          onClick={onForgotPassword}
+        >
+          <Text color={secondaryColor} type="h6">
+            ¿Olvidaste tu Contraseña?
+          </Text>
+        </Box>
         <Box height="20px">
-          {done && (
-            <Text weight="400" type="h6">
-              ¡Contraseña cambiada exitosamente!
+          {emailSent && (
+            <Text type="h6" color="#112211" weight="400">
+              Te hemos enviado un correo para cambiar tu contraseña.
             </Text>
           )}
         </Box>
+
+        <Box
+          height="48px"
+          width="100%"
+          className="business-account-info--modal-line"
+        >
+          <Box width="100%" height="1px" backgroundColor="#DADCDA" />
+        </Box>
+
         <Button
           fullWidth
           primary

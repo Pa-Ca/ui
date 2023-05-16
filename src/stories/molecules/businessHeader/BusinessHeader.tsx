@@ -24,6 +24,14 @@ interface BusinessHeaderProps {
    */
   email: string;
   /**
+   * On create new branch button click
+   */
+  onCreateBranch: () => void;
+  /**
+   * Function that is executed when clicking on the profile picture
+   */
+  onPictureClick: () => void;
+  /**
    * Component main color
    */
   color?: string;
@@ -41,29 +49,14 @@ export const BusinessHeader = ({
   profilePicture,
   name,
   email,
+  onCreateBranch,
+  onPictureClick,
   color,
   secondaryColor,
   ...props
 }: BusinessHeaderProps) => {
   return (
     <Box className="business-header--container">
-      <Box className="business-header--main-image" backgroundImage={mainImage} >
-        <Box className="business-header--button-container">
-          <Button
-            primary
-            backgroundColor={color}
-          >
-            <Box className="business-header--button">
-              <Icon icon="upload" color="#112211" size="20px" />
-              <Box width="5px"/>
-              <Text color="#112211" type="h6" weight="500">
-                Upload new cover
-              </Text>
-            </Box>
-          </Button>
-        </Box>
-      </Box>
-
       <Box className="business-header--profile-picture">
         <ProfilePicture
           size="160px"
@@ -71,6 +64,7 @@ export const BusinessHeader = ({
           color={secondaryColor}
           border="5px"
           icon="pencil"
+          onClick={onPictureClick}
         />
         <Box height="20px" />
         <Text color="#112211" type="h4" weight="600">
@@ -80,6 +74,16 @@ export const BusinessHeader = ({
         <Text color="#112211" weight="400">
           {email}
         </Text>
+      </Box>
+
+      <Box className="business-header--button-container">
+        <Button primary backgroundColor={color} size="large" onClick={onCreateBranch}>
+          <Box className="business-header--button">
+            <Text color="#112211" type="h6" weight="500">
+              Crear Local
+            </Text>
+          </Box>
+        </Button>
       </Box>
     </Box>
   );
