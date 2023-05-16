@@ -27,6 +27,14 @@ interface BusinessProfileProps {
    * Business profile picture
    */
   profilePicture: string;
+  /**
+   * On create new branch button click
+   */
+  onCreateBranch: () => void;
+  /**
+   * Function that is executed when clicking on the profile picture
+   */
+  onPictureClick: () => void;
 
   /**
    * Business name input hook
@@ -49,6 +57,10 @@ interface BusinessProfileProps {
    */
   newPassword: InputFormHook<string>;
   /**
+   * Indicates that an email was sent to change the password
+   */
+  emailSent: boolean;
+  /**
    * Indicates that the change has already been made
    */
   done: boolean;
@@ -63,7 +75,11 @@ interface BusinessProfileProps {
   /**
    * Function that changes the user's password
    */
-  onChangePassword: () => Promise<boolean>;
+  onChangePassword: () => void;
+  /**
+   * Function that will be executed when clicking on you forgot your password
+   */
+  onForgotPassword: () => void;
 
   /**
    * Indicates if any branch is being shown
@@ -172,16 +188,20 @@ export const BusinessProfile = ({
   header,
   mainImage,
   profilePicture,
+  onCreateBranch,
+  onPictureClick,
 
   name,
   email,
   phoneNumber,
   password,
   newPassword,
+  emailSent,
   done,
   onSaveName,
   onSavePhoneNumber,
   onChangePassword,
+  onForgotPassword,
 
   haveBranch = true,
   branchName,
@@ -212,6 +232,7 @@ export const BusinessProfile = ({
   ...props
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
+  const [changePassword, setChangePassword] = useState(false);
   const observer = useResizeObserver<HTMLDivElement>();
   const tabObserver = useResizeObserver<HTMLDivElement>();
 
@@ -221,6 +242,11 @@ export const BusinessProfile = ({
     }
   }, [observer.width, page]);
 
+  useEffect(() => {
+    password.setValue("");
+    newPassword.setValue("");
+  }, [changePassword]);
+
   return (
     <BasicPage headerArgs={header}>
       <Box width="100%">
@@ -229,6 +255,8 @@ export const BusinessProfile = ({
           profilePicture={profilePicture}
           name={name.value}
           email={email.value}
+          onCreateBranch={onCreateBranch}
+          onPictureClick={onPictureClick}
           color={color}
           secondaryColor={secondaryColor}
         />
@@ -259,11 +287,16 @@ export const BusinessProfile = ({
                 phoneNumber={phoneNumber}
                 password={password}
                 newPassword={newPassword}
+                emailSent={emailSent}
                 done={done}
+                changePassword={changePassword}
+                setChangePassword={setChangePassword}
                 onSaveName={onSaveName}
                 onSavePhoneNumber={onSavePhoneNumber}
                 onChangePassword={onChangePassword}
+                onForgotPassword={onForgotPassword}
                 color={color}
+                secondaryColor={secondaryColor}
               />
             </Box>
             <Box width="12px" />

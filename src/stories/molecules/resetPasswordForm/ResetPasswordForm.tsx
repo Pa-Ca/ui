@@ -60,7 +60,7 @@ export const ResetPasswordForm = ({
   const submit = () => {
     let error = false;
 
-    if (confirmPassword !== password) {
+    if (confirmPassword.value !== password.value) {
       confirmPassword.setError(true);
       error = true;
     } else {

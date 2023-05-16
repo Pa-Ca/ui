@@ -55,6 +55,21 @@ export default {
         disable: true,
       },
     },
+    onCreateBranch: {
+      table: {
+        disable: true,
+      },
+    },
+    onPictureClick: {
+      table: {
+        disable: true,
+      },
+    },
+    onForgotPassword: {
+      table: {
+        disable: true,
+      },
+    },
     branchName: {
       table: {
         disable: true,

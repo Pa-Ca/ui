@@ -107,7 +107,7 @@ export const Reservation = ({
               backgroundColor={color}
             >
               <Text type="h6" color="#112211">
-                Crear Reserva
+                Cerrar Reserva
               </Text>
             </Button>
           </Box>

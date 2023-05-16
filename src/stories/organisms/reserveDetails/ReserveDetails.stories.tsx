@@ -44,11 +44,6 @@ export default {
         disable: true,
       },
     },
-    petition: {
-      table: {
-        disable: true,
-      },
-    },
   },
 } as ComponentMeta<typeof ReserveDetails>;
 
@@ -79,7 +74,6 @@ const Template: ComponentStory<typeof ReserveDetails> = (args: any) => {
   const hourOut = useInputForm({ value: "", name: "" });
   const persons = useInputForm("");
   const occasion = useInputForm("");
-  const petition = useInputForm("");
 
   return (
     <ReserveDetails
@@ -91,7 +85,6 @@ const Template: ComponentStory<typeof ReserveDetails> = (args: any) => {
       validHoursOut={validHours}
       persons={persons}
       occasion={occasion}
-      petition={petition}
     />
   );
 };

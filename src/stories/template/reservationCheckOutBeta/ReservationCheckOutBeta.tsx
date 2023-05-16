@@ -56,7 +56,6 @@ interface ReservationCheckOutBeta {
     persons: number,
     hourIn: string,
     hourOut: string | null,
-    petition: string | null,
     occasion: string | null
   ) => void;
 }
@@ -82,7 +81,6 @@ export const ReservationCheckOutBeta = ({
   const hourOut = useInputForm<OptionObject >({ value: "", name: "" });
   const persons = useInputForm<string >("");
   const occasion = useInputForm<string >("");
-  const petition = useInputForm<string >("");
 
   // Client data
   const firstName = useInputForm("");
@@ -128,7 +126,6 @@ export const ReservationCheckOutBeta = ({
               hourOut={hourOut}
               persons={persons}
               occasion={occasion}
-              petition={petition}
               showInviteFriends={false}
             />
           </Box>
@@ -150,7 +147,6 @@ export const ReservationCheckOutBeta = ({
                   typeof hourOut!.value === "string"
                     ? hourOut!.value
                     : hourOut!.value.toString(),
-                  petition.value,
                   occasion.value
                 )
               }
