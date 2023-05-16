@@ -1,5 +1,4 @@
 import React from "react";
-import credentials from "../../../../credentials";
 import { BusinessProfile } from "./BusinessProfile";
 import useInputForm from "../../hooks/useInputForm";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
@@ -263,7 +262,7 @@ Default.args = {
       value: "chacao",
     },
   ],
-  mapsApiKey: credentials.maps_key,
+  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
   color: "#EF7A08",
   secondaryColor: "#FF8682",
 };
