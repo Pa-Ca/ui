@@ -50,6 +50,16 @@ interface BranchEditFormProps {
    * Precise location of the branch (Google maps link)
    */
   mapsLink: InputFormHook<string>;
+  
+  /**
+   * Opening time hours
+   */
+  openingTime : InputFormHook<string>;
+
+  /**
+   * Branch type
+   */
+  closingTime: InputFormHook<string>;
 
   /**
    * Function that is executed when the name is saved
@@ -86,6 +96,16 @@ interface BranchEditFormProps {
   onSavePrice: (value: string) => void;
 
   /**
+   * On save event for the opening time
+   * */
+  onSaveOpeningTime: (value: string) => void;
+
+  /**
+   * On save event for the closing time
+   * */
+  onSaveClosingTime: (value: string) => void;
+
+  /**
    * Branch type
    */
   onSaveType: (value: string) => void;
@@ -93,6 +113,7 @@ interface BranchEditFormProps {
    * Precise location of the branch (Google maps link)
    */
   onSaveMapsLink: (value: string) => void;
+
 
   /**
    * Google maps API key
@@ -106,6 +127,14 @@ interface BranchEditFormProps {
    * Options for the branch location
    */
   locationOptions: OptionType[];
+  /**
+   * Opening time options for the branch
+   * */
+  openingTimeOptions: OptionType[];
+  /**
+   * Closing time options for the branch
+   * */
+  closingTimeOptions: OptionType[];
   /**
    * Component width
    */
@@ -130,6 +159,8 @@ export const BranchEditForm = ({
   price,
   mapsLink,
   type,
+  openingTime,
+  closingTime,
 
   onSaveName = () => {},
   onSaveDescription = () => {},
@@ -140,9 +171,13 @@ export const BranchEditForm = ({
   onSavePrice = () => {},
   onSaveType = () => {},
   onSaveMapsLink = () => {},
+  onSaveOpeningTime = () => {},
+  onSaveClosingTime = () => {},
 
   typeOptions,
   locationOptions,
+  openingTimeOptions,
+  closingTimeOptions,
   mapsApiKey,
   width,
   height,
@@ -227,6 +262,38 @@ export const BranchEditForm = ({
             saveValueFunction={onSavePrice}
             editable={true}
             type="positiveNumber"
+            containerClassName="branch-edit-form--input-item"
+            color={color}
+          />
+        </Box>
+      </Box>
+
+      <Box className="branch-edit-form--two-column-row">
+        <Box className={classnames("branch-edit-form--type-input")}>
+          <Text className="branch-edit-form--input-label"> 
+          {" "} Hora de apertura{" "}
+           </Text>
+          <EditableInputText
+            inputHook={openingTime}
+            options={openingTimeOptions}
+            saveValueFunction={onSaveOpeningTime}
+            editable={true}
+            type="select"
+            containerClassName="branch-edit-form--input-item"
+            color={color}
+          />
+        </Box>
+
+        <Box className="branch-edit-form--cost-per-person-input">
+          <Text className="branch-edit-form--input-label">
+            {" "} Hora de cierre{" "}
+          </Text>
+          <EditableInputText
+            inputHook={closingTime}
+            options={closingTimeOptions}
+            saveValueFunction={onSaveClosingTime}
+            editable={true}
+            type="select"
             containerClassName="branch-edit-form--input-item"
             color={color}
           />
