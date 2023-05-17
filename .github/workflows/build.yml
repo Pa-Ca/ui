@@ -20,11 +20,9 @@ jobs:
       - name: Build app
         run: npm run build
       - name: Push bundle to release branch
-      with:
-        ref: release
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "Deploy new bundle"
-        git push --set-upstream origin HEAD:release
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Deploy new bundle"
+          git push --set-upstream origin HEAD:release
