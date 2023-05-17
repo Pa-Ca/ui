@@ -25,4 +25,4 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git commit -m "Deploy new bundle"
-          git push origin HEAD:release
+          git push --set-upstream origin HEAD:release
