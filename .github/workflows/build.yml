@@ -3,7 +3,7 @@ name: Pa'Ca UI build
 on:
   push:
     branches:
-      - develop
+      - feat_bundle
 
 jobs:
   build-and-deploy:
