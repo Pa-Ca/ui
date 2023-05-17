@@ -43,7 +43,7 @@ export default {
     }),
     terser(),
     scss({
-      output: 'dist/listree.min.css',
+      output: false,
       outputStyle: "compressed"
     }),
     commonjs(),
