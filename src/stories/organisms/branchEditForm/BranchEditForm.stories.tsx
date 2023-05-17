@@ -103,18 +103,41 @@ export default {
         disable: true,
       },
     },
-    locationOptions: {
+    // locationOptions: {
+    //   table: {
+    //     disable: true,
+    //   },
+    // },
+    onSaveOpeningTime: {
       table: {
         disable: true,
       },
     },
-    mapsApiKey: {
+    onSaveClosingTime: {
       table: {
         disable: true,
       },
     },
   },
 } as ComponentMeta<typeof BranchEditForm>;
+
+const createHours = () => {
+  let hours = [];
+
+  for (let i = 0; i < 24; i++) {
+    let hour = i.toString();
+    let item = {
+      label:  `${hour}:00`, 
+      value: `${hour}:00`,
+    };
+
+    hours.push(item );
+  }
+  return hours;
+};
+
+const openingTimeOptions = createHours(); 
+const closingTimeOptions = createHours();
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
@@ -127,6 +150,8 @@ const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
   const capacity = useInputForm("5");
   const averageReserveTime = useInputForm("5");
   const price = useInputForm("5");
+  const openingTime = useInputForm("5:00");
+  const closingTime = useInputForm("5:00");
   const mapsLink = useInputForm(
     "https://www.google.com/maps/place/El+Charrito/@35.5174476,-108.794712,14z/data=!4m10!1m2!2m1!1sRestaurantes!3m6!1s0x8725209d38b2af65:0x61914de8cdc7c448!8m2!3d35.5174099!4d-108.7747707!15sCgxSZXN0YXVyYW50ZXNaDiIMcmVzdGF1cmFudGVzkgESbWV4aWNhbl9yZXN0YXVyYW504AEA!16s%2Fg%2F1tj1sk5w?hl=es"
   );
@@ -143,6 +168,10 @@ const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
       price={price}
       mapsLink={mapsLink}
       type={type}
+      openingTime={openingTime}
+      closingTime={closingTime}
+      openingTimeOptions={openingTimeOptions}
+      closingTimeOptions={closingTimeOptions}
       {...args}
     />
   );
