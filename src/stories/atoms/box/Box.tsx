@@ -131,7 +131,7 @@ export const Box = ({
         borderTopRightRadius: borderTopRightRadius ?? borderRadius,
         borderBottomRightRadius: borderBottomRightRadius ?? borderRadius,
         borderBottomLeftRadius: borderBottomLeftRadius ?? borderRadius,
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: !!backgroundImage ? `url(${backgroundImage})` : undefined,
         backgroundSize: "cover",
         backgroundPosition: "center",
         ...style,
