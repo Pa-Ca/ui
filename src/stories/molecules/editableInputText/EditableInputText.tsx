@@ -236,6 +236,8 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames("editable-input-text--select", className)}
+              classNamePrefix={classnames("editable-input-text--select", className)}
+              noOptionsMessage={() => 'No se encuentra la opción'}
               value={{
                 value: inputHook.value || "",
                 label: optionsMap.get(inputHook.value || "") || "",
@@ -247,7 +249,7 @@ export const EditableInputText = ({
                   ...baseStyles,
                   boxShadow: "none",
                   "&:hover": {
-                    borderColor: "grey",
+                    borderColor: "black",
                   },
                   ...style,
                 }),
