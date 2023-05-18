@@ -4,6 +4,7 @@ import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { InputFormHook } from "../../hooks/useInputForm";
+import { EditableInputTime } from "../../molecules/editableInputTime/EditableInputTime";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
@@ -35,9 +36,13 @@ interface BranchEditFormProps {
    */
   capacity: InputFormHook<string>;
   /**
-   * Average reserve time of the branch (in hours)
+   * Average reserve time hours of the branch
    */
-  averageReserveTime: InputFormHook<string>;
+  averageReserveTimeHours: InputFormHook<string>;
+  /**
+   * Average reserve time minutes of the branch
+   */
+  averageReserveTimeMinutes: InputFormHook<string>;
   /**
    * Average price per person of the branch (in USD)
    */
@@ -52,14 +57,22 @@ interface BranchEditFormProps {
   mapsLink: InputFormHook<string>;
   
   /**
-   * Opening time hours
+   * Opening time hours of the branch
    */
-  openingTime : InputFormHook<string>;
+  openingTimeHour: InputFormHook<string>;
+  /**
+   * Opening time minutes of the branch
+   */
+  openingTimeMinute : InputFormHook<string>;
 
   /**
-   * Branch type
+   * Closing time hours of the branch
    */
-  closingTime: InputFormHook<string>;
+  closingTimeHour: InputFormHook<string>;
+  /**
+   * Closing time minutes of the branch
+   */
+  closingTimeMinute : InputFormHook<string>;
 
   /**
    * Function that is executed when the name is saved
@@ -86,9 +99,9 @@ interface BranchEditFormProps {
   onSaveCapacity: (value: string) => void;
 
   /**
-   * Average reserve time of the branch (in hours)
+   * Average reserve time of the branch 
    */
-  onSaveAverageReserveTime: (value: string) => void;
+  onSaveAverageReserveTime: (hours: string, minutes: string) => void;
 
   /**
    * Average price per person of the branch (in USD)
@@ -98,12 +111,12 @@ interface BranchEditFormProps {
   /**
    * On save event for the opening time
    * */
-  onSaveOpeningTime: (value: string) => void;
+  onSaveOpeningTime: (hour: string, minute: string) => void;
 
   /**
    * On save event for the closing time
    * */
-  onSaveClosingTime: (value: string) => void;
+  onSaveClosingTime: (hour: string, minute: string) => void;
 
   /**
    * Branch type
@@ -128,14 +141,6 @@ interface BranchEditFormProps {
    */
   locationOptions: OptionType[];
   /**
-   * Opening time options for the branch
-   * */
-  openingTimeOptions: OptionType[];
-  /**
-   * Closing time options for the branch
-   * */
-  closingTimeOptions: OptionType[];
-  /**
    * Component width
    */
   width?: string;
@@ -155,12 +160,15 @@ export const BranchEditForm = ({
   location,
   phone,
   capacity,
-  averageReserveTime,
+  averageReserveTimeHours,
+  averageReserveTimeMinutes,
   price,
   mapsLink,
   type,
-  openingTime,
-  closingTime,
+  openingTimeHour,
+  openingTimeMinute,
+  closingTimeHour,
+  closingTimeMinute,
 
   onSaveName = () => {},
   onSaveDescription = () => {},
@@ -176,8 +184,6 @@ export const BranchEditForm = ({
 
   typeOptions,
   locationOptions,
-  openingTimeOptions,
-  closingTimeOptions,
   mapsApiKey,
   width,
   height,
@@ -225,13 +231,14 @@ export const BranchEditForm = ({
         <Box className={classnames("branch-edit-form--average-reserve-time")}>
           <Text className="branch-edit-form--input-label">
             {" "}
-            Tiempo promedio de reserva (en horas){" "}
+            Tiempo promedio de reserva {" "}
           </Text>
-          <EditableInputText
-            inputHook={averageReserveTime}
+          <EditableInputTime
+            hoursInputHook={averageReserveTimeHours}
+            minutesInputHook={averageReserveTimeMinutes}
             saveValueFunction={onSaveAverageReserveTime}
             editable={true}
-            type="positiveInteger"
+            type="duration"
             containerClassName="branch-edit-form--input-item"
             color={color}
           />
@@ -273,12 +280,12 @@ export const BranchEditForm = ({
           <Text className="branch-edit-form--input-label"> 
           {" "} Hora de apertura{" "}
            </Text>
-          <EditableInputText
-            inputHook={openingTime}
-            options={openingTimeOptions}
+          <EditableInputTime
+            hoursInputHook={openingTimeHour}
+            minutesInputHook={openingTimeMinute}
             saveValueFunction={onSaveOpeningTime}
             editable={true}
-            type="select"
+            type="localtime"
             containerClassName="branch-edit-form--input-item"
             color={color}
           />
@@ -288,12 +295,12 @@ export const BranchEditForm = ({
           <Text className="branch-edit-form--input-label">
             {" "} Hora de cierre{" "}
           </Text>
-          <EditableInputText
-            inputHook={closingTime}
-            options={closingTimeOptions}
+          <EditableInputTime
+            hoursInputHook={closingTimeHour}
+            minutesInputHook={closingTimeMinute}
             saveValueFunction={onSaveClosingTime}
             editable={true}
-            type="select"
+            type="localtime"
             containerClassName="branch-edit-form--input-item"
             color={color}
           />
