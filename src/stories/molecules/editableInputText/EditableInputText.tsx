@@ -312,7 +312,7 @@ export const EditableInputText = ({
       </Box>
       <Box
         className={classnames(
-          "editable-intput-text--error-message",
+          "editable-input-text--error-message",
           className,
           inputHook.error
             ? "editable-input-text--animation"
