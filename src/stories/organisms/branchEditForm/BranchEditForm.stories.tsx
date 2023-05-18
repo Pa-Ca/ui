@@ -33,7 +33,12 @@ export default {
         disable: true,
       },
     },
-    averageReserveTime: {
+    averageReserveTimeHours: {
+      table: {
+        disable: true,
+      },
+    },
+    averageReserveTimeMinutes: {
       table: {
         disable: true,
       },
@@ -103,17 +108,32 @@ export default {
         disable: true,
       },
     },
-    // locationOptions: {
-    //   table: {
-    //     disable: true,
-    //   },
-    // },
     onSaveOpeningTime: {
       table: {
         disable: true,
       },
     },
     onSaveClosingTime: {
+      table: {
+        disable: true,
+      },
+    },
+    openingTimeHour: {
+      table: {
+        disable: true,
+      },
+    },
+    openingTimeMinute: {
+      table: {
+        disable: true,
+      },
+    },
+    closingTimeHour: {
+      table: {
+        disable: true,
+      },
+    },
+    closingTimeMinute: {
       table: {
         disable: true,
       },
@@ -127,17 +147,14 @@ const createHours = () => {
   for (let i = 0; i < 24; i++) {
     let hour = i.toString();
     let item = {
-      label:  `${hour}:00`, 
+      label: `${hour}:00`,
       value: `${hour}:00`,
     };
 
-    hours.push(item );
+    hours.push(item);
   }
   return hours;
 };
-
-const openingTimeOptions = createHours(); 
-const closingTimeOptions = createHours();
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
@@ -148,10 +165,13 @@ const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
   const location = useInputForm("chacao");
   const phone = useInputForm("+32 14521452");
   const capacity = useInputForm("5");
-  const averageReserveTime = useInputForm("5");
+  const averageReserveTimeHours = useInputForm("5");
+  const averageReserveTimeMinutes = useInputForm("");
   const price = useInputForm("5");
-  const openingTime = useInputForm("5:00");
-  const closingTime = useInputForm("5:00");
+  const openingTimeHour = useInputForm("9");
+  const openingTimeMinute = useInputForm("0");
+  const closingTimeHour = useInputForm("21");
+  const closingTimeMinute = useInputForm("0");
   const mapsLink = useInputForm(
     "https://www.google.com/maps/place/El+Charrito/@35.5174476,-108.794712,14z/data=!4m10!1m2!2m1!1sRestaurantes!3m6!1s0x8725209d38b2af65:0x61914de8cdc7c448!8m2!3d35.5174099!4d-108.7747707!15sCgxSZXN0YXVyYW50ZXNaDiIMcmVzdGF1cmFudGVzkgESbWV4aWNhbl9yZXN0YXVyYW504AEA!16s%2Fg%2F1tj1sk5w?hl=es"
   );
@@ -164,14 +184,15 @@ const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
       location={location}
       phone={phone}
       capacity={capacity}
-      averageReserveTime={averageReserveTime}
+      averageReserveTimeHours={averageReserveTimeHours}
+      averageReserveTimeMinutes={averageReserveTimeMinutes}
       price={price}
       mapsLink={mapsLink}
       type={type}
-      openingTime={openingTime}
-      closingTime={closingTime}
-      openingTimeOptions={openingTimeOptions}
-      closingTimeOptions={closingTimeOptions}
+      openingTimeHour={openingTimeHour}
+      openingTimeMinute={openingTimeMinute}
+      closingTimeHour={closingTimeHour}
+      closingTimeMinute={closingTimeMinute}
       {...args}
     />
   );
