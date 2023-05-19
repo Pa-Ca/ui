@@ -187,7 +187,7 @@ export const BranchReserves = ({
                   state={1}
                   setShowModal={setShowModal}
                 />
-                <Box height="20px" />
+                <Box height="40px" />
               </Paginable>
             </Box>
             <Box width="30px" />
@@ -203,7 +203,7 @@ export const BranchReserves = ({
                   state={0}
                   setShowModal={setShowModal}
                 />
-                <Box height="20px" />
+                <Box height="40px" />
               </Paginable>
             </Box>
           </Box>
