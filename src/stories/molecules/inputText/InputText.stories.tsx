@@ -32,6 +32,7 @@ export const Text = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Text.args = {
   type: "text",
+  placeholder: "Ej: Placeholder",
 };
 
 export const Password = Template.bind({});
