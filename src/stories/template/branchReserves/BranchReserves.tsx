@@ -137,8 +137,8 @@ export const BranchReserves = ({
 
   // Ordered reservations by date
   reservations.sort((a, b) => {
-    const dateA = new Date(a.start);
-    const dateB = new Date(b.start);
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
     return dateA.getTime() - dateB.getTime();
   });
 
