@@ -106,9 +106,13 @@ interface BusinessProfileProps {
    * */
   branchCapacity: InputFormHook<string>;
   /**
-   * Average reserve time of the branch (in hours)
+   * Average reserve time of the branch 
    * */
-  branchAverageReserveTime: InputFormHook<string>;
+  branchAverageReserveTimeHours: InputFormHook<string>;
+  /**
+   * Average reserve time of the branch 
+   * */
+  branchAverageReserveTimeMinutes: InputFormHook<string>;
   /**
    * Average price per person of the branch (in USD)
    * */
@@ -129,6 +133,22 @@ interface BusinessProfileProps {
    * Precise location of the branch (Google maps link)
    * */
   branchMapsLink: InputFormHook<string>;
+  /**
+   * Opening time hours of the branch
+   */
+  branchOpeningTimeHour: InputFormHook<string>;
+  /**
+   * Opening time minutes of the branch
+   */
+  branchOpeningTimeMinute : InputFormHook<string>;
+  /**
+   * Closing time hours of the branch
+   */
+  branchClosingTimeHour: InputFormHook<string>;
+  /**
+   * Closing time minutes of the branch
+   */
+  branchClosingTimeMinute : InputFormHook<string>;
   /**
    * Google maps API key
    * */
@@ -157,7 +177,7 @@ interface BusinessProfileProps {
   /**
    * Function that is executed when the branch average reserve time is saved
    */
-  onSaveBranchAverageReserveTime: (value: string) => void;
+  onSaveBranchAverageReserveTime: (hours: string, minutes: string) => void;
   /**
    * Function that is executed when the branch reservation price is saved
    */
@@ -170,6 +190,14 @@ interface BusinessProfileProps {
    * Function that is executed when the branch google maps link is saved
    */
   onSaveBranchMapsLink: (value: string) => void;
+  /**
+   * On save event for the opening time
+   * */
+  onSaveBranchOpeningTime: (hour: string, minute: string) => void;
+  /**
+   * On save event for the closing time
+   * */
+  onSaveBranchClosingTime: (hour: string, minute: string) => void;
 
   /**
    * Component main color
@@ -209,12 +237,17 @@ export const BusinessProfile = ({
   branchLocation,
   branchPhone,
   branchCapacity,
-  branchAverageReserveTime,
+  branchAverageReserveTimeHours,
+  branchAverageReserveTimeMinutes,
   branchPrice,
   branchMapsLink,
   branchType,
   branchTypeOptions,
   branchLocationOptions,
+  branchOpeningTimeHour,
+  branchOpeningTimeMinute,
+  branchClosingTimeHour,
+  branchClosingTimeMinute,
   mapsApiKey,
 
   onSaveBranchName,
@@ -226,6 +259,8 @@ export const BusinessProfile = ({
   onSaveBranchPrice,
   onSaveBranchType,
   onSaveBranchMapsLink,
+  onSaveBranchOpeningTime,
+  onSaveBranchClosingTime,
 
   color,
   secondaryColor,
@@ -313,12 +348,17 @@ export const BusinessProfile = ({
                   location={branchLocation}
                   phone={branchPhone}
                   capacity={branchCapacity}
-                  averageReserveTime={branchAverageReserveTime}
+                  averageReserveTimeHours={branchAverageReserveTimeHours}
+                  averageReserveTimeMinutes={branchAverageReserveTimeMinutes}
                   price={branchPrice}
                   mapsLink={branchMapsLink}
                   type={branchType}
                   typeOptions={branchTypeOptions}
                   locationOptions={branchLocationOptions}
+                  openingTimeHour={branchOpeningTimeHour}
+                  openingTimeMinute={branchOpeningTimeMinute}
+                  closingTimeHour={branchClosingTimeHour}
+                  closingTimeMinute={branchClosingTimeMinute}
                   mapsApiKey={mapsApiKey}
                   onSaveName={onSaveBranchName}
                   onSaveDescription={onSaveBranchDescription}
@@ -329,6 +369,8 @@ export const BusinessProfile = ({
                   onSavePrice={onSaveBranchPrice}
                   onSaveType={onSaveBranchType}
                   onSaveMapsLink={onSaveBranchMapsLink}
+                  onSaveOpeningTime={onSaveBranchOpeningTime}
+                  onSaveClosingTime={onSaveBranchClosingTime}
                   color={color}
                 />
               ) : (
