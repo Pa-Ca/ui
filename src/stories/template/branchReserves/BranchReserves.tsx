@@ -14,6 +14,7 @@ import ReservationList from "../../utils/objects/ReservationList";
 import { ReserveList } from "../../organisms/reserveList/ReserveList";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
+import { Icon } from "../../atoms/icon/Icon";
 
 interface BranchReservesProps {
   /**
@@ -81,6 +82,14 @@ interface BranchReservesProps {
    */
   showModal: boolean;
   /**
+   * Indicates if any branch is being shown
+   */
+  haveBranch?: boolean;
+  /**
+   * Icon size
+   */
+  icon_size: string;
+  /**
    * Controls if modal is shown
    */
   setShowModal: (open: boolean) => void;
@@ -109,6 +118,8 @@ export const BranchReserves = ({
   persons,
   occasion,
   submitButtonColor,
+  haveBranch = true,
+  icon_size = "400px",
   showModal,
   setShowModal,
   onSubmit,
@@ -138,22 +149,30 @@ export const BranchReserves = ({
         className="branch-reserve--content-container"
         innerRef={observer.ref}
       >
-        <Box width="200%" className="branch-reserve--content">
-          <Box width="100%">
-            <ReserveList reservations={reservations}
-              color={color}
-              state={1}
-              setShowModal={setShowModal} />
+        {haveBranch ? (
+          <Box width="200%" className="branch-reserve--content">
+            <Box width="100%">
+              <ReserveList reservations={reservations}
+                color={color}
+                state={1}
+                setShowModal={setShowModal} />
+            </Box>
+            <Box width="30px" />
+            <Box width="100%">
+              <ReserveList 
+                reservations={reservations}
+                color={color}
+                state={0}
+                setShowModal={setShowModal} />
+            </Box>
           </Box>
-          <Box width="30px" />
-          <Box width="100%">
-            <ReserveList 
-              reservations={reservations}
-              color={color}
-              state={0}
-              setShowModal={setShowModal} />
+        ) : (
+          <Box className="no-branch-box">
+            {" "}
+            <Icon icon="share" size={icon_size} />
+            <Text> Parece que no tienes ningún local asociado. </Text>
           </Box>
-        </Box>
+        )}
       </Box>
 
       <Modal open={showModal} setOpen={setShowModal}>
