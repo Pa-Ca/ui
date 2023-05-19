@@ -74,9 +74,9 @@ export const ReserveList = ({
 
   const title = useMemo(() => {
     switch (state) {
-      case 0:
-        return "Reservas Pendientes";
       case 1:
+        return "Reservas Pendientes";
+      case 2:
         return "Reservas Activas";
       default:
         return "Reservas";
