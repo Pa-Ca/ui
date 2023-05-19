@@ -31,6 +31,10 @@ export interface ReservationProps {
    */
   state: number;
   /**
+   * Reservation date
+   */
+  date: string;
+  /**
    * On close reservation button click
    */
   onCloseReservation?: () => {};
