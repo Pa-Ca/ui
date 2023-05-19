@@ -34,13 +34,14 @@ export const Paginable = <T extends any>({
 
   const totalPages = useMemo(() => {
     return Math.ceil(list.length / objectsPerPage);
-  }, [list, objectsPerPage]);
+  }, [list.length, objectsPerPage]);
 
   useEffect(() => {
+    const currentList = [...list];
     const begin = (page - 1) * objectsPerPage;
     const end = begin + objectsPerPage;
-    setCurrentList(list.slice(begin, end));
-  }, [page]);
+    setCurrentList(currentList.slice(begin, end));
+  }, [page, list.length]);
 
   const goToNextPage = () => {
     if (page > totalPages - 1) return;
