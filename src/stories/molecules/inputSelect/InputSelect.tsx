@@ -101,18 +101,18 @@ export const InputSelect = ({
   }, [observer.ref]);
 
   return (
-    <Box
-      style={{
-        width,
-        borderColor: inputHook.error ? styles.errorColor : undefined,
-        borderWidth: inputHook.error ? "2.5px" : undefined,
-      }}
-    >
+    <Box>
       <Box
         className="input-text--input-container"
         innerRef={observer.ref}
         backgroundColor="white"
-        style={{ height, width }}
+        // style={{ height, width }}
+        style={{
+          height,
+          width,
+          borderColor: inputHook.error ? styles.errorColor : undefined,
+          borderWidth:inputHook.error ? "2.5px" : undefined
+        }}
       >
         <div className="input-text--content">
           <button
