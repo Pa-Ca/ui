@@ -5,6 +5,7 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
 import styles from "../../assets/scss/variables.module.scss";
+import Placeholder from "react-select/dist/declarations/src/components/Placeholder";
 
 interface InputTextProps {
   /**
@@ -27,6 +28,11 @@ interface InputTextProps {
    * Input height
    */
   height?: string;
+
+  /**
+   * Input placeholder
+   */
+  placeholder?: string;
 }
 
 /**
@@ -38,6 +44,7 @@ export const InputText = ({
   label = "Text input",
   width,
   height,
+  placeholder,
   ...props
 }: InputTextProps) => {
   const [icon, setIcon] = useState("eye-slash");
@@ -88,6 +95,7 @@ export const InputText = ({
       >
         <div className="input-text--content">
           <input
+            placeholder = {placeholder}
             type={currentType}
             value={inputHook.value}
             onChange={changeValue}
