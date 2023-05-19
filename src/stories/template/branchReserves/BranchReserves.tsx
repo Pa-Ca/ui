@@ -217,7 +217,7 @@ export const BranchReserves = ({
       </Box>
 
       <Modal open={showModal} setOpen={setShowModal}>
-        <Box className="create-reservation-modal--container">
+        <Box width="720px">
           {/* Client Form */}
           <ClientInfoForm
             firstName={firstName}
