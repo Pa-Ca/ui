@@ -84,6 +84,10 @@ interface EditableInputTextProps {
    * Style for the text
    */
   style?: React.CSSProperties;
+  /**
+   * Placeholder for the input
+   */
+  placeholder?: string;
 }
 
 export const EditableInputText = ({
@@ -102,6 +106,7 @@ export const EditableInputText = ({
   className,
   containerClassName,
   style,
+  placeholder,
   ...props
 }: EditableInputTextProps) => {
   const select_enabled = useMemo(() => type === "select", [type]);
@@ -236,6 +241,8 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames("editable-input-text--select", className)}
+              classNamePrefix={classnames("editable-input-text--select", className)}
+              noOptionsMessage={() => 'No se encuentra la opción'}
               value={{
                 value: inputHook.value || "",
                 label: optionsMap.get(inputHook.value || "") || "",
@@ -247,7 +254,7 @@ export const EditableInputText = ({
                   ...baseStyles,
                   boxShadow: "none",
                   "&:hover": {
-                    borderColor: "grey",
+                    borderColor: "black",
                   },
                   ...style,
                 }),
@@ -264,6 +271,7 @@ export const EditableInputText = ({
           ) : (
             <input
               type="text"
+              placeholder={placeholder}
               ref={valueRef}
               value={inputHook.value}
               onChange={onChange}

@@ -108,37 +108,40 @@ export const ReserveDetails = ({
           {component_title}{" "}
         </Text>
       </Box>
+
       {/* Inputs 1 */}
-      <Box className="reserve-details--input-container">
-        <Box width="100%" className="reserve-details--input-date">
-          <InputDate 
-            inputHook={date} 
-            minDate={new Date()} />
+      <Box>
+        <Box className="reserve-details--input-container">
+          <Box width="100%" className="reserve-details--input-date">
+            <InputDate inputHook={date} minDate={new Date()} />
+          </Box>
+
+          <Box width="100%" className="reserve-details--input1">
+            <InputText inputHook={persons} type="number" label="* Personas" />
+          </Box>
         </Box>
 
-        <Box width="100%" className="reserve-details--input1">
-          <InputText 
-              inputHook={persons}
-              type="number" 
-              label="* Personas" />
-        </Box>
+        <Box height="16px" />
 
-        <Box width="100%" className="reserve-details--input1">
-          <InputSelect
-            inputHook={hourIn}
-            options={validHoursIn}
-            label="* Llegada"
-          />
-        </Box>
+        <Box className="reserve-details--input-container">
+          <Box width="100%" style={{ zIndex: 2 }}>
+            <InputSelect
+              inputHook={hourIn}
+              options={validHoursIn}
+              label="* Llegada"
+            />
+          </Box>
 
-        <Box width="100%" className="reserve-details--input1">
-          <InputSelect
-            inputHook={hourOut}
-            options={validHoursOut}
-            label="Salida"
-          />
+          <Box width="100%" className="reserve-details--input1">
+            <InputSelect
+              inputHook={hourOut}
+              options={validHoursOut}
+              label="Salida"
+            />
+          </Box>
         </Box>
       </Box>
+
       {showInviteFriends && (
         <Box className="reserve-details--invite-friends">
           <Text type="p" color="#112211" weight="700">
@@ -149,7 +152,7 @@ export const ReserveDetails = ({
       )}
 
       <InputLongText
-        label = "Ocasión Especial"
+        label="Ocasión Especial"
         value={occasion.value}
         setValue={occasion.setValue}
         maxLength={430}

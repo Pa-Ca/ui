@@ -137,8 +137,8 @@ export const BranchReserves = ({
 
   // Ordered reservations by date
   reservations.sort((a, b) => {
-    const dateA = new Date(a.start);
-    const dateB = new Date(b.start);
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
     return dateA.getTime() - dateB.getTime();
   });
 
@@ -187,7 +187,7 @@ export const BranchReserves = ({
                   state={1}
                   setShowModal={setShowModal}
                 />
-                <Box height="20px" />
+                <Box height="40px" />
               </Paginable>
             </Box>
             <Box width="30px" />
@@ -203,7 +203,7 @@ export const BranchReserves = ({
                   state={0}
                   setShowModal={setShowModal}
                 />
-                <Box height="20px" />
+                <Box height="40px" />
               </Paginable>
             </Box>
           </Box>
@@ -217,7 +217,7 @@ export const BranchReserves = ({
       </Box>
 
       <Modal open={showModal} setOpen={setShowModal}>
-        <Box className="create-reservation-modal--container">
+        <Box width="720px">
           {/* Client Form */}
           <ClientInfoForm
             firstName={firstName}
