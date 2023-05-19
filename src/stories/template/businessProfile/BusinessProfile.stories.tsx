@@ -94,7 +94,12 @@ export default {
         disable: true,
       },
     },
-    branchAverageReserveTime: {
+    branchAverageReserveTimeHours: {
+      table: {
+        disable: true,
+      },
+    },
+    branchAverageReserveTimeMinutes: {
       table: {
         disable: true,
       },
@@ -120,6 +125,26 @@ export default {
       },
     },
     branchLocationOptions: {
+      table: {
+        disable: true,
+      },
+    },
+    branchClosingTimeHour: {
+      table: {
+        disable: true,
+      },
+    },
+    branchClosingTimeMinute: {
+      table: {
+        disable: true,
+      },
+    },
+    branchOpeningTimeHour: {
+      table: {
+        disable: true,
+      },
+    },
+    branchOpeningTimeMinute: {
       table: {
         disable: true,
       },
@@ -174,6 +199,16 @@ export default {
         disable: true,
       },
     },
+    onSaveBranchClosingTime: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveBranchOpeningTime: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BusinessProfile>;
 
@@ -189,12 +224,17 @@ const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
   const branchLocation = useInputForm("");
   const branchPhone = useInputForm("");
   const branchCapacity = useInputForm("");
-  const branchAverageReserveTime = useInputForm("");
+  const branchAverageReserveTimeHours = useInputForm("");
+  const branchAverageReserveTimeMinutes = useInputForm("");
   const branchPrice = useInputForm("");
   const branchMapsLink = useInputForm("");
   const branchType = useInputForm("");
   const branchTypeOptions = useInputForm("");
   const branchLocationOptions = useInputForm("");
+  const branchOpeningTimeHour = useInputForm("9");
+  const branchOpeningTimeMinute = useInputForm("0");
+  const branchClosingTimeHour = useInputForm("21");
+  const branchClosingTimeMinute = useInputForm("0");
 
   return (
     <BusinessProfile
@@ -208,12 +248,17 @@ const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
       branchLocation={branchLocation}
       branchPhone={branchPhone}
       branchCapacity={branchCapacity}
-      branchAverageReserveTime={branchAverageReserveTime}
+      branchAverageReserveTimeHours={branchAverageReserveTimeHours}
+      branchAverageReserveTimeMinutes={branchAverageReserveTimeMinutes}
       branchPrice={branchPrice}
       branchMapsLink={branchMapsLink}
       branchType={branchType}
       branchTypeOptions={branchTypeOptions}
       branchLocationOptions={branchLocationOptions}
+      branchOpeningTimeHour={branchOpeningTimeHour}
+      branchOpeningTimeMinute={branchOpeningTimeMinute}
+      branchClosingTimeHour={branchClosingTimeHour}
+      branchClosingTimeMinute={branchClosingTimeMinute}
       {...args}
     />
   );
