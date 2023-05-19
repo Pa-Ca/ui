@@ -123,12 +123,29 @@ export const EditableInputTime = ({
   };
 
   const onSaveClick = () => {
+    let hoursFormatted, minutesFormatted;
+
+    if (!hoursInputHook.value || hoursInputHook.value.length === 0)
+      hoursFormatted = "00";
+    else if (hoursInputHook.value.length === 1)
+      hoursFormatted = "0" + hoursInputHook.value;
+    else hoursFormatted = hoursInputHook.value;
+
+    if (!minutesInputHook.value || minutesInputHook.value.length === 0)
+      minutesFormatted = "00";
+    else if (minutesInputHook.value.length === 1)
+      minutesFormatted = "0" + minutesInputHook.value;
+    else minutesFormatted = minutesInputHook.value;
+
     // We disable the edit mode
     setEditValue(false);
+    // Format time
+    hoursInputHook.setValue(hoursFormatted);
+    minutesInputHook.setValue(minutesFormatted);
     // Save the value
-    saveValueFunction(hoursInputHook.value, minutesInputHook.value);
-    setBackupHour(hoursInputHook.value);
-    setBackupMinutes(minutesInputHook.value);
+    saveValueFunction(hoursFormatted, minutesFormatted);
+    setBackupHour(hoursFormatted);
+    setBackupMinutes(minutesFormatted);
   };
 
   const onCancelClick = () => {
@@ -140,12 +157,6 @@ export const EditableInputTime = ({
     // We set the value to the current value (the unedited value)
     hoursInputHook.setValue(backupHour);
     minutesInputHook.setValue(backupMinutes);
-  };
-
-  const formatTime = (time: string) => {
-    if (!time || time.length === 0) return "00";
-    else if (time.length === 1) return "0" + time;
-    else return time;
   };
 
   return (
@@ -220,7 +231,7 @@ export const EditableInputTime = ({
               weight="600"
               style={{ ...style }}
             >
-              {formatTime(hoursInputHook.value)}
+              {hoursInputHook.value}
             </Text>
             <Text
               className={classnames("editable-input-text--text", className)}
@@ -236,7 +247,7 @@ export const EditableInputTime = ({
               weight="600"
               style={{ ...style }}
             >
-              {formatTime(minutesInputHook.value)}
+              {minutesInputHook.value}
             </Text>
             <Text
               className={classnames("editable-input-text--text", className)}
