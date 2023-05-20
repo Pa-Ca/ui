@@ -7,7 +7,7 @@
 .branch-reserve--content-container {
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-margin-left: 100%;
 
