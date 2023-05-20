@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./branchReserves.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
@@ -142,14 +142,16 @@ export const BranchReserves = ({
     return dateA.getTime() - dateB.getTime();
   });
 
-  // Filter reservations by state equals to 1
-  const activeReservations = reservations.filter(
-    (reservation) => reservation.state === 1
+  // Filter reservations by state equals to 2
+  const activeReservations = useMemo(
+    () => reservations.filter((reservation) => reservation.state === 2),
+    [reservations]
   );
 
-  // Filter reservations by state equals to 0
-  const pendingReservations = reservations.filter(
-    (reservation) => reservation.state === 0
+  // Filter reservations by state equals to 1
+  const pendingReservations = useMemo(
+    () => reservations.filter((reservation) => reservation.state === 1),
+    [reservations]
   );
 
   useEffect(() => {
@@ -184,7 +186,7 @@ export const BranchReserves = ({
                 <ReserveList
                   reservations={currentActiveReservation}
                   color={color}
-                  state={1}
+                  state={2}
                   setShowModal={setShowModal}
                 />
                 <Box height="40px" />
@@ -200,7 +202,7 @@ export const BranchReserves = ({
                 <ReserveList
                   reservations={currentPendingReservation}
                   color={color}
-                  state={0}
+                  state={1}
                   setShowModal={setShowModal}
                 />
                 <Box height="40px" />

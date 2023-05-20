@@ -106,7 +106,6 @@ export const InputSelect = ({
         className="input-text--input-container"
         innerRef={observer.ref}
         backgroundColor="white"
-        // style={{ height, width }}
         style={{
           height,
           width,
@@ -126,7 +125,7 @@ export const InputSelect = ({
             {label.length > 0 && (
               <Text
                 type="h6"
-                weight="400"
+                weight={inputHook.error ? "600" : "400"}
                 color={inputHook.error ? styles.errorColor : undefined}
               >
                 &nbsp;{label}&nbsp;
