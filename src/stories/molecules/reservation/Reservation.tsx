@@ -7,6 +7,10 @@ import { Button } from "../../atoms/button/Button";
 
 export interface ReservationProps {
   /**
+   * Reservation id
+   */
+  id?: number;
+  /**
    * Reservation start time
    */
   start: string;
