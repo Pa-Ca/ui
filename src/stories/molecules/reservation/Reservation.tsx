@@ -89,7 +89,7 @@ export const Reservation = ({
   const getAction = useMemo(() => {
     switch (state) {
       // Pending reservsation
-      case 0:
+      case 1:
         return (
           <Box className="reservation--icon-container">
             <Box className="reservation--icon" onClick={onReject}>
@@ -102,7 +102,7 @@ export const Reservation = ({
         );
 
       // Active reservation
-      case 1:
+      case 2:
         return (
           <Box className="reservation--button">
             <Button
