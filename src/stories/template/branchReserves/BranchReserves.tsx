@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./branchReserves.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import { Icon } from "../../atoms/icon/Icon";
 import { Button } from "../../atoms/button/Button";
 import { BasicPage } from "../basicPage/BasicPage";
 import { Modal } from "../../molecules/modal/Modal";
@@ -15,7 +16,6 @@ import { ReserveList } from "../../organisms/reserveList/ReserveList";
 import { ReservationProps } from "../../molecules/reservation/Reservation";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
-import { Icon } from "../../atoms/icon/Icon";
 
 interface BranchReservesProps {
   /**
