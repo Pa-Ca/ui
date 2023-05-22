@@ -90,28 +90,35 @@ export const EditableInputTime = ({
       hoursInputHook.setValue(event.target.value);
       return;
     }
-    event.target.value = event.target.value
-      .replace(/[^0-9]/g, "")
-      .replace(/^([3-9][0-9]*|[2][4-9]+)$/, "")
-      .replace(/^(\d{2}).*$/, "$1");
-
-    if (event.target.value === "") {
+    if (event.target.value.length > 2) {
       return;
+    }
+    const number = parseInt(event.target.value);
+
+    if (isNaN(number) || number > 24) {
+      return;
+    }
+    if (number === 24) {
+      minutesInputHook.setValue("00");
     }
     hoursInputHook.setValue(event.target.value);
   };
 
   const onChangeMinutes = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (parseInt(hoursInputHook.value) === 24) {
+      minutesInputHook.setValue("00");
+      return;
+    }
     if (event.target.value === "") {
       minutesInputHook.setValue(event.target.value);
       return;
     }
-    event.target.value = event.target.value
-      .replace(/[^0-9]/g, "")
-      .replace(/^([6-9][0-9]*)$/, "")
-      .replace(/^(\d{2}).*$/, "$1");
+    if (event.target.value.length > 2) {
+      return;
+    }
+    const number = parseInt(event.target.value);
 
-    if (event.target.value === "") {
+    if (isNaN(number) || number > 59) {
       return;
     }
     minutesInputHook.setValue(event.target.value);
