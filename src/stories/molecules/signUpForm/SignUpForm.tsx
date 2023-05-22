@@ -217,9 +217,9 @@ export const SignUpForm = ({
             <Box className="terms-input-box">
               <Box
                 className="sign-up-form--pointer"
-                onClick={() => terms.setValue(!terms.value)}
+                onClick={() => terms.setValue((check) => !check)}
               >
-                <Icon icon={terms ? "checkbox" : "uncheckbox"} size="24px" />
+                <Icon icon={terms.value ? "checkbox" : "uncheckbox"} size="24px" />
               </Box>
               <Box width="8px" />
               <Text weight="500" type="h6" color="#112211">
