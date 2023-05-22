@@ -262,7 +262,7 @@ export const BranchEditForm = ({
         <Box className="branch-edit-form--cost-per-person-input">
           <Text className="branch-edit-form--input-label">
             {" "}
-            Coste por persona{" "}
+            Coste por persona ($){" "}
           </Text>
           <EditableInputText
             inputHook={price}
