@@ -320,6 +320,7 @@ export const BranchEditForm = ({
             type="phoneNumber"
             containerClassName="branch-edit-form--input-item"
             color={color}
+            placeholder="Ej: +00 0000000"
           />
         </Box>
 

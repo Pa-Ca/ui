@@ -168,12 +168,15 @@ export const EditableInputText = ({
   };
 
   function validateInput(input: string | any) {
-    if (type === "email") {
-      return validateEmail(input);
-    } else if (type === "phoneNumber") {
-      return validatePhoneNumber(input);
-    } else if (type === "url") {
-      return validateUrl(input);
+    if (type === "email" && !validateEmail(input)) {
+      inputHook.setErrorMessage("Correo inválido");
+      return false;
+    } else if (type === "phoneNumber" && !validatePhoneNumber(input)) {
+      inputHook.setErrorMessage("Número de teléfono inválido");
+      return false;
+    } else if (type === "url" && !validateUrl(input)) {
+      inputHook.setErrorMessage("Url inválido");
+      return false;
     } else {
       return true;
     }
@@ -241,8 +244,11 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames("editable-input-text--select", className)}
-              classNamePrefix={classnames("editable-input-text--select", className)}
-              noOptionsMessage={() => 'No se encuentra la opción'}
+              classNamePrefix={classnames(
+                "editable-input-text--select",
+                className
+              )}
+              noOptionsMessage={() => "No se encuentra la opción"}
               value={{
                 value: inputHook.value || "",
                 label: optionsMap.get(inputHook.value || "") || "",
@@ -302,7 +308,9 @@ export const EditableInputText = ({
               weight="600"
               style={{ ...style }}
             >
-              {select_enabled ? optionsMap.get(inputHook.value || "") || "" : inputHook.value}
+              {select_enabled
+                ? optionsMap.get(inputHook.value || "") || ""
+                : inputHook.value}
             </Text>
           </>
         )}
