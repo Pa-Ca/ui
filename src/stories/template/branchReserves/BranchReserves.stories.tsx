@@ -61,7 +61,7 @@ Default.args = {
       ownerPhone: "0414-8732414",
       persons: 6,
       tables: 6,
-      state: 1,
+      state: 2,
     }),
     ...new Array(5).fill({
       start: "6:00 PM",
@@ -70,7 +70,7 @@ Default.args = {
       ownerPhone: "0414-8732414",
       persons: 6,
       tables: 6,
-      state: 0,
+      state: 1,
     }),
     ...new Array(8).fill({
       start: "6:00 PM",
@@ -79,7 +79,7 @@ Default.args = {
       ownerPhone: "0414-8732414",
       persons: 6,
       tables: 6,
-      state: 0,
+      state: 1,
     }),
     ...new Array(12).fill({
       start: "6:00 PM",
@@ -88,7 +88,7 @@ Default.args = {
       ownerPhone: "0414-8732414",
       persons: 6,
       tables: 6,
-      state: 1,
+      state: 2,
     }),
   ],
 };

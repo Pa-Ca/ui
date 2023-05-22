@@ -167,7 +167,10 @@ export const BranchReserves = ({
         <InputTab
           index={page}
           setIndex={setPage}
-          tabs={["Reservas Activas", "Reservas Pendientes"]}
+          tabs={[
+            `Reservas Activas (${activeReservations.length})`,
+            `Reservas Pendientes (${pendingReservations.length})`,
+          ]}
         />
       </Box>
 
