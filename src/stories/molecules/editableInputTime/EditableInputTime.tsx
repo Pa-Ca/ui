@@ -7,7 +7,9 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
 import { InputFormHook } from "../../hooks/useInputForm";
 
-const styles = require("../../assets/scss/variables.module.scss").default;
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface EditableInputTimeProps {
   /**

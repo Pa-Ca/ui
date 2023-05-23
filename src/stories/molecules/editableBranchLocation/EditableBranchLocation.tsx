@@ -6,7 +6,9 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 
-const styles = require("../../assets/scss/variables.module.scss").default;
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 
 export interface EditableBranchLocationProps {

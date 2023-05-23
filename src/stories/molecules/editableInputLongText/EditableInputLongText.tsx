@@ -8,7 +8,9 @@ import { Editable } from "../editable/Editable";
 import { TextareaAutosize } from "@mui/material";
 import { InputFormHook } from "../../hooks/useInputForm";
 
-const styles = require("../../assets/scss/variables.module.scss").default;
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface EditableInputLongTextProps {
   /**

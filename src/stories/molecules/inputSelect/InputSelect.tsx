@@ -10,7 +10,9 @@ import { useDraggable } from "react-use-draggable-scroll";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
 
-const styles = require("../../assets/scss/variables.module.scss").default;
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface InputSelectProps {
   /**

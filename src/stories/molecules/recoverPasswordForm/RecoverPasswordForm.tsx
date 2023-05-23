@@ -7,7 +7,9 @@ import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
 
-const styles = require("../../assets/scss/variables.module.scss").default;
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface RecoverPasswordFormProps {
   /**

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./signUpForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
@@ -7,7 +7,9 @@ import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
-const styles = require("../../assets/scss/variables.module.scss").default;
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 export interface SignUpFormProps {
   /**

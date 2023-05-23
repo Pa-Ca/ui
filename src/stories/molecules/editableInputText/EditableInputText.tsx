@@ -14,7 +14,9 @@ import {
 } from "../../utils/stringValidation";
 import OptionType from "../../utils/objects/OptionType";
 
-const styles = require("../../assets/scss/variables.module.scss").default; 
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss"); 
 
 interface EditableInputTextProps {
   /**
