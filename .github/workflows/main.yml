@@ -1,0 +1,18 @@
+name: Pa'Ca UI run container
+
+on:
+  push:
+    branches:
+      - feat_build
+  pull_request:
+    branches:
+      - feat_build
+
+jobs:
+  run-container:
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Docker Compose
+        run: docker-compose up --build -d
