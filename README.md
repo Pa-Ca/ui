@@ -6,11 +6,10 @@ Biblioteca de componentes para interfaces del producto Pa'Ca
 
 ### Variables de entorno
 
-
 ```bash
 # .env
 TARGET_ENV=<production|development>
-GOOGLE_MAPS_API_KEY=<key>
+VITE_GOOGLE_MAPS_API_KEY=<key>
 ```
 
 ### Versión de node
