@@ -3,10 +3,10 @@ name: Pa'Ca UI run container
 on:
   push:
     branches:
-      - feat_build
+      - fix_build
   pull_request:
     branches:
-      - feat_build
+      - fix_build
 
 jobs:
   run-container:
