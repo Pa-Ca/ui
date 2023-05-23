@@ -14,9 +14,9 @@ VITE_GOOGLE_MAPS_API_KEY=<key>
 
 ### Versión de node
 
-Este proyecto utiliza *node lts/hydrogen*. Por simplicidad se recomienda utilizar
-el paquete [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) para
-administrar las versiones de node.
+Este proyecto utiliza *node lts/hydrogen*. Por simplicidad se recomienda 
+utilizar el paquete [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+para administrar las versiones de node.
 
 ```sh
 $ nvm install # Si se utiliza el proyecto por primera vez
