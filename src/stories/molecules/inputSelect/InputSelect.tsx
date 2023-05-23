@@ -8,8 +8,9 @@ import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { useDraggable } from "react-use-draggable-scroll";
 import OptionObject from "../../utils/objects/OptionObject";
-import styles from "../../assets/scss/variables.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
+
+const styles = require("../../assets/scss/variables.module.scss").default;
 
 interface InputSelectProps {
   /**

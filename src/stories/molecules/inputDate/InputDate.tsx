@@ -6,8 +6,9 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import "react-datepicker/dist/react-datepicker.css";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
+
+const styles = require("../../assets/scss/variables.module.scss").default;
 
 interface InputDateProps {
   /**
@@ -74,7 +75,7 @@ export const InputDate = ({
         <div className="input-text--content">
           <DatePicker
             selected={inputHook.value}
-            onChange={inputHook.setValue}
+            onChange={(date: Date) => inputHook.setValue(date)}
             onSelect={inputHook.setValue}
             customInput={<DateInputButton />}
             minDate={minDate}

@@ -4,8 +4,8 @@ import "../../atoms/text/text.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
-import Placeholder from "react-select/dist/declarations/src/components/Placeholder";
+
+const styles = require("../../assets/scss/variables.module.scss").default;
 
 interface InputTextProps {
   /**

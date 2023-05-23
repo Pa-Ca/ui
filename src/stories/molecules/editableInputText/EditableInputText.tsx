@@ -6,7 +6,6 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
 import Select, { ActionMeta, SingleValue } from "react-select";
 import {
   validateEmail,
@@ -14,6 +13,8 @@ import {
   validateUrl,
 } from "../../utils/stringValidation";
 import OptionType from "../../utils/objects/OptionType";
+
+const styles = require("../../assets/scss/variables.module.scss").default; 
 
 interface EditableInputTextProps {
   /**
@@ -110,7 +111,6 @@ export const EditableInputText = ({
   ...props
 }: EditableInputTextProps) => {
   const select_enabled = useMemo(() => type === "select", [type]);
-
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
 
   const optionsMap = useMemo(() => {
