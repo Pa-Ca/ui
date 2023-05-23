@@ -1,9 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import "./branchEditForm.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { InputFormHook } from "../../hooks/useInputForm";
+import { Button } from "../../atoms/button/Button";
+import { Modal } from "../../molecules/modal/Modal";
+import { InputText } from "../../molecules/inputText/InputText";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputTime } from "../../molecules/editableInputTime/EditableInputTime";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
@@ -55,7 +58,7 @@ interface BranchEditFormProps {
    * Precise location of the branch (Google maps link)
    */
   mapsLink: InputFormHook<string>;
-  
+
   /**
    * Opening time hours of the branch
    */
@@ -63,7 +66,7 @@ interface BranchEditFormProps {
   /**
    * Opening time minutes of the branch
    */
-  openingTimeMinute : InputFormHook<string>;
+  openingTimeMinute: InputFormHook<string>;
 
   /**
    * Closing time hours of the branch
@@ -72,7 +75,7 @@ interface BranchEditFormProps {
   /**
    * Closing time minutes of the branch
    */
-  closingTimeMinute : InputFormHook<string>;
+  closingTimeMinute: InputFormHook<string>;
 
   /**
    * Function that is executed when the name is saved
@@ -82,42 +85,34 @@ interface BranchEditFormProps {
    * Description of the branch
    */
   onSaveDescription: (value: string) => void;
-
   /**
    * Location of the branch
    */
   onSaveLocation: (value: string) => void;
-
   /**
    * Phone of the branch
    */
   onSavePhone: (value: string) => void;
-
   /**
    * Capacity of the branch
    */
   onSaveCapacity: (value: string) => void;
-
   /**
-   * Average reserve time of the branch 
+   * Average reserve time of the branch
    */
   onSaveAverageReserveTime: (hours: string, minutes: string) => void;
-
   /**
    * Average price per person of the branch (in USD)
    */
   onSavePrice: (value: string) => void;
-
   /**
    * On save event for the opening time
    * */
   onSaveOpeningTime: (hour: string, minute: string) => void;
-
   /**
    * On save event for the closing time
    * */
   onSaveClosingTime: (hour: string, minute: string) => void;
-
   /**
    * Branch type
    */
@@ -126,8 +121,15 @@ interface BranchEditFormProps {
    * Precise location of the branch (Google maps link)
    */
   onSaveMapsLink: (value: string) => void;
+  /**
+   * On delete branch
+   */
+  onDeleteBranch: () => void;
 
-
+  /**
+   * Business email
+   */
+  email: string;
   /**
    * Google maps API key
    */
@@ -181,7 +183,9 @@ export const BranchEditForm = ({
   onSaveMapsLink = () => {},
   onSaveOpeningTime = () => {},
   onSaveClosingTime = () => {},
+  onDeleteBranch = () => {},
 
+  email,
   typeOptions,
   locationOptions,
   mapsApiKey,
@@ -190,6 +194,9 @@ export const BranchEditForm = ({
   color,
   ...props
 }: BranchEditFormProps) => {
+  const [deleteBranch, setDeleteBranch] = useState(false);
+  const emailInput = useInputForm("");
+
   const locationName = useMemo(() => {
     const match = mapsLink.value.match(/\/place\/(.*?)\//);
     if (match) {
@@ -231,7 +238,7 @@ export const BranchEditForm = ({
         <Box className={classnames("branch-edit-form--average-reserve-time")}>
           <Text className="branch-edit-form--input-label">
             {" "}
-            Tiempo promedio de reserva {" "}
+            Tiempo promedio de reserva{" "}
           </Text>
           <EditableInputTime
             hoursInputHook={averageReserveTimeHours}
@@ -277,9 +284,10 @@ export const BranchEditForm = ({
 
       <Box className="branch-edit-form--two-column-row">
         <Box className={classnames("branch-edit-form--type-input")}>
-          <Text className="branch-edit-form--input-label"> 
-          {" "} Hora de apertura{" "}
-           </Text>
+          <Text className="branch-edit-form--input-label">
+            {" "}
+            Hora de apertura{" "}
+          </Text>
           <EditableInputTime
             hoursInputHook={openingTimeHour}
             minutesInputHook={openingTimeMinute}
@@ -293,7 +301,8 @@ export const BranchEditForm = ({
 
         <Box className="branch-edit-form--cost-per-person-input">
           <Text className="branch-edit-form--input-label">
-            {" "} Hora de cierre{" "}
+            {" "}
+            Hora de cierre{" "}
           </Text>
           <EditableInputTime
             hoursInputHook={closingTimeHour}
@@ -377,6 +386,54 @@ export const BranchEditForm = ({
           className="branch-edit-form--precise-location-map"
         />
       </Box>
+
+      <Box>
+        <Button
+          primary
+          backgroundColor={color}
+          size="large"
+          onClick={() => setDeleteBranch(true)}
+        >
+          <Box>
+            <Text color="#112211" type="h6" weight="500">
+              Eliminar Local
+            </Text>
+          </Box>
+        </Button>
+      </Box>
+
+      <Modal open={deleteBranch} setOpen={setDeleteBranch}>
+        <Box className="branch-edit-form--modal-container">
+          <Text type="h4" weight="600" color="#112211">
+            ¿Estás seguro que deseas eliminar este local?
+          </Text>
+          <Text type="h6" weight="400" color="#112211">
+            Esta acción no se puede deshacer. Escriba abajo el correo de su
+            cuenta para confirmar.
+          </Text>
+          <Box height="20px" />
+          <Box width="100%">
+            <InputText inputHook={emailInput} label="Email" width="100%" />
+          </Box>
+
+          <Button
+            primary
+            fullWidth
+            size="large"
+            backgroundColor={color}
+            state={emailInput.value === email ? "normal" : "inactive"}
+          >
+            <Box
+              className="branch-edit-form--modal-button"
+              onClick={() => emailInput.value === email && onDeleteBranch()}
+            >
+              <Text color="#112211" type="h6" weight="500">
+                Eliminar Local
+              </Text>
+            </Box>
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   );
 };

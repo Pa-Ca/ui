@@ -138,23 +138,13 @@ export default {
         disable: true,
       },
     },
+    onDeleteBranch: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BranchEditForm>;
-
-const createHours = () => {
-  let hours = [];
-
-  for (let i = 0; i < 24; i++) {
-    let hour = i.toString();
-    let item = {
-      label: `${hour}:00`,
-      value: `${hour}:00`,
-    };
-
-    hours.push(item);
-  }
-  return hours;
-};
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
@@ -201,6 +191,7 @@ const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  color: "#EF7A08",
   typeOptions: [
     {
       label: "Americano",
@@ -229,5 +220,5 @@ Default.args = {
       value: "chacao",
     },
   ],
-  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY
 };
