@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "6006:6006"
+    environment:
+      - TARGET_ENV=${TARGET_ENV}
+      - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+    volumes:
+      - .:/app
