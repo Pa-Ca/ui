@@ -15,7 +15,7 @@ interface InputTextProps {
   /**
    * Input type
    */
-  type?: "text" | "number" | "password";
+  type?: "text" | "number" | "natural number" | "password";
   /**
    * Label to be displayed at the top of the input
    */
@@ -51,6 +51,10 @@ export const InputText = ({
   const [currentType, setCurrentType] = useState(type);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (type == "natural number"){
+      event.target.value = event.target.value
+      .replace(/[^0-9]/g, "")
+    }
     inputHook.setValue(event.target.value);
   };
 
@@ -96,7 +100,9 @@ export const InputText = ({
         <div className="input-text--content">
           <input
             placeholder = {placeholder}
-            type={currentType}
+            type={currentType == "number" ||
+                  currentType == "text" ||
+                  currentType == "password" ? currentType : "text"}
             value={inputHook.value}
             onChange={changeValue}
             className="input-text--input text text--h6"
