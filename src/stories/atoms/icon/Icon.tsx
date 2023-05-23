@@ -47,8 +47,7 @@ import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-fill
 import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-fill";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
-
-const Color = require("color");
+import Color from 'color';
 
 export type IconType =
   | "pa-ca"
@@ -124,7 +123,7 @@ interface IconProps {
 export const Icon = ({
   icon = "pa-ca",
   size = "1x",
-  color = "#000",
+  color = "#000000",
   style,
   ...props
 }: IconProps) => {
