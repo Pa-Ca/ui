@@ -170,16 +170,25 @@ export const EditableInputLongText = ({
       <div
         className={
           "input-text--error-container " +
-          (inputHook.error
+          (inputHook.error == 1 || inputHook.error == 2
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
         }
       >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

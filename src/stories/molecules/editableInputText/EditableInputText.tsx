@@ -285,8 +285,10 @@ export const EditableInputText = ({
               onChange={onChange}
               className={classnames("editable-input-text--input", className)}
               style={{
-                borderColor: inputHook.error ? styles.errorColor : undefined,
-                borderWidth: inputHook.error ? "2.5px" : undefined,
+                borderColor: inputHook.error == 1 ? styles.errorColor 
+                              : inputHook.error == 2 ? styles.warningColor 
+                              : undefined,
+                borderWidth: inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
                 ...style,
               }}
             />
@@ -338,11 +340,20 @@ export const EditableInputText = ({
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>
