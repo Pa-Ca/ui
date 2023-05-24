@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./signUpForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import styles from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 export interface SignUpFormProps {
   /**
@@ -130,17 +133,17 @@ export const SignUpForm = ({
     let error = false;
 
     if (confirmPassword.value !== password!.value) {
-      confirmPassword.setError(true);
+      confirmPassword.setError(1);
       error = true;
     } else {
-      confirmPassword.setError(false);
+      confirmPassword.setError(0);
     }
 
     if (!terms.value) {
-      terms.setValue(true);
+      terms.setError(1);
       error = true;
     } else {
-      terms.setValue(false);
+      terms.setError(0);
     }
 
     if (
@@ -217,9 +220,9 @@ export const SignUpForm = ({
             <Box className="terms-input-box">
               <Box
                 className="sign-up-form--pointer"
-                onClick={() => terms.setValue(!terms.value)}
+                onClick={() => terms.setValue((check) => !check)}
               >
-                <Icon icon={terms ? "checkbox" : "uncheckbox"} size="24px" />
+                <Icon icon={terms.value ? "checkbox" : "uncheckbox"} size="24px" />
               </Box>
               <Box width="8px" />
               <Text weight="500" type="h6" color="#112211">

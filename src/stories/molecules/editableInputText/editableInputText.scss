@@ -17,7 +17,40 @@
   outline: none;
 }
 
-.editable-intput-text--error-message {
+.editable-input-text--select{
+
+  .editable-input-text--select__option {
+    &:nth-child(odd) {
+      background-color: #F1F1F1;
+      color: black;
+    }
+    &:nth-child(even) {
+      background-color: white;
+      color: black;
+    }
+  }
+  .editable-input-text--select__dropdown-indicator {
+    color: black;
+  }
+  .editable-input-text--select__indicator-separator {
+    display: none;
+  }
+  .editable-input-text--select__control {
+    border-color: black;
+    &:hover {
+      border-color: black;
+    }
+  }
+  .editable-input-text--select__menu {
+    border-color: black;
+    box-shadow: none;
+    border: 1px solid black;
+  }
+
+}
+
+
+.editable-input-text--error-message {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -37,7 +70,6 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 0.5px solid black;
   border-radius: 0px;
   width: 100%;
 }
