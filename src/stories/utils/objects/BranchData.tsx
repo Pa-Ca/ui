@@ -19,6 +19,7 @@ type BranchData = {
   menu: PlateProps[];
   amenities: AmenityObject[];
   reviewsData: ReviewProps[];
+  thumbnail: string;
 };
 
 export { type BranchData as default };

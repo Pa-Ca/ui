@@ -1,0 +1,21 @@
+name: Pa'Ca UI run container
+
+on:
+  push:
+    branches:
+      - fix_build
+  pull_request:
+    branches:
+      - fix_build
+
+jobs:
+  run-container:
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Docker Compose
+        run: |
+          TARGET_ENV=${{ secrets.TARGET_ENV }} \
+          VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }} \
+          docker compose up --build -d
