@@ -7,6 +7,10 @@ import { Button } from "../../atoms/button/Button";
 
 export interface ReservationProps {
   /**
+   * Reservation id
+   */
+  id?: number;
+  /**
    * Reservation start time
    */
   start: string;
@@ -30,6 +34,10 @@ export interface ReservationProps {
    * Indicates the current reservation state
    */
   state: number;
+  /**
+   * Reservation date
+   */
+  date: string;
   /**
    * On close reservation button click
    */
@@ -85,7 +93,7 @@ export const Reservation = ({
   const getAction = useMemo(() => {
     switch (state) {
       // Pending reservsation
-      case 0:
+      case 1:
         return (
           <Box className="reservation--icon-container">
             <Box className="reservation--icon" onClick={onReject}>
@@ -98,7 +106,7 @@ export const Reservation = ({
         );
 
       // Active reservation
-      case 1:
+      case 2:
         return (
           <Box className="reservation--button">
             <Button

@@ -6,12 +6,13 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Button } from "../../atoms/button/Button";
 import ReservationList from "../../utils/objects/ReservationList";
 import { Reservation } from "../../molecules/reservation/Reservation";
+import { ReservationProps } from "../../molecules/reservation/Reservation";
 
 interface ReserveListProps {
   /**
    * Reservation list data
    */
-  reservations: ReservationList[];
+  reservations: ReservationProps[];
   /**
    * State of reservations that will be displayed
    */
@@ -20,6 +21,9 @@ interface ReserveListProps {
    * Main color
    */
   color?: string;
+  /**
+   * Set show modal
+   */
   setShowModal: (open: boolean) => void;
 }
 
@@ -33,8 +37,27 @@ export const ReserveList = ({
   setShowModal,
   ...props
 }: ReserveListProps) => {
+  /**
+   * Group reservations by date
+   */
+  const reservationsByDate = useMemo(() => {
+    return reservations.reduce((result: ReservationList[], reservation) => {
+      const date = new Date(reservation.date).toLocaleDateString();
+      const group = result.find((group) => group.date === date);
+      if (group) {
+        group.reservations.push(reservation);
+      } else {
+        result.push({
+          date,
+          reservations: [reservation],
+        });
+      }
+      return result;
+    }, []);
+  }, [reservations]);
+
   const reservationsToShow = useMemo(() => {
-    return reservations.reduce((result: ReservationList[], group) => {
+    return reservationsByDate.reduce((result: ReservationList[], group) => {
       const filteredGroup = {
         ...group,
         reservations: group.reservations.filter(
@@ -46,13 +69,14 @@ export const ReserveList = ({
       }
       return result;
     }, []);
-  }, [reservations, state]);
+  }, [reservationsByDate, state]);
+
 
   const title = useMemo(() => {
     switch (state) {
-      case 0:
-        return "Reservas Pendientes";
       case 1:
+        return "Reservas Pendientes";
+      case 2:
         return "Reservas Activas";
       default:
         return "Reservas";
@@ -113,8 +137,8 @@ export const ReserveList = ({
       {header}
 
       <Box className="reserve-list--reservations">
-        {reservationsToShow.map((group) => (
-          <Box className="reserve-list--reservation">
+        {reservationsToShow.map((group, index) => (
+          <Box key={`reserve-list--state-${state}-date-${group.date}-index-${index}`} className="reserve-list--reservation">
             <Box
               height="52px"
               borderRadius="16px"
@@ -132,9 +156,11 @@ export const ReserveList = ({
               weakShadow
               backgroundColor="white"
             >
-              {group.reservations.map((reservation) => (
+              {group.reservations.map((reservation, index) => (
                 <Reservation
+                  key={`reserve-list--reservation-date-${reservation.date}-index-${index}}`}
                   start={reservation.start}
+                  date={reservation.date}
                   owner={reservation.owner}
                   ownerPhone={reservation.ownerPhone}
                   persons={reservation.persons}

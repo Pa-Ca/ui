@@ -6,7 +6,6 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
 import Select, { ActionMeta, SingleValue } from "react-select";
 import {
   validateEmail,
@@ -14,6 +13,10 @@ import {
   validateUrl,
 } from "../../utils/stringValidation";
 import OptionType from "../../utils/objects/OptionType";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss"); 
 
 interface EditableInputTextProps {
   /**
@@ -84,6 +87,10 @@ interface EditableInputTextProps {
    * Style for the text
    */
   style?: React.CSSProperties;
+  /**
+   * Placeholder for the input
+   */
+  placeholder?: string;
 }
 
 export const EditableInputText = ({
@@ -102,10 +109,10 @@ export const EditableInputText = ({
   className,
   containerClassName,
   style,
+  placeholder,
   ...props
 }: EditableInputTextProps) => {
   const select_enabled = useMemo(() => type === "select", [type]);
-
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
 
   const optionsMap = useMemo(() => {
@@ -163,12 +170,15 @@ export const EditableInputText = ({
   };
 
   function validateInput(input: string | any) {
-    if (type === "email") {
-      return validateEmail(input);
-    } else if (type === "phoneNumber") {
-      return validatePhoneNumber(input);
-    } else if (type === "url") {
-      return validateUrl(input);
+    if (type === "email" && !validateEmail(input)) {
+      inputHook.setErrorMessage("Correo inválido");
+      return false;
+    } else if (type === "phoneNumber" && !validatePhoneNumber(input)) {
+      inputHook.setErrorMessage("Número de teléfono inválido");
+      return false;
+    } else if (type === "url" && !validateUrl(input)) {
+      inputHook.setErrorMessage("Url inválido");
+      return false;
     } else {
       return true;
     }
@@ -187,7 +197,7 @@ export const EditableInputText = ({
     // We validate the input
     // If its not valid, we show an error message and we do not save the value
     if (!validateInput(inputHook.value)) {
-      inputHook.setError(true);
+      inputHook.setError(1);
       return;
     }
     // We disable the edit mode
@@ -201,7 +211,7 @@ export const EditableInputText = ({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    inputHook.setError(false);
+    inputHook.setError(0);
     // We set the value to the current value (the unedited value)
     inputHook.setValue(backup);
   };
@@ -236,6 +246,11 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames("editable-input-text--select", className)}
+              classNamePrefix={classnames(
+                "editable-input-text--select",
+                className
+              )}
+              noOptionsMessage={() => "No se encuentra la opción"}
               value={{
                 value: inputHook.value || "",
                 label: optionsMap.get(inputHook.value || "") || "",
@@ -247,7 +262,7 @@ export const EditableInputText = ({
                   ...baseStyles,
                   boxShadow: "none",
                   "&:hover": {
-                    borderColor: "grey",
+                    borderColor: "black",
                   },
                   ...style,
                 }),
@@ -264,13 +279,16 @@ export const EditableInputText = ({
           ) : (
             <input
               type="text"
+              placeholder={placeholder}
               ref={valueRef}
               value={inputHook.value}
               onChange={onChange}
               className={classnames("editable-input-text--input", className)}
               style={{
-                borderColor: inputHook.error ? styles.errorColor : undefined,
-                borderWidth: inputHook.error ? "2.5px" : undefined,
+                borderColor: inputHook.error == 1 ? styles.errorColor 
+                              : inputHook.error == 2 ? styles.warningColor 
+                              : undefined,
+                borderWidth: inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
                 ...style,
               }}
             />
@@ -294,7 +312,9 @@ export const EditableInputText = ({
               weight="600"
               style={{ ...style }}
             >
-              {select_enabled ? optionsMap.get(inputHook.value || "") || "" : inputHook.value}
+              {select_enabled
+                ? optionsMap.get(inputHook.value || "") || ""
+                : inputHook.value}
             </Text>
           </>
         )}
@@ -312,7 +332,7 @@ export const EditableInputText = ({
       </Box>
       <Box
         className={classnames(
-          "editable-intput-text--error-message",
+          "editable-input-text--error-message",
           className,
           inputHook.error
             ? "editable-input-text--animation"
@@ -320,11 +340,20 @@ export const EditableInputText = ({
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

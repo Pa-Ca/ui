@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./businessAccountInfo.scss";
 import { Box } from "../../atoms/box/Box";
-import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
@@ -102,10 +101,10 @@ export const BusinessAccountInfo = ({
     let error = false;
 
     if (confirmPassword.value !== newPassword.value) {
-      confirmPassword.setError(true);
+      confirmPassword.setError(1);
       error = true;
     } else {
-      confirmPassword.setError(false);
+      confirmPassword.setError(0);
     }
 
     if (error) return;

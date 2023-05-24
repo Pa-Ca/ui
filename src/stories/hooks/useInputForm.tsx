@@ -11,15 +11,16 @@ export interface InputFormHook<T> {
   /**
    * Hook to change current value
    */
-  setValue: (newValue: T) => void;
+  setValue: (newValue: React.SetStateAction<T>) => void;
   /**
-   * Indicates if there is an error in the input
+   * Indicates if there is no error = 0, 
+   * error = 1, warning = 2 in the input
    */
-  error: boolean;
+  error: number;
   /**
    * Hook to change the current error
    */
-  setError: (error: boolean) => void;
+  setError: (error: number) => void;
   /**
    * Error message if any
    */
@@ -38,11 +39,11 @@ export default <T extends any>(
   initialErrorMessage: string = ""
 ): InputFormHook<T> => {
   const [value, setValue_] = useState<T>(initialValue);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>(initialErrorMessage);
 
-  const setValue = (newValue: T) => {
-    setError(false);
+  const setValue = (newValue: React.SetStateAction<T>) => {
+    if (error != 2) setError(0);
     setValue_(newValue);
   };
 

@@ -94,7 +94,12 @@ export default {
         disable: true,
       },
     },
-    branchAverageReserveTime: {
+    branchAverageReserveTimeHours: {
+      table: {
+        disable: true,
+      },
+    },
+    branchAverageReserveTimeMinutes: {
       table: {
         disable: true,
       },
@@ -120,6 +125,26 @@ export default {
       },
     },
     branchLocationOptions: {
+      table: {
+        disable: true,
+      },
+    },
+    branchClosingTimeHour: {
+      table: {
+        disable: true,
+      },
+    },
+    branchClosingTimeMinute: {
+      table: {
+        disable: true,
+      },
+    },
+    branchOpeningTimeHour: {
+      table: {
+        disable: true,
+      },
+    },
+    branchOpeningTimeMinute: {
       table: {
         disable: true,
       },
@@ -174,13 +199,33 @@ export default {
         disable: true,
       },
     },
+    onSaveBranchClosingTime: {
+      table: {
+        disable: true,
+      },
+    },
+    onSaveBranchOpeningTime: {
+      table: {
+        disable: true,
+      },
+    },
+    onDeleteBranch: {
+      table: {
+        disable: true,
+      },
+    },
+    setShowErrorModal: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BusinessProfile>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
-  const name = useInputForm("");
-  const email = useInputForm("");
+  const name = useInputForm("Example Business");
+  const email = useInputForm("example@example.com");
   const password = useInputForm("");
   const phoneNumber = useInputForm("");
   const newPassword = useInputForm("");
@@ -189,12 +234,17 @@ const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
   const branchLocation = useInputForm("");
   const branchPhone = useInputForm("");
   const branchCapacity = useInputForm("");
-  const branchAverageReserveTime = useInputForm("");
+  const branchAverageReserveTimeHours = useInputForm("");
+  const branchAverageReserveTimeMinutes = useInputForm("");
   const branchPrice = useInputForm("");
   const branchMapsLink = useInputForm("");
   const branchType = useInputForm("");
   const branchTypeOptions = useInputForm("");
   const branchLocationOptions = useInputForm("");
+  const branchOpeningTimeHour = useInputForm("9");
+  const branchOpeningTimeMinute = useInputForm("0");
+  const branchClosingTimeHour = useInputForm("21");
+  const branchClosingTimeMinute = useInputForm("0");
 
   return (
     <BusinessProfile
@@ -208,12 +258,17 @@ const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
       branchLocation={branchLocation}
       branchPhone={branchPhone}
       branchCapacity={branchCapacity}
-      branchAverageReserveTime={branchAverageReserveTime}
+      branchAverageReserveTimeHours={branchAverageReserveTimeHours}
+      branchAverageReserveTimeMinutes={branchAverageReserveTimeMinutes}
       branchPrice={branchPrice}
       branchMapsLink={branchMapsLink}
       branchType={branchType}
       branchTypeOptions={branchTypeOptions}
       branchLocationOptions={branchLocationOptions}
+      branchOpeningTimeHour={branchOpeningTimeHour}
+      branchOpeningTimeMinute={branchOpeningTimeMinute}
+      branchClosingTimeHour={branchClosingTimeHour}
+      branchClosingTimeMinute={branchClosingTimeMinute}
       {...args}
     />
   );
@@ -262,7 +317,21 @@ Default.args = {
       value: "chacao",
     },
   ],
+<<<<<<< HEAD
   mapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+=======
+  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+>>>>>>> 0188cac3726ae34ff095296ada64f6143b7d6bcb
   color: "#EF7A08",
   secondaryColor: "#FF8682",
+  incompleteBranches: [
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Licoreria Holiday",
+      incompleteFields: ["Descripción"],
+    },
+  ],
 };
