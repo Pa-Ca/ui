@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 .sign-up-form--input {
-  margin-bottom: 24px;
+  margin-bottom: 15px;
   flex: 1;
 }
 .sign-up-form--login-options {
@@ -78,10 +78,13 @@
     margin-right: 24px;
   }
 }
-
+.terms-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
 .terms-input-box{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 24px;
 }

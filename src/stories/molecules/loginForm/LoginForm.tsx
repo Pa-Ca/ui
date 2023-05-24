@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import "./loginForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import useInputForm from "../../hooks/useInputForm";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface LoginFormProps {
   /**
+   * Indicates if there is a credencial error
+   */
+  error?: boolean;
+  /**
    * On login button click
    */
-  onLogin: () => void;
+  onLogin: (email: string, password: string) => void;
   /**
    * On forgot password click
    */
@@ -34,7 +43,7 @@ interface LoginFormProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
   /**
    * Component width
    */
@@ -49,6 +58,7 @@ interface LoginFormProps {
  * Primary UI component for user interaction
  */
 export const LoginForm = ({
+  error,
   onLogin,
   onForgotClick,
   onSignUp,
@@ -60,28 +70,23 @@ export const LoginForm = ({
   height,
   ...props
 }: LoginFormProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  
+  const email = useInputForm("");
+  const password = useInputForm("");
+  const rememberMe = useInputForm(false);
+
   return (
     <Box className="login-form--container" style={{ width, height }}>
       <Box className="login-form--content">
         <Box className="login-form--input">
-          <InputText value={email} setValue={setEmail} label="Correo" />
+          <InputText inputHook={email} label="Correo" />
         </Box>
         <Box className="login-form--input">
-          <InputText
-            type="password"
-            value={password}
-            setValue={setPassword}
-            label="Contraseña"
-          />
+          <InputText type="password" inputHook={password} label="Contraseña" />
         </Box>
         <Box className="login-form--login-options">
           <Box
             className="login-form--remember-me"
-            onClick={() => setRememberMe((oldRememberMe) => !oldRememberMe)}
+            onClick={() => rememberMe.setValue(!rememberMe.value)}
           >
             <Icon icon={rememberMe ? "checkbox" : "uncheckbox"} size="24px" />
             <Box width="8px" />
@@ -97,13 +102,32 @@ export const LoginForm = ({
           </Box>
         </Box>
 
+        <Box
+          className={
+            "input-text--error-container " +
+            (error
+              ? "input-text--error-animation"
+              : "input-text--error-no-animation")
+          }
+        >
+          {error && (
+            <>
+              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <Box style={{ width: "10px" }} />
+              <Text type="h6" color={styles.errorColor}>
+                Credenciales inválidas, inténtelo de nuevo.
+              </Text>
+            </>
+          )}
+        </Box>
+
         <Box className="login-form--input">
           <Button
             fullWidth
             primary
             size="large"
             backgroundColor={color}
-            onClick={onLogin}
+            onClick={() => onLogin(email.value, password.value)}
           >
             <Box className="login-form--button-text">
               <Text color="white" type="h6" weight="600">
@@ -145,10 +169,7 @@ export const LoginForm = ({
             size="large"
             onClick={onGoogleSignUp}
           >
-            <Box
-              className="login-form--other-logins-container"
-              width="100%"
-            >
+            <Box className="login-form--other-logins-container" width="100%">
               <Box className="login-form--other-login-button">
                 <Icon icon="google" size="24px" />
                 <Text> &nbsp;&nbsp;&nbsp;Inicia Sesión con Google </Text>

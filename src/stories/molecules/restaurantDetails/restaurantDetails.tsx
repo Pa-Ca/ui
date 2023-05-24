@@ -35,9 +35,9 @@ interface RestaurantDetailsProps {
    */
   borderColor?: string;
   /**
-   * Branch score
+   * Main card color
    */
-  text?: string;
+  backgroundColor?: string;
   /**
    * Card width
    */
@@ -71,16 +71,16 @@ export const RestaurantDetails = ({
   buttonColor,
   borderColor,
   price,
-  text,
   width,
   height,
   backgroundImage,
+  backgroundColor='white',
   iconList,
   location,
   ...props
 }: RestaurantDetailsProps) => {
   return (
-    <Box className='details-card--container' weakShadow style={{ width }}>
+    <Box className='details-card--container' weakShadow backgroundColor = {backgroundColor} style={{ width }}>
 
       <Box className='name-and-price-box'>
           <Text type="h4" weight="700">
@@ -91,11 +91,11 @@ export const RestaurantDetails = ({
           </Text>
       </Box>
 
-      <Box className='img-and-icons-box'>
+      {/* <Box className='img-and-icons-box'>
         <Box className="score-box-with-border" style={{borderColor: borderColor}}>
           <Box
             backgroundImage={backgroundImage}
-            className="detail-image"
+            className="restaurant-detail-image"
           >
           </Box>
           <Text type="h4" weight="600">
@@ -117,7 +117,7 @@ export const RestaurantDetails = ({
           ))
           }
         </Box>
-      </Box>
+      </Box> */}
 
       {/* Button */}
       <Box className='branch-search--button-box'>

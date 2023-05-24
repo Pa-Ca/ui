@@ -6,43 +6,55 @@
   padding-left: 35px;
   min-height: 85px;
   min-width: 450px;
-  overflow: hidden;
+  //overflow: hidden;
 }
+
 .header--subcontainer {
   display: flex;
   position: relative;
   flex-direction: row;
-    justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  overflow: hidden;
+  //overflow: hidden;
 }
+
 .header--pa-ca {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .header--zone {
   cursor: pointer;
   display: flex;
   align-items: center;
   margin-left: 10px;
-  }
+}
+
 .header--text {
   margin-left: 5px;
 }
+
 .header--profile {
   margin-left: 10px;
   margin-right: 0px;
-  }
-.header--profile-picture {
-    width: 40px;
 }
+
+.header--profile-picture {
+  // width: 40px;
+  margin-right: 5px;
+}
+
 .header--name {
-    display: -webkit-box;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.header--dropdown {
+  margin-top: -35px;
 }

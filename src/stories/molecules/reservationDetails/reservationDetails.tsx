@@ -8,11 +8,15 @@ interface ReservationDetailsProps {
   /**
    * Branch name
    */
-  name?: string;
+  branchName?: string;
   /**
    * Component main color
    */
   color?: string;
+  /**
+   * Main card color
+   */
+  backgroundColor?: string;
   /**
    * Branch score
    */
@@ -47,7 +51,7 @@ interface ReservationDetailsProps {
  * Primary UI component for user interaction
  */
 export const ReservationDetails = ({
-  name,
+  branchName,
   score,
   color,
   reviews,
@@ -55,6 +59,7 @@ export const ReservationDetails = ({
   width,
   height,
   backgroundImage,
+  backgroundColor="white",
   detailsList,
   ...props
 }: ReservationDetailsProps) => {
@@ -66,12 +71,12 @@ export const ReservationDetails = ({
   }, [detailsList]);
 
   return (
-    <Box className='details-card--container' weakShadow style={{ width }}>
+    <Box className='details-card--container' weakShadow backgroundColor={backgroundColor} style={{ width }}>
       <Box className='details-card--summary'>
         {/* Image Box */}
         <Box
           backgroundImage={backgroundImage}
-          className="detail-image"
+          className="reservation-detail-image"
         >
         </Box>
         <Box className='resumen-box-text'>
@@ -79,7 +84,7 @@ export const ReservationDetails = ({
             Resumen
           </Text>
           <Text type='h5' weight='600'>
-            {name}
+            {branchName}
           </Text>
           <Box className="score-box">
             <Box className="score-box-with-border" style={{borderColor: color}}>

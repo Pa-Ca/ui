@@ -3,7 +3,7 @@ import "./imagesCarousel.scss";
 import { Box } from "../../atoms/box/Box";
 import useResizeObserver from "../../hooks/useResizeObserver";
 
-interface ImagesCarouselProps {
+export interface ImagesCarouselProps {
   /**
    * Images to show
    */

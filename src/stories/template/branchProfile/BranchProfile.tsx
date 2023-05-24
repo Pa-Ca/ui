@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./branchProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Path } from "../../molecules/path/Path";
@@ -7,6 +7,7 @@ import getValidHours from "../../utils/getValidHours";
 import { Footer } from "../../organisms/footer/Footer";
 import { Header } from "../../organisms/header/Header";
 import BranchData from "../../utils/objects/BranchData";
+import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchNav } from "../../molecules/branchNav/BranchNav";
@@ -14,10 +15,34 @@ import { MenuPreview } from "../../organisms/menuPreview/MenuPreview";
 import { AmenityList } from "../../molecules/amenityList/AmenityList";
 import { ReviewBoard } from "../../organisms/reviewBoard/ReviewBoard";
 import { FastReserveBox } from "../../molecules/fastReserveBox/FastReserveBox";
-import { BranchLocation } from "../../molecules/branchLocation/BranchLocation";
 import { BranchMainSummary } from "../../organisms/branchMainSummary/BranchMainSummary";
+import {
+  BranchLocation,
+  BranchLocationProps,
+} from "../../molecules/branchLocation/BranchLocation";
 
 interface BranchProfileProps {
+  /**
+   * Current date input hook
+   */
+  date: InputFormHook<Date>;
+  /**
+   * Current hour input hook
+   */
+  hour: InputFormHook<OptionObject>;
+  /**
+   * Current persons number input hook
+   */
+  persons: InputFormHook<string>;
+  /**
+   * On Reserve button click
+   */
+  onClickReserve?: () => void;
+  /**
+   * On Find Hour button click
+   */
+  onClickFindHour?: () => void;
+
   /**
    * Get user data
    */
@@ -27,17 +52,17 @@ interface BranchProfileProps {
    */
   getBranchData: () => BranchData;
   /**
-   * On Reserve function
+   * On Header left section button click function
    */
-  onHeaderReserveClick?: () => void;
+  onHeaderLeftClick?: () => void;
   /**
    * On PA-CA logo click function
    */
   onPacaClick: () => void;
   /**
-   * On Favorites function
+   * On Header right section button click function
    */
-  onFavoritesClick?: () => void;
+  onHeaderRightClick?: () => void;
   /**
    * On profile click function
    */
@@ -51,10 +76,6 @@ interface BranchProfileProps {
    */
   onRegisterClick?: () => void;
   /**
-   * Location image in google maps
-   */
-  locationImage: string;
-  /**
    * Path from Home to current page
    */
   path: { name: string; onClick: () => void }[];
@@ -62,25 +83,34 @@ interface BranchProfileProps {
    * Component main color
    */
   color?: string;
+  /**
+   * Branch Location props
+   * */
+  branchLocationProps: BranchLocationProps;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const BranchProfile = ({
+  date,
+  hour,
+  persons,
+  onClickReserve,
+  onClickFindHour,
   getUserData = () => {
     return { logged: false };
   },
   getBranchData,
-  onHeaderReserveClick,
+  onHeaderLeftClick,
   onPacaClick,
-  onFavoritesClick,
+  onHeaderRightClick,
   onProfileClick,
   onLoginClick,
   onRegisterClick,
-  locationImage,
   path,
   color,
+  branchLocationProps,
   ...props
 }: BranchProfileProps) => {
   const user = getUserData();
@@ -102,13 +132,6 @@ export const BranchProfile = ({
     user.business?.id === branch.businessId;
 
   const [like, setLike] = useState(false);
-  const [reserveDate, setReserveDate] = useState<Date | undefined>(undefined);
-  const [reservePersons, setReservePersons] =
-    useState<string | undefined>(undefined);
-  const [reserveHour, setReserveHour] = useState<OptionObject>({
-    value: "",
-    name: "",
-  });
 
   const headerObserver = useResizeObserver<HTMLDivElement>();
   const navObserver = useResizeObserver<HTMLDivElement>();
@@ -117,12 +140,27 @@ export const BranchProfile = ({
     <Box className="branch-profile--nav-line" width={width} />
   );
 
+  const totalScore = useMemo(() => {
+    return parseFloat(
+      (
+        branch.reviewsData.reduce((sum, review) => sum + review.score, 0) /
+        branch.reviewsData.length
+      ).toFixed(1)
+    );
+  }, [branch.reviewsData]);
+
   return (
     <Box className="branch-profile--container">
       <Box
         className="branch-profile--header-container"
         backgroundImage={branch.mainImage}
+      />
+      <div className="branch-profile--overlay" />
+
+      <Box
+        className="branch-profile--header-container"
         innerRef={headerObserver.ref}
+        style={{ zIndex: 3 }}
       >
         <Box className="branch-profile--header">
           <Header
@@ -130,9 +168,9 @@ export const BranchProfile = ({
             name={name}
             logged={user.logged}
             picture={picture}
-            onLeftSectionClick={onHeaderReserveClick}
+            onLeftSectionClick={onHeaderLeftClick}
             onPacaClick={onPacaClick}
-            onRightSectionClick={onFavoritesClick}
+            onRightSectionClick={onHeaderRightClick}
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
@@ -171,6 +209,8 @@ export const BranchProfile = ({
             <Box className="branch-profile--summary-container">
               <BranchMainSummary
                 {...branch}
+                score={totalScore}
+                reviews={branch.reviewsData.length}
                 addPromotion={() => {}}
                 color={color}
                 editable={editable}
@@ -182,21 +222,16 @@ export const BranchProfile = ({
           <Box className="branch-profile--main-content-right">
             <FastReserveBox
               title="Haz una Reserva"
-              date={reserveDate}
-              setDate={setReserveDate}
-              hour={reserveHour}
-              setHour={setReserveHour}
+              date={date}
+              hour={hour}
+              persons={persons}
               validHours={validHours}
-              persons={reservePersons}
-              setPersons={setReservePersons}
+              onClickReserve={onClickReserve}
+              onClickFindHour={onClickFindHour}
             />
 
             <Box className="branch-profile--location-container">
-              <BranchLocation
-                location={branch.location}
-                image={locationImage}
-                editable={editable}
-              />
+              <BranchLocation {...branchLocationProps} />
             </Box>
           </Box>
         </Box>

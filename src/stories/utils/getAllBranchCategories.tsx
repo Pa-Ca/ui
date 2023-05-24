@@ -1,6 +1,6 @@
 import OptionObject from "./objects/OptionObject";
 
-export default (): { value: number, name: string }[] => {
+export default (): OptionObject[] => {
   return [
     { value: 0, name: "Italiana" },
     { value: 1, name: "Mexicana" },

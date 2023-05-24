@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BranchLocation } from "./BranchLocation";
 
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "Design System/Molecules/BranchLocation",
@@ -19,7 +20,8 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   color: "#EF7A08",
+  lat: 10.4302,
+  lng: -66.8771,
   location: "El Hatillo, Caracas, Venezuela",
-  image:
-    "https://www.c2dh.uni.lu/sites/default/files/styles/full_width/public/field/image/capture.png?itok=REb8jh_H",
+  apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { BranchProfile } from "./BranchProfile";
 import AmenityObject from "../../utils/objects/AmenityObject";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import useInputForm from "../../hooks/useInputForm";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -49,347 +50,206 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchProfile> = (args: any) => {
-  return <BranchProfile {...args} />;
+  const date = useInputForm(new Date());
+  const hour = useInputForm({ name: "", value: "" });
+  const persons = useInputForm("");
+
+  return <BranchProfile date={date} hour={hour} persons={persons} {...args} />;
 };
 
 const amenities: AmenityObject[] = [
-  { name: "Piscina al aire libre", icon: "pool" },
-  { name: "Piscina interior", icon: "pool" },
-  { name: "Centro de spa", icon: "spa" },
   { name: "Bar/Salón", icon: "wine" },
   { name: "Wifi libre", icon: "wifi" },
-  { name: "Wifi libre2", icon: "wifi" },
-  { name: "Wifi libre3", icon: "wifi" },
-  { name: "Wifi libre4", icon: "wifi" },
-  { name: "Wifi libre8", icon: "wifi" },
-  { name: "Wifi libre9", icon: "wifi" },
-  { name: "Wifi libre10", icon: "wifi" },
-  { name: "Wifi libre11", icon: "wifi" },
-  { name: "Wifi libre12", icon: "wifi" },
-  { name: "Wifi libre13", icon: "wifi" },
-  { name: "Wifi libre20", icon: "wifi" },
-  { name: "Wifi libre21", icon: "wifi" },
-  { name: "Wifi libre22", icon: "wifi" },
-  { name: "Wifi libre23", icon: "wifi" },
-  { name: "Wifi libre24", icon: "wifi" },
-  { name: "Wifi libre25", icon: "wifi" },
-  { name: "Wifi libre26", icon: "wifi" },
-  { name: "Wifi libre27", icon: "wifi" },
+  { name: "Parking", icon: "parking" },
 ];
 
 const globalArgs = {
   color: "#EF7A08",
   locationImage:
-    "https://www.c2dh.uni.lu/sites/default/files/styles/full_width/public/field/image/capture.png?itok=REb8jh_H",
+    "https://i.postimg.cc/bvdRWcQd/Screenshot-2023-03-31-192810.png",
   getBranchData: () => {
     return {
       businessId: 1,
-      name: "Nombre Rest",
-      score: 3.7,
-      reviews: 4273,
-      category: "Americana",
+      name: "Sempre Dritto Ristorant",
+      score: 4.9,
+      reviews: 142,
+      category: "Italiana",
       pricePerson: 15.99,
-      location: "Las Marcedes",
+      location: "Calle Escalona, Caracas 1083, Miranda",
       price: 10,
       promotions: [
         {
-          promotion: "Margaritas 2X1",
-          date: new Date(),
-          cost: 0,
+          promotion: 'Lomito "Sempre Dittro" -10%',
+          date: new Date(2023, 2, 25),
+          cost: 16,
           onClick: () => {},
           onSave: () => {},
         },
         {
-          promotion: "Margaritas 2X1",
-          date: new Date(),
-          cost: 5,
-          onClick: () => {},
-          onSave: () => {},
-        },
-        {
-          promotion: "Margaritas 2X1",
-          date: new Date(),
-          cost: 4.99,
-          onClick: () => {},
-          onSave: () => {},
-        },
-        {
-          promotion: "Margaritas 2X1",
-          date: new Date(),
+          promotion: "Pasta al Salmón -20%",
+          date: new Date(2023, 2, 23),
           cost: 12,
           onClick: () => {},
           onSave: () => {},
         },
       ],
       overview:
-        "Located in Taksim Gmsuyu, the heart of Istanbul, the CVK Park Bosphorus Hotel Istanbul has risen from the ashes of the historic Park Hotel, which also served as Foreign Affairs Palace 120 years ago and is hosting its guests by assuming this hospitality mission. With its 452 luxurious rooms and suites, 8500 m2 SPA and fitness area, 18 meeting rooms including 4 dividable ones and 3 terraces with Bosphorus view, Istanbuls largest terrace with Bosphorus view (4500 m2) and latest technology infrastructure, CVK Park Bosphorus Hotel Istanbul is destined to be the popular attraction point of the city. Room and suite categories at various sizes with city and Bosphorus view, as well as 68 separate luxury suites, are offered to its special guests as a wide variety of selection.",
+        "Sempre Dritto es un restaurante italiano ubicado en el pueblo de El Hatillo en Caracas, Venezuela. Este restaurante ofrece una amplia variedad de platos italianos y es conocido por su ambiente tipo italiano y su excelente atención al cliente. Los clientes han elogiado la calidad de la comida y la rapidez del servicio. Algunos de los platos recomendados por los clientes incluyen el Lomito Sempre Dritto, el Lomito al Pepe, la Pasta Alfredo con camarones y las Bruschettas Sempre Drito. Sempre Dritto es un lugar ideal para disfrutar de una deliciosa comida italiana en un ambiente acogedor y con una excelente atención al cliente.",
       images: [
-        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd36tnp772eyphs.cloudfront.net%2Fblogs%2F1%2F2018%2F10%2FTerrasse-Suite-Carre-dOr-Hotel-Metropole-balcony-view.jpeg&f=1&nofb=1&ipt=9736c4b3ccbe4f89b8bfc453ff92138e9e1d5e527324123d5ff783268be37bdc&ipo=images",
-        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.squarespace-cdn.com%2Fcontent%2Fv1%2F52da9677e4b03d314575985a%2F1576342982271-R07XT8R39LD93NT1XOZ1%2Fke17ZwdGBToddI8pDm48kJK4Mm1kch8SFO9ZNkN1NT97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmFk_H6M1tkD9NpL7mXac0oVSXdFfjxR5AjcLwGSebOiGBsFzzcw3xKxvyC_6CFFG_%2F%2540dulce_at_hilton%2B-%2BConrad%2BAlgarve.jpg&f=1&nofb=1&ipt=2100054268d5c351126e8ffc690b40f9f3ec13426903564f4d9a8f0f53995947&ipo=images",
-        "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ftravel.home.sndimg.com%2Fcontent%2Fdam%2Fimages%2Ftravel%2Ffullset%2F2013%2F03%2F28%2F2d%2Fbest-hotel-views_ss_002.rend.hgtvcom.966.725.suffix%2F1491592688614.jpeg&f=1&nofb=1&ipt=2671a97930ff670904bb2fa1656a38e1d47df42213bb1cfdda4cfe320f4d4b97&ipo=images",
-        "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fstunningplaces.net%2Fwp-content%2Fuploads%2F2014%2F07%2FKatikies-Hotels-01.jpg&f=1&nofb=1&ipt=9570d35132416bf109084e37afe4f8ae960f0654b7b603e0f9f93ef22e1d64d1&ipo=images",
-        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thecoolector.com%2Fwp-content%2Fuploads%2F2018%2F04%2Fshagri-la-london.jpg&f=1&nofb=1&ipt=9827fe4148a7e3496d918d2e3300cb17b052923e2e19b1d36acd5a445f3e3584&ipo=images",
-        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thestar.com%2Fcontent%2Fdam%2Fthestar%2Flife%2Ftravel%2F2012%2F03%2F16%2Fbest_hotel_views_a_look_at_our_favourite_rooms_with_a_view_around_the_globe%2Fmarriott_fallsviewniagara.jpeg&f=1&nofb=1&ipt=aaf5e9af11832f67d8af152f1cf5702570a79d358ab2b564789d67d5a28f25a3&ipo=images",
+        "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
+        "https://i.postimg.cc/02Jc2q3S/162902730-753319225576640-6128780695292754726-n.jpg",
+        "https://i.postimg.cc/yWqhSk5Z/172584327-151671503537464-2923172395679395882-n.jpg",
+        "https://i.postimg.cc/FFkB1ck1/176024050-465621354748769-1062778171927072924-n.jpg",
+        "https://i.postimg.cc/NM9p9qMZ/262660555-1041028993346947-9119096342076209547-n.jpg",
       ],
-      mainImage:
-        "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
-      menu: new Array(10).fill({
-        price: 14.25,
-        title: "Pizza",
-        description:
-          "Descripción de una pizza ¿Que más necesitas? Pan, salsa de tomate, queso y cualquier ingrediente que quieras colocarle encima.",
-        image:
-          "https://static.toiimg.com/thumb/56933159.cms?imgsize=686279&width=800&height=800",
-        onClick: () => {},
-      }),
+      mainImage: "https://i.postimg.cc/90mcpp7P/image-4-1.png",
+      menu: [
+        {
+          price: 15.85,
+          title: "Milanesa alla Parmigiana",
+          description:
+            "Milanesa de pollo gratinado en salsa de hongos, acompañado de pasta, papas con ramero o ensalada César.",
+          image:
+            "https://i.postimg.cc/nzGM1MCm/332115610-166847765752970-1308567063811972403-n.jpg",
+          onClick: () => {},
+        },
+        {
+          price: 12.54,
+          title: "Filetto con Burrata",
+          description:
+            "Filete de ternera a la plancha acompañado de una capa externa de mozzarella y un interior cremoso de nata y hilos de queso.",
+          image:
+            "https://i.postimg.cc/hPfPX2bT/325616755-509442167924097-2026171515615347969-n.jpg",
+          onClick: () => {},
+        },
+        {
+          price: 18.16,
+          title: 'Lomito "Sempre Dritto"',
+          description:
+            "Medallones de lomito en reducción de aceto balsámico con ramero y acompañado de fettuccine Alfredo.",
+          image:
+            "https://i.postimg.cc/XNDn6wSJ/317666234-446290911042006-7601213385201360753-n.jpg",
+          onClick: () => {},
+        },
+        {
+          price: 14.8,
+          title: "Pasta Prosciutto ai Funghi",
+          description:
+            "Pasta larga cocida al dente y salteada con una salsa de prosciutto cotto, champiñones, cebolla, vino blanco y nata1.",
+          image:
+            "https://i.postimg.cc/wvnyvnyf/338169136-930830101592012-4466338585597331424-n.jpg",
+          onClick: () => {},
+        },
+        {
+          price: 14.8,
+          title: "Pasta Toscana",
+          description:
+            "Tomates confitados y champiñones salteados en aceite de oliva.",
+          image:
+            "https://i.postimg.cc/xTDnd98D/291942876-436571181673365-7689448139439390105-n.jpg",
+          onClick: () => {},
+        },
+        {
+          price: 14.8,
+          title: "Gnocchi ai Funghi",
+          description:
+            "Descripción de una pizza ¿Que más necesitas? Pan, salsa de tomate, queso y cualquier ingrediente que quieras colocarle encima.",
+          image:
+            "https://i.postimg.cc/6q4gX4n2/280670000-737034117321433-420421889354096911-n.jpg",
+          onClick: () => {},
+        },
+      ],
       amenities,
       reviewsData: [
         {
-          score: 4.5,
-          author: "1Giovanni Giorgio",
+          score: 5,
+          author: "German Toro",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "Outstanding Italian dining experience! Cute place, awesome food with very competent staff. What else do you need for an extraordinary dinner? All pastas are great, as well as the apple crumble cheesecake and the Pavlova pie. Asdrubal, is a reference of professional service taking to the highest level. Don't miss this place",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5TOuHuckiZnFZIh3hVSfiQgRaw4pEJjqn3mwiapvlg=w60-h60-p-rp-mo-ba4-br100",
         },
         {
-          score: 4.5,
-          author: "2Giovanni Giorgio",
+          score: 5,
+          author: "Marvin Schultz",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "Absolutely incredible Italian food. Every single dish we ordered was a unique experience. Flavors I had never tried before in any restaurant. This place has something very special. The service was superb and the prices were excellent.",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5T3P5JhwsK6uiD0kmIN7nX6-Q9IEkuDlWpK6oo5uQ=w60-h60-p-rp-mo-br100",
         },
         {
-          score: 4.5,
-          author: "3Giovanni Giorgio",
+          score: 5,
+          author: "Geraldine G",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "Delicious food and atmosphere. Very classical Italian in the beautiful El Hatillo town. Service is also very nice. You can’t pay with card.",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5QWBpYtDoWtapuK95TeSUuYffyJlXY5JHwgRL1gWw=w60-h60-p-rp-mo-ba3-br100",
         },
         {
-          score: 4.5,
-          author: "4Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+          score: 5,
+          author: "Carolina Hernandez",
+          review: "Excellent food Great price and gluten free options",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5SO5ph1Y-YoMqsfspO_ag8JEYBtF9vi-rari2VBUj4=w60-h60-p-rp-mo-ba5-br100",
         },
         {
-          score: 4.5,
-          author: "5Giovanni Giorgio",
+          score: 5,
+          author: "Jose Antonio Barreto",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "Excelent service and great food. Very popular. Reservation is recommended.",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5Q0YqF9dcFNQ2Xs4fXXvMqB7MOCVXqDrk7YYLusZw=w60-h60-p-rp-mo-ba6-br100",
         },
         {
-          score: 4.5,
-          author: "6Giovanni Giorgio",
+          score: 5,
+          author: "Mario Velásquez (Maboy)",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "Excellent service! Magnificent Italian cuisine! Remember to make reservations, it's not necessarily a place to just walk in and find a table, but maybe you can get lucky.",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5RaEEC5tO4jf3Yd3sRXMCjYNDHViN-j0H8bx1npQQ=w60-h60-p-rp-mo-ba3-br100",
         },
         {
-          score: 4.5,
-          author: "7Giovanni Giorgio",
+          score: 5,
+          author: "Lorena Sánchez Senior",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "Super nice Italian food, good portions, reasonable prices, nice options...",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5Ro_CAAwdVXCJkEXrxKEo9FT0ShRJqdAL7DUCNUsuc=w60-h60-p-rp-mo-ba5-br100",
         },
         {
-          score: 4.5,
-          author: "8Giovanni Giorgio",
+          score: 5,
+          author: "julia baena",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "The food is amazing. I had a Lomito Dritto with risotto and was one of the best by far. Service nice and prices very affordable.",
+          image:
+            "https://lh3.googleusercontent.com/a/AGNmyxb3g449HzmfkX7_uifYO8KfVA52C35rSW_uYfE2=w60-h60-p-rp-mo-ba4-br100",
         },
         {
-          score: 4.5,
-          author: "10Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+          score: 5,
+          author: "Luis Hurtado",
+          review: "Most delicious bruschetta with prosciutto.",
+          image:
+            "https://lh3.googleusercontent.com/a/AGNmyxYBrHgFxnI3PuVcWkAjYP08O7z6Paf9G23QjxCW=w60-h60-p-rp-mo-ba4-br100",
         },
         {
-          score: 4.5,
-          author: "11Giovanni Giorgio",
+          score: 5,
+          author: "Cesar Alvarez Hermoso",
           review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+            "The food is delicious, the service is very nice, prices are average. Just check the prices in us dollars against bolivars when you order the bill.",
+          image:
+            "https://lh3.googleusercontent.com/a-/ACB-R5T4BM4fodNrf-kB8msEpGaLX7w9NIk-hdzyELe2Ug=w60-h60-p-rp-mo-ba6-br100",
         },
-        {
-          score: 4.5,
-          author: "12Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "13Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "14Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "15Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "16Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "17Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "18Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "19Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "20Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "21Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "22Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "23Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "24Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "25Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "26Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "27Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "28Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "29Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "30Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "31Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "32Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "33Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "34Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
-          author: "35Giovanni Giorgio",
-          review:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-        {
-          score: 4.5,
+      ].concat(
+        new Array(879).fill({
+          score: 4.7,
           author: "Giovanni Giorgio",
           review:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
           image: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
-        },
-      ],
+        })
+      ),
+      thumbnail:
+        "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
     };
   },
   path: [
@@ -402,6 +262,13 @@ const globalArgs = {
       onClick: () => {},
     },
   ],
+  branchLocationProps: {
+    color: "#EF7A08",
+    lat: 10.42673633648665,
+    lng: -66.87739422453691,
+    location: "El Hatillo, Caracas, Venezuela",
+    apiKey: process.env.GOOGLE_MAPS_API_KEY!,
+  },
 };
 
 export const Guest = Template.bind({});
@@ -422,9 +289,10 @@ Client.args = {
       role: "client",
       client: {
         id: 1,
-        name: "Jonh",
-        surname: "Dane",
-        picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+        name: "Daniel",
+        surname: "Rodríguez",
+        picture:
+          "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
       },
     };
   },
@@ -440,10 +308,11 @@ Business.args = {
       role: "business",
       business: {
         id: 1,
-        name: "Restaurant",
-        picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+        name: "Sempre Dritto",
+        picture:
+          "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
         verified: true,
-        tier: 1,
+        tier: "basic",
       },
     };
   },
