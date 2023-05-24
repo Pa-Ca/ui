@@ -4,7 +4,10 @@ import "../../atoms/text/text.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface InputTextProps {
   /**
@@ -14,7 +17,7 @@ interface InputTextProps {
   /**
    * Input type
    */
-  type?: "text" | "number" | "password";
+  type?: "text" | "number" | "natural number" | "password";
   /**
    * Label to be displayed at the top of the input
    */
@@ -27,6 +30,11 @@ interface InputTextProps {
    * Input height
    */
   height?: string;
+
+  /**
+   * Input placeholder
+   */
+  placeholder?: string;
 }
 
 /**
@@ -38,12 +46,17 @@ export const InputText = ({
   label = "Text input",
   width,
   height,
+  placeholder,
   ...props
 }: InputTextProps) => {
   const [icon, setIcon] = useState("eye-slash");
   const [currentType, setCurrentType] = useState(type);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (type == "natural number"){
+      event.target.value = event.target.value
+      .replace(/[^0-9]/g, "")
+    }
     inputHook.setValue(event.target.value);
   };
 
@@ -74,7 +87,7 @@ export const InputText = ({
         );
     }
   }, [icon]);
-
+  
   return (
     <div className="input-text--container">
       <div
@@ -82,13 +95,18 @@ export const InputText = ({
         style={{
           width,
           height,
-          borderColor: inputHook.error ? styles.errorColor : undefined,
-          borderWidth: inputHook.error ? "2.5px" : undefined,
+          borderColor: inputHook.error == 1 ? styles.errorColor : 
+                        inputHook.error == 2 ? styles.warningColor :  undefined,
+          borderWidth: inputHook.error == 1 || inputHook.error == 2
+                        ? "2.5px" : undefined,
         }}
       >
         <div className="input-text--content">
           <input
-            type={currentType}
+            placeholder = {placeholder}
+            type={currentType == "number" ||
+                  currentType == "text" ||
+                  currentType == "password" ? currentType : "text"}
             value={inputHook.value}
             onChange={changeValue}
             className="input-text--input text text--h6"
@@ -96,8 +114,9 @@ export const InputText = ({
           <div className="input-text--label">
             <Text
               type="h6"
-              weight={inputHook.error ? "600" : "400"}
-              color={inputHook.error ? styles.errorColor : undefined}
+              weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
+              color={inputHook.error == 1 ? styles.errorColor :
+                      inputHook.error == 2 ? styles.warningColor : undefined}
             >
               &nbsp;{label}&nbsp;
             </Text>
@@ -114,16 +133,25 @@ export const InputText = ({
       <div
         className={
           "input-text--error-container " +
-          (inputHook.error
+          (inputHook.error == 1 || inputHook.error == 2
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
         }
       >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

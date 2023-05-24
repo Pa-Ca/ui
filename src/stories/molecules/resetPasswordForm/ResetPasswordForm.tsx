@@ -5,8 +5,11 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import styles from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface ResetPasswordFormProps {
   /**
@@ -61,10 +64,10 @@ export const ResetPasswordForm = ({
     let error = false;
 
     if (confirmPassword.value !== password.value) {
-      confirmPassword.setError(true);
+      confirmPassword.setError(1);
       error = true;
     } else {
-      confirmPassword.setError(false);
+      confirmPassword.setError(0);
     }
 
     if (error) return;

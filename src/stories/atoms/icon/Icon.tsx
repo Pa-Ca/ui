@@ -11,6 +11,7 @@ import fastFood from "@iconify/icons-ion/fast-food";
 import heartFill from "@iconify/icons-ph/heart-fill";
 import twitterIcon from "@iconify/icons-mdi/twitter";
 import youtubeIcon from "@iconify/icons-mdi/youtube";
+import warningIcon from '@iconify/icons-uiw/warning';
 import facebookIcon from "@iconify/icons-mdi/facebook";
 import paperPlane from "@iconify/icons-ion/paper-plane";
 import alertCircle from "@iconify/icons-mdi/alert-circle";
@@ -96,7 +97,8 @@ export type IconType =
   | "alert"
   | "logout"
   | "email-sent"
-  | "upload";
+  | "upload"
+  | "warning";
 
 interface IconProps {
   /**
@@ -493,6 +495,14 @@ export const Icon = ({
       return (
         <Iconify
           icon={cloudUpload}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "warning":
+      return (
+        <Iconify
+          icon={warningIcon}
           style={{ fontSize: size, ...style }}
           color={color}
         />

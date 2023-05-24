@@ -6,7 +6,10 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface LoginFormProps {
   /**

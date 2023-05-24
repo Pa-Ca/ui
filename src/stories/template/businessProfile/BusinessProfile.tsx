@@ -3,6 +3,7 @@ import "./businessProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
+import { Modal } from "../../molecules/modal/Modal";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { HeaderProps } from "../../organisms/header/Header";
 import { InputTab } from "../../molecules/inputTab/InputTab";
@@ -13,6 +14,18 @@ import {
   BranchEditForm,
   OptionType,
 } from "../../organisms/branchEditForm/BranchEditForm";
+import { Button } from "../../atoms/button/Button";
+
+export interface IncompleteBranch {
+  /**
+   * Branch name
+   */
+  name: string;
+  /**
+   * Incomplete fields
+   */
+  incompleteFields: string[];
+}
 
 interface BusinessProfileProps {
   /**
@@ -106,9 +119,13 @@ interface BusinessProfileProps {
    * */
   branchCapacity: InputFormHook<string>;
   /**
-   * Average reserve time of the branch (in hours)
+   * Average reserve time of the branch
    * */
-  branchAverageReserveTime: InputFormHook<string>;
+  branchAverageReserveTimeHours: InputFormHook<string>;
+  /**
+   * Average reserve time of the branch
+   * */
+  branchAverageReserveTimeMinutes: InputFormHook<string>;
   /**
    * Average price per person of the branch (in USD)
    * */
@@ -130,9 +147,37 @@ interface BusinessProfileProps {
    * */
   branchMapsLink: InputFormHook<string>;
   /**
+   * Opening time hours of the branch
+   */
+  branchOpeningTimeHour: InputFormHook<string>;
+  /**
+   * Opening time minutes of the branch
+   */
+  branchOpeningTimeMinute: InputFormHook<string>;
+  /**
+   * Closing time hours of the branch
+   */
+  branchClosingTimeHour: InputFormHook<string>;
+  /**
+   * Closing time minutes of the branch
+   */
+  branchClosingTimeMinute: InputFormHook<string>;
+  /**
    * Google maps API key
    * */
   mapsApiKey: string;
+  /**
+   * Incomplete branches
+   */
+  incompleteBranches: IncompleteBranch[];
+  /**
+   * Indicates whether to display the error modal when creating a branch
+   */
+  showErrorModal: boolean;
+  /**
+   * Function that change the error modal state
+   */
+  setShowErrorModal: (value: boolean) => void;
 
   /**
    * Function that is executed when the branch name is saved
@@ -157,7 +202,7 @@ interface BusinessProfileProps {
   /**
    * Function that is executed when the branch average reserve time is saved
    */
-  onSaveBranchAverageReserveTime: (value: string) => void;
+  onSaveBranchAverageReserveTime: (hours: string, minutes: string) => void;
   /**
    * Function that is executed when the branch reservation price is saved
    */
@@ -170,6 +215,18 @@ interface BusinessProfileProps {
    * Function that is executed when the branch google maps link is saved
    */
   onSaveBranchMapsLink: (value: string) => void;
+  /**
+   * On save event for the opening time
+   * */
+  onSaveBranchOpeningTime: (hour: string, minute: string) => void;
+  /**
+   * On save event for the closing time
+   * */
+  onSaveBranchClosingTime: (hour: string, minute: string) => void;
+  /**
+   * On delete branch
+   */
+  onDeleteBranch: () => void;
 
   /**
    * Component main color
@@ -209,13 +266,21 @@ export const BusinessProfile = ({
   branchLocation,
   branchPhone,
   branchCapacity,
-  branchAverageReserveTime,
+  branchAverageReserveTimeHours,
+  branchAverageReserveTimeMinutes,
   branchPrice,
   branchMapsLink,
   branchType,
   branchTypeOptions,
   branchLocationOptions,
+  branchOpeningTimeHour,
+  branchOpeningTimeMinute,
+  branchClosingTimeHour,
+  branchClosingTimeMinute,
   mapsApiKey,
+  incompleteBranches,
+  showErrorModal,
+  setShowErrorModal,
 
   onSaveBranchName,
   onSaveBranchDescription,
@@ -226,6 +291,9 @@ export const BusinessProfile = ({
   onSaveBranchPrice,
   onSaveBranchType,
   onSaveBranchMapsLink,
+  onSaveBranchOpeningTime,
+  onSaveBranchClosingTime,
+  onDeleteBranch,
 
   color,
   secondaryColor,
@@ -233,6 +301,7 @@ export const BusinessProfile = ({
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
   const [changePassword, setChangePassword] = useState(false);
+
   const observer = useResizeObserver<HTMLDivElement>();
   const tabObserver = useResizeObserver<HTMLDivElement>();
 
@@ -313,13 +382,19 @@ export const BusinessProfile = ({
                   location={branchLocation}
                   phone={branchPhone}
                   capacity={branchCapacity}
-                  averageReserveTime={branchAverageReserveTime}
+                  averageReserveTimeHours={branchAverageReserveTimeHours}
+                  averageReserveTimeMinutes={branchAverageReserveTimeMinutes}
                   price={branchPrice}
                   mapsLink={branchMapsLink}
                   type={branchType}
                   typeOptions={branchTypeOptions}
                   locationOptions={branchLocationOptions}
+                  openingTimeHour={branchOpeningTimeHour}
+                  openingTimeMinute={branchOpeningTimeMinute}
+                  closingTimeHour={branchClosingTimeHour}
+                  closingTimeMinute={branchClosingTimeMinute}
                   mapsApiKey={mapsApiKey}
+                  email={email.value}
                   onSaveName={onSaveBranchName}
                   onSaveDescription={onSaveBranchDescription}
                   onSaveLocation={onSaveBranchLocation}
@@ -329,6 +404,9 @@ export const BusinessProfile = ({
                   onSavePrice={onSaveBranchPrice}
                   onSaveType={onSaveBranchType}
                   onSaveMapsLink={onSaveBranchMapsLink}
+                  onSaveOpeningTime={onSaveBranchOpeningTime}
+                  onSaveClosingTime={onSaveBranchClosingTime}
+                  onDeleteBranch={onDeleteBranch}
                   color={color}
                 />
               ) : (
@@ -348,6 +426,62 @@ export const BusinessProfile = ({
             </Box>
           </Box>
         </Box>
+
+        <Modal open={showErrorModal} setOpen={setShowErrorModal}>
+          <Box className="business-profile--modal-centered">
+            <Text type="h4" weight="600" color="#112211">
+              Error creando el local
+              <br />
+              <br />
+            </Text>
+          </Box>
+          <Text type="h6" weight="400" color="#112211">
+            No puedes crear un local mientras algún otro no tiene sus datos
+            completos.
+          </Text>
+          <Text type="h6" weight="400" color="#112211">
+            Los locales que no tienen los datos completos son:
+            <br />
+            <br />
+          </Text>
+
+          <ul>
+            {incompleteBranches.map((branch, i) => (
+              <li
+                key={`business-profile--incomplete-branch-${i}-${branch.name}`}
+              >
+                <Text weight="600" color="#112211">
+                  {branch.name}
+                </Text>
+                <ul>
+                  {branch.incompleteFields.map((field, j) => (
+                    <li
+                      key={`business-profile--incomplete-field-${i}-${branch.name}-${j}-${field}`}
+                    >
+                      <Text type="h6" weight="400" color="#112211">
+                        {field}
+                      </Text>
+                    </li>
+                  ))}
+                </ul>
+                <br />
+              </li>
+            ))}
+          </ul>
+
+          <Box className="business-profile--modal-centered">
+            <Button
+              fullWidth
+              primary
+              onClick={() => setShowErrorModal(false)}
+              backgroundColor={color}
+            >
+              <Box className="business-profile--modal-centered">
+                <Text>Entendido</Text>
+              </Box>
+            </Button>
+          </Box>
+        </Modal>
       </Box>
     </BasicPage>
   );

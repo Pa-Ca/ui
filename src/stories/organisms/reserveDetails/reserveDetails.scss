@@ -14,9 +14,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
 }
-
+.reserve-details--input-date {
+  z-index: 3;
+}
 .reserve-details--input1 {
   margin-left: 16px;
   z-index: 2;
