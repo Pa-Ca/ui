@@ -43,7 +43,7 @@ export default <T extends any>(
   const [errorMessage, setErrorMessage] = useState<string>(initialErrorMessage);
 
   const setValue = (newValue: React.SetStateAction<T>) => {
-    setError(0);
+    if (error != 2) setError(0);
     setValue_(newValue);
   };
 
