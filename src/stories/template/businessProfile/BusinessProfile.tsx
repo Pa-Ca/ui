@@ -430,7 +430,7 @@ export const BusinessProfile = ({
         <Modal open={showErrorModal} setOpen={setShowErrorModal}>
           <Box className="business-profile--modal-centered">
             <Text type="h4" weight="600" color="#112211">
-              Error creando el local
+              Error creando el local 
               <br />
               <br />
             </Text>
