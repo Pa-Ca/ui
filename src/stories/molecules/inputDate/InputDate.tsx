@@ -1,22 +1,20 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, SyntheticEvent } from "react";
 import "./inputDate.scss";
 import "../../atoms/text/text.scss";
 import DatePicker from "react-datepicker";
-import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import "react-datepicker/dist/react-datepicker.css";
-import { InputFormHook } from "../../hooks/useInputForm";
 import useResizeObserver from "../../hooks/useResizeObserver";
-
-const styles =
-  require("../../assets/scss/variables.module.scss").default ??
-  require("../../assets/scss/variables.module.scss");
 
 interface InputDateProps {
   /**
-   * Date input hook
+   * Current selected date
    */
-  inputHook: InputFormHook<Date>;
+  date?: Date;
+  /**
+   * Function to select date
+   */
+  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
   /**
    * Label to be displayed at the top of the input
    */
@@ -39,8 +37,9 @@ interface InputDateProps {
  * Primary UI component for user interaction
  */
 export const InputDate = ({
-  inputHook,
-  label = "* Fecha",
+  date,
+  setDate,
+  label = "Fecha",
   minDate,
   width,
   height,
@@ -63,68 +62,26 @@ export const InputDate = ({
   );
 
   return (
-    <div>
-      <div
-        className="input-text--input-container"
-        style={{
-          width,
-          height,
-          borderColor: inputHook.error == 1 ? styles.errorColor : 
-                        inputHook.error == 2 ? styles.warningColor :  undefined,
-          borderWidth: inputHook.error == 1 || inputHook.error == 2
-                        ? "2.5px" : undefined,
-        }}
-        ref={observer.ref}
-        >
-        <div className="input-text--content">
-          <DatePicker
-            selected={inputHook.value}
-            onChange={(date: Date) => inputHook.setValue(date)}
-            onSelect={inputHook.setValue}
-            customInput={<DateInputButton />}
-            minDate={minDate}
-            />
+    <div
+      className="input-text--container"
+      style={{ width, height }}
+      ref={observer.ref}
+    >
+      <div className="input-text--content">
+        <DatePicker
+          selected={date}
+          onChange={setDate}
+          onSelect={setDate}
+          customInput={<DateInputButton />}
+          minDate={minDate}
+        />
 
-          <div className="input-text--label">
-            <Text
-              type="h6"
-              weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
-              color={inputHook.error == 1 ? styles.errorColor :
-                      inputHook.error == 2 ? styles.warningColor : undefined}
-            >
-              &nbsp;{label}&nbsp;
-            </Text>
-          </div>
+        <div className="input-text--label">
+          <Text type="h6" weight="400">
+            &nbsp;{label}&nbsp;
+          </Text>
         </div>
       </div>
-      <div
-        className={
-          "input-text--error-container " +
-          (inputHook.error == 1 || inputHook.error == 2
-            ? "input-text--error-animation"
-            : "input-text--error-no-animation")
-          }
-          >
-        {inputHook.error == 1 && (
-          <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
-            <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
-              {inputHook.errorMessage}
-            </Text>
-          </>
-        )}
-        {inputHook.error == 2 && (
-          <>
-            <Icon icon="warning" color={styles.warningColor} size="20px" />
-            <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
-              {inputHook.errorMessage}
-            </Text>
-          </>
-        )}
-      </div>
     </div>
-
   );
 };

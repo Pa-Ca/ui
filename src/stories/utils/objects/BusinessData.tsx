@@ -2,7 +2,7 @@ type BusinessData = {
   id: number;
   name: string;
   verified: boolean;
-  tier: string;
+  tier: number;
   picture: string;
 };
 

@@ -1,7 +1,6 @@
-import React from 'react';
-import { InputDate } from './InputDate';
-import useInputForm from '../../hooks/useInputForm';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { InputDate } from './InputDate';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -9,7 +8,12 @@ export default {
   component: InputDate,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
-    inputHook: {
+    date: {
+      table: {
+        disable: true
+      }
+    },
+    setDate: {
       table: {
         disable: true
       }
@@ -19,9 +23,9 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof InputDate> = (args: any) => {
-  const date = useInputForm<Date>(new Date());
+  const [date, setDate] = useState(new Date());
 
-  return <InputDate inputHook={date} {...args} />;
+  return <InputDate date={date} setDate={setDate} {...args} />;
 }
 
 export const Default = Template.bind({});

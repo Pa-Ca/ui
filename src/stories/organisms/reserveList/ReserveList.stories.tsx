@@ -25,41 +25,49 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   reservations: [
-    ...new Array(5).fill({
-      start: "6:00 PM",
-      date: "2021-10-10",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 1,
-    }),
-    ...new Array(5).fill({
-      start: "6:00 PM",
-      date: "2021-10-11",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 0,
-    }),
-    ...new Array(5).fill({
-      start: "6:00 PM",
-      date: "2021-10-12",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 0,
-    }),
-    ...new Array(5).fill({
-      start: "6:00 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 0,
-    }),
+    {
+      date: "12 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 1,
+      }),
+    },
+    {
+      date: "13 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 0,
+      }),
+    },
+    {
+      date: "14 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 0,
+      }),
+    },
+    {
+      date: "15 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 0,
+      }),
+    },
   ],
 };

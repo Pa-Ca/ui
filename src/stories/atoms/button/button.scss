@@ -42,10 +42,17 @@
 }
 
 // States
+.button--state-normal {
+  background-color: #EF7A08;
+}
+.button--state-active {
+  background-color: #F3871E;
+}
 .button--state-selected {
-  box-shadow: inset 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #EF7A08;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
 .button--state-inactive {
-  opacity: 0.4;
+  background-color: rgba(239, 122, 8, 0.4);
   cursor: default;
 }

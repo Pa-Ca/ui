@@ -5,7 +5,6 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Range } from "../../atoms/range/Range";
 import getValidHours from "../../utils/getValidHours";
-import { InputFormHook } from "../../hooks/useInputForm";
 import CheckObject from "../../utils/objects/CheckObject";
 import OptionObject from "../../utils/objects/OptionObject";
 import { StarRating } from "../../atoms/starRating/StarRating";
@@ -28,15 +27,23 @@ export interface BranchFilterProps {
   /**
    * Function that change price range
    */
-  setPrices: (numbers: number[]) => void;
+  setPrices: () => void;
   /**
-   * Start hour input hook
+   * Current start hour
    */
-  startHour: InputFormHook<OptionObject>;
+  startHour: OptionObject;
+  /**
+   * Function that change start hour
+   */
+  setStartHour: Function;
   /**
    * Current end hour
    */
-  endHour: InputFormHook<OptionObject>;
+  endHour: OptionObject;
+  /**
+   * Function that change end hour
+   */
+  setEndHour: Function;
   /**
    * Current minimum rating
    */
@@ -44,7 +51,7 @@ export interface BranchFilterProps {
   /**
    * Function that change rating
    */
-  setRating: (value: number) => void;
+  setRating: () => void;
   /**
    * Current cousines values
    */
@@ -52,7 +59,7 @@ export interface BranchFilterProps {
   /**
    * Function that change cousines values
    */
-  setCousines: (objects: CheckObject[]) => void;
+  setCousines: () => void;
   /**
    * Current zones values
    */
@@ -60,7 +67,7 @@ export interface BranchFilterProps {
   /**
    * Function that change zones values
    */
-  setZones: (objects: CheckObject[]) => void;
+  setZones: () => void;
   /**
    * Component main color
    */
@@ -84,7 +91,9 @@ export const BranchFilter = ({
   prices,
   setPrices,
   startHour,
+  setStartHour,
   endHour,
+  setEndHour,
   rating,
   setRating,
   cousines,
@@ -169,10 +178,10 @@ export const BranchFilter = ({
               <Box className="branch-filter--hour">
                 <InputSelect
                   label="Mínimo"
-                  inputHook={startHour}
+                  option={startHour}
+                  setOption={setStartHour}
                   options={getValidHours()}
                   width="100%"
-                  showError={false}
                 />
               </Box>
 
@@ -183,10 +192,10 @@ export const BranchFilter = ({
               <Box className="branch-filter--hour">
                 <InputSelect
                   label="Máximo"
-                  inputHook={endHour}
+                  option={endHour}
+                  setOption={setEndHour}
                   options={getValidHours()}
                   width="100%"
-                  showError={false}
                 />
               </Box>
             </Box>

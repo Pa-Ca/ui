@@ -3,4 +3,4 @@ type ReservationDetail = {
   price: number;
 };
 
-export { type ReservationDetail as default };
+export { ReservationDetail as default };

@@ -14,7 +14,7 @@ interface CheckListProps {
    * Function that changes the Check box list items each time the input select
    * is updated
    */
-  setItems: (objects: CheckObject[]) => void;
+  setItems: Function;
   /**
    * Icons color
    */

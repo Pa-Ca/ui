@@ -1,9 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import useInputForm from "../../hooks/useInputForm";
 import { Header } from './Header';
-import UserDropdownElement from "../../utils/objects/UserDropdownElement";
-import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -46,69 +43,15 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Header> = (args: any) => {
-  const selectedOptionHook = useInputForm("el hatillo");
-  
   return (
-    <Header 
-    selectedOptionHook = {selectedOptionHook}
-    {...args} />
+    <Header {...args} />
   );
 }
-
-const dropdownOptions: UserDropdownElement[] = [
-  {
-    name: 'Edit Profile',
-    func: () => {},
-    icon: "pencil",
-  },
-  {
-    name: 'Logout',
-    func: () => {console.log("logout")},
-    icon: "logout",
-  },
-];
-
-const BranchOptions : BranchDropdownElement[] = [
-  {
-    name: 'Sucursal 1',
-    func: () => {},
-  },
-  {
-    name: 'Sucursal 2',
-    func: () => {},
-  },
-  {
-    name: 'Mi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvador, Mi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvador',
-    func: () => {},
-  },
-  {
-    name: 'Sucursal 2',
-    func: () => {},
-  },
-  {
-    name: 'Sucursal 1',
-    func: () => {},
-  },
-  {
-    name: 'Sucursal 2',
-    func: () => {},
-  },
-  {
-    name: 'Sucursal 1',
-    func: () => {},
-  },
-  {
-    name: 'Sucursal 2',
-    func: () => {},
-  },
-]
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  name: "Daniel Rodríguez",
-  picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
-  color: '#EF7A08',
-  currentBranch : "Los Pollo Hermanos",
-  branchOptions : BranchOptions,
+  picture: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg',
+  name: 'Jonh D.',
+  color: '#EF7A08'
 };

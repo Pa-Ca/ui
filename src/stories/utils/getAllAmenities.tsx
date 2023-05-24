@@ -2,9 +2,11 @@ import AmenityObject from "./objects/AmenityObject"
 
 export default (): AmenityObject[] => {
   return [
+    { name: "Piscina al aire libre", icon: "pool" },
+    { name: "Piscina interior", icon: "pool" },
+    { name: "Centro de spa", icon: "spa" },
     { name: "Bar/Salón", icon: "wine" },
     { name: "Wifi libre", icon: "wifi" },
-    { name: "Parking", icon: "parking" },
     { name: "Wifi libre2", icon: "wifi" },
     { name: "Wifi libre3", icon: "wifi" },
     { name: "Wifi libre4", icon: "wifi" },

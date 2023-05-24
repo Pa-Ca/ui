@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./loginComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import { Button } from "../../atoms/button/Button";
 import useResizeObserver from "../../hooks/useResizeObserver";
+import { InputText } from "../../molecules/inputText/InputText";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
 export interface LoginComponentProps {
-  /**
-   * Indicates if there is a credencial error
-   */
-  error?: boolean;
   /**
    * Images to be displayed in the carousel
    */
@@ -19,7 +17,7 @@ export interface LoginComponentProps {
   /**
    * On login button click
    */
-  onLogin: (email: string, password: string) => void;
+  onLogin: () => void;
   /**
    * On forgot password click
    */
@@ -50,7 +48,6 @@ export interface LoginComponentProps {
  * Primary UI component for user interaction
  */
 export const LoginComponent = ({
-  error = false,
   images = [],
   onLogin,
   onForgotClick,
@@ -84,7 +81,6 @@ export const LoginComponent = ({
           </Box>
 
           <LoginForm
-            error={error}
             onLogin={onLogin}
             onForgotClick={onForgotClick}
             onSignUp={onSignUp}

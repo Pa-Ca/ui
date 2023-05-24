@@ -1,19 +1,14 @@
-import React, { useMemo, MouseEventHandler } from "react";
-import "./profilePicture.scss";
-import { Box } from "../../atoms/box/Box";
-import { Icon } from "../../atoms/icon/Icon";
-import useResizeObserver from "../../hooks/useResizeObserver";
-import UserDropdownElement from "../../utils/objects/UserDropdownElement";
+import React, { useMemo, MouseEventHandler } from 'react';
+import './profilePicture.scss'
+import { Box } from '../../atoms/box/Box';
+import { Icon } from '../../atoms/icon/Icon';
+import useResizeObserver from '../../hooks/useResizeObserver';
 
 interface ProfilePictureProps {
   /**
    * Profile picture
    */
   picture?: string;
-  /**
-   * User name
-   */
-  userName?: string;
   /**
    * Picture size
    */
@@ -25,19 +20,11 @@ interface ProfilePictureProps {
   /**
    * Icon type
    */
-  icon?: "pencil" | "down" | "up";
+  icon?: 'pencil' | 'down' | 'up';
   /**
    * Main color
    */
   color?: string;
-  /**
-   * Possible options
-   */
-  dropdownOptions?: UserDropdownElement[];
-  /**
-   * Boolean controls
-   */
-  view?: Boolean;
   /**
    * On click in profile
    */
@@ -48,13 +35,11 @@ interface ProfilePictureProps {
  * Primary UI component for user interaction
  */
 export const ProfilePicture = ({
+  picture,
   size,
   border,
   icon,
   color,
-  picture,
-  userName,
-  dropdownOptions = [],
   onClick,
   ...props
 }: ProfilePictureProps) => {
@@ -62,39 +47,28 @@ export const ProfilePicture = ({
 
   const iconProportion = useMemo(() => {
     switch (icon) {
-      case "pencil":
-        return 0.7;
-      case "down":
-        return 1;
+      case 'pencil': return 0.7;
+      case 'down': return 1;
     }
-  }, [icon]);
+  }, [icon])
 
   return (
-    <div style={{ position: "relative", width: size, display: "flex", alignItems: "center" }}>
+    <Box
+      backgroundImage={picture}
+      borderRadius='100%'
+      width={size}
+      height={size}
+      style={{ border: `${border} solid ${color}` }}
+      className='profile-picture--container'
+      onClick={onClick}
+    >
       <Box
-        backgroundImage={picture == "" ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" : picture}
-        borderRadius="100%"
-        width={size}
-        height={size}
-        style={{ border: `${border} solid ${color}` }}
-        className="profile-picture--container"
-        onClick={onClick}
+        className='profile-picture--icon'
+        style={{ backgroundColor: color }}
+        innerRef={observer.ref}
       >
-        <Box
-          className="profile-picture--icon"
-          style={{ backgroundColor: color }}
-          innerRef={observer.ref}
-        >
-          <div className="input-select--button">
-            <div className="dropdown-input-select--icon">
-              <Icon
-                icon={icon}
-                size={`${observer.width * iconProportion!}px`}
-              />
-            </div>
-          </div>
-        </Box>
+        <Icon size={`${observer.width * iconProportion!}px`} icon={icon} />
       </Box>
-    </div>
+    </Box>
   );
 };

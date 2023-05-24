@@ -28,8 +28,9 @@ Default.args = {
     logged: true,
     userRole: 'client',
     onPacaClick: () => {},
-    name: "Daniel Rodríguez",
-    picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",  
+    icon: "down",
+    picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+    name: "Jonh D.",
     color: "#EF7A08",
   },
 };

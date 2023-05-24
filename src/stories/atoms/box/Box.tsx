@@ -1,5 +1,5 @@
-import React, { MouseEventHandler, RefObject, useState } from "react";
-import "./box.scss";
+import React, { MouseEventHandler, RefObject } from 'react';
+import './box.scss';
 
 interface BoxProps {
   /**
@@ -20,15 +20,15 @@ interface BoxProps {
   height?: string;
   /**
    * Box background color
-   */
+  */
   backgroundColor?: string;
   /**
    * Box background image from url
    */
   backgroundImage?: string;
   /**
-   * Box padding
-   */
+    * Box padding
+  */
   padding?: string;
   /**
    * Box border radius
@@ -74,18 +74,6 @@ interface BoxProps {
    * Other props
    */
   props?: object;
-  /**
-   * Box on mouse enter function
-   * @default () => {}
-   * @type () => void
-   * */
-  onMouseEnter?: () => void;
-  /**
-   * Box on mouse leave function
-   * @default () => {}
-   * @type () => void
-   * */
-  onMouseLeave?: () => void;
 }
 
 /**
@@ -109,37 +97,34 @@ export const Box = ({
   className,
   innerRef,
   children,
-  onMouseEnter,
-  onMouseLeave,
   ...props
 }: BoxProps): JSX.Element => {
+  
   return (
     <div
       className={[
-        "box",
-        strongShadow ? "box--strong-shadow" : "",
-        weakShadow ? "box--weak-shadow" : "",
-        className,
-      ].join(" ")}
+        'box',
+        strongShadow ? 'box--strong-shadow' : '',
+        weakShadow ? 'box--weak-shadow' : '',
+        className
+      ].join(' ')}
       style={{
-        backgroundColor,
-        padding,
-        width,
-        height,
-        borderRadius,
+        backgroundColor, 
+        padding, 
+        width, 
+        height, 
+        borderRadius, 
         borderTopLeftRadius: borderTopLeftRadius ?? borderRadius,
         borderTopRightRadius: borderTopRightRadius ?? borderRadius,
         borderBottomRightRadius: borderBottomRightRadius ?? borderRadius,
         borderBottomLeftRadius: borderBottomLeftRadius ?? borderRadius,
-        backgroundImage: !!backgroundImage ? `url(${backgroundImage})` : undefined,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        ...style,
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        ...style
       }}
       ref={innerRef}
       onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
       {...props}
     >
       {children}

@@ -1,10 +1,13 @@
-@import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/variables.scss";
 
 .login-component--container {
   display: grid;
   flex-direction: row;
+  padding-top: $welcome-padding;
+  padding-left: $welcome-padding;
+  padding-right: $welcome-padding;
+  padding-bottom: $welcome-padding;
   grid-template-columns: 1fr 1fr;
-  width: 100%;
 }
 .login-component--left-container {
   display: flex;

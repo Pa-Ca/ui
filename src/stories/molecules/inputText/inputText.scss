@@ -1,10 +1,4 @@
-@import "../../assets/scss/variables.module.scss";
-
 .input-text--container {
-  display: flex;
-  flex-direction: column;
-}
-.input-text--input-container {
   height: 56px;
   position: relative;
 
@@ -49,12 +43,12 @@
   justify-content: flex-start;
   background-color: white;
   border-radius: 3px;
-
+  
   top: -10px;
   left: 12px;
   z-index: 1;
 }
-.input-text--icon {
+.text-input--icon {
   flex-shrink: 0;
   width: 48px;
   height: 48px;
@@ -67,31 +61,5 @@
   align-items: center;
   justify-content: center;
 }
-.input-text--error-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 25px;
 
-  animation-name: shake;
-  animation-duration: 0.15s;
-  animation-iteration-count: 2;
-}
-.input-text--error-animation {
-  animation-name: shake;
-}
-.input-text--error-no-animation {
-  animation-name: none;
-}
 
-@keyframes shake {
-  0% {
-    transform: translateX(-3px);
-  }
-  50% {
-    transform: translateX(3px);
-  }
-  100% {
-    transform: translateX(-3px);
-  }
-}

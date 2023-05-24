@@ -29,7 +29,6 @@
   margin-top: 40px;
 }
 .branch-filter--hours-container {
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,8 +36,8 @@
   margin-bottom: 10px;
 }
 .branch-filter--hour { 
-  width: 100%; 
   display: flex; 
+  flex: 1; 
   z-index: 3;
 }
 .branch-filter--hour-conector { 

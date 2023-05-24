@@ -29,14 +29,11 @@ export const BasicPage = ({
 }: BasicPageProps) => {
   return (
     <Box {...props} className="basic-page--container">
-      <Box weakShadow style={{ zIndex: 1 }}>
+      <Box weakShadow>
         <Header {...headerArgs} />
       </Box>
       <Box className="basic-page--content-container">{children}</Box>
-
-      <Box className="basic-page--footer">
-        <Footer />
-      </Box>
+      <Footer />
     </Box>
   );
 };

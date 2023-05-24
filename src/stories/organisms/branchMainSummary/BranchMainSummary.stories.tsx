@@ -36,6 +36,7 @@ Default.args = {
   reviews: 4273,
   category: 'Americana',
   pricePerson: 15.99,
+  location: 'Las Marcedes',
   price: 10,
   promotions: [
     { promotion: 'Margaritas 2X1', date: new Date(), cost: 0, onClick: () => {}, onSave: () => {} },

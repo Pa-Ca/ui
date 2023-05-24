@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import "./fastReserveBox.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
@@ -6,42 +6,55 @@ import { InputDate } from "../inputDate/InputDate";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import { InputSelect } from "../inputSelect/InputSelect";
-import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 
 interface FastReserveBoxProps {
+  /*
+      The height of the box
+  */
+  height?: string;
+  /*
+      The width of the box
+  */
+  width?: string;
+  /*
+      The title of the box
+  */
+  title?: string;
   /**
-   * Current date input hook
+   * Current date (Date variable)
    */
-  date: InputFormHook<Date>;
+  date?: Date;
   /**
-   * Current hour input hook
+   * Function that changes the date
    */
-  hour: InputFormHook<OptionObject>;
+  setDate: (date: Date, event: SyntheticEvent<any, Event> | undefined) => void;
   /**
-   * Current persons number input hook
+   * Current hour (Hour variable)
    */
-  persons: InputFormHook<string>;
+  hour?: OptionObject;
+  /**
+   * Function that changes the hour
+   */
+  setHour?: Function;
   /**
    * Valid hours (Hours that can be selected on the hours input select)
    */
   validHours?: OptionObject[];
   /**
-   * The height of the box
+   * Current persons number (Attendants (Personas) variable)
    */
-  height?: string;
+  persons?: string;
   /**
-   * The width of the box
+   * Function that changes the persons number (Attendants (Personas) variable)
    */
-  width?: string;
-  /**
-   * The title of the box
-   */
-  title?: string;
+  setPersons?: Function;
+
   /**
    * On Reserve button click
    */
   onClickReserve?: () => void;
+
   /**
    * On Find Hour button click
    */
@@ -49,15 +62,18 @@ interface FastReserveBoxProps {
 }
 
 export const FastReserveBox = ({
-  date,
-  hour,
-  persons,
-  validHours,
   height,
   width,
   title = "Haz una Reserva",
   onClickReserve,
   onClickFindHour,
+  date,
+  setDate,
+  hour,
+  setHour,
+  validHours,
+  persons,
+  setPersons,
   ...props
 }: FastReserveBoxProps) => {
   return (
@@ -87,18 +103,24 @@ export const FastReserveBox = ({
         <Box className="fast-reserve-box--input-select-top">
           <InputText
             label="Tamaño de Reserva"
-            inputHook={persons}
+            setValue={setPersons}
+            value={persons}
             type="number"
           />
         </Box>
 
         <Box className="fast-reserve-box--input-select-bottom">
           <Box className="fast-reserve-box--input-select-bottom-left">
-            <InputDate label="Fecha" inputHook={date} />
+            <InputDate label="Fecha" setDate={setDate} date={date} />
           </Box>
 
           <Box className="fast-reserve-box--input-select-bottom-right">
-            <InputSelect label="Hora" inputHook={hour} options={validHours} />
+            <InputSelect
+              label="Hora"
+              option={hour}
+              options={validHours}
+              setOption={setHour}
+            />
           </Box>
         </Box>
 

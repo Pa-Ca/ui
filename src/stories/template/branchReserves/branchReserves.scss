@@ -1,5 +1,5 @@
 @import "../../assets/scss/mixins.scss";
-@import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/variables.scss";
 
 .branch-reserve--header {
   margin-bottom: 30px;
@@ -7,7 +7,7 @@
 .branch-reserve--content-container {
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   scroll-margin-left: 100%;
 
@@ -16,11 +16,4 @@
 .branch-reserve--content {
   display: flex;
   flex-direction: row;
-}
-
-.no-branch-box{
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 40px;
-  margin-top: 20px;
 }

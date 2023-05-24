@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BranchReserves } from "./BranchReserves";
-import useInputForm from "../../hooks/useInputForm";
-import OptionObject from "../../utils/objects/OptionObject";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -14,33 +12,7 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BranchReserves> = (args: any) => {
-  // Reservation data
-  const date = useInputForm<Date >(new Date());
-  const hourIn = useInputForm<OptionObject >({ value: "", name: "" });
-  const hourOut = useInputForm<OptionObject >({ value: "", name: "" });
-  const persons = useInputForm<string >("");
-  const occasion = useInputForm<string >("");
-  
-  // Client data
-  const firstName = useInputForm("");
-  const lastName = useInputForm("");
-  const phone = useInputForm("");
-  const email = useInputForm("");
-  const [showModal, setshowModal] = useState(false);
-
-  return <BranchReserves
-    date={date}
-    hourIn={hourIn}
-    hourOut={hourOut}
-    persons={persons}
-    occasion={occasion}
-    firstName={firstName}
-    lastName={lastName}
-    phone={phone}
-    email={email}
-    showModal={showModal}
-    setShowModal={setshowModal}
-    {...args} />;
+  return <BranchReserves {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -49,46 +21,54 @@ Default.args = {
   header: {
     logged: true,
     onPacaClick: () => {},
-    picture: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
-    name: "Sempre Dritto",
+    picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
+    name: "Jonh D.",
     color: "#EF7A08",
   },
   reservations: [
-    ...new Array(13).fill({
-      start: "6:00 PM",
-      date: "2021-10-10",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 2,
-    }),
-    ...new Array(5).fill({
-      start: "6:00 PM",
-      date: "2021-10-11",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 1,
-    }),
-    ...new Array(8).fill({
-      start: "6:00 PM",
-      date: "2021-10-12",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 1,
-    }),
-    ...new Array(12).fill({
-      start: "6:00 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 2,
-    }),
+    {
+      date: "12 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 1,
+      }),
+    },
+    {
+      date: "13 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 0,
+      }),
+    },
+    {
+      date: "14 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 0,
+      }),
+    },
+    {
+      date: "15 de Febrero",
+      reservations: new Array(5).fill({
+        start: "6:00 PM",
+        owner: "Ivan Tortolero",
+        ownerPhone: "0414-8732414",
+        persons: 6,
+        tables: 6,
+        state: 0,
+      }),
+    },
   ],
 };

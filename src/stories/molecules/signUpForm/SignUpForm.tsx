@@ -1,76 +1,28 @@
-import React from "react";
-import "./signUpForm.scss";
+import React, { useState } from "react";
+import "./SignUpForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
-const styles =
-  require("../../assets/scss/variables.module.scss").default ??
-  require("../../assets/scss/variables.module.scss");
-
-export interface SignUpFormProps {
-  /**
-   * Client first name input hook
-   */
-  firstName?: InputFormHook<string>;
-  /**
-   * Client last name input hook
-   */
-  lastName?: InputFormHook<string>;
-  /**
-   * Business name input hook
-   */
-  businessName?: InputFormHook<string>;
-  /**
-   * Email input hook
-   */
-  email?: InputFormHook<string>;
-  /**
-   * Phone input hook
-   */
-  phone?: InputFormHook<string>;
-  /**
-   * Password input hook
-   */
-  password?: InputFormHook<string>;
-
-  /**
-   * Indicate if the client data is valid
-   */
-  validateClientData?: () => boolean;
-  /**
-   * On business sign up click
-   */
-  validateBusinessData?: () => boolean;
+interface SignUpFormProps {
   /**
    * On login button click
    */
   onLogin: () => void;
   /**
-   * On termas and conditions click
+   * On forgot password click
    */
-  onTermsAndConditionsClick: () => void;
+  onForgotClick: () => void;
   /**
-   * On client sign up click
+   * On sign up click
    */
-  onClientSignUp?: () => void;
-  /**
-   * On business sign up click
-   */
-  onBusinessSignUp?: () => void;
+  onSignUp: () => void;
   /**
    * On sign up using Google click
    */
   onGoogleSignUp: () => void;
-
-  /**
-   * Indicates if the user to register is a business. Otherwise, it will
-   * be considered a client
-   */
-  business?: boolean;
   /**
    * Component main color
    */
@@ -82,7 +34,7 @@ export interface SignUpFormProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string;
+  otherLoginsColor?: string
   /**
    * Component width
    */
@@ -97,22 +49,10 @@ export interface SignUpFormProps {
  * Primary UI component for user interaction
  */
 export const SignUpForm = ({
-  firstName,
-  lastName,
-  businessName,
-  email,
-  phone,
-  password,
-
-  validateClientData = () => true,
-  validateBusinessData = () => true,
-  onLogin = () => {},
-  onTermsAndConditionsClick,
-  onClientSignUp = () => {},
-  onBusinessSignUp = () => {},
-  onGoogleSignUp = () => {},
-
-  business = false,
+  onLogin,
+  onForgotClick,
+  onSignUp,
+  onGoogleSignUp,
   color,
   secondaryColor,
   otherLoginsColor,
@@ -120,140 +60,65 @@ export const SignUpForm = ({
   height,
   ...props
 }: SignUpFormProps) => {
-  const terms = useInputForm<boolean>(
-    false,
-    "Por favor acepte los Términos y Condiciones"
-  );
-  const confirmPassword = useInputForm<string>(
-    "",
-    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
-  );
-
-  const submit = () => {
-    let error = false;
-
-    if (confirmPassword.value !== password!.value) {
-      confirmPassword.setError(1);
-      error = true;
-    } else {
-      confirmPassword.setError(0);
-    }
-
-    if (!terms.value) {
-      terms.setError(1);
-      error = true;
-    } else {
-      terms.setError(0);
-    }
-
-    if (
-      business &&
-      !validateBusinessData()
-    ) {
-      error = true;
-    }
-
-    if (
-      !business &&
-      !validateClientData()
-    ) {
-      error = true;
-    }
-
-    if (error) return;
-
-    if (business) {
-      onBusinessSignUp();
-    } else {
-      onClientSignUp();
-    }
-  };
-
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [terms, setTerms] = useState(false);
+  
   return (
     <Box className="sign-up-form--container" style={{ width, height }}>
       <Box className="sign-up-form--content">
-        {business ? (
-          <Box className="two-inputs-box">
-            <Box className="sign-up-form--input">
-              <InputText inputHook={businessName!} label="Nombre" />
-            </Box>
-            <Box className="sign-up-form--input">
-              <InputText inputHook={email!} label="Correo" />
-            </Box>
+        <Box className="two-inputs-box">
+          <Box className="sign-up-form--input">
+            <InputText value={firstName} setValue={setFirstName} label="Nombre" />
           </Box>
-        ) : (
-          <Box className="two-inputs-box">
-            <Box className="sign-up-form--input">
-              <InputText inputHook={firstName!} label="Nombre" />
-            </Box>
-            <Box className="sign-up-form--input">
-              <InputText inputHook={lastName!} label="Apellido" />
-            </Box>
+          <Box className="sign-up-form--input">
+            <InputText value={lastName} setValue={setLastName} label="Apellido" />
           </Box>
-        )}
-
-        {!business && (
-          <Box className="two-inputs-box">
-            <Box className="sign-up-form--input">
-              <InputText inputHook={email!} label="Correo" />
-            </Box>
-            <Box className="sign-up-form--input">
-              <InputText inputHook={phone!} label="Teléfono" />
-            </Box>
-          </Box>
-        )}
-
-        <Box className="sign-up-form--input">
-          <InputText type="password" inputHook={password!} label="Contraseña" />
         </Box>
-
+        <Box className="two-inputs-box">
+          <Box className="sign-up-form--input">
+            <InputText value={email} setValue={setEmail} label="Correo" />
+          </Box>
+          <Box className="sign-up-form--input">
+            <InputText value={phone} setValue={setPhone} label="Teléfono" />
+          </Box>
+        </Box>
         <Box className="sign-up-form--input">
           <InputText
             type="password"
-            inputHook={confirmPassword}
+            value={password}
+            setValue={setPassword}
+            label="Contraseña"
+          />
+        </Box>
+        <Box className="sign-up-form--input">
+          <InputText
+            type="password"
+            value={confirmPassword}
+            setValue={setConfirmPassword}
             label="Confirmar contraseña"
           />
         </Box>
-
         <Box className="sign-up-form--input">
-          <Box className="terms-input-container">
-            <Box className="terms-input-box">
-              <Box
-                className="sign-up-form--pointer"
-                onClick={() => terms.setValue((check) => !check)}
-              >
-                <Icon icon={terms.value ? "checkbox" : "uncheckbox"} size="24px" />
-              </Box>
-              <Box width="8px" />
-              <Text weight="500" type="h6" color="#112211">
-                Acepto todos los
-              </Text>
-              <Box
-                className="sign-up-form--pointer"
-                onClick={onTermsAndConditionsClick}
-              >
-                <Text color={secondaryColor} type="h6" weight="600">
-                  &nbsp;Términos y Condiciones
-                </Text>
-              </Box>
-            </Box>
+          <Box className="terms-input-box">
             <Box
-              className={
-                "input-text--error-container " +
-                (terms.error
-                  ? "input-text--error-animation"
-                  : "input-text--error-no-animation")
-              }
+              className="sign-up-form--pointer"
+              onClick={() => setTerms((oldTerms) => !oldTerms)}
             >
-              {terms.error && (
-                <>
-                  <Icon icon="alert" color={styles.errorColor} size="20px" />
-                  <Box style={{ width: "10px" }} />
-                  <Text type="h6" color={styles.errorColor}>
-                    Por favor acepte los Términos y Condiciones
-                  </Text>
-                </>
-              )}
+              <Icon icon={terms ? "checkbox" : "uncheckbox"} size="24px" />
+            </Box>
+            <Box width="8px" />
+            <Text weight="500" type="h6" color="#112211">
+              Acepto todos los 
+            </Text>
+            <Box className="sign-up-form--pointer" onClick={onSignUp}>
+              <Text color={secondaryColor} type="h6" weight="600">
+                &nbsp;Términos y Condiciones
+              </Text>
             </Box>
           </Box>
         </Box>
@@ -263,7 +128,7 @@ export const SignUpForm = ({
             primary
             size="large"
             backgroundColor={color}
-            onClick={() => submit()}
+            onClick={onLogin}
           >
             <Box className="sign-up-form--button-text">
               <Text color="white" type="h6" weight="600">
@@ -278,7 +143,7 @@ export const SignUpForm = ({
             {" "}
             ¿Ya tiene una cuenta?{" "}
           </Text>
-          <Box className="sign-up-form--pointer" onClick={onLogin}>
+          <Box className="sign-up-form--pointer" onClick={onSignUp}>
             <Text color={secondaryColor} type="h6" weight="600">
               &nbsp;Inicia Sesión
             </Text>
@@ -305,7 +170,10 @@ export const SignUpForm = ({
             size="large"
             onClick={onGoogleSignUp}
           >
-            <Box className="sign-up-form--other-logins-container" width="100%">
+            <Box
+              className="sign-up-form--other-logins-container"
+              width="100%"
+            >
               <Box className="sign-up-form--other-login-button">
                 <Icon icon="google" size="24px" />
                 <Text> &nbsp;&nbsp;&nbsp;Registrate con Google </Text>

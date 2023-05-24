@@ -46,7 +46,7 @@ export const InputTab = ({
       innerRef={observer.ref}
     >
       {tabs.map((tab, i) => (
-        <Box className="input-tab--tab" key={`input-tab--item-${i}-${tab}`} onClick={() => setIndex(i)}>
+        <Box className="input-tab--tab" onClick={() => setIndex(i)}>
           <Text color="#112211" weight="600">
             {tab}
           </Text>

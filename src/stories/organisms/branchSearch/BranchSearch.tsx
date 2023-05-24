@@ -1,33 +1,48 @@
-import React from "react";
-import "./branchSearch.scss";
-import { Box } from "../../atoms/box/Box";
-import { Icon } from "../../atoms/icon/Icon";
-import { Text } from "../../atoms/text/Text";
-import { Button } from "../../atoms/button/Button";
-import getValidHours from "../../utils/getValidHours";
-import { InputFormHook } from "../../hooks/useInputForm";
-import OptionObject from "../../utils/objects/OptionObject";
-import { InputText } from "../../molecules/inputText/InputText";
-import { InputDate } from "../../molecules/inputDate/InputDate";
-import { InputSelect } from "../../molecules/inputSelect/InputSelect";
+import React from 'react';
+import './branchSearch.scss';
+import { Box } from '../../atoms/box/Box';
+import { Icon } from '../../atoms/icon/Icon';
+import { Text } from '../../atoms/text/Text';
+import { Button } from '../../atoms/button/Button';
+import getValidHours from '../../utils/getValidHours';
+import OptionObject from '../../utils/objects/OptionObject';
+import { InputText } from '../../molecules/inputText/InputText';
+import { InputDate } from '../../molecules/inputDate/InputDate';
+import { InputSelect } from '../../molecules/inputSelect/InputSelect';
 
 interface BranchSearchProps {
   /**
-   * Date input hook
+   * Current date
    */
-  date: InputFormHook<Date>;
+  date?: Date;
   /**
-   * Hour input hook
+   * Function that changes the date
    */
-  hour: InputFormHook<OptionObject>;
+  setDate?: (date: Date) => void;
   /**
-   * Persons number input hook
+   * Current hour
    */
-  persons: InputFormHook<string>;
+  hour?: OptionObject;
   /**
-   * Branch search input hook
+   * Function that changes the hour
    */
-  search: InputFormHook<string>;
+  setHour?: Function;
+  /**
+   * Current persons number
+   */
+  persons?: string;
+  /**
+   * Function that changes the persons number
+   */
+  setPersons?: Function;
+  /**
+   * Current branch search
+   */
+  search?: string;
+  /**
+   * Function that changes the branch search
+   */
+  setSearch?: Function;
   /**
    * On search button click
    */
@@ -51,9 +66,13 @@ interface BranchSearchProps {
  */
 export const BranchSearch = ({
   date,
-  hour,
+  setDate = () => {},
+  hour, 
+  setHour,
   persons,
+  setPersons,
   search,
+  setSearch,
   onClick,
   width,
   height,
@@ -61,44 +80,32 @@ export const BranchSearch = ({
   ...props
 }: BranchSearchProps) => {
   return (
-    <Box className="branch-search--container" style={{ width, height }}>
+    <Box className='branch-search--container' style={{ width, height }}>
       {/* Searchs */}
-      <Box className="branch-search--search-zone">
-        <Box className="branch-search--search-date">
-          <InputDate inputHook={date} minDate={new Date()} />
+      <Box className='branch-search--search-zone'>
+        <Box className='branch-search--search-date'>
+          <InputDate date={date} setDate={setDate} minDate={new Date()} />
         </Box>
 
-        <Box className="branch-search--search-hour">
-          <InputSelect
-            inputHook={hour}
-            options={getValidHours()}
-            label="Hora"
-          />
+        <Box className='branch-search--search-hour'>
+          <InputSelect option={hour} setOption={setHour} options={getValidHours()} label='Hora'/>
         </Box>
 
-        <Box className="branch-search--search-persons">
-          <InputText inputHook={persons} type="number" label="Personas" />
+        <Box className='branch-search--search-persons'>
+          <InputText value={persons} setValue={setPersons} type='number' label='Personas' />
         </Box>
 
-        <Box className="branch-search--search-text">
-          <InputText
-            inputHook={search}
-            label="Locación, Restaurante, Cuisine"
-          />
+        <Box className='branch-search--search-text'>
+          <InputText value={search} setValue={setSearch} label='Locación, Restaurante, Cuisine'/>
         </Box>
       </Box>
 
       {/* Button */}
-      <Box className="branch-search--button-zone">
-        <Button
-          primary={true}
-          size="large"
-          backgroundColor={color}
-          onClick={onClick}
-        >
-          <Box className="branch-search--button" backgroundColor="transparent">
-            <Icon icon="paper-plane" size={"16px"} color="white" />
-            <Text className="branch-search--button-text">
+      <Box className='branch-search--button-zone'>
+        <Button primary={true} size='large' backgroundColor={color} onClick={onClick}>
+          <Box className='branch-search--button' backgroundColor='transparent'>
+            <Icon icon='paper-plane' size={'16px'} color='white' />
+            <Text className='branch-search--button-text'>
               Muéstrame Locales
             </Text>
           </Box>

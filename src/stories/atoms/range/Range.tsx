@@ -9,7 +9,7 @@ interface RangeProps {
   /**
    * Function that set current values
    */
-  setValues?: (numbers: number[]) => void;
+  setValues?: Function;
   /**
    * Min value in range
    */

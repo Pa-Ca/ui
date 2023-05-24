@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/variables.scss";
 
 .branch-profile--container {
   display: flex;
@@ -10,18 +10,6 @@
   width: 100%;
   position: absolute;
   height: 590px;
-}
-.branch-profile--overlay {
-  width: 100%;
-  position: absolute;
-  height: 590px;
-  z-index: 2;
-  background: linear-gradient(
-    0deg,
-    $background-color 0%,
-    rgba(255, 255, 255, 0.1) 15%,
-    rgba(0, 0, 0, 0.4) 90%
-  );
 }
 .branch-profile--header {
   padding-left: calc($horizontal-padding - 35px);
@@ -36,7 +24,7 @@
   flex-direction: column;
   padding-left: $horizontal-padding;
   padding-right: $horizontal-padding;
-  z-index: 4;
+  z-index: 1;
 }
 .branch-profile--main-content {
   display: grid;
@@ -48,7 +36,7 @@
   margin-right: 20px;
 }
 .branch-profile--nav-line {
-  background-color: #8d8e8e;
+  background-color: #8D8E8E; 
   height: 1px;
   align-self: center;
 }

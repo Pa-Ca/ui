@@ -1,8 +1,7 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import "./home.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import useInputForm from "../../hooks/useInputForm";
 import UserData from "../../utils/objects/UserData";
 import getValidHours from "../../utils/getValidHours";
 import { Header } from "../../organisms/header/Header";
@@ -100,10 +99,10 @@ export const Home = ({
   color,
   ...props
 }: HomeProps) => {
-  const search = useInputForm("");
-  const persons = useInputForm("");
-  const hour = useInputForm(getValidHours()[0]);
-  const date = useInputForm<Date>(new Date());
+  const [search, setSearch] = useState("");
+  const [persons, setPersons] = useState("");
+  const [hour, setHour] = useState(getValidHours()[0]);
+  const [date, setDate] = useState<Date | undefined>(undefined);
 
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
@@ -129,11 +128,18 @@ export const Home = ({
     return Math.max(1, Math.floor(observer.width / 530));
   }, [observer.width]);
 
-  const searchFunction = () => {
-    if (typeof hour.value.value === "number") return;
+  const selectPersons = (value: string) => {
+    if (value === "" || parseInt(value) > 1) setPersons(value);
+    else setPersons("1");
+  };
 
-    onSearch(date.value, hour.value.value, parseInt(persons.value), search.value)
-  }
+  const selectDate = (selectedDate: Date) => {
+    if (date !== undefined && selectedDate.getTime() === date.getTime()) {
+      setDate(undefined);
+    } else {
+      setDate(selectedDate);
+    }
+  };
 
   return (
     <Box className="home--container">
@@ -185,10 +191,16 @@ export const Home = ({
           <Box className="home--branch-searcher" width="100%">
             <BranchSearch
               date={date}
+              setDate={(date: Date) => selectDate(date)}
               hour={hour}
+              setHour={setHour}
               persons={persons}
+              setPersons={selectPersons}
               search={search}
-              onClick={searchFunction}
+              setSearch={setSearch}
+              onClick={() =>
+                onSearch(date, hour.value, parseInt(persons), search)
+              }
               width="85%"
               color={color}
             />

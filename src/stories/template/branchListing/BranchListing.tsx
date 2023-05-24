@@ -2,86 +2,16 @@ import React from "react";
 import "./branchListing.scss";
 import { Box } from "../../atoms/box/Box";
 import { BasicPage } from "../basicPage/BasicPage";
-import { InputFormHook } from "../../hooks/useInputForm";
-import CheckObject from "../../utils/objects/CheckObject";
 import { HeaderProps } from "../../organisms/header/Header";
-import OptionObject from "../../utils/objects/OptionObject";
 import { BranchBoard } from "../../organisms/branchBoard/BranchBoard";
 import { BranchItemProps } from "../../organisms/branchItem/BranchItem";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
-import { BranchFilter } from "../../organisms/branchFilter/BranchFilter";
+import {
+  BranchFilter,
+  BranchFilterProps,
+} from "../../organisms/branchFilter/BranchFilter";
 
 interface BranchListing {
-  /**
-   * Date search search input hook
-   */
-  date: InputFormHook<Date>;
-  /**
-   * Hour search input hook
-   */
-  hour: InputFormHook<OptionObject>;
-  /**
-   * Persons number search input hook
-   */
-  persons: InputFormHook<string>;
-  /**
-   * Branch search search input hook
-   */
-  search: InputFormHook<string>;
-  /**
-   * On search button click
-   */
-  onSearch?: () => void;
-
-  /**
-   * Filter minimum price
-   */
-  min: number;
-  /**
-   * Filter maximum price
-   */
-  max: number;
-  /**
-   * Filter current price range
-   */
-  prices: number[];
-  /**
-   * Function that change price range
-   */
-  setPrices: (numbers: number[]) => void;
-  /**
-   * Filter start hour input hook
-   */
-  startHour: InputFormHook<OptionObject>;
-  /**
-   * Filter current end hour
-   */
-  endHour: InputFormHook<OptionObject>;
-  /**
-   * Filter current minimum rating
-   */
-  rating: number;
-  /**
-   * Function that change rating
-   */
-  setRating: (value: number) => void;
-  /**
-   * Filter current cousines values
-   */
-  cousines: CheckObject[];
-  /**
-   * Function that change cousines values
-   */
-  setCousines: (objects: CheckObject[]) => void;
-  /**
-   * Filter current zones values
-   */
-  zones: CheckObject[];
-  /**
-   * Function that change zones values
-   */
-  setZones: (objects: CheckObject[]) => void;
-
   /**
    * Component width
    */
@@ -91,62 +21,46 @@ interface BranchListing {
    * All branch reviews
    */
   branches?: BranchItemProps[];
+
+  /**
+   * Branch filter object for the branch filter component
+   */
+  branchFilter?: BranchFilterProps;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const BranchListing = ({
-  date,
-  hour,
-  persons,
-  search,
-  onSearch = () => {},
-
-  min,
-  max,
-  prices,
-  setPrices,
-  startHour,
-  endHour,
-  rating,
-  setRating,
-  cousines,
-  setCousines,
-  zones,
-  setZones,
-
   headerArgs,
   branches,
+  branchFilter = {
+    min: 0,
+    max: 100,
+    prices: [0, 100],
+    setPrices: () => {},
+    startHour: { value: "00:00", name: "00:00" },
+    setStartHour: () => {},
+    endHour: { value: "00:00", name: "00:00" },
+    setEndHour: () => {},
+    rating: 0,
+    setRating: () => {},
+    cousines: [],
+    setCousines: () => {},
+    zones: [],
+    setZones: () => {},
+    color: "#EF7A08",
+  },
   ...props
 }: BranchListing) => {
   return (
     <BasicPage headerArgs={headerArgs}>
       <Box className="branch-listing--container" weakShadow>
-        <BranchSearch
-          date={date}
-          hour={hour}
-          persons={persons}
-          search={search}
-          onClick={onSearch}
-        />
+        <BranchSearch />
 
         <Box className="branch-listing--columns">
           <Box className="branch-listing--left-column">
-            <BranchFilter
-              min={min}
-              max={max}
-              prices={prices}
-              setPrices={setPrices}
-              startHour={startHour}
-              endHour={endHour}
-              rating={rating}
-              setRating={setRating}
-              cousines={cousines}
-              setCousines={setCousines}
-              zones={zones}
-              setZones={setZones}
-            />
+            <BranchFilter {...branchFilter} />
 
             {/*Create a vertical line */}
           </Box>

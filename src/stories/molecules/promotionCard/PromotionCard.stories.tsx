@@ -1,22 +1,17 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { PromotionCard } from "./PromotionCard";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { PromotionCard } from './PromotionCard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Molecules/PromotionCard",
+  title: 'Design System/Molecules/PromotionCard',
   component: PromotionCard,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
+  argTypes: { 
     onClick: {
       table: {
-        disable: true,
-      },
-    },
-    onSave: {
-      table: {
-        disable: true,
-      },
+        disable: true
+      }
     },
   },
 } as ComponentMeta<typeof PromotionCard>;
@@ -24,14 +19,14 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof PromotionCard> = (args: any) => {
   return <PromotionCard {...args} />;
-};
+}
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  promotion: "2X1 en Aperoles",
+  promotion: '2X1 en Aperoles',
   date: new Date(),
   cost: 0,
-  color: "#EF7A08",
-  secondaryColor: "white",
+  color: '#EF7A08',
+  secondaryColor: 'white'
 };
