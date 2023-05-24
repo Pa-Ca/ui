@@ -1,0 +1,116 @@
+@import "../../assets/scss/variables.module.scss";
+
+.editable-input-text--container {
+  display: flex;
+  flex-direction: column;
+}
+
+.editable-input-text--input-container {
+  display: flex;
+  min-height: 43px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editable-input-text--input:focus {
+  outline: none;
+}
+
+.editable-input-text--select{
+
+  .editable-input-text--select__option {
+    &:nth-child(odd) {
+      background-color: #F1F1F1;
+      color: black;
+    }
+    &:nth-child(even) {
+      background-color: white;
+      color: black;
+    }
+  }
+  .editable-input-text--select__dropdown-indicator {
+    color: black;
+  }
+  .editable-input-text--select__indicator-separator {
+    display: none;
+  }
+  .editable-input-text--select__control {
+    border-color: black;
+    &:hover {
+      border-color: black;
+    }
+  }
+  .editable-input-text--select__menu {
+    border-color: black;
+    box-shadow: none;
+    border: 1px solid black;
+  }
+
+}
+
+
+.editable-input-text--error-message {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 20px;
+
+  animation-name: shake;
+  animation-duration: 0.15s;
+  animation-iteration-count: 2;
+}
+
+.editable-input-text--select {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0px;
+  min-width: 200px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  width: 100%;
+}
+
+.editable-input-text--input {
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Montserrat";
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin-left: 8px;
+  margin-top: 2px;
+  border-bottom: 0.5px solid black;
+  width: 100%;
+}
+
+.editable-input-text--text {
+  font-family: "Montserrat";
+  line-height: 24px;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  width: 100%;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+  }
+}
+
+.editable-input-text--animation {
+  animation-name: shake;
+}
+.editable-input-text--no-animation {
+  animation-name: none;
+}

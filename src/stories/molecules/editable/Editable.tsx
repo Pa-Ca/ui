@@ -81,7 +81,12 @@ export const Editable = ({
           />
         </Box>
       )}
-      <Box className="editable--edit-button-container" width={width}>
+      <Box
+        className="editable--edit-button-container"
+        style={{
+          width: edit ? width : "0",
+        }}
+      >
         <Box
           className="editable--edit-buttons"
           style={{

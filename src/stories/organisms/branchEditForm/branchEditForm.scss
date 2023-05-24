@@ -1,0 +1,69 @@
+.branch-edit-form--container {
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  border-radius: 10px;
+  background-color: #fff;
+  gap: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.branch-edit-form--two-column-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  //gap: 24px;
+  //width: 100%;
+  direction: row;
+}
+
+.branch-edit-form--name-input {
+  //width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.branch-edit-form--input-label {
+  opacity: 0.75;
+}
+
+.branch-edit-form--description-container {
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  //padding: 10px;
+}
+
+.branch-edit-form--precise-location-container {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.branch-edit-form--precise-location-map {
+  height: 377px;
+  border-radius: 16px;
+  margin-bottom: 64px;
+}
+
+.branch-edit-form--input-item {
+  padding-top: 8px;
+}
+.branch-edit-form--modal-container {
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.branch-edit-form--modal-button {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}

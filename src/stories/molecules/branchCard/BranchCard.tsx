@@ -102,7 +102,7 @@ export const BranchCard = ({
         backgroundImage={backgroundImage}
         borderTopLeftRadius='16px'
         borderTopRightRadius='16px'
-        weakShadow={true}
+        weakShadow
         className='branch-card--zone branch-card--image'
         onClick={onClick}
       >
@@ -127,7 +127,7 @@ export const BranchCard = ({
       <Box
         borderBottomLeftRadius='16px'
         borderBottomRightRadius='16px'
-        weakShadow={true}
+        weakShadow
         className='branch-card--zone'
       >
         {/* Title */}
@@ -161,7 +161,7 @@ export const BranchCard = ({
           <Box>
             <Button 
               size='extra-small' 
-              primary={true} 
+              primary
               backgroundColor={color}
               onClick={onFirstReserveClick}
             >
@@ -174,7 +174,7 @@ export const BranchCard = ({
           <Box>
             <Button 
               size='extra-small' 
-              primary={true} 
+              primary
               backgroundColor={color}
               onClick={onSecondReserveClick}
             >

@@ -54,9 +54,9 @@ export const ReviewBoard = ({
   }, [page, reviews, reviewsPerPage]);
 
   const totalScore = useMemo(() => {
-    return (
+    return parseFloat((
       reviews.reduce((sum, review) => sum + review.score, 0) / reviews.length
-    );
+    ).toFixed(1));
   }, [reviews]);
 
   const line = (key?: string) => (

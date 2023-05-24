@@ -1,0 +1,9 @@
+@import "../../assets/scss/variables.module.scss";
+
+.pay-method-selector--container {
+  display: flex;
+  flex-direction: column;
+}
+.pay-method-selector--method {
+  margin-bottom: 16px;
+}

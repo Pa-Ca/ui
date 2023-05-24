@@ -5,6 +5,7 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
+import useInputForm from "../../hooks/useInputForm";
 import { InputSelect } from "../inputSelect/InputSelect";
 import { StarRating } from "../../atoms/starRating/StarRating";
 import getAllBranchCategories from "../../utils/getAllBranchCategories";
@@ -93,10 +94,11 @@ export const BranchContentSummary = ({
   const [pricePersonBackup, setPricePersonBackup] = useState(pricePerson);
   const [currentPricePerson, setCurrentPricePerson] = useState(pricePerson);
   const [categoryBackup, setCategoryBackup] = useState(
-    allCategories.find((c) => c.name === category)
+    allCategories.find((c) => c.name === category)!
   );
-  const [currentCategory, setCurrentCategory] = useState(
-    allCategories.find((c) => c.name === category)
+
+  const currentCategory = useInputForm(
+    allCategories.find((c) => c.name === category)!
   );
 
   const titleRef = useRef<HTMLInputElement>(null);
@@ -120,25 +122,27 @@ export const BranchContentSummary = ({
   const setEditMode = () => {
     setNameBackup(currentName);
     setPriceBackup(currentPrice);
-    setCategoryBackup(currentCategory);
+    setCategoryBackup(currentCategory.value);
     setPricePersonBackup(currentPricePerson);
     setEdit(true);
   };
 
   const saveEdits = () => {
+    if (typeof currentCategory.value.value === "string") return;
+
     setEdit(false);
     onSave(
       currentName,
       currentPrice,
       currentPricePerson,
-      currentCategory?.value ?? -1
+      currentCategory.value.value
     );
   };
 
   const cancelEdits = () => {
     setCurrentName(nameBackup);
     setCurrentPrice(priceBackup);
-    setCurrentCategory(categoryBackup);
+    currentCategory.setValue(categoryBackup);
     setCurrentPricePerson(pricePersonBackup);
     setEdit(false);
   };
@@ -213,15 +217,15 @@ export const BranchContentSummary = ({
           <Box width="5px" />
           {edit ? (
             <InputSelect
-              option={currentCategory}
-              setOption={setCurrentCategory}
-              options={allCategories}
               label=""
               height="20px"
+              showError={false}
+              options={allCategories}
+              inputHook={currentCategory}
             />
           ) : (
             <Text type="h6" color="#112211" opacity={0.75}>
-              {currentCategory?.name}
+              {currentCategory.value?.name}
             </Text>
           )}
 
