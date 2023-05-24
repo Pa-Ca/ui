@@ -235,9 +235,5 @@ Default.args = {
       value: "chacao",
     },
   ],
-<<<<<<< HEAD
   mapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-=======
-  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY
->>>>>>> 0188cac3726ae34ff095296ada64f6143b7d6bcb
 };

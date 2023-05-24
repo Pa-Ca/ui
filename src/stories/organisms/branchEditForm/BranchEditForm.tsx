@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useMemo } from "react";
-=======
 import React, { useMemo, useState } from "react";
->>>>>>> 0188cac3726ae34ff095296ada64f6143b7d6bcb
 import "./branchEditForm.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
