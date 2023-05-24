@@ -140,10 +140,10 @@ export const SignUpForm = ({
     }
 
     if (!terms.value) {
-      terms.setError(true);
+      terms.setError(1);
       error = true;
     } else {
-      terms.setError(false);
+      terms.setError(0);
     }
 
     if (
