@@ -214,6 +214,11 @@ export default {
         disable: true,
       },
     },
+    setShowErrorModal: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BusinessProfile>;
 
@@ -315,4 +320,14 @@ Default.args = {
   mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
   color: "#EF7A08",
   secondaryColor: "#FF8682",
+  incompleteBranches: [
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Licoreria Holiday",
+      incompleteFields: ["Descripción"],
+    },
+  ],
 };

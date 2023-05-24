@@ -3,6 +3,7 @@ import "./businessProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
+import { Modal } from "../../molecules/modal/Modal";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { HeaderProps } from "../../organisms/header/Header";
 import { InputTab } from "../../molecules/inputTab/InputTab";
@@ -13,6 +14,18 @@ import {
   BranchEditForm,
   OptionType,
 } from "../../organisms/branchEditForm/BranchEditForm";
+import { Button } from "../../atoms/button/Button";
+
+interface IncompleteBranch {
+  /**
+   * Branch name
+   */
+  name: string;
+  /**
+   * Incomplete fields
+   */
+  incompleteFields: string[];
+}
 
 interface BusinessProfileProps {
   /**
@@ -106,11 +119,11 @@ interface BusinessProfileProps {
    * */
   branchCapacity: InputFormHook<string>;
   /**
-   * Average reserve time of the branch 
+   * Average reserve time of the branch
    * */
   branchAverageReserveTimeHours: InputFormHook<string>;
   /**
-   * Average reserve time of the branch 
+   * Average reserve time of the branch
    * */
   branchAverageReserveTimeMinutes: InputFormHook<string>;
   /**
@@ -140,7 +153,7 @@ interface BusinessProfileProps {
   /**
    * Opening time minutes of the branch
    */
-  branchOpeningTimeMinute : InputFormHook<string>;
+  branchOpeningTimeMinute: InputFormHook<string>;
   /**
    * Closing time hours of the branch
    */
@@ -148,11 +161,23 @@ interface BusinessProfileProps {
   /**
    * Closing time minutes of the branch
    */
-  branchClosingTimeMinute : InputFormHook<string>;
+  branchClosingTimeMinute: InputFormHook<string>;
   /**
    * Google maps API key
    * */
   mapsApiKey: string;
+  /**
+   * Incomplete branches
+   */
+  incompleteBranches: IncompleteBranch[];
+  /**
+   * Indicates whether to display the error modal when creating a branch
+   */
+  showErrorModal: boolean;
+  /**
+   * Function that change the error modal state
+   */
+  setShowErrorModal: (value: boolean) => void;
 
   /**
    * Function that is executed when the branch name is saved
@@ -253,6 +278,9 @@ export const BusinessProfile = ({
   branchClosingTimeHour,
   branchClosingTimeMinute,
   mapsApiKey,
+  incompleteBranches,
+  showErrorModal,
+  setShowErrorModal,
 
   onSaveBranchName,
   onSaveBranchDescription,
@@ -273,6 +301,7 @@ export const BusinessProfile = ({
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
   const [changePassword, setChangePassword] = useState(false);
+
   const observer = useResizeObserver<HTMLDivElement>();
   const tabObserver = useResizeObserver<HTMLDivElement>();
 
@@ -397,6 +426,62 @@ export const BusinessProfile = ({
             </Box>
           </Box>
         </Box>
+
+        <Modal open={showErrorModal} setOpen={setShowErrorModal}>
+          <Box className="business-profile--modal-centered">
+            <Text type="h4" weight="600" color="#112211">
+              Error creando el local
+              <br />
+              <br />
+            </Text>
+          </Box>
+          <Text type="h6" weight="400" color="#112211">
+            No puedes crear un local mientras algún otro no tiene sus datos
+            completos.
+          </Text>
+          <Text type="h6" weight="400" color="#112211">
+            Los locales que no tienen los datos completos son:
+            <br />
+            <br />
+          </Text>
+
+          <ul>
+            {incompleteBranches.map((branch, i) => (
+              <li
+                key={`business-profile--incomplete-branch-${i}-${branch.name}`}
+              >
+                <Text weight="600" color="#112211">
+                  {branch.name}
+                </Text>
+                <ul>
+                  {branch.incompleteFields.map((field, j) => (
+                    <li
+                      key={`business-profile--incomplete-field-${i}-${branch.name}-${j}-${field}`}
+                    >
+                      <Text type="h6" weight="400" color="#112211">
+                        {field}
+                      </Text>
+                    </li>
+                  ))}
+                </ul>
+                <br />
+              </li>
+            ))}
+          </ul>
+
+          <Box className="business-profile--modal-centered">
+            <Button
+              fullWidth
+              primary
+              onClick={() => setShowErrorModal(false)}
+              backgroundColor={color}
+            >
+              <Box className="business-profile--modal-centered">
+                <Text>Entendido</Text>
+              </Box>
+            </Button>
+          </Box>
+        </Modal>
       </Box>
     </BasicPage>
   );
