@@ -195,7 +195,7 @@ export const EditableInputText = ({
     // We validate the input
     // If its not valid, we show an error message and we do not save the value
     if (!validateInput(inputHook.value)) {
-      inputHook.setError(true);
+      inputHook.setError(1);
       return;
     }
     // We disable the edit mode
@@ -209,7 +209,7 @@ export const EditableInputText = ({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    inputHook.setError(false);
+    inputHook.setError(0);
     // We set the value to the current value (the unedited value)
     inputHook.setValue(backup);
   };

@@ -130,10 +130,10 @@ export const SignUpForm = ({
     let error = false;
 
     if (confirmPassword.value !== password!.value) {
-      confirmPassword.setError(true);
+      confirmPassword.setError(1);
       error = true;
     } else {
-      confirmPassword.setError(false);
+      confirmPassword.setError(0);
     }
 
     if (!terms.value) {
