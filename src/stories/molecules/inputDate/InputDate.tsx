@@ -6,8 +6,11 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import "react-datepicker/dist/react-datepicker.css";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface InputDateProps {
   /**
@@ -66,25 +69,28 @@ export const InputDate = ({
         style={{
           width,
           height,
-          borderColor: inputHook.error ? styles.errorColor : undefined,
-          borderWidth: inputHook.error ? "2.5px" : undefined,
+          borderColor: inputHook.error == 1 ? styles.errorColor : 
+                        inputHook.error == 2 ? styles.warningColor :  undefined,
+          borderWidth: inputHook.error == 1 || inputHook.error == 2
+                        ? "2.5px" : undefined,
         }}
         ref={observer.ref}
         >
         <div className="input-text--content">
           <DatePicker
             selected={inputHook.value}
-            onChange={inputHook.setValue}
+            onChange={(date: Date) => inputHook.setValue(date)}
             onSelect={inputHook.setValue}
             customInput={<DateInputButton />}
             minDate={minDate}
             />
 
           <div className="input-text--label">
-            <Text 
+            <Text
               type="h6"
-              weight="400"
-              color={inputHook.error ? styles.errorColor : undefined}
+              weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
+              color={inputHook.error == 1 ? styles.errorColor :
+                      inputHook.error == 2 ? styles.warningColor : undefined}
             >
               &nbsp;{label}&nbsp;
             </Text>
@@ -94,16 +100,25 @@ export const InputDate = ({
       <div
         className={
           "input-text--error-container " +
-          (inputHook.error
+          (inputHook.error == 1 || inputHook.error == 2
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
           }
           >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

@@ -9,7 +9,6 @@
   padding-bottom: 32px;
   padding-left: 24px;
   padding-right: 24px;
-  height: 1157px;
 }
 
 .branch-edit-form--two-column-row {
@@ -40,19 +39,31 @@
 }
 
 .branch-edit-form--precise-location-container {
-  height: 220px;
   display: flex;
-  flex-direction: column;
   align-items: left;
+  flex-direction: column;
   justify-content: flex-start;
 }
 
 .branch-edit-form--precise-location-map {
   height: 377px;
   border-radius: 16px;
-  display: flex;
+  margin-bottom: 64px;
 }
 
 .branch-edit-form--input-item {
   padding-top: 8px;
+}
+.branch-edit-form--modal-container {
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.branch-edit-form--modal-button {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
 }

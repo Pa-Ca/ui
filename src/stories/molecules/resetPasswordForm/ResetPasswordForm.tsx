@@ -5,8 +5,11 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import styles from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface ResetPasswordFormProps {
   /**

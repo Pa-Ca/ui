@@ -198,6 +198,10 @@ interface BusinessProfileProps {
    * On save event for the closing time
    * */
   onSaveBranchClosingTime: (hour: string, minute: string) => void;
+  /**
+   * On delete branch
+   */
+  onDeleteBranch: () => void;
 
   /**
    * Component main color
@@ -261,6 +265,7 @@ export const BusinessProfile = ({
   onSaveBranchMapsLink,
   onSaveBranchOpeningTime,
   onSaveBranchClosingTime,
+  onDeleteBranch,
 
   color,
   secondaryColor,
@@ -360,6 +365,7 @@ export const BusinessProfile = ({
                   closingTimeHour={branchClosingTimeHour}
                   closingTimeMinute={branchClosingTimeMinute}
                   mapsApiKey={mapsApiKey}
+                  email={email.value}
                   onSaveName={onSaveBranchName}
                   onSaveDescription={onSaveBranchDescription}
                   onSaveLocation={onSaveBranchLocation}
@@ -371,6 +377,7 @@ export const BusinessProfile = ({
                   onSaveMapsLink={onSaveBranchMapsLink}
                   onSaveOpeningTime={onSaveBranchOpeningTime}
                   onSaveClosingTime={onSaveBranchClosingTime}
+                  onDeleteBranch={onDeleteBranch}
                   color={color}
                 />
               ) : (
