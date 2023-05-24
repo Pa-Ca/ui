@@ -159,8 +159,8 @@ export const EditableInputTime = ({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    hoursInputHook.setError(false);
-    minutesInputHook.setError(false);
+    hoursInputHook.setError(0);
+    minutesInputHook.setError(0);
     // We set the value to the current value (the unedited value)
     hoursInputHook.setValue(backupHour);
     minutesInputHook.setValue(backupMinutes);

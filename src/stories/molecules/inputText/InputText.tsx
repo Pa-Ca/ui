@@ -85,6 +85,8 @@ export const InputText = ({
     }
   }, [icon]);
 
+  inputHook.setError(2);
+
   return (
     <div className="input-text--container">
       <div
@@ -92,8 +94,10 @@ export const InputText = ({
         style={{
           width,
           height,
-          borderColor: inputHook.error ? styles.errorColor : undefined,
-          borderWidth: inputHook.error ? "2.5px" : undefined,
+          borderColor: inputHook.error == 1 ? styles.errorColor : 
+                        inputHook.error == 2 ? styles.warningColor :  undefined,
+          borderWidth: inputHook.error == 1 || inputHook.error == 2
+                        ? "2.5px" : undefined,
         }}
       >
         <div className="input-text--content">
@@ -109,8 +113,9 @@ export const InputText = ({
           <div className="input-text--label">
             <Text
               type="h6"
-              weight={inputHook.error ? "600" : "400"}
-              color={inputHook.error ? styles.errorColor : undefined}
+              weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
+              color={inputHook.error == 1 ? styles.errorColor :
+                      inputHook.error == 2 ? styles.warningColor : undefined}
             >
               &nbsp;{label}&nbsp;
             </Text>
@@ -127,16 +132,25 @@ export const InputText = ({
       <div
         className={
           "input-text--error-container " +
-          (inputHook.error
+          (inputHook.error == 1 || inputHook.error == 2
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
         }
       >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>
