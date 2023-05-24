@@ -267,7 +267,7 @@ const globalArgs = {
     lat: 10.42673633648665,
     lng: -66.87739422453691,
     location: "El Hatillo, Caracas, Venezuela",
-    apiKey: process.env.GOOGLE_MAPS_API_KEY,
+    apiKey: process.env.GOOGLE_MAPS_API_KEY!,
   },
 };
 

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./signUpForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import styles from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 export interface SignUpFormProps {
   /**
@@ -137,10 +140,10 @@ export const SignUpForm = ({
     }
 
     if (!terms.value) {
-      terms.setValue(true);
+      terms.setError(true);
       error = true;
     } else {
-      terms.setValue(false);
+      terms.setError(false);
     }
 
     if (

@@ -28,7 +28,6 @@ Default.args = {
     logged: true,
     userRole: 'client',
     onPacaClick: () => {},
-    icon: "down",
     name: "Daniel Rodríguez",
     picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",  
     color: "#EF7A08",

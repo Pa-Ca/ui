@@ -8,8 +8,11 @@ import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { useDraggable } from "react-use-draggable-scroll";
 import OptionObject from "../../utils/objects/OptionObject";
-import styles from "../../assets/scss/variables.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
+
+const styles =
+  require("../../assets/scss/variables.module.scss").default ??
+  require("../../assets/scss/variables.module.scss");
 
 interface InputSelectProps {
   /**
@@ -107,10 +110,12 @@ export const InputSelect = ({
         innerRef={observer.ref}
         backgroundColor="white"
         style={{
-          height,
           width,
-          borderColor: inputHook.error ? styles.errorColor : undefined,
-          borderWidth:inputHook.error ? "2.5px" : undefined
+          height,
+          borderColor: inputHook.error == 1 ? styles.errorColor : 
+                        inputHook.error == 2 ? styles.warningColor :  undefined,
+          borderWidth: inputHook.error == 1 || inputHook.error == 2
+                        ? "2.5px" : undefined,
         }}
       >
         <div className="input-text--content">
@@ -125,8 +130,9 @@ export const InputSelect = ({
             {label.length > 0 && (
               <Text
                 type="h6"
-                weight={inputHook.error ? "600" : "400"}
-                color={inputHook.error ? styles.errorColor : undefined}
+                weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
+                color={inputHook.error == 1 ? styles.errorColor :
+                        inputHook.error == 2 ? styles.warningColor : undefined}
               >
                 &nbsp;{label}&nbsp;
               </Text>
@@ -192,17 +198,26 @@ export const InputSelect = ({
       <div
         className={
           "input-text--error-container " +
-          (inputHook.error
+          (inputHook.error == 1 || inputHook.error == 2
             ? "input-text--error-animation"
             : "input-text--error-no-animation")
         }
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error && (
+        {inputHook.error == 1 && (
           <>
             <Icon icon="alert" color={styles.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styles.errorColor}>
+              {inputHook.errorMessage}
+            </Text>
+          </>
+        )}
+        {inputHook.error == 2 && (
+          <>
+            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styles.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

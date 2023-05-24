@@ -209,13 +209,18 @@ export default {
         disable: true,
       },
     },
+    onDeleteBranch: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof BusinessProfile>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
-  const name = useInputForm("");
-  const email = useInputForm("");
+  const name = useInputForm("Example Business");
+  const email = useInputForm("example@example.com");
   const password = useInputForm("");
   const phoneNumber = useInputForm("");
   const newPassword = useInputForm("");
