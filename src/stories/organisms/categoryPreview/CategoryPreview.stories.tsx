@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { CategoryPreview } from "./CategoryPreview";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,10 +14,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof CategoryPreview>;
+} as Meta<typeof CategoryPreview>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof CategoryPreview> = (args: any) => {
+const Template: StoryFn<typeof CategoryPreview> = (args: any) => {
   return <CategoryPreview {...args} />;
 };
 

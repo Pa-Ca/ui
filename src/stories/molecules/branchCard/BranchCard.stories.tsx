@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { BranchCard } from './BranchCard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -24,10 +24,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof BranchCard>;
+} as Meta<typeof BranchCard>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchCard> = (args: any) => {
+const Template: StoryFn<typeof BranchCard> = (args: any) => {
   return <BranchCard {...args} />;
 }
 

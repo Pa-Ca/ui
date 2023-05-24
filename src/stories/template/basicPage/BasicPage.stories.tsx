@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BasicPage } from "./BasicPage";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,10 +14,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BasicPage>;
+} as Meta<typeof BasicPage>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BasicPage> = (args: any) => {
+const Template: StoryFn<typeof BasicPage> = (args: any) => {
   return <BasicPage {...args} />;
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ReservationCheckOut } from "./ReservationCheckOut";
 import AmenityObject from "../../utils/objects/AmenityObject";
 
@@ -10,10 +10,10 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
   },
-} as ComponentMeta<typeof ReservationCheckOut>;
+} as Meta<typeof ReservationCheckOut>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ReservationCheckOut> = (args: any) => {
+const Template: StoryFn<typeof ReservationCheckOut> = (args: any) => {
   return <ReservationCheckOut {...args} />;
 };
 

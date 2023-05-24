@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Range } from './Range';
 
@@ -20,10 +20,10 @@ export default {
       }
     }
   },
-} as ComponentMeta<typeof Range>;
+} as Meta<typeof Range>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Range> = (args: any) => {
+const Template: StoryFn<typeof Range> = (args: any) => {
   const [values, setValues] = useState([args.min, args.max])
   return (
     <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 50 }}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Editable } from "./Editable";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -24,10 +24,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Editable>;
+} as Meta<typeof Editable>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Editable> = (args: any) => {
+const Template: StoryFn<typeof Editable> = (args: any) => {
   return <Editable {...args} />;
 };
 

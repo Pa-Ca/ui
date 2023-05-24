@@ -1,7 +1,7 @@
 import React from "react";
 import useInputForm from "../../hooks/useInputForm";
 import { EditableInputTime } from "./EditableInputTime";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 export default {
   title: "Design System/molecules/EditableInputTime",
@@ -39,10 +39,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof EditableInputTime>;
+} as Meta<typeof EditableInputTime>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof EditableInputTime> = (args: any) => {
+const Template: StoryFn<typeof EditableInputTime> = (args: any) => {
   const hoursInputHook = useInputForm("");
   const minutesInputHook = useInputForm("");
   return (

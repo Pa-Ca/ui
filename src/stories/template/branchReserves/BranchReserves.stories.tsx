@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BranchReserves } from "./BranchReserves";
 import useInputForm from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
@@ -10,10 +10,10 @@ export default {
   component: BranchReserves,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof BranchReserves>;
+} as Meta<typeof BranchReserves>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchReserves> = (args: any) => {
+const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   // Reservation data
   const date = useInputForm<Date >(new Date());
   const hourIn = useInputForm<OptionObject >({ value: "", name: "" });

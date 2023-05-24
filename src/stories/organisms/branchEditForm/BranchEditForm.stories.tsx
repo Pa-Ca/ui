@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BranchEditForm } from "./BranchEditForm";
 import useInputForm from "../../hooks/useInputForm";
 
@@ -144,7 +144,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BranchEditForm>;
+} as Meta<typeof BranchEditForm>;
 
 const createHours = () => {
   let hours = [];
@@ -162,7 +162,7 @@ const createHours = () => {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchEditForm> = (args: any) => {
+const Template: StoryFn<typeof BranchEditForm> = (args: any) => {
   const name = useInputForm("Ni un brillo pelao");
   const description = useInputForm(
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"

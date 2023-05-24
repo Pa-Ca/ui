@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { StarRating } from './StarRating';
 
@@ -15,10 +15,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof StarRating>;
+} as Meta<typeof StarRating>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof StarRating> = (args: any) => {
+const Template: StoryFn<typeof StarRating> = (args: any) => {
   if (args.readonly) {
     return (<StarRating {...args} />);
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import { FastReserveBox } from "./FastReserveBox";
 import useInputForm from "../../hooks/useInputForm";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 const validHours = [
   { value: "1", name: "9:00 am" },
@@ -60,10 +60,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FastReserveBox>;
+} as Meta<typeof FastReserveBox>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof FastReserveBox> = (args: any) => {
+const Template: StoryFn<typeof FastReserveBox> = (args: any) => {
   const date = useInputForm(new Date());
   const hour = useInputForm({ value: "", name: "" });
   const persons = useInputForm("1");

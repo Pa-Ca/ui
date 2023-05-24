@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -19,10 +19,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ForgotPasswordForm>;
+} as Meta<typeof ForgotPasswordForm>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ForgotPasswordForm> = (args: any) => {
+const Template: StoryFn<typeof ForgotPasswordForm> = (args: any) => {
   return <ForgotPasswordForm {...args} />;
 };
 

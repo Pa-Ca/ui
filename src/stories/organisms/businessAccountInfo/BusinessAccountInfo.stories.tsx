@@ -1,7 +1,7 @@
 import React from "react";
 import useInputForm from "../../hooks/useInputForm";
 import { BusinessAccountInfo } from "./BusinessAccountInfo";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -65,10 +65,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BusinessAccountInfo>;
+} as Meta<typeof BusinessAccountInfo>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BusinessAccountInfo> = (args: any) => {
+const Template: StoryFn<typeof BusinessAccountInfo> = (args: any) => {
   const name = useInputForm("");
   const email = useInputForm("");
   const phoneNumber = useInputForm("");

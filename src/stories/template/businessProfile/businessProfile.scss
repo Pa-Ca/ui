@@ -21,3 +21,8 @@
   align-items: center;
   flex-direction: column;
 }
+.business-profile--modal-data {
+  max-width: 80vh;
+  max-height: 60vh;
+  overflow-y: auto;
+}

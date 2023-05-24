@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { SignUpComponent } from "./SignUpComponent";
 import useInputForm from "../../hooks/useInputForm";
 
@@ -15,10 +15,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SignUpComponent>;
+} as Meta<typeof SignUpComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SignUpComponent> = (args: any) => {
+const Template: StoryFn<typeof SignUpComponent> = (args: any) => {
   const firstName = useInputForm("");
   const lastName = useInputForm("");
   const businessName = useInputForm("");

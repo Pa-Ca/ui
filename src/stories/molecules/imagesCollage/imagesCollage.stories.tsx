@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ImagesCollage } from "./imagesCollage";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,10 +14,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ImagesCollage>;
+} as Meta<typeof ImagesCollage>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ImagesCollage> = (args: any) => {
+const Template: StoryFn<typeof ImagesCollage> = (args: any) => {
   return <ImagesCollage {...args} />;
 };
 

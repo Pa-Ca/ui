@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { AddPromotionCard } from './AddPromotionCard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,10 +14,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof AddPromotionCard>;
+} as Meta<typeof AddPromotionCard>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof AddPromotionCard> = (args: any) => {
+const Template: StoryFn<typeof AddPromotionCard> = (args: any) => {
   return <AddPromotionCard {...args} />;
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Modal } from "./Modal";
 import { Text } from "../../atoms/text/Text";
 
@@ -20,10 +20,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Modal>;
+} as Meta<typeof Modal>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Modal> = (args: any) => {
+const Template: StoryFn<typeof Modal> = (args: any) => {
   const [value, setValue] = useState("");
   return <Modal value={value} setValue={setValue} {...args} >
     <Text> Este es un modal </Text>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { CheckList } from './CheckList';
 import CheckObject from '../../utils/objects/CheckObject';
 
@@ -15,7 +15,7 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof CheckList>;
+} as Meta<typeof CheckList>;
 
 const items_: CheckObject[] = [
   {
@@ -47,7 +47,7 @@ const items_: CheckObject[] = [
 
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof CheckList> = (args: any) => {
+const Template: StoryFn<typeof CheckList> = (args: any) => {
   const [items, setItems] = useState(items_);
   return (
     <CheckList

@@ -1,7 +1,7 @@
 import React from "react";
 import { BranchSearch } from "./BranchSearch";
 import useInputForm from "../../hooks/useInputForm";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -35,10 +35,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BranchSearch>;
+} as Meta<typeof BranchSearch>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchSearch> = (args: any) => {
+const Template: StoryFn<typeof BranchSearch> = (args: any) => {
   const date = useInputForm(new Date());
   const hour = useInputForm({ name: "", value: "" });
   const persons = useInputForm("");

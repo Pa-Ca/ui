@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ReserveDetails } from "./ReserveDetails";
 import useInputForm from "../../hooks/useInputForm";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -45,7 +45,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ReserveDetails>;
+} as Meta<typeof ReserveDetails>;
 
 const validHours = [
   { value: "00:00:00", name: "00:00:00" },
@@ -88,7 +88,7 @@ const validHours = [
 ];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ReserveDetails> = (args: any) => {
+const Template: StoryFn<typeof ReserveDetails> = (args: any) => {
   const date = useInputForm(new Date());
   const hourIn = useInputForm({ value: "", name: "" });
   const hourOut = useInputForm({ value: "", name: "" });

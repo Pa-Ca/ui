@@ -1,7 +1,7 @@
 import React from "react";
 import useInputForm from "../../hooks/useInputForm";
 import { EditableInputText } from "./EditableInputText";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 export default {
   title: "Design System/molecules/EditableInputText",
@@ -39,10 +39,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof EditableInputText>;
+} as Meta<typeof EditableInputText>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof EditableInputText> = (args: any) => {
+const Template: StoryFn<typeof EditableInputText> = (args: any) => {
   const inputHook = useInputForm("");
   return <EditableInputText inputHook={inputHook} {...args} />;
 };

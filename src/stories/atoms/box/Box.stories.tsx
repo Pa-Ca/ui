@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Box } from './Box';
 
@@ -15,10 +15,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof Box>;
+} as Meta<typeof Box>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Box> = (args: any) => {
+const Template: StoryFn<typeof Box> = (args: any) => {
   return <Box {...args} >
     <span>
       This is a Box

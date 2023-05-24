@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Home } from "./Home";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -64,10 +64,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Home>;
+} as Meta<typeof Home>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Home> = (args: any) => {
+const Template: StoryFn<typeof Home> = (args: any) => {
   return <Home {...args} />;
 };
 

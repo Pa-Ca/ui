@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { RecoverPasswordComponent } from "./RecoverPasswordComponent";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -24,10 +24,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof RecoverPasswordComponent>;
+} as Meta<typeof RecoverPasswordComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof RecoverPasswordComponent> = (args: any) => {
+const Template: StoryFn<typeof RecoverPasswordComponent> = (args: any) => {
   return <RecoverPasswordComponent {...args} />;
 };
 

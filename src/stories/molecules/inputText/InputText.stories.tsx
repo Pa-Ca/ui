@@ -1,7 +1,7 @@
 import React from "react";
 import { InputText } from "./InputText";
 import useInputForm from "../../hooks/useInputForm";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -20,10 +20,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof InputText>;
+} as Meta<typeof InputText>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof InputText> = (args: any) => {
+const Template: StoryFn<typeof InputText> = (args: any) => {
   const value = useInputForm("");
   return <InputText inputHook={value} {...args} />;
 };

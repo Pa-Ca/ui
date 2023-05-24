@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { AmenityList } from "./AmenityList";
 import AmenityObject from "../../utils/objects/AmenityObject";
 
@@ -20,7 +20,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof AmenityList>;
+} as Meta<typeof AmenityList>;
 
 const list: AmenityObject[] = [
   { name: "Piscina al aire libre", icon: "pool" },
@@ -48,7 +48,7 @@ const list: AmenityObject[] = [
 ];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof AmenityList> = (args: any) => {
+const Template: StoryFn<typeof AmenityList> = (args: any) => {
   return <AmenityList amenityList={list} {...args} />;
 };
 

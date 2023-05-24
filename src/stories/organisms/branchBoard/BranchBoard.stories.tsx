@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { BranchBoard } from './BranchBoard';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,10 +14,10 @@ export default {
       }
     }
   },
-} as ComponentMeta<typeof BranchBoard>;
+} as Meta<typeof BranchBoard>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchBoard> = (args: any) => {
+const Template: StoryFn<typeof BranchBoard> = (args: any) => {
   return (
     <BranchBoard {...args} />
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { BranchFilter } from './BranchFilter';
 import CheckObject from '../../utils/objects/CheckObject';
 
@@ -70,7 +70,7 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof BranchFilter>;
+} as Meta<typeof BranchFilter>;
 
 const cousines_: CheckObject[] = [
   {
@@ -114,7 +114,7 @@ const zones_: CheckObject[] = [
 ];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchFilter> = (args: any) => {
+const Template: StoryFn<typeof BranchFilter> = (args: any) => {
   const [rating, setRating] = useState(0);
   const [zones, setZones] = useState(zones_);
   const [startHour, setStartHour] = useState({ value: '', name: '' });

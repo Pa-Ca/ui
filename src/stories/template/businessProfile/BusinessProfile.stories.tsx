@@ -1,7 +1,7 @@
 import React from "react";
 import { BusinessProfile } from "./BusinessProfile";
 import useInputForm from "../../hooks/useInputForm";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -220,10 +220,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BusinessProfile>;
+} as Meta<typeof BusinessProfile>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BusinessProfile> = (args: any) => {
+const Template: StoryFn<typeof BusinessProfile> = (args: any) => {
   const name = useInputForm("Example Business");
   const email = useInputForm("example@example.com");
   const password = useInputForm("");
@@ -317,7 +317,6 @@ Default.args = {
       value: "chacao",
     },
   ],
-  mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
   color: "#EF7A08",
   secondaryColor: "#FF8682",
   incompleteBranches: [
@@ -328,6 +327,34 @@ Default.args = {
     {
       name: "Licoreria Holiday",
       incompleteFields: ["Descripción"],
+    },
+    {
+      name: "Nombre muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy largo",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
+    },
+    {
+      name: "Sempre Dritto",
+      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
     },
   ],
 };

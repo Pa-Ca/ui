@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ProfilePicture } from "./ProfilePicture";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 
@@ -15,10 +15,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ProfilePicture>;
+} as Meta<typeof ProfilePicture>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ProfilePicture> = (args: any) => {
+const Template: StoryFn<typeof ProfilePicture> = (args: any) => {
   return <ProfilePicture {...args} />;
 };
 

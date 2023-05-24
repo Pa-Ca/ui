@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
 import { Text } from './Text';
 
@@ -15,10 +15,10 @@ export default {
       }
     }
   },
-} as ComponentMeta<typeof Text>;
+} as Meta<typeof Text>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Text> = (args: any) => {
+const Template: StoryFn<typeof Text> = (args: any) => {
   return (
     <Text {...args} >
       Text example

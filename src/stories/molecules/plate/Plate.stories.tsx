@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Plate } from './Plate';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -24,10 +24,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof Plate>;
+} as Meta<typeof Plate>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Plate> = (args: any) => {
+const Template: StoryFn<typeof Plate> = (args: any) => {
   return <Plate {...args} />;
 }
 

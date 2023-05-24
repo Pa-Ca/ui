@@ -1,6 +1,6 @@
 import React from "react";
 import useInputForm from "../../hooks/useInputForm";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ResetPasswordComponent } from "./ResetPasswordComponent";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -25,10 +25,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ResetPasswordComponent>;
+} as Meta<typeof ResetPasswordComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ResetPasswordComponent> = (args: any) => {
+const Template: StoryFn<typeof ResetPasswordComponent> = (args: any) => {
   const password = useInputForm("");
   return <ResetPasswordComponent password={password} {...args} />;
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { PayMethod } from "./PayMethod";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,10 +14,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof PayMethod>;
+} as Meta<typeof PayMethod>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof PayMethod> = (args: any) => {
+const Template: StoryFn<typeof PayMethod> = (args: any) => {
   return <PayMethod {...args} />;
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Paginable } from "./Paginable";
 import { Text } from "../../atoms/text/Text";
 import { Box } from "../../atoms/box/Box";
@@ -26,10 +26,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Paginable>;
+} as Meta<typeof Paginable>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Paginable> = (args: any) => {
+const Template: StoryFn<typeof Paginable> = (args: any) => {
   const numberList = Array.from(Array(1000).keys());
   const [currentList, setCurrentList] = useState(numberList.slice(0, 5));
 

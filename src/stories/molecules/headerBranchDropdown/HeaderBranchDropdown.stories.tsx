@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { HeaderBranchDropdown } from "./HeaderBranchDropdown";
 import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
@@ -15,10 +15,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof HeaderBranchDropdown>;
+} as Meta<typeof HeaderBranchDropdown>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof HeaderBranchDropdown> = (args: any) => {
+const Template: StoryFn<typeof HeaderBranchDropdown> = (args: any) => {
   return <HeaderBranchDropdown {...args} />;
 };
 

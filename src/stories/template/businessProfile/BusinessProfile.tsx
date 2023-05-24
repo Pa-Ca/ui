@@ -428,58 +428,63 @@ export const BusinessProfile = ({
         </Box>
 
         <Modal open={showErrorModal} setOpen={setShowErrorModal}>
-          <Box className="business-profile--modal-centered">
-            <Text type="h4" weight="600" color="#112211">
-              Error creando el local 
+          <Box className="business-profile--modal-container">
+            <Box className="business-profile--modal-centered">
+              <Text type="h4" weight="600" color="#112211">
+                Error creando el local
+                <br />
+                <br />
+              </Text>
+            </Box>
+            <Text type="h6" weight="400" color="#112211">
+              No puedes crear un local mientras algún otro no tiene sus datos
+              completos.
+            </Text>
+            <Text type="h6" weight="400" color="#112211">
+              Los locales que no tienen los datos completos son:
               <br />
               <br />
             </Text>
-          </Box>
-          <Text type="h6" weight="400" color="#112211">
-            No puedes crear un local mientras algún otro no tiene sus datos
-            completos.
-          </Text>
-          <Text type="h6" weight="400" color="#112211">
-            Los locales que no tienen los datos completos son:
-            <br />
-            <br />
-          </Text>
 
-          <ul>
-            {incompleteBranches.map((branch, i) => (
-              <li
-                key={`business-profile--incomplete-branch-${i}-${branch.name}`}
+            <Box className="business-profile--modal-data">
+              <ul>
+                {incompleteBranches.map((branch, i) => (
+                  <li
+                    key={`business-profile--incomplete-branch-${i}-${branch.name}`}
+                  >
+                    <Text weight="600" color="#112211">
+                      {branch.name}
+                    </Text>
+                    <ul>
+                      {branch.incompleteFields.map((field, j) => (
+                        <li
+                          key={`business-profile--incomplete-field-${i}-${branch.name}-${j}-${field}`}
+                        >
+                          <Text type="h6" weight="400" color="#112211">
+                            {field}
+                          </Text>
+                        </li>
+                      ))}
+                    </ul>
+                    <br />
+                  </li>
+                ))}
+              </ul>
+            </Box>
+
+            <Box height="32px" />
+            <Box className="business-profile--modal-centered">
+              <Button
+                fullWidth
+                primary
+                onClick={() => setShowErrorModal(false)}
+                backgroundColor={color}
               >
-                <Text weight="600" color="#112211">
-                  {branch.name}
-                </Text>
-                <ul>
-                  {branch.incompleteFields.map((field, j) => (
-                    <li
-                      key={`business-profile--incomplete-field-${i}-${branch.name}-${j}-${field}`}
-                    >
-                      <Text type="h6" weight="400" color="#112211">
-                        {field}
-                      </Text>
-                    </li>
-                  ))}
-                </ul>
-                <br />
-              </li>
-            ))}
-          </ul>
-
-          <Box className="business-profile--modal-centered">
-            <Button
-              fullWidth
-              primary
-              onClick={() => setShowErrorModal(false)}
-              backgroundColor={color}
-            >
-              <Box className="business-profile--modal-centered">
-                <Text>Entendido</Text>
-              </Box>
-            </Button>
+                <Box className="business-profile--modal-centered">
+                  <Text>Entendido</Text>
+                </Box>
+              </Button>
+            </Box>
           </Box>
         </Modal>
       </Box>

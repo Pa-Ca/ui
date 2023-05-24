@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Footer } from './Footer';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -9,10 +9,10 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
   },
-} as ComponentMeta<typeof Footer>;
+} as Meta<typeof Footer>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Footer> = (args: any) => {
+const Template: StoryFn<typeof Footer> = (args: any) => {
   return (
     <Footer {...args} />
   );

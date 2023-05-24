@@ -197,12 +197,9 @@ export const BranchEditForm = ({
   color,
   ...props
 }: BranchEditFormProps) => {
-<<<<<<< HEAD
-=======
   const [deleteBranch, setDeleteBranch] = useState(false);
   const emailInput = useInputForm("");
 
->>>>>>> 0188cac3726ae34ff095296ada64f6143b7d6bcb
   const locationName = useMemo(() => {
     const match = mapsLink.value.match(/\/place\/(.*?)\//);
     if (match) {

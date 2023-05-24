@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BranchLocation } from "./BranchLocation";
 
 
@@ -9,10 +9,10 @@ export default {
   component: BranchLocation,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof BranchLocation>;
+} as Meta<typeof BranchLocation>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchLocation> = (args: any) => {
+const Template: StoryFn<typeof BranchLocation> = (args: any) => {
   return <BranchLocation {...args} />;
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { ImagesCarousel } from './ImagesCarousel';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -24,10 +24,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof ImagesCarousel>;
+} as Meta<typeof ImagesCarousel>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ImagesCarousel> = (args: any) => {
+const Template: StoryFn<typeof ImagesCarousel> = (args: any) => {
   return <ImagesCarousel {...args} />;
 }
 

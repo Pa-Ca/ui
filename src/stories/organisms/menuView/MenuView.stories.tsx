@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { MenuView } from "./MenuView";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -9,10 +9,10 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: { 
   },
-} as ComponentMeta<typeof MenuView>;
+} as Meta<typeof MenuView>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof MenuView> = (args: any) => {
+const Template: StoryFn<typeof MenuView> = (args: any) => {
   return (
     <MenuView {...args} />
   );

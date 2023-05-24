@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { InputTab } from "./InputTab";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -19,10 +19,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof InputTab>;
+} as Meta<typeof InputTab>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof InputTab> = (args: any) => {
+const Template: StoryFn<typeof InputTab> = (args: any) => {
   const [index, setIndex] = useState(0);
 
   return <InputTab index={index} setIndex={setIndex} tabs={args.tabs} />;

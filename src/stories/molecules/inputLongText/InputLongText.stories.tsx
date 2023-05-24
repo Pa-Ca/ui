@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { InputLongText } from './InputLongText';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -19,10 +19,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof InputLongText>;
+} as Meta<typeof InputLongText>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof InputLongText> = (args: any) => {
+const Template: StoryFn<typeof InputLongText> = (args: any) => {
   const [value, setValue] = useState('');
   return <InputLongText value={value} setValue={setValue} {...args} />;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { InputSelect } from "./InputSelect";
 import useInputForm from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -21,10 +21,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof InputSelect>;
+} as Meta<typeof InputSelect>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof InputSelect> = (args: any) => {
+const Template: StoryFn<typeof InputSelect> = (args: any) => {
   const options: OptionObject[] = [
     {
       value: "option1",

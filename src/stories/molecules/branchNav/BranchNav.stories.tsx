@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { BranchNav } from './BranchNav';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -39,10 +39,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof BranchNav>;
+} as Meta<typeof BranchNav>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchNav> = (args: any) => {
+const Template: StoryFn<typeof BranchNav> = (args: any) => {
   return <BranchNav {...args} />;
 }
 

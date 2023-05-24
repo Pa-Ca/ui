@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BranchListing } from "./BranchListing";
 import useInputForm from "../../hooks/useInputForm";
 import CheckObject from "../../utils/objects/CheckObject";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { exampleLongBranchList } from "../../organisms/branchItem/BranchItem";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -17,7 +17,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BranchListing>;
+} as Meta<typeof BranchListing>;
 
 const cousines_: CheckObject[] = [
   {
@@ -61,7 +61,7 @@ const zones_: CheckObject[] = [
 ];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BranchListing> = (args: any) => {
+const Template: StoryFn<typeof BranchListing> = (args: any) => {
   const search = useInputForm("");
   const persons = useInputForm("");
   const date = useInputForm(new Date());

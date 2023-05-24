@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import useInputForm from "../../hooks/useInputForm";
 import { Header } from './Header';
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
@@ -42,10 +42,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof Header>;
+} as Meta<typeof Header>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Header> = (args: any) => {
+const Template: StoryFn<typeof Header> = (args: any) => {
   const selectedOptionHook = useInputForm("el hatillo");
   
   return (

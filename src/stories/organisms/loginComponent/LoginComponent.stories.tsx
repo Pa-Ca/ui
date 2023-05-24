@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { LoginComponent } from "./LoginComponent";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -29,10 +29,10 @@ export default {
       }
     },
   },
-} as ComponentMeta<typeof LoginComponent>;
+} as Meta<typeof LoginComponent>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof LoginComponent> = (args: any) => {
+const Template: StoryFn<typeof LoginComponent> = (args: any) => {
   return <LoginComponent {...args} />;
 };
 
