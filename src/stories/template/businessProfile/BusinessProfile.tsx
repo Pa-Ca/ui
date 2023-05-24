@@ -16,7 +16,7 @@ import {
 } from "../../organisms/branchEditForm/BranchEditForm";
 import { Button } from "../../atoms/button/Button";
 
-interface IncompleteBranch {
+export interface IncompleteBranch {
   /**
    * Branch name
    */
