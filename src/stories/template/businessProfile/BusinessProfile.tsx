@@ -35,7 +35,22 @@ interface BusinessProfileProps {
   /**
    * On create new branch button click
    */
-  onCreateBranch: () => void;
+  onCreateBranch: (
+    name: string,
+    phoneNumber: string,
+    price: string,
+    type: string,
+    capacity: string,
+    location: string,
+    averageReserveTimeHours: string,
+    averageReserveTimeMinutes: string,
+    openingTimeHour: string,
+    openingTimeMinute: string,
+    closingTimeHour: string,
+    closingTimeMinute: string,
+    description: string,
+    mapsLink: string
+  ) => void;
   /**
    * Function that is executed when clicking on the profile picture
    */
@@ -567,11 +582,35 @@ export const BusinessProfile = ({
                 inputHook={newBranchMapsLink}
               />
               <Text type="h6" weight="400" color="#6C6C6C">
-                Esta ubicación debe ser un enlace de Google Maps. Este se usará para mostrar la ubicación del local en la aplicación.
+                Esta ubicación debe ser un enlace de Google Maps. Este se usará
+                para mostrar la ubicación del local en la aplicación.
               </Text>
             </Box>
 
-            <Button fullWidth primary backgroundColor={color} size="large">
+            <Button
+              fullWidth
+              primary
+              backgroundColor={color}
+              size="large"
+              onClick={() =>
+                onCreateBranch(
+                  newBranchName.value,
+                  newBranchPhone.value,
+                  newBranchPrice.value,
+                  newBranchType.value.text!,
+                  newBranchCapacity.value,
+                  newBranchLocation.value.text!,
+                  newBranchAverageReserveTimeHours.value,
+                  newBranchAverageReserveTimeMinutes.value,
+                  newBranchOpeningTimeHour.value,
+                  newBranchOpeningTimeMinute.value,
+                  newBranchClosingTimeHour.value,
+                  newBranchClosingTimeMinute.value,
+                  newBranchDescription.value,
+                  newBranchMapsLink.value
+                )
+              }
+            >
               <Box className="business-profile--button-create-branch">
                 <Text weight="600">Crear Local</Text>
               </Box>
