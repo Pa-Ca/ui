@@ -15,9 +15,8 @@ import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
-import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
 import { InputLongText } from "../../molecules/inputLongText/InputLongText";
-import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
+import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
 
 interface BusinessProfileProps {
   /**
@@ -36,20 +35,20 @@ interface BusinessProfileProps {
    * On create new branch button click
    */
   onCreateBranch: (
-    name: string,
-    phoneNumber: string,
-    price: string,
-    type: string,
-    capacity: string,
-    location: string,
-    averageReserveTimeHours: string,
-    averageReserveTimeMinutes: string,
-    openingTimeHour: string,
-    openingTimeMinute: string,
-    closingTimeHour: string,
-    closingTimeMinute: string,
-    description: string,
-    mapsLink: string
+    name: InputFormHook<string>,
+    phoneNumber: InputFormHook<string>,
+    price: InputFormHook<string>,
+    type: InputFormHook<OptionObject>,
+    capacity: InputFormHook<string>,
+    location: InputFormHook<OptionObject>,
+    averageReserveTimeHours: InputFormHook<string>,
+    averageReserveTimeMinutes: InputFormHook<string>,
+    openingTimeHour: InputFormHook<string>,
+    openingTimeMinute: InputFormHook<string>,
+    closingTimeHour: InputFormHook<string>,
+    closingTimeMinute: InputFormHook<string>,
+    description: InputFormHook<string>,
+    mapsLink: InputFormHook<string>
   ) => void;
   /**
    * Function that is executed when clicking on the profile picture
@@ -595,20 +594,20 @@ export const BusinessProfile = ({
               size="large"
               onClick={() =>
                 onCreateBranch(
-                  newBranchName.value,
-                  newBranchPhone.value,
-                  newBranchPrice.value,
-                  newBranchType.value.text!,
-                  newBranchCapacity.value,
-                  newBranchLocation.value.text!,
-                  newBranchAverageReserveTimeHours.value,
-                  newBranchAverageReserveTimeMinutes.value,
-                  newBranchOpeningTimeHour.value,
-                  newBranchOpeningTimeMinute.value,
-                  newBranchClosingTimeHour.value,
-                  newBranchClosingTimeMinute.value,
-                  newBranchDescription.value,
-                  newBranchMapsLink.value
+                  newBranchName,
+                  newBranchPhone,
+                  newBranchPrice,
+                  newBranchType,
+                  newBranchCapacity,
+                  newBranchLocation,
+                  newBranchAverageReserveTimeHours,
+                  newBranchAverageReserveTimeMinutes,
+                  newBranchOpeningTimeHour,
+                  newBranchOpeningTimeMinute,
+                  newBranchClosingTimeHour,
+                  newBranchClosingTimeMinute,
+                  newBranchDescription,
+                  newBranchMapsLink
                 )
               }
             >
