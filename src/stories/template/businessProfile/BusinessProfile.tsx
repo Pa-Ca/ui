@@ -308,8 +308,8 @@ export const BusinessProfile = ({
   const newBranchClosingTimeHour = useInputForm("00");
   const newBranchOpeningTimeMinute = useInputForm("00");
   const newBranchClosingTimeMinute = useInputForm("00");
-  const newBranchAverageReserveTimeHours = useInputForm("");
-  const newBranchAverageReserveTimeMinutes = useInputForm("");
+  const newBranchAverageReserveTimeHours = useInputForm("00");
+  const newBranchAverageReserveTimeMinutes = useInputForm("00");
   const newBranchType = useInputForm<OptionObject>({ label: "", text: "" });
   const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
 
@@ -452,6 +452,7 @@ export const BusinessProfile = ({
                 Completa los datos para crear un nuevo local{" "}
               </Text>
             </Box>
+
             <Box>
               <InputText
                 required
