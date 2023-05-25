@@ -26,6 +26,10 @@ interface InputSelectProps {
    */
   label?: string;
   /**
+   * Indicates if the input is required
+   */
+  required?: boolean;
+  /**
    * Indicates if the space should be placed to show possible errors
    */
   showError?: boolean;
@@ -46,6 +50,7 @@ export const InputSelect = ({
   inputHook,
   options = [],
   label = "Text select",
+  required,
   showError = true,
   width,
   height,
@@ -110,10 +115,14 @@ export const InputSelect = ({
         style={{
           width,
           height,
-          borderColor: inputHook.error == 1 ? styles.errorColor : 
-                        inputHook.error == 2 ? styles.warningColor :  undefined,
-          borderWidth: inputHook.error == 1 || inputHook.error == 2
-                        ? "2.5px" : undefined,
+          borderColor:
+            inputHook.error == 1
+              ? styles.errorColor
+              : inputHook.error == 2
+              ? styles.warningColor
+              : undefined,
+          borderWidth:
+            inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
       >
         <div className="input-text--content">
@@ -121,16 +130,28 @@ export const InputSelect = ({
             className="text text--h6 input-text--input"
             onClick={selectDropdown}
           >
-            {inputHook.value.name}
+            {inputHook.value.label!}
           </button>
 
           <div className="input-text--label">
+            {required && (
+              <Text color="red" weight="400">
+                *
+              </Text>
+            )}
             {label.length > 0 && (
               <Text
                 type="h6"
-                weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
-                color={inputHook.error == 1 ? styles.errorColor :
-                        inputHook.error == 2 ? styles.warningColor : undefined}
+                weight={
+                  inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
+                }
+                color={
+                  inputHook.error == 1
+                    ? styles.errorColor
+                    : inputHook.error == 2
+                    ? styles.warningColor
+                    : undefined
+                }
               >
                 &nbsp;{label}&nbsp;
               </Text>
@@ -174,14 +195,14 @@ export const InputSelect = ({
               return (
                 <div
                   style={{ ...optionStyle }}
-                  key={`input-select--option-${option.name}`}
+                  key={`input-select--option-${option.label}`}
                 >
                   <button
                     className="input-select--option-button"
                     style={{ backgroundColor, ...optionStyle }}
                     onClick={() => selectOption(option)}
                   >
-                    <Text type="h6">&nbsp;{option.name}&nbsp;</Text>
+                    <Text type="h6">&nbsp;{option.label}&nbsp;</Text>
                   </button>
                 </div>
               );

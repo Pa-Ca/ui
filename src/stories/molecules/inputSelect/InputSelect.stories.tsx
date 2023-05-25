@@ -27,41 +27,41 @@ export default {
 const Template: StoryFn<typeof InputSelect> = (args: any) => {
   const options: OptionObject[] = [
     {
-      value: "option1",
-      name: "Option 1",
+      label: "option1",
+      text: "Option 1",
     },
     {
-      value: "option2",
-      name: "Option 2",
+      label: "option2",
+      text: "Option 2",
     },
     {
-      value: "option3",
-      name: "Option 3",
+      label: "option3",
+      text: "Option 3",
     },
     {
-      value: "option4",
-      name: "Option 4",
+      label: "option4",
+      text: "Option 4",
     },
     {
-      value: "option5",
-      name: "Option 5",
+      label: "option5",
+      text: "Option 5",
     },
     {
-      value: "option6",
-      name: "Option 6",
+      label: "option6",
+      text: "Option 6",
     },
     {
-      value: "option7",
-      name: "Option 7",
+      label: "option7",
+      text: "Option 7",
     },
     {
-      value: "option8",
-      name: "Very very very very very very very very very very very very very very very very very very very very very large Option",
+      label: "option8",
+      text: "Very very very very very very very very very very very very very very very very very very very very very large Option",
     },
   ];
   const inputHook = useInputForm<OptionObject | undefined>({
-    value: "",
-    name: "",
+    label: "",
+    text: "",
   });
   return <InputSelect inputHook={inputHook} options={options} {...args} />;
 };

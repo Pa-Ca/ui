@@ -77,8 +77,8 @@ export const ReservationCheckOutBeta = ({
 
   // Reservation data
   const date = useInputForm<Date >(new Date());
-  const hourIn = useInputForm<OptionObject >({ value: "", name: "" });
-  const hourOut = useInputForm<OptionObject >({ value: "", name: "" });
+  const hourIn = useInputForm<OptionObject >({ text: "", label: "" });
+  const hourOut = useInputForm<OptionObject >({ text: "", label: "" });
   const persons = useInputForm<string >("");
   const occasion = useInputForm<string >("");
 

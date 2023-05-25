@@ -14,7 +14,15 @@ interface InputTextProps {
   /**
    * Input type
    */
-  type?: "text" | "number" | "natural number" | "password";
+  type?: "text" | "number" | "naturalNumber" | "password" | "phoneNumber";
+  /**
+   * Indicates if the input is required
+   */
+  required?: boolean;
+  /**
+   * Indicates if the space should be placed to show possible errors
+   */
+  showError?: boolean;
   /**
    * Label to be displayed at the top of the input
    */
@@ -27,7 +35,6 @@ interface InputTextProps {
    * Input height
    */
   height?: string;
-
   /**
    * Input placeholder
    */
@@ -40,6 +47,8 @@ interface InputTextProps {
 export const InputText = ({
   inputHook,
   type = "text",
+  required,
+  showError = true,
   label = "Text input",
   width,
   height,
@@ -50,9 +59,12 @@ export const InputText = ({
   const [currentType, setCurrentType] = useState(type);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (type == "natural number"){
-      event.target.value = event.target.value
-      .replace(/[^0-9]/g, "")
+    if (type == "naturalNumber") {
+      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    } else if (type === "phoneNumber") {
+      // If the the input is a phone number we apply the following rules:
+      // remove all characters except digits and plus sign
+      event.target.value = event.target.value.replace(/[^0-9+]/g, "");
     }
     inputHook.setValue(event.target.value);
   };
@@ -84,7 +96,7 @@ export const InputText = ({
         );
     }
   }, [icon]);
-  
+
   return (
     <div className="input-text--container">
       <div
@@ -92,28 +104,48 @@ export const InputText = ({
         style={{
           width,
           height,
-          borderColor: inputHook.error == 1 ? styles.errorColor : 
-                        inputHook.error == 2 ? styles.warningColor :  undefined,
-          borderWidth: inputHook.error == 1 || inputHook.error == 2
-                        ? "2.5px" : undefined,
+          borderColor:
+            inputHook.error == 1
+              ? styles.errorColor
+              : inputHook.error == 2
+              ? styles.warningColor
+              : undefined,
+          borderWidth:
+            inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
       >
         <div className="input-text--content">
           <input
-            placeholder = {placeholder}
-            type={currentType == "number" ||
-                  currentType == "text" ||
-                  currentType == "password" ? currentType : "text"}
+            placeholder={placeholder}
+            type={
+              currentType == "number" ||
+              currentType == "text" ||
+              currentType == "password"
+                ? currentType
+                : "text"
+            }
             value={inputHook.value}
             onChange={changeValue}
             className="input-text--input text text--h6"
           />
           <div className="input-text--label">
+            {required && (
+              <Text color="red" weight="400">
+                *
+              </Text>
+            )}
             <Text
               type="h6"
-              weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
-              color={inputHook.error == 1 ? styles.errorColor :
-                      inputHook.error == 2 ? styles.warningColor : undefined}
+              weight={
+                inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
+              }
+              color={
+                inputHook.error == 1
+                  ? styles.errorColor
+                  : inputHook.error == 2
+                  ? styles.warningColor
+                  : undefined
+              }
             >
               &nbsp;{label}&nbsp;
             </Text>
@@ -127,33 +159,35 @@ export const InputText = ({
         )}
       </div>
 
-      <div
-        className={
-          "input-text--error-container " +
-          (inputHook.error == 1 || inputHook.error == 2
-            ? "input-text--error-animation"
-            : "input-text--error-no-animation")
-        }
-      >
-        {inputHook.error == 1 && (
-          <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
-            <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
-              {inputHook.errorMessage}
-            </Text>
-          </>
-        )}
-        {inputHook.error == 2 && (
-          <>
-            <Icon icon="warning" color={styles.warningColor} size="20px" />
-            <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
-              {inputHook.errorMessage}
-            </Text>
-          </>
-        )}
-      </div>
+      {showError && (
+        <div
+          className={
+            "input-text--error-container " +
+            (inputHook.error == 1 || inputHook.error == 2
+              ? "input-text--error-animation"
+              : "input-text--error-no-animation")
+          }
+        >
+          {inputHook.error == 1 && (
+            <>
+              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <div style={{ width: "10px" }} />
+              <Text type="h6" color={styles.errorColor}>
+                {inputHook.errorMessage}
+              </Text>
+            </>
+          )}
+          {inputHook.error == 2 && (
+            <>
+              <Icon icon="warning" color={styles.warningColor} size="20px" />
+              <div style={{ width: "10px" }} />
+              <Text type="h6" color={styles.warningColor}>
+                {inputHook.errorMessage}
+              </Text>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -117,7 +117,7 @@ export const ReserveDetails = ({
           </Box>
 
           <Box width="100%" className="reserve-details--input1">
-            <InputText inputHook={persons} type="natural number" label="* Personas" />
+            <InputText inputHook={persons} type="naturalNumber" label="* Personas" />
           </Box>
         </Box>
 
