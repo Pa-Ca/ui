@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './uploadProfilePictureForm.scss';
-import Avatar from 'react-avatar-edit';
+import CustomAvatar from './customAvatar';
 import { Box } from '../../atoms/box/Box';
 import { Text } from '../../atoms/text/Text';
 import { Button } from '../../atoms/button/Button';
@@ -73,14 +73,14 @@ export const UploadProfilePictureForm = ({
 
       {(showAvatar && src) ? (
         <Box className="upload-profile-picture-form--crop-canvas-container">
-          <Avatar
-            width={300}
-            height={295}
-            onCrop={onCrop}
-            onClose={onClose}
-            shadingColor="rgba(0, 0, 0, 0.5)"
-            onBeforeFileLoad={onBeforeFileLoad}
-            src={src}
+          <CustomAvatar
+            // width={300}
+            // height={295}
+            // onCrop={onCrop}
+            // onClose={onClose}
+            // shadingColor="rgba(0, 0, 0, 0.5)"
+            // onBeforeFileLoad={onBeforeFileLoad}
+            // src={src}
           />
         </Box>
       ) : (
