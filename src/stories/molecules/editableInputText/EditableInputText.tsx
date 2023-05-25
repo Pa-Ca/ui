@@ -331,7 +331,7 @@ export const EditableInputText = ({
         className={classnames(
           "editable-input-text--error-message",
           className,
-          inputHook.error
+          inputHook.error == 1
             ? "editable-input-text--animation"
             : "editable-input-text--no-animation"
         )}
