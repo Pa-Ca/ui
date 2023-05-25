@@ -47,6 +47,14 @@ interface BranchReservesProps {
    */
   email: InputFormHook<string>;
   /**
+   * Branch avrg reservation time hour
+   */
+  durationHour: number;
+  /**
+   * Branch avrg reservation time minute
+   */
+  durationMin: number;
+  /**
    * Reservation date input hook
    */
   date: InputFormHook<Date>;
@@ -104,6 +112,8 @@ interface BranchReservesProps {
  * Primary UI component for user interaction
  */
 export const BranchReserves = ({
+  durationHour,
+  durationMin,
   reservations,
   color,
   header,
@@ -120,7 +130,7 @@ export const BranchReserves = ({
   occasion,
   submitButtonColor,
   haveBranch = true,
-  icon_size = "400px",
+  icon_size,
   showModal,
   setShowModal,
   onSubmit,
@@ -187,6 +197,7 @@ export const BranchReserves = ({
                 objectsPerPage={10}
               >
                 <ReserveList
+                  icon_size={icon_size}
                   reservations={currentActiveReservation}
                   color={color}
                   state={2}
@@ -195,7 +206,9 @@ export const BranchReserves = ({
                 <Box height="40px" />
               </Paginable>
             </Box>
+
             <Box width="30px" />
+
             <Box width="100%">
               <Paginable
                 list={pendingReservations}
@@ -203,6 +216,7 @@ export const BranchReserves = ({
                 objectsPerPage={10}
               >
                 <ReserveList
+                  icon_size={icon_size}
                   reservations={currentPendingReservation}
                   color={color}
                   state={1}
@@ -233,6 +247,8 @@ export const BranchReserves = ({
 
           {/* Reservation Form */}
           <ReserveDetails
+            durationHour={durationHour}
+            durationMin={durationMin}
             date={date}
             hourIn={hourIn}
             validHoursIn={validHoursIn}
@@ -251,7 +267,7 @@ export const BranchReserves = ({
             backgroundColor={submitButtonColor}
             onClick={() => onSubmit()}
           >
-            <Box className="login-form--button-text">
+            <Box className="submit-reservation--button-text">
               <Text color="white" type="h6" weight="600">
                 Completar Reserva
               </Text>

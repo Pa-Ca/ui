@@ -16,8 +16,8 @@ export default {
 const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   // Reservation data
   const date = useInputForm<Date >(new Date());
-  const hourIn = useInputForm<OptionObject >({ value: "", name: "" });
-  const hourOut = useInputForm<OptionObject >({ value: "", name: "" });
+  const hourIn = useInputForm<OptionObject >({ text: "", label: "" });
+  const hourOut = useInputForm<OptionObject >({ text: "", label: "" });
   const persons = useInputForm<string >("");
   const occasion = useInputForm<string >("");
   
@@ -53,6 +53,9 @@ Default.args = {
     name: "Sempre Dritto",
     color: "#EF7A08",
   },
+  icon_size : "450px",
+  durationHour: 1,
+  durationMin: 30,
   reservations: [
     ...new Array(13).fill({
       start: "6:00 PM",

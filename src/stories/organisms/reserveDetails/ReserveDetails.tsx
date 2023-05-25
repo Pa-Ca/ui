@@ -15,6 +15,14 @@ import {
 
 interface ReserveDetailsProps {
   /**
+   * Branch avrg reservation time hour
+   */
+  durationHour: number;
+  /**
+   * Branch avrg reservation time minute
+   */
+  durationMin: number;
+  /**
    * Current date
    */
   date: InputFormHook<Date>;
@@ -68,6 +76,8 @@ interface ReserveDetailsProps {
  * Primary UI component for user interaction
  */
 export const ReserveDetails = ({
+  durationHour,
+  durationMin,
   date,
   hourIn,
   validHoursIn,
@@ -113,11 +123,11 @@ export const ReserveDetails = ({
       <Box>
         <Box className="reserve-details--input-container">
           <Box width="100%" className="reserve-details--input-date">
-            <InputDate inputHook={date} minDate={new Date()} />
+            <InputDate required inputHook={date} minDate={new Date()} />
           </Box>
 
           <Box width="100%" className="reserve-details--input1">
-            <InputText inputHook={persons} type="natural number" label="* Personas" />
+            <InputText required inputHook={persons} type="naturalNumber" label="Personas" />
           </Box>
         </Box>
 
@@ -126,9 +136,10 @@ export const ReserveDetails = ({
         <Box className="reserve-details--input-container">
           <Box width="100%" style={{ zIndex: 2 }}>
             <InputSelect
+              required
               inputHook={hourIn}
               options={validHoursIn}
-              label="* Llegada"
+              label="Llegada"
             />
           </Box>
 
@@ -139,6 +150,9 @@ export const ReserveDetails = ({
               label="Salida"
             />
           </Box>
+        </Box>
+        <Box>
+          <Text type="p"> La duración esperada de la reserva es de {durationHour} hora(s) y {durationMin} minuto(s) </Text>
         </Box>
       </Box>
 

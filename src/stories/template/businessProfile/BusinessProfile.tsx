@@ -3,30 +3,22 @@ import "./businessProfile.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
+import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
-import { InputFormHook } from "../../hooks/useInputForm";
+import OptionObject from "../../utils/objects/OptionObject";
 import { HeaderProps } from "../../organisms/header/Header";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
+import { InputText } from "../../molecules/inputText/InputText";
+import { InputTime } from "../../molecules/inputTime/InputTime";
+import { InputSelect } from "../../molecules/inputSelect/InputSelect";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
+import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
+import { InputLongText } from "../../molecules/inputLongText/InputLongText";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
-import  { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
-import {
-  BranchEditForm,
-  OptionType,
-} from "../../organisms/branchEditForm/BranchEditForm";
-import { Button } from "../../atoms/button/Button";
 
-export interface IncompleteBranch {
-  /**
-   * Branch name
-   */
-  name: string;
-  /**
-   * Incomplete fields
-   */
-  incompleteFields: string[];
-}
+import  { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 
 interface BusinessProfileProps {
   /**
@@ -44,7 +36,22 @@ interface BusinessProfileProps {
   /**
    * On create new branch button click
    */
-  onCreateBranch: () => void;
+  onCreateBranch: (
+    name: InputFormHook<string>,
+    phoneNumber: InputFormHook<string>,
+    price: InputFormHook<string>,
+    type: InputFormHook<OptionObject>,
+    capacity: InputFormHook<string>,
+    location: InputFormHook<OptionObject>,
+    averageReserveTimeHours: InputFormHook<string>,
+    averageReserveTimeMinutes: InputFormHook<string>,
+    openingTimeHour: InputFormHook<string>,
+    openingTimeMinute: InputFormHook<string>,
+    closingTimeHour: InputFormHook<string>,
+    closingTimeMinute: InputFormHook<string>,
+    description: InputFormHook<string>,
+    mapsLink: InputFormHook<string>
+  ) => void;
   /**
    * Function that is executed when clicking on the profile picture
    */
@@ -138,11 +145,11 @@ interface BusinessProfileProps {
   /**
    * Options for the branch type
    * */
-  branchTypeOptions: OptionType[];
+  branchTypeOptions: OptionObject[];
   /**
    * Options for the branch location
    * */
-  branchLocationOptions: OptionType[];
+  branchLocationOptions: OptionObject[];
   /**
    * Precise location of the branch (Google maps link)
    * */
@@ -167,18 +174,6 @@ interface BusinessProfileProps {
    * Google maps API key
    * */
   mapsApiKey: string;
-  /**
-   * Incomplete branches
-   */
-  incompleteBranches: IncompleteBranch[];
-  /**
-   * Indicates whether to display the error modal when creating a branch
-   */
-  showErrorModal: boolean;
-  /**
-   * Function that change the error modal state
-   */
-  setShowErrorModal: (value: boolean) => void;
 
   /**
    * Function that is executed when the branch name is saved
@@ -284,9 +279,6 @@ export const BusinessProfile = ({
   branchClosingTimeHour,
   branchClosingTimeMinute,
   mapsApiKey,
-  incompleteBranches,
-  showErrorModal,
-  setShowErrorModal,
 
   onSaveBranchName,
   onSaveBranchDescription,
@@ -312,6 +304,23 @@ export const BusinessProfile = ({
   const observer = useResizeObserver<HTMLDivElement>();
   const tabObserver = useResizeObserver<HTMLDivElement>();
 
+  // New branch data
+  const [showCreateBranchModal, setShowCreateBranchModal] = useState(false);
+  const newBranchName = useInputForm("");
+  const newBranchPhone = useInputForm("");
+  const newBranchPrice = useInputForm("");
+  const newBranchMapsLink = useInputForm("");
+  const newBranchCapacity = useInputForm("1");
+  const newBranchDescription = useInputForm("");
+  const newBranchOpeningTimeHour = useInputForm("00");
+  const newBranchClosingTimeHour = useInputForm("00");
+  const newBranchOpeningTimeMinute = useInputForm("00");
+  const newBranchClosingTimeMinute = useInputForm("00");
+  const newBranchAverageReserveTimeHours = useInputForm("00");
+  const newBranchAverageReserveTimeMinutes = useInputForm("00");
+  const newBranchType = useInputForm<OptionObject>({ label: "", text: "" });
+  const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
+
   useEffect(() => {
     if (observer.ref.current) {
       observer.ref.current.scrollLeft = page * observer.width;
@@ -336,6 +345,11 @@ export const BusinessProfile = ({
     setshowUploadProfilePictureModal(false);
     onSaveProfilePicture(value);
   }
+  const asterisk = (
+    <Text color="red" type="h6" weight="400">
+      &nbsp;&nbsp;&nbsp;*&nbsp;
+    </Text>
+  );
 
   return (
     <BasicPage headerArgs={header}>
@@ -345,7 +359,7 @@ export const BusinessProfile = ({
           profilePicture={currentProfilePicture}
           name={name.value}
           email={email.value}
-          onCreateBranch={onCreateBranch}
+          onCreateBranch={() => setShowCreateBranchModal(true)}
           onPictureClick={onPictureClick}
           onPicturePencilClick={onProfilePictureEditClick}
           color={color}
@@ -453,64 +467,181 @@ export const BusinessProfile = ({
           <UploadProfilePictureForm onSave={onProfilePictureChange}/>
         </Modal>
 
-        <Modal open={showErrorModal} setOpen={setShowErrorModal}>
+        <Modal open={showCreateBranchModal} setOpen={setShowCreateBranchModal}>
           <Box className="business-profile--modal-container">
-            <Box className="business-profile--modal-centered">
-              <Text type="h4" weight="600" color="#112211">
-                Error creando el local
-                <br />
-                <br />
+            <Box style={{ marginBottom: "32px" }}>
+              <Text type="h3" weight="700">
+                Crear local
+              </Text>
+              <Text type="h6" weight="400">
+                {" "}
+                Completa los datos para crear un nuevo local{" "}
               </Text>
             </Box>
-            <Text type="h6" weight="400" color="#112211">
-              No puedes crear un local mientras algún otro no tiene sus datos
-              completos.
-            </Text>
-            <Text type="h6" weight="400" color="#112211">
-              Los locales que no tienen los datos completos son:
-              <br />
-              <br />
-            </Text>
 
-            <Box className="business-profile--modal-data">
-              <ul>
-                {incompleteBranches.map((branch, i) => (
-                  <li
-                    key={`business-profile--incomplete-branch-${i}-${branch.name}`}
-                  >
-                    <Text weight="600" color="#112211">
-                      {branch.name}
-                    </Text>
-                    <ul>
-                      {branch.incompleteFields.map((field, j) => (
-                        <li
-                          key={`business-profile--incomplete-field-${i}-${branch.name}-${j}-${field}`}
-                        >
-                          <Text type="h6" weight="400" color="#112211">
-                            {field}
-                          </Text>
-                        </li>
-                      ))}
-                    </ul>
-                    <br />
-                  </li>
-                ))}
-              </ul>
+            <Box>
+              <InputText
+                required
+                width="100%"
+                label="Nombre"
+                inputHook={newBranchName}
+                placeholder="Mi Nuevo Local"
+              />
             </Box>
 
-            <Box height="32px" />
-            <Box className="business-profile--modal-centered">
-              <Button
-                fullWidth
-                primary
-                onClick={() => setShowErrorModal(false)}
-                backgroundColor={color}
-              >
-                <Box className="business-profile--modal-centered">
-                  <Text>Entendido</Text>
+            <Box className="business-profile--two-column-row">
+              <InputText
+                required
+                label="Capacidad"
+                type="naturalNumber"
+                inputHook={newBranchCapacity}
+              />
+
+              <Box>
+                <Box className="business-profile--label">
+                  {asterisk}
+                  <Text type="h6" weight="400">
+                    Tiempo promedio de reserva
+                  </Text>
                 </Box>
-              </Button>
+                <InputTime
+                  type="duration"
+                  hoursInputHook={newBranchAverageReserveTimeHours}
+                  minutesInputHook={newBranchAverageReserveTimeMinutes}
+                />
+              </Box>
             </Box>
+
+            <Box className="business-profile--two-column-row">
+              <Box style={{ zIndex: 3 }}>
+                <InputSelect
+                  required
+                  label="Tipo"
+                  inputHook={newBranchType}
+                  options={branchTypeOptions}
+                />
+              </Box>
+
+              <Box>
+                <InputText
+                  required
+                  type="noNegativeNumber"
+                  inputHook={newBranchPrice}
+                  label="Coste por persona ($)"
+                />
+              </Box>
+            </Box>
+
+            <Box className="business-profile--two-column-row">
+              <Box>
+                <Box className="business-profile--label">
+                  {asterisk}
+                  <Text type="h6" weight="400">
+                    {" "}
+                    Hora de apertura{" "}
+                  </Text>
+                </Box>
+                <InputTime
+                  type="localtime"
+                  hoursInputHook={newBranchOpeningTimeHour}
+                  minutesInputHook={newBranchOpeningTimeMinute}
+                />
+              </Box>
+
+              <Box>
+                <Box className="business-profile--label">
+                  {asterisk}
+                  <Text type="h6" weight="400">
+                    {" "}
+                    Hora de cierre{" "}
+                  </Text>
+                </Box>
+                <InputTime
+                  type="localtime"
+                  hoursInputHook={newBranchClosingTimeHour}
+                  minutesInputHook={newBranchClosingTimeMinute}
+                />
+              </Box>
+            </Box>
+
+            <Box className="business-profile--two-column-row">
+              <Box>
+                <InputText
+                  required
+                  type="phoneNumber"
+                  inputHook={newBranchPhone}
+                  label="Número de teléfono del local"
+                  placeholder="+58 4240000000 | 04240000000"
+                />
+              </Box>
+
+              <Box style={{ zIndex: 3 }}>
+                <InputSelect
+                  required
+                  width="100%"
+                  label="Ubicación"
+                  inputHook={newBranchLocation}
+                  options={branchLocationOptions}
+                />
+              </Box>
+            </Box>
+
+            <Box style={{ marginBottom: "24px" }}>
+              <InputLongText
+                minRows={6}
+                maxRows={6}
+                width="100%"
+                height="100%"
+                maxLength={480}
+                label="Descripción"
+                placeholder="Escribe una descripción para tu local"
+                value={newBranchDescription.value}
+                setValue={newBranchDescription.setValue}
+              />
+            </Box>
+
+            <Box className="business-profile--precise-location-container">
+              <InputText
+                width="100%"
+                showError={false}
+                label="Ubicación en Google Maps"
+                inputHook={newBranchMapsLink}
+                placeholder="https://www.google.com/maps/place/Caracas,+Capital+District/data=!4m2!3m1!1s0x8c2a58adcd824807:0x93dd2eae0a998483?sa=X&ved=2ahUKEwjBkcHWrI__AhVvRzABHY_VCfIQ8gF6BAgIEAI&hl=es-419"
+              />
+              <Text type="h6" weight="400" color="#6C6C6C">
+                Esta ubicación debe ser un enlace de Google Maps. Este se usará
+                para mostrar la ubicación del local en la aplicación.
+              </Text>
+            </Box>
+
+            <Button
+              fullWidth
+              primary
+              backgroundColor={color}
+              size="large"
+              onClick={() =>
+                onCreateBranch(
+                  newBranchName,
+                  newBranchPhone,
+                  newBranchPrice,
+                  newBranchType,
+                  newBranchCapacity,
+                  newBranchLocation,
+                  newBranchAverageReserveTimeHours,
+                  newBranchAverageReserveTimeMinutes,
+                  newBranchOpeningTimeHour,
+                  newBranchOpeningTimeMinute,
+                  newBranchClosingTimeHour,
+                  newBranchClosingTimeMinute,
+                  newBranchDescription,
+                  newBranchMapsLink
+                )
+              }
+            >
+              <Box className="business-profile--button-create-branch">
+                <Text weight="600">Crear Local</Text>
+              </Box>
+            </Button>
           </Box>
         </Modal>
       </Box>

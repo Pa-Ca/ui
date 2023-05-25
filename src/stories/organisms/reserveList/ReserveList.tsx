@@ -18,6 +18,10 @@ interface ReserveListProps {
    */
   state: number;
   /**
+   * Icon size
+   */
+  icon_size: string;
+  /**
    * Main color
    */
   color?: string;
@@ -32,6 +36,7 @@ interface ReserveListProps {
  */
 export const ReserveList = ({
   reservations = [],
+  icon_size,
   state,
   color,
   setShowModal,
@@ -136,6 +141,7 @@ export const ReserveList = ({
     <Box className="reserve-list--container">
       {header}
 
+      {reservationsToShow.length > 0 ? (
       <Box className="reserve-list--reservations">
         {reservationsToShow.map((group, index) => (
           <Box key={`reserve-list--state-${state}-date-${group.date}-index-${index}`} className="reserve-list--reservation">
@@ -176,6 +182,15 @@ export const ReserveList = ({
           </Box>
         ))}
       </Box>
+      ) : (
+        <Box className="no-branch-box">
+        {" "}
+        <Icon icon="share" size={icon_size} />
+        <Text type="h4" > No hay reservas
+          {state == 1 ? (" Pendientes") : state == 2 ? (" Activas") : ""}. 
+        </Text>
+      </Box>
+      )}
     </Box>
   );
 };
