@@ -580,6 +580,7 @@ export const BusinessProfile = ({
                 showError={false}
                 label="Ubicación en Google Maps"
                 inputHook={newBranchMapsLink}
+                placeholder="https://www.google.com/maps/place/Caracas,+Capital+District/data=!4m2!3m1!1s0x8c2a58adcd824807:0x93dd2eae0a998483?sa=X&ved=2ahUKEwjBkcHWrI__AhVvRzABHY_VCfIQ8gF6BAgIEAI&hl=es-419"
               />
               <Text type="h6" weight="400" color="#6C6C6C">
                 Esta ubicación debe ser un enlace de Google Maps. Este se usará
