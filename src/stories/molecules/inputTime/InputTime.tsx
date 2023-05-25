@@ -111,7 +111,7 @@ export const InputTime = ({
             onChange={onChangeMinutes}
             value={minutesInputHook.value}
             className="editable-input-text--input input-time--input"
-            style={{ width: "30px", borderBottomColor: color(hoursInputHook.error) }}
+            style={{ width: "30px", borderBottomColor: color(minutesInputHook.error) }}
           />
           <Text className="editable-input-text--text" type="h5" weight="400">
             {type === "duration" ? "minutos" : ""}

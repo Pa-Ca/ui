@@ -195,7 +195,7 @@ export const InputSelect = ({
               return (
                 <div
                   style={{ ...optionStyle }}
-                  key={`input-select--option-${option.label}`}
+                  key={`input-select--option-${index}-${option.label}`}
                 >
                   <button
                     className="input-select--option-button"
