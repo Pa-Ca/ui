@@ -58,10 +58,10 @@ export const ClientInfoForm = ({
           </Text>
         </Box>
         <Box className="client-info-form-inputs-box">
-          <InputText inputHook={firstName} label="* Nombre" />
-          <InputText inputHook={lastName} label="* Apellido" />
-          <InputText inputHook={email} label="* Correo" />
-          <InputText inputHook={phone} label="* Teléfono" />
+          <InputText required inputHook={firstName} label="Nombre" />
+          <InputText required inputHook={lastName} label="Apellido" />
+          <InputText required inputHook={email} label="Correo" />
+          <InputText required inputHook={phone} label="Teléfono" placeholder="+58 4240000000 | 04240000000" />
         </Box>
       </Box>
     </Box>

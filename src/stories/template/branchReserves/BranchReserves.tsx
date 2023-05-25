@@ -47,6 +47,14 @@ interface BranchReservesProps {
    */
   email: InputFormHook<string>;
   /**
+   * Branch avrg reservation time hour
+   */
+  durationHour: number;
+  /**
+   * Branch avrg reservation time minute
+   */
+  durationMin: number;
+  /**
    * Reservation date input hook
    */
   date: InputFormHook<Date>;
@@ -104,6 +112,8 @@ interface BranchReservesProps {
  * Primary UI component for user interaction
  */
 export const BranchReserves = ({
+  durationHour,
+  durationMin,
   reservations,
   color,
   header,
@@ -180,6 +190,8 @@ export const BranchReserves = ({
       >
         {haveBranch ? (
           <Box width="200%" className="branch-reserve--content">
+
+            {currentActiveReservation.length > 0 ? (
             <Box width="100%">
               <Paginable
                 list={activeReservations}
@@ -195,7 +207,17 @@ export const BranchReserves = ({
                 <Box height="40px" />
               </Paginable>
             </Box>
+            ):(
+            <Box className="no-branch-box">
+              {" "}
+              <Icon icon="share" size={icon_size} />
+              <Text type="h4" > No hay reservas Activas. </Text>
+            </Box>
+            )}
+
             <Box width="30px" />
+
+            {currentActiveReservation.length > 0 ? (
             <Box width="100%">
               <Paginable
                 list={pendingReservations}
@@ -211,6 +233,13 @@ export const BranchReserves = ({
                 <Box height="40px" />
               </Paginable>
             </Box>
+            ) : (
+            <Box className="no-branch-box">
+              {" "}
+              <Icon icon="share" size={icon_size} />
+              <Text type="h4"> No hay reservas Pendientes. </Text>
+            </Box>
+            )}
           </Box>
         ) : (
           <Box className="no-branch-box">
@@ -233,6 +262,8 @@ export const BranchReserves = ({
 
           {/* Reservation Form */}
           <ReserveDetails
+            durationHour={durationHour}
+            durationMin={durationMin}
             date={date}
             hourIn={hourIn}
             validHoursIn={validHoursIn}
