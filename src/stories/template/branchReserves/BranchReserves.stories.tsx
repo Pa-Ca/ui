@@ -53,6 +53,7 @@ Default.args = {
     name: "Sempre Dritto",
     color: "#EF7A08",
   },
+  icon_size : "450px",
   durationHour: 1,
   durationMin: 30,
   reservations: [

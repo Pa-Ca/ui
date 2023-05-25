@@ -130,7 +130,7 @@ export const BranchReserves = ({
   occasion,
   submitButtonColor,
   haveBranch = true,
-  icon_size = "400px",
+  icon_size,
   showModal,
   setShowModal,
   onSubmit,
@@ -190,8 +190,6 @@ export const BranchReserves = ({
       >
         {haveBranch ? (
           <Box width="200%" className="branch-reserve--content">
-
-            {activeReservations.length > 0 ? (
             <Box width="100%">
               <Paginable
                 list={activeReservations}
@@ -199,6 +197,7 @@ export const BranchReserves = ({
                 objectsPerPage={10}
               >
                 <ReserveList
+                  icon_size={icon_size}
                   reservations={currentActiveReservation}
                   color={color}
                   state={2}
@@ -207,17 +206,9 @@ export const BranchReserves = ({
                 <Box height="40px" />
               </Paginable>
             </Box>
-            ):(
-            <Box className="no-branch-box">
-              {" "}
-              <Icon icon="share" size={icon_size} />
-              <Text type="h4" > No hay reservas Activas. </Text>
-            </Box>
-            )}
 
             <Box width="30px" />
 
-            {pendingReservations.length > 0 ? (
             <Box width="100%">
               <Paginable
                 list={pendingReservations}
@@ -225,6 +216,7 @@ export const BranchReserves = ({
                 objectsPerPage={10}
               >
                 <ReserveList
+                  icon_size={icon_size}
                   reservations={currentPendingReservation}
                   color={color}
                   state={1}
@@ -233,13 +225,6 @@ export const BranchReserves = ({
                 <Box height="40px" />
               </Paginable>
             </Box>
-            ) : (
-            <Box className="no-branch-box">
-              {" "}
-              <Icon icon="share" size={icon_size} />
-              <Text type="h4"> No hay reservas Pendientes. </Text>
-            </Box>
-            )}
           </Box>
         ) : (
           <Box className="no-branch-box">
