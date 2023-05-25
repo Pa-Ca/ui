@@ -1,12 +1,13 @@
 import React from "react";
-import "./loginForm.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./loginForm.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+import inputTextStyles from "../inputText/inputText.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface LoginFormProps {
   /**
@@ -72,17 +73,17 @@ export const LoginForm = ({
   const rememberMe = useInputForm(false);
 
   return (
-    <Box className="login-form--container" style={{ width, height }}>
-      <Box className="login-form--content">
-        <Box className="login-form--input">
+    <Box className={styles["login-form--container"]} style={{ width, height }}>
+      <Box className={styles["login-form--content"]}>
+        <Box className={styles["login-form--input"]}>
           <InputText inputHook={email} label="Correo" />
         </Box>
-        <Box className="login-form--input">
+        <Box className={styles["login-form--input"]}>
           <InputText type="password" inputHook={password} label="Contraseña" />
         </Box>
-        <Box className="login-form--login-options">
+        <Box className={styles["login-form--login-options"]}>
           <Box
-            className="login-form--remember-me"
+            className={styles["login-form--remember-me"]}
             onClick={() => rememberMe.setValue(!rememberMe.value)}
           >
             <Icon icon={rememberMe ? "checkbox" : "uncheckbox"} size="24px" />
@@ -92,7 +93,10 @@ export const LoginForm = ({
             </Text>
           </Box>
 
-          <Box className="login-form--pointer" onClick={onForgotClick}>
+          <Box
+            className={styles["login-form--pointer"]}
+            onClick={onForgotClick}
+          >
             <Text weight="500" type="h6" color={secondaryColor}>
               Olvidé mi contraseña
             </Text>
@@ -101,24 +105,31 @@ export const LoginForm = ({
 
         <Box
           className={
-            "input-text--error-container " +
-            (error
-              ? "input-text--error-animation"
-              : "input-text--error-no-animation")
+            inputTextStyles["input-text--error-container"] +
+            " " +
+            inputTextStyles[
+              error
+                ? "input-text--error-animation"
+                : "input-text--error-no-animation"
+            ]
           }
         >
           {error && (
             <>
-              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <Icon
+                icon="alert"
+                color={styleVariables.errorColor}
+                size="20px"
+              />
               <Box style={{ width: "10px" }} />
-              <Text type="h6" color={styles.errorColor}>
+              <Text type="h6" color={styleVariables.errorColor}>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>
           )}
         </Box>
 
-        <Box className="login-form--input">
+        <Box className={styles["login-form--input"]}>
           <Button
             fullWidth
             primary
@@ -126,7 +137,7 @@ export const LoginForm = ({
             backgroundColor={color}
             onClick={() => onLogin(email.value, password.value)}
           >
-            <Box className="login-form--button-text">
+            <Box className={styles["login-form--button-text"]}>
               <Text color="white" type="h6" weight="600">
                 Iniciar Sesión
               </Text>
@@ -134,12 +145,12 @@ export const LoginForm = ({
           </Button>
         </Box>
 
-        <Box className="login-form--sign-in">
+        <Box className={styles["login-form--sign-in"]}>
           <Text color="#112211" type="h6">
             {" "}
             ¿No tiene una cuenta aún?{" "}
           </Text>
-          <Box className="login-form--pointer" onClick={onSignUp}>
+          <Box className={styles["login-form--pointer"]} onClick={onSignUp}>
             <Text color={secondaryColor} type="h6" weight="600">
               &nbsp;Regístrate
             </Text>
@@ -147,9 +158,9 @@ export const LoginForm = ({
         </Box>
       </Box>
 
-      <Box className="login-form--login-with">
+      <Box className={styles["login-form--login-with"]}>
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
-        <Box className="login-form--login-with-text">
+        <Box className={styles["login-form--login-with-text"]}>
           <Text weight="400" type="h6" color="#889188">
             Ó
           </Text>
@@ -157,8 +168,11 @@ export const LoginForm = ({
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
       </Box>
 
-      <Box className="login-form--other-logins-container" height="100%">
-        <Box className="login-form--other-login" width="100%">
+      <Box
+        className={styles["login-form--other-logins-container"]}
+        height="100%"
+      >
+        <Box className={styles["login-form--other-login"]} width="100%">
           <Button
             primary={false}
             borderColor={otherLoginsColor}
@@ -166,8 +180,11 @@ export const LoginForm = ({
             size="large"
             onClick={onGoogleSignUp}
           >
-            <Box className="login-form--other-logins-container" width="100%">
-              <Box className="login-form--other-login-button">
+            <Box
+              className={styles["login-form--other-logins-container"]}
+              width="100%"
+            >
+              <Box className={styles["login-form--other-login-button"]}>
                 <Icon icon="google" size="24px" />
                 <Text> &nbsp;&nbsp;&nbsp;Inicia Sesión con Google </Text>
               </Box>

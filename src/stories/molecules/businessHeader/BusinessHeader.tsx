@@ -1,8 +1,7 @@
 import React from "react";
-import "./businessHeader.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { Icon } from "../../atoms/icon/Icon";
+import styles from "./businessHeader.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { ProfilePicture } from "../profilePicture/ProfilePicture";
 
@@ -56,8 +55,8 @@ export const BusinessHeader = ({
   ...props
 }: BusinessHeaderProps) => {
   return (
-    <Box className="business-header--container">
-      <Box className="business-header--profile-picture">
+    <Box className={styles["business-header--container"]}>
+      <Box className={styles["business-header--profile-picture"]}>
         <ProfilePicture
           size="160px"
           picture={profilePicture}
@@ -76,9 +75,9 @@ export const BusinessHeader = ({
         </Text>
       </Box>
 
-      <Box className="business-header--button-container">
+      <Box className={styles["business-header--button-container"]}>
         <Button primary backgroundColor={color} size="large" onClick={onCreateBranch}>
-          <Box className="business-header--button">
+          <Box className={styles["business-header--button"]}>
             <Text color="#112211" type="h6" weight="500">
               Crear Local
             </Text>

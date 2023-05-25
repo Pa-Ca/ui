@@ -1,7 +1,7 @@
-import React from 'react';
-import './addPromotionCard.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
+import React from "react";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import styles from "./addPromotionCard.module.scss";
 
 export interface AddPromotionCardProps {
   /**
@@ -36,40 +36,47 @@ export interface AddPromotionCardProps {
 export const AddPromotionCard = ({
   text = "Agregar promoción",
   onClick,
-  color = '#A5A5A5',
-  secondaryColor = 'white',
+  color = "#A5A5A5",
+  secondaryColor = "white",
   width,
   height,
   ...props
 }: AddPromotionCardProps) => {
   return (
     <Box
-      className='promotion-card--container'
-      borderRadius='5px'
+      className={styles["promotion-card--container"]}
+      borderRadius="5px"
       backgroundColor={color}
       strongShadow
       style={{ width, height }}
-      onClick = {onClick}
+      onClick={onClick}
     >
-      <Box className='promotion-card--text-container' backgroundColor='transparent'>
-        <Box backgroundColor='transparent'>
+      <Box
+        className={styles["promotion-card--text-container"]}
+        backgroundColor="transparent"
+      >
+        <Box backgroundColor="transparent">
           <Text
-            className='add-promotion-card--menu-text'
-            weight='700'
+            className={styles["add-promotion-card--menu-text"]}
+            weight="700"
             color={secondaryColor}
-            type='h4'
+            type="h4"
           >
             {text}
           </Text>
         </Box>
       </Box>
 
-      <Box className='add-promotion-card--menu-button' backgroundColor={secondaryColor} weakShadow onClick={onClick}>
-        <Text type='h6' weight='700' color={color}>
+      <Box
+        className={styles["add-promotion-card--menu-button"]}
+        backgroundColor={secondaryColor}
+        weakShadow
+        onClick={onClick}
+      >
+        <Text type="h6" weight="700" color={color}>
           {"+"}
         </Text>
       </Box>
-
     </Box>
   );
 };

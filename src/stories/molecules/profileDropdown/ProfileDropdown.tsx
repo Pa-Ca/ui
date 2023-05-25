@@ -1,8 +1,9 @@
-import React, { useMemo, MouseEventHandler } from "react";
-import "./profileDropdown.scss";
+import React, { MouseEventHandler } from "react";
+import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./profileDropdown.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 
@@ -59,13 +60,15 @@ export const ProfileDropdown = ({
   return (
     <Box
       strongShadow
-      className={
-        "dropdown-input-select--menu dropdown-input-select--menu-" +
-        (view ? "in" : "out")
-      }
+      className={classnames(
+        styles["profile-dropdown--menu"],
+        styles["profile-dropdown--menu-" + (view ? "in" : "out")]
+      )}
       style={{
         width: "300px",
-        maxHeight: view ? `${73 + Math.min(9.5, dropdownOptions.length) * 52}px` : "0px",
+        maxHeight: view
+          ? `${73 + Math.min(9.5, dropdownOptions.length) * 52}px`
+          : "0px",
         opacity: view ? "1" : "0",
       }}
       innerRef={observer.ref}
@@ -73,7 +76,11 @@ export const ProfileDropdown = ({
       <ul>
         <div>
           <Box
-            backgroundImage={picture == "" ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" : picture}
+            backgroundImage={
+              picture == ""
+                ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
+                : picture
+            }
             borderRadius="100%"
             width={"45px"}
             height={"45px"}

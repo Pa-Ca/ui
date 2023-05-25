@@ -1,13 +1,14 @@
 import React, { useState, useRef } from "react";
 import classnames from "classnames";
-import "./editableInputLongText.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Editable } from "../editable/Editable";
 import { TextareaAutosize } from "@mui/material";
+import styles from "./editableInputLongText.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+import inputTextStyles from "../inputText/inputText.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface EditableInputLongTextProps {
   /**
@@ -115,15 +116,18 @@ export const EditableInputLongText = ({
   };
 
   return (
-    <Box className="editable-input-long-text--super-container">
+    <Box className={styles["editable-input-long-text--super-container"]}>
       <Box
-        className={classnames("editable-input-long-text--container", className)}
-        style={{ width, height  }}
+        className={classnames(
+          styles["editable-input-long-text--container"],
+          className
+        )}
+        style={{ width, height }}
       >
         {editValue ? (
           <Box
             className={classnames(
-              "editable-input-long-text--text-area-container",
+              styles["editable-input-long-text--text-area-container"],
               className
             )}
           >
@@ -132,7 +136,7 @@ export const EditableInputLongText = ({
               onChange={onChange}
               style={{ ...style }}
               className={classnames(
-                "editable-input-long-text--text-area",
+                styles["editable-input-long-text--text-area"],
                 className
               )}
               hidden={false}
@@ -144,7 +148,10 @@ export const EditableInputLongText = ({
           </Box>
         ) : (
           <Text
-            className={classnames("editable-input-long-text--text", className)}
+            className={classnames(
+              styles["editable-input-long-text--text"],
+              className
+            )}
             weight="600"
             type="h5"
             style={{ ...style }}
@@ -166,26 +173,31 @@ export const EditableInputLongText = ({
       </Box>
       <div
         className={
-          "input-text--error-container " +
+          inputTextStyles["input-text--error-container"] +
+          " " +
           (inputHook.error == 1 || inputHook.error == 2
-            ? "input-text--error-animation"
-            : "input-text--error-no-animation")
+            ? inputTextStyles["input-text--error-animation"]
+            : inputTextStyles["input-text--error-no-animation"])
         }
       >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
+            <Text type="h6" color={styleVariables.errorColor}>
               {inputHook.errorMessage}
             </Text>
           </>
         )}
         {inputHook.error == 2 && (
           <>
-            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <Icon
+              icon="warning"
+              color={styleVariables.warningColor}
+              size="20px"
+            />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
+            <Text type="h6" color={styleVariables.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./amenityList.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./amenityList.module.scss";
 import { Editable } from "../editable/Editable";
 import getAllAmenities from "../../utils/getAllAmenities";
 import useResizeObserver from "../../hooks/useResizeObserver";
@@ -141,7 +141,7 @@ export const AmenityList = ({
 
       return (
         <Box
-          className="amenity-list--item"
+          className={styles["amenity-list--item"]}
           key={`amenity-list--item-${i}-${e.name}`}
           style={{
             cursor: edit ? "pointer" : "auto",
@@ -150,7 +150,7 @@ export const AmenityList = ({
           onClick={() => changeAmenity(e)}
         >
           <Box
-            className="amenity-list--check"
+            className={styles["amenity-list--check"]}
             style={{ width: edit ? "34px" : "0" }}
           >
             <Icon
@@ -189,7 +189,7 @@ export const AmenityList = ({
       if (!fewAmenities && !edit) {
         showList_.push(
           <Box
-            className="amenity-list--view"
+            className={styles["amenity-list--view"]}
             key={`amenity-list--item-view-less`}
             onClick={() => setViewMore(false)}
           >
@@ -211,7 +211,7 @@ export const AmenityList = ({
         viewMorePositon,
         0,
         <Box
-          className="amenity-list--view"
+          className={styles["amenity-list--view"]}
           onClick={() => setViewMore(true)}
           key={`amenity-list--item-view-more`}
         >
@@ -248,11 +248,11 @@ export const AmenityList = ({
 
   return (
     <Box
-      className="amenity-list--container"
+      className={styles["amenity-list--container"]}
       style={{ width }}
       innerRef={observer.ref}
     >
-      <Box className="amenity-list--title">
+      <Box className={styles["amenity-list--title"]}>
         <Text type="h5" color="#112211" weight="700">
           Servicios
         </Text>
@@ -268,7 +268,7 @@ export const AmenityList = ({
 
       <Box
         style={{ height: `${amenitiesHeight}px` }}
-        className="amenity-list--amenity-container"
+        className={styles["amenity-list--amenity-container"]}
       >
         {showList}
       </Box>

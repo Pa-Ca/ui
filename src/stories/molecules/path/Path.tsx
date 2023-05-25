@@ -1,5 +1,5 @@
 import React from "react";
-import "./path.scss";
+import styles from "./path.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
@@ -24,7 +24,7 @@ export interface PathProps {
  */
 export const Path = ({ path, color, secondaryColor, ...props }: PathProps) => {
   return (
-    <Box className="path--container">
+    <Box className={styles["path--container"]}>
       {path.map((page, index) => {
         const last = index === path.length - 1;
 
@@ -35,7 +35,7 @@ export const Path = ({ path, color, secondaryColor, ...props }: PathProps) => {
 
         return (
           <Box
-            className="path--item"
+            className={styles["path"]}
             key={`path--item-${index}-${page.name}`}
             style={{ cursor }}
             onClick={onClick}

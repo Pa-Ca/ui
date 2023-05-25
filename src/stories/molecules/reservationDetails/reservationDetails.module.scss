@@ -1,27 +1,27 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 
-.details-card--container {
+.reservation-details--details-card--container {
   min-width: 250px;
   overflow: hidden;
   padding: 24px;
   border-radius: 12px;
 }
 
-.details-card--summary {
+.reservation-details--details-card--summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.detail--line {
+.reservation-details--detail--line {
   opacity: 0.25;
   margin-bottom: 24px;
   margin-top: 24px;
   width: 100%;
 }
 
-.score-box {
+.reservation-details--score-box {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -30,7 +30,7 @@
   margin-top: 20px;
 }
 
-.score-box-with-border{
+.reservation-details--score-box-with-border{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -41,7 +41,7 @@
   border-radius: 4px;
 }
 
-.resumen-box-text{
+.reservation-details--resumen-box-text{
   padding: 10px 0px;
 
   .text:nth-child(1){
@@ -49,11 +49,11 @@
   }
 }
 
-.details-title{
+.reservation-details--details-title{
   margin-bottom: 16px;
 }
 
-.detail-element{
+.reservation-details--detail-element{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -61,17 +61,17 @@
   margin-bottom: 16px;
 }
 
-.reservation-detail-image{
+.reservation-details--reservation-detail-image{
   border-radius: 12px;
   min-width: 162px;
   height: 120px;
 }
 
 @include screen-max($screen-sm) {
-  .reservation-detail-image{
+  .reservation-details--reservation-detail-image{
     width: 100%;
   }
-  .details-card--summary {
+  .reservation-details--details-card--summary {
     flex-wrap: wrap;
     flex-direction: row;
   }

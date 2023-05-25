@@ -1,5 +1,5 @@
 import React from "react";
-import "./modal.scss";
+import styles from "./modal.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Modal as MuiModal } from "@mui/material";
 
@@ -27,11 +27,11 @@ export const Modal = ({
   return (
     <MuiModal open={open} onClose={() => setOpen(false)}>
       <div
-        className="modal--container"
+        className={styles["modal--container"]}
         onClick={() => setOpen(false)}
       >
         <Box
-          className="modal--content"
+          className={styles["modal--content"]}
           onClick={(event) => event.stopPropagation()}
         >
           {children}

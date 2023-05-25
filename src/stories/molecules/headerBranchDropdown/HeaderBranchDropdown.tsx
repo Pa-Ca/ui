@@ -1,7 +1,7 @@
-import React, { useMemo, MouseEventHandler } from "react";
-import "./headerBranchDropdown.scss";
+import React, { MouseEventHandler } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./headerBranchDropdown.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
@@ -41,7 +41,6 @@ export const HeaderBranchDropdown = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   const substring = (str: string) => {
-
     if (str.length <= 40) return str;
     return str.substring(0, 39) + "...";
   };
@@ -49,12 +48,17 @@ export const HeaderBranchDropdown = ({
     <Box
       strongShadow
       className={
-        "header-branch-dropdown-input-select--menu header-branch-dropdown-input-select--menu-" +
-        (view ? "in" : "out")
+        styles["header-branch-dropdown-input-select--menu"] +
+        " " +
+        styles[
+          "header-branch-dropdown-input-select--menu-" + (view ? "in" : "out")
+        ]
       }
       style={{
         width: "300px",
-        maxHeight: view ? `${Math.min(9.5, dropdownOptions.length) * 42.5}px` : "0px",
+        maxHeight: view
+          ? `${Math.min(9.5, dropdownOptions.length) * 42.5}px`
+          : "0px",
         opacity: view ? "1" : "0",
       }}
       innerRef={observer.ref}
@@ -65,14 +69,15 @@ export const HeaderBranchDropdown = ({
             onClick={() => option.func()}
             key={`profile-dropdown--item-${index}-${option.name}`}
           >
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              maxHeight: "25px",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap"
-            }}
-              >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                maxHeight: "25px",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               <Text type="h7" weight="400">
                 {substring(option.name)}
               </Text>

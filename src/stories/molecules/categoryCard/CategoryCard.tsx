@@ -1,9 +1,9 @@
 import React from "react";
-import "./categoryCard.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { Button } from "../../atoms/button/Button";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./categoryCard.module.scss";
+import { Button } from "../../atoms/button/Button";
 
 export interface CategoryCardProps {
   /**
@@ -57,16 +57,19 @@ export const CategoryCard = ({
   return (
     <Box
       backgroundImage={backgroundImage}
-      className="category-card--container"
+      className={styles["category-card--container"]}
       style={{ width, height }}
     >
       {/* Add a div that has a gradient of color as a background*/}
-      <div className="category-card--overlay" />
+      <div className={styles["category-card--overlay"]} />
       {/* Title data Box */}
-      <Box className="category-card--info-zone" backgroundColor="transparent">
+      <Box
+        className={styles["category-card--info-zone"]}
+        backgroundColor="transparent"
+      >
         <Box
           weakShadow={false}
-          className="category-card-title--zone"
+          className={styles["category-card-title--zone"]}
           backgroundColor="transparent"
         >
           <center>
@@ -79,7 +82,7 @@ export const CategoryCard = ({
         {/*  Description  Box */}
         <Box
           weakShadow={false}
-          className="category-card-description--zone"
+          className={styles["category-card-description--zone"]}
           backgroundColor="transparent"
         >
           <center>
@@ -92,7 +95,7 @@ export const CategoryCard = ({
         {/*  Button  Box */}
         <Box
           weakShadow={false}
-          className="category-card-button--zone"
+          className={styles["category-card-button--zone"]}
           backgroundColor="transparent"
         >
           <Button
@@ -101,9 +104,11 @@ export const CategoryCard = ({
             size="large"
             onClick={onClick}
           >
-            <Box className="category-card--button">
+            <Box className={styles["category-card--button"]}>
               <Icon icon="paper-plane" size={"16px"} color="white" />
-              <Text className="category-card--button-text">Muéstrame</Text>
+              <Text className={styles["category-card--button-text"]}>
+                Muéstrame
+              </Text>
             </Box>
           </Button>
         </Box>

@@ -1,10 +1,10 @@
-import React from 'react';
-import './highlightReview.scss'
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import { Icon } from '../../atoms/icon/Icon';
-import useResizeObserver from '../../hooks/useResizeObserver';
-import { StarRating } from '../../atoms/starRating/StarRating';
+import React from "react";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import { Icon } from "../../atoms/icon/Icon";
+import styles from "./highlightReview.module.scss";
+import useResizeObserver from "../../hooks/useResizeObserver";
+import { StarRating } from "../../atoms/starRating/StarRating";
 
 export interface HighlightReviewProps {
   /**
@@ -73,60 +73,74 @@ export const HighlightReview = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   return (
-    <Box className='highlight-review--container'>
-      <Box className='highlight-review--card-container' weakShadow style={{ width, height }} innerRef={observer.ref}>
-        <Box className='highlight-review--card'>
-          <Box className='highlight-review--title-zone'>
-            <Text type='h5' weight='700' color='#112211'>
+    <Box className={styles["highlight-review--container"]}>
+      <Box
+        className={styles["highlight-review--card-container"]}
+        weakShadow
+        style={{ width, height }}
+        innerRef={observer.ref}
+      >
+        <Box className={styles["highlight-review--card"]}>
+          <Box className={styles["highlight-review--title-zone"]}>
+            <Text type="h5" weight="700" color="#112211">
               “{title}”
             </Text>
           </Box>
 
-          <Box className='highlight-review--description-zone'>
-            <Text color='#112211' opacity={0.5}>
+          <Box className={styles["highlight-review--description-zone"]}>
+            <Text color="#112211" opacity={0.5}>
               {review}
             </Text>
           </Box>
 
-          <Box className='highlight-review--view-more-zone' onClick={viewMore}>
-            <Text type='h6' weight='700'>
+          <Box
+            className={styles["highlight-review--view-more-zone"]}
+            onClick={viewMore}
+          >
+            <Text type="h6" weight="700">
               View more
             </Text>
           </Box>
 
-          <Box className='highlight-review--rating-zone'>
+          <Box className={styles["highlight-review--rating-zone"]}>
             <StarRating size={24} rating={score} color={color} readonly />
           </Box>
 
-          <Box className='highlight-review--name-zone'>
-            <Text type='h6' weight='700' color='#112211'>
+          <Box className={styles["highlight-review--name-zone"]}>
+            <Text type="h6" weight="700" color="#112211">
               {author}
             </Text>
           </Box>
 
-          <Box className='highlight-review--person-zone'>
-            <Text type='h7' color='#112211' opacity={0.5}>
+          <Box className={styles["highlight-review--person-zone"]}>
+            <Text type="h7" color="#112211" opacity={0.5}>
               {authorDescription}
             </Text>
           </Box>
 
-          <Box className='highlight-review--google-zone'>
-            <Icon icon='google' size='20px' />
-            <Text color='#112211' weight='700' type='h7' opacity={0.75} className='highlight-review--google'>
+          <Box className={styles["highlight-review--google-zone"]}>
+            <Icon icon="google" size="20px" />
+            <Text
+              color="#112211"
+              weight="700"
+              type="h7"
+              opacity={0.75}
+              className={styles["highlight-review--google"]}
+            >
               Google
             </Text>
           </Box>
 
           <Box
             backgroundImage={image}
-            borderRadius='8px'
-            className='highlight-review--img'
+            borderRadius="8px"
+            className={styles["highlight-review--img"]}
           />
         </Box>
       </Box>
 
       <Box
-        className='highlight-review--shadow'
+        className={styles["highlight-review--shadow"]}
         style={{ width: observer.width, height: observer.height }}
         backgroundColor={shadowColor}
       />

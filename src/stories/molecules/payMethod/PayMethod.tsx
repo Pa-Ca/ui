@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import "./payMethod.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import styles from "./payMethod.module.scss";
 import CardObject from "../../utils/objects/CardObject";
 
 interface PayMethodProps {
@@ -65,13 +65,16 @@ export const PayMethod = ({
   }, [method]);
 
   return (
-    <Box className="pay-method--container" onClick={onClick}>
-      <Box className="pay-method--header" backgroundColor={currentColor}>
-        <Box className="pay-method--method-container">
+    <Box className={styles["pay-method--container"]} onClick={onClick}>
+      <Box
+        className={styles["pay-method--header"]}
+        backgroundColor={currentColor}
+      >
+        <Box className={styles["pay-method--method-container"]}>
           <Icon icon={icon} color="white" size="32px" />
 
           {method === "visa" && !!cards && !!activeCard && activeCard > -1 ? (
-            <Box className="pay-method--method-text-container">
+            <Box className={styles["pay-method--method-text-container"]}>
               <Text color="white" weight="700">
                 **** {cards[activeCard].lastDigits}
               </Text>
@@ -84,19 +87,19 @@ export const PayMethod = ({
               </Text>
             </Box>
           ) : method === "visa" ? (
-            <Box className="pay-method--method-text-container">
+            <Box className={styles["pay-method--method-text-container"]}>
               <Text color="white" weight="700">
                 Tarjeta VISA
               </Text>
             </Box>
           ) : method === "pagomovil" ? (
-            <Box className="pay-method--method-text-container">
+            <Box className={styles["pay-method--method-text-container"]}>
               <Text color="white" weight="700">
                 Pago Móvil
               </Text>
             </Box>
           ) : (
-            <Box className="pay-method--method-text-container">
+            <Box className={styles["pay-method--method-text-container"]}>
               <Text color="white" weight="700">
                 Zelle
               </Text>
@@ -114,15 +117,15 @@ export const PayMethod = ({
       </Box>
 
       <Box
-        className="pay-method--content-container"
+        className={styles["pay-method--content-container"]}
         style={{ maxHeight: active ? "190px" : "0" }}
       >
         <Box
-          className="pay-method--content-item"
+          className={styles["pay-method--content-item"]}
           height="190px"
           style={{ borderColor: currentColor }}
         >
-          <Box className="pay-method--new-card">
+          <Box className={styles["pay-method--new-card"]}>
             {method === "visa" && (
               <>
                 <Icon icon="plus-circle" size="64px" color={color} />

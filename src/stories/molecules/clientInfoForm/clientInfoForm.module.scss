@@ -8,15 +8,15 @@
   flex-direction: column;
   gap: 24px;
 }
-.client-info-form-inputs-box{
+.client-info-form-inputs-box {
   display: grid;
-  grid-template-rows: repeat(2,1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.form--title{
-  display : flex;
+.client-info-form--title {
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
