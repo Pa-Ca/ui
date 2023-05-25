@@ -12,6 +12,10 @@ import styles from "../../assets/scss/variables.module.scss";
 
 interface InputDateProps {
   /**
+   * Indicates if the input is required
+   */
+  required?: boolean;
+  /**
    * Date input hook
    */
   inputHook: InputFormHook<Date>;
@@ -39,6 +43,7 @@ interface InputDateProps {
 export const InputDate = ({
   inputHook,
   label = "* Fecha",
+  required,
   minDate,
   width,
   height,
@@ -84,6 +89,11 @@ export const InputDate = ({
             />
 
           <div className="input-text--label">
+            {required && (
+              <Text color="red" weight="400">
+                *
+              </Text>
+            )}
             <Text
               type="h6"
               weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}

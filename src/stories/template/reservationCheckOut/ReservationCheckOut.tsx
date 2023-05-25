@@ -5,6 +5,7 @@ import { Text } from "../../atoms/text/Text";
 import { Path } from "../../molecules/path/Path";
 import { Button } from "../../atoms/button/Button";
 import { BasicPage } from "../basicPage/BasicPage";
+import useInputForm from "../../hooks/useInputForm";
 import BranchData from "../../utils/objects/BranchData";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
@@ -12,7 +13,6 @@ import ReservationDetail from "../../utils/objects/ReservationDetail";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
 import { ReservationDetails } from "../../molecules/reservationDetails/reservationDetails";
-import useInputForm from "../../hooks/useInputForm";
 
 interface ReservationCheckOut {
   /**
@@ -89,8 +89,8 @@ export const ReservationCheckOut = ({
   const reservationPrice = getReservationPrice();
 
   const date = useInputForm<Date>(new Date());
-  const hourIn = useInputForm<OptionObject>({ name: "", value: "" });
-  const hourOut = useInputForm<OptionObject>({ name: "", value: "" });
+  const hourIn = useInputForm<OptionObject>({ label: "", text: "" });
+  const hourOut = useInputForm<OptionObject>({ label: "", text: "" });
   const persons = useInputForm<string>("");
   const occasion = useInputForm<string>("");
 
@@ -168,12 +168,8 @@ export const ReservationCheckOut = ({
                 onSubmit(
                   date.value,
                   parseInt(persons.value),
-                  typeof hourIn.value.value === "string"
-                    ? hourIn.value.value
-                    : hourIn.value.value.toString(),
-                  typeof hourOut.value.value === "string"
-                    ? hourOut.value.value
-                    : hourOut.value.value.toString(),
+                  hourIn.value.text!,
+                  hourOut.value.text!,
                   occasion.value
                 )
               }

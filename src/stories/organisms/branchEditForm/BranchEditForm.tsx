@@ -5,17 +5,13 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
+import OptionObject from "../../utils/objects/OptionObject";
 import { InputText } from "../../molecules/inputText/InputText";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputTime } from "../../molecules/editableInputTime/EditableInputTime";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
-
-export interface OptionType {
-  label: string;
-  value: string;
-}
 
 interface BranchEditFormProps {
   /**
@@ -140,11 +136,11 @@ interface BranchEditFormProps {
   /**
    * Options for the branch type
    */
-  typeOptions: OptionType[];
+  typeOptions: OptionObject[];
   /**
    * Options for the branch location
    */
-  locationOptions: OptionType[];
+  locationOptions: OptionObject[];
   /**
    * Component width
    */

@@ -127,7 +127,7 @@ export const ReserveDetails = ({
           </Box>
 
           <Box width="100%" className="reserve-details--input1">
-            <InputText required inputHook={persons} type="natural number" label="Personas" />
+            <InputText required inputHook={persons} type="naturalNumber" label="Personas" />
           </Box>
         </Box>
 
@@ -152,8 +152,7 @@ export const ReserveDetails = ({
           </Box>
         </Box>
         <Box>
-          <Text type="p"> La duración esperada de la reserva es de 
-            {durationHour} hora(s) y {durationMin} minuto(s) </Text>
+          <Text type="p"> La duración esperada de la reserva es de {durationHour} hora(s) y {durationMin} minuto(s) </Text>
         </Box>
       </Box>
 

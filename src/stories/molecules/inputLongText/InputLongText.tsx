@@ -15,6 +15,10 @@ interface InputLongTextProps {
    */
   value?: string;
   /**
+   * Input placeholder
+   */
+  placeholder?: string;
+  /**
    * Input width
    * @default 100%
    */
@@ -56,6 +60,7 @@ interface InputLongTextProps {
 export const InputLongText = ({
   label = "",
   value,
+  placeholder,
   setValue = () => {},
   minRows = undefined,
   maxRows = undefined,
@@ -86,6 +91,7 @@ export const InputLongText = ({
       }
       <TextareaAutosize
         value={value}
+        placeholder={placeholder}
         onChange={(event) => {
           setValue(event.target.value);
         }}

@@ -191,7 +191,7 @@ export const BranchReserves = ({
         {haveBranch ? (
           <Box width="200%" className="branch-reserve--content">
 
-            {currentActiveReservation.length > 0 ? (
+            {activeReservations.length > 0 ? (
             <Box width="100%">
               <Paginable
                 list={activeReservations}
@@ -217,7 +217,7 @@ export const BranchReserves = ({
 
             <Box width="30px" />
 
-            {currentActiveReservation.length > 0 ? (
+            {pendingReservations.length > 0 ? (
             <Box width="100%">
               <Paginable
                 list={pendingReservations}
@@ -282,7 +282,7 @@ export const BranchReserves = ({
             backgroundColor={submitButtonColor}
             onClick={() => onSubmit()}
           >
-            <Box className="login-form--button-text">
+            <Box className="submit-reservation--button-text">
               <Text color="white" type="h6" weight="600">
                 Completar Reserva
               </Text>

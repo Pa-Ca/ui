@@ -6,14 +6,14 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
 import { InputFormHook } from "../../hooks/useInputForm";
+import OptionObject from "../../utils/objects/OptionObject";
 import Select, { ActionMeta, SingleValue } from "react-select";
+import styles from "../../assets/scss/variables.module.scss"; 
 import {
   validateEmail,
   validatePhoneNumber,
   validateUrl,
 } from "../../utils/stringValidation";
-import OptionType from "../../utils/objects/OptionType";
-import styles from "../../assets/scss/variables.module.scss"; 
 
 interface EditableInputTextProps {
   /**
@@ -47,7 +47,7 @@ interface EditableInputTextProps {
   /**
    * Options for the select type
    */
-  options?: OptionType[];
+  options?: OptionObject[];
   /**
    * Default text to show when the value is empty or the hideTextAfterEditing is true
    */
@@ -116,7 +116,7 @@ export const EditableInputText = ({
     const map = new Map<string, string>();
     if (options) {
       options.forEach((option) => {
-        map.set(option.value, option.label);
+        map.set(option.text!, option.label);
       });
     }
     return map;
@@ -214,13 +214,13 @@ export const EditableInputText = ({
   };
 
   function handleChange(
-    selectedOption: SingleValue<OptionType>,
-    actionMeta: ActionMeta<OptionType>
+    selectedOption: SingleValue<OptionObject>,
+    actionMeta: ActionMeta<OptionObject>
   ) {
     if (selectedOption === null) {
       inputHook.setValue("");
     } else {
-      inputHook.setValue(selectedOption.value);
+      inputHook.setValue(selectedOption.text!);
     }
   }
 
@@ -249,7 +249,7 @@ export const EditableInputText = ({
               )}
               noOptionsMessage={() => "No se encuentra la opción"}
               value={{
-                value: inputHook.value || "",
+                text: inputHook.value || "",
                 label: optionsMap.get(inputHook.value || "") || "",
               }}
               options={options}

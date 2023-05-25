@@ -292,69 +292,31 @@ Default.args = {
   branchTypeOptions: [
     {
       label: "Americano",
-      value: "americano",
+      text: "americano",
     },
     {
       label: "Italiano",
-      value: "italiano",
+      text: "italiano",
     },
     {
       label: "Japones",
-      value: "japones",
+      text: "japones",
     },
   ],
   branchLocationOptions: [
     {
       label: "El Hatillo",
-      value: "el hatillo",
+      text: "el hatillo",
     },
     {
       label: "Las Mercedes",
-      value: "las mercedes",
+      text: "las mercedes",
     },
     {
       label: "Chacao",
-      value: "chacao",
+      text: "chacao",
     },
   ],
   color: "#EF7A08",
   secondaryColor: "#FF8682",
-  incompleteBranches: [
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Licoreria Holiday",
-      incompleteFields: ["Descripción"],
-    },
-    {
-      name: "Nombre muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy largo",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-    {
-      name: "Sempre Dritto",
-      incompleteFields: ["Nombre", "Ubicación", "Teléfono"],
-    },
-  ],
 };
