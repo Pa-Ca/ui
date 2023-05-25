@@ -498,7 +498,7 @@ export const BusinessProfile = ({
               <Box>
                 <InputText
                   required
-                  type="naturalNumber"
+                  type="noNegativeNumber"
                   inputHook={newBranchPrice}
                   label="Coste por persona ($)"
                 />

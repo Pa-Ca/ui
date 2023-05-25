@@ -14,7 +14,7 @@ interface InputTextProps {
   /**
    * Input type
    */
-  type?: "text" | "number" | "naturalNumber" | "password" | "phoneNumber";
+  type?: "text" | "number" | "naturalNumber" | "password" | "phoneNumber" | "noNegativeNumber";
   /**
    * Indicates if the input is required
    */
@@ -65,6 +65,14 @@ export const InputText = ({
       // If the the input is a phone number we apply the following rules:
       // remove all characters except digits and plus sign
       event.target.value = event.target.value.replace(/[^0-9+]/g, "");
+    } else if (type === "noNegativeNumber") {
+      // If the input is a positive float number we apply the following rules:
+      // remove all characters except digits and dot
+      event.target.value = event.target.value.replace(/[^0-9.]/g, "");
+      // remove all dots except the first one
+      event.target.value = event.target.value.replace(/\.(?=.*\.)/g, "");
+      // remove all dots if they are the first character
+      event.target.value = event.target.value.replace(/^\./g, "");
     }
     inputHook.setValue(event.target.value);
   };
