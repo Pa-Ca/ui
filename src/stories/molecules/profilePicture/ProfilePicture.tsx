@@ -42,6 +42,11 @@ interface ProfilePictureProps {
    * On click in profile
    */
   onClick?: MouseEventHandler<HTMLDivElement>;
+
+  /**
+   * On click in pencil
+   */
+  onPencilClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 /**
@@ -56,6 +61,7 @@ export const ProfilePicture = ({
   userName,
   dropdownOptions = [],
   onClick,
+  onPencilClick,
   ...props
 }: ProfilePictureProps) => {
   const observer = useResizeObserver<HTMLDivElement>();
@@ -86,7 +92,7 @@ export const ProfilePicture = ({
           innerRef={observer.ref}
         >
           <div className="input-select--button">
-            <div className="dropdown-input-select--icon">
+            <div className="dropdown-input-select--icon" onClick={onPencilClick}>
               <Icon
                 icon={icon}
                 size={`${observer.width * iconProportion!}px`}

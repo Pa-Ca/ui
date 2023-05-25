@@ -10,6 +10,7 @@ import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
+import  { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 import {
   BranchEditForm,
   OptionType,
@@ -229,6 +230,11 @@ interface BusinessProfileProps {
   onDeleteBranch: () => void;
 
   /**
+   * On save profile picture TODO: Check if the type is correct
+   */
+  onSaveProfilePicture: (profilePicture: string) => void;
+
+  /**
    * Component main color
    */
   color?: string;
@@ -294,6 +300,7 @@ export const BusinessProfile = ({
   onSaveBranchOpeningTime,
   onSaveBranchClosingTime,
   onDeleteBranch,
+  onSaveProfilePicture,
 
   color,
   secondaryColor,
@@ -316,16 +323,31 @@ export const BusinessProfile = ({
     newPassword.setValue("");
   }, [changePassword]);
 
+  const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] = useState(false);
+
+  const onProfilePictureEditClick = () => {
+    setshowUploadProfilePictureModal(true);
+  }
+
+  const [currentProfilePicture, setCurrentProfilePicture] = useState(profilePicture);
+
+  const onProfilePictureChange = (value: string) => {
+    setCurrentProfilePicture(value);
+    setshowUploadProfilePictureModal(false);
+    onSaveProfilePicture(value);
+  }
+
   return (
     <BasicPage headerArgs={header}>
       <Box width="100%">
         <BusinessHeader
           mainImage={mainImage}
-          profilePicture={profilePicture}
+          profilePicture={currentProfilePicture}
           name={name.value}
           email={email.value}
           onCreateBranch={onCreateBranch}
           onPictureClick={onPictureClick}
+          onPicturePencilClick={onProfilePictureEditClick}
           color={color}
           secondaryColor={secondaryColor}
         />
@@ -426,6 +448,10 @@ export const BusinessProfile = ({
             </Box>
           </Box>
         </Box>
+
+        <Modal open={showUploadProfilePictureModal} setOpen={setshowUploadProfilePictureModal}>
+          <UploadProfilePictureForm onSave={onProfilePictureChange}/>
+        </Modal>
 
         <Modal open={showErrorModal} setOpen={setShowErrorModal}>
           <Box className="business-profile--modal-container">

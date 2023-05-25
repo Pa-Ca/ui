@@ -1,0 +1,33 @@
+.upload-profile-picture-form--container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1em;
+    padding: 1.5em;
+    background-color: white;
+    min-width: 30rem;
+    min-height: 25rem;
+}
+
+.upload-profile-picture-form--crop-canvas-container{
+    display: flex;
+}
+
+.upload-profile-picture-form--button-rack{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    padding: 1em;
+}
+
+.upload-profile-picture-form--placeholder-box {
+    border: 2px dashed black;
+    min-width: 20rem;
+    min-height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+   }
+   
+
