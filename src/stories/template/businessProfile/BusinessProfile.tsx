@@ -339,11 +339,13 @@ export const BusinessProfile = ({
   }
 
   const [currentProfilePicture, setCurrentProfilePicture] = useState(profilePicture);
+  const [headerProps, setHeaderProps] = useState<HeaderProps>(header);
 
   const onProfilePictureChange = (value: string) => {
     setCurrentProfilePicture(value);
     setshowUploadProfilePictureModal(false);
     onSaveProfilePicture(value);
+    setHeaderProps({ ...headerProps, picture: value });
   }
   const asterisk = (
     <Text color="red" type="h6" weight="400">
@@ -352,7 +354,7 @@ export const BusinessProfile = ({
   );
 
   return (
-    <BasicPage headerArgs={header}>
+    <BasicPage headerArgs={headerProps} >
       <Box width="100%">
         <BusinessHeader
           mainImage={mainImage}
