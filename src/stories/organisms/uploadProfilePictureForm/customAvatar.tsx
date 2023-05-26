@@ -1,8 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 
 const CustomAvatar = () => {
-  
-    const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,14 +33,14 @@ const CustomAvatar = () => {
     setIsDragging(false);
     if (canvasRef.current) {
       const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       if (ctx) {
         const imageData = ctx.getImageData(startX, startY, width, height);
         if (previewCanvasRef.current) {
           const previewCanvas = previewCanvasRef.current;
           previewCanvas.width = width;
           previewCanvas.height = height;
-          const previewCtx = previewCanvas.getContext('2d');
+          const previewCtx = previewCanvas.getContext("2d");
           if (previewCtx) {
             previewCtx.putImageData(imageData, 0, 0);
             setPreview(previewCanvas.toDataURL());
@@ -59,13 +58,13 @@ const CustomAvatar = () => {
       setHeight(currentY - startY);
       if (canvasRef.current) {
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
         if (ctx && image) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           let img = new Image();
           img.src = image;
           ctx.drawImage(img, 0, 0);
-          ctx.strokeStyle = 'red';
+          ctx.strokeStyle = "red";
           ctx.strokeRect(startX, startY, width, height);
         }
       }
@@ -90,7 +89,7 @@ const CustomAvatar = () => {
       {preview && (
         <div>
           <img src={preview} alt="Preview" />
-          <canvas ref={previewCanvasRef} style={{ display: 'none' }} />
+          <canvas ref={previewCanvasRef} style={{ display: "none" }} />
         </div>
       )}
     </div>
