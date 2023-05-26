@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
-import styles from "./editableInputTime.scss";
+import styles from "./editableInputTime.module.scss";
 import { Editable } from "../editable/Editable";
 import { InputFormHook } from "../../hooks/useInputForm";
 import styleVariables from "../../assets/scss/variables.module.scss";

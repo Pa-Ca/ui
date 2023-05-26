@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
-import styles from "./recoverPasswordComponent.scss";
+import styles from "./recoverPasswordComponent.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { RecoverPasswordForm } from "../../molecules/recoverPasswordForm/RecoverPasswordForm";

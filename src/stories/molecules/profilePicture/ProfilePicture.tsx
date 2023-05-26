@@ -5,7 +5,6 @@ import styles from "./profilePicture.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import inputSelectStyles from "../inputSelect/inputSelect.module.scss";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
-import dropdownInputSelectStyles from "../dropdownInputSelect/dropdownInputSelect.module.scss";
 
 interface ProfilePictureProps {
   /**
@@ -107,9 +106,7 @@ export const ProfilePicture = ({
           <div className={inputSelectStyles["input-select--button"]}>
             <div
               onClick={onPencilClick}
-              className={
-                dropdownInputSelectStyles["dropdown-input-select--icon"]
-              }
+              className={styles["dropdown-input-select--icon"]}
             >
               <Icon
                 icon={icon}

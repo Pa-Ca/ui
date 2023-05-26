@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
-import styles from "./reviewBoard.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./reviewBoard.module.scss";
 import scoreString from "../../utils/scoreString";
 import { Button } from "../../atoms/button/Button";
 import { Review, ReviewProps } from "../../molecules/review/Review";

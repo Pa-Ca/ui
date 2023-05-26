@@ -5,7 +5,7 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Editable } from "../editable/Editable";
 import { TextareaAutosize } from "@mui/material";
-import styles from "./editableInputLongText.scss";
+import styles from "./editableInputLongText.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import inputTextStyles from "../inputText/inputText.module.scss";
 import styleVariables from "../../assets/scss/variables.module.scss";
