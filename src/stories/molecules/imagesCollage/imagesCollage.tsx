@@ -1,17 +1,22 @@
-import './imagesCollage.scss';
-
-import React from 'react';
-import { Box } from '../../atoms/box/Box';
-import { Button } from '../../atoms/button/Button';
-import { Text } from '../../atoms/text/Text';
+import React from "react";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import styles from "./imagesCollage.module.scss";
+import { Button } from "../../atoms/button/Button";
 
 interface ImagesCollageProps {
-  width?: string,
-  images?: string[],
-  buttonTitle?: string,
-  buttonColor?: string,
-  buttonSize?: 'extra-small' | 'small' | 'box' | 'medium' | 'large' | 'extra-large',
-  onButtonClick?: () => void
+  width?: string;
+  images?: string[];
+  buttonTitle?: string;
+  buttonColor?: string;
+  buttonSize?:
+    | "extra-small"
+    | "small"
+    | "box"
+    | "medium"
+    | "large"
+    | "extra-large";
+  onButtonClick?: () => void;
 }
 
 /**
@@ -26,39 +31,36 @@ export const ImagesCollage = ({
   onButtonClick,
   ...props
 }: ImagesCollageProps) => {
+  const galleryMode = ["single", "double", "triple", "quadruple", "quintuple"];
 
-  const galleryMode = [
-    'single',
-    'double',
-    'triple',
-    'quadruple',
-    'quintuple'
-  ]
-
-  const listImages = (images && images.length > 0) ? images.map((image, index) => {
-    return <Box 
-      key={`image-collage--image-index-${index}`}
-      backgroundImage={image}
-      className={galleryMode[Math.min(Math.max(images.length - 1, 0), 4)]}
-    />
-  }) : [<Box className='single empty' />]
+  const listImages =
+    images && images.length > 0
+      ? images.map((image, index) => {
+          return (
+            <Box
+              key={`image-collage--image-index-${index}`}
+              backgroundImage={image}
+              className={
+                styles[galleryMode[Math.min(Math.max(images.length - 1, 0), 4)]]
+              }
+            />
+          );
+        })
+      : [<Box className={styles["single empty"]} />];
 
   return (
-    <div className='images-collage--container'>
-      <Button 
+    <div className={styles["images-collage--container"]}>
+      <Button
         size={buttonSize}
-        primary={true} 
+        primary={true}
         backgroundColor={buttonColor}
         onClick={onButtonClick}
       >
-        <Text type='h6' weight='700'>
+        <Text type="h6" weight="700">
           {buttonTitle}
         </Text>
       </Button>
-      <Box className='images-collage--content'>
-      {listImages}
-      
-      </Box>
+      <Box className={styles["images-collage--content"]}>{listImages}</Box>
     </div>
   );
 };

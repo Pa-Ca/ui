@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
-import "./branchEditForm.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./branchEditForm.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
 import OptionObject from "../../utils/objects/OptionObject";
@@ -124,7 +124,6 @@ interface BranchEditFormProps {
    */
   onDeleteBranch: () => void;
 
-
   /**
    * Business email
    */
@@ -206,9 +205,16 @@ export const BranchEditForm = ({
   }, [mapsLink]);
 
   return (
-    <Box className="branch-edit-form--container" width={width} height={height}>
-      <Box className={classnames("branch-edit-form--name-input")}>
-        <Text className="branch-edit-form--input-label"> Nombre </Text>
+    <Box
+      className={styles["branch-edit-form--container"]}
+      width={width}
+      height={height}
+    >
+      <Box className={styles["branch-edit-form--name-input"]}>
+        <Text className={styles["branch-edit-form--input-label"]}>
+          {" "}
+          Nombre{" "}
+        </Text>
         <EditableInputText
           width="100%"
           height="100%"
@@ -216,26 +222,29 @@ export const BranchEditForm = ({
           editable={true}
           saveValueFunction={onSaveName}
           type="text"
-          containerClassName="branch-edit-form--input-item"
+          containerClassName={styles["branch-edit-form--input-item"]}
           color={color}
         />
       </Box>
 
-      <Box className="branch-edit-form--two-column-row">
-        <Box className={classnames("branch-edit-form--capacity-input")}>
-          <Text className="branch-edit-form--input-label"> Capacidad </Text>
+      <Box className={styles["branch-edit-form--two-column-row"]}>
+        <Box className={styles["branch-edit-form--capacity-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
+            {" "}
+            Capacidad{" "}
+          </Text>
           <EditableInputText
             inputHook={capacity}
             saveValueFunction={onSaveCapacity}
             editable={true}
             type="positiveInteger"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
 
-        <Box className={classnames("branch-edit-form--average-reserve-time")}>
-          <Text className="branch-edit-form--input-label">
+        <Box className={styles["branch-edit-form--average-reserve-time"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
             {" "}
             Tiempo promedio de reserva{" "}
           </Text>
@@ -245,28 +254,31 @@ export const BranchEditForm = ({
             saveValueFunction={onSaveAverageReserveTime}
             editable={true}
             type="duration"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
       </Box>
 
-      <Box className="branch-edit-form--two-column-row">
-        <Box className={classnames("branch-edit-form--type-input")}>
-          <Text className="branch-edit-form--input-label"> Tipo </Text>
+      <Box className={styles["branch-edit-form--two-column-row"]}>
+        <Box className={styles["branch-edit-form--type-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
+            {" "}
+            Tipo{" "}
+          </Text>
           <EditableInputText
             inputHook={type}
             options={typeOptions}
             saveValueFunction={onSaveType}
             editable={true}
             type="select"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
 
-        <Box className="branch-edit-form--cost-per-person-input">
-          <Text className="branch-edit-form--input-label">
+        <Box className={styles["branch-edit-form--cost-per-person-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
             {" "}
             Coste por persona ($){" "}
           </Text>
@@ -275,15 +287,15 @@ export const BranchEditForm = ({
             saveValueFunction={onSavePrice}
             editable={true}
             type="positiveNumber"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
       </Box>
 
-      <Box className="branch-edit-form--two-column-row">
-        <Box className={classnames("branch-edit-form--type-input")}>
-          <Text className="branch-edit-form--input-label">
+      <Box className={styles["branch-edit-form--two-column-row"]}>
+        <Box className={styles["branch-edit-form--type-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
             {" "}
             Hora de apertura{" "}
           </Text>
@@ -293,13 +305,13 @@ export const BranchEditForm = ({
             saveValueFunction={onSaveOpeningTime}
             editable={true}
             type="localtime"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
 
-        <Box className="branch-edit-form--cost-per-person-input">
-          <Text className="branch-edit-form--input-label">
+        <Box className={styles["branch-edit-form--cost-per-person-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
             {" "}
             Hora de cierre{" "}
           </Text>
@@ -309,15 +321,15 @@ export const BranchEditForm = ({
             saveValueFunction={onSaveClosingTime}
             editable={true}
             type="localtime"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
       </Box>
 
-      <Box className="branch-edit-form--two-column-row">
-        <Box className={classnames("branch-edit-form--phone-number-input")}>
-          <Text className="branch-edit-form--input-label">
+      <Box className={styles["branch-edit-form--two-column-row"]}>
+        <Box className={styles["branch-edit-form--phone-number-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
             {" "}
             Número de teléfono Local{" "}
           </Text>
@@ -326,14 +338,17 @@ export const BranchEditForm = ({
             saveValueFunction={onSavePhone}
             editable={true}
             type="phoneNumber"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
             placeholder="+58 4240000000 | 04240000000"
           />
         </Box>
 
-        <Box className={classnames("branch-edit-form--location-input")}>
-          <Text className="branch-edit-form--input-label"> Ubicación </Text>
+        <Box className={styles["branch-edit-form--location-input"]}>
+          <Text className={styles["branch-edit-form--input-label"]}>
+            {" "}
+            Ubicación{" "}
+          </Text>
           <EditableInputText
             width="100%"
             height="100%"
@@ -342,14 +357,17 @@ export const BranchEditForm = ({
             saveValueFunction={onSaveLocation}
             editable={true}
             type="select"
-            containerClassName="branch-edit-form--input-item"
+            containerClassName={styles["branch-edit-form--input-item"]}
             color={color}
           />
         </Box>
       </Box>
 
-      <Box className="branch-edit-form--description-container">
-        <Text className="branch-edit-form--input-label"> Descripción </Text>
+      <Box className={styles["branch-edit-form--description-container"]}>
+        <Text className={styles["branch-edit-form--input-label"]}>
+          {" "}
+          Descripción{" "}
+        </Text>
         <EditableInputLongText
           inputHook={description}
           minRows={6}
@@ -362,8 +380,8 @@ export const BranchEditForm = ({
         />
       </Box>
 
-      <Box className="branch-edit-form--precise-location-container">
-        <Text className="branch-edit-form--input-label">
+      <Box className={styles["branch-edit-form--precise-location-container"]}>
+        <Text className={styles["branch-edit-form--input-label"]}>
           {" "}
           Ubicación precisa
         </Text>
@@ -376,13 +394,13 @@ export const BranchEditForm = ({
           showError={false}
           defaultText={locationName}
           saveValueFunction={onSaveMapsLink}
-          containerClassName="branch-edit-form--input-item"
+          containerClassName={styles["branch-edit-form--input-item"]}
           color={color}
         />
         <EditableBranchLocation
           apiKey={mapsApiKey}
           googleMapsLink={mapsLink.value || ""}
-          className="branch-edit-form--precise-location-map"
+          className={styles["branch-edit-form--precise-location-map"]}
         />
       </Box>
 
@@ -402,7 +420,7 @@ export const BranchEditForm = ({
       </Box>
 
       <Modal open={deleteBranch} setOpen={setDeleteBranch}>
-        <Box className="branch-edit-form--modal-container">
+        <Box className={styles["branch-edit-form--modal-container"]}>
           <Text type="h4" weight="600" color="#112211">
             ¿Estás seguro que deseas eliminar este local?
           </Text>
@@ -423,7 +441,7 @@ export const BranchEditForm = ({
             state={emailInput.value === email ? "normal" : "inactive"}
           >
             <Box
-              className="branch-edit-form--modal-button"
+              className={styles["branch-edit-form--modal-button"]}
               onClick={() => emailInput.value === email && onDeleteBranch()}
             >
               <Text color="#112211" type="h6" weight="500">

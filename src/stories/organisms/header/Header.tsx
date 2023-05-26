@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
-import "./header.scss";
+import classnames from "classnames";
+import styles from "./header.module.scss";
 import { Box } from "../../atoms/box/Box";
-import { Icon, IconType } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
+import { Icon, IconType } from "../../atoms/icon/Icon";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
@@ -82,7 +83,7 @@ export interface HeaderProps {
   height?: string;
   /**
    * Selected branch
-  */
+   */
   currentBranch?: string;
 
   /**
@@ -97,8 +98,8 @@ export interface HeaderProps {
 export const Header = ({
   picture,
   name,
-  onLogout = () => { },
-  onEditProfile = () => { },
+  onLogout = () => {},
+  onEditProfile = () => {},
   dark = false,
   userRole,
   logged,
@@ -129,30 +130,30 @@ export const Header = ({
   const pictureObserver = logged ? useResizeObserver<HTMLDivElement>() : null;
 
   // If the branch is in buisness mode, the header will show a select with the branches
-  const showBranchSelector = useMemo(() => { return userRole === "business" && logged; }, [userRole, logged]);
+  const showBranchSelector = useMemo(() => {
+    return userRole === "business" && logged;
+  }, [userRole, logged]);
 
   const leftSectionContents = useMemo(() => {
     if (userRole === "client" && !logged) {
       return {
         text: "Reservar",
-        icon: "bell" as IconType
-      }
-    }
-    else if (userRole === "client" && logged) {
+        icon: "bell" as IconType,
+      };
+    } else if (userRole === "client" && logged) {
       return {
         text: "Reservar",
-        icon: "bell" as IconType
+        icon: "bell" as IconType,
       };
     } else if (userRole === "business" && !logged) {
       return {
         text: "Ingresar",
-        icon: "person" as IconType
+        icon: "person" as IconType,
       };
     } else if (userRole === "business" && logged) {
       return {
         text: currentBranch,
-        icon: "restaurant" as IconType
-
+        icon: "restaurant" as IconType,
       };
     }
   }, [userRole, logged, currentBranch]);
@@ -165,17 +166,16 @@ export const Header = ({
     if (showBranchSelector) {
       setBranchListView((currentView) => !currentView);
     }
-
   };
 
   const dropdownOptions: UserDropdownElement[] = [
     {
-      name: 'Editar Perfil',
+      name: "Editar Perfil",
       func: onEditProfile,
       icon: "pencil",
     },
     {
-      name: 'Cerrar Sesión',
+      name: "Cerrar Sesión",
       func: onLogout,
       icon: "logout",
     },
@@ -188,9 +188,9 @@ export const Header = ({
         !dropdownObserver.ref.current.contains(event.target as Node) &&
         !!pictureObserver &&
         pictureObserver.ref.current &&
-        !pictureObserver.ref.current.contains(event.target as Node)
-        && branchDropdownObserver.ref.current
-        && !branchDropdownObserver.ref.current?.contains(event.target as Node)
+        !pictureObserver.ref.current.contains(event.target as Node) &&
+        branchDropdownObserver.ref.current &&
+        !branchDropdownObserver.ref.current?.contains(event.target as Node)
       ) {
         setView(false);
         setBranchListView(false);
@@ -206,12 +206,12 @@ export const Header = ({
     if (logged) {
       return (
         <>
-          <Box className="header--zone" onClick={onRightSectionClick}>
+          <Box className={styles["header--zone"]} onClick={onRightSectionClick}>
             <Icon icon={rightSectionIcon} size="20px" color={logoColor} />
             <Text
               type="h6"
               weight="600"
-              className="header--text"
+              className={styles["header--text"]}
               color={logoColor}
             >
               {rightSectionText}
@@ -219,18 +219,21 @@ export const Header = ({
             <Text
               type="h6"
               weight="600"
-              className="header--text"
+              className={styles["header--text"]}
               color={logoColor}
             >
               &nbsp;&nbsp;|
             </Text>
           </Box>
           <Box
-            className="header--zone header--profile"
+            className={classnames(
+              styles["header--zone"],
+              styles["header--profile"]
+            )}
             onClick={onProfileClick}
           >
             <Box
-              className="header--profile-picture"
+              className={styles["header--profile-picture"]}
               innerRef={pictureObserver!.ref}
             >
               <ProfilePicture
@@ -251,17 +254,22 @@ export const Header = ({
     } else {
       return (
         <>
-          <Box className="header--zone" onClick={onLoginClick}>
+          <Box className={styles["header--zone"]} onClick={onLoginClick}>
             <Text
               type="h6"
               weight="600"
-              className="header--text"
+              className={styles["header--text"]}
               color={logoColor}
             >
               Login
             </Text>
           </Box>
-          <Box className="header--zone header--profile">
+          <Box
+            className={classnames(
+              styles["header--zone"],
+              styles["header--profile"]
+            )}
+          >
             <Button
               primary
               onClick={onRegisterClick}
@@ -284,28 +292,34 @@ export const Header = ({
   return (
     <>
       <Box
-        className="header--container"
+        className={styles["header--container"]}
         style={{ width, height, backgroundColor }}
       >
-        <Box className="header--subcontainer">
+        <Box className={styles["header--subcontainer"]}>
           {/* Left section */}
-          <Box className="header--zone" onClick={onLeftSectionClickHandler} innerRef={branchDropdownObserver.ref}>
-            <Icon icon={leftSectionContents?.icon} size="20px" color={logoColor} />
+          <Box
+            className={styles["header--zone"]}
+            onClick={onLeftSectionClickHandler}
+            innerRef={branchDropdownObserver.ref}
+          >
+            <Icon
+              icon={leftSectionContents?.icon}
+              size="20px"
+              color={logoColor}
+            />
             <Text
               type="h6"
               weight="600"
-              className="header--text"
+              className={styles["header--text"]}
               color={logoColor}
             >
               {leftSectionContents?.text}
             </Text>
-            {
-              showBranchSelector && (
-                <Box >
-                  <Icon icon="down" size="20px" color={logoColor} />
-                </Box>
-              )
-            }
+            {showBranchSelector && (
+              <Box>
+                <Icon icon="down" size="20px" color={logoColor} />
+              </Box>
+            )}
             <HeaderBranchDropdown
               border="5px"
               color="#EF7A08"
@@ -315,17 +329,25 @@ export const Header = ({
           </Box>
 
           {/* PA-CA */}
-          <Box className="header--pa-ca header--zone" onClick={onPacaClick}>
+          <Box
+            className={classnames(
+              styles["header--pa-ca"],
+              styles["header--zone"]
+            )}
+            onClick={onPacaClick}
+          >
             <Icon icon="pa-ca" size="41px" color={logoColor} />
           </Box>
 
           {/* Right section */}
-          <Box className="header--zone">{rightSectionComponent()}</Box>
+          <Box className={styles["header--zone"]}>
+            {rightSectionComponent()}
+          </Box>
         </Box>
       </Box>
       <Box innerRef={dropdownObserver.ref}>
         {logged && (
-          <Box className="header--dropdown">
+          <Box className={styles["header--dropdown"]}>
             <ProfileDropdown
               size="45px"
               border="0px"

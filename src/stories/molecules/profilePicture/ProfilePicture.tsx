@@ -1,9 +1,11 @@
 import React, { useMemo, MouseEventHandler } from "react";
-import "./profilePicture.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./profilePicture.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
+import inputSelectStyles from "../inputSelect/inputSelect.module.scss";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
+import dropdownInputSelectStyles from "../dropdownInputSelect/dropdownInputSelect.module.scss";
 
 interface ProfilePictureProps {
   /**
@@ -76,23 +78,39 @@ export const ProfilePicture = ({
   }, [icon]);
 
   return (
-    <div style={{ position: "relative", width: size, display: "flex", alignItems: "center" }}>
+    <div
+      style={{
+        position: "relative",
+        width: size,
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Box
-        backgroundImage={picture == "" ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" : picture}
+        backgroundImage={
+          picture == ""
+            ? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
+            : picture
+        }
         borderRadius="100%"
         width={size}
         height={size}
         style={{ border: `${border} solid ${color}` }}
-        className="profile-picture--container"
+        className={styles["profile-picture--container"]}
         onClick={onClick}
       >
         <Box
-          className="profile-picture--icon"
+          className={styles["profile-picture--icon"]}
           style={{ backgroundColor: color }}
           innerRef={observer.ref}
         >
-          <div className="input-select--button">
-            <div className="dropdown-input-select--icon" onClick={onPencilClick}>
+          <div className={inputSelectStyles["input-select--button"]}>
+            <div
+              onClick={onPencilClick}
+              className={
+                dropdownInputSelectStyles["dropdown-input-select--icon"]
+              }
+            >
               <Icon
                 icon={icon}
                 size={`${observer.width * iconProportion!}px`}

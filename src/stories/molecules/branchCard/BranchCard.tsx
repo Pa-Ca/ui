@@ -1,10 +1,11 @@
-import React, { MouseEventHandler } from 'react';
-import './branchCard.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import getDollars from '../../utils/getDollars';
-import { Button } from '../../atoms/button/Button';
-import { StarRating } from '../../atoms/starRating/StarRating';
+import React from "react";
+import classnames from "classnames";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import styles from "./branchCard.module.scss";
+import getDollars from "../../utils/getDollars";
+import { Button } from "../../atoms/button/Button";
+import { StarRating } from "../../atoms/starRating/StarRating";
 
 export interface BranchCardProps {
   /**
@@ -96,89 +97,103 @@ export const BranchCard = ({
   ...props
 }: BranchCardProps) => {
   return (
-    <Box className='branch-card--container' style={{ width, height }}>
+    <Box className={styles["branch-card--container"]} style={{ width, height }}>
       {/* Image Box */}
       <Box
         backgroundImage={backgroundImage}
-        borderTopLeftRadius='16px'
-        borderTopRightRadius='16px'
+        borderTopLeftRadius="16px"
+        borderTopRightRadius="16px"
         weakShadow
-        className='branch-card--zone branch-card--image'
+        className={classnames(styles["branch-card--zone"], styles["branch-card--image"])}
         onClick={onClick}
       >
-        {
-          discount && (
-            <Box
-              className='branch-card--discount'
-              width='31px'
-              height='25px'
-              borderRadius='5px'
-              backgroundColor={color}
-            >
-              <Text type='h7' weight='700' color='white'>
-                %
-              </Text>
-            </Box>
-          )
-        }
+        {discount && (
+          <Box
+            className={styles["branch-card--discount"]}
+            width="31px"
+            height="25px"
+            borderRadius="5px"
+            backgroundColor={color}
+          >
+            <Text type="h7" weight="700" color="white">
+              %
+            </Text>
+          </Box>
+        )}
       </Box>
 
       {/* Branch data Box */}
       <Box
-        borderBottomLeftRadius='16px'
-        borderBottomRightRadius='16px'
+        borderBottomLeftRadius="16px"
+        borderBottomRightRadius="16px"
         weakShadow
-        className='branch-card--zone'
+        className={styles["branch-card--zone"]}
       >
         {/* Title */}
-        <Box className='branch-card--title-zone' onClick={onClick}>
-          <Text weight='600' color='#121212' opacity={0.7}>
+        <Box className={styles["branch-card--title-zone"]} onClick={onClick}>
+          <Text weight="600" color="#121212" opacity={0.7}>
             {name}
           </Text>
         </Box>
 
         {/* Data */}
-        <Box className='branch-card--info'>
-          <Box className='branch-card--reviews-zone' >
-            <Box className='branch-card--reviews'>
+        <Box className={styles["branch-card--info"]}>
+          <Box className={styles["branch-card--reviews-zone"]}>
+            <Box className={styles["branch-card--reviews"]}>
               <StarRating size={20} rating={score} color={color} readonly />
-              <Text type='h8' weight='400' className='branch-card--reviews-text' >
+              <Text
+                type="h8"
+                weight="400"
+                className={styles["branch-card--reviews-text"]}
+              >
                 {reviews} Reviews
               </Text>
             </Box>
           </Box>
-          <Box className='branch-card--summary'>
-            <Text type='h7' weight='400'> {category} </Text>
-            <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
+          <Box className={styles["branch-card--summary"]}>
+            <Text type="h7" weight="400">
+              {" "}
+              {category}{" "}
+            </Text>
+            <Text type="h7" weight="400">
+              {" "}
+              &nbsp;•&nbsp;{" "}
+            </Text>
             <Text> {getDollars(priceScore ?? 0, name)} </Text>
-            <Text type='h7' weight='400'> &nbsp;•&nbsp; </Text>
-            <Text type='h7' weight='400'> {location} </Text>
+            <Text type="h7" weight="400">
+              {" "}
+              &nbsp;•&nbsp;{" "}
+            </Text>
+            <Text type="h7" weight="400">
+              {" "}
+              {location}{" "}
+            </Text>
           </Box>
         </Box>
 
         {/* Reservations */}
-        <Box className='branch-card--buttons'>
+        <Box className={styles["branch-card--buttons"]}>
           <Box>
-            <Button 
-              size='extra-small' 
+            <Button
+              size="extra-small"
               primary
               backgroundColor={color}
               onClick={onFirstReserveClick}
             >
-              <Text type='h7' weight='700'>
+              <Text type="h7" weight="700">
                 {firstReserve}
               </Text>
             </Button>
           </Box>
 
           <Box>
-            <Button 
-              size='extra-small' 
+            <Button
+              size="extra-small"
               primary
               backgroundColor={color}
               onClick={onSecondReserveClick}
             >
-              <Text type='h7' weight='700'>
+              <Text type="h7" weight="700">
                 {secondReserve}
               </Text>
             </Button>

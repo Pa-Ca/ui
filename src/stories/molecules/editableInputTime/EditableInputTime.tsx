@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
-import "./editableInputTime.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./editableInputTime.scss";
 import { Editable } from "../editable/Editable";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
+import editableInputTextStyle from "../editableInputText/editableInputText.module.scss";
 
 interface EditableInputTimeProps {
   /**
@@ -169,7 +170,7 @@ export const EditableInputTime = ({
   return (
     <Box
       className={classnames(
-        "editable-input-text--container",
+        editableInputTextStyle["editable-input-text--container"],
         className,
         containerClassName
       )}
@@ -177,30 +178,38 @@ export const EditableInputTime = ({
     >
       <Box
         className={classnames(
-          "editable-input-text--input-container",
+          editableInputTextStyle["editable-input-text--input-container"],
           className
         )}
       >
         {editValue ? (
-          <Box className="editable-input-time--inputs">
+          <Box className={styles["editable-input-time--inputs"]}>
             <input
               type="text"
               ref={valueRef}
               onChange={onChangeHour}
               value={hoursInputHook.value}
-              className={classnames("editable-input-text--input", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--input"],
+                className
+              )}
               style={{
                 width: "30px",
                 borderColor: hoursInputHook.error
-                  ? styles.errorColor
+                  ? styleVariables.errorColor
                   : undefined,
-                borderWidth: hoursInputHook.error == 1 || hoursInputHook.error == 2
-                             ? "2.5px" : undefined,
+                borderWidth:
+                  hoursInputHook.error == 1 || hoursInputHook.error == 2
+                    ? "2.5px"
+                    : undefined,
                 ...style,
               }}
             />
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="400"
               style={{ ...style }}
@@ -212,18 +221,27 @@ export const EditableInputTime = ({
               ref={valueRef}
               onChange={onChangeMinutes}
               value={minutesInputHook.value}
-              className={classnames("editable-input-text--input", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--input"],
+                className
+              )}
               style={{
                 width: "30px",
                 borderColor: minutesInputHook.error
-                  ? styles.errorColor
+                  ? styleVariables.errorColor
                   : undefined,
-                borderWidth: minutesInputHook.error == 1 || minutesInputHook.error == 2  ? "2.5px" : undefined,
+                borderWidth:
+                  minutesInputHook.error == 1 || minutesInputHook.error == 2
+                    ? "2.5px"
+                    : undefined,
                 ...style,
               }}
             />
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="400"
               style={{ ...style }}
@@ -232,9 +250,12 @@ export const EditableInputTime = ({
             </Text>
           </Box>
         ) : (
-          <Box className="editable-input-time--inputs">
+          <Box className={styles["editable-input-time--inputs"]}>
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="600"
               style={{ ...style }}
@@ -242,7 +263,10 @@ export const EditableInputTime = ({
               {hoursInputHook.value}
             </Text>
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="400"
               style={{ ...style }}
@@ -250,7 +274,10 @@ export const EditableInputTime = ({
               {type === "duration" ? "horas" : ":"}
             </Text>
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="600"
               style={{ ...style }}
@@ -258,7 +285,10 @@ export const EditableInputTime = ({
               {minutesInputHook.value}
             </Text>
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                editableInputTextStyle["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="400"
               style={{ ...style }}
@@ -281,45 +311,55 @@ export const EditableInputTime = ({
       </Box>
       <Box
         className={classnames(
-          "editable-input-text--error-message",
+          editableInputTextStyle["editable-input-text--error-message"],
           className,
-          hoursInputHook.error == 1 || minutesInputHook.error == 1
-          || hoursInputHook.error == 2 || minutesInputHook.error == 2
-            ? "editable-input-text--animation"
-            : "editable-input-text--no-animation"
+          hoursInputHook.error == 1 ||
+            minutesInputHook.error == 1 ||
+            hoursInputHook.error == 2 ||
+            minutesInputHook.error == 2
+            ? editableInputTextStyle["editable-input-text--animation"]
+            : editableInputTextStyle["editable-input-text--no-animation"]
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
         {hoursInputHook.error == 1 ? (
           <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
+            <Text type="h6" color={styleVariables.errorColor}>
               {hoursInputHook.errorMessage}
             </Text>
           </>
         ) : minutesInputHook.error == 1 ? (
           <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
+            <Text type="h6" color={styleVariables.errorColor}>
               {minutesInputHook.errorMessage}
             </Text>
           </>
         ) : null}
         {hoursInputHook.error == 2 ? (
           <>
-            <Icon icon="warning" color={styles.errorColor} size="20px" />
+            <Icon
+              icon="warning"
+              color={styleVariables.errorColor}
+              size="20px"
+            />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
+            <Text type="h6" color={styleVariables.warningColor}>
               {hoursInputHook.errorMessage}
             </Text>
           </>
         ) : minutesInputHook.error == 2 ? (
           <>
-            <Icon icon="warning" color={styles.errorColor} size="20px" />
+            <Icon
+              icon="warning"
+              color={styleVariables.errorColor}
+              size="20px"
+            />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
+            <Text type="h6" color={styleVariables.warningColor}>
               {minutesInputHook.errorMessage}
             </Text>
           </>

@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import "./reservation.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./reservation.module.scss";
 import { Button } from "../../atoms/button/Button";
 
 export interface ReservationProps {
@@ -83,7 +83,7 @@ export const Reservation = ({
   ...props
 }: ReservationProps) => {
   const dot = () => (
-    <Box className="reservation--dot">
+    <Box className={styles["reservation--dot"]}>
       <Text weight="700" type="h4">
         •
       </Text>
@@ -95,11 +95,11 @@ export const Reservation = ({
       // Pending reservsation
       case 1:
         return (
-          <Box className="reservation--icon-container">
-            <Box className="reservation--icon" onClick={onReject}>
+          <Box className={styles["reservation--icon-container"]}>
+            <Box className={styles["reservation--icon"]} onClick={onReject}>
               <Icon icon="cancel" size="32px" />
             </Box>
-            <Box className="reservation--icon" onClick={onAccept}>
+            <Box className={styles["reservation--icon"]} onClick={onAccept}>
               <Icon icon="check" size="32px" />
             </Box>
           </Box>
@@ -108,7 +108,7 @@ export const Reservation = ({
       // Active reservation
       case 2:
         return (
-          <Box className="reservation--button">
+          <Box className={styles["reservation--button"]}>
             <Button
               primary
               onClick={onCloseReservation}
@@ -128,14 +128,14 @@ export const Reservation = ({
 
   return (
     <Box
-      className="reservation--container"
+      className={styles["reservation--container"]}
       borderRadius="12px"
       weakShadow
       style={{ width, height }}
     >
-      <Box className="reservation--details">
+      <Box className={styles["reservation--details"]}>
         <Box
-          className="reservation--start"
+          className={styles["reservation--start"]}
           borderRadius="10px"
           backgroundColor="#646464"
         >
@@ -156,8 +156,8 @@ export const Reservation = ({
 
         {dot()}
 
-        <Box className="reservation--details">
-          <Box className="reservation--icon-container">
+        <Box className={styles["reservation--details"]}>
+          <Box className={styles["reservation--icon-container"]}>
             <Icon icon="person" size="20px" />
           </Box>
           <Text> {persons} </Text>
@@ -165,8 +165,8 @@ export const Reservation = ({
 
         {dot()}
 
-        <Box className="reservation--details">
-          <Box className="reservation--icon-container">
+        <Box className={styles["reservation--details"]}>
+          <Box className={styles["reservation--icon-container"]}>
             <Icon icon="table" size="20px" />
           </Box>
           <Text> {tables} </Text>

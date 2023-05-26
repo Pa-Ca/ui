@@ -1,6 +1,6 @@
 import React from "react";
-import "./branchMainSummary.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./branchMainSummary.module.scss";
 import { ImagesCollage } from "../../molecules/imagesCollage/imagesCollage";
 import { AddPromotionCard } from "../../molecules/addPromotionCard/AddPromotionCard";
 import { BranchContentSummary } from "../../molecules/branchContentSummary/BranchContentSummary";
@@ -95,8 +95,8 @@ export const BranchMainSummary = ({
   ...props
 }: BranchMainSummaryProps) => {
   return (
-    <Box className="branch-main-summary--container" style={{ width, height }}>
-      <Box className="branch-main-summary--content">
+    <Box className={styles["branch-main-summary--container"]} style={{ width, height }}>
+      <Box className={styles["branch-main-summary--content"]}>
         <BranchContentSummary
           name={name}
           score={score}
@@ -109,11 +109,11 @@ export const BranchMainSummary = ({
         />
       </Box>
 
-      <Box className="branch-main-summary--promotions-container">
+      <Box className={styles["branch-main-summary--promotions-container"]}>
         {promotions.map((promotion, index) => {
           return (
             <Box
-              className="branch-main-summary--promotion"
+              className={styles["branch-main-summary--promotion"]}
               key={`branch-main-summay--promotions-${index}-${promotion.promotion}`}
             >
               <PromotionCard color={color} editable={editable} {...promotion} />
@@ -121,7 +121,7 @@ export const BranchMainSummary = ({
           );
         })}
         {editable && (
-          <Box className="branch-main-summary--promotion">
+          <Box className={styles["branch-main-summary--promotion"]}>
             <AddPromotionCard
               text="Agregar Promoción"
               onClick={addPromotion}
@@ -132,7 +132,7 @@ export const BranchMainSummary = ({
         )}
       </Box>
 
-      <Box className="branch-main-summary--overview-container">
+      <Box className={styles["branch-main-summary--overview-container"]}>
         <BranchContentOverview
           overview={overview}
           editable={editable}

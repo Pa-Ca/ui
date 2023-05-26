@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./payMethodSelector.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./payMethodSelector.module.scss";
 import CardObject from "../../utils/objects/CardObject";
 import { PayMethod } from "../../molecules/payMethod/PayMethod";
 
@@ -43,8 +43,8 @@ export const PayMethodSelector = ({
   };
 
   return (
-    <Box className="pay-method-selector--container">
-      <Box className="pay-method-selector--method">
+    <Box className={styles["pay-method-selector--container"]}>
+      <Box className={styles["pay-method-selector--method"]}>
         <PayMethod
           method="visa"
           active={activeMethod === 0}
@@ -55,7 +55,7 @@ export const PayMethodSelector = ({
           onClick={() => selectMethod(0)}
         />
       </Box>
-      <Box className="pay-method-selector--method">
+      <Box className={styles["pay-method-selector--method"]}>
         <PayMethod
           method="pagomovil"
           active={activeMethod === 1}
@@ -64,7 +64,7 @@ export const PayMethodSelector = ({
           onClick={() => selectMethod(1)}
         />
       </Box>
-      <Box className="pay-method-selector--method">
+      <Box className={styles["pay-method-selector--method"]}>
         <PayMethod
           method="zelle"
           active={activeMethod === 2}

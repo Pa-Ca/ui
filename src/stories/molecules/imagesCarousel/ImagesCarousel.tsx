@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./imagesCarousel.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./imagesCarousel.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 
 export interface ImagesCarouselProps {
@@ -45,7 +45,8 @@ export const ImagesCarousel = ({
 
   useEffect(() => {
     if (observer.ref.current) {
-      observer.ref.current.scrollLeft = currentImage * (observer.width + 20) + 10;
+      observer.ref.current.scrollLeft =
+        currentImage * (observer.width + 20) + 10;
     }
   }, [observer.width, currentImage]);
 
@@ -88,12 +89,12 @@ export const ImagesCarousel = ({
 
   return (
     <Box
-      className="images-carousel--container"
+      className={styles["images-carousel--container"]}
       borderRadius="30px"
       style={{ width, height }}
     >
       <Box
-        className="images-carousel--images-container"
+        className={styles["images-carousel--images-container"]}
         innerRef={observer.ref}
         borderRadius="30px"
         onClick={handleClick}
@@ -103,19 +104,19 @@ export const ImagesCarousel = ({
             style={{ minWidth: `${observer.width + 20}px` }}
             height={`${observer.height}px`}
             backgroundImage={image}
-            className="images-carousel--image"
+            className={styles["images-carousel--image"]}
             key={`images-carousel--image-${index}-${image}`}
           />
         ))}
       </Box>
 
-      <Box className="images-carousel--dots">
+      <Box className={styles["images-carousel--dots"]}>
         {images.map((image, index) => (
           <Box
             borderRadius="5px"
             width="10px"
             height="10px"
-            className="images-carousel--dot"
+            className={styles["images-carousel--dot"]}
             key={`images-carousel--dot-${index}-${image}`}
             style={{
               width: currentImage !== index ? "10px" : "32px",

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import "./editable.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./editable.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
@@ -58,12 +58,12 @@ export const Editable = ({
 
   return (
     <Box
-      className="editable--container"
+      className={styles["editable--container"]}
       style={{ display: editable ? "flex" : "none" }}
     >
       {editable && (
         <Box
-          className="editable--editable-icon"
+          className={styles["editable--editable-icon"]}
           onClick={onPencilClick}
           style={{
             "--editable-initial-color": initialColor,
@@ -82,23 +82,29 @@ export const Editable = ({
         </Box>
       )}
       <Box
-        className="editable--edit-button-container"
+        className={styles["editable--edit-button-container"]}
         style={{
           width: edit ? width : "0",
         }}
       >
         <Box
-          className="editable--edit-buttons"
+          className={styles["editable--edit-buttons"]}
           style={{
             width: edit ? width : "0",
           }}
         >
           {useIcons ? (
             <>
-              <Box onClick={onCancelClick} className="editable--action-icon">
+              <Box
+                onClick={onCancelClick}
+                className={styles["editable--action-icon"]}
+              >
                 <Icon icon="cancel" color={color} size="30px" />
               </Box>
-              <Box onClick={onSaveClick} className="editable--action-icon">
+              <Box
+                onClick={onSaveClick}
+                className={styles["editable--action-icon"]}
+              >
                 <Icon icon="check" color={color} size="30px" />
               </Box>
             </>

@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
-import './reservationDetails.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import ReservationDetail from '../../utils/objects/ReservationDetail';
-import scoreString from '../../utils/scoreString';
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import scoreString from "../../utils/scoreString";
+import styles from "./reservationDetails.module.scss";
+import ReservationDetail from "../../utils/objects/ReservationDetail";
+
 interface ReservationDetailsProps {
   /**
    * Branch name
@@ -59,84 +60,87 @@ export const ReservationDetails = ({
   width,
   height,
   backgroundImage,
-  backgroundColor="white",
+  backgroundColor = "white",
   detailsList,
   ...props
 }: ReservationDetailsProps) => {
-
   const totalPrice = useMemo(() => {
-    return (
-      detailsList.reduce((sum, detail) => sum + detail.price, 0)
-    );
+    return detailsList.reduce((sum, detail) => sum + detail.price, 0);
   }, [detailsList]);
 
   return (
-    <Box className='details-card--container' weakShadow backgroundColor={backgroundColor} style={{ width }}>
-      <Box className='details-card--summary'>
+    <Box
+      className={styles["reservation-details--details-card--container"]}
+      weakShadow
+      backgroundColor={backgroundColor}
+      style={{ width }}
+    >
+      <Box className={styles["reservation-details--details-card--summary"]}>
         {/* Image Box */}
         <Box
           backgroundImage={backgroundImage}
-          className="reservation-detail-image"
-        >
-        </Box>
-        <Box className='resumen-box-text'>
-          <Text>
-            Resumen
-          </Text>
-          <Text type='h5' weight='600'>
+          className={styles["reservation-details--reservation-detail-image"]}
+        ></Box>
+        <Box className={styles["reservation-details--resumen-box-text"]}>
+          <Text>Resumen</Text>
+          <Text type="h5" weight="600">
             {branchName}
           </Text>
-          <Box className="score-box">
-            <Box className="score-box-with-border" style={{borderColor: color}}>
+          <Box className={styles["reservation-details--score-box"]}>
+            <Box
+              className={styles["reservation-details--score-box-with-border"]}
+              style={{ borderColor: color }}
+            >
               {score}
             </Box>
-            <Text type='h7' weight='700'>
+            <Text type="h7" weight="700">
               {scoreString(score ?? 0)}
             </Text>
-            <Text type='h7'>
-              {reviews} reviews
-            </Text>
+            <Text type="h7">{reviews} reviews</Text>
           </Box>
         </Box>
       </Box>
 
-      <Box backgroundColor='#112211' height='0.5px' className='detail--line' />
+      <Box
+        backgroundColor="#112211"
+        height="0.5px"
+        className={styles["reservation-details--detail--line"]}
+      />
 
       <Box>
-        <Text>
-          {text}
-        </Text>
+        <Text>{text}</Text>
       </Box>
 
-      <Box backgroundColor='#112211' height='0.5px' className='detail--line' />
+      <Box
+        backgroundColor="#112211"
+        height="0.5px"
+        className={styles["reservation-details--detail--line"]}
+      />
 
-      <Box className="details-title">
-           <Text weight="700">Detalles de Reserva </Text>
+      <Box className={styles["reservation-details--details-title"]}>
+        <Text weight="700">Detalles de Reserva </Text>
       </Box>
 
-      {
-       detailsList.map((detail,index) => (
-         <Box
-           key={`check-list--item-${index}-${detail.name}`}
-           className='detail-element'
-         >
-           <Text>{detail.name}</Text>
-           <Text>${detail.price} </Text>
-         </Box>
-       ))
-      }
+      {detailsList.map((detail, index) => (
+        <Box
+          key={`check-list--item-${index}-${detail.name}`}
+          className={styles["reservation-details--detail-element"]}
+        >
+          <Text>{detail.name}</Text>
+          <Text>${detail.price} </Text>
+        </Box>
+      ))}
 
-      <Box backgroundColor='#112211' height='0.5px' className='detail--line' />
+      <Box
+        backgroundColor="#112211"
+        height="0.5px"
+        className={styles["reservation-details--detail--line"]}
+      />
 
-      <Box className='detail-element'>
-        <Text>
-          Total
-        </Text>
-        <Text>
-          ${totalPrice}
-        </Text>
+      <Box className={styles["reservation-details--detail-element"]}>
+        <Text>Total</Text>
+        <Text>${totalPrice}</Text>
       </Box>
-      
     </Box>
   );
 };

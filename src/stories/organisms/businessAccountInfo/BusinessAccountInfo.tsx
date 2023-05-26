@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import "./businessAccountInfo.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
+import styles from "./businessAccountInfo.module.scss";
 import { InputText } from "../../molecules/inputText/InputText";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
@@ -117,13 +117,13 @@ export const BusinessAccountInfo = ({
   }, [changePassword]);
 
   return (
-    <Box className="business-account-info--container">
+    <Box className={styles["business-account-info--container"]}>
       <Text type="h3" weight="700">
         Cuenta
       </Text>
 
-      <Box className="business-account-info--data-container">
-        <Box className="business-account-info--input-container">
+      <Box className={styles["business-account-info--data-container"]}>
+        <Box className={styles["business-account-info--input-container"]}>
           <Text color="#112211" weight="400">
             Nombre Local
           </Text>
@@ -139,7 +139,7 @@ export const BusinessAccountInfo = ({
           />
         </Box>
 
-        <Box className="business-account-info--input-container">
+        <Box className={styles["business-account-info--input-container"]}>
           <Text color="#112211" weight="400">
             Email
           </Text>
@@ -155,7 +155,7 @@ export const BusinessAccountInfo = ({
           />
         </Box>
 
-        <Box className="business-account-info--input-container">
+        <Box className={styles["business-account-info--input-container"]}>
           <Text color="#112211" weight="400">
             Número de teléfono
           </Text>
@@ -181,7 +181,7 @@ export const BusinessAccountInfo = ({
       </Box>
 
       <Modal open={changePassword} setOpen={setChangePassword}>
-        <Box className="business-account-info--modal-title">
+        <Box className={styles["business-account-info--modal-title"]}>
           <Text type="h5" weight="700" color="#112211">
             Cambio de Contraseña
           </Text>
@@ -210,7 +210,7 @@ export const BusinessAccountInfo = ({
           label="Repetir contraseña nueva"
         />
         <Box
-          className="business-account-info--forgot-password"
+          className={styles["business-account-info--forgot-password"]}
           onClick={onForgotPassword}
         >
           <Text color={secondaryColor} type="h6">
@@ -228,7 +228,7 @@ export const BusinessAccountInfo = ({
         <Box
           height="24px"
           width="100%"
-          className="business-account-info--modal-line"
+          className={styles["business-account-info--modal-line"]}
         >
           <Box width="100%" height="1px" backgroundColor="#DADCDA" />
         </Box>
@@ -240,7 +240,11 @@ export const BusinessAccountInfo = ({
           backgroundColor={color}
           state={done ? "inactive" : "normal"}
         >
-          <Box className="business-account-info--modal-change-password-button">
+          <Box
+            className={
+              styles["business-account-info--modal-change-password-button"]
+            }
+          >
             <Text type="h6" weight="600">
               Cambiar contraseña
             </Text>

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import "./button.scss";
+import styles from "./button.module.scss";
 
 interface ButtonProps {
   /**
@@ -62,11 +62,11 @@ export const Button = ({
     <button
       type="button"
       className={[
-        "button",
-        `button--${size}`,
-        primary ? `button--state-${currentState}` : "",
-        fullWidth ? "button--full-width" : "",
-        primary ? "button--primary" : "button--secondary",
+        styles["button"],
+        styles[`button--${size}`],
+        primary ? styles[`button--state-${currentState}`] : "",
+        fullWidth ? styles["button--full-width"] : "",
+        primary ? styles["button--primary"] : styles["button--secondary"],
       ].join(" ")}
       style={{ backgroundColor, borderColor }}
       onMouseDown={() => setMouseDown(true)}

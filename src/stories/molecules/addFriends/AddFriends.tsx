@@ -1,10 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
-import InvitedFriendObject from "../../utils/objects/InvitedFriendObject";
 import { Text } from "../../atoms/text/Text";
-
-import "./addFriends.scss";
+import styles from "./addFriends.module.scss";
+import InvitedFriendObject from "../../utils/objects/InvitedFriendObject";
 
 export interface AddFriendsProps {
   /**
@@ -89,25 +88,25 @@ export const AddFriends = ({
 
   return (
     <Box
-      className="add-friends--container"
+      className={styles["add-friends--container"]}
       style={{ width, height }}
       {...props}
     >
       <Box
-        className="add-friends--icon"
+        className={styles["add-friends--icon"]}
         style={{
           marginRight: parseInt(separtation) + "px",
         }}
       >
-        <Box className="add-friends--icon-sub-container" onClick={onClick}>
+        <Box className={styles["add-friends--icon-sub-container"]} onClick={onClick}>
           <Icon icon="plus-circle" size={icon_size} />
         </Box>
       </Box>
-      <Box className="add-friends--friends-vertical">
-        <Box className="add-friends--friends">
+      <Box className={styles["add-friends--friends-vertical"]}>
+        <Box className={styles["add-friends--friends"]}>
           {shownFriends.map((friend, index) => (
             <Box
-              className="add-friends--image"
+              className={styles["add-friends--image"]}
               backgroundImage={friend.profilePic}
               width={friends_size}
               height={friends_size}
@@ -115,7 +114,7 @@ export const AddFriends = ({
               onMouseLeave={() => setHoveredDiv(-1)}
             >
               {hoveredDiv === index && (
-                <Box className="add-friends--hover-text" strongShadow>
+                <Box className={styles["add-friends--hover-text"]} strongShadow>
                   <Text type="h8">{friend.name}</Text>
                 </Box>
               )}

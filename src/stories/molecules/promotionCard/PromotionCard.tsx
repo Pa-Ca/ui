@@ -1,11 +1,14 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
-import "./promotionCard.scss";
+import classnames from "classnames";
 import DatePicker from "react-datepicker";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Editable } from "../editable/Editable";
+import styles from "./promotionCard.module.scss";
 import { Button } from "../../atoms/button/Button";
 import "react-datepicker/dist/react-datepicker.css";
+import textStyles from "../../atoms/text/text.module.scss";
+import inputTextStyles from "../inputText/inputText.module.scss";
 
 export interface PromotionCardProps {
   /**
@@ -141,7 +144,11 @@ export const PromotionCard = ({
 
       return (
         <button
-          className="text input-text--input promotion-card--date-picker"
+          className={classnames(
+            textStyles["text"],
+            inputTextStyles["input-text--input"],
+            styles["promotion-card--date-picker"]
+          )}
           onClick={onClick}
           ref={ref}
         >
@@ -153,14 +160,14 @@ export const PromotionCard = ({
 
   return (
     <Box
-      className="promotion-card--container"
+      className={styles["promotion-card--container"]}
       borderRadius="5px"
       backgroundColor={color}
       onClick={onClick}
       strongShadow
       style={{ width, height }}
     >
-      <Box className="promotion-card--menu">
+      <Box className={styles["promotion-card--menu"]}>
         <Box>
           {edit ? (
             <input
@@ -168,11 +175,16 @@ export const PromotionCard = ({
               ref={promotionRef}
               value={currentPromotion}
               onChange={changePromotion}
-              className="promotion-card--input promotion-card--promotion-input text text--h4"
+              className={classnames(
+                styles["promotion-card--input"],
+                styles["promotion-card--promotion-input"],
+                textStyles["text"],
+                textStyles["text--h4"]
+              )}
             />
           ) : (
             <Text
-              className="promotion-card--menu-text"
+              className={styles["promotion-card--menu-text"]}
               weight="700"
               color={secondaryColor}
               type="h4"
@@ -192,7 +204,7 @@ export const PromotionCard = ({
             />
           ) : (
             <Text
-              className="promotion-card--date"
+              className={styles["promotion-card--date"]}
               weight="400"
               color={secondaryColor}
             >
@@ -202,14 +214,19 @@ export const PromotionCard = ({
         </Box>
       </Box>
 
-      <Box className="promotion-card--menu">
+      <Box className={styles["promotion-card--menu"]}>
         {edit ? (
           <input
             type="number"
             ref={costRef}
             value={currentCost}
             onChange={changeCost}
-            className="promotion-card--input promotion-card--cost-input text text--h6"
+            className={classnames(
+              styles["promotion-card--input"],
+              styles["promotion-card--cost-input"],
+              textStyles["text"],
+              textStyles["text--h6"]
+            )}
             style={{
               fontWeight: "600",
             }}
@@ -223,7 +240,7 @@ export const PromotionCard = ({
         )}
 
         <Box
-          className="promotion-card--edition-container"
+          className={styles["promotion-card--edition-container"]}
           style={{ width: !editable ? "0" : edit ? "125px" : "40px" }}
         >
           <Editable

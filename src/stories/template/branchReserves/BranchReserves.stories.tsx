@@ -15,12 +15,12 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   // Reservation data
-  const date = useInputForm<Date >(new Date());
-  const hourIn = useInputForm<OptionObject >({ text: "", label: "" });
-  const hourOut = useInputForm<OptionObject >({ text: "", label: "" });
-  const persons = useInputForm<string >("");
-  const occasion = useInputForm<string >("");
-  
+  const date = useInputForm<Date>(new Date());
+  const hourIn = useInputForm<OptionObject>({ text: "", label: "" });
+  const hourOut = useInputForm<OptionObject>({ text: "", label: "" });
+  const persons = useInputForm<string>("");
+  const occasion = useInputForm<string>("");
+
   // Client data
   const firstName = useInputForm("");
   const lastName = useInputForm("");
@@ -28,19 +28,22 @@ const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   const email = useInputForm("");
   const [showModal, setshowModal] = useState(false);
 
-  return <BranchReserves
-    date={date}
-    hourIn={hourIn}
-    hourOut={hourOut}
-    persons={persons}
-    occasion={occasion}
-    firstName={firstName}
-    lastName={lastName}
-    phone={phone}
-    email={email}
-    showModal={showModal}
-    setShowModal={setshowModal}
-    {...args} />;
+  return (
+    <BranchReserves
+      date={date}
+      hourIn={hourIn}
+      hourOut={hourOut}
+      persons={persons}
+      occasion={occasion}
+      firstName={firstName}
+      lastName={lastName}
+      phone={phone}
+      email={email}
+      showModal={showModal}
+      setShowModal={setshowModal}
+      {...args}
+    />
+  );
 };
 
 export const Default = Template.bind({});
@@ -49,11 +52,12 @@ Default.args = {
   header: {
     logged: true,
     onPacaClick: () => {},
-    picture: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
+    picture:
+      "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
     name: "Sempre Dritto",
     color: "#EF7A08",
   },
-  icon_size : "450px",
+  icon_size: "450px",
   durationHour: 1,
   durationMin: 30,
   reservations: [

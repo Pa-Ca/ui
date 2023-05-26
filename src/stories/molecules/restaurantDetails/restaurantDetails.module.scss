@@ -1,41 +1,41 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 
-.details-card--container {
+.restaurant-details--details-card--container {
   min-width: 250px;
   overflow: hidden;
   padding: 24px;
   border-radius: 12px;
 }
 
-.details-card--summary {
+.restaurant-details--details-card--summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.name-and-price-box {
+.restaurant-details--name-and-price-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
 }
 
-.img-and-icons-box {
+.restaurant-details--img-and-icons-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 }
 
-.detail--line {
+.restaurant-details--detail--line {
   opacity: 0.25;
   margin-bottom: 24px;
   margin-top: 24px;
   width: 100%;
 }
 
-.score-box {
+.restaurant-details--score-box {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -44,7 +44,7 @@
   margin-top: 20px;
 }
 
-.score-box-with-border {
+.restaurant-details--score-box-with-border {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -55,7 +55,7 @@
   border-radius: 12px;
 }
 
-.resumen-box-text {
+.restaurant-details--resumen-box-text {
   padding: 10px 0px;
 
   .text:nth-child(1) {
@@ -63,18 +63,18 @@
   }
 }
 
-.details-title {
+.restaurant-details--details-title {
   margin-bottom: 16px;
 }
 
-.amenity-box {
+.restaurant-details--amenity-box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.branch-search--button-box {
+.restaurant-details--branch-search--button-box {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -84,7 +84,7 @@
   }
 }
 
-.map-button-box {
+.restaurant-details--map-button-box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -92,13 +92,13 @@
   margin-left: 16px;
 }
 
-.restaurant-detail-image {
+.restaurant-details--restaurant-detail-image {
   border-radius: 12px;
   min-width: 162px;
   height: 75px;
 }
 
-.branch-amenity--vertical-line {
+.restaurant-details--branch-amenity--vertical-line {
   border-left: rgba(#112211, 0.25) 1px solid;
   height: 48px;
   margin-right: 24px;

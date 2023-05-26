@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
-import "./branchBoard.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./branchBoard.module.scss";
 import {
   BranchItem,
   BranchItemProps,
@@ -76,7 +76,7 @@ export const BranchBoard = ({
   };
 
   return (
-    <Box width={width} {...props} className="branch-board--container">
+    <Box width={width} {...props} className={styles["branch-board--container"]}>
       {paginatedbranches.map((branch) => (
         <Box>
           <BranchItem
@@ -86,10 +86,10 @@ export const BranchBoard = ({
           />
         </Box>
       ))}
-      <Box className="branch-board--pages-centerer">
-        <Box className="branch-board--pages">
+      <Box className={styles["branch-board--pages-centerer"]}>
+        <Box className={styles["branch-board--pages"]}>
           <Box
-            className="branch-board--icon"
+            className={styles["branch-board--icon"]}
             onClick={goToPreviousPage}
             style={{ cursor: page < 2 ? "auto" : "pointer" }}
           >
@@ -105,7 +105,7 @@ export const BranchBoard = ({
           </Text>
 
           <Box
-            className="branch-board--icon"
+            className={styles["branch-board--icon"]}
             onClick={goToNextPage}
             style={{ cursor: page > totalPages - 1 ? "auto" : "pointer" }}
           >
