@@ -127,7 +127,7 @@ export const EditableBranchLocation = ({
           <>
             <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h7" color={styleVariables.errorColor}>
               No se pudo cargar la ubicación de Google Maps
             </Text>
           </>

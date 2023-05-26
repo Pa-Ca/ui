@@ -136,7 +136,7 @@ export const InputDate = ({
           <>
             <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h7" color={styleVariables.errorColor}>
               {inputHook.errorMessage}
             </Text>
           </>
@@ -149,7 +149,7 @@ export const InputDate = ({
               size="20px"
             />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.warningColor}>
+            <Text type="h7" color={styleVariables.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

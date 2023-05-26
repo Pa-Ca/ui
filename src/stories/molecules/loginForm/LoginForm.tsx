@@ -122,39 +122,39 @@ export const LoginForm = ({
                 size="20px"
               />
               <Box style={{ width: "10px" }} />
-              <Text type="h6" color={styleVariables.errorColor}>
+              <Text type="h7" color={styleVariables.errorColor}>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>
           )}
         </Box>
+      </Box>
 
-        <Box className={styles["login-form--input"]}>
-          <Button
-            fullWidth
-            primary
-            size="large"
-            backgroundColor={color}
-            onClick={() => onLogin(email.value, password.value)}
-          >
-            <Box className={styles["login-form--button-text"]}>
-              <Text color="white" type="h6" weight="600">
-                Iniciar Sesión
-              </Text>
-            </Box>
-          </Button>
-        </Box>
-
-        <Box className={styles["login-form--sign-in"]}>
-          <Text color="#112211" type="h6">
-            {" "}
-            ¿No tiene una cuenta aún?{" "}
-          </Text>
-          <Box className={styles["login-form--pointer"]} onClick={onSignUp}>
-            <Text color={secondaryColor} type="h6" weight="600">
-              &nbsp;Regístrate
+      <Box className={styles["login-form--input"]}>
+        <Button
+          fullWidth
+          primary
+          size="large"
+          backgroundColor={color}
+          onClick={() => onLogin(email.value, password.value)}
+        >
+          <Box className={styles["login-form--button-text"]}>
+            <Text color="white" type="h6" weight="600">
+              Iniciar Sesión
             </Text>
           </Box>
+        </Button>
+      </Box>
+
+      <Box className={styles["login-form--sign-in"]}>
+        <Text color="#112211" type="h6">
+          {" "}
+          ¿No tiene una cuenta aún?{" "}
+        </Text>
+        <Box className={styles["login-form--pointer"]} onClick={onSignUp}>
+          <Text color={secondaryColor} type="h6" weight="600">
+            &nbsp;Regístrate
+          </Text>
         </Box>
       </Box>
 
@@ -168,10 +168,7 @@ export const LoginForm = ({
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
       </Box>
 
-      <Box
-        className={styles["login-form--other-logins-container"]}
-        height="100%"
-      >
+      <Box className={styles["login-form--other-logins-container"]}>
         <Box className={styles["login-form--other-login"]} width="100%">
           <Button
             primary={false}

@@ -136,6 +136,7 @@ export const SignUpComponent = ({
     >
       <Box className={styles["sign-up-component--caroussel"]}>
         <ImagesCarousel
+          width="100%"
           height="100%"
           color={color}
           images={images}
@@ -143,20 +144,21 @@ export const SignUpComponent = ({
         />
       </Box>
       <Box className={styles["sign-up-component--login-form-container"]}>
-        <Box className={styles["sign-up-component--icon"]}>
-          <Icon icon="pa-ca" size={"62px"} />
+        <Box className={styles["sign-up-component--header"]}>
+          <Box className={styles["sign-up-component--icon"]}>
+            <Icon icon="pa-ca" size={"62px"} />
+          </Box>
+          <Text
+            type="h2"
+            weight="700"
+            className={styles["sign-up-component--title"]}
+          >
+            Regístrate
+          </Text>
         </Box>
-        <Text
-          type="h2"
-          weight="700"
-          className={styles["sign-up-component--title"]}
-        >
-          Sign up
-        </Text>
-        <Text className={styles["sign-up-component--sub-title"]} type="p">
-          Let’s get you all st up so you can access your personal account.
-        </Text>
+
         <SignUpForm
+          height="100%"
           business={business}
           email={email}
           phone={phone}

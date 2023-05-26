@@ -4,7 +4,6 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { InputFormHook } from "../../hooks/useInputForm";
 import styles from "./resetPasswordComponent.module.scss";
-import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { ResetPasswordForm } from "../../molecules/resetPasswordForm/ResetPasswordForm";
 
@@ -62,19 +61,13 @@ export const ResetPasswordComponent = ({
   otherLoginsColor,
   ...props
 }: ResetPasswordComponentProps) => {
-  const observer = useResizeObserver<HTMLDivElement>();
-
   return (
     <Box className={styles["reset-password-component--container"]}>
-      <Box
-        className={styles["reset-password-component--left-container"]}
-        width={`${observer.width + 2}px`}
-      >
+      <Box className={styles["reset-password-component--left-container"]}>
         <Icon icon="pa-ca" size="70px" />
 
         <Box
           className={styles["reset-password-component--content"]}
-          style={{ paddingRight: completed ? "0" : "100px" }}
         >
           <Box
             className={styles["reset-password-component--back-to-login"]}
@@ -88,7 +81,7 @@ export const ResetPasswordComponent = ({
           {!completed ? (
             <Box className={styles["reset-password-component--form"]}>
               <Box className={styles["reset-password-component--title"]}>
-                <Text weight="700" type="h2">
+                <Text weight="700" type="h3">
                   Cambiar contraseña
                 </Text>
               </Box>
@@ -97,6 +90,8 @@ export const ResetPasswordComponent = ({
               </Box>
 
               <ResetPasswordForm
+                height="100%"
+                width="100%"
                 password={password}
                 error={error}
                 onSubmit={onSubmit}
@@ -121,11 +116,12 @@ export const ResetPasswordComponent = ({
         </Box>
       </Box>
 
-      <Box innerRef={observer.ref}>
+      <Box className={styles["reset-password-component--caroussel"]}>
         <ImagesCarousel
           images={images}
-          width={`${observer.width + 2}px`}
           color={color}
+          width="100%"
+          height="100%"
         />
       </Box>
     </Box>

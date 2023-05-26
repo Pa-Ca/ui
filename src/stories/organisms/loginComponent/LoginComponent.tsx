@@ -3,7 +3,6 @@ import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import styles from "./loginComponent.module.scss";
-import useResizeObserver from "../../hooks/useResizeObserver";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
@@ -44,6 +43,14 @@ export interface LoginComponentProps {
    * Other logins button border color
    */
   otherLoginsColor?: string;
+  /**
+   * height of the component
+   */
+  height?: string;
+  /**
+   * width of the component
+   */
+  width?: string;
 }
 
 /**
@@ -59,31 +66,27 @@ export const LoginComponent = ({
   color,
   secondaryColor,
   otherLoginsColor,
+  height,
+  width,
   ...props
 }: LoginComponentProps) => {
-  const observer = useResizeObserver<HTMLDivElement>();
-
   return (
-    <Box className={styles["login-component--container"]}>
-      <Box
-        className={styles["login-component--left-container"]}
-        width={`${observer.width + 2}px`}
-      >
+    <Box
+      className={styles["login-component--container"]}
+      style={{ height, width }}
+    >
+      <Box className={styles["login-component--left-container"]}>
         <Icon icon="pa-ca" size="70px" />
 
+        <Box className={styles["login-component--title"]}>
+          <Text weight="700" type="h2">
+            Iniciar Sesión
+          </Text>
+        </Box>
         <Box className={styles["login-component--content"]}>
-          <Box className={styles["login-component--title"]}>
-            <Text weight="700" type="h2">
-              Iniciar Sesión
-            </Text>
-          </Box>
-          <Box className={styles["login-component--subtitle"]}>
-            <Text color="#4D594D" weight="400">
-              Este es un texto chido
-            </Text>
-          </Box>
-
           <LoginForm
+            height="100%"
+            width="100%"
             error={error}
             onLogin={onLogin}
             onForgotClick={onForgotClick}
@@ -96,11 +99,12 @@ export const LoginComponent = ({
         </Box>
       </Box>
 
-      <Box innerRef={observer.ref}>
+      <Box className={styles["login-component--caroussel"]}>
         <ImagesCarousel
           images={images}
-          width={`${observer.width + 2}px`}
           color={color}
+          width="100%"
+          height="100%"
         />
       </Box>
     </Box>

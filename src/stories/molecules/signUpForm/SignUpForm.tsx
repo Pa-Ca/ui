@@ -167,47 +167,85 @@ export const SignUpForm = ({
       style={{ width, height }}
     >
       <Box className={styles["sign-up-form--content"]}>
-        {business ? (
-          <Box className={styles["sign-up-form--two-inputs-box"]}>
-            <Box className={styles["sign-up-form--input"]}>
-              <InputText inputHook={businessName!} label="Nombre" />
+        <Box>
+          {business ? (
+            <Box className={styles["sign-up-form--two-inputs-box"]}>
+              <Box
+                className={styles["sign-up-form--input"]}
+                style={{ flex: 1 }}
+              >
+                <InputText
+                  height="50px"
+                  inputHook={businessName!}
+                  label="Nombre"
+                />
+              </Box>
+              <Box
+                className={styles["sign-up-form--input"]}
+                style={{ flex: 1 }}
+              >
+                <InputText height="50px" inputHook={email!} label="Correo" />
+              </Box>
             </Box>
-            <Box className={styles["sign-up-form--input"]}>
-              <InputText inputHook={email!} label="Correo" />
+          ) : (
+            <Box className={styles["sign-up-form--two-inputs-box"]}>
+              <Box
+                className={styles["sign-up-form--input"]}
+                style={{ flex: 1 }}
+              >
+                <InputText
+                  height="50px"
+                  inputHook={firstName!}
+                  label="Nombre"
+                />
+              </Box>
+              <Box
+                className={styles["sign-up-form--input"]}
+                style={{ flex: 1 }}
+              >
+                <InputText
+                  height="50px"
+                  inputHook={lastName!}
+                  label="Apellido"
+                />
+              </Box>
             </Box>
-          </Box>
-        ) : (
-          <Box className={styles["sign-up-form--two-inputs-box"]}>
-            <Box className={styles["sign-up-form--input"]}>
-              <InputText inputHook={firstName!} label="Nombre" />
-            </Box>
-            <Box className={styles["sign-up-form--input"]}>
-              <InputText inputHook={lastName!} label="Apellido" />
-            </Box>
-          </Box>
-        )}
+          )}
 
-        {!business && (
-          <Box className={styles["sign-up-form--two-inputs-box"]}>
-            <Box className={styles["sign-up-form--input"]}>
-              <InputText inputHook={email!} label="Correo" />
+          {!business && (
+            <Box className={styles["sign-up-form--two-inputs-box"]}>
+              <Box
+                className={styles["sign-up-form--input"]}
+                style={{ flex: 1 }}
+              >
+                <InputText height="50px" inputHook={email!} label="Correo" />
+              </Box>
+              <Box
+                className={styles["sign-up-form--input"]}
+                style={{ flex: 1 }}
+              >
+                <InputText height="50px" inputHook={phone!} label="Teléfono" />
+              </Box>
             </Box>
-            <Box className={styles["sign-up-form--input"]}>
-              <InputText inputHook={phone!} label="Teléfono" />
-            </Box>
+          )}
+
+          <Box className={styles["sign-up-form--input"]}>
+            <InputText
+              height="50px"
+              type="password"
+              inputHook={password!}
+              label="Contraseña"
+            />
           </Box>
-        )}
 
-        <Box className={styles["sign-up-form--input"]}>
-          <InputText type="password" inputHook={password!} label="Contraseña" />
-        </Box>
-
-        <Box className={styles["sign-up-form--input"]}>
-          <InputText
-            type="password"
-            inputHook={confirmPassword}
-            label="Confirmar contraseña"
-          />
+          <Box className={styles["sign-up-form--input"]}>
+            <InputText
+              height="50px"
+              type="password"
+              inputHook={confirmPassword}
+              label="Confirmar contraseña"
+            />
+          </Box>
         </Box>
 
         <Box className={styles["sign-up-form--input"]}>
@@ -245,6 +283,7 @@ export const SignUpForm = ({
                     : "input-text--error-no-animation"
                 ]
               }
+              height="10px"
             >
               {terms.error == 1 && (
                 <>
@@ -254,7 +293,7 @@ export const SignUpForm = ({
                     size="20px"
                   />
                   <Box style={{ width: "10px" }} />
-                  <Text type="h6" color={styleVariables.errorColor}>
+                  <Text type="h7" color={styleVariables.errorColor}>
                     Por favor acepte los Términos y Condiciones
                   </Text>
                 </>
@@ -262,32 +301,33 @@ export const SignUpForm = ({
             </Box>
           </Box>
         </Box>
-        <Box className={styles["sign-up-form--input"]}>
-          <Button
-            fullWidth
-            primary
-            size="large"
-            backgroundColor={color}
-            onClick={() => submit()}
-          >
-            <Box className={styles["sign-up-form--button-text"]}>
-              <Text color="white" type="h6" weight="600">
-                Crear una Cuenta
-              </Text>
-            </Box>
-          </Button>
-        </Box>
+      </Box>
 
-        <Box className={styles["sign-up-form--sign-in"]}>
-          <Text color="#112211" type="h6">
-            {" "}
-            ¿Ya tiene una cuenta?{" "}
-          </Text>
-          <Box className={styles["sign-up-form--pointer"]} onClick={onLogin}>
-            <Text color={secondaryColor} type="h6" weight="600">
-              &nbsp;Inicia Sesión
+      <Box className={styles["sign-up-form--input"]}>
+        <Button
+          fullWidth
+          primary
+          size="large"
+          backgroundColor={color}
+          onClick={() => submit()}
+        >
+          <Box className={styles["sign-up-form--button-text"]}>
+            <Text color="white" type="h6" weight="600">
+              Crear una Cuenta
             </Text>
           </Box>
+        </Button>
+      </Box>
+
+      <Box className={styles["sign-up-form--sign-in"]}>
+        <Text color="#112211" type="h6">
+          {" "}
+          ¿Ya tiene una cuenta?{" "}
+        </Text>
+        <Box className={styles["sign-up-form--pointer"]} onClick={onLogin}>
+          <Text color={secondaryColor} type="h6" weight="600">
+            &nbsp;Inicia Sesión
+          </Text>
         </Box>
       </Box>
 
@@ -301,10 +341,7 @@ export const SignUpForm = ({
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
       </Box>
 
-      <Box
-        className={styles["sign-up-form--other-logins-container"]}
-        height="100%"
-      >
+      <Box className={styles["sign-up-form--other-logins-container"]}>
         <Box className={styles["sign-up-form--other-login"]} width="100%">
           <Button
             primary={false}

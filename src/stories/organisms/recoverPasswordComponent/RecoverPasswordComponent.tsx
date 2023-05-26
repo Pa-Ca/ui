@@ -3,7 +3,6 @@ import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import styles from "./recoverPasswordComponent.module.scss";
-import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { RecoverPasswordForm } from "../../molecules/recoverPasswordForm/RecoverPasswordForm";
 
@@ -44,6 +43,14 @@ export interface RecoverPasswordComponentProps {
    * Other logins button border color
    */
   otherLoginsColor?: string;
+  /**
+   * height of the component
+   */
+  height?: string;
+  /**
+   * width of the component
+   */
+  width?: string;
 }
 
 /**
@@ -59,22 +66,19 @@ export const RecoverPasswordComponent = ({
   color,
   secondaryColor,
   otherLoginsColor,
+  height,
+  width,
   ...props
 }: RecoverPasswordComponentProps) => {
-  const observer = useResizeObserver<HTMLDivElement>();
-
   return (
-    <Box className={styles["recover-password-component--container"]}>
-      <Box
-        className={styles["recover-password-component--left-container"]}
-        width={`${observer.width + 2}px`}
-      >
+    <Box
+      className={styles["recover-password-component--container"]}
+      style={{ width, height }}
+    >
+      <Box className={styles["recover-password-component--left-container"]}>
         <Icon icon="pa-ca" size="70px" />
 
-        <Box
-          className={styles["recover-password-component--content"]}
-          style={{ paddingRight: completed ? "0" : "100px" }}
-        >
+        <Box className={styles["recover-password-component--content"]}>
           <Box
             className={styles["recover-password-component--back-to-login"]}
             onClick={onBackToLogin}
@@ -87,18 +91,20 @@ export const RecoverPasswordComponent = ({
           {!completed ? (
             <Box className={styles["recover-password-component--form"]}>
               <Box className={styles["recover-password-component--title"]}>
-                <Text weight="700" type="h2">
+                <Text weight="700" type="h3">
                   ¿Olvidaste tu contraseña?
                 </Text>
               </Box>
               <Box className={styles["recover-password-component--subtitle"]}>
-                <Text color="#4D594D" weight="400">
+                <Text color="#4D594D" weight="400" type="h6">
                   No te preocupes, nos pasa a todos. Ingresa tu correo abajo
                   para recuperar tu contraseña.
                 </Text>
               </Box>
 
               <RecoverPasswordForm
+                height="100%"
+                width="100%"
                 error={error}
                 onSubmit={onSubmit}
                 onGoogleLogin={onGoogleLogin}
@@ -123,11 +129,12 @@ export const RecoverPasswordComponent = ({
         </Box>
       </Box>
 
-      <Box innerRef={observer.ref}>
+      <Box className={styles["recover-password-component--caroussel"]}>
         <ImagesCarousel
           images={images}
-          width={`${observer.width + 2}px`}
           color={color}
+          width="100%"
+          height="100%"
         />
       </Box>
     </Box>

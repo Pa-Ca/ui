@@ -89,7 +89,7 @@ export const RecoverPasswordForm = ({
                 size="20px"
               />
               <Box style={{ width: "10px" }} />
-              <Text type="h6" color={styleVariables.errorColor}>
+              <Text type="h7" color={styleVariables.errorColor}>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>
@@ -112,6 +112,7 @@ export const RecoverPasswordForm = ({
           </Button>
         </Box>
       </Box>
+
       <Box className={styles["recover-password-form--login-with"]}>
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
         <Box className={styles["recover-password-form--login-with-text"]}>
@@ -122,10 +123,7 @@ export const RecoverPasswordForm = ({
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
       </Box>
 
-      <Box
-        className={styles["recover-password-form--other-logins-container"]}
-        height="100%"
-      >
+      <Box className={styles["recover-password-form--other-logins-container"]}>
         <Box
           className={styles["recover-password-form--other-login"]}
           width="100%"
