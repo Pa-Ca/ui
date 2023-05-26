@@ -307,14 +307,17 @@ export const Header = ({
               size="20px"
               color={logoColor}
             />
-            <Text
-              type="h6"
-              weight="600"
-              className={styles["header--text"]}
-              color={logoColor}
-            >
-              {leftSectionContents?.text}
-            </Text>
+            <Box className={styles["header--left-zone-text"]}>
+              <Text
+                type="h6"
+                weight="600"
+                className={styles["header--text"]}
+                color={logoColor}
+                ellipsis
+              >
+                {leftSectionContents?.text}
+              </Text>
+            </Box>
             {showBranchSelector && (
               <Box>
                 <Icon icon="down" size="20px" color={logoColor} />

@@ -75,8 +75,8 @@ export const Editable = ({
             size="25px"
             style={{
               animation: edit
-                ? "editable--edit-animation 500ms linear forwards"
-                : "editable--edit-animation-reverse 500ms linear forwards",
+                ? styles["editable--edit-animation"] + " 500ms linear forwards"
+                : styles["editable--edit-animation-reverse"] + " 500ms linear forwards",
             }}
           />
         </Box>
@@ -99,7 +99,7 @@ export const Editable = ({
                 onClick={onCancelClick}
                 className={styles["editable--action-icon"]}
               >
-                <Icon icon="cancel" color={color} size="30px" />
+                <Icon icon="cancel" size="30px" />
               </Box>
               <Box
                 onClick={onSaveClick}

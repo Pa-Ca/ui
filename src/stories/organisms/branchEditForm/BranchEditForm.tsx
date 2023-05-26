@@ -216,6 +216,7 @@ export const BranchEditForm = ({
           Nombre{" "}
         </Text>
         <EditableInputText
+          useEditIcons
           width="100%"
           height="100%"
           inputHook={name}
@@ -234,6 +235,7 @@ export const BranchEditForm = ({
             Capacidad{" "}
           </Text>
           <EditableInputText
+            useEditIcons
             inputHook={capacity}
             saveValueFunction={onSaveCapacity}
             editable={true}
@@ -249,6 +251,7 @@ export const BranchEditForm = ({
             Tiempo promedio de reserva{" "}
           </Text>
           <EditableInputTime
+            useEditIcons
             hoursInputHook={averageReserveTimeHours}
             minutesInputHook={averageReserveTimeMinutes}
             saveValueFunction={onSaveAverageReserveTime}
@@ -267,6 +270,7 @@ export const BranchEditForm = ({
             Tipo{" "}
           </Text>
           <EditableInputText
+            useEditIcons
             inputHook={type}
             options={typeOptions}
             saveValueFunction={onSaveType}
@@ -283,6 +287,7 @@ export const BranchEditForm = ({
             Coste por persona ($){" "}
           </Text>
           <EditableInputText
+            useEditIcons
             inputHook={price}
             saveValueFunction={onSavePrice}
             editable={true}
@@ -300,6 +305,7 @@ export const BranchEditForm = ({
             Hora de apertura{" "}
           </Text>
           <EditableInputTime
+            useEditIcons
             hoursInputHook={openingTimeHour}
             minutesInputHook={openingTimeMinute}
             saveValueFunction={onSaveOpeningTime}
@@ -316,6 +322,7 @@ export const BranchEditForm = ({
             Hora de cierre{" "}
           </Text>
           <EditableInputTime
+            useEditIcons
             hoursInputHook={closingTimeHour}
             minutesInputHook={closingTimeMinute}
             saveValueFunction={onSaveClosingTime}
@@ -334,6 +341,7 @@ export const BranchEditForm = ({
             Número de teléfono Local{" "}
           </Text>
           <EditableInputText
+            useEditIcons
             inputHook={phone}
             saveValueFunction={onSavePhone}
             editable={true}
@@ -350,6 +358,7 @@ export const BranchEditForm = ({
             Ubicación{" "}
           </Text>
           <EditableInputText
+            useEditIcons
             width="100%"
             height="100%"
             inputHook={location}
@@ -369,6 +378,7 @@ export const BranchEditForm = ({
           Descripción{" "}
         </Text>
         <EditableInputLongText
+          useEditIcons
           inputHook={description}
           minRows={6}
           maxRows={6}
@@ -386,6 +396,7 @@ export const BranchEditForm = ({
           Ubicación precisa
         </Text>
         <EditableInputText
+          useEditIcons
           width="100%"
           inputHook={mapsLink}
           editable={true}

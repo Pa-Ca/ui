@@ -250,6 +250,22 @@ export const BusinessAccountInfo = ({
             </Text>
           </Box>
         </Button>
+        <Box height="10px" />
+        <Button
+          fullWidth
+          borderColor={color}
+          onClick={() => setChangePassword(false)}
+        >
+          <Box
+            className={
+              styles["business-account-info--modal-change-password-button"]
+            }
+          >
+            <Text type="h6" weight="600">
+              Cancelar
+            </Text>
+          </Box>
+        </Button>
       </Modal>
     </Box>
   );

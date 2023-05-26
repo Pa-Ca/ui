@@ -27,6 +27,10 @@ interface TextProps {
    */
   uppercase?: boolean;
   /**
+   * Indicates if the text should be truncated
+   */
+  ellipsis?: boolean;
+  /**
    * Other Box styles
    */
   style?: object;
@@ -49,6 +53,7 @@ export function Text({
   opacity,
   italic = false,
   uppercase = false,
+  ellipsis = false,
   color,
   style,
   className,
@@ -62,6 +67,7 @@ export function Text({
         styles[`text--${type}`],
         italic ? styles["text--italic"] : "",
         uppercase ? styles["text--uppercase"] : "",
+        ellipsis ? styles["text--truncated"] : "",
         className,
       ].join(" ")}
       style={{ color, opacity, fontWeight: weight, ...style }}

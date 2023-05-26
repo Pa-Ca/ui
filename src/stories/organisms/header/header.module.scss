@@ -30,6 +30,11 @@
   display: flex;
   align-items: center;
   margin-left: 10px;
+  max-width: 20vw;
+  overflow: hidden;
+}
+.header--left-zone-text {
+  max-width: 15vw;
 }
 
 .header--text {

@@ -20,6 +20,11 @@
 .text--uppercase {
   text-transform: uppercase;
 }
+.text--truncated {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 // Size 
 .text--h1 {

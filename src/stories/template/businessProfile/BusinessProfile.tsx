@@ -18,7 +18,7 @@ import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
 import { InputLongText } from "../../molecules/inputLongText/InputLongText";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
 
-import  { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
+import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 
 interface BusinessProfileProps {
   /**
@@ -332,13 +332,15 @@ export const BusinessProfile = ({
     newPassword.setValue("");
   }, [changePassword]);
 
-  const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] = useState(false);
+  const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] =
+    useState(false);
 
   const onProfilePictureEditClick = () => {
     setshowUploadProfilePictureModal(true);
-  }
+  };
 
-  const [currentProfilePicture, setCurrentProfilePicture] = useState(profilePicture);
+  const [currentProfilePicture, setCurrentProfilePicture] =
+    useState(profilePicture);
   const [headerProps, setHeaderProps] = useState<HeaderProps>(header);
 
   const onProfilePictureChange = (value: string) => {
@@ -346,7 +348,7 @@ export const BusinessProfile = ({
     setshowUploadProfilePictureModal(false);
     onSaveProfilePicture(value);
     setHeaderProps({ ...headerProps, picture: value });
-  }
+  };
   const asterisk = (
     <Text color="red" type="h6" weight="400">
       &nbsp;&nbsp;&nbsp;*&nbsp;
@@ -354,7 +356,7 @@ export const BusinessProfile = ({
   );
 
   return (
-    <BasicPage headerArgs={headerProps} >
+    <BasicPage headerArgs={headerProps}>
       <Box width="100%">
         <BusinessHeader
           mainImage={mainImage}
@@ -465,8 +467,11 @@ export const BusinessProfile = ({
           </Box>
         </Box>
 
-        <Modal open={showUploadProfilePictureModal} setOpen={setshowUploadProfilePictureModal}>
-          <UploadProfilePictureForm onSave={onProfilePictureChange}/>
+        <Modal
+          open={showUploadProfilePictureModal}
+          setOpen={setshowUploadProfilePictureModal}
+        >
+          <UploadProfilePictureForm onSave={onProfilePictureChange} />
         </Modal>
 
         <Modal open={showCreateBranchModal} setOpen={setShowCreateBranchModal}>
@@ -602,7 +607,9 @@ export const BusinessProfile = ({
               />
             </Box>
 
-            <Box className={styles["business-profile--precise-location-container"]}>
+            <Box
+              className={styles["business-profile--precise-location-container"]}
+            >
               <InputText
                 width="100%"
                 showError={false}
@@ -616,34 +623,50 @@ export const BusinessProfile = ({
               </Text>
             </Box>
 
-            <Button
-              fullWidth
-              primary
-              backgroundColor={color}
-              size="large"
-              onClick={() =>
-                onCreateBranch(
-                  newBranchName,
-                  newBranchPhone,
-                  newBranchPrice,
-                  newBranchType,
-                  newBranchCapacity,
-                  newBranchLocation,
-                  newBranchAverageReserveTimeHours,
-                  newBranchAverageReserveTimeMinutes,
-                  newBranchOpeningTimeHour,
-                  newBranchOpeningTimeMinute,
-                  newBranchClosingTimeHour,
-                  newBranchClosingTimeMinute,
-                  newBranchDescription,
-                  newBranchMapsLink
-                )
-              }
-            >
-              <Box className={styles["business-profile--button-create-branch"]}>
-                <Text weight="600">Crear Local</Text>
-              </Box>
-            </Button>
+            <Box className={styles["business-profile--modal-buttons"]}>
+              <Button
+                fullWidth
+                borderColor={color}
+                size="large"
+                onClick={() => setShowCreateBranchModal(false)}
+              >
+                <Box
+                  className={styles["business-profile--button-create-branch"]}
+                >
+                  <Text weight="600">Cancelar</Text>
+                </Box>
+              </Button>
+              <Button
+                fullWidth
+                primary
+                backgroundColor={color}
+                size="large"
+                onClick={() =>
+                  onCreateBranch(
+                    newBranchName,
+                    newBranchPhone,
+                    newBranchPrice,
+                    newBranchType,
+                    newBranchCapacity,
+                    newBranchLocation,
+                    newBranchAverageReserveTimeHours,
+                    newBranchAverageReserveTimeMinutes,
+                    newBranchOpeningTimeHour,
+                    newBranchOpeningTimeMinute,
+                    newBranchClosingTimeHour,
+                    newBranchClosingTimeMinute,
+                    newBranchDescription,
+                    newBranchMapsLink
+                  )
+                }
+              >
+                <Box
+                  className={styles["business-profile--button-create-branch"]}
+                >
+                  <Text weight="600">Crear Local</Text>
+                </Box>
+              </Button>
+            </Box>
           </Box>
         </Modal>
       </Box>
