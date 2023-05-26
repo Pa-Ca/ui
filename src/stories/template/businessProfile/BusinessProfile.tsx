@@ -18,6 +18,8 @@ import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
 import { InputLongText } from "../../molecules/inputLongText/InputLongText";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
 
+import  { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
+
 interface BusinessProfileProps {
   /**
    * Header parameters
@@ -223,6 +225,11 @@ interface BusinessProfileProps {
   onDeleteBranch: () => void;
 
   /**
+   * On save profile picture TODO: Check if the type is correct
+   */
+  onSaveProfilePicture: (profilePicture: string) => void;
+
+  /**
    * Component main color
    */
   color?: string;
@@ -285,6 +292,7 @@ export const BusinessProfile = ({
   onSaveBranchOpeningTime,
   onSaveBranchClosingTime,
   onDeleteBranch,
+  onSaveProfilePicture,
 
   color,
   secondaryColor,
@@ -324,6 +332,21 @@ export const BusinessProfile = ({
     newPassword.setValue("");
   }, [changePassword]);
 
+  const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] = useState(false);
+
+  const onProfilePictureEditClick = () => {
+    setshowUploadProfilePictureModal(true);
+  }
+
+  const [currentProfilePicture, setCurrentProfilePicture] = useState(profilePicture);
+  const [headerProps, setHeaderProps] = useState<HeaderProps>(header);
+
+  const onProfilePictureChange = (value: string) => {
+    setCurrentProfilePicture(value);
+    setshowUploadProfilePictureModal(false);
+    onSaveProfilePicture(value);
+    setHeaderProps({ ...headerProps, picture: value });
+  }
   const asterisk = (
     <Text color="red" type="h6" weight="400">
       &nbsp;&nbsp;&nbsp;*&nbsp;
@@ -331,15 +354,16 @@ export const BusinessProfile = ({
   );
 
   return (
-    <BasicPage headerArgs={header}>
+    <BasicPage headerArgs={headerProps} >
       <Box width="100%">
         <BusinessHeader
           mainImage={mainImage}
-          profilePicture={profilePicture}
+          profilePicture={currentProfilePicture}
           name={name.value}
           email={email.value}
           onCreateBranch={() => setShowCreateBranchModal(true)}
           onPictureClick={onPictureClick}
+          onPicturePencilClick={onProfilePictureEditClick}
           color={color}
           secondaryColor={secondaryColor}
         />
@@ -440,6 +464,10 @@ export const BusinessProfile = ({
             </Box>
           </Box>
         </Box>
+
+        <Modal open={showUploadProfilePictureModal} setOpen={setshowUploadProfilePictureModal}>
+          <UploadProfilePictureForm onSave={onProfilePictureChange}/>
+        </Modal>
 
         <Modal open={showCreateBranchModal} setOpen={setShowCreateBranchModal}>
           <Box className="business-profile--modal-container">

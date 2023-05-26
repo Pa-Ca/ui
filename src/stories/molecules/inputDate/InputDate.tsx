@@ -43,7 +43,7 @@ interface InputDateProps {
  */
 export const InputDate = ({
   inputHook,
-  label = "* Fecha",
+  label = "Fecha",
   required,
   minDate,
   width,

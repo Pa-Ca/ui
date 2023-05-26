@@ -38,6 +38,11 @@ interface BusinessHeaderProps {
    * Component secondary color
    */
   secondaryColor?: string;
+  /**
+   * Function that is executed when clicking on the pencil icon
+   * @param event
+   */
+  onPicturePencilClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 /**
@@ -50,6 +55,7 @@ export const BusinessHeader = ({
   email,
   onCreateBranch,
   onPictureClick,
+  onPicturePencilClick,
   color,
   secondaryColor,
   ...props
@@ -64,6 +70,7 @@ export const BusinessHeader = ({
           border="5px"
           icon="pencil"
           onClick={onPictureClick}
+          onPencilClick={onPicturePencilClick}
         />
         <Box height="20px" />
         <Text color="#112211" type="h4" weight="600">

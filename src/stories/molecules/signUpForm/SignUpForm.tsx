@@ -240,13 +240,13 @@ export const SignUpForm = ({
                 inputTextStyles["input-text--error-container"] +
                 " " +
                 inputTextStyles[
-                  terms.error
+                  terms.error == 1
                     ? "input-text--error-animation"
                     : "input-text--error-no-animation"
                 ]
               }
             >
-              {terms.error && (
+              {terms.error == 1 && (
                 <>
                   <Icon
                     icon="alert"

@@ -31,7 +31,7 @@ desarrollo.*
 ### Storybook
 
 ```
-$ npm install
+$ npm ci
 $ npm run storybook
 ```
 Storybook es ejecutado en http://localhost:6006
