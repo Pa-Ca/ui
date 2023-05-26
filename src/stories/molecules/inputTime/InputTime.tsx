@@ -103,7 +103,7 @@ export const InputTime = ({
           editableInputTextStyles["editable-input-text--input-container"]
         }
       >
-        <Box className="input-time--inputs">
+        <Box className={styles["input-time--inputs"]}>
           <input
             type="text"
             onChange={onChangeHour}

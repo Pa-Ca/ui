@@ -82,10 +82,10 @@ export const ProfileDropdown = ({
                 : picture
             }
             borderRadius="100%"
-            width={"45px"}
-            height={"45px"}
+            width="45px"
+            height="45px"
           />
-          <Text weight="500">{userName}</Text>
+          <Text weight="500">&nbsp;&nbsp;{userName}</Text>
         </div>
 
         <hr />

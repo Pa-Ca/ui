@@ -74,9 +74,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  .box:nth-child(1) {
-    margin-right: 24px;
-  }
+  gap: 24px;
 }
 .sign-up-form--terms-input-container {
   display: flex;

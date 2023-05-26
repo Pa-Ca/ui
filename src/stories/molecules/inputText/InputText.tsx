@@ -171,10 +171,10 @@ export const InputText = ({
       {showError && (
         <div
           className={
-            styles["input-text--error-container"] +
-            styles[(inputHook.error == 1 || inputHook.error == 2
-              ? "input-text--error-animation"
-              : "input-text--error-no-animation")]
+            styles["input-text--error-container"] + " " +
+            (inputHook.error == 1 || inputHook.error == 2
+              ? styles["input-text--error-animation"]
+              : styles["input-text--error-no-animation"])
           }
         >
           {inputHook.error == 1 && (

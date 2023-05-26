@@ -185,7 +185,7 @@ export const ReserveList = ({
           ))}
         </Box>
       ) : (
-        <Box className="no-branch-box">
+        <Box className={styles["reserve-list--no-branch-box"]}>
           {" "}
           <Icon icon="share" size={icon_size} />
           <Text type="h4">

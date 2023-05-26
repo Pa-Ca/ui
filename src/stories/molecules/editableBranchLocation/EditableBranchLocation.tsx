@@ -4,6 +4,7 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./editableBranchLocation.module.scss";
+import inputTextStyles from "../inputText/inputText.module.scss";
 import styleVariables from "../../assets/scss/variables.module.scss";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 
@@ -112,14 +113,14 @@ export const EditableBranchLocation = ({
 
   return (
     <Box
-      className={classnames("editable-branch-location--container")}
+      className={styles["editable-branch-location--container"]}
     >
       <div
         className={
-          styles["input-text--error-container"] + " " +
+          inputTextStyles["input-text--error-container"] + " " +
           (error
-            ? styles["input-text--error-animation"]
-            : styles["input-text--error-no-animation"])
+            ? inputTextStyles["input-text--error-animation"]
+            : inputTextStyles["input-text--error-no-animation"])
         }
       >
         {error && (
@@ -147,7 +148,7 @@ export const EditableBranchLocation = ({
           zoom={16}
           onCenterChanged={handleCenterChanged}
           mapContainerClassName={classnames(
-            "editable-branch-location--container",
+            styles["editable-branch-location--container"],
             className
           )}
         >

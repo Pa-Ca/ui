@@ -18,15 +18,18 @@
   flex-direction: row;
 }
 
-.branch-reserves-submit-reservation--button-text {
+.branch-reserves--submit-reservation--button-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.branch-reserves-no-branch-box{
+.branch-reserves--no-branch-box {
+  display: flex;
   text-align: center;
+  align-items: center;
+  flex-direction: column;
   justify-content: center;
   margin-bottom: 40px;
   margin-top: 20px;

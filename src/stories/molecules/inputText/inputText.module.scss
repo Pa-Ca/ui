@@ -68,10 +68,10 @@
   justify-content: center;
 }
 .input-text--error-container {
+  height: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 25px;
 
   animation-name: shake;
   animation-duration: 0.15s;
