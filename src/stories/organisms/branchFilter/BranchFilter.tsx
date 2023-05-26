@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./branchFilter.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Range } from "../../atoms/range/Range";
+import styles from "./branchFilter.module.scss";
 import getValidHours from "../../utils/getValidHours";
 import { InputFormHook } from "../../hooks/useInputForm";
 import CheckObject from "../../utils/objects/CheckObject";
@@ -105,7 +105,10 @@ export const BranchFilter = ({
   const checkboxHeight = (length: number) => `${length * 29 + 32}px`;
 
   return (
-    <Box className="branch-filter--container" style={{ width, height }}>
+    <Box
+      className={styles["branch-filter--container"]}
+      style={{ width, height }}
+    >
       <Box>
         <Box>
           <Text type="h5" weight="600">
@@ -113,9 +116,9 @@ export const BranchFilter = ({
           </Text>
         </Box>
 
-        <Box className="branch-filter--item-container">
+        <Box className={styles["branch-filter--item-container"]}>
           <Box
-            className="branch-filter--item-header"
+            className={styles["branch-filter--item-header"]}
             onClick={() => setPricesView(!pricesView)}
           >
             <Text> Precio </Text>
@@ -128,9 +131,9 @@ export const BranchFilter = ({
               top: pricesView ? 0 : -50,
               height: pricesView ? "120px" : "0px",
             }}
-            className="branch-filter--animation"
+            className={styles["branch-filter--animation"]}
           >
-            <Box className="branch-filter--range">
+            <Box className={styles["branch-filter--range"]}>
               <Range
                 values={prices}
                 setValues={setPrices}
@@ -148,9 +151,9 @@ export const BranchFilter = ({
           <Box backgroundColor="#C4C8C4" height="1px" width="100%" />
         </Box>
 
-        <Box className="branch-filter--item-container">
+        <Box className={styles["branch-filter--item-container"]}>
           <Box
-            className="branch-filter--item-header"
+            className={styles["branch-filter--item-header"]}
             onClick={() => setHoursView(!hoursView)}
           >
             <Text> Horarios </Text>
@@ -163,10 +166,10 @@ export const BranchFilter = ({
               top: hoursView ? 0 : -50,
               height: hoursView ? "120px" : "0px",
             }}
-            className="branch-filter--animation"
+            className={styles["branch-filter--animation"]}
           >
-            <Box className="branch-filter--hours-container">
-              <Box className="branch-filter--hour">
+            <Box className={styles["branch-filter--hours-container"]}>
+              <Box className={styles["branch-filter--hour"]}>
                 <InputSelect
                   label="Mínimo"
                   inputHook={startHour}
@@ -176,11 +179,11 @@ export const BranchFilter = ({
                 />
               </Box>
 
-              <Box className="branch-filter--hour-conector">
+              <Box className={styles["branch-filter--hour-conector"]}>
                 <Text>a</Text>
               </Box>
 
-              <Box className="branch-filter--hour">
+              <Box className={styles["branch-filter--hour"]}>
                 <InputSelect
                   label="Máximo"
                   inputHook={endHour}
@@ -195,9 +198,9 @@ export const BranchFilter = ({
           <Box backgroundColor="#C4C8C4" height="1px" width="100%" />
         </Box>
 
-        <Box className="branch-filter--item-container">
+        <Box className={styles["branch-filter--item-container"]}>
           <Box
-            className="branch-filter--item-header"
+            className={styles["branch-filter--item-header"]}
             onClick={() => setRatingView(!ratingView)}
           >
             <Text> Rating </Text>
@@ -210,9 +213,9 @@ export const BranchFilter = ({
               top: ratingView ? 0 : -50,
               height: ratingView ? "70px" : "0px",
             }}
-            className="branch-filter--animation"
+            className={styles["branch-filter--animation"]}
           >
-            <Box className="branch-filter--rating">
+            <Box className={styles["branch-filter--rating"]}>
               <StarRating
                 rating={rating}
                 setRating={setRating}
@@ -225,9 +228,9 @@ export const BranchFilter = ({
           <Box backgroundColor="#C4C8C4" height="1px" width="100%" />
         </Box>
 
-        <Box className="branch-filter--item-container">
+        <Box className={styles["branch-filter--item-container"]}>
           <Box
-            className="branch-filter--item-header"
+            className={styles["branch-filter--item-header"]}
             onClick={() => setCousineView(!cousineView)}
           >
             <Text> Cocina </Text>
@@ -238,11 +241,13 @@ export const BranchFilter = ({
             style={{
               opacity: cousineView ? 1 : 0,
               top: cousineView ? 0 : -50,
-              height: cousineView ? `${checkboxHeight(cousines.length)}` : "0px",
+              height: cousineView
+                ? `${checkboxHeight(cousines.length)}`
+                : "0px",
             }}
-            className="branch-filter--animation"
+            className={styles["branch-filter--animation"]}
           >
-            <Box className="branch-filter--check-list">
+            <Box className={styles["branch-filter--check-list"]}>
               <CheckList items={cousines} setItems={setCousines} />
             </Box>
           </Box>
@@ -250,9 +255,9 @@ export const BranchFilter = ({
           <Box backgroundColor="#C4C8C4" height="1px" width="100%" />
         </Box>
 
-        <Box className="branch-filter--item-container">
+        <Box className={styles["branch-filter--item-container"]}>
           <Box
-            className="branch-filter--item-header"
+            className={styles["branch-filter--item-header"]}
             onClick={() => setZoneView(!zoneView)}
           >
             <Text> Zona </Text>
@@ -265,9 +270,9 @@ export const BranchFilter = ({
               top: zoneView ? 0 : -50,
               height: zoneView ? `${checkboxHeight(zones.length)}` : "0px",
             }}
-            className="branch-filter--animation"
+            className={styles["branch-filter--animation"]}
           >
-            <Box className="branch-filter--check-list">
+            <Box className={styles["branch-filter--check-list"]}>
               <CheckList items={zones} setItems={setZones} />
             </Box>
           </Box>

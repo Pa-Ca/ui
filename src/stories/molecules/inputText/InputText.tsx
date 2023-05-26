@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from "react";
-import "./inputText.scss";
-import "../../atoms/text/text.scss";
+import classnames from "classnames";
+import styles from "./inputText.module.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+import textStyles from "../../atoms/text/text.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface InputTextProps {
   /**
@@ -92,13 +93,13 @@ export const InputText = ({
     switch (icon) {
       case "eye":
         return (
-          <button className="input-text--icon" onClick={changeType}>
+          <button className={styles["input-text--icon"]} onClick={changeType}>
             <Icon icon={icon} size="24" />
           </button>
         );
       case "eye-slash":
         return (
-          <button className="input-text--icon" onClick={changeType}>
+          <button className={styles["input-text--icon"]} onClick={changeType}>
             <Icon icon={icon} size="24" />
           </button>
         );
@@ -106,37 +107,37 @@ export const InputText = ({
   }, [icon]);
 
   return (
-    <div className="input-text--container">
+    <div className={styles["input-text--container"]}>
       <div
-        className="input-text--input-container"
+        className={styles["input-text--input-container"]}
         style={{
           width,
           height,
           borderColor:
             inputHook.error == 1
-              ? styles.errorColor
+              ? styleVariables.errorColor
               : inputHook.error == 2
-              ? styles.warningColor
+              ? styleVariables.warningColor
               : undefined,
           borderWidth:
             inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
       >
-        <div className="input-text--content">
+        <div className={styles["input-text--content"]}>
           <input
             placeholder={placeholder}
             type={
               currentType == "number" ||
-              currentType == "text" ||
-              currentType == "password"
+                currentType == "text" ||
+                currentType == "password"
                 ? currentType
                 : "text"
             }
             value={inputHook.value}
             onChange={changeValue}
-            className="input-text--input text text--h6"
+            className={classnames(styles["input-text--input"], textStyles["text"], textStyles["text--h6"])}
           />
-          <div className="input-text--label">
+          <div className={styles["input-text--label"]}>
             {required && (
               <Text color="red" weight="400">
                 *
@@ -149,9 +150,9 @@ export const InputText = ({
               }
               color={
                 inputHook.error == 1
-                  ? styles.errorColor
+                  ? styleVariables.errorColor
                   : inputHook.error == 2
-                  ? styles.warningColor
+                  ? styleVariables.warningColor
                   : undefined
               }
             >
@@ -170,26 +171,26 @@ export const InputText = ({
       {showError && (
         <div
           className={
-            "input-text--error-container " +
+            styles["input-text--error-container"] + " " +
             (inputHook.error == 1 || inputHook.error == 2
-              ? "input-text--error-animation"
-              : "input-text--error-no-animation")
+              ? styles["input-text--error-animation"]
+              : styles["input-text--error-no-animation"])
           }
         >
           {inputHook.error == 1 && (
             <>
-              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
               <div style={{ width: "10px" }} />
-              <Text type="h6" color={styles.errorColor}>
+              <Text type="h6" color={styleVariables.errorColor}>
                 {inputHook.errorMessage}
               </Text>
             </>
           )}
           {inputHook.error == 2 && (
             <>
-              <Icon icon="warning" color={styles.warningColor} size="20px" />
+              <Icon icon="warning" color={styleVariables.warningColor} size="20px" />
               <div style={{ width: "10px" }} />
-              <Text type="h6" color={styles.warningColor}>
+              <Text type="h6" color={styleVariables.warningColor}>
                 {inputHook.errorMessage}
               </Text>
             </>

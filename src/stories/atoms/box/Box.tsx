@@ -1,5 +1,5 @@
-import React, { MouseEventHandler, RefObject, useState } from "react";
-import "./box.scss";
+import React, { MouseEventHandler, RefObject } from "react";
+import styles from "./box.module.scss";
 
 interface BoxProps {
   /**
@@ -116,9 +116,9 @@ export const Box = ({
   return (
     <div
       className={[
-        "box",
-        strongShadow ? "box--strong-shadow" : "",
-        weakShadow ? "box--weak-shadow" : "",
+        styles["box"],
+        strongShadow ? styles["box--strong-shadow"] : "",
+        weakShadow ? styles["box--weak-shadow"] : "",
         className,
       ].join(" ")}
       style={{

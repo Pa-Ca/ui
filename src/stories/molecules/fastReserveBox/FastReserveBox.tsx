@@ -1,7 +1,7 @@
 import React from "react";
-import "./fastReserveBox.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./fastReserveBox.module.scss";
 import { InputDate } from "../inputDate/InputDate";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
@@ -62,19 +62,19 @@ export const FastReserveBox = ({
 }: FastReserveBoxProps) => {
   return (
     <Box
-      className="fast-reserve-box--container"
+      className={styles["fast-reserve-box--container"]}
       backgroundColor="white"
       strongShadow
       style={{ width, height }}
     >
       {/* The title of the box */}
-      <Box className="fast-reserve-box--title">
-        <Text className="fast-reserve-box--title-text" type="h4" weight="700">
+      <Box className={styles["fast-reserve-box--title"]}>
+        <Text className={styles["fast-reserve-box--title-text"]} type="h4" weight="700">
           {title}
         </Text>
       </Box>
 
-      <Box className="fast-reserve-box--input-container">
+      <Box className={styles["fast-reserve-box--input-container"]}>
         {/*The box of the InputSelect components*/}
         {/* There should be 3 input select componetes*/}
 
@@ -82,9 +82,9 @@ export const FastReserveBox = ({
         <Box
           height="1px"
           backgroundColor="#000000"
-          className="fast-reserve-box--line"
+          className={styles["fast-reserve-box--line"]}
         />
-        <Box className="fast-reserve-box--input-select-top">
+        <Box className={styles["fast-reserve-box--input-select-top"]}>
           <InputText
             label="Tamaño de Reserva"
             inputHook={persons}
@@ -92,18 +92,18 @@ export const FastReserveBox = ({
           />
         </Box>
 
-        <Box className="fast-reserve-box--input-select-bottom">
-          <Box className="fast-reserve-box--input-select-bottom-left">
+        <Box className={styles["fast-reserve-box--input-select-bottom"]}>
+          <Box className={styles["fast-reserve-box--input-select-bottom-left"]}>
             <InputDate label="Fecha" inputHook={date} />
           </Box>
 
-          <Box className="fast-reserve-box--input-select-bottom-right">
+          <Box className={styles["fast-reserve-box--input-select-bottom-right"]}>
             <InputSelect label="Hora" inputHook={hour} options={validHours} />
           </Box>
         </Box>
 
         {/* The box of the two buttons */}
-        <Box className="fast-reserve-box--reserve-button-box" width="100%">
+        <Box className={styles["fast-reserve-box--reserve-button-box"]} width="100%">
           <Button
             onClick={onClickReserve}
             backgroundColor="#EF7A08"
@@ -113,7 +113,7 @@ export const FastReserveBox = ({
             primary={true}
           >
             <Text
-              className="fast-reserve-box--button-text"
+              className={styles["fast-reserve-box--button-text"]}
               color="white"
               weight="600"
             >
@@ -122,7 +122,7 @@ export const FastReserveBox = ({
           </Button>
         </Box>
 
-        <Box className="fast-reserve-box--find-hour-button-box" width="100%">
+        <Box className={styles["fast-reserve-box--find-hour-button-box"]} width="100%">
           <Button
             onClick={onClickFindHour}
             backgroundColor="white"
@@ -131,7 +131,7 @@ export const FastReserveBox = ({
             size="large"
           >
             <Text
-              className="fast-reserve-box--button-text"
+              className={styles["fast-reserve-box--button-text"]}
               color="black"
               weight="600"
             >

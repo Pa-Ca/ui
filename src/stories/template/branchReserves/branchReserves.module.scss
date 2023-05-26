@@ -1,10 +1,10 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 
-.branch-reserve--header {
+.branch-reserves--header {
   margin-bottom: 30px;
 }
-.branch-reserve--content-container {
+.branch-reserves--content-container {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -13,14 +13,25 @@
 
   @include hide-scroll();
 }
-.branch-reserve--content {
+.branch-reserves--content {
   display: flex;
   flex-direction: row;
 }
 
-.submit-reservation--button-text {
+.branch-reserves--submit-reservation--button-text {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.branch-reserves--no-branch-box {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 20px;
   width: 100%;
 }

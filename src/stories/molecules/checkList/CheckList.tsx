@@ -1,9 +1,9 @@
-import React from 'react';
-import './checkList.scss';
-import { Box } from '../../atoms/box/Box';
-import { Icon } from '../../atoms/icon/Icon';
-import { Text } from '../../atoms/text/Text';
-import CheckObject from '../../utils/objects/CheckObject';
+import React from "react";
+import { Box } from "../../atoms/box/Box";
+import { Icon } from "../../atoms/icon/Icon";
+import { Text } from "../../atoms/text/Text";
+import styles from "./checkList.module.scss";
+import CheckObject from "../../utils/objects/CheckObject";
 
 interface CheckListProps {
   /**
@@ -26,8 +26,8 @@ interface CheckListProps {
 }
 
 /**
-* Primary UI component for user interaction
-*/
+ * Primary UI component for user interaction
+ */
 export const CheckList = ({
   items,
   setItems,
@@ -35,38 +35,48 @@ export const CheckList = ({
   textClassName,
   ...props
 }: CheckListProps) => {
- const onSelect = (value: string) => {
-   const updatedItems = items.map((item) => {
-     if (item.value === value) {
-       return {
-         ...item,
-         selected: !item.selected,
-       };
-     }
-     return item;
-   });
-   setItems(updatedItems);
- };
- 
- return (
-   <Box className='check-list--container' backgroundColor='transparent'>
-     {
-       items.map(item => (
-         <Box
-           key={`check-list--item-${item.value}`}
-           className='check-list--item'
-           backgroundColor='transparent'
-           onClick={() => onSelect(item.value)}
-         >
-           <Icon icon={item.selected ? 'checkbox' : 'uncheckbox'} size='18px' color={color} />
-           <Box width='5px' />
-           <Text type='h6' color='#112211' weight='500' className={textClassName}> {item.name} </Text>
-         </Box>
-       ))
-     }
-   </Box>
- );
+  const onSelect = (value: string) => {
+    const updatedItems = items.map((item) => {
+      if (item.value === value) {
+        return {
+          ...item,
+          selected: !item.selected,
+        };
+      }
+      return item;
+    });
+    setItems(updatedItems);
+  };
+
+  return (
+    <Box
+      className={styles["check-list--container"]}
+      backgroundColor="transparent"
+    >
+      {items.map((item) => (
+        <Box
+          key={`check-list--item-${item.value}`}
+          className={styles["check-list--item"]}
+          backgroundColor="transparent"
+          onClick={() => onSelect(item.value)}
+        >
+          <Icon
+            icon={item.selected ? "checkbox" : "uncheckbox"}
+            size="18px"
+            color={color}
+          />
+          <Box width="5px" />
+          <Text
+            type="h6"
+            color="#112211"
+            weight="500"
+            className={textClassName}
+          >
+            {" "}
+            {item.name}{" "}
+          </Text>
+        </Box>
+      ))}
+    </Box>
+  );
 };
-
-
-

@@ -1,14 +1,14 @@
 import React, { useMemo, useState, useRef } from "react";
-import "./editableInputText.scss";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
+import styles from "./editableInputText.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 import Select, { ActionMeta, SingleValue } from "react-select";
-import styles from "../../assets/scss/variables.module.scss"; 
+import styleVariables from "../../assets/scss/variables.module.scss";
 import {
   validateEmail,
   validatePhoneNumber,
@@ -227,7 +227,7 @@ export const EditableInputText = ({
   return (
     <Box
       className={classnames(
-        "editable-input-text--container",
+        styles["editable-input-text--container"],
         className,
         containerClassName
       )}
@@ -235,16 +235,19 @@ export const EditableInputText = ({
     >
       <Box
         className={classnames(
-          "editable-input-text--input-container",
+          styles["editable-input-text--input-container"],
           className
         )}
       >
         {editValue ? (
           select_enabled ? (
             <Select
-              className={classnames("editable-input-text--select", className)}
+              className={classnames(
+                styles["editable-input-text--select"],
+                className
+              )}
               classNamePrefix={classnames(
-                "editable-input-text--select",
+                styles["editable-input-text--select"],
                 className
               )}
               noOptionsMessage={() => "No se encuentra la opción"}
@@ -280,12 +283,21 @@ export const EditableInputText = ({
               ref={valueRef}
               value={inputHook.value}
               onChange={onChange}
-              className={classnames("editable-input-text--input", className)}
+              className={classnames(
+                styles["editable-input-text--input"],
+                className
+              )}
               style={{
-                borderColor: inputHook.error == 1 ? styles.errorColor 
-                              : inputHook.error == 2 ? styles.warningColor 
-                              : undefined,
-                borderWidth: inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
+                borderColor:
+                  inputHook.error == 1
+                    ? styleVariables.errorColor
+                    : inputHook.error == 2
+                    ? styleVariables.warningColor
+                    : undefined,
+                borderWidth:
+                  inputHook.error == 1 || inputHook.error == 2
+                    ? "2.5px"
+                    : undefined,
                 ...style,
               }}
             />
@@ -293,7 +305,10 @@ export const EditableInputText = ({
         ) : hideText ? (
           <>
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                styles["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="600"
               style={{ ...style }}
@@ -304,7 +319,10 @@ export const EditableInputText = ({
         ) : (
           <>
             <Text
-              className={classnames("editable-input-text--text", className)}
+              className={classnames(
+                styles["editable-input-text--text"],
+                className
+              )}
               type="h5"
               weight="600"
               style={{ ...style }}
@@ -329,28 +347,32 @@ export const EditableInputText = ({
       </Box>
       <Box
         className={classnames(
-          "editable-input-text--error-message",
+          styles["editable-input-text--error-message"],
           className,
-          inputHook.error == 1
-            ? "editable-input-text--animation"
-            : "editable-input-text--no-animation"
+          inputHook.error
+            ? styles["editable-input-text--animation"]
+            : styles["editable-input-text--no-animation"]
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
+            <Text type="h6" color={styleVariables.errorColor}>
               {inputHook.errorMessage}
             </Text>
           </>
         )}
         {inputHook.error == 2 && (
           <>
-            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <Icon
+              icon="warning"
+              color={styleVariables.warningColor}
+              size="20px"
+            />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
+            <Text type="h6" color={styleVariables.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>

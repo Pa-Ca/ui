@@ -288,7 +288,7 @@ const CustomAvatar = ({
       {preview && (
         <div>
           <img src={preview} alt="Preview" />
-          <canvas ref={previewCanvasRef} style={{ display: 'none' }} />
+          <canvas ref={previewCanvasRef} style={{ display: "none" }} />
         </div>
       )}
     </div>

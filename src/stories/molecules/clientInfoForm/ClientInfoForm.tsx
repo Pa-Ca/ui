@@ -1,7 +1,7 @@
 import React from "react";
-import "./clientInfoForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./clientInfoForm.module.scss";
 import { InputText } from "../inputText/InputText";
 import { InputFormHook } from "../../hooks/useInputForm";
 
@@ -50,14 +50,14 @@ export const ClientInfoForm = ({
   ...props
 }: ClientInfoFormProps) => {
   return (
-    <Box className="client-info-form--container" style={{ width, height }}>
-      <Box className="client-info-form--content">
-        <Box className="form--title">
+    <Box className={styles["client-info-form--container"]} style={{ width, height }}>
+      <Box className={styles["client-info-form--content"]}>
+        <Box className={styles["client-info-form--title"]}>
           <Text type="h4" color="#112211" weight="700">
             {formTitle}
           </Text>
         </Box>
-        <Box className="client-info-form-inputs-box">
+        <Box className={styles["client-info-form-inputs-box"]}>
           <InputText required inputHook={firstName} label="Nombre" />
           <InputText required inputHook={lastName} label="Apellido" />
           <InputText required inputHook={email} label="Correo" />

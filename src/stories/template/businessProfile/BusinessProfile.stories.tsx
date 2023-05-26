@@ -1,7 +1,7 @@
 import React from "react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BusinessProfile } from "./BusinessProfile";
 import useInputForm from "../../hooks/useInputForm";
-import { StoryFn, Meta } from "@storybook/react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

@@ -1,12 +1,12 @@
 import React from "react";
-import "./forgotPasswordForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
-import styles from "../../assets/scss/variables.module.scss";
+import styles from "./forgotPasswordForm.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface ForgotPasswordFormProps {
   /**
@@ -60,13 +60,14 @@ export const ForgotPasswordForm = ({
   const email = useInputForm("");
 
   return (
-    <Box className="forgot-password-form--container" style={{ width, height }}>
-      <Box className="forgot-password-form--content">
-        
-        <Box className="forgot-password-form--input-email">
+    <Box
+      className={styles["forgot-password-form--container"]}
+      style={{ width, height }}
+    >
+      <Box className={styles["forgot-password-form--content"]}>
+        <Box className={styles["forgot-password-form--input-email"]}>
           <InputText inputHook={email} label="Correo" />
         </Box>
-
 
         <Box
           className={
@@ -78,16 +79,20 @@ export const ForgotPasswordForm = ({
         >
           {error && (
             <>
-              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <Icon
+                icon="alert"
+                color={styleVariables.errorColor}
+                size="20px"
+              />
               <Box style={{ width: "10px" }} />
-              <Text type="h6" color={styles.errorColor}>
+              <Text type="h6" color={styleVariables.errorColor}>
                 Correo eléctronico inválido, inténtelo de nuevo.
               </Text>
             </>
           )}
         </Box>
 
-        <Box className="forgot-password-form--input">
+        <Box className={styles["forgot-password-form--input"]}>
           <Button
             fullWidth
             primary
@@ -95,7 +100,7 @@ export const ForgotPasswordForm = ({
             backgroundColor={color}
             onClick={() => onSubmit(email.value)}
           >
-            <Box className="forgot-password-form--button-text">
+            <Box className={styles["forgot-password-form--button-text"]}>
               <Text color="white" type="h6" weight="600">
                 Submit
               </Text>
@@ -104,9 +109,9 @@ export const ForgotPasswordForm = ({
         </Box>
       </Box>
 
-      <Box className="forgot-password-form--login-with">
+      <Box className={styles["forgot-password-form--login-with"]}>
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
-        <Box className="forgot-password-form--login-with-text">
+        <Box className={styles["forgot-password-form--login-with-text"]}>
           <Text weight="400" type="h6" color="#889188">
             Ó
           </Text>
@@ -114,8 +119,14 @@ export const ForgotPasswordForm = ({
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
       </Box>
 
-      <Box className="forgot-password-form--other-logins-container" height="100%">
-        <Box className="forgot-password-form--other-login" width="100%">
+      <Box
+        className={styles["forgot-password-form--other-logins-container"]}
+        height="100%"
+      >
+        <Box
+          className={styles["forgot-password-form--other-login"]}
+          width="100%"
+        >
           <Button
             primary={false}
             borderColor={otherLoginsColor}
@@ -123,8 +134,13 @@ export const ForgotPasswordForm = ({
             size="large"
             onClick={onGoogleSignUp}
           >
-            <Box className="forgot-password-form--other-logins-container" width="100%">
-              <Box className="forgot-password-form--other-login-button">
+            <Box
+              className={styles["forgot-password-form--other-logins-container"]}
+              width="100%"
+            >
+              <Box
+                className={styles["forgot-password-form--other-login-button"]}
+              >
                 <Icon icon="google" size="24px" />
                 <Text> &nbsp;&nbsp;&nbsp;Inicia Sesión con Google </Text>
               </Box>

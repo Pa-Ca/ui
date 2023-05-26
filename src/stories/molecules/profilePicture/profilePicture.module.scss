@@ -1,7 +1,7 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 
-.dropdown-input-select--menu {
+.profile-picture--dropdown-input-select--menu {
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -45,7 +45,6 @@
   }
 
   li {
-    cursor: pointer;
     list-style: none;
     text-align: left;
     padding-top: 14px;
@@ -62,15 +61,19 @@
   }
 }
 
-.dropdown-input-select--menu-in {
+.profile-picture--dropdown-input-select--menu-in {
   transition: max-height $animation-duration ease-in-out, opacity 5ms;
 }
-.dropdown-input-select--menu-out {
+.profile-picture--dropdown-input-select--menu-out {
   transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
 }
 
 .profile-picture--container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
 .profile-picture--icon {
   position: absolute;

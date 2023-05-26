@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./branchReserves.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./branchReserves.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { BasicPage } from "../basicPage/BasicPage";
 import { Modal } from "../../molecules/modal/Modal";
@@ -173,7 +173,7 @@ export const BranchReserves = ({
   return (
     <BasicPage headerArgs={header}>
       {/* Reserve type */}
-      <Box width="100%" className="branch-reserve--header">
+      <Box width="100%" className={styles["branch-reserves--header"]}>
         <InputTab
           index={page}
           setIndex={setPage}
@@ -185,11 +185,11 @@ export const BranchReserves = ({
       </Box>
 
       <Box
-        className="branch-reserve--content-container"
+        className={styles["branch-reserves--content-container"]}
         innerRef={observer.ref}
       >
         {haveBranch ? (
-          <Box width="200%" className="branch-reserve--content">
+          <Box width="200%" className={styles["branch-reserves--content"]}>
             <Box width="100%">
               <Paginable
                 list={activeReservations}
@@ -227,7 +227,7 @@ export const BranchReserves = ({
             </Box>
           </Box>
         ) : (
-          <Box className="no-branch-box">
+          <Box className={styles["branch-reserves--no-branch-box"]}>
             {" "}
             <Icon icon="share" size={icon_size} />
             <Text> Parece que no tienes ningún local asociado. </Text>
@@ -267,7 +267,11 @@ export const BranchReserves = ({
             backgroundColor={submitButtonColor}
             onClick={() => onSubmit()}
           >
-            <Box className="submit-reservation--button-text">
+            <Box
+              className={
+                styles["branch-reserves--submit-reservation--button-text"]
+              }
+            >
               <Text color="white" type="h6" weight="600">
                 Completar Reserva
               </Text>

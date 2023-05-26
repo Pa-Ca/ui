@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
-import './uploadProfilePictureForm.scss';
-import CustomAvatar from './customAvatar';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import { Button } from '../../atoms/button/Button';
+import React, { useState, useRef } from "react";
+import CustomAvatar from "./customAvatar";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import { Button } from "../../atoms/button/Button";
+import styles from "./uploadProfilePictureForm.module.scss";
 
 export interface UploadProfilePictureFormProps {
   /**
@@ -16,10 +16,10 @@ export interface UploadProfilePictureFormProps {
    * onSave function (The function is executed when clicking on the save button)
    * */
   onSave?: (fileSrc: string) => void;
- }
+}
 
-export const UploadProfilePictureForm = ({ 
-  color = '#EF7A08',
+export const UploadProfilePictureForm = ({
+  color = "#EF7A08",
   onSave,
 }: UploadProfilePictureFormProps) => {
   const [preview, setPreview] = useState<string | null>(null);
@@ -36,10 +36,12 @@ export const UploadProfilePictureForm = ({
     setPreview(preview);
   };
 
-  const onBeforeFileLoad = (elem: React.ChangeEvent<HTMLInputElement>): void => {
+  const onBeforeFileLoad = (
+    elem: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     if (elem.target.files && elem.target.files[0].size > 10 * 1000 * 1000) {
-      alert('File is too big!');
-      elem.target.value = '';
+      alert("File is too big!");
+      elem.target.value = "";
     }
   };
 
@@ -58,8 +60,8 @@ export const UploadProfilePictureForm = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const reader = new FileReader();
-      reader.addEventListener('load', () => {
-        if (typeof reader.result === 'string') {
+      reader.addEventListener("load", () => {
+        if (typeof reader.result === "string") {
           setSrc(reader.result);
         }
       });
@@ -69,10 +71,12 @@ export const UploadProfilePictureForm = ({
   };
 
   return (
-    <Box className="upload-profile-picture-form--container"  backgroundColor='white'>
-
-      {(showAvatar && src) ? (
-        <Box className="upload-profile-picture-form--crop-canvas-container">
+    <Box
+      className={styles["upload-profile-picture-form--container"]}
+      backgroundColor="white"
+    >
+      {showAvatar && src ? (
+        <Box className={styles["upload-profile-picture-form--crop-canvas-container"]}>
           <CustomAvatar
           width={500}
           height={500}
@@ -84,27 +88,23 @@ export const UploadProfilePictureForm = ({
           />
         </Box>
       ) : (
-        <Box className='upload-profile-picture-form--placeholder-box'>
-          <Text >
-          Sube una imagen
-          </Text>
+        <Box className={styles["upload-profile-picture-form--placeholder-box"]}>
+          <Text>Sube una imagen</Text>
         </Box>
       )}
-      
-      <Box className='upload-profile-picture-form--button-rack'>
-        
+
+      <Box className={styles["upload-profile-picture-form--button-rack"]}>
         <Button backgroundColor={color} onClick={handleUploadClick}>
-            <Text type="h6" weight="600">
+          <Text type="h6" weight="600">
             Subir una Imagen
-            </Text>
+          </Text>
         </Button>
 
         <Button backgroundColor={color} onClick={handleSaveClick}>
-            <Text type="h6" weight="600">
+          <Text type="h6" weight="600">
             Guardar Cambios
-            </Text>
+          </Text>
         </Button>
-      
       </Box>
       <input
         width={0}
@@ -112,10 +112,9 @@ export const UploadProfilePictureForm = ({
         type="file"
         accept="image/*"
         ref={fileInputRef}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         onChange={handleFileChange}
       />
-
     </Box>
   );
 };

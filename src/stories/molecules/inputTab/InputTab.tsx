@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import "./inputTab.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./inputTab.module.scss";
 import { Text } from "../../atoms/text/Text";
 import useResizeObserver from "../../hooks/useResizeObserver";
 
@@ -40,23 +40,27 @@ export const InputTab = ({
 
   return (
     <Box
-      className="input-tab--container"
+      className={styles["input-tab--container"]}
       borderRadius="12px"
       weakShadow
       innerRef={observer.ref}
     >
       {tabs.map((tab, i) => (
-        <Box className="input-tab--tab" key={`input-tab--item-${i}-${tab}`} onClick={() => setIndex(i)}>
+        <Box
+          className={styles["input-tab--tab"]}
+          key={`input-tab--item-${i}-${tab}`}
+          onClick={() => setIndex(i)}
+        >
           <Text color="#112211" weight="600">
             {tab}
           </Text>
 
-          {i !== 0 && <Box className="input-tab--separator" />}
+          {i !== 0 && <Box className={styles["input-tab--separator"]} />}
         </Box>
       ))}
 
       <Box
-        className="input-tab--line"
+        className={styles["input-tab--line"]}
         style={{
           borderColor: "#8DD3BB",
           left: `${lineLeft}px`,

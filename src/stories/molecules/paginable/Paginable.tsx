@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./paginable.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./paginable.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 
@@ -54,13 +54,14 @@ export const Paginable = <T extends any>({
   };
 
   return (
-    <Box className="paginable--container" onClick={(event) => event.stopPropagation()}>
-      <Box width="100%">
-        {children}
-      </Box>
-      <Box className="paginable--pages">
+    <Box
+      className={styles["paginable--container"]}
+      onClick={(event) => event.stopPropagation()}
+    >
+      <Box width="100%">{children}</Box>
+      <Box className={styles["paginable--pages"]}>
         <Box
-          className="paginable--icon"
+          className={styles["paginable--icon"]}
           onClick={goToPreviousPage}
           style={{ cursor: page < 2 ? "auto" : "pointer" }}
         >
@@ -71,14 +72,14 @@ export const Paginable = <T extends any>({
           />
         </Box>
 
-        <Box className="paginable--counter">
+        <Box className={styles["paginable--counter"]}>
           <Text color="#112211" weight="400">
             {page} de {totalPages}
           </Text>
         </Box>
 
         <Box
-          className="paginable--icon"
+          className={styles["paginable--icon"]}
           onClick={goToNextPage}
           style={{ cursor: page > totalPages - 1 ? "auto" : "pointer" }}
         >

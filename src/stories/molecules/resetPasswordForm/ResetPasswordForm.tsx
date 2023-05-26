@@ -1,13 +1,12 @@
 import React from "react";
-import "./resetPasswordForm.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
+import styles from "./resetPasswordForm.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
-
-import styles from "../../assets/scss/variables.module.scss";
 
 interface ResetPasswordFormProps {
   /**
@@ -74,13 +73,16 @@ export const ResetPasswordForm = ({
   };
 
   return (
-    <Box className="reset-password-form--container" style={{ width, height }}>
-      <Box className="reset-password-form--content">
-        <Box className="reset-password-form--input">
+    <Box
+      className={styles["reset-password-form--container"]}
+      style={{ width, height }}
+    >
+      <Box className={styles["reset-password-form--content"]}>
+        <Box className={styles["reset-password-form--input"]}>
           <InputText type="password" inputHook={password} label="Contraseña" />
         </Box>
 
-        <Box className="reset-password-form--input">
+        <Box className={styles["reset-password-form--input"]}>
           <InputText
             type="password"
             inputHook={confirmPassword}
@@ -98,15 +100,19 @@ export const ResetPasswordForm = ({
         >
           {error && (
             <>
-              <Icon icon="alert" color={styles.errorColor} size="20px" />
+              <Icon
+                icon="alert"
+                color={styleVariables.errorColor}
+                size="20px"
+              />
               <Box style={{ width: "10px" }} />
-              <Text type="h6" color={styles.errorColor}>
+              <Text type="h6" color={styleVariables.errorColor}>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>
           )}
         </Box>
-        <Box className="reset-password-form--input">
+        <Box className={styles["reset-password-form--input"]}>
           <Button
             fullWidth
             primary
@@ -114,7 +120,7 @@ export const ResetPasswordForm = ({
             backgroundColor={color}
             onClick={submit}
           >
-            <Box className="reset-password-form--button-text">
+            <Box className={styles["reset-password-form--button-text"]}>
               <Text color="white" type="h6" weight="600">
                 Cambiar contraseña
               </Text>

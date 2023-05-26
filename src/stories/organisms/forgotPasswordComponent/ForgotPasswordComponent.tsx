@@ -1,12 +1,11 @@
 import React from "react";
-import "./forgotPasswordComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import styles from "./forgotPasswordComponent.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
-import { LoginForm } from "../../molecules/loginForm/LoginForm";
-import { ForgotPasswordForm } from "../../molecules/forgotPasswordForm/ForgotPasswordForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
+import { ForgotPasswordForm } from "../../molecules/forgotPasswordForm/ForgotPasswordForm";
 
 export interface ForgotPasswordComponentProps {
   /**
@@ -36,7 +35,7 @@ export interface ForgotPasswordComponentProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
 }
 
 /**
@@ -55,26 +54,25 @@ export const ForgotPasswordComponent = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   return (
-    <Box className="forgot-password-component--container">
+    <Box className={styles["forgot-password-component--container"]}>
       <Box
-        className="forgot-password-component--left-container"
+        className={styles["forgot-password-component--left-container"]}
         width={`${observer.width + 2}px`}
       >
         <Icon icon="pa-ca" size="70px" />
 
-        <Box className="forgot-password-component--content">
-          <Box className="forgot-password-component--title">
+        <Box className={styles["forgot-password-component--content"]}>
+          <Box className={styles["forgot-password-component--title"]}>
             <Text weight="700" type="h2">
               ¿Olvidaste tu constraseña?
             </Text>
           </Box>
-          <Box className="forgot-password-component--subtitle">
+          <Box className={styles["forgot-password-component--subtitle"]}>
             <Text color="#4D594D" weight="400">
-              No te preocupes, le pasa a cualquiera. Ingresa tu correo electrónico
-              para poder recuperarla.
+              No te preocupes, le pasa a cualquiera. Ingresa tu correo
+              electrónico para poder recuperarla.
             </Text>
           </Box>
-
 
           <ForgotPasswordForm
             error={error}

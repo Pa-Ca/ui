@@ -1,6 +1,6 @@
 import React from "react";
-import "./branchNav.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from "./branchNav.module.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Button } from "../../atoms/button/Button";
@@ -71,37 +71,53 @@ export const BranchNav = ({
 }: BranchNavProps) => {
   return (
     <Box
-      className="branch-nav--container"
+      className={styles["branch-nav--container"]}
       borderTopLeftRadius="12px"
       borderTopRightRadius="12px"
       style={{ width, height }}
     >
-      <Box className="branch-nav--menu">
-        <Box className="branch-nav--item" onClick={onResumeClick}>
-          <Text className="branch-nav--menu-text" weight="600" color="#112211">
+      <Box className={styles["branch-nav--menu"]}>
+        <Box className={styles["branch-nav--item"]} onClick={onResumeClick}>
+          <Text
+            className={styles["branch-nav--menu-text"]}
+            weight="600"
+            color="#112211"
+          >
             Resumen
           </Text>
         </Box>
-        <Box className="branch-nav--item" onClick={onPicturesClick}>
-          <Text className="branch-nav--menu-text" weight="600" color="#112211">
+        <Box className={styles["branch-nav--item"]} onClick={onPicturesClick}>
+          <Text
+            className={styles["branch-nav--menu-text"]}
+            weight="600"
+            color="#112211"
+          >
             Fotos
           </Text>
         </Box>
-        <Box className="branch-nav--item" onClick={onMenuClick}>
-          <Text className="branch-nav--menu-text" weight="600" color="#112211">
+        <Box className={styles["branch-nav--item"]} onClick={onMenuClick}>
+          <Text
+            className={styles["branch-nav--menu-text"]}
+            weight="600"
+            color="#112211"
+          >
             Menú
           </Text>
         </Box>
-        <Box className="branch-nav--item" onClick={onReviewsClick}>
-          <Text className="branch-nav--menu-text" weight="600" color="#112211">
+        <Box className={styles["branch-nav--item"]} onClick={onReviewsClick}>
+          <Text
+            className={styles["branch-nav--menu-text"]}
+            weight="600"
+            color="#112211"
+          >
             Reviews
           </Text>
         </Box>
       </Box>
 
-      <Box className="branch-nav--menu">
+      <Box className={styles["branch-nav--menu"]}>
         {showLike && (
-          <Box className="branch-nav--menu-button">
+          <Box className={styles["branch-nav--menu-button"]}>
             <Button
               size="box"
               borderColor={color}
@@ -117,7 +133,7 @@ export const BranchNav = ({
             </Button>
           </Box>
         )}
-        <Box className="branch-nav--menu-button">
+        <Box className={styles["branch-nav--menu-button"]}>
           <Button
             size="box"
             borderColor={color}

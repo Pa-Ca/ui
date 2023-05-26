@@ -1,0 +1,28 @@
+.sign-up-component--container {
+  display: flex;
+  gap: 104px;
+  min-width: 1500px;
+  width: 100%;
+}
+.sign-up-component--caroussel {
+  padding: 20px;
+}
+.sign-up-component--login-form-container {
+  flex: 2;
+  padding: 20px;
+}
+
+.sign-up-component--sub-title {
+  /* Blackish Green */
+  color: #112211;
+  opacity: 0.75;
+  margin-bottom: 48px;
+}
+
+.sign-up-component--title {
+  margin-bottom: 16px;
+}
+
+.sign-up-component--icon {
+  margin-bottom: 36.24px;
+}

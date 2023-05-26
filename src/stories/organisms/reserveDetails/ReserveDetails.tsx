@@ -1,7 +1,7 @@
 import React from "react";
-import "./reserveDetails.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./reserveDetails.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 import { InputText } from "../../molecules/inputText/InputText";
@@ -102,13 +102,13 @@ export const ReserveDetails = ({
 
   return (
     <Box
-      className="reserve-details--container"
+      className={styles["reserve-details--container"]}
       style={{ width, height }}
       {...props}
     >
       {/* Branch details */}
       <Box
-        className="reserve-details--title"
+        className={styles["reserve-details--title"]}
         style={{
           justifyContent: centering,
         }}
@@ -121,19 +121,24 @@ export const ReserveDetails = ({
 
       {/* Inputs 1 */}
       <Box>
-        <Box className="reserve-details--input-container">
-          <Box width="100%" className="reserve-details--input-date">
+        <Box className={styles["reserve-details--input-container"]}>
+          <Box width="100%" className={styles["reserve-details--input-date"]}>
             <InputDate required inputHook={date} minDate={new Date()} />
           </Box>
 
-          <Box width="100%" className="reserve-details--input1">
-            <InputText required inputHook={persons} type="naturalNumber" label="Personas" />
+          <Box width="100%" className={styles["reserve-details--input1"]}>
+            <InputText
+              required
+              inputHook={persons}
+              type="naturalNumber"
+              label="Personas"
+            />
           </Box>
         </Box>
 
         <Box height="16px" />
 
-        <Box className="reserve-details--input-container">
+        <Box className={styles["reserve-details--input-container"]}>
           <Box width="100%" style={{ zIndex: 2 }}>
             <InputSelect
               required
@@ -143,7 +148,7 @@ export const ReserveDetails = ({
             />
           </Box>
 
-          <Box width="100%" className="reserve-details--input1">
+          <Box width="100%" className={styles["reserve-details--input1"]}>
             <InputSelect
               inputHook={hourOut}
               options={validHoursOut}
@@ -152,12 +157,16 @@ export const ReserveDetails = ({
           </Box>
         </Box>
         <Box>
-          <Text type="p"> La duración esperada de la reserva es de {durationHour} hora(s) y {durationMin} minuto(s) </Text>
+          <Text type="p">
+            {" "}
+            La duración esperada de la reserva es de {durationHour} hora(s) y{" "}
+            {durationMin} minuto(s){" "}
+          </Text>
         </Box>
       </Box>
 
       {showInviteFriends && (
-        <Box className="reserve-details--invite-friends">
+        <Box className={styles["reserve-details--invite-friends"]}>
           <Text type="p" color="#112211" weight="700">
             Invita a tus amigos
           </Text>

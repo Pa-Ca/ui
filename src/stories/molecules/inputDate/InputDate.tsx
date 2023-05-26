@@ -1,14 +1,15 @@
 import React, { forwardRef } from "react";
-import "./inputDate.scss";
-import "../../atoms/text/text.scss";
+import classnames from "classnames";
 import DatePicker from "react-datepicker";
+import styles from "./inputDate.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import "react-datepicker/dist/react-datepicker.css";
 import { InputFormHook } from "../../hooks/useInputForm";
+import textStyles from "../../atoms/text/text.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
-
-import styles from "../../assets/scss/variables.module.scss";
+import inputTextStyles from "../inputText/inputText.module.scss";
+import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface InputDateProps {
   /**
@@ -42,7 +43,7 @@ interface InputDateProps {
  */
 export const InputDate = ({
   inputHook,
-  label = "* Fecha",
+  label = "Fecha",
   required,
   minDate,
   width,
@@ -55,7 +56,11 @@ export const InputDate = ({
   const DateInputButton = forwardRef<HTMLButtonElement, ButtonProps>(
     ({ value, onClick }, ref) => (
       <button
-        className="text text--h6 input-text--input"
+        className={classnames(
+          textStyles["text"],
+          textStyles["text--h6"],
+          inputTextStyles["input-text--input"]
+        )}
         style={{ height: `${observer.height}px` }}
         onClick={onClick}
         ref={ref}
@@ -68,27 +73,31 @@ export const InputDate = ({
   return (
     <div>
       <div
-        className="input-text--input-container"
+        className={inputTextStyles["input-text--input-container"]}
         style={{
           width,
           height,
-          borderColor: inputHook.error == 1 ? styles.errorColor : 
-                        inputHook.error == 2 ? styles.warningColor :  undefined,
-          borderWidth: inputHook.error == 1 || inputHook.error == 2
-                        ? "2.5px" : undefined,
+          borderColor:
+            inputHook.error == 1
+              ? styleVariables.errorColor
+              : inputHook.error == 2
+              ? styleVariables.warningColor
+              : undefined,
+          borderWidth:
+            inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
         ref={observer.ref}
-        >
-        <div className="input-text--content">
+      >
+        <div className={inputTextStyles["input-text--content"]}>
           <DatePicker
             selected={inputHook.value}
             onChange={(date: Date) => inputHook.setValue(date)}
             onSelect={inputHook.setValue}
             customInput={<DateInputButton />}
             minDate={minDate}
-            />
+          />
 
-          <div className="input-text--label">
+          <div className={inputTextStyles["input-text--label"]}>
             {required && (
               <Text color="red" weight="400">
                 *
@@ -96,9 +105,16 @@ export const InputDate = ({
             )}
             <Text
               type="h6"
-              weight={inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"}
-              color={inputHook.error == 1 ? styles.errorColor :
-                      inputHook.error == 2 ? styles.warningColor : undefined}
+              weight={
+                inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
+              }
+              color={
+                inputHook.error == 1
+                  ? styleVariables.errorColor
+                  : inputHook.error == 2
+                  ? styleVariables.warningColor
+                  : undefined
+              }
             >
               &nbsp;{label}&nbsp;
             </Text>
@@ -107,32 +123,38 @@ export const InputDate = ({
       </div>
       <div
         className={
-          "input-text--error-container " +
-          (inputHook.error == 1 || inputHook.error == 2
-            ? "input-text--error-animation"
-            : "input-text--error-no-animation")
-          }
-          >
+          inputTextStyles["input-text--error-container"] +
+          " " +
+          inputTextStyles[
+            inputHook.error == 1 || inputHook.error == 2
+              ? "input-text--error-animation"
+              : "input-text--error-no-animation"
+          ]
+        }
+      >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styles.errorColor} size="20px" />
+            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.errorColor}>
+            <Text type="h6" color={styleVariables.errorColor}>
               {inputHook.errorMessage}
             </Text>
           </>
         )}
         {inputHook.error == 2 && (
           <>
-            <Icon icon="warning" color={styles.warningColor} size="20px" />
+            <Icon
+              icon="warning"
+              color={styleVariables.warningColor}
+              size="20px"
+            />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styles.warningColor}>
+            <Text type="h6" color={styleVariables.warningColor}>
               {inputHook.errorMessage}
             </Text>
           </>
         )}
       </div>
     </div>
-
   );
 };

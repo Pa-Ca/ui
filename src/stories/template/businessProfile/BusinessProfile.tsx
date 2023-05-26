@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./businessProfile.scss";
+import styles from "./businessProfile.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
@@ -380,12 +380,12 @@ export const BusinessProfile = ({
         <Box height="32px" />
 
         <Box
-          className="business-profile--content-container"
+          className={styles["business-profile--content-container"]}
           innerRef={observer.ref}
         >
           <Box
             width={`${3 * tabObserver.width}px`}
-            className="business-profile--content"
+            className={styles["business-profile--content"]}
           >
             <Box width={`${tabObserver.width - 10}px`}>
               <BusinessAccountInfo
@@ -470,7 +470,7 @@ export const BusinessProfile = ({
         </Modal>
 
         <Modal open={showCreateBranchModal} setOpen={setShowCreateBranchModal}>
-          <Box className="business-profile--modal-container">
+          <Box className={styles["business-profile--modal-container"]}>
             <Box style={{ marginBottom: "32px" }}>
               <Text type="h3" weight="700">
                 Crear local
@@ -491,7 +491,7 @@ export const BusinessProfile = ({
               />
             </Box>
 
-            <Box className="business-profile--two-column-row">
+            <Box className={styles["business-profile--two-column-row"]}>
               <InputText
                 required
                 label="Capacidad"
@@ -500,7 +500,7 @@ export const BusinessProfile = ({
               />
 
               <Box>
-                <Box className="business-profile--label">
+                <Box className={styles["business-profile--label"]}>
                   {asterisk}
                   <Text type="h6" weight="400">
                     Tiempo promedio de reserva
@@ -514,7 +514,7 @@ export const BusinessProfile = ({
               </Box>
             </Box>
 
-            <Box className="business-profile--two-column-row">
+            <Box className={styles["business-profile--two-column-row"]}>
               <Box style={{ zIndex: 3 }}>
                 <InputSelect
                   required
@@ -534,9 +534,9 @@ export const BusinessProfile = ({
               </Box>
             </Box>
 
-            <Box className="business-profile--two-column-row">
+            <Box className={styles["business-profile--two-column-row"]}>
               <Box>
-                <Box className="business-profile--label">
+                <Box className={styles["business-profile--label"]}>
                   {asterisk}
                   <Text type="h6" weight="400">
                     {" "}
@@ -551,7 +551,7 @@ export const BusinessProfile = ({
               </Box>
 
               <Box>
-                <Box className="business-profile--label">
+                <Box className={styles["business-profile--label"]}>
                   {asterisk}
                   <Text type="h6" weight="400">
                     {" "}
@@ -566,7 +566,7 @@ export const BusinessProfile = ({
               </Box>
             </Box>
 
-            <Box className="business-profile--two-column-row">
+            <Box className={styles["business-profile--two-column-row"]}>
               <Box>
                 <InputText
                   required
@@ -602,7 +602,7 @@ export const BusinessProfile = ({
               />
             </Box>
 
-            <Box className="business-profile--precise-location-container">
+            <Box className={styles["business-profile--precise-location-container"]}>
               <InputText
                 width="100%"
                 showError={false}
@@ -640,7 +640,7 @@ export const BusinessProfile = ({
                 )
               }
             >
-              <Box className="business-profile--button-create-branch">
+              <Box className={styles["business-profile--button-create-branch"]}>
                 <Text weight="600">Crear Local</Text>
               </Box>
             </Button>

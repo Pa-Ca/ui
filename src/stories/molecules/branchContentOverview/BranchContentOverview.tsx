@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
-import "../../atoms/text/text.scss";
-import "./branchContentOverview.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Editable } from "../editable/Editable";
 import { TextareaAutosize } from "@mui/material";
+import styles from "./branchContentOverview.module.scss";
+import textStyles from "../../atoms/text/text.module.scss";
 
 interface BranchContentOverviewProps {
   /**
@@ -70,10 +70,10 @@ export const BranchContentOverview = ({
 
   return (
     <Box
-      className="branch-content-overview--container"
+      className={styles["branch-content-overview--container"]}
       style={{ width, height }}
     >
-      <Box className="branch-content-overview--header">
+      <Box className={styles["branch-content-overview--header"]}>
         <Text type="h5" color="#112211" weight="700">
           {" "}
           Overview{" "}
@@ -95,13 +95,13 @@ export const BranchContentOverview = ({
           value={currentOverview}
           onChange={changeOverview}
           style={{ width: "100%", opacity: "0.75", lineHeight: "20px" }}
-          className="text"
+          className={textStyles["text"]}
         />
       ) : (
         <Text
           color="#112211"
           opacity={0.75}
-          className="branch-content-overview--overview"
+          className={styles["branch-content-overview--overview"]}
         >
           {currentOverview}
         </Text>

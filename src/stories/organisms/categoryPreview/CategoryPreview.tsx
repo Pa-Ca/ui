@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import "./categoryPreview.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./categoryPreview.module.scss";
 import { Button } from "../../atoms/button/Button";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import {
@@ -61,12 +61,12 @@ export const CategoryPreview = ({
 
   return (
     <Box
-      className="category-preview--container"
+      className={styles["category-preview--container"]}
       style={{ width, height }}
       innerRef={observer.ref}
     >
-      <Box className="category-preview--header">
-        <Box className="category-preview--summary">
+      <Box className={styles["category-preview--header"]}>
+        <Box className={styles["category-preview--summary"]}>
           <Box>
             <Text type="h3" weight="600">
               {title}
@@ -87,10 +87,10 @@ export const CategoryPreview = ({
         </Button>
       </Box>
 
-      <Box className="category-preview--content">
+      <Box className={styles["category-preview--content"]}>
         {branches?.slice(0, nPlates).map((branch, index) => (
           <Box
-            className="category-preview--branch"
+            className={styles["category-preview--branch"]}
             key={`category-preview--branch-${index}-${branch.name}`}
           >
             <BranchCard {...branch} color={color} width="100%" />

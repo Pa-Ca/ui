@@ -1,16 +1,17 @@
-import React from 'react';
-import './newReserve.scss';
-import { Box } from '../../atoms/box/Box';
-import { Text } from '../../atoms/text/Text';
-import { Icon } from '../../atoms/icon/Icon';
-import { Button } from '../../atoms/button/Button';
-import OptionObject from '../../utils/objects/OptionObject';
-import { InputText } from '../../molecules/inputText/InputText';
-import { InputDate } from '../../molecules/inputDate/InputDate';
-import { InputSelect } from '../../molecules/inputSelect/InputSelect';
-import useInputForm, { InputFormHook } from '../../hooks/useInputForm';
-import { BranchContentSummary } from '../../molecules/branchContentSummary/BranchContentSummary';
-import { BranchContentOverview } from '../../molecules/branchContentOverview/BranchContentOverview';
+import React from "react";
+import { Box } from "../../atoms/box/Box";
+import { Text } from "../../atoms/text/Text";
+import { Icon } from "../../atoms/icon/Icon";
+import styles from "./newReserve.module.scss";
+import { Button } from "../../atoms/button/Button";
+import { InputFormHook } from "../../hooks/useInputForm";
+import OptionObject from "../../utils/objects/OptionObject";
+import { InputText } from "../../molecules/inputText/InputText";
+import { InputDate } from "../../molecules/inputDate/InputDate";
+import { InputSelect } from "../../molecules/inputSelect/InputSelect";
+import { BranchContentSummary } from "../../molecules/branchContentSummary/BranchContentSummary";
+import { BranchContentOverview } from "../../molecules/branchContentOverview/BranchContentOverview";
+import branchContentSummaryStyles from "../../molecules/branchContentSummary/branchContentSummary.module.scss";
 
 interface NewReserveProps {
   /**
@@ -122,12 +123,15 @@ export const NewReserve = ({
   ...props
 }: NewReserveProps) => {
   return (
-    <Box className='new-reserve--container' style={{ width, height }}>
+    <Box className={styles["new-reserve--container"]} style={{ width, height }}>
       {/* Branch details */}
-      <Box className='new-reserve--details'>
-        <Box backgroundImage={picture} className='new-reserve--image'/>
-        
-        <Box width='100%'>
+      <Box className={styles["new-reserve--details"]}>
+        <Box
+          backgroundImage={picture}
+          className={styles["new-reserve--image"]}
+        />
+
+        <Box width="100%">
           <BranchContentSummary
             name={name}
             score={score}
@@ -136,11 +140,18 @@ export const NewReserve = ({
             price={price}
             pricePerson={pricePerson}
             color={color}
-            width='100%'
+            width="100%"
           />
-          <Box className='new-reserve--location'>
-            <Icon icon='location' size='18px' />
-            <Text type='h6' color='#112211' opacity={0.75} className='branch-content-summary--data-text'> 
+          <Box className={styles["new-reserve--location"]}>
+            <Icon icon="location" size="18px" />
+            <Text
+              type="h6"
+              color="#112211"
+              opacity={0.75}
+              className={
+                branchContentSummaryStyles["branch-content-summary--data-text"]
+              }
+            >
               {location}
             </Text>
           </Box>
@@ -148,42 +159,61 @@ export const NewReserve = ({
       </Box>
 
       {/* Inputs 1 */}
-      <Box className='new-reserve--input-container'>
-        <Box width='100%' className='new-reserve--input-date'>
-          <InputDate inputHook={date}/>
+      <Box className={styles["new-reserve--input-container"]}>
+        <Box width="100%" className={styles["new-reserve--input-date"]}>
+          <InputDate inputHook={date} />
         </Box>
 
-        <Box width='100%' className='new-reserve--input1'>
-          <InputText inputHook={persons} type='number' label='Personas'/>
+        <Box width="100%" className={styles["new-reserve--input1"]}>
+          <InputText inputHook={persons} type="number" label="Personas" />
         </Box>
 
-        <Box width='100%' className='new-reserve--input1'>
-          <InputSelect inputHook={hourIn} options={validHoursIn} label='Hora de Llegada'/>
+        <Box width="100%" className={styles["new-reserve--input1"]}>
+          <InputSelect
+            inputHook={hourIn}
+            options={validHoursIn}
+            label="Hora de Llegada"
+          />
         </Box>
 
-        <Box width='100%' className='new-reserve--input1'>
-          <InputSelect inputHook={hourOut} options={validHoursOut} label='Hora de Salida (Opcional)'/>
+        <Box width="100%" className={styles["new-reserve--input1"]}>
+          <InputSelect
+            inputHook={hourOut}
+            options={validHoursOut}
+            label="Hora de Salida (Opcional)"
+          />
         </Box>
       </Box>
 
       {/* Inputs 2 */}
-      <Box className='new-reserve--input-container'>
-        <Box width='100%'>
-          <InputText inputHook={occasion} type='text' label='Ocasión Especial (Opcional)'/>
+      <Box className={styles["new-reserve--input-container"]}>
+        <Box width="100%">
+          <InputText
+            inputHook={occasion}
+            type="text"
+            label="Ocasión Especial (Opcional)"
+          />
         </Box>
       </Box>
 
       {/* Find */}
-      <Box className='new-reserve--find-button-container'>
-        <Button primary fullWidth size='large' backgroundColor={color} onClick={onClick} >
-          <Text type='h6' weight='600'> Encontrar Mesa </Text>
+      <Box className={styles["new-reserve--find-button-container"]}>
+        <Button
+          primary
+          fullWidth
+          size="large"
+          backgroundColor={color}
+          onClick={onClick}
+        >
+          <Text type="h6" weight="600">
+            {" "}
+            Encontrar Mesa{" "}
+          </Text>
         </Button>
       </Box>
 
       {/* Hours */}
-      <Box>
-
-      </Box>
+      <Box></Box>
 
       {/* Overview */}
       <Box>

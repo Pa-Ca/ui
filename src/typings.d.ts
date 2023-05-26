@@ -4,3 +4,5 @@ declare module "*.scss" {
 }
 
 declare module 'color';
+
+declare module 'react-datepicker';

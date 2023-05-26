@@ -1,5 +1,5 @@
 import React from "react";
-import "./reservationCheckOutBeta.scss";
+import styles from "./reservationCheckOutBeta.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
@@ -91,7 +91,7 @@ export const ReservationCheckOutBeta = ({
   return (
     <BasicPage headerArgs={headerArgs}>
       <Box>
-        <Box className="left-content-box">
+        <Box className={styles["reservation-checkout-beta-left-content-box"]}>
           <Box>
             <RestaurantDetails
               onClick={onMapsClick}
@@ -108,7 +108,7 @@ export const ReservationCheckOutBeta = ({
           </Box>
 
           {/* Client Form */}
-          <Box className="white-background-box" weakShadow>
+          <Box className={styles["reservation-checkout-beta-white-background-box"]} weakShadow>
             <ClientInfoForm
               firstName = {firstName}
               lastName = {lastName}
@@ -131,7 +131,7 @@ export const ReservationCheckOutBeta = ({
           </Box>
 
           {/* Submit Button */}
-          <Box className="white-background-box" weakShadow>
+          <Box className={styles["reservation-checkout-beta-white-background-box"]} weakShadow>
             <Button
               fullWidth
               primary
@@ -151,7 +151,7 @@ export const ReservationCheckOutBeta = ({
                 )
               }
             >
-              <Box className="login-form--button-text">
+              <Box className={styles["reservation-checkout-beta--button-text"]}>
                 <Text color="white" type="h6" weight="600">
                   Completar Reserva
                 </Text>
