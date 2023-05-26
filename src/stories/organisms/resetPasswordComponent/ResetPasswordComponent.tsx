@@ -1,9 +1,9 @@
 import React from "react";
-import "./resetPasswordComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { InputFormHook } from "../../hooks/useInputForm";
+import styles from "./resetPasswordComponent.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { ResetPasswordForm } from "../../molecules/resetPasswordForm/ResetPasswordForm";
@@ -65,16 +65,19 @@ export const ResetPasswordComponent = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   return (
-    <Box className="reset-password-component--container">
+    <Box className={styles["reset-password-component--container"]}>
       <Box
-        className="reset-password-component--left-container"
+        className={styles["reset-password-component--left-container"]}
         width={`${observer.width + 2}px`}
       >
         <Icon icon="pa-ca" size="70px" />
 
-        <Box className="reset-password-component--content" style={{ paddingRight: completed ? "0" : "100px" }}>
+        <Box
+          className={styles["reset-password-component--content"]}
+          style={{ paddingRight: completed ? "0" : "100px" }}
+        >
           <Box
-            className="reset-password-component--back-to-login"
+            className={styles["reset-password-component--back-to-login"]}
             onClick={onBackToLogin}
           >
             <Icon icon="left" size="18px" />
@@ -83,13 +86,13 @@ export const ResetPasswordComponent = ({
           </Box>
 
           {!completed ? (
-            <Box className="reset-password-component--form">
-              <Box className="reset-password-component--title">
+            <Box className={styles["reset-password-component--form"]}>
+              <Box className={styles["reset-password-component--title"]}>
                 <Text weight="700" type="h2">
                   Cambiar contraseña
                 </Text>
               </Box>
-              <Box className="reset-password-component--subtitle">
+              <Box className={styles["reset-password-component--subtitle"]}>
                 <Text color="#4D594D" weight="400"></Text>
               </Box>
 
@@ -102,7 +105,9 @@ export const ResetPasswordComponent = ({
               />
             </Box>
           ) : (
-            <Box className="reset-password-component--password-changed">
+            <Box
+              className={styles["reset-password-component--password-changed"]}
+            >
               <Icon icon="check-outline" size="300px" />
 
               <Box height="50px" />

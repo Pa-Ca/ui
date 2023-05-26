@@ -1,16 +1,15 @@
-.reserve-details--container
-{
+.reserve-details--container {
   display: flex;
   flex-direction: column;
-  gap : 24px;
+  gap: 24px;
   border-radius: 12px;
   margin-bottom: 24px;
 }
-.reserve-details--title{
-  display : flex;
+.reserve-details--title {
+  display: flex;
   align-items: center;
 }
-.reserve-details--input-container{
+.reserve-details--input-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,7 +22,7 @@
   z-index: 2;
 }
 
-.reserve-details--invite-friends{
+.reserve-details--invite-friends {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

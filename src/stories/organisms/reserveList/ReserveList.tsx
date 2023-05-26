@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import "./reserveList.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./reserveList.module.scss";
 import { Button } from "../../atoms/button/Button";
 import ReservationList from "../../utils/objects/ReservationList";
 import { Reservation } from "../../molecules/reservation/Reservation";
@@ -71,7 +71,6 @@ export const ReserveList = ({
     }, []);
   }, [reservationsByDate, state]);
 
-
   const title = useMemo(() => {
     switch (state) {
       case 1:
@@ -87,13 +86,13 @@ export const ReserveList = ({
     switch (state) {
       case 1:
         return (
-          <Box className="reserve-list--header">
-            <Box className="reserve-list--active">
+          <Box className={styles["reserve-list--header"]}>
+            <Box className={styles["reserve-list--active"]}>
               <Text weight="700" type="h3">
                 {title}
               </Text>
 
-              <Box className="reserve-list--type">
+              <Box className={styles["reserve-list--type"]}>
                 <Text weight="600" color="#112211" type="h6">
                   Upcoming
                 </Text>
@@ -116,12 +115,12 @@ export const ReserveList = ({
         );
       default:
         return (
-          <Box className="reserve-list--header">
+          <Box className={styles["reserve-list--header"]}>
             <Text weight="700" type="h3">
               {title}
             </Text>
 
-            <Box className="reserve-list--type">
+            <Box className={styles["reserve-list--type"]}>
               <Text weight="600" color="#112211" type="h6">
                 Upcoming
               </Text>
@@ -133,17 +132,20 @@ export const ReserveList = ({
   }, [state, color]);
 
   return (
-    <Box className="reserve-list--container">
+    <Box className={styles["reserve-list--container"]}>
       {header}
 
-      <Box className="reserve-list--reservations">
+      <Box className={styles["reserve-list--reservations"]}>
         {reservationsToShow.map((group, index) => (
-          <Box key={`reserve-list--state-${state}-date-${group.date}-index-${index}`} className="reserve-list--reservation">
+          <Box
+            key={`reserve-list--state-${state}-date-${group.date}-index-${index}`}
+            className={styles["reserve-list--reservation"]}
+          >
             <Box
               height="52px"
               borderRadius="16px"
               weakShadow
-              className="reserve-list--date"
+              className={styles["reserve-list--date"]}
             >
               <Text weight="600" color="#112211">
                 {group.date}
@@ -151,7 +153,7 @@ export const ReserveList = ({
             </Box>
 
             <Box
-              className="reserve-list--reservations"
+              className={styles["reserve-list--reservations"]}
               borderRadius="16px"
               weakShadow
               backgroundColor="white"

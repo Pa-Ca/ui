@@ -1,8 +1,8 @@
 import React from "react";
-import "./branchSearch.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import styles from "./branchSearch.module.scss";
 import { Button } from "../../atoms/button/Button";
 import getValidHours from "../../utils/getValidHours";
 import { InputFormHook } from "../../hooks/useInputForm";
@@ -61,14 +61,17 @@ export const BranchSearch = ({
   ...props
 }: BranchSearchProps) => {
   return (
-    <Box className="branch-search--container" style={{ width, height }}>
+    <Box
+      className={styles["branch-search--container"]}
+      style={{ width, height }}
+    >
       {/* Searchs */}
-      <Box className="branch-search--search-zone">
-        <Box className="branch-search--search-date">
+      <Box className={styles["branch-search--search-zone"]}>
+        <Box className={styles["branch-search--search-date"]}>
           <InputDate inputHook={date} minDate={new Date()} />
         </Box>
 
-        <Box className="branch-search--search-hour">
+        <Box className={styles["branch-search--search-hour"]}>
           <InputSelect
             inputHook={hour}
             options={getValidHours()}
@@ -76,11 +79,11 @@ export const BranchSearch = ({
           />
         </Box>
 
-        <Box className="branch-search--search-persons">
+        <Box className={styles["branch-search--search-persons"]}>
           <InputText inputHook={persons} type="number" label="Personas" />
         </Box>
 
-        <Box className="branch-search--search-text">
+        <Box className={styles["branch-search--search-text"]}>
           <InputText
             inputHook={search}
             label="Locación, Restaurante, Cuisine"
@@ -89,16 +92,19 @@ export const BranchSearch = ({
       </Box>
 
       {/* Button */}
-      <Box className="branch-search--button-zone">
+      <Box className={styles["branch-search--button-zone"]}>
         <Button
           primary={true}
           size="large"
           backgroundColor={color}
           onClick={onClick}
         >
-          <Box className="branch-search--button" backgroundColor="transparent">
+          <Box
+            className={styles["branch-search--button"]}
+            backgroundColor="transparent"
+          >
             <Icon icon="paper-plane" size={"16px"} color="white" />
-            <Text className="branch-search--button-text">
+            <Text className={styles["branch-search--button-text"]}>
               Muéstrame Locales
             </Text>
           </Box>

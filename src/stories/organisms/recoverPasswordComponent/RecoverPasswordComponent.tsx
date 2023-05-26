@@ -1,8 +1,8 @@
 import React from "react";
-import "./recoverPasswordComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import styles from "./recoverPasswordComponent.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { RecoverPasswordForm } from "../../molecules/recoverPasswordForm/RecoverPasswordForm";
@@ -64,19 +64,19 @@ export const RecoverPasswordComponent = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   return (
-    <Box className="recover-password-component--container">
+    <Box className={styles["recover-password-component--container"]}>
       <Box
-        className="recover-password-component--left-container"
+        className={styles["recover-password-component--left-container"]}
         width={`${observer.width + 2}px`}
       >
         <Icon icon="pa-ca" size="70px" />
 
         <Box
-          className="recover-password-component--content"
+          className={styles["recover-password-component--content"]}
           style={{ paddingRight: completed ? "0" : "100px" }}
         >
           <Box
-            className="recover-password-component--back-to-login"
+            className={styles["recover-password-component--back-to-login"]}
             onClick={onBackToLogin}
           >
             <Icon icon="left" size="18px" />
@@ -85,13 +85,13 @@ export const RecoverPasswordComponent = ({
           </Box>
 
           {!completed ? (
-            <Box className="recover-password-component--form">
-              <Box className="recover-password-component--title">
+            <Box className={styles["recover-password-component--form"]}>
+              <Box className={styles["recover-password-component--title"]}>
                 <Text weight="700" type="h2">
                   ¿Olvidaste tu contraseña?
                 </Text>
               </Box>
-              <Box className="recover-password-component--subtitle">
+              <Box className={styles["recover-password-component--subtitle"]}>
                 <Text color="#4D594D" weight="400">
                   No te preocupes, nos pasa a todos. Ingresa tu correo abajo
                   para recuperar tu contraseña.
@@ -108,7 +108,7 @@ export const RecoverPasswordComponent = ({
               />
             </Box>
           ) : (
-            <Box className="recover-password-component--email-sent">
+            <Box className={styles["recover-password-component--email-sent"]}>
               <Icon icon="email-sent" size="300px" />
 
               <Box height="50px" />

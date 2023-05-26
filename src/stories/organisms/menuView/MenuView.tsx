@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { Box } from "../../atoms/box/Box";
+import styles from "./menuView.module.scss";
 import { Text } from "../../atoms/text/Text";
-import { MenuSection } from "../../utils/objects/MenuSectionObject";
-import "./menuView.scss";
 import { useDraggable } from "react-use-draggable-scroll";
+import { MenuSection } from "../../utils/objects/MenuSectionObject";
 
 export interface MenuProps {
   /**
@@ -86,18 +86,18 @@ export const MenuView = ({
     <Box
       {...props}
       width={width}
-      className="menu-view--container"
+      className={styles["menu-view--container"]}
       backgroundColor="#FFFFFF"
     >
       {/* Write the name of the courses*/}
 
-      <div className="menu-view--top-carousel" ref={ref} {...events}>
-        <Box className="menu-view--menu-sections">
+      <div className={styles["menu-view--top-carousel"]} ref={ref} {...events}>
+        <Box className={styles["menu-view--menu-sections"]}>
           {courses.map((course, index) => {
             return (
               <Text
                 key={index}
-                className="menu-view--menu-section"
+                className={styles["menu-view--menu-section"]}
                 weight="700"
               >
                 {course.name}
@@ -108,26 +108,26 @@ export const MenuView = ({
       </div>
       {/*Add a dotted line between*/}
 
-      <Box className="menu-view--line" backgroundColor="#FFFFFF" />
+      <Box className={styles["menu-view--line"]} backgroundColor="#FFFFFF" />
 
       {courses.map((course, index) => {
         return (
-          <Box key={index} className="menu-view--course">
-            <Text className="menu-view--course-name" weight="700">
+          <Box key={index} className={styles["menu-view--course"]}>
+            <Text className={styles["menu-view--course-name"]} weight="700">
               {course.name}
             </Text>
             {course.products.map((product, index) => {
               return (
-                <Box key={index} className="menu-view--product">
-                  <Text className="menu-view--product-name">
+                <Box key={index} className={styles["menu-view--product"]}>
+                  <Text className={styles["menu-view--product-name"]}>
                     {product.name}
                   </Text>
                   {/*Add a dotted line between*/}
                   <Box
-                    className="menu-view--product-dotted-line"
+                    className={styles["menu-view--product-dotted-line"]}
                     backgroundColor="white"
                   />
-                  <Text className="menu-view--product-price">
+                  <Text className={styles["menu-view--product-price"]}>
                     {product.price}€
                   </Text>
                 </Box>

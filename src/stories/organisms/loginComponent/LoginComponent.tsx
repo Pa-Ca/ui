@@ -1,8 +1,8 @@
 import React from "react";
-import "./loginComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import styles from "./loginComponent.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
@@ -43,7 +43,7 @@ export interface LoginComponentProps {
   /**
    * Other logins button border color
    */
-  otherLoginsColor?: string
+  otherLoginsColor?: string;
 }
 
 /**
@@ -64,20 +64,20 @@ export const LoginComponent = ({
   const observer = useResizeObserver<HTMLDivElement>();
 
   return (
-    <Box className="login-component--container">
+    <Box className={styles["login-component--container"]}>
       <Box
-        className="login-component--left-container"
+        className={styles["login-component--left-container"]}
         width={`${observer.width + 2}px`}
       >
         <Icon icon="pa-ca" size="70px" />
 
-        <Box className="login-component--content">
-          <Box className="login-component--title">
+        <Box className={styles["login-component--content"]}>
+          <Box className={styles["login-component--title"]}>
             <Text weight="700" type="h2">
               Iniciar Sesión
             </Text>
           </Box>
-          <Box className="login-component--subtitle">
+          <Box className={styles["login-component--subtitle"]}>
             <Text color="#4D594D" weight="400">
               Este es un texto chido
             </Text>

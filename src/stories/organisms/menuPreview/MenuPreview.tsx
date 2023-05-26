@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
-import "./menuPreview.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
+import styles from "./menuPreview.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Editable } from "../../molecules/editable/Editable";
 import useResizeObserver from "../../hooks/useResizeObserver";
@@ -56,12 +56,12 @@ export const MenuPreview = ({
 
   return (
     <Box
-      className="menu-preview--container"
+      className={styles["menu-preview--container"]}
       style={{ width, height }}
       innerRef={observer.ref}
     >
-      <Box className="menu-preview--header">
-        <Box className="menu-preview--title-container">
+      <Box className={styles["menu-preview--header"]}>
+        <Box className={styles["menu-preview--title-container"]}>
           <Text type="h5" color="#112211" weight="700">
             Menú
           </Text>
@@ -87,10 +87,10 @@ export const MenuPreview = ({
         </Button>
       </Box>
 
-      <Box className="menu-preview--content">
+      <Box className={styles["menu-preview--content"]}>
         {plates?.slice(0, nPlates).map((plate, index) => (
           <Box
-            className="menu-preview--plate"
+            className={styles["menu-preview--plate"]}
             style={{ marginLeft: index === 0 ? "0px" : "8px" }}
             key={`menu-preview--plate-${index}-${plate.title}`}
           >

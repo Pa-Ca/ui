@@ -1,14 +1,11 @@
 import React from "react";
-import "./signUpComponent.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import styles from "./signUpComponent.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { SignUpForm } from "../../molecules/signUpForm/SignUpForm";
-import {
-  ImagesCarousel,
-  ImagesCarouselProps,
-} from "../../molecules/imagesCarousel/ImagesCarousel";
+import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
 interface SignUpComponentProps {
   /**
@@ -133,8 +130,11 @@ export const SignUpComponent = ({
   ...props
 }: SignUpComponentProps) => {
   return (
-    <Box className="sign-up-component--container" style={{ height, width }}>
-      <Box className="sign-up-component--caroussel">
+    <Box
+      className={styles["sign-up-component--container"]}
+      style={{ height, width }}
+    >
+      <Box className={styles["sign-up-component--caroussel"]}>
         <ImagesCarousel
           height="100%"
           color={color}
@@ -142,26 +142,28 @@ export const SignUpComponent = ({
           interval={interval}
         />
       </Box>
-      <Box className="sign-up-component--login-form-container">
-        <Box className="sign-up-component--icon">
+      <Box className={styles["sign-up-component--login-form-container"]}>
+        <Box className={styles["sign-up-component--icon"]}>
           <Icon icon="pa-ca" size={"62px"} />
         </Box>
-        <Text type="h2" weight="700" className="sign-up-component--title">
+        <Text
+          type="h2"
+          weight="700"
+          className={styles["sign-up-component--title"]}
+        >
           Sign up
         </Text>
-        <Text className="sign-up-component--sub-title" type="p">
+        <Text className={styles["sign-up-component--sub-title"]} type="p">
           Let’s get you all st up so you can access your personal account.
         </Text>
         <SignUpForm
           business={business}
-          
           email={email}
           phone={phone}
           lastName={lastName}
           password={password}
           firstName={firstName}
           businessName={businessName}
-
           validateClientData={validateClientData}
           validateBusinessData={validateBusinessData}
           onLogin={onLogin}
@@ -169,7 +171,6 @@ export const SignUpComponent = ({
           onClientSignUp={onClientSignUp}
           onBusinessSignUp={onBusinessSignUp}
           onGoogleSignUp={onGoogleSignUp}
-
           color={color}
           secondaryColor={secondaryColor}
           otherLoginsColor={otherLoginsColor}
