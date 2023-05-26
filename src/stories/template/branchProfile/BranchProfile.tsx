@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import "./branchProfile.scss";
+import styles from "./branchProfile.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Path } from "../../molecules/path/Path";
 import UserData from "../../utils/objects/UserData";
@@ -137,7 +137,7 @@ export const BranchProfile = ({
   const navObserver = useResizeObserver<HTMLDivElement>();
 
   const line = (width: string) => (
-    <Box className="branch-profile--nav-line" width={width} />
+    <Box className={styles["branch-profile--nav-line"]} width={width} />
   );
 
   const totalScore = useMemo(() => {
@@ -150,19 +150,19 @@ export const BranchProfile = ({
   }, [branch.reviewsData]);
 
   return (
-    <Box className="branch-profile--container">
+    <Box className={styles["branch-profile--container"]}>
       <Box
-        className="branch-profile--header-container"
+        className={styles["branch-profile--header-container"]}
         backgroundImage={branch.mainImage}
       />
-      <div className="branch-profile--overlay" />
+      <div className={styles["branch-profile--overlay"]} />
 
       <Box
-        className="branch-profile--header-container"
+        className={styles["branch-profile--header-container"]}
         innerRef={headerObserver.ref}
         style={{ zIndex: 3 }}
       >
-        <Box className="branch-profile--header">
+        <Box className={styles["branch-profile--header"]}>
           <Header
             dark
             name={name}
@@ -179,7 +179,7 @@ export const BranchProfile = ({
             color={color}
           />
         </Box>
-        <Box className="branch-profile--path">
+        <Box className={styles["branch-profile--path"]}>
           <Path
             path={path.concat([{ name: branch.name, onClick: () => {} }])}
             color="white"
@@ -189,13 +189,13 @@ export const BranchProfile = ({
       </Box>
 
       <Box
-        className="branch-profile--content"
+        className={styles["branch-profile--content"]}
         style={{
           marginTop: `${headerObserver.height - navObserver.height + 1}px`,
         }}
       >
-        <Box className="branch-profile--main-content">
-          <Box className="branch-profile--main-content-left">
+        <Box className={styles["branch-profile--main-content"]}>
+          <Box className={styles["branch-profile--main-content-left"]}>
             <Box innerRef={navObserver.ref}>
               <BranchNav
                 like={like}
@@ -206,7 +206,7 @@ export const BranchProfile = ({
             </Box>
             {line("93%")}
 
-            <Box className="branch-profile--summary-container">
+            <Box className={styles["branch-profile--summary-container"]}>
               <BranchMainSummary
                 {...branch}
                 score={totalScore}
@@ -219,7 +219,7 @@ export const BranchProfile = ({
             </Box>
           </Box>
 
-          <Box className="branch-profile--main-content-right">
+          <Box className={styles["branch-profile--main-content-right"]}>
             <FastReserveBox
               title="Haz una Reserva"
               date={date}
@@ -230,14 +230,14 @@ export const BranchProfile = ({
               onClickFindHour={onClickFindHour}
             />
 
-            <Box className="branch-profile--location-container">
+            <Box className={styles["branch-profile--location-container"]}>
               <BranchLocation {...branchLocationProps} />
             </Box>
           </Box>
         </Box>
 
-        <Box className="branch-profile--secondary-content">
-          <Box className="branch-profile--menu-container">
+        <Box className={styles["branch-profile--secondary-content"]}>
+          <Box className={styles["branch-profile--menu-container"]}>
             <MenuPreview
               plates={branch.menu}
               color={color}
@@ -247,7 +247,7 @@ export const BranchProfile = ({
 
           {line("100%")}
 
-          <Box className="branch-profile--amenities-container">
+          <Box className={styles["branch-profile--amenities-container"]}>
             <AmenityList
               amenityList={branch.amenities}
               onSave={() => {}}
@@ -258,7 +258,7 @@ export const BranchProfile = ({
 
           {line("100%")}
 
-          <Box className="branch-profile--reviews-container">
+          <Box className={styles["branch-profile--reviews-container"]}>
             <ReviewBoard reviews={branch.reviewsData} showButton={!editable} />
           </Box>
         </Box>

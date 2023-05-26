@@ -1,5 +1,5 @@
 import React from "react";
-import "./terms.scss";
+import styles from "./terms.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { BasicPage } from "../basicPage/BasicPage";
@@ -17,14 +17,14 @@ interface TermsProps {
  */
 export const Terms = ({ headerArgs, ...props }: TermsProps) => {
   return (
-    <Box className="terms--super-container">
+    <Box className={(styles["terms--super-container"])}>
       <BasicPage headerArgs={headerArgs}>
         <Box className="terms--container">
           <Text color="#112211" weight="600" type="h4">
             Términos y Condiciones
           </Text>
 
-          <Box className="term--section">
+          <Box className={(styles["term--section"])}>
             <Text color="#112211" type="h5" className="term--title">
               Payments
             </Text>
@@ -76,7 +76,7 @@ export const Terms = ({ headerArgs, ...props }: TermsProps) => {
             </ul>
           </Box>
 
-          <Box className="term--section">
+          <Box className={(styles["term--section"])}>
             <Text color="#112211" type="h5" className="term--title">
               Contact Us
             </Text>

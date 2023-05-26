@@ -1,5 +1,5 @@
 import React from "react";
-import "./reservationCheckOut.scss";
+import styles from "./reservationCheckOut.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Path } from "../../molecules/path/Path";
@@ -96,7 +96,7 @@ export const ReservationCheckOut = ({
 
   return (
     <BasicPage headerArgs={headerArgs}>
-      <Box className="path-box">
+      <Box className={styles["reservation-checkout-path-box"]}>
         <Path
           path={path.concat([
             { name: branch.name, onClick: () => {} },
@@ -106,7 +106,7 @@ export const ReservationCheckOut = ({
           secondaryColor="black"
         />
       </Box>
-      <Box className="branch-profile--main-content">
+      <Box className={styles["reservation-checkout-branch-profile--main-content"]}>
         <Box className="left-content-box">
           <Box className="RestaurantDetails-box">
             <RestaurantDetails
@@ -158,7 +158,7 @@ export const ReservationCheckOut = ({
               showInviteFriends={false}
             />
           </Box>
-          <Box className="button-box" weakShadow>
+          <Box className={styles["reservation-checkout-button-box"]} weakShadow>
             <Button
               fullWidth
               primary
@@ -174,7 +174,7 @@ export const ReservationCheckOut = ({
                 )
               }
             >
-              <Box className="login-form--button-text">
+              <Box className={styles["reservation-checkout-login-form--button-text"]}>
                 <Text color="white" type="h6" weight="600">
                   Completar Reserva
                 </Text>
