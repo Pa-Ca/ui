@@ -1,5 +1,5 @@
 import React from "react";
-import "./branchListing.scss";
+import styles from "./branchListing.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { BasicPage } from "../basicPage/BasicPage";
 import { InputFormHook } from "../../hooks/useInputForm";
@@ -122,7 +122,7 @@ export const BranchListing = ({
 }: BranchListing) => {
   return (
     <BasicPage headerArgs={headerArgs}>
-      <Box className="branch-listing--container" weakShadow>
+      <Box className={styles["branch-listing--container"]} weakShadow>
         <BranchSearch
           date={date}
           hour={hour}
@@ -131,8 +131,8 @@ export const BranchListing = ({
           onClick={onSearch}
         />
 
-        <Box className="branch-listing--columns">
-          <Box className="branch-listing--left-column">
+        <Box className={styles["branch-listing--columns"]}>
+          <Box className={styles["branch-listing--left-column"]}>
             <BranchFilter
               min={min}
               max={max}
@@ -151,9 +151,9 @@ export const BranchListing = ({
             {/*Create a vertical line */}
           </Box>
 
-          <Box className="branch-listing--vertical-line" />
+          <Box className={styles["branch-listing--vertical-line"]} />
 
-          <Box className="branch-listing--right-column">
+          <Box className={styles["branch-listing--right-column"]}>
             <BranchBoard branches={branches} />
           </Box>
         </Box>

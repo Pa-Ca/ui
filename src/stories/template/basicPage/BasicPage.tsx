@@ -1,5 +1,5 @@
 import React from "react";
-import "./basicPage.scss";
+import styles from"./basicPage.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Header } from "../../organisms/header/Header";
 import { HeaderProps } from "../../organisms/header/Header";
@@ -28,13 +28,13 @@ export const BasicPage = ({
   ...props
 }: BasicPageProps) => {
   return (
-    <Box {...props} className="basic-page--container">
+    <Box {...props} className={styles["basic-page--container"]}>
       <Box weakShadow style={{ zIndex: 1 }}>
         <Header {...headerArgs} />
       </Box>
-      <Box className="basic-page--content-container">{children}</Box>
+      <Box className={styles["basic-page--content-container"]}>{children}</Box>
 
-      <Box className="basic-page--footer">
+      <Box className={styles["basic-page--footer"]}>
         <Footer />
       </Box>
     </Box>

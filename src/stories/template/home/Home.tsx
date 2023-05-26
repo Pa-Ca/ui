@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from "react";
-import "./home.scss";
+import styles from "./home.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import useInputForm from "../../hooks/useInputForm";
@@ -130,21 +130,21 @@ export const Home = ({
   }, [observer.width]);
 
   const searchFunction = () => {
-    if (typeof hour.value.value === "number") return;
+    if (typeof hour.value.text === "number") return;
 
-    onSearch(date.value, hour.value.value, parseInt(persons.value), search.value)
+    onSearch(date.value, hour.value.text!, parseInt(persons.value), search.value)
   }
 
   return (
-    <Box className="home--container">
+    <Box className={styles["home--container"]}>
       {/* Header */}
-      <Box className="home--header-container">
+      <Box className={styles["home--header-container"]}>
         <Box
           backgroundImage={headerPicture}
           width="100%"
           height="600px"
           borderRadius="24px"
-          className="home--header-image-container"
+          className={styles ["home--header-image-container"]}
         >
           <Header
             dark
@@ -161,7 +161,7 @@ export const Home = ({
             backgroundColor="transparent"
           />
 
-          <Box className="home--header-text-container" height="33%">
+          <Box className={styles ["home--header-text-container"]} height="33%">
             <Box>
               <Text type="h2" color="white" weight="400">
                 {" "}
@@ -182,7 +182,7 @@ export const Home = ({
             </Box>
           </Box>
 
-          <Box className="home--branch-searcher" width="100%">
+          <Box className={styles ["home--branch-searcher"]} width="100%">
             <BranchSearch
               date={date}
               hour={hour}
@@ -197,11 +197,11 @@ export const Home = ({
       </Box>
 
       {/* Content */}
-      <Box className="home--content">
+      <Box className={styles["home--content"]}>
         <Box>
           {getCategoryPreviews().map((category, index) => (
             <Box
-              className="home--category-preview"
+              className={styles["home--category-preview"]}
               key={`home--category-preview-${index}-${category.title}`}
             >
               <CategoryPreview {...category} color={color} />
@@ -210,12 +210,12 @@ export const Home = ({
         </Box>
 
         <Box
-          className="home--categories-card-container"
+          className={styles["home--categories-card-container"]}
           innerRef={observer.ref}
         >
           {categoryCards?.slice(0, nCategories).map((category, index) => (
             <Box
-              className="home--category-card"
+              className={styles["home--category-card"]}
               style={{ marginLeft: index === 0 ? "0px" : "24px" }}
               key={`home--category-card-${index}-${category.title}`}
             >
@@ -224,9 +224,9 @@ export const Home = ({
           ))}
         </Box>
 
-        <Box className="home--highlight-reviews-container">
+        <Box className={styles["home--highlight-reviews-container"]}>
           <Box
-            className="home--highlight-reviews-container-header"
+            className={styles["home--highlight-reviews-container-header"]}
             height="72px"
           >
             <Text type="h3" weight="600">
@@ -238,7 +238,7 @@ export const Home = ({
           </Box>
 
           <div
-            className="home--highlight-reviews-carousel"
+            className={styles["home--highlight-reviews-carousel"]}
             ref={ref}
             {...events}
           >
