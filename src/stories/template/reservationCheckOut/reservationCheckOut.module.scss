@@ -1,0 +1,89 @@
+.reservation-checkout-branch-listing--container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 10px;
+  background-color: "#8D8D8D";
+  // Add a flag that makes it occupy all the space of the parent
+  flex: 1;
+  padding-top: 67px;
+}
+
+.reservation-checkout-branch-listing--columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.reservation-checkout-branch-listing--right-column {
+  display: flex;
+  // Make it so that the component occupies the entire width of the parent
+  flex: 3;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.reservation-checkout-branch-listing--vertical-line {
+  border-left: rgba(#112211, 0.25) 1px solid;
+  height: 100%;
+  margin-right: 0;
+  margin-left: 1rem;
+  // Make so it is a lighter grey
+}
+
+.reservation-checkout-branch-listing--left-column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: left;
+  gap: 1rem;
+}
+
+.reservation-checkout-branch-profile--main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.reservation-checkout-branch-profile--main-content-left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.reservation-checkout-path-box{
+  margin: 24px;
+}
+
+.reservation-checkout-button-box{
+  min-width: 250px;
+  overflow: hidden;
+  padding: 24px;
+  background-color: white;
+  margin-top: 24px;
+  border-radius: 12px;
+}
+
+.reservation-checkout-RestaurantDetails-box{
+  margin-bottom: 24px;
+}
+
+.reservation-checkout-left-content-box{
+  margin-right: 24px;
+}
+
+.reservation-checkout-auth-form-box{
+  background-color: white;
+  margin-top: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.reservation-checkout-login-form--button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
