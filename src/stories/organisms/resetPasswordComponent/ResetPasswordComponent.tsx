@@ -44,6 +44,14 @@ export interface ResetPasswordComponentProps {
    * Other logins button border color
    */
   otherLoginsColor?: string;
+  /**
+   * height of the component
+   */
+  height?: string;
+  /**
+   * width of the component
+   */
+  width?: string;
 }
 
 /**
@@ -59,16 +67,19 @@ export const ResetPasswordComponent = ({
   color,
   secondaryColor,
   otherLoginsColor,
+  height,
+  width,
   ...props
 }: ResetPasswordComponentProps) => {
   return (
-    <Box className={styles["reset-password-component--container"]}>
+    <Box
+      className={styles["reset-password-component--container"]}
+      style={{ height, width }}
+    >
       <Box className={styles["reset-password-component--left-container"]}>
         <Icon icon="pa-ca" size="70px" />
 
-        <Box
-          className={styles["reset-password-component--content"]}
-        >
+        <Box className={styles["reset-password-component--content"]}>
           <Box
             className={styles["reset-password-component--back-to-login"]}
             onClick={onBackToLogin}

@@ -78,13 +78,13 @@ export const UploadProfilePictureForm = ({
       {showAvatar && src ? (
         <Box className={styles["upload-profile-picture-form--crop-canvas-container"]}>
           <CustomAvatar
-          // width={300}
-          // height={295}
-          // onCrop={onCrop}
-          // onClose={onClose}
-          // shadingColor="rgba(0, 0, 0, 0.5)"
-          // onBeforeFileLoad={onBeforeFileLoad}
-          // src={src}
+          width={500}
+          height={500}
+          onCrop={onCrop}
+          onClose={onClose}
+          shadingColor="rgba(0, 0, 0, 0.2)"
+          onBeforeFileLoad={onBeforeFileLoad}
+          src={src}
           />
         </Box>
       ) : (
