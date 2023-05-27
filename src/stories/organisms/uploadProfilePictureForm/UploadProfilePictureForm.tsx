@@ -27,22 +27,8 @@ export const UploadProfilePictureForm = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showAvatar, setShowAvatar] = useState<boolean>(true);
 
-  const onClose = (): void => {
-    setShowAvatar(false);
-    setSrc(undefined);
-  };
-
   const onCrop = (preview: string): void => {
     setPreview(preview);
-  };
-
-  const onBeforeFileLoad = (
-    elem: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    if (elem.target.files && elem.target.files[0].size > 10 * 1000 * 1000) {
-      alert("File is too big!");
-      elem.target.value = "";
-    }
   };
 
   const handleUploadClick = () => {
@@ -81,9 +67,7 @@ export const UploadProfilePictureForm = ({
           width={500}
           height={500}
           onCrop={onCrop}
-          onClose={onClose}
           shadingColor="rgba(0, 0, 0, 0.2)"
-          onBeforeFileLoad={onBeforeFileLoad}
           src={src}
           />
         </Box>
