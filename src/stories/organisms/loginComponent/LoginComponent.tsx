@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import styles from "./loginComponent.module.scss";
+import useWindowResize from "../../hooks/useWindowResize";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
@@ -70,6 +71,8 @@ export const LoginComponent = ({
   width,
   ...props
 }: LoginComponentProps) => {
+  const window = useWindowResize();
+
   return (
     <Box
       className={styles["login-component--container"]}
@@ -99,14 +102,17 @@ export const LoginComponent = ({
         </Box>
       </Box>
 
-      <Box className={styles["login-component--caroussel"]}>
-        <ImagesCarousel
-          images={images}
-          color={color}
-          width="100%"
-          height="100%"
-        />
-      </Box>
+      {(window.resolutionType === "desktop" ||
+        window.resolutionType === "tablet") && (
+        <Box className={styles["login-component--caroussel"]}>
+          <ImagesCarousel
+            images={images}
+            color={color}
+            width="100%"
+            height="100%"
+          />
+        </Box>
+      )}
     </Box>
   );
 };
