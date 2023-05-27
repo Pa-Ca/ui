@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./branchListing.module.scss";
 import { Box } from "../../atoms/box/Box";
-import { BasicPage } from "../basicPage/BasicPage";
 import { InputFormHook } from "../../hooks/useInputForm";
 import CheckObject from "../../utils/objects/CheckObject";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
+import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { BranchBoard } from "../../organisms/branchBoard/BranchBoard";
 import { BranchItemProps } from "../../organisms/branchItem/BranchItem";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";

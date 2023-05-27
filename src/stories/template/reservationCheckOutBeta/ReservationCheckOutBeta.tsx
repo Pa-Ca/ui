@@ -1,13 +1,13 @@
 import React from "react";
-import styles from "./reservationCheckOutBeta.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { BasicPage } from "../basicPage/BasicPage";
 import { Button } from "../../atoms/button/Button";
 import useInputForm from "../../hooks/useInputForm";
 import BranchData from "../../utils/objects/BranchData";
+import styles from "./reservationCheckOutBeta.module.scss";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
+import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
@@ -127,6 +127,8 @@ export const ReservationCheckOutBeta = ({
               persons={persons}
               occasion={occasion}
               showInviteFriends={false}
+              durationHour={2}
+              durationMin={2}
             />
           </Box>
 

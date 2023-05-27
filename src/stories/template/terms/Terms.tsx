@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./terms.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { BasicPage } from "../basicPage/BasicPage";
 import { HeaderProps } from "../../organisms/header/Header";
+import { BasicPage } from "../../organisms/basicPage/BasicPage";
 
 interface TermsProps {
   /**
