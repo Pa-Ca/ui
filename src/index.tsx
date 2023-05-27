@@ -46,6 +46,7 @@ export * from "./stories/molecules/branchContentOverview/BranchContentOverview";
 export * from "./stories/organisms/footer/Footer";
 export * from "./stories/organisms/header/Header";
 export * from "./stories/organisms/menuView/MenuView";
+export * from "./stories/organisms/basicPage/BasicPage";
 export * from "./stories/organisms/branchItem/BranchItem";
 export * from "./stories/organisms/newReserve/NewReserve";
 export * from "./stories/organisms/branchBoard/BranchBoard";
@@ -65,12 +66,15 @@ export * from "./stories/organisms/recoverPasswordComponent/RecoverPasswordCompo
 
 // TEMPLATES
 export * from "./stories/template/home/Home";
+export * from "./stories/template/login/Login";
 export * from "./stories/template/terms/Terms";
-export * from "./stories/template/basicPage/BasicPage";
+export * from "./stories/template/signUp/SignUp";
 export * from "./stories/template/branchListing/BranchListing";
 export * from "./stories/template/branchProfile/BranchProfile";
+export * from "./stories/template/resetPassword/ResetPassword";
 export * from "./stories/template/branchReserves/BranchReserves";
 export * from "./stories/template/businessProfile/BusinessProfile";
+export * from "./stories/template/recoverPassword/RecoverPassword";
 export * from "./stories/template/reservationCheckOutBeta/ReservationCheckOutBeta";
 
 // UTILS
