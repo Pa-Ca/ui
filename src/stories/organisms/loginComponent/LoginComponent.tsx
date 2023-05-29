@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import styles from "./loginComponent.module.scss";
-import useWindowResize from "../../hooks/useWindowResize";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
+import useWindowResize, { WindowResizeHook } from "../../hooks/useWindowResize";
 
 export interface LoginComponentProps {
   /**
@@ -79,13 +79,21 @@ export const LoginComponent = ({
       style={{ height, width }}
     >
       <Box className={styles["login-component--left-container"]}>
-        <Icon icon="pa-ca" size="70px" />
-
-        <Box className={styles["login-component--title"]}>
-          <Text weight="700" type="h2">
-            Iniciar Sesión
+        <Box className={styles["login-component--title"]} width="100%">
+          <Icon icon="pa-ca" size="70px" />
+          <Text
+            weight="700"
+            type={window.resolutionType === "desktop" ? "h2" : "h3"}
+          >
+            ¡Bienvenido!
+          </Text>
+          <Text
+            color="gray"
+          >
+            Inicia sesión para continuar
           </Text>
         </Box>
+
         <Box className={styles["login-component--content"]}>
           <LoginForm
             height="100%"
@@ -102,17 +110,14 @@ export const LoginComponent = ({
         </Box>
       </Box>
 
-      {(window.resolutionType === "desktop" ||
-        window.resolutionType === "tablet") && (
-        <Box className={styles["login-component--caroussel"]}>
-          <ImagesCarousel
-            images={images}
-            color={color}
-            width="100%"
-            height="100%"
-          />
-        </Box>
-      )}
+      <Box className={styles["login-component--caroussel"]}>
+        <ImagesCarousel
+          images={images}
+          color={color}
+          width="100%"
+          height="100%"
+        />
+      </Box>
     </Box>
   );
 };

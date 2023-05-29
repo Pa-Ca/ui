@@ -1,4 +1,5 @@
 import React from "react";
+import classnames from "classnames";
 import styles from "./text.module.scss";
 
 interface TextProps {
@@ -62,14 +63,14 @@ export function Text({
 }: TextProps): JSX.Element {
   return (
     <div
-      className={[
+      className={classnames(
         styles["text"],
         styles[`text--${type}`],
         italic ? styles["text--italic"] : "",
         uppercase ? styles["text--uppercase"] : "",
         ellipsis ? styles["text--truncated"] : "",
-        className,
-      ].join(" ")}
+        className
+      )}
       style={{ color, opacity, fontWeight: weight, ...style }}
       {...props}
     >

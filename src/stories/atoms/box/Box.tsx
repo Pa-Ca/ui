@@ -57,7 +57,7 @@ interface BoxProps {
   /**
    * Other Box styles
    */
-  style?: object;
+  style?: React.CSSProperties;
   /**
    * Box Classname
    */

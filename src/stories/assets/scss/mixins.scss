@@ -1,3 +1,5 @@
+@import "./variables.module.scss";
+
 // For Mobile-First Design
 @mixin screen-min($min) {
   @media (min-width: $min) {
@@ -36,4 +38,11 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+// Custom styles for mobiles
+@mixin mobile() {
+  @media (max-width: $mobile-max-width) {
+    @content;
+  }
 }

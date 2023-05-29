@@ -15,7 +15,7 @@ export interface WindowResizeHook {
   /**
    * Resolution type
    */
-  resolutionType: "desktop" | "mobile" | "mobile rotated" | "tablet";
+  resolutionType: "desktop" | "mobile" | "mobile rotated";
 }
 
 /**
@@ -35,8 +35,6 @@ export default (): WindowResizeHook => {
       setResolutionType("mobile");
     } else if (window.innerHeight <= 430) {
       setResolutionType("mobile rotated");
-    } else if (window.innerWidth < 1290) {
-      setResolutionType("tablet");
     } else {
       setResolutionType("desktop");
     }

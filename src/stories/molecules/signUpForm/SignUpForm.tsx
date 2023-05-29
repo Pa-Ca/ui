@@ -124,7 +124,7 @@ export const SignUpForm = ({
   );
   const confirmPassword = useInputForm<string>(
     "",
-    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
+    "Las contraseñas no coinciden."
   );
 
   const submit = () => {
@@ -261,14 +261,14 @@ export const SignUpForm = ({
                 />
               </Box>
               <Box width="8px" />
-              <Text weight="500" type="h6" color="#112211">
+              <Text weight="500" type="h7" color="#112211">
                 Acepto todos los
               </Text>
               <Box
                 className={styles["sign-up-form--pointer"]}
                 onClick={onTermsAndConditionsClick}
               >
-                <Text color={secondaryColor} type="h6" weight="600">
+                <Text color={secondaryColor} type="h7" weight="600">
                   &nbsp;Términos y Condiciones
                 </Text>
               </Box>
@@ -301,22 +301,22 @@ export const SignUpForm = ({
             </Box>
           </Box>
         </Box>
-      </Box>
 
-      <Box className={styles["sign-up-form--input"]}>
-        <Button
-          fullWidth
-          primary
-          size="large"
-          backgroundColor={color}
-          onClick={() => submit()}
-        >
-          <Box className={styles["sign-up-form--button-text"]}>
-            <Text color="white" type="h6" weight="600">
-              Crear una Cuenta
-            </Text>
-          </Box>
-        </Button>
+        <Box className={styles["sign-up-form--input"]}>
+          <Button
+            fullWidth
+            primary
+            size="large"
+            backgroundColor={color}
+            onClick={() => submit()}
+          >
+            <Box className={styles["sign-up-form--button-text"]}>
+              <Text color="white" type="h5" weight="600">
+                Crear Cuenta
+              </Text>
+            </Box>
+          </Button>
+        </Box>
       </Box>
 
       <Box className={styles["sign-up-form--sign-in"]}>

@@ -54,7 +54,7 @@ export const ResetPasswordForm = ({
 }: ResetPasswordFormProps) => {
   const confirmPassword = useInputForm(
     "",
-    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
+    "Las contraseñas no coinciden."
   );
 
   const submit = () => {

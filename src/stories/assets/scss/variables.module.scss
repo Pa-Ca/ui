@@ -19,7 +19,11 @@ $branch-summary-min-width: 550px;
 /* Welcome screens */
 $welcome-padding: 105px;
 
+/* Resolutions */
+$mobile-max-width: 430px;
+
 :export {
   errorColor: $error-color;
   warningColor: $warning-color;
+  mobileMaxWidth: $mobile-max-width;
 }

@@ -76,16 +76,18 @@ export const RecoverPasswordComponent = ({
       style={{ width, height }}
     >
       <Box className={styles["recover-password-component--left-container"]}>
-        <Icon icon="pa-ca" size="70px" />
-
         <Box className={styles["recover-password-component--content"]}>
-          <Box
-            className={styles["recover-password-component--back-to-login"]}
-            onClick={onBackToLogin}
-          >
-            <Icon icon="left" size="18px" />
-            <Box width="5px" />
-            <Text weight="400">Iniciar sesión</Text>
+          <Box className={styles["recover-password-component--header"]}>
+            <Box />
+            <Icon icon="pa-ca" size="70px" />
+            <Box
+              className={styles["recover-password-component--back-to-login"]}
+              onClick={onBackToLogin}
+            >
+              <Icon icon="left" size="18px" />
+              <Box width="5px" />
+              <Text weight="400">Regresar</Text>
+            </Box>
           </Box>
 
           {!completed ? (
