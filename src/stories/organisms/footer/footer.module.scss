@@ -1,3 +1,7 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
+
 .footer--container {
   display: flex;
   flex-direction: row;
@@ -6,7 +10,15 @@
   overflow: hidden;
   min-width: 500px;
   min-height: 16vh;
+  background-color: $light-theme--main-color;
 }
+
+@media (prefers-color-scheme: dark){
+  .footer--container {
+    background-color: $dark-theme--main-color;
+  }
+}
+
 
 .footer--1st-column {
   display: flex;
