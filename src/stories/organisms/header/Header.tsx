@@ -100,7 +100,7 @@ export const Header = ({
   name,
   onLogout = () => {},
   onEditProfile = () => {},
-  dark = false,
+  dark,
   userRole,
   logged,
   onLeftSectionClick,
@@ -117,6 +117,7 @@ export const Header = ({
   branchOptions,
   ...props
 }: HeaderProps) => {
+  
   const logoColor = dark ? "white" : "black";
 
   const rightSectionText = userRole === "client" ? "Favoritos" : "Reservas";
@@ -212,7 +213,6 @@ export const Header = ({
               type="h6"
               weight="600"
               className={styles["header--text"]}
-              color={logoColor}
             >
               {rightSectionText}
             </Text>
@@ -220,7 +220,6 @@ export const Header = ({
               type="h6"
               weight="600"
               className={styles["header--text"]}
-              color={logoColor}
             >
               &nbsp;&nbsp;|
             </Text>
@@ -259,7 +258,6 @@ export const Header = ({
               type="h6"
               weight="600"
               className={styles["header--text"]}
-              color={logoColor}
             >
               Login
             </Text>
@@ -273,12 +271,10 @@ export const Header = ({
             <Button
               primary
               onClick={onRegisterClick}
-              backgroundColor={dark ? "white" : color}
             >
               <Text
                 type="h6"
                 style={{ fontWeight: "600" }}
-                color={dark ? "black" : "white"}
               >
                 Regístrate
               </Text>
@@ -312,7 +308,7 @@ export const Header = ({
                 type="h6"
                 weight="600"
                 className={styles["header--text"]}
-                color={logoColor}
+                //color={logoColor}
                 ellipsis
               >
                 {leftSectionContents?.text}

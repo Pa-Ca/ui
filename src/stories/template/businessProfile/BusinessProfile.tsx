@@ -17,6 +17,7 @@ import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
 import { InputLongText } from "../../molecules/inputLongText/InputLongText";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
+import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
 
 import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 
@@ -321,6 +322,9 @@ export const BusinessProfile = ({
   const newBranchType = useInputForm<OptionObject>({ label: "", text: "" });
   const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
 
+  // Get the theme from the provider
+  const { isDarkMode } = React.useContext(ThemeContext);
+
   useEffect(() => {
     if (observer.ref.current) {
       observer.ref.current.scrollLeft = page * observer.width;
@@ -342,6 +346,8 @@ export const BusinessProfile = ({
   const [currentProfilePicture, setCurrentProfilePicture] =
     useState(profilePicture);
   const [headerProps, setHeaderProps] = useState<HeaderProps>(header);
+
+  headerProps.dark = isDarkMode;
 
   const onProfilePictureChange = (value: string) => {
     setCurrentProfilePicture(value);

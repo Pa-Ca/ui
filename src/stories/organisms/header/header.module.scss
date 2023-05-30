@@ -1,6 +1,9 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
 .header--container {
   display: flex;
-  background-color: white;
+  background-color: $light-theme--background-color ;
   align-items: center;
   padding-right: 35px;
   padding-left: 35px;
@@ -8,6 +11,7 @@
   min-width: 450px;
   //overflow: hidden;
 }
+
 
 .header--subcontainer {
   display: flex;
@@ -39,6 +43,7 @@
 
 .header--text {
   margin-left: 5px;
+  color          : $light-theme--text-title-color;
 }
 
 .header--profile {
@@ -62,4 +67,14 @@
 
 .header--dropdown {
   margin-top: -35px;
+}
+
+
+@media (prefers-color-scheme: dark){
+  .header--container {
+    background-color: $dark-theme--background-color;
+  }
+  .header--text {
+    color          : $dark-theme--text-title-color;
+  }
 }

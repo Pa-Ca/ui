@@ -1,3 +1,7 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
+
 .button {
   border: 0;
   border-radius: 5px;
@@ -10,13 +14,27 @@
 
 // Type
 .button--primary {
-  color: white;
+  color           : $light-theme--text-button-color;
+  background-color: $light-theme--main-color;
 }
 .button--secondary {
   color: black;
   background-color: transparent !important;
-  border: 1px solid #EF7A08;
+  border: 1px solid $light-theme--main-color;
 }
+
+@media (prefers-color-scheme: dark) {
+  .button--primary {
+      color : $dark-theme--text-button-color;
+      background-color: $dark-theme--main-color;
+  }
+  .button--secondary {
+      color: $dark-theme--text-button-color;
+      background-color: white;
+      border-color: $dark-theme--main-color;
+  }
+}
+
 
 // Sizes
 .button--extra-small {
@@ -49,3 +67,4 @@
   opacity: 0.4;
   cursor: default;
 }
+

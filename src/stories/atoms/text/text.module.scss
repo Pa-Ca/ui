@@ -1,3 +1,6 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat"),
@@ -7,11 +10,18 @@
 .text {
   font-family: "Montserrat";
   font-style: normal;
-  color: '#121212';
+  color: $light-theme--text;
   font-weight: 500;
   font-size: 16px;
   line-height: 15px;
 }
+
+@media (prefers-color-scheme: dark){
+  .text {
+    color: $dark-theme--text;
+  }
+}
+
 
 // Styles 
 .text--italic {

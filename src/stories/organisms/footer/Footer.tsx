@@ -14,14 +14,20 @@ export interface FooterProps {
    * Component secondary color
    * */
   secondaryColor?: string;
+
+  /**
+   * Is dark mode?
+   * */
+  isDarkMode?: boolean;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Footer = ({
-  color = "#EF7A08",
+  color          = "#EF7A08",
   secondaryColor = "white",
+  isDarkMode,
   ...props
 }: FooterProps) => {
   const footerLinks = {
@@ -31,8 +37,16 @@ export const Footer = ({
     youtube: "",
   };
 
+  if (isDarkMode && !secondaryColor) {
+    secondaryColor = "black";
+  }
+  else {
+    secondaryColor = "white";
+  }
+
+
   return (
-    <Box className={styles["footer--container"]} backgroundColor={color} {...props}>
+    <Box className={styles["footer--container"]}  {...props}>
       <Box className={styles["footer--content-container"]}>
         <Box className={styles["footer--1st-column"]}>
           <Icon icon="pa-ca" color={secondaryColor} size="75px" />
