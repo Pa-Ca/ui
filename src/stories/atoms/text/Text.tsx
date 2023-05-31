@@ -42,6 +42,10 @@ interface TextProps {
    * Text content
    */
   children?: React.ReactNode;
+  /**
+   * Apply the button text style
+   */
+  buttonText?: boolean;
 }
 
 /**
@@ -58,6 +62,7 @@ export function Text({
   style,
   className,
   children,
+  buttonText = false,
   ...props
 }: TextProps): JSX.Element {
   return (
@@ -68,6 +73,7 @@ export function Text({
         italic ? styles["text--italic"] : "",
         uppercase ? styles["text--uppercase"] : "",
         ellipsis ? styles["text--truncated"] : "",
+        buttonText ? styles["text--button"] : "",
         className,
       ].join(" ")}
       style={{ color, opacity, fontWeight: weight, ...style }}
