@@ -27,18 +27,6 @@ interface RecoverPasswordProps {
    * On login using Google click
    */
   onGoogleLogin: () => void;
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
 }
 
 /**
@@ -51,9 +39,6 @@ export const RecoverPassword = ({
   onBackToLogin,
   onSubmit,
   onGoogleLogin,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   ...props
 }: RecoverPasswordProps) => {
   return (
@@ -65,9 +50,6 @@ export const RecoverPassword = ({
         onBackToLogin={onBackToLogin}
         onSubmit={onSubmit}
         onGoogleLogin={onGoogleLogin}
-        color={color}
-        secondaryColor={secondaryColor}
-        otherLoginsColor={otherLoginsColor}
         {...props}
       />
     </AuthPage>

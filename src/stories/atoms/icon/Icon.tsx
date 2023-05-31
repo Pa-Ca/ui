@@ -141,14 +141,14 @@ export const Icon = ({
   icon = "pa-ca",
   size = "1x",
   color = "#000000",
-  errorStyle,
-  warningStyle,
+  errorStyle = false,
+  warningStyle = false,
   style,
   className,
   ...props
 }: IconProps) => {
   const finalClassName = classnames(styles.icon,
-                                    errorStyle ? styles.error : warningStyle ? styles.warning : "",
+                                    errorStyle ? styles["icon--error"] : warningStyle ? styles["icon--warning"] : "",
                                     className);
 
   switch (icon) {
@@ -257,7 +257,10 @@ export const Icon = ({
       );
     case "google":
       return <Iconify
-        className={finalClassName} icon={googleIcon} style={{ fontSize: size }} />;
+            className={finalClassName} 
+            icon={googleIcon} 
+            style={{ fontSize: size }} 
+        />;
     case "person":
       return (
         <Iconify

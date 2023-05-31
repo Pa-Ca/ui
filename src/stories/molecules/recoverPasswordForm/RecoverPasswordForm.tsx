@@ -23,18 +23,6 @@ interface RecoverPasswordFormProps {
    */
   onGoogleLogin: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
-  /**
    * Component width
    */
   width?: string;
@@ -51,9 +39,6 @@ export const RecoverPasswordForm = ({
   error,
   onSubmit,
   onGoogleLogin,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   width,
   height,
   ...props
@@ -85,7 +70,7 @@ export const RecoverPasswordForm = ({
             <>
               <Icon
                 icon="alert"
-                color={styleVariables.errorColor}
+                errorStyle
                 size="20px"
               />
               <Box style={{ width: "10px" }} />
@@ -101,11 +86,10 @@ export const RecoverPasswordForm = ({
             fullWidth
             primary
             size="large"
-            backgroundColor={color}
             onClick={() => onSubmit(email.value)}
           >
             <Box className={styles["recover-password-form--button-text"]}>
-              <Text color="white" type="h6" weight="600">
+              <Text buttonText type="h6" weight="600">
                 Enviar
               </Text>
             </Box>
@@ -116,7 +100,7 @@ export const RecoverPasswordForm = ({
       <Box className={styles["recover-password-form--login-with"]}>
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
         <Box className={styles["recover-password-form--login-with-text"]}>
-          <Text weight="400" type="h6" color="#889188">
+          <Text weight="400" type="h6">
             Ó
           </Text>
         </Box>
@@ -130,7 +114,6 @@ export const RecoverPasswordForm = ({
         >
           <Button
             primary={false}
-            borderColor={otherLoginsColor}
             fullWidth
             size="large"
             onClick={onGoogleLogin}
