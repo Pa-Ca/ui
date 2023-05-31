@@ -1,11 +1,14 @@
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 
 .input-tab--container {
   position: relative;
   display: flex;
   min-height: 80px;
-  background-color: white;
+  background-color: $light-theme--background-color;
 }
+
 .input-tab--tab {
   position: relative;
   display: flex;
@@ -29,4 +32,18 @@
   border: 2px solid;
   bottom: 0;
   transition: width $animation-duration ease-in-out, left $animation-duration ease-in-out;
+  border-color: #8DD3BB;
 }
+
+@media (prefers-color-scheme: dark) {
+  .input-tab--container {
+    background-color: $dark-theme--background-color;
+  }
+  .input-tab--line {
+    border-color: #8DD3BB;
+  }
+  .input-tab--separator{
+    border-color: #242628;
+  }
+}
+

@@ -5,15 +5,18 @@ $light-theme--icons-color               : black;
 $light-theme--select-color              : #f1f1f1;
 
 // Text
-$light-theme--text-title-color          : black;
 
+$light-theme--text-hyperlink-color      : #FF8682;
+$light-theme--text-highlight-color      : #112211;
 $light-theme--text-button-color         : white;
-
-$light-theme--text-body-color           : #112211;
-$light-theme--text-body-highlight-color : #FF8682;
 $light-theme--text-input-color          : #1C1B1F;
-
 $light-theme--text                      : #121212;
+
+// Unused
+$light-theme--text-title-color          : black;
+$light-theme--text-body-color           : #112211;
+
+
 
 // Icons
 $light-theme--icon-color                : #000000;

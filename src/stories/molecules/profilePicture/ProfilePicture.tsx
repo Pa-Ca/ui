@@ -20,17 +20,13 @@ interface ProfilePictureProps {
    */
   size?: string;
   /**
-   * Border size
+   * Show border
    */
-  border?: string;
+  border?: boolean;
   /**
    * Icon type
    */
   icon?: "pencil" | "down" | "up";
-  /**
-   * Main color
-   */
-  color?: string;
   /**
    * Possible options
    */
@@ -55,10 +51,9 @@ interface ProfilePictureProps {
  */
 export const ProfilePicture = ({
   size,
-  border,
   icon,
-  color,
   picture,
+  border = false,
   userName,
   dropdownOptions = [],
   onClick,
@@ -94,13 +89,13 @@ export const ProfilePicture = ({
         borderRadius="100%"
         width={size}
         height={size}
-        style={{ border: `${border} solid ${color}` }}
-        className={styles["profile-picture--container"]}
+        //style={{ border: `${border} solid ${color}` }}
+        className={
+          border ? styles["profile-picture--container"] : ""}
         onClick={onClick}
       >
         <Box
           className={styles["profile-picture--icon"]}
-          style={{ backgroundColor: color }}
           innerRef={observer.ref}
         >
           <div className={inputSelectStyles["input-select--button"]}>

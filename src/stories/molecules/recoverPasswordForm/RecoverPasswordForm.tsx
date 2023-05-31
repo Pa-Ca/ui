@@ -74,7 +74,7 @@ export const RecoverPasswordForm = ({
                 size="20px"
               />
               <Box style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.errorColor}>
+              <Text type="h7" errorStyle>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>
@@ -89,7 +89,7 @@ export const RecoverPasswordForm = ({
             onClick={() => onSubmit(email.value)}
           >
             <Box className={styles["recover-password-form--button-text"]}>
-              <Text buttonText type="h6" weight="600">
+              <Text primaryButtonStyle type="h6" weight="600">
                 Enviar
               </Text>
             </Box>

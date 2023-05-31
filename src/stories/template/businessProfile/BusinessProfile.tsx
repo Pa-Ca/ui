@@ -229,15 +229,6 @@ interface BusinessProfileProps {
    * On save profile picture TODO: Check if the type is correct
    */
   onSaveProfilePicture: (profilePicture: string) => void;
-
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
 }
 
 /**
@@ -295,8 +286,6 @@ export const BusinessProfile = ({
   onDeleteBranch,
   onSaveProfilePicture,
 
-  color,
-  secondaryColor,
   ...props
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
@@ -372,8 +361,6 @@ export const BusinessProfile = ({
           onCreateBranch={() => setShowCreateBranchModal(true)}
           onPictureClick={onPictureClick}
           onPicturePencilClick={onProfilePictureEditClick}
-          color={color}
-          secondaryColor={secondaryColor}
         />
         <Box height="32px" />
 
@@ -410,8 +397,6 @@ export const BusinessProfile = ({
                 onSavePhoneNumber={onSavePhoneNumber}
                 onChangePassword={onChangePassword}
                 onForgotPassword={onForgotPassword}
-                color={color}
-                secondaryColor={secondaryColor}
               />
             </Box>
             <Box width="12px" />
@@ -453,7 +438,6 @@ export const BusinessProfile = ({
                   onSaveOpeningTime={onSaveBranchOpeningTime}
                   onSaveClosingTime={onSaveBranchClosingTime}
                   onDeleteBranch={onDeleteBranch}
-                  color={color}
                 />
               ) : (
                 <Box>
@@ -632,7 +616,6 @@ export const BusinessProfile = ({
             <Box className={styles["business-profile--modal-buttons"]}>
               <Button
                 fullWidth
-                borderColor={color}
                 size="large"
                 onClick={() => setShowCreateBranchModal(false)}
               >
@@ -645,7 +628,6 @@ export const BusinessProfile = ({
               <Button
                 fullWidth
                 primary
-                backgroundColor={color}
                 size="large"
                 onClick={() =>
                   onCreateBranch(

@@ -31,14 +31,6 @@ interface BusinessHeaderProps {
    */
   onPictureClick: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
    * Function that is executed when clicking on the pencil icon
    * @param event
    */
@@ -56,8 +48,6 @@ export const BusinessHeader = ({
   onCreateBranch,
   onPictureClick,
   onPicturePencilClick,
-  color,
-  secondaryColor,
   ...props
 }: BusinessHeaderProps) => {
   return (
@@ -66,26 +56,25 @@ export const BusinessHeader = ({
         <ProfilePicture
           size="160px"
           picture={profilePicture}
-          color={secondaryColor}
-          border="5px"
+          border
           icon="pencil"
           onClick={onPictureClick}
           onPencilClick={onPicturePencilClick}
         />
         <Box height="20px" />
-        <Text color="#112211" type="h4" weight="600">
+        <Text highlightStyle type="h4" weight="600">
           {name}
         </Text>
         <Box height="10px" />
-        <Text color="#112211" weight="400">
+        <Text highlightStyle weight="400">
           {email}
         </Text>
       </Box>
 
       <Box className={styles["business-header--button-container"]}>
-        <Button primary backgroundColor={color} size="large" onClick={onCreateBranch}>
+        <Button primary  size="large" onClick={onCreateBranch}>
           <Box className={styles["business-header--button"]}>
-            <Text color="#112211" type="h6" weight="500">
+            <Text highlightStyle type="h6" weight="500">
               Crear Local
             </Text>
           </Box>

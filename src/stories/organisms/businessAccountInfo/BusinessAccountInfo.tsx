@@ -88,8 +88,6 @@ export const BusinessAccountInfo = ({
   onSavePhoneNumber,
   onChangePassword,
   onForgotPassword,
-  color,
-  secondaryColor,
   ...props
 }: BusinessAccountInfoProps) => {
   const confirmPassword = useInputForm(
@@ -124,7 +122,7 @@ export const BusinessAccountInfo = ({
 
       <Box className={styles["business-account-info--data-container"]}>
         <Box className={styles["business-account-info--input-container"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             Nombre Local
           </Text>
 
@@ -135,12 +133,11 @@ export const BusinessAccountInfo = ({
             editable
             saveValueFunction={(value: string) => onSaveName(value)}
             type="text"
-            color={color}
           />
         </Box>
 
         <Box className={styles["business-account-info--input-container"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             Email
           </Text>
 
@@ -151,12 +148,11 @@ export const BusinessAccountInfo = ({
             editable={false}
             saveValueFunction={(value: string) => {}}
             type="email"
-            color={color}
           />
         </Box>
 
         <Box className={styles["business-account-info--input-container"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             Número de teléfono
           </Text>
 
@@ -167,13 +163,11 @@ export const BusinessAccountInfo = ({
             editable={true}
             saveValueFunction={(value: string) => onSavePhoneNumber(value)}
             type="phoneNumber"
-            color={color}
           />
         </Box>
 
         <Button
           primary
-          backgroundColor={color}
           onClick={() => setChangePassword(true)}
         >
           <Text weight="400">Cambiar contraseña</Text>
@@ -213,7 +207,7 @@ export const BusinessAccountInfo = ({
           className={styles["business-account-info--forgot-password"]}
           onClick={onForgotPassword}
         >
-          <Text color={secondaryColor} type="h6">
+          <Text  type="h6">
             ¿Olvidaste tu Contraseña?
           </Text>
         </Box>
@@ -237,7 +231,6 @@ export const BusinessAccountInfo = ({
           fullWidth
           primary
           onClick={submit}
-          backgroundColor={color}
           state={done ? "inactive" : "normal"}
         >
           <Box
@@ -245,7 +238,7 @@ export const BusinessAccountInfo = ({
               styles["business-account-info--modal-change-password-button"]
             }
           >
-            <Text type="h6" weight="600">
+            <Text type="h6" weight="600" primaryButtonStyle>
               Cambiar contraseña
             </Text>
           </Box>
@@ -253,7 +246,6 @@ export const BusinessAccountInfo = ({
         <Box height="10px" />
         <Button
           fullWidth
-          borderColor={color}
           onClick={() => setChangePassword(false)}
         >
           <Box

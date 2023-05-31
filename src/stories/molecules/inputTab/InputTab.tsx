@@ -51,10 +51,9 @@ export const InputTab = ({
           key={`input-tab--item-${i}-${tab}`}
           onClick={() => setIndex(i)}
         >
-          <Text color="#112211" weight="600">
+          <Text highlightStyle weight="600">
             {tab}
           </Text>
-
           {i !== 0 && <Box className={styles["input-tab--separator"]} />}
         </Box>
       ))}
@@ -62,10 +61,10 @@ export const InputTab = ({
       <Box
         className={styles["input-tab--line"]}
         style={{
-          borderColor: "#8DD3BB",
           left: `${lineLeft}px`,
           width: `${lineWidth}px`,
         }}
+        
       />
     </Box>
   );

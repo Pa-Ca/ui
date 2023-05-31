@@ -1,5 +1,6 @@
 @import '../../assets/scss/dark-theme.scss';
 @import '../../assets/scss/light-theme.scss';
+@import '../../assets/scss/variables.module.scss';
 
 @font-face {
   font-family: "Montserrat";
@@ -22,19 +23,31 @@
   }
 }
 
-// .text--warning {
-//   color: $warning-color;
-// }
-// .text--error {
-//   color: $error-color;
-// }
+.text--warning {
+  color: $warning-color;
+}
+.text--error {
+  color: $error-color;
+}
 .text--button {
   color: $light-theme--text-button-color;
+}
+.text--hyperlink{
+  color : $light-theme--text-hyperlink-color;
+}
+.text--hightlight{
+  color : $light-theme--text-highlight-color;
 }
 
 @media (prefers-color-scheme: dark){
   .text--button {
     color: $dark-theme--text;
+  }
+  .text--hyperlink{
+    color : $dark-theme--text-hyperlink-color;
+  }
+  .text--hightlight{
+    color : $dark-theme--text-highlight-color;
   }
 }
 

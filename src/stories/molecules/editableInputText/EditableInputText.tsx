@@ -102,7 +102,6 @@ export const EditableInputText = ({
   showError = true,
   width,
   height,
-  color,
   className,
   containerClassName,
   style,
@@ -341,8 +340,6 @@ export const EditableInputText = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
-          initialColor="black"
-          color={color}
         />
       </Box>
       <Box

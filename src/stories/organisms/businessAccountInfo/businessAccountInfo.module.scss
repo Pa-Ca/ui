@@ -1,3 +1,6 @@
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
+
 .business-account-info--container {
   display: flex;
   flex-direction: column;
@@ -10,8 +13,13 @@
   padding-right: 24px;
   padding-bottom: 32px;
 
-  background-color: white;
+  background-color: $light-theme--background-color;
   border-radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  .business-account-info--data-container {
+    background-color: $dark-theme--background-color;
+  }
 }
 .business-account-info--input-container {
   margin-bottom: 25px;
