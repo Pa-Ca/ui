@@ -49,25 +49,25 @@ export const Footer = ({
     <Box className={styles["footer--container"]}  {...props}>
       <Box className={styles["footer--content-container"]}>
         <Box className={styles["footer--1st-column"]}>
-          <Icon icon="pa-ca" color={secondaryColor} size="75px" />
+          <Icon icon="pa-ca" size="75px" />
           <Box className={styles["footer--email-text-input"]}>
-            <Text color={secondaryColor}>Contactanos!</Text>
+            <Text>Contactanos!</Text>
           </Box>
           <Box className={styles["footer--social-media-container"]}>
             <Box onClick={() => window.open(footerLinks.facebook, "_blank")}>
-              <Icon icon="facebook" color={secondaryColor} size="30px" />
+              <Icon icon="facebook" size="30px" />
             </Box>
             <Box onClick={() => window.open(footerLinks.twitter, "_blank")}>
-              <Icon icon="twitter" color={secondaryColor} size="30px" />
+              <Icon icon="twitter" size="30px"  className={styles["footer--icon"]}/> 
             </Box>
             <Box onClick={() => window.open(footerLinks.youtube, "_blank")}>
-              <Icon icon="youtube" color={secondaryColor} size="30px" />
+              <Icon icon="youtube" size="30px" />
             </Box>
             <Box onClick={() => window.open(footerLinks.instargam, "_blank")}>
-              <Icon icon="instagram" color={secondaryColor} size="30px" />
+              <Icon icon="instagram" size="30px" />
             </Box>
           </Box>
-          <Text color={secondaryColor}>
+          <Text>
             © 2022 - Todos los derechos reservados
           </Text>
         </Box>

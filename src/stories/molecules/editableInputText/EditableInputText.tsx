@@ -357,7 +357,7 @@ export const EditableInputText = ({
       >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.errorColor}>
               {inputHook.errorMessage}
@@ -368,7 +368,7 @@ export const EditableInputText = ({
           <>
             <Icon
               icon="warning"
-              color={styleVariables.warningColor}
+              warningStyle 
               size="20px"
             />
             <div style={{ width: "10px" }} />

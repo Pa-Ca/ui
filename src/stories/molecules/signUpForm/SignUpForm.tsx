@@ -111,9 +111,6 @@ export const SignUpForm = ({
   onGoogleSignUp = () => {},
 
   business = false,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   width,
   height,
   ...props
@@ -268,7 +265,7 @@ export const SignUpForm = ({
                 className={styles["sign-up-form--pointer"]}
                 onClick={onTermsAndConditionsClick}
               >
-                <Text color={secondaryColor} type="h6" weight="600">
+                <Text type="h6" weight="600">
                   &nbsp;Términos y Condiciones
                 </Text>
               </Box>
@@ -308,7 +305,6 @@ export const SignUpForm = ({
           fullWidth
           primary
           size="large"
-          backgroundColor={color}
           onClick={() => submit()}
         >
           <Box className={styles["sign-up-form--button-text"]}>
@@ -325,7 +321,7 @@ export const SignUpForm = ({
           ¿Ya tiene una cuenta?{" "}
         </Text>
         <Box className={styles["sign-up-form--pointer"]} onClick={onLogin}>
-          <Text color={secondaryColor} type="h6" weight="600">
+          <Text  type="h6" weight="600">
             &nbsp;Inicia Sesión
           </Text>
         </Box>
@@ -345,7 +341,7 @@ export const SignUpForm = ({
         <Box className={styles["sign-up-form--other-login"]} width="100%">
           <Button
             primary={false}
-            borderColor={otherLoginsColor}
+            //borderColor={otherLoginsColor}
             fullWidth
             size="large"
             onClick={onGoogleSignUp}

@@ -14,9 +14,10 @@
 
 // Type
 .button--primary {
-  color           : $light-theme--text-button-color;
+  color: $light-theme--text-button-color;
   background-color: $light-theme--main-color;
 }
+
 .button--secondary {
   color: black;
   background-color: transparent !important;
@@ -25,13 +26,14 @@
 
 @media (prefers-color-scheme: dark) {
   .button--primary {
-      color : $dark-theme--text-button-color;
-      background-color: $dark-theme--main-color;
+    color: $dark-theme--text-button-color;
+    background-color: $dark-theme--main-color;
   }
+
   .button--secondary {
-      color: $dark-theme--text-button-color;
-      background-color: white;
-      border-color: $dark-theme--main-color;
+    color: $dark-theme--text-button-color;
+    background-color: white;
+    border-color: $dark-theme--main-color;
   }
 }
 
@@ -40,21 +42,27 @@
 .button--extra-small {
   padding: 6.5px 10px;
 }
+
 .button--small {
   padding: 6.5px 12px;
 }
+
 .button--box {
   padding: 15px;
 }
+
 .button--medium {
   padding: 13px 16px;
 }
+
 .button--large {
   padding: 17px;
 }
+
 .button--extra-large {
   padding: 17px 24px;
 }
+
 .button--full-width {
   width: 100%;
 }
@@ -63,8 +71,8 @@
 .button--state-selected {
   box-shadow: inset 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+
 .button--state-inactive {
   opacity: 0.4;
   cursor: default;
 }
-
