@@ -87,6 +87,10 @@ interface BranchReservesProps {
    */
   submitButtonColor: string;
   /**
+   * Color of the cancel button
+   */
+  cancelButtonColor: string;
+  /**
    * Controls if modal is shown
    */
   showModal: boolean;
@@ -129,6 +133,7 @@ export const BranchReserves = ({
   persons,
   occasion,
   submitButtonColor,
+  cancelButtonColor,
   haveBranch = true,
   icon_size,
   showModal,
@@ -259,24 +264,48 @@ export const BranchReserves = ({
             showInviteFriends={false}
           />
 
-          {/* Submit Button */}
-          <Button
-            fullWidth
-            primary
-            size="large"
-            backgroundColor={submitButtonColor}
-            onClick={() => onSubmit()}
-          >
-            <Box
-              className={
-                styles["branch-reserves--submit-reservation--button-text"]
-              }
+          <div className={styles["branch-reserves--modal-button-box"]}>
+            {/* Cancel Button */}
+            <Button
+              fullWidth
+              primary={false}
+              size="medium"
+              backgroundColor={cancelButtonColor}
+              onClick={() => setShowModal(false)}
             >
-              <Text color="white" type="h6" weight="600">
-                Completar Reserva
-              </Text>
-            </Box>
-          </Button>
+              <Box
+                className={
+                  styles["branch-reserves--submit-reservation--button-text"]
+                }
+              >
+                <Text type="h6" weight="600">
+                  Cerrar
+                </Text>
+              </Box>
+            </Button>
+
+            <div style={{width:"24px"}} />
+
+            {/* Submit Button */}
+            <Button
+              fullWidth
+              primary
+              size="medium"
+              backgroundColor={submitButtonColor}
+              onClick={() => onSubmit()}
+            >
+              <Box
+                className={
+                  styles["branch-reserves--submit-reservation--button-text"]
+                }
+              >
+                <Text color="white" type="h6" weight="600">
+                  Completar
+                </Text>
+              </Box>
+            </Button>
+          </div>
+
         </Box>
       </Modal>
     </BasicPage>
