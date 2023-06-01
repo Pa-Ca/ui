@@ -17,7 +17,7 @@ interface HeaderBranchDropdownProps {
   /**
    * Possible options
    */
-  dropdownOptions?: BranchDropdownElement[];
+  dropdownOptions: BranchDropdownElement[];
   /**
    * Controls if dropdown shows
    */
