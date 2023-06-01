@@ -157,7 +157,7 @@ export const ReserveDetails = ({
           </Box>
         </Box>
         <Box>
-          <Text type="p">
+          <Text type="h6">
             {" "}
             La duración esperada de la reserva es de {durationHour} hora(s) y{" "}
             {durationMin} minuto(s){" "}
@@ -178,9 +178,9 @@ export const ReserveDetails = ({
         label="Ocasión Especial"
         value={occasion.value}
         setValue={occasion.setValue}
-        maxLength={430}
-        maxRows={5}
-        minRows={5}
+        maxLength={120}
+        maxRows={2}
+        minRows={2}
       />
     </Box>
   );
