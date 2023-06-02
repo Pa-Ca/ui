@@ -1,0 +1,30 @@
+.mobile-header--container {
+  padding: 16px;
+  display: flex;
+  min-height: 31px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.mobile-header--section {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-header--center-section {
+  @extend .mobile-header--section;
+
+  left: 50%;
+  cursor: pointer;
+  position: absolute;
+  transform: translateX(-50%);
+}
+.mobile-header--left-menu-container {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  transition: left 700ms ease-in-out;
+}

@@ -1,14 +1,11 @@
 import React from "react";
+import { MobileHeader } from "./MobileHeader";
 import { StoryFn, Meta } from "@storybook/react";
-import useInputForm from "../../hooks/useInputForm";
-import { Header } from "./Header";
-import UserDropdownElement from "../../utils/objects/UserDropdownElement";
-import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Organisms/Header",
-  component: Header,
+  title: "Design System/Organisms/MobileHeader",
+  component: MobileHeader,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     onLeftSectionClick: {
@@ -67,16 +64,14 @@ export default {
       },
     },
   },
-} as Meta<typeof Header>;
+} as Meta<typeof MobileHeader>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof Header> = (args: any) => {
-  const selectedOptionHook = useInputForm("el hatillo");
-
-  return <Header selectedOptionHook={selectedOptionHook} {...args} />;
+const Template: StoryFn<typeof MobileHeader> = (args: any) => {
+  return <MobileHeader {...args} />;
 };
 
-const BranchOptions: BranchDropdownElement[] = [
+const BranchOptions = [
   {
     name: "Sucursal 1",
     func: () => {},

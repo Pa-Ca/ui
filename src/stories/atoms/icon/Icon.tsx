@@ -2,6 +2,7 @@ import React from "react";
 import { Icon as Iconify } from "@iconify/react";
 import poolIcon from "@iconify/icons-mdi/pool";
 import wineIcon from "@iconify/icons-ion/wine";
+import menuIcon from "@iconify/icons-ion/menu";
 import heartIcon from "@iconify/icons-ph/heart";
 import ccVisa from "@iconify/icons-cib/cc-visa";
 import eyeFill from "@iconify/icons-bi/eye-fill";
@@ -11,7 +12,7 @@ import fastFood from "@iconify/icons-ion/fast-food";
 import heartFill from "@iconify/icons-ph/heart-fill";
 import twitterIcon from "@iconify/icons-mdi/twitter";
 import youtubeIcon from "@iconify/icons-mdi/youtube";
-import warningIcon from '@iconify/icons-uiw/warning';
+import warningIcon from "@iconify/icons-uiw/warning";
 import facebookIcon from "@iconify/icons-mdi/facebook";
 import paperPlane from "@iconify/icons-ion/paper-plane";
 import alertCircle from "@iconify/icons-mdi/alert-circle";
@@ -48,7 +49,7 @@ import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-fill
 import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-fill";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
-import Color from 'color';
+import Color from "color";
 
 export type IconType =
   | "pa-ca"
@@ -98,7 +99,8 @@ export type IconType =
   | "logout"
   | "email-sent"
   | "upload"
-  | "warning";
+  | "warning"
+  | "menu";
 
 interface IconProps {
   /**
@@ -503,6 +505,14 @@ export const Icon = ({
       return (
         <Iconify
           icon={warningIcon}
+          style={{ fontSize: size, ...style }}
+          color={color}
+        />
+      );
+    case "menu":
+      return (
+        <Iconify
+          icon={menuIcon}
           style={{ fontSize: size, ...style }}
           color={color}
         />
