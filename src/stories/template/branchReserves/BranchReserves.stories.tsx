@@ -60,6 +60,8 @@ Default.args = {
   icon_size: "450px",
   durationHour: 1,
   durationMin: 30,
+  submitButtonColor: "#EF7A08",
+  cancelButtonColor: "#EF7A08",
   reservations: [
     ...new Array(13).fill({
       start: "6:00 PM",

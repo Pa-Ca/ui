@@ -6,6 +6,7 @@ import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
 import styles from "./recoverPasswordForm.module.scss";
+import useWindowResize from "../../hooks/useWindowResize";
 import inputTextStyles from "../inputText/inputText.module.scss";
 import styleVariables from "../../assets/scss/variables.module.scss";
 
@@ -44,6 +45,7 @@ export const RecoverPasswordForm = ({
   ...props
 }: RecoverPasswordFormProps) => {
   const email = useInputForm("");
+  const window = useWindowResize();
 
   return (
     <Box
@@ -89,7 +91,7 @@ export const RecoverPasswordForm = ({
             onClick={() => onSubmit(email.value)}
           >
             <Box className={styles["recover-password-form--button-text"]}>
-              <Text primaryButtonStyle type="h6" weight="600">
+              <Text primaryButtonStyle type="h5" weight="600">
                 Enviar
               </Text>
             </Box>
@@ -101,7 +103,7 @@ export const RecoverPasswordForm = ({
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
         <Box className={styles["recover-password-form--login-with-text"]}>
           <Text weight="400" type="h6">
-            Ó
+            {window.resolutionType === "desktop" ? "O" : "O inicia sesión con"}
           </Text>
         </Box>
         <Box height="0.5px" backgroundColor="#889188" style={{ flex: 1 }} />
@@ -110,26 +112,24 @@ export const RecoverPasswordForm = ({
       <Box className={styles["recover-password-form--other-logins-container"]}>
         <Box
           className={styles["recover-password-form--other-login"]}
-          width="100%"
         >
           <Button
-            primary={false}
             fullWidth
             size="large"
+            primary={false}
             onClick={onGoogleLogin}
+            className={styles["recover-password-form--other-login-button"]}
           >
             <Box
-              className={
-                styles["recover-password-form--other-logins-container"]
-              }
-              width="100%"
+              className={styles["recover-password-form--other-login-button-sub-container"]}
             >
-              <Box
-                className={styles["recover-password-form--other-login-button"]}
+              <Icon icon="google" size="24px" />
+              <Text
+                className={styles["recover-password-form--other-login-text"]}
               >
-                <Icon icon="google" size="24px" />
-                <Text> &nbsp;&nbsp;&nbsp;Inicia Sesión con Google </Text>
-              </Box>
+                {" "}
+                &nbsp;&nbsp;&nbsp;Inicia Sesión con Google{" "}
+              </Text>
             </Box>
           </Button>
         </Box>

@@ -31,6 +31,14 @@ interface ButtonProps {
    */
   onClick?: () => void;
   /**
+   * Button classname
+   */
+  className?: string;
+  /**
+   * Box local styles
+   */
+  style?: React.CSSProperties;
+  /**
    * Text content
    */
   children?: React.ReactNode;
@@ -46,6 +54,9 @@ export const Button = ({
   fullWidth = false,
   backgroundColor,
   borderColor,
+  onClick,
+  className,
+  style,
   children,
   ...props
 }: ButtonProps): JSX.Element => {
@@ -67,10 +78,12 @@ export const Button = ({
         primary ? styles[`button--state-${currentState}`] : "",
         fullWidth ? styles["button--full-width"] : "",
         primary ? styles["button--primary"] : styles["button--secondary"],
+        className,
       ].join(" ")}
-      style={{ backgroundColor, borderColor }}
+      style={{ backgroundColor, borderColor, ...style }}
       onMouseDown={() => setMouseDown(true)}
       onMouseUp={() => setMouseDown(false)}
+      onClick={onClick}
       {...props}
     >
       {children}

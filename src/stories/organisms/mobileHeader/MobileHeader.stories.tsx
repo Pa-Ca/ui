@@ -1,14 +1,11 @@
 import React from "react";
+import { MobileHeader } from "./MobileHeader";
 import { StoryFn, Meta } from "@storybook/react";
-import useInputForm from "../../hooks/useInputForm";
-import { Header } from "./Header";
-import UserDropdownElement from "../../utils/objects/UserDropdownElement";
-import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Organisms/Header",
-  component: Header,
+  title: "Design System/Organisms/MobileHeader",
+  component: MobileHeader,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     onLeftSectionClick: {
@@ -67,16 +64,14 @@ export default {
       },
     },
   },
-} as Meta<typeof Header>;
+} as Meta<typeof MobileHeader>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof Header> = (args: any) => {
-  const selectedOptionHook = useInputForm("el hatillo");
-
-  return <Header selectedOptionHook={selectedOptionHook} {...args} />;
+const Template: StoryFn<typeof MobileHeader> = (args: any) => {
+  return <MobileHeader {...args} />;
 };
 
-const BranchOptions: BranchDropdownElement[] = [
+const BranchOptions = [
   {
     name: "Sucursal 1",
     func: () => {},
@@ -115,7 +110,9 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   name: "Daniel Rodríguez",
-  picture: "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
-  currentBranch : "Los Pollo Hermanos",
-  branchOptions : BranchOptions,
+  picture:
+    "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
+  color: "#EF7A08",
+  currentBranch: "Los Pollo Hermanos",
+  branchOptions: BranchOptions,
 };

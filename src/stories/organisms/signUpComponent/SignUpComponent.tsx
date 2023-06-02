@@ -4,6 +4,7 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./signUpComponent.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
+import useWindowResize from "../../hooks/useWindowResize";
 import { SignUpForm } from "../../molecules/signUpForm/SignUpForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
@@ -132,6 +133,8 @@ export const SignUpComponent = ({
   width,
   ...props
 }: SignUpComponentProps) => {
+  const window = useWindowResize();
+
   return (
     <Box
       className={styles["sign-up-component--container"]}
@@ -145,15 +148,15 @@ export const SignUpComponent = ({
           interval={interval}
         />
       </Box>
-      <Box className={styles["sign-up-component--login-form-container"]}>
+      <Box className={styles["sign-up-component--form-container"]}>
         <Box className={styles["sign-up-component--header"]}>
           <Box className={styles["sign-up-component--icon"]}>
-            <Icon icon="pa-ca" size={"62px"} />
+            <Icon icon="pa-ca" size={window.resolutionType === "desktop" ? "62px" : "62px"} />
           </Box>
           <Text
-            type="h2"
             weight="700"
             className={styles["sign-up-component--title"]}
+            type={window.resolutionType === "desktop" ? "h2" : "h3"}
           >
             Regístrate
           </Text>

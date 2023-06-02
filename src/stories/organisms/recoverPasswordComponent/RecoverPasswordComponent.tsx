@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import useWindowResize from "../../hooks/useWindowResize";
 import styles from "./recoverPasswordComponent.module.scss";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { RecoverPasswordForm } from "../../molecules/recoverPasswordForm/RecoverPasswordForm";
@@ -55,35 +56,47 @@ export const RecoverPasswordComponent = ({
   width,
   ...props
 }: RecoverPasswordComponentProps) => {
+  const window = useWindowResize();
+
   return (
     <Box
       className={styles["recover-password-component--container"]}
       style={{ width, height }}
     >
       <Box className={styles["recover-password-component--left-container"]}>
-        <Icon icon="pa-ca" size="70px" />
-
         <Box className={styles["recover-password-component--content"]}>
-          <Box
-            className={styles["recover-password-component--back-to-login"]}
-            onClick={onBackToLogin}
-          >
-            <Icon icon="left" size="18px" />
-            <Box width="5px" />
-            <Text weight="400">Iniciar sesión</Text>
+          <Box className={styles["recover-password-component--header"]}>
+            <Box width="24px" />
+            <Box className={styles["recover-password-component--logo"]}>
+              <Icon icon="pa-ca" size="70px" />
+            </Box>
+            <Box
+              className={styles["recover-password-component--back-to-login"]}
+              onClick={onBackToLogin}
+            >
+              <Icon
+                icon="left"
+                size={window.resolutionType === "desktop" ? "18px" : "24px"}
+              />
+              {window.resolutionType === "desktop" && (
+                <>
+                  <Box width="5px" />
+                  <Text weight="400">Regresar</Text>
+                </>
+              )}
+            </Box>
           </Box>
 
           {!completed ? (
             <Box className={styles["recover-password-component--form"]}>
               <Box className={styles["recover-password-component--title"]}>
-                <Text weight="700" type="h3">
+                <Text weight="700" type={window.resolutionType === "desktop" ? "h3" : "h3"}>
                   ¿Olvidaste tu contraseña?
                 </Text>
               </Box>
               <Box className={styles["recover-password-component--subtitle"]}>
-                <Text  weight="400" type="h6">
-                  No te preocupes, nos pasa a todos. Ingresa tu correo abajo
-                  para recuperar tu contraseña.
+                <Text color="grey" weight="400" type="h6">
+                  Ingresa tu correo abajo para recuperar tu contraseña.
                 </Text>
               </Box>
 

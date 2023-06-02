@@ -13,13 +13,27 @@ $animation-duration: 600ms;
 $error-color: #db4137;
 $warning-color: #ECE81A;
 
+/* Status Colors */
+$pending-status: #ef7b00;
+$accepted-status: #8dd3bb;
+$rejected-status: #db4137;
+$closed-status: #646464;
+
 /* Branches */
 $branch-summary-min-width: 550px;
 
 /* Welcome screens */
 $welcome-padding: 105px;
 
+/* Resolutions */
+$mobile-max-width: 430px;
+
 :export {
   errorColor: $error-color;
   warningColor: $warning-color;
+  mobileMaxWidth: $mobile-max-width;
+  pendingStatus: $pending-status;
+  acceptedStatus: $accepted-status;
+  rejectedStatus: $rejected-status;
+  closedStatus: $closed-status;
 }

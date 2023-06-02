@@ -7,8 +7,10 @@
   padding-left: 16px;
   padding-right: 46px;
   margin-bottom: 32px;
-  min-width: 700px;
+  // min-width: 700px;
   background-color: white;
+  border-left-width: 20px;
+  border-left-style: solid;
 }
 .reservation--details {
   display: flex;
@@ -51,4 +53,9 @@
 .reservation--icon {
   margin-left: 12px;
   cursor: pointer;
+}
+
+.reservation-status-color {
+  width: 10wh;
+  background-color: aqua;
 }

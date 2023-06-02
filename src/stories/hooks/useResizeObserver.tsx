@@ -24,6 +24,9 @@ export default <T extends HTMLElement>() => {
   const resizeObserver = new ResizeObserver(handleResized);
 
   useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
     // the code in useEffect will be executed when the component
     // has mounted, so we are certain ref.current will contain
     // the div we want to observe

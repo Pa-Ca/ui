@@ -5,6 +5,7 @@ import { Text } from "../../atoms/text/Text";
 import styles from "./loginComponent.module.scss";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
+import useWindowResize, { WindowResizeHook } from "../../hooks/useWindowResize";
 
 export interface LoginComponentProps {
   /**
@@ -55,19 +56,27 @@ export const LoginComponent = ({
   width,
   ...props
 }: LoginComponentProps) => {
+  const window = useWindowResize();
+
   return (
     <Box
       className={styles["login-component--container"]}
       style={{ height, width }}
     >
       <Box className={styles["login-component--left-container"]}>
-        <Icon icon="pa-ca" size="70px" />
-
-        <Box className={styles["login-component--title"]}>
-          <Text weight="700" type="h2" primaryButtonStyle>
-            Iniciar Sesión
+        <Box className={styles["login-component--title"]} width="100%">
+          <Icon icon="pa-ca" size="70px" />
+          <Text
+            weight="700"
+            type={window.resolutionType === "desktop" ? "h2" : "h3"}
+          >
+            ¡Bienvenido!
+          </Text>
+          <Text weight="700" primaryButtonStyle>
+            Inicia sesión para continuar
           </Text>
         </Box>
+
         <Box className={styles["login-component--content"]}>
           <LoginForm
             height="100%"

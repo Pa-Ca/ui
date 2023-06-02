@@ -42,17 +42,21 @@ export interface HeaderProps {
    */
   logged: boolean;
   /**
-   * On Left Section click function
+   * onReserveClick function
    */
-  onLeftSectionClick?: () => void;
+  onReserveClick?: () => void;
+  /**
+   * onReservationsClick function
+   */
+  onReservationsClick?: () => void;
+  /**
+   * onFavoritesClick function
+   */
+  onFavoritesClick?: () => void;
   /**
    * On PA-CA logo click function
    */
   onPacaClick: () => void;
-  /**
-   * On Right Section click function
-   */
-  onRightSectionClick?: () => void;
   /**
    * On profile click function
    */
@@ -89,7 +93,7 @@ export interface HeaderProps {
   /**
    * Branch options
    * */
-  branchOptions?: BranchDropdownElement[];
+  branchOptions: BranchDropdownElement[];
 }
 
 /**
@@ -103,10 +107,11 @@ export const Header = ({
   dark,
   userRole,
   logged,
-  onLeftSectionClick,
+  onFavoritesClick = () => {},
+  onReservationsClick = () => {},
+  onReserveClick = () => {},
   onPacaClick,
-  onRightSectionClick,
-  onProfileClick,
+  onProfileClick = () => {},
   onLoginClick,
   onRegisterClick,
   backgroundColor,
@@ -117,57 +122,12 @@ export const Header = ({
   branchOptions,
   ...props
 }: HeaderProps) => {
-  
-  const logoColor = dark ? "white" : "black";
-
-  const rightSectionText = userRole === "client" ? "Favoritos" : "Reservas";
-  const rightSectionIcon = userRole === "client" ? "heart-fill" : "table";
-
   const [view, setView] = useState(false);
+  const logoColor = dark ? "white" : "black";
   const [branchListView, setBranchListView] = useState(false);
-
+  const pictureObserver = useResizeObserver<HTMLDivElement>();
   const dropdownObserver = useResizeObserver<HTMLDivElement>();
   const branchDropdownObserver = useResizeObserver<HTMLDivElement>();
-  const pictureObserver = logged ? useResizeObserver<HTMLDivElement>() : null;
-
-  // If the branch is in buisness mode, the header will show a select with the branches
-  const showBranchSelector = useMemo(() => {
-    return userRole === "business" && logged;
-  }, [userRole, logged]);
-
-  const leftSectionContents = useMemo(() => {
-    if (userRole === "client" && !logged) {
-      return {
-        text: "Reservar",
-        icon: "bell" as IconType,
-      };
-    } else if (userRole === "client" && logged) {
-      return {
-        text: "Reservar",
-        icon: "bell" as IconType,
-      };
-    } else if (userRole === "business" && !logged) {
-      return {
-        text: "Ingresar",
-        icon: "person" as IconType,
-      };
-    } else if (userRole === "business" && logged) {
-      return {
-        text: currentBranch,
-        icon: "restaurant" as IconType,
-      };
-    }
-  }, [userRole, logged, currentBranch]);
-
-  const onLeftSectionClickHandler = () => {
-    if (onLeftSectionClick) {
-      onLeftSectionClick();
-    }
-
-    if (showBranchSelector) {
-      setBranchListView((currentView) => !currentView);
-    }
-  };
 
   const dropdownOptions: UserDropdownElement[] = [
     {
@@ -189,11 +149,14 @@ export const Header = ({
         !dropdownObserver.ref.current.contains(event.target as Node) &&
         !!pictureObserver &&
         pictureObserver.ref.current &&
-        !pictureObserver.ref.current.contains(event.target as Node) &&
+        !pictureObserver.ref.current.contains(event.target as Node)
+      ) {
+        setView(false);
+      }
+      if (
         branchDropdownObserver.ref.current &&
         !branchDropdownObserver.ref.current?.contains(event.target as Node)
       ) {
-        setView(false);
         setBranchListView(false);
       }
     };
@@ -201,20 +164,41 @@ export const Header = ({
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownObserver.ref, pictureObserver, branchDropdownObserver]);
+  }, [dropdownObserver, pictureObserver, branchDropdownObserver]);
 
-  const rightSectionComponent = () => {
+  const leftSectionData = useMemo(() => {
+    const businessMode = userRole === "business" && logged;
+    const onClick = businessMode
+      ? () => setBranchListView((prev) => !prev)
+      : onReserveClick;
+    const icon = (businessMode ? "restaurant" : "bell") as IconType;
+    const text = businessMode ? currentBranch : "Reservar";
+
+    return {
+      onClick,
+      icon,
+      text,
+      businessMode,
+    };
+  }, [logged, userRole, currentBranch]);
+
+  const rightSectionComponent = useMemo(() => {
+    const text = userRole === "client" ? "Favoritos" : "Reservas";
+    const icon = userRole === "client" ? "heart-fill" : "table";
+    const onClick =
+      userRole === "client" ? onFavoritesClick : onReservationsClick;
+
     if (logged) {
       return (
-        <>
-          <Box className={styles["header--zone"]} onClick={onRightSectionClick}>
-            <Icon icon={rightSectionIcon} size="20px" color={logoColor} />
+        <Box className={styles["header--zone"]}>
+          <Box className={styles["header--zone"]} onClick={onClick}>
+            <Icon icon={icon} size="20px" color={logoColor} />
             <Text
               type="h6"
               weight="600"
               className={styles["header--text"]}
             >
-              {rightSectionText}
+              {text}
             </Text>
             <Text
               type="h6"
@@ -233,13 +217,12 @@ export const Header = ({
           >
             <Box
               className={styles["header--profile-picture"]}
-              innerRef={pictureObserver!.ref}
+              innerRef={pictureObserver.ref}
             >
               <ProfilePicture
                 size="45px"
-                border="0px"
+                border={true}
                 icon={view ? "up" : "down"}
-                color={color}
                 picture={picture}
                 userName={name}
                 dropdownOptions={dropdownOptions}
@@ -248,11 +231,11 @@ export const Header = ({
               />
             </Box>
           </Box>
-        </>
+        </Box>
       );
     } else {
       return (
-        <>
+        <Box className={styles["header--zone"]}>
           <Box className={styles["header--zone"]} onClick={onLoginClick}>
             <Text
               type="h6"
@@ -280,10 +263,10 @@ export const Header = ({
               </Text>
             </Button>
           </Box>
-        </>
+        </Box>
       );
     }
-  };
+  }, [userRole, logged, dark, color, logoColor, view, picture, name]);
 
   return (
     <>
@@ -295,14 +278,10 @@ export const Header = ({
           {/* Left section */}
           <Box
             className={styles["header--zone"]}
-            onClick={onLeftSectionClickHandler}
+            onClick={leftSectionData.onClick}
             innerRef={branchDropdownObserver.ref}
           >
-            <Icon
-              icon={leftSectionContents?.icon}
-              size="20px"
-              color={logoColor}
-            />
+            <Icon icon={leftSectionData.icon} size="20px" color={logoColor} />
             <Box className={styles["header--left-zone-text"]}>
               <Text
                 type="h6"
@@ -311,19 +290,23 @@ export const Header = ({
                 //color={logoColor}
                 ellipsis
               >
-                {leftSectionContents?.text}
+                {leftSectionData.text}
               </Text>
             </Box>
-            {showBranchSelector && (
+            {leftSectionData.businessMode && (
               <Box>
-                <Icon icon="down" size="20px" color={logoColor} />
+                <Icon
+                  icon={branchListView ? "up" : "down"}
+                  size="20px"
+                  color={logoColor}
+                />
               </Box>
             )}
             <HeaderBranchDropdown
               border="5px"
               color="#EF7A08"
-              dropdownOptions={branchOptions}
               view={branchListView}
+              dropdownOptions={branchOptions}
             />
           </Box>
 
@@ -339,9 +322,7 @@ export const Header = ({
           </Box>
 
           {/* Right section */}
-          <Box className={styles["header--zone"]}>
-            {rightSectionComponent()}
-          </Box>
+          {rightSectionComponent}
         </Box>
       </Box>
       <Box innerRef={dropdownObserver.ref}>

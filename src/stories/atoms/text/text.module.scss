@@ -1,11 +1,13 @@
 @import '../../assets/scss/dark-theme.scss';
 @import '../../assets/scss/light-theme.scss';
 @import '../../assets/scss/variables.module.scss';
+@import "../../assets/scss/mixins.scss";
 
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat"),
-    url("../../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+    url("../../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+      format("truetype");
 }
 
 .text {
@@ -13,8 +15,7 @@
   font-style: normal;
   color: $light-theme--text;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 15px;
+  line-height: 1.3em;
 }
 
 @media (prefers-color-scheme: dark){
@@ -66,41 +67,61 @@
   text-overflow: ellipsis;
 }
 
-// Size 
+// Size
 .text--h1 {
-  font-size: 80px;
-  line-height: 98px;
+  font-size: 5em;
 }
 .text--h2 {
-  font-size: 45px;
-  line-height: 55px;
+  font-size: 2.8125em;
 }
 .text--h3 {
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 2em;
 }
 .text--h4 {
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 1.5em;
 }
 .text--h5 {
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25em;
 }
-.p {
-  font-size: 16px;
-  line-height: 19.5px;
+.text--p {
+  font-size: 1em;
 }
 .text--h6 {
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 0.875em;
 }
 .text--h7 {
-  font-size: 12px;
-  line-height: 14.5px;
+  font-size: 0.75em;
 }
 .text--h8 {
-  font-size: 10px;
-  line-height: 10px;
+  font-size: 0.625em;
 }
 
+@include mobile {
+  .text--h1 {
+    font-size: 3.5em;
+  }
+  .text--h2 {
+    font-size: 2.2em;
+  }
+  .text--h3 {
+    font-size: 2em;
+  }
+  .text--h4 {
+    font-size: 1.5em;
+  }
+  .text--h5 {
+    font-size: 1.25em;
+  }
+  .text--p {
+    font-size: 1em;
+  }
+  .text--h6 {
+    font-size: 0.875em;
+  }
+  .text--h7 {
+    font-size: 0.75em;
+  }
+  .text--h8 {
+    font-size: 0.625em;
+  }
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { Icon as Iconify } from "@iconify/react";
 import poolIcon from "@iconify/icons-mdi/pool";
 import wineIcon from "@iconify/icons-ion/wine";
+import menuIcon from "@iconify/icons-ion/menu";
 import heartIcon from "@iconify/icons-ph/heart";
 import ccVisa from "@iconify/icons-cib/cc-visa";
 import eyeFill from "@iconify/icons-bi/eye-fill";
@@ -11,7 +12,7 @@ import fastFood from "@iconify/icons-ion/fast-food";
 import heartFill from "@iconify/icons-ph/heart-fill";
 import twitterIcon from "@iconify/icons-mdi/twitter";
 import youtubeIcon from "@iconify/icons-mdi/youtube";
-import warningIcon from '@iconify/icons-uiw/warning';
+import warningIcon from "@iconify/icons-uiw/warning";
 import facebookIcon from "@iconify/icons-mdi/facebook";
 import paperPlane from "@iconify/icons-ion/paper-plane";
 import alertCircle from "@iconify/icons-mdi/alert-circle";
@@ -100,7 +101,8 @@ export type IconType =
   | "logout"
   | "email-sent"
   | "upload"
-  | "warning";
+  | "warning"
+  | "menu";
 
 interface IconProps {
   /**
@@ -531,6 +533,14 @@ export const Icon = ({
           className={finalClassName}
           icon={warningIcon}
           style={{ fontSize: size, ...style }}
+        />
+      );
+    case "menu":
+      return (
+        <Iconify
+          icon={menuIcon}
+          style={{ fontSize: size, ...style }}
+          color={color}
         />
       );
     default:
