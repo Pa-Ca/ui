@@ -1,3 +1,5 @@
+@import "./palette.scss";
+
 /* Break Points */
 $screen-sm: 350px;
 $screen-md: 768px;
@@ -7,17 +9,17 @@ $screen-xl: 1200px;
 /* Global Styles */
 $corner-radius: 16px;
 $horizontal-padding: 85px;
-$background-color: #fafbfc;
-$select-color: #f1f1f1;
+$background-color: $white-1;
+$select-color: $white-2;
 $animation-duration: 600ms;
-$error-color: #db4137;
-$warning-color: #ECE81A;
+$error-color: $red;
+$warning-color: $yellow;
 
 /* Status Colors */
-$pending-status: #ef7b00;
-$accepted-status: #8dd3bb;
-$rejected-status: #db4137;
-$closed-status: #646464;
+$pending-status: $orange;
+$accepted-status: $green;
+$rejected-status: $red;
+$closed-status: $gray;
 
 /* Branches */
 $branch-summary-min-width: 550px;
