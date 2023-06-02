@@ -35,6 +35,10 @@ export interface ReservationProps {
    */
   state: number;
   /**
+   * Indicates reservation status color
+   */
+  statusColor: string;
+  /**
    * Reservation date
    */
   date: string;
@@ -74,6 +78,7 @@ export const Reservation = ({
   persons,
   tables,
   state,
+  statusColor,
   onCloseReservation,
   onReject,
   onAccept,
@@ -125,13 +130,13 @@ export const Reservation = ({
         return <></>;
     }
   }, [state]);
-
+  console.log(statusColor);
   return (
     <Box
       className={styles["reservation--container"]}
       borderRadius="12px"
       weakShadow
-      style={{ width, height }}
+      style={{ width, height, borderLeftColor: statusColor}}
     >
       <Box className={styles["reservation--details"]}>
         <Box
