@@ -4,7 +4,7 @@ import { AuthPage } from "./AuthPage";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Templates/AuthPage",
+  title: "Design System/Organisms/AuthPage",
   component: AuthPage,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

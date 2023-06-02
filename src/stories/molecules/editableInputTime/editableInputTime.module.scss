@@ -1,7 +1,11 @@
 @import "../../assets/scss/variables.module.scss";
 
 .editable-input-time--inputs {
+  gap: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.editable-input-time--text {
+  text-align: center;
 }

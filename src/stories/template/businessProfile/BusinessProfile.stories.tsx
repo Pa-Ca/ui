@@ -225,7 +225,7 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BusinessProfile> = (args: any) => {
-  const name = useInputForm("Example Business");
+  const name = useInputForm("Example Businessssssssssssssssssssssss");
   const email = useInputForm("example@example.com");
   const password = useInputForm("");
   const phoneNumber = useInputForm("");
@@ -235,17 +235,17 @@ const Template: StoryFn<typeof BusinessProfile> = (args: any) => {
   const branchLocation = useInputForm("");
   const branchPhone = useInputForm("");
   const branchCapacity = useInputForm("");
-  const branchAverageReserveTimeHours = useInputForm("");
-  const branchAverageReserveTimeMinutes = useInputForm("");
+  const branchAverageReserveTimeHours = useInputForm("00");
+  const branchAverageReserveTimeMinutes = useInputForm("00");
   const branchPrice = useInputForm("");
   const branchMapsLink = useInputForm("");
   const branchType = useInputForm("");
   const branchTypeOptions = useInputForm("");
   const branchLocationOptions = useInputForm("");
-  const branchOpeningTimeHour = useInputForm("9");
-  const branchOpeningTimeMinute = useInputForm("0");
+  const branchOpeningTimeHour = useInputForm("09");
+  const branchOpeningTimeMinute = useInputForm("00");
   const branchClosingTimeHour = useInputForm("21");
-  const branchClosingTimeMinute = useInputForm("0");
+  const branchClosingTimeMinute = useInputForm("00");
 
   return (
     <BusinessProfile
@@ -322,6 +322,7 @@ Default.args = {
     name: "Sempre Dritto",
     color: "#EF7A08",
     branchOptions: BranchOptions,
+    currentBranch: BranchOptions[0].name,
   },
   mainImage:
     "https://i.pinimg.com/originals/55/00/d3/5500d308acf37ec5c31cc2e5c7785921.jpg",

@@ -1,0 +1,24 @@
+@import "../../assets/scss/mixins.scss";
+
+.basic-mobile-page--container {
+  gap: 5vh;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.basic-mobile-page--content-container {
+  flex: 1;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+
+  @include hide-scroll();
+}
+.basic-mobile-page--children-container {
+  flex: 1;
+  display: flex;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}

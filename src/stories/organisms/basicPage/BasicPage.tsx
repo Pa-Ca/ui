@@ -1,9 +1,9 @@
 import React from "react";
-import styles from"./basicPage.module.scss";
 import { Box } from "../../atoms/box/Box";
+import styles from"./basicPage.module.scss";
 import { Header } from "../../organisms/header/Header";
-import { HeaderProps } from "../../organisms/header/Header";
 import { Footer } from "../../organisms/footer/Footer";
+import { HeaderProps } from "../../organisms/header/Header";
 
 interface BasicPageProps {
   /**

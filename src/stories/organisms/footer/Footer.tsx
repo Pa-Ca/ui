@@ -3,6 +3,7 @@ import styles from "./footer.module.scss";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import useWindowResize from "../../hooks/useWindowResize";
 
 export interface FooterProps {
   /**
@@ -30,14 +31,21 @@ export const Footer = ({
     twitter: "",
     youtube: "",
   };
+  const windowSize = useWindowResize();
 
   return (
-    <Box className={styles["footer--container"]} backgroundColor={color} {...props}>
+    <Box
+      className={styles["footer--container"]}
+      backgroundColor={color}
+      {...props}
+    >
       <Box className={styles["footer--content-container"]}>
         <Box className={styles["footer--1st-column"]}>
-          <Icon icon="pa-ca" color={secondaryColor} size="75px" />
-          <Box className={styles["footer--email-text-input"]}>
-            <Text color={secondaryColor}>Contactanos!</Text>
+          <Box>
+            <Icon icon="pa-ca" color={secondaryColor} size="75px" />
+            <Box className={styles["footer--email-text-input"]}>
+              <Text color={secondaryColor}>Contactanos!</Text>
+            </Box>
           </Box>
           <Box className={styles["footer--social-media-container"]}>
             <Box onClick={() => window.open(footerLinks.facebook, "_blank")}>
@@ -53,11 +61,14 @@ export const Footer = ({
               <Icon icon="instagram" color={secondaryColor} size="30px" />
             </Box>
           </Box>
-          <Text color={secondaryColor}>
-            © 2022 - Todos los derechos reservados
-          </Text>
         </Box>
       </Box>
+      <Text
+        type={windowSize.resolutionType === "desktop" ? "p" : "h6"}
+        color={secondaryColor}
+      >
+        © 2022 - Todos los derechos reservados
+      </Text>
     </Box>
   );
 };
