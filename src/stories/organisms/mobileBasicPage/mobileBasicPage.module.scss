@@ -1,0 +1,20 @@
+@import "../../assets/scss/variables.module.scss";
+
+.mobile-basic-page--container {
+  gap: 1em;
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: $background-color;
+}
+
+.mobile-basic-page--content-container {
+  display: flex;
+  flex: 1;
+  padding-top: 54px;
+  min-height: 60vh;
+  flex-direction: column;
+  padding-left: $horizontal-padding;
+  padding-right: $horizontal-padding;
+}

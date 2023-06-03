@@ -1,3 +1,5 @@
+@import "./palette.scss";
+
 /* Break Points */
 $screen-sm: 350px;
 $screen-md: 768px;
@@ -7,11 +9,17 @@ $screen-xl: 1200px;
 /* Global Styles */
 $corner-radius: 16px;
 $horizontal-padding: 85px;
-$background-color: #fafbfc;
-$select-color: #f1f1f1;
+$background-color: $white-1;
+$select-color: $white-2;
 $animation-duration: 600ms;
-$error-color: #db4137;
-$warning-color: #ECE81A;
+$error-color: $red;
+$warning-color: $yellow;
+
+/* Status Colors */
+$pending-status: $orange;
+$accepted-status: $green;
+$rejected-status: $red;
+$closed-status: $gray;
 
 /* Branches */
 $branch-summary-min-width: 550px;
@@ -19,7 +27,15 @@ $branch-summary-min-width: 550px;
 /* Welcome screens */
 $welcome-padding: 105px;
 
+/* Resolutions */
+$mobile-max-width: 430px;
+
 :export {
   errorColor: $error-color;
   warningColor: $warning-color;
+  mobileMaxWidth: $mobile-max-width;
+  pendingStatus: $pending-status;
+  acceptedStatus: $accepted-status;
+  rejectedStatus: $rejected-status;
+  closedStatus: $closed-status;
 }

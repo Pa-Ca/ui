@@ -1,11 +1,12 @@
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/mixins.scss";
 
 .input-text--container {
   display: flex;
   flex-direction: column;
 }
 .input-text--input-container {
-  height: 56px;
+  height: 3rem;
   position: relative;
 
   border-radius: 4px;

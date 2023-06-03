@@ -54,7 +54,7 @@ export const ResetPasswordForm = ({
 }: ResetPasswordFormProps) => {
   const confirmPassword = useInputForm(
     "",
-    "Las contraseñas no coinciden ¡Inténtalo de nuevo!"
+    "Las contraseñas no coinciden."
   );
 
   const submit = () => {
@@ -112,7 +112,7 @@ export const ResetPasswordForm = ({
             </>
           )}
         </Box>
-        <Box className={styles["reset-password-form--input"]}>
+        <Box className={styles["reset-password-form--button-container"]}>
           <Button
             fullWidth
             primary
@@ -121,7 +121,7 @@ export const ResetPasswordForm = ({
             onClick={submit}
           >
             <Box className={styles["reset-password-form--button-text"]}>
-              <Text color="white" type="h6" weight="600">
+              <Text color="white" type="h5" weight="600">
                 Cambiar contraseña
               </Text>
             </Box>

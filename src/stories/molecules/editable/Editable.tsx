@@ -54,7 +54,7 @@ export const Editable = ({
   color,
   ...props
 }: EditableProps) => {
-  const width = useMemo(() => (useIcons ? "70px" : "220px"), [useIcons]);
+  const width = useMemo(() => (useIcons ? "65px" : "220px"), [useIcons]);
 
   return (
     <Box

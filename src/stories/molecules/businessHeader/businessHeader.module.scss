@@ -1,11 +1,17 @@
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/mixins.scss";
 
 .business-header--container {
   display: flex;
-  margin-top: 40px;
   position: relative;
   align-items: center;
   flex-direction: column;
+
+  @include mobile {
+    gap: 10px;
+    margin-top: 0;
+    align-items: flex-start;
+  }
 }
 .business-header--main-image {
   width: 100%;
@@ -14,18 +20,49 @@
   align-items: flex-end;
 }
 .business-header--profile-picture {
+  gap: 15px;
   display: flex;
   text-align: center;
   align-items: center;
   flex-direction: column;
+
+  @include mobile {
+    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+.business-header--data {
+  max-width: 60vw;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include mobile {
+    text-align: start;
+    align-items: flex-start;
+    max-width: calc(85vw - 80px);
+  }
 }
 .business-header--button-container {
-  position: absolute;
   top: 0;
   right: 0;
+  position: absolute;
+
+  @include mobile {
+    width: 100%;
+    position: relative;
+  }
 }
 .business-header--button {
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @include mobile {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
 }

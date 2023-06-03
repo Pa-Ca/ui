@@ -174,6 +174,7 @@ export const ReserveList = ({
                     persons={reservation.persons}
                     tables={reservation.tables}
                     state={reservation.state}
+                    statusColor={reservation.statusColor}
                     onCloseReservation={reservation.onCloseReservation}
                     onReject={reservation.onReject}
                     onAccept={reservation.onAccept}

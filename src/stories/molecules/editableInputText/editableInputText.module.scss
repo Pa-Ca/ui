@@ -66,7 +66,6 @@
   font-weight: 600;
   font-size: 20px;
   margin: 0px;
-  min-width: 200px;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -75,25 +74,13 @@
 }
 
 .editable-input-text--input {
+  width: 100%;
+  margin-top: 2px;
   font-weight: 600;
-  font-size: 20px;
-  font-family: "Montserrat";
+  border-top: none;
   border-left: none;
   border-right: none;
-  border-top: none;
-  margin-left: 8px;
-  margin-top: 2px;
   border-bottom: 0.5px solid black;
-  width: 100%;
-}
-
-.editable-input-text--text {
-  font-family: "Montserrat";
-  line-height: 24px;
-  margin-left: 10px;
-  font-weight: 600;
-  font-size: 20px;
-  width: 100%;
 }
 
 @keyframes shake {

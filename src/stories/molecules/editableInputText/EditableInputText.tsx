@@ -6,6 +6,8 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Editable } from "../editable/Editable";
 import styles from "./editableInputText.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
+import useWindowResize from "../../hooks/useWindowResize";
+import textStyles from "../../atoms/text/text.module.scss";
 import OptionObject from "../../utils/objects/OptionObject";
 import Select, { ActionMeta, SingleValue } from "react-select";
 import styleVariables from "../../assets/scss/variables.module.scss";
@@ -109,6 +111,7 @@ export const EditableInputText = ({
   placeholder,
   ...props
 }: EditableInputTextProps) => {
+  const windowSize = useWindowResize();
   const select_enabled = useMemo(() => type === "select", [type]);
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
 
@@ -269,6 +272,7 @@ export const EditableInputText = ({
                 option: (baseStyles) => ({
                   ...baseStyles,
                   ...style,
+                  minWidth: "200px",
                 }),
                 menu: (baseStyles) => ({
                   ...baseStyles,
@@ -285,6 +289,8 @@ export const EditableInputText = ({
               onChange={onChange}
               className={classnames(
                 styles["editable-input-text--input"],
+                textStyles["text"],
+                windowSize.resolutionType === "desktop" ? textStyles["text--h5"] : textStyles["text--p"],
                 className
               )}
               style={{
@@ -309,9 +315,10 @@ export const EditableInputText = ({
                 styles["editable-input-text--text"],
                 className
               )}
-              type="h5"
+              ellipsis
               weight="600"
               style={{ ...style }}
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
             >
               {defaultText}
             </Text>
@@ -323,9 +330,10 @@ export const EditableInputText = ({
                 styles["editable-input-text--text"],
                 className
               )}
-              type="h5"
+              ellipsis
               weight="600"
               style={{ ...style }}
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
             >
               {select_enabled
                 ? optionsMap.get(inputHook.value || "") || ""

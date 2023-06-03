@@ -2,6 +2,7 @@ import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { BusinessProfile } from "./BusinessProfile";
 import useInputForm from "../../hooks/useInputForm";
+import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -224,7 +225,7 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BusinessProfile> = (args: any) => {
-  const name = useInputForm("Example Business");
+  const name = useInputForm("Example Businessssssssssssssssssssssss");
   const email = useInputForm("example@example.com");
   const password = useInputForm("");
   const phoneNumber = useInputForm("");
@@ -234,17 +235,17 @@ const Template: StoryFn<typeof BusinessProfile> = (args: any) => {
   const branchLocation = useInputForm("");
   const branchPhone = useInputForm("");
   const branchCapacity = useInputForm("");
-  const branchAverageReserveTimeHours = useInputForm("");
-  const branchAverageReserveTimeMinutes = useInputForm("");
+  const branchAverageReserveTimeHours = useInputForm("00");
+  const branchAverageReserveTimeMinutes = useInputForm("00");
   const branchPrice = useInputForm("");
   const branchMapsLink = useInputForm("");
   const branchType = useInputForm("");
   const branchTypeOptions = useInputForm("");
   const branchLocationOptions = useInputForm("");
-  const branchOpeningTimeHour = useInputForm("9");
-  const branchOpeningTimeMinute = useInputForm("0");
+  const branchOpeningTimeHour = useInputForm("09");
+  const branchOpeningTimeMinute = useInputForm("00");
   const branchClosingTimeHour = useInputForm("21");
-  const branchClosingTimeMinute = useInputForm("0");
+  const branchClosingTimeMinute = useInputForm("00");
 
   return (
     <BusinessProfile
@@ -274,16 +275,54 @@ const Template: StoryFn<typeof BusinessProfile> = (args: any) => {
   );
 };
 
+const BranchOptions : BranchDropdownElement[] = [
+  {
+    name: 'Sucursal 1',
+    func: () => {},
+  },
+  {
+    name: 'Sucursal 2',
+    func: () => {},
+  },
+  {
+    name: 'Mi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvador, Mi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvador',
+    func: () => {},
+  },
+  {
+    name: 'Sucursal 2',
+    func: () => {},
+  },
+  {
+    name: 'Sucursal 1',
+    func: () => {},
+  },
+  {
+    name: 'Sucursal 2',
+    func: () => {},
+  },
+  {
+    name: 'Sucursal 1',
+    func: () => {},
+  },
+  {
+    name: 'Sucursal 2',
+    func: () => {},
+  },
+]
+
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   header: {
     logged: true,
+    userRole: "business",
     onPacaClick: () => {},
     picture:
       "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
     name: "Sempre Dritto",
     color: "#EF7A08",
+    branchOptions: BranchOptions,
+    currentBranch: BranchOptions[0].name,
   },
   mainImage:
     "https://i.pinimg.com/originals/55/00/d3/5500d308acf37ec5c31cc2e5c7785921.jpg",

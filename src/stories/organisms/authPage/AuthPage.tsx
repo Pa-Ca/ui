@@ -13,9 +13,5 @@ interface AuthPageProps {
  * Primary UI component for user interaction
  */
 export const AuthPage = ({ children, ...props }: AuthPageProps) => {
-  return (
-    <Box className={styles["auth-page--container"]}>
-      <Box className={styles["auth-page--subcontainer"]}>{children}</Box>
-    </Box>
-  );
+  return <Box className={styles["auth-page--container"]}>{children}</Box>;
 };

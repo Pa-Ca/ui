@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import styles from "./businessProfile.module.scss";
+import React, { useEffect, useMemo, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
+import styles from "./businessProfile.module.scss";
 import { Modal } from "../../molecules/modal/Modal";
+import useWindowResize from "../../hooks/useWindowResize";
 import OptionObject from "../../utils/objects/OptionObject";
 import { HeaderProps } from "../../organisms/header/Header";
 import { InputTab } from "../../molecules/inputTab/InputTab";
@@ -13,11 +14,11 @@ import { InputText } from "../../molecules/inputText/InputText";
 import { InputTime } from "../../molecules/inputTime/InputTime";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+import { InputLongText } from "../../molecules/inputLongText/InputLongText";
 import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
-import { InputLongText } from "../../molecules/inputLongText/InputLongText";
+import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
-
 import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 
 interface BusinessProfileProps {
@@ -304,6 +305,7 @@ export const BusinessProfile = ({
   ...props
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
+  const windowSize = useWindowResize();
   const [changePassword, setChangePassword] = useState(false);
 
   const observer = useResizeObserver<HTMLDivElement>();
@@ -325,6 +327,12 @@ export const BusinessProfile = ({
   const newBranchAverageReserveTimeMinutes = useInputForm("00");
   const newBranchType = useInputForm<OptionObject>({ label: "", text: "" });
   const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
+
+  const PageWrapper = useMemo(
+    () =>
+      windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
+    [windowSize.resolutionType]
+  );
 
   useEffect(() => {
     if (observer.ref.current) {
@@ -365,8 +373,8 @@ export const BusinessProfile = ({
   );
 
   return (
-    <BasicPage headerArgs={headerProps}>
-      <Box width="100%">
+    <PageWrapper headerArgs={headerProps}>
+      <Box width="100%" className={styles["business-profile--container"]}>
         <BusinessHeader
           mainImage={mainImage}
           profilePicture={currentProfilePicture}
@@ -378,17 +386,17 @@ export const BusinessProfile = ({
           color={color}
           secondaryColor={secondaryColor}
         />
-        <Box height="32px" />
 
-        <Box innerRef={tabObserver.ref}>
+        <Box
+          innerRef={tabObserver.ref}
+          className={styles["business-profile--nav-tab"]}
+        >
           <InputTab
             index={page}
             setIndex={setPage}
             tabs={["Cuenta", "Local"]}
           />
         </Box>
-
-        <Box height="32px" />
 
         <Box
           className={styles["business-profile--content-container"]}
@@ -420,7 +428,10 @@ export const BusinessProfile = ({
             <Box width="12px" />
 
             <Box width={`${tabObserver.width - 10}px`}>
-              <Text type="h3" weight="700">
+              <Text
+                type={windowSize.resolutionType === "desktop" ? "h3" : "h4"}
+                weight="700"
+              >
                 Detalles del local
               </Text>
               <Box height="16px" />
@@ -589,7 +600,7 @@ export const BusinessProfile = ({
                   required
                   type="phoneNumber"
                   inputHook={newBranchPhone}
-                  label="Número de teléfono del local"
+                  label="Número de teléfono"
                   placeholder="+58 4240000000 | 04240000000"
                 />
               </Box>
@@ -675,13 +686,13 @@ export const BusinessProfile = ({
                 <Box
                   className={styles["business-profile--button-create-branch"]}
                 >
-                  <Text weight="600">Crear Local</Text>
+                  <Text weight="600">Crear</Text>
                 </Box>
               </Button>
             </Box>
           </Box>
         </Modal>
       </Box>
-    </BasicPage>
+    </PageWrapper>
   );
 };

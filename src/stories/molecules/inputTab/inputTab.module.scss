@@ -1,3 +1,4 @@
+@import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 
 .input-tab--container {
@@ -5,6 +6,10 @@
   display: flex;
   min-height: 80px;
   background-color: white;
+
+  @include mobile {
+    min-height: 50px;
+  }
 }
 .input-tab--tab {
   position: relative;
