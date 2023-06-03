@@ -228,6 +228,10 @@ interface BusinessProfileProps {
    * On save profile picture TODO: Check if the type is correct
    */
   onSaveProfilePicture: (profilePicture: string) => void;
+  /**
+   * On upload profile picture
+   */
+  uploadProfilePicture: (profilePicture: File) => void;
 
   /**
    * Component main color
@@ -293,6 +297,7 @@ export const BusinessProfile = ({
   onSaveBranchClosingTime,
   onDeleteBranch,
   onSaveProfilePicture,
+  uploadProfilePicture: uploadProfilePicture,
 
   color,
   secondaryColor,
@@ -331,6 +336,10 @@ export const BusinessProfile = ({
     password.setValue("");
     newPassword.setValue("");
   }, [changePassword]);
+
+  useEffect(() => {
+    // Retrieve image
+  })
 
   const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] =
     useState(false);
@@ -471,7 +480,10 @@ export const BusinessProfile = ({
           open={showUploadProfilePictureModal}
           setOpen={setshowUploadProfilePictureModal}
         >
-          <UploadProfilePictureForm onSave={onProfilePictureChange} />
+          <UploadProfilePictureForm
+            onSave={onProfilePictureChange}
+            upload={uploadProfilePicture}
+          />
         </Modal>
 
         <Modal open={showCreateBranchModal} setOpen={setShowCreateBranchModal}>

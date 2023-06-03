@@ -16,13 +16,20 @@ export interface UploadProfilePictureFormProps {
    * onSave function (The function is executed when clicking on the save button)
    * */
   onSave?: (fileSrc: string) => void;
+
+  /**
+   * upload function executed after save
+  */
+  upload?: (file: File) => any;
 }
 
 export const UploadProfilePictureForm = ({
   color = "#EF7A08",
   onSave,
+  upload,
 }: UploadProfilePictureFormProps) => {
   const [preview, setPreview] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [src, setSrc] = useState<string | undefined>(undefined);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showAvatar, setShowAvatar] = useState<boolean>(true);
@@ -37,10 +44,18 @@ export const UploadProfilePictureForm = ({
     }
   };
 
-  const handleSaveClick = () => {
-    if (onSave && preview) {
+  const handleSaveClick = async () => {
+    if (onSave && upload && file && preview) {
       onSave(preview);
+
+      const res = await upload(file);
+
+      if (res && !res.isError) {
+        onSave(res.data)
+      }
     }
+
+    // Ejecutar upload y luego onsave
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +64,7 @@ export const UploadProfilePictureForm = ({
       reader.addEventListener("load", () => {
         if (typeof reader.result === "string") {
           setSrc(reader.result);
+          if (event.target.files) setFile(event.target.files[0]);
         }
       });
       reader.readAsDataURL(event.target.files[0]);
