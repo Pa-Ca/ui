@@ -56,6 +56,7 @@ Default.args = {
       "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
     name: "Sempre Dritto",
     color: "#EF7A08",
+    branchOptions: []
   },
   icon_size: "450px",
   durationHour: 1,
