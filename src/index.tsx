@@ -80,7 +80,9 @@ export * from "./stories/template/reservationCheckOutBeta/ReservationCheckOutBet
 // UTILS
 export * from "./stories/hooks/useInputForm";
 export * from "./stories/utils/stringValidation";
-import useInputForm from "./stories/hooks/useInputForm";
-import OptionObject from "./stories/utils/objects/OptionObject";
 
-export { useInputForm, OptionObject };
+import useInputForm from "./stories/hooks/useInputForm";
+export { useInputForm };
+
+import OptionObject from "./stories/utils/objects/OptionObject";
+export type { OptionObject };

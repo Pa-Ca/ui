@@ -4,6 +4,7 @@ import styles from "./editable.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
+import { CSSProperties as ReactCSSProperties } from "react";
 
 interface EditableProps {
   /**
@@ -56,6 +57,18 @@ export const Editable = ({
 }: EditableProps) => {
   const width = useMemo(() => (useIcons ? "65px" : "220px"), [useIcons]);
 
+  type StyleProps = {
+    [key: string]: string | number | undefined;
+  };
+
+  function setStyle(style: StyleProps): StyleProps {
+    return {
+      ...style,
+      "--editable-initial-color": initialColor,
+      "--editable-end-color": color,
+    };
+  }
+
   return (
     <Box
       className={styles["editable--container"]}
@@ -65,10 +78,7 @@ export const Editable = ({
         <Box
           className={styles["editable--editable-icon"]}
           onClick={onPencilClick}
-          style={{
-            "--editable-initial-color": initialColor,
-            "--editable-end-color": color,
-          }}
+          style={setStyle({})}
         >
           <Icon
             icon="pencil"

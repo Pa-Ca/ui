@@ -151,14 +151,13 @@ export const Home = ({
             name={name}
             logged={user.logged}
             picture={picture}
-            onLeftSectionClick={onHeaderReserveClick}
             onPacaClick={onPacaClick}
-            onRightSectionClick={onFavoritesClick}
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
             userRole={user.role}
             backgroundColor="transparent"
+            branchOptions={[]}
           />
 
           <Box className={styles ["home--header-text-container"]} height="33%">
