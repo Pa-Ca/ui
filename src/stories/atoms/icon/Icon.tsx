@@ -50,7 +50,7 @@ import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-f
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
 import Color from 'color';
-import styles from "./Icon.module.scss";
+import styles from "./icon.module.scss";
 import classnames from "classnames";
 
 export type IconType =
