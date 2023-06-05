@@ -45,4 +45,7 @@
   @media (max-width: $mobile-max-width) {
     @content;
   }
+  @media (max-height: $mobile-max-width) {
+    @content;
+  }
 }

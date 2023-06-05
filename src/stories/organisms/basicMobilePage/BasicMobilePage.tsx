@@ -37,7 +37,9 @@ export const BasicMobilePage = ({
         <Box className={styles["basic-mobile-page--children-container"]}>
           {children}
         </Box>
-        <Footer />
+        <Box>
+          <Footer />
+        </Box>
       </Box>
     </Box>
   );

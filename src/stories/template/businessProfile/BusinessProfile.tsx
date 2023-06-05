@@ -298,7 +298,7 @@ export const BusinessProfile = ({
   onSaveBranchClosingTime,
   onDeleteBranch,
   onSaveProfilePicture,
-  uploadProfilePicture: uploadProfilePicture,
+  uploadProfilePicture,
 
   color,
   secondaryColor,

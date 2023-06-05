@@ -9,8 +9,8 @@
 }
 
 .basic-mobile-page--content-container {
-  flex: 1;
   display: flex;
+  position: relative;
   overflow-y: scroll;
   flex-direction: column;
 

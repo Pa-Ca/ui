@@ -102,6 +102,14 @@
 
   @include hide-scroll();
 }
+.left-menu--current-branch {
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  max-width: 65vw;
+  min-height: 25px;
+  align-items: center;
+}
 .left-menu--branches-item {
   width: 100%;
   min-height: 25px;

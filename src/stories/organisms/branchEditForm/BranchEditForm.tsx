@@ -475,6 +475,7 @@ export const BranchEditForm = ({
               fullWidth
               size="large"
               borderColor={color}
+              onClick={() => setDeleteBranch(false)}
               state={emailInput.value === email ? "normal" : "inactive"}
             >
               <Box

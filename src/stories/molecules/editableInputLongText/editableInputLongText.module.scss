@@ -14,25 +14,21 @@
   justify-content: space-between;
 }
 
-.editable-input-long-text--text-area{
-  padding: 1em;
-  font-family: "Montserrat";
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+.editable-input-long-text--text-area {
   z-index: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: right;
   border: 0px;
-  outline: none;
   width: 100%;
   height: 100%;
+  resize: none;
+  padding: 1em;
+  display: flex;
+  outline: none;
+  overflow: hidden;
+  align-items: right;
+  flex-direction: row;
+  text-overflow: clip;
   justify-content: flex-start;
   background-color: transparent;
-  overflow: hidden;
-  text-overflow: clip;
-  resize: none;
 }
 
 .editable-input-long-text--text-area-container {
@@ -44,11 +40,8 @@
 }
 
 .editable-input-long-text--text{
-  size  :"20px";
-  font-family : 'Montserrat';
-  line-height: "24px";
-  margin-left: '10px';
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   overflow: clip;
 }
 

@@ -57,6 +57,11 @@
   height: 377px;
   border-radius: 16px;
   margin-bottom: 64px;
+
+  @include mobile {
+    height: 250px;
+    margin-bottom: 50px;
+  }
 }
 
 .branch-edit-form--input-item {
