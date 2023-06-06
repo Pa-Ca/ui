@@ -1,5 +1,7 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
 
 .input-select--menu {
   display: flex;
@@ -48,4 +50,32 @@
   border: 0; 
   height: "100%";
   outline: none;
+}
+
+.input-select--option--pair{
+  background-color: $light-theme--alternative-background-color ;
+}
+.input-select--option--odd{
+  background-color: $light-theme--background-color ;
+}
+
+// now do the dark theme
+@media (prefers-color-scheme: dark) {
+  .input-select--option--pair{
+    background-color: $dark-theme--alternative-background-color ;
+  }
+  .input-select--option--odd{
+    background-color: $dark-theme--background-color ;
+  }
+}
+
+.input-text--input-container{
+  background-color: $light-theme--alternative-background-color ;
+}
+
+// now do the dark theme
+@media (prefers-color-scheme: dark) {
+  .input-text--input-container{
+    background-color: $dark-theme--alternative-background-color ;
+  }
 }
