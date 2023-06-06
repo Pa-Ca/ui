@@ -356,6 +356,4 @@ Default.args = {
       text: "chacao",
     },
   ],
-  color: "#EF7A08",
-  secondaryColor: "#FF8682",
 };

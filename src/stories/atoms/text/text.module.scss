@@ -1,3 +1,6 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+@import '../../assets/scss/variables.module.scss';
 @import "../../assets/scss/mixins.scss";
 
 @font-face {
@@ -10,12 +13,48 @@
 .text {
   font-family: "Montserrat";
   font-style: normal;
-  color: "#121212";
+  color: $light-theme--text;
   font-weight: 500;
   line-height: 1.3em;
 }
 
-// Styles
+@media (prefers-color-scheme: dark){
+  .text {
+    color: $dark-theme--text;
+  }
+}
+
+.text--warning {
+  color: $warning-color;
+}
+.text--error {
+  color: $error-color;
+}
+.text--button {
+  color: $light-theme--text-button-color;
+}
+.text--hyperlink{
+  color : $light-theme--text-hyperlink-color;
+}
+.text--hightlight{
+  color : $light-theme--text-highlight-color;
+}
+
+@media (prefers-color-scheme: dark){
+  .text--button {
+    color: $dark-theme--text;
+  }
+  .text--hyperlink{
+    color : $dark-theme--text-hyperlink-color;
+  }
+  .text--hightlight{
+    color : $dark-theme--text-highlight-color;
+  }
+}
+
+
+
+// Styles 
 .text--italic {
   font-style: italic;
 }

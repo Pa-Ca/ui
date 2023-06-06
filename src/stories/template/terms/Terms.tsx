@@ -20,18 +20,18 @@ export const Terms = ({ headerArgs, ...props }: TermsProps) => {
     <Box className={(styles["terms--super-container"])}>
       <BasicPage headerArgs={headerArgs}>
         <Box className="terms--container">
-          <Text color="#112211" weight="600" type="h4">
+          <Text weight="600" type="h4">
             Términos y Condiciones
           </Text>
 
           <Box className={(styles["term--section"])}>
-            <Text color="#112211" type="h5" className="term--title">
+            <Text type="h5" className="term--title">
               Payments
             </Text>
 
             <ul>
               <li>
-                <Text color="#112211" weight="400" type="h6">
+                <Text weight="400" type="h6">
                   If you are purchasing your ticket using a debit or credit card
                   via the Website, we will process these payments via the
                   automated secure common payment gateway which will be subject
@@ -41,7 +41,7 @@ export const Terms = ({ headerArgs, ...props }: TermsProps) => {
               </li>
 
               <li>
-                <Text color="#112211" weight="400" type="h6">
+                <Text weight="400" type="h6">
                   If you do not supply the correct card billing address and/or
                   cardholder information, your booking will not be confirmed and
                   the overall cost may increase. We reserve the right to cancel
@@ -57,7 +57,7 @@ export const Terms = ({ headerArgs, ...props }: TermsProps) => {
               </li>
 
               <li>
-                <Text color="#112211" weight="400" type="h6">
+                <Text weight="400" type="h6">
                   Golobe may require the card holder to provide additional
                   payment verification upon request by either submitting an
                   online form or visiting the nearest Golobe office, or at the
@@ -77,11 +77,11 @@ export const Terms = ({ headerArgs, ...props }: TermsProps) => {
           </Box>
 
           <Box className={(styles["term--section"])}>
-            <Text color="#112211" type="h5" className="term--title">
+            <Text type="h5" className="term--title">
               Contact Us
             </Text>
 
-            <Text color="#112211" weight="400" type="h6">
+            <Text weight="400" type="h6">
               If you have any questions about our Website or our Terms of Use,
               please contact: <br />
               Golobe Group Q.C.S.C <br />

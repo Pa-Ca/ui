@@ -1,5 +1,7 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 
 .profile-dropdown--menu {
   display: flex;
@@ -22,7 +24,7 @@
 
   min-width: 100px;
   padding: 14px 0 0;
-  background-color: white;
+  background-color: $light-theme--background-color;
   border-radius: 12px;
   border: solid 2px gray;
 
@@ -53,13 +55,24 @@
     transition: 0.25s all;
     &:hover {
       
-      background-color: $select-color;
+      background-color: $light-theme--alternative-background-color;
     }
 
     svg {
       margin-right: 5px;
     }
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile-dropdown--menu {
+    background-color: $dark-theme--background-color;
+    li {
+    &:hover {
+      background-color: $dark-theme--alternative-background-color;
+    }}
+  }
+  
 }
 
 .profile-dropdown--menu-in {

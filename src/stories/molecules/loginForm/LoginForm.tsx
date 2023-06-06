@@ -32,18 +32,6 @@ interface LoginFormProps {
    */
   onGoogleSignUp: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
-  /**
    * Component width
    */
   width?: string;
@@ -62,9 +50,6 @@ export const LoginForm = ({
   onForgotClick,
   onSignUp,
   onGoogleSignUp,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   width,
   height,
   ...props
@@ -92,7 +77,7 @@ export const LoginForm = ({
             className={styles["login-form--pointer"]}
             onClick={onForgotClick}
           >
-            <Text weight="600" type="h6" color={secondaryColor}>
+            <Text weight="500" type="h6" hyperlinkStyle>
               Olvidé mi contraseña
             </Text>
           </Box>
@@ -113,11 +98,11 @@ export const LoginForm = ({
             <>
               <Icon
                 icon="alert"
-                color={styleVariables.errorColor}
+                errorStyle
                 size="20px"
               />
               <Box style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.errorColor}>
+              <Text type="h7" errorStyle>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>
@@ -130,11 +115,10 @@ export const LoginForm = ({
           fullWidth
           primary
           size="large"
-          backgroundColor={color}
           onClick={() => onLogin(email.value, password.value)}
         >
           <Box className={styles["login-form--button-text"]}>
-            <Text color="white" type="h5" weight="600">
+            <Text primaryButtonStyle type="h5" weight="600">
               Iniciar Sesión
             </Text>
           </Box>
@@ -142,12 +126,12 @@ export const LoginForm = ({
       </Box>
 
       <Box className={styles["login-form--sign-in"]}>
-        <Text color="#112211" type="h6">
+        <Text highlightStyle type="h6">
           {" "}
           ¿No tiene una cuenta aún?{" "}
         </Text>
         <Box className={styles["login-form--pointer"]} onClick={onSignUp}>
-          <Text color={secondaryColor} type="h6" weight="600">
+          <Text hyperlinkStyle type="h6" weight="600">
             &nbsp;Regístrate
           </Text>
         </Box>
@@ -170,7 +154,6 @@ export const LoginForm = ({
             size="large"
             primary={false}
             onClick={onGoogleSignUp}
-            borderColor={otherLoginsColor}
             className={styles["login-form--other-login-button"]}
           >
               <Box className={styles["login-form--other-login-button-sub-container"]}>

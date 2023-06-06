@@ -65,9 +65,6 @@ export const Login = ({
         onForgotClick={onForgotClick}
         onSignUp={onSignUp}
         onGoogleSignUp={onGoogleSignUp}
-        color={color}
-        secondaryColor={secondaryColor}
-        otherLoginsColor={otherLoginsColor}
       />
     </AuthPage>
   );

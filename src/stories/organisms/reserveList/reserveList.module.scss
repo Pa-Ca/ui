@@ -1,3 +1,6 @@
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
+
 .reserve-list--container {
   display: flex;
   flex-direction: column;
@@ -29,6 +32,13 @@
   padding-left: 5px;
   padding-right: 5px;
   justify-content: space-between;
+  background-color: $light-theme--background-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  .reserve-list--reservations {
+    background-color: $dark-theme--alternative-background-color;
+  }
 }
 .reserve-list--reservation {
   display: flex;
@@ -41,8 +51,14 @@
   align-items: center;
   padding-left: 24px;
   margin-bottom: 16px;
-  background-color: white;
+  background-color: $light-theme--background-color;
 }
+@media (prefers-color-scheme: dark) {
+  .reserve-list--date {
+    background-color: $dark-theme--background-color;
+  }
+}
+
 .reserve-list--no-branch-box {
   text-align: center;
   justify-content: center;

@@ -113,7 +113,7 @@ export const ReserveDetails = ({
           justifyContent: centering,
         }}
       >
-        <Text type="h4" color="#112211" weight="700">
+        <Text type="h4" weight="700">
           {" "}
           {component_title}{" "}
         </Text>
@@ -167,7 +167,7 @@ export const ReserveDetails = ({
 
       {showInviteFriends && (
         <Box className={styles["reserve-details--invite-friends"]}>
-          <Text type="p" color="#112211" weight="700">
+          <Text type="p" weight="700">
             Invita a tus amigos
           </Text>
           <AddFriends {...invitedFriendsProps} />

@@ -16,10 +16,6 @@ interface CheckListProps {
    */
   setItems: (objects: CheckObject[]) => void;
   /**
-   * Icons color
-   */
-  color?: string;
-  /**
    * Text class name
    */
   textClassName?: string;
@@ -31,7 +27,6 @@ interface CheckListProps {
 export const CheckList = ({
   items,
   setItems,
-  color,
   textClassName,
   ...props
 }: CheckListProps) => {
@@ -63,12 +58,11 @@ export const CheckList = ({
           <Icon
             icon={item.selected ? "checkbox" : "uncheckbox"}
             size="18px"
-            color={color}
           />
           <Box width="5px" />
           <Text
             type="h6"
-            color="#112211"
+            highlightStyle
             weight="500"
             className={textClassName}
           >

@@ -1,0 +1,24 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+@import '../../assets/scss/variables.module.scss';
+
+
+.icon{
+    color : $light-theme--icon-color  ;
+}
+
+@media (prefers-color-scheme: dark) {
+    .icon{
+        color : $dark-theme--icon-color;
+    }
+}
+
+// Create an style for alerts and for errors
+
+.icon--error{
+    color : $error-color
+}
+
+.icon--warning{
+    color : $warning-color;
+}

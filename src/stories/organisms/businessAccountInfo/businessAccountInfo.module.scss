@@ -1,3 +1,5 @@
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 @import "../../assets/scss/mixins.scss";
 
 .business-account-info--container {
@@ -14,16 +16,21 @@
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 32px;
-  
-  flex-direction: column;
-  background-color: white;
 
+  background-color: $light-theme--background-color;
+  border-radius: 16px;
+  flex-direction: column;
   @include mobile {
     gap: 10px;
     padding-top: 16px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 16px;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .business-account-info--data-container {
+    background-color: $dark-theme--background-color;
   }
 }
 .business-account-info--input-container {

@@ -33,18 +33,6 @@ export interface RecoverPasswordComponentProps {
    */
   onGoogleLogin: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
-  /**
    * height of the component
    */
   height?: string;
@@ -64,9 +52,6 @@ export const RecoverPasswordComponent = ({
   onBackToLogin,
   onSubmit,
   onGoogleLogin,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   height,
   width,
   ...props
@@ -121,9 +106,6 @@ export const RecoverPasswordComponent = ({
                 error={error}
                 onSubmit={onSubmit}
                 onGoogleLogin={onGoogleLogin}
-                color={color}
-                secondaryColor={secondaryColor}
-                otherLoginsColor={otherLoginsColor}
               />
             </Box>
           ) : (
@@ -145,7 +127,6 @@ export const RecoverPasswordComponent = ({
       <Box className={styles["recover-password-component--caroussel"]}>
         <ImagesCarousel
           images={images}
-          color={color}
           width="100%"
           height="100%"
         />

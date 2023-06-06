@@ -40,9 +40,7 @@ export const Default = Template.bind({});
 Default.args = {
   picture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
   size: "200px",
-  border: "5px",
   icon: "down",
-  color: "#EF7A08",
   dropdownOptions: dropdownOptions,
   userName: "Ricardo Milano",
 };

@@ -89,8 +89,6 @@ export const BusinessAccountInfo = ({
   onSavePhoneNumber,
   onChangePassword,
   onForgotPassword,
-  color,
-  secondaryColor,
   ...props
 }: BusinessAccountInfoProps) => {
   const windowSize = useWindowResize();
@@ -126,7 +124,7 @@ export const BusinessAccountInfo = ({
 
       <Box className={styles["business-account-info--data-container"]}>
         <Box className={styles["business-account-info--input-container"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             Nombre Local
           </Text>
 
@@ -135,7 +133,6 @@ export const BusinessAccountInfo = ({
             type="text"
             width="100%"
             height="100%"
-            color={color}
             inputHook={name}
             saveValueFunction={(value: string) => onSaveName(value)}
             useEditIcons={windowSize.resolutionType !== "desktop"}
@@ -143,7 +140,7 @@ export const BusinessAccountInfo = ({
         </Box>
 
         <Box className={styles["business-account-info--input-container"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             Email
           </Text>
 
@@ -151,7 +148,6 @@ export const BusinessAccountInfo = ({
             type="email"
             width="100%"
             height="100%"
-            color={color}
             inputHook={email}
             editable={false}
             saveValueFunction={(value: string) => {}}
@@ -160,14 +156,13 @@ export const BusinessAccountInfo = ({
         </Box>
 
         <Box className={styles["business-account-info--input-container"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             Número de teléfono
           </Text>
 
           <EditableInputText
             width="100%"
             height="100%"
-            color={color}
             editable={true}
             type="phoneNumber"
             inputHook={phoneNumber}
@@ -179,7 +174,6 @@ export const BusinessAccountInfo = ({
         <Box>
           <Button
             primary
-            backgroundColor={color}
             onClick={() => setChangePassword(true)}
           >
             <Text weight="600">Cambiar contraseña</Text>
@@ -218,7 +212,7 @@ export const BusinessAccountInfo = ({
             className={styles["business-account-info--forgot-password"]}
             onClick={onForgotPassword}
           >
-            <Text color={secondaryColor} type="h6">
+            <Text hyperlinkStyle type="h6">
               ¿Olvidaste tu Contraseña?
             </Text>
           </Box>
@@ -242,7 +236,6 @@ export const BusinessAccountInfo = ({
             fullWidth
             primary
             onClick={submit}
-            backgroundColor={color}
             state={done ? "inactive" : "normal"}
           >
             <Box
@@ -258,7 +251,6 @@ export const BusinessAccountInfo = ({
           <Box height="10px" />
           <Button
             fullWidth
-            borderColor={color}
             onClick={() => setChangePassword(false)}
           >
             <Box

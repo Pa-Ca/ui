@@ -49,7 +49,9 @@ import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-fill
 import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-fill";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
-import Color from "color";
+import Color from 'color';
+import styles from "./icon.module.scss";
+import classnames from "classnames";
 
 export type IconType =
   | "pa-ca"
@@ -119,6 +121,19 @@ interface IconProps {
    * Other icon style
    */
   style?: React.CSSProperties;
+  /**
+   * Icon Class name
+   */
+  className?: string;
+  /**
+   * Warning icon color
+   */
+  warningStyle?: boolean;
+  /**
+   * Error icon color
+   */
+  errorStyle?: boolean;
+
 }
 
 /**
@@ -128,385 +143,396 @@ export const Icon = ({
   icon = "pa-ca",
   size = "1x",
   color = "#000000",
+  errorStyle = false,
+  warningStyle = false,
   style,
+  className,
   ...props
 }: IconProps) => {
+  const finalClassName = classnames(styles.icon,
+                                    errorStyle ? styles["icon--error"] : warningStyle ? styles["icon--warning"] : "",
+                                    className);
+
   switch (icon) {
     case "pa-ca":
       const paca_color =
-        Color(color).hex() === Color("white").hex()
-          ? "/images/pa-ca-icon-white.png"
-          : "/images/pa-ca-icon.png";
+          Color(color).hex() === Color("white").hex()
+            ? "/images/pa-ca-icon-white.png"
+            : "/images/pa-ca-icon.png";
 
       return <img src={paca_color} width={size} height={size} {...props} />;
     case "facebook":
       return (
         <Iconify
+          className={finalClassName}
           icon={facebookIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "twitter":
       return (
         <Iconify
+          className={finalClassName}
           icon={twitterIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "youtube":
       return (
         <Iconify
+          className={finalClassName}
           icon={youtubeIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "instagram":
       return (
         <Iconify
+          className={finalClassName}
           icon={instagramLogoFill}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "bell":
       return (
         <Iconify
+          className={finalClassName}
           icon={roomService}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "heart":
       return (
         <Iconify
+          className={finalClassName}
           icon={heartIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "heart-fill":
       return (
         <Iconify
+          className={finalClassName}
           icon={heartFill}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "paper-plane":
       return (
         <Iconify
+          className={finalClassName}
           icon={paperPlane}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "dollar":
       return (
         <Iconify
+          className={finalClassName}
           icon={currencyCircleDollarFill}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "location":
       return (
         <Iconify
+          className={finalClassName}
           icon={baselineLocationOn}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "eye":
       return (
         <Iconify
+          className={finalClassName}
           icon={eyeFill}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "eye-slash":
       return (
         <Iconify
+          className={finalClassName}
           icon={eyeSlashFill}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "google":
-      return <Iconify icon={googleIcon} style={{ fontSize: size }} />;
+      return <Iconify
+            className={finalClassName} 
+            icon={googleIcon} 
+            style={{ fontSize: size }} 
+        />;
     case "person":
       return (
         <Iconify
+          className={finalClassName}
           icon={personIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "cancel":
       return (
         <Iconify
+          className={finalClassName}
           icon={cancelIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "check":
       return (
         <Iconify
+          className={finalClassName}
           icon={checkCircle}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "check-outline":
       return (
         <Iconify
+          className={finalClassName}
           icon={checkCircleOutline}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "pencil":
       return (
         <Iconify
+          className={finalClassName}
           icon={pencilIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "pool":
       return (
         <Iconify
+          className={finalClassName}
           icon={poolIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "spa":
       return (
         <Iconify
+          className={finalClassName}
           icon={spaRounded}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "restaurant":
       return (
         <Iconify
+          className={finalClassName}
           icon={restaurantIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "fitness":
       return (
         <Iconify
+          className={finalClassName}
           icon={fitnessCentre}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "wine":
       return (
         <Iconify
+          className={finalClassName}
           icon={wineIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "wifi":
       return (
         <Iconify
+          className={finalClassName}
           icon={wifiHighBold}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "coffee":
       return (
         <Iconify
+          className={finalClassName}
           icon={coffeeIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "fast-food":
       return (
         <Iconify
+          className={finalClassName}
           icon={fastFood}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "down":
       return (
         <Iconify
+          className={finalClassName}
           icon={roundKeyboardArrowDown}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "up":
       return (
         <Iconify
+          className={finalClassName}
           icon={roundKeyboardArrowUp}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "left":
       return (
         <Iconify
+          className={finalClassName}
           icon={iosArrowLeft24Filled}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "right":
       return (
         <Iconify
+          className={finalClassName}
           icon={iosArrowRight24Filled}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "table":
       return (
         <Iconify
+          className={finalClassName}
           icon={tableRestaurant}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "checkbox":
       return (
         <Iconify
+          className={finalClassName}
           icon={checkBox}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "uncheckbox":
       return (
         <Iconify
+          className={finalClassName}
           icon={checkBoxOutlineBlank}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "share":
       return (
         <Iconify
+          className={finalClassName}
           icon={shareIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "flag":
       return (
         <Iconify
+          className={finalClassName}
           icon={flagFilled}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "zelle":
       return (
         <Iconify
+          className={finalClassName}
           icon={zelleIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "visa":
       return (
         <Iconify
+          className={finalClassName}
           icon={ccVisa}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "smartPhone":
       return (
         <Iconify
+          className={finalClassName}
           icon={phoneAndroid}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "plus-circle":
       return (
         <Iconify
+          className={finalClassName}
           icon={plusCircle24}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "circle":
       return (
         <Iconify
+          className={finalClassName}
           icon={lensOutline}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "double-circle":
       return (
         <Iconify
+          className={finalClassName}
           icon={circleSlice8}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "parking":
       return (
         <Iconify
+          className={finalClassName}
           icon={localParking}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "alert":
       return (
         <Iconify
+          className={finalClassName}
           icon={alertCircle}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "logout":
       return (
         <Iconify
+          className={finalClassName}
           icon={logoutIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "email-sent":
       return (
         <Iconify
+          className={finalClassName}
           icon={emailCheckOutline}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "upload":
       return (
         <Iconify
+          className={finalClassName}
           icon={cloudUpload}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "warning":
       return (
         <Iconify
+          className={finalClassName}
           icon={warningIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "menu":
@@ -520,9 +546,9 @@ export const Icon = ({
     default:
       return (
         <Iconify
+          className={finalClassName}
           icon={questionMark}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
   }

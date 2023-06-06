@@ -1,5 +1,7 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 
 .header-branch-dropdown-input-select--menu {
   display: flex;
@@ -21,7 +23,7 @@
   padding-left: 0;
   min-width: 50px;
   max-width: 300px;
-  background-color: white;
+  background-color: $light-theme--background-color;
   border-radius: 12px;
   border: solid 2px gray;
 
@@ -43,6 +45,7 @@
     }
   }
 
+
   li {
 
     list-style: none;
@@ -54,10 +57,21 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $select-color;
+      background-color: $light-theme--alternative-background-color;
     }
 
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  .header-branch-dropdown-input-select--menu {
+    background-color: $dark-theme--background-color;
+    li {
+    &:hover {
+      background-color: $dark-theme--alternative-background-color;
+    }}
+  }
+  
 }
 
 .header-branch-dropdown-input-select--menu-in {

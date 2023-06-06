@@ -2,6 +2,7 @@ import React from "react";
 import useInputForm from "../../hooks/useInputForm";
 import { EditableInputText } from "./EditableInputText";
 import { StoryFn, Meta } from "@storybook/react";
+import OptionObject from "../../utils/objects/OptionObject";
 
 export default {
   title: "Design System/molecules/EditableInputText",
@@ -44,7 +45,24 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof EditableInputText> = (args: any) => {
   const inputHook = useInputForm("");
-  return <EditableInputText inputHook={inputHook} {...args} />;
+  const options  = [
+    {
+      text: "Option 1",
+      label: "Option 1",
+      number: 1,
+    },
+    {
+      text: "Option 2",
+      label: "Option 2",
+      number: 2,
+    },
+    {
+      text: "Option 3",
+      label: "Option 3",
+      number: 3,
+    },
+  ];
+  return <EditableInputText inputHook={inputHook} options={options} {...args} />;
 };
 
 export const Default = Template.bind({});

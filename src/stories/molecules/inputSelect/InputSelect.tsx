@@ -111,7 +111,6 @@ export const InputSelect = ({
       <Box
         className={inputTextStyles["input-text--input-container"]}
         innerRef={observer.ref}
-        backgroundColor="white"
         style={{
           width,
           height,
@@ -177,9 +176,6 @@ export const InputSelect = ({
             ref={ref}
           >
             {options.map((option, index) => {
-              // El background de los impares sera distinto de los pares
-              // para diferenciarlos
-              const backgroundColor = index % 2 === 0 ? "#F1F1F1" : "white";
               // La primera y ultima opcion deben tener bordes en la zona
               // superior e inferior respectivamente para adaptarse al
               // menu
@@ -204,8 +200,10 @@ export const InputSelect = ({
                   key={`input-select--option-${index}-${option.label}`}
                 >
                   <button
-                    className={styles["input-select--option-button"]}
-                    style={{ backgroundColor, ...optionStyle }}
+                    className={classnames(styles["input-select--option-button"],
+                    index % 2 === 0 ? styles["input-select--option--pair"] : styles["input-select--option--odd"]
+                    )}
+                    style={{ ...optionStyle }}
                     onClick={() => selectOption(option)}
                   >
                     <Text type="h6">&nbsp;{option.label}&nbsp;</Text>
