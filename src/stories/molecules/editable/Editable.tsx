@@ -47,9 +47,9 @@ export const Editable = ({
 }: EditableProps) => {
   const width = useMemo(() => (useIcons ? "65px" : "220px"), [useIcons]);
 
-  type StyleProps = {
-    [key: string]: string | number | undefined;
-  };
+  // type StyleProps = {
+  //   [key: string]: string | number | undefined;
+  // };
 
   // function setStyle(style: StyleProps): StyleProps {
   //   return {

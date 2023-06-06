@@ -211,7 +211,7 @@ export const BranchEditForm = ({
       height={height}
     >
       <Box className={styles["branch-edit-form--name-input"]}>
-        <Text weight="400">
+        <Text weight="400" highlightStyle>
           {" "}
           Nombre{" "}
         </Text>
@@ -229,7 +229,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--capacity-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Capacidad{" "}
           </Text>
@@ -245,7 +245,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--average-reserve-time"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Tiempo promedio de reserva{" "}
           </Text>
@@ -264,7 +264,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--type-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Tipo{" "}
           </Text>
@@ -281,7 +281,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--cost-per-person-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Coste por persona ($){" "}
           </Text>
@@ -299,7 +299,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--type-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Hora de apertura{" "}
           </Text>
@@ -316,7 +316,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--cost-per-person-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Hora de cierre{" "}
           </Text>
@@ -335,7 +335,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--phone-number-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Número de teléfono Local{" "}
           </Text>
@@ -351,7 +351,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--location-input"]}>
-          <Text weight="400">
+          <Text weight="400" highlightStyle>
             {" "}
             Ubicación{" "}
           </Text>
@@ -371,7 +371,7 @@ export const BranchEditForm = ({
       </Box>
 
       <Box className={styles["branch-edit-form--description-container"]}>
-        <Text weight="400">
+        <Text weight="400" highlightStyle>
           {" "}
           Descripción{" "}
         </Text>
@@ -388,7 +388,7 @@ export const BranchEditForm = ({
       </Box>
 
       <Box className={styles["branch-edit-form--precise-location-container"]}>
-        <Text weight="400">
+        <Text weight="400" highlightStyle>
           {" "}
           Ubicación precisa
         </Text>
