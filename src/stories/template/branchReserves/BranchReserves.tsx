@@ -119,7 +119,6 @@ export const BranchReserves = ({
   durationHour,
   durationMin,
   reservations,
-  color,
   header,
   firstName,
   lastName,
@@ -132,8 +131,6 @@ export const BranchReserves = ({
   validHoursOut,
   persons,
   occasion,
-  submitButtonColor,
-  cancelButtonColor,
   haveBranch = true,
   icon_size,
   showModal,
@@ -204,7 +201,6 @@ export const BranchReserves = ({
                 <ReserveList
                   icon_size={icon_size}
                   reservations={currentActiveReservation}
-                  color={color}
                   state={2}
                   setShowModal={setShowModal}
                 />
@@ -223,7 +219,6 @@ export const BranchReserves = ({
                 <ReserveList
                   icon_size={icon_size}
                   reservations={currentPendingReservation}
-                  color={color}
                   state={1}
                   setShowModal={setShowModal}
                 />
@@ -270,7 +265,6 @@ export const BranchReserves = ({
               fullWidth
               primary={false}
               size="medium"
-              backgroundColor={cancelButtonColor}
               onClick={() => setShowModal(false)}
             >
               <Box
@@ -291,7 +285,6 @@ export const BranchReserves = ({
               fullWidth
               primary
               size="medium"
-              backgroundColor={submitButtonColor}
               onClick={() => onSubmit()}
             >
               <Box
@@ -299,7 +292,7 @@ export const BranchReserves = ({
                   styles["branch-reserves--submit-reservation--button-text"]
                 }
               >
-                <Text color="white" type="h6" weight="600">
+                <Text primaryButtonStyle type="h6" weight="600">
                   Completar
                 </Text>
               </Box>

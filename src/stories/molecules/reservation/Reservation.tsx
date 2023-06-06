@@ -119,7 +119,7 @@ export const Reservation = ({
               onClick={onCloseReservation}
               backgroundColor={color}
             >
-              <Text type="h6" color="#112211">
+              <Text type="h6">
                 Cerrar Reserva
               </Text>
             </Button>

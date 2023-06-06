@@ -53,7 +53,7 @@ export const ClientInfoForm = ({
     <Box className={styles["client-info-form--container"]} style={{ width, height }}>
       <Box className={styles["client-info-form--content"]}>
         <Box className={styles["client-info-form--title"]}>
-          <Text type="h4" color="#112211" weight="700">
+          <Text type="h4"  weight="700">
             {formTitle}
           </Text>
         </Box>

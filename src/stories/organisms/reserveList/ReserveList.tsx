@@ -98,7 +98,7 @@ export const ReserveList = ({
               </Text>
 
               <Box className={styles["reserve-list--type"]}>
-                <Text weight="600" color="#112211" type="h6">
+                <Text weight="600"  type="h6">
                   Upcoming
                 </Text>
                 <Icon icon="down" size="24px" />
@@ -111,7 +111,7 @@ export const ReserveList = ({
                 backgroundColor={color}
                 onClick={() => setShowModal(true)}
               >
-                <Text type="h6" color="#112211">
+                <Text type="h6" >
                   Añadir Reserva
                 </Text>
               </Button>
@@ -126,7 +126,7 @@ export const ReserveList = ({
             </Text>
 
             <Box className={styles["reserve-list--type"]}>
-              <Text weight="600" color="#112211" type="h6">
+              <Text weight="600"  type="h6">
                 Upcoming
               </Text>
               <Icon icon="down" size="24px" />
@@ -153,7 +153,7 @@ export const ReserveList = ({
                 weakShadow
                 className={styles["reserve-list--date"]}
               >
-                <Text weight="600" color="#112211">
+                <Text weight="600">
                   {group.date}
                 </Text>
               </Box>
@@ -162,7 +162,6 @@ export const ReserveList = ({
                 className={styles["reserve-list--reservations"]}
                 borderRadius="16px"
                 weakShadow
-                backgroundColor="white"
               >
                 {group.reservations.map((reservation, index) => (
                   <Reservation
