@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo , useEffect, useState} from "react";
 import { Box } from "../../atoms/box/Box";
 import styles from "./editable.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
+import classnames from "classnames";
 
 interface EditableProps {
   /**
@@ -30,14 +31,6 @@ interface EditableProps {
    * Use icons instead of buttons
    */
   useIcons?: boolean;
-  /**
-   * Pencil initial color
-   */
-  initialColor?: string;
-  /**
-   * Component main color
-   */
-  color?: string;
 }
 
 /**
@@ -50,8 +43,6 @@ export const Editable = ({
   onSaveClick,
   onCancelClick,
   useIcons = false,
-  initialColor,
-  color,
   ...props
 }: EditableProps) => {
   const width = useMemo(() => (useIcons ? "70px" : "220px"), [useIcons]);
@@ -65,19 +56,12 @@ export const Editable = ({
         <Box
           className={styles["editable--editable-icon"]}
           onClick={onPencilClick}
-          style={{
-            "--editable-initial-color": initialColor,
-            "--editable-end-color": color,
-          }}
+          
         >
           <Icon
             icon="pencil"
             size="25px"
-            style={{
-              animation: edit
-                ? styles["editable--edit-animation"] + " 500ms linear forwards"
-                : styles["editable--edit-animation-reverse"] + " 500ms linear forwards",
-            }}
+            className={edit ? styles['editable--edit-animation'] : styles['editable--edit-animation-reverse']}
           />
         </Box>
       )}
@@ -105,15 +89,15 @@ export const Editable = ({
                 onClick={onSaveClick}
                 className={styles["editable--action-icon"]}
               >
-                <Icon icon="check" color={color} size="30px" />
+                <Icon icon="check" size="30px" />
               </Box>
             </>
           ) : (
             <>
-              <Button borderColor={color} onClick={onCancelClick}>
+              <Button onClick={onCancelClick}>
                 <Text> Cancelar </Text>
               </Button>
-              <Button backgroundColor={color} primary onClick={onSaveClick}>
+              <Button primary onClick={onSaveClick}>
                 <Text> Guardar </Text>
               </Button>
             </>

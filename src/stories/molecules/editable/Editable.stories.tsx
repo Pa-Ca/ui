@@ -34,5 +34,4 @@ const Template: StoryFn<typeof Editable> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  color: "#EF7A08",
 };

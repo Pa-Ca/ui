@@ -1,3 +1,4 @@
+import "./selectStyles.scss";
 import React, { useMemo, useState, useRef } from "react";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
@@ -68,10 +69,6 @@ interface EditableInputTextProps {
    * Component height
    */
   height?: string;
-  /**
-   * Component color
-   */
-  color?: string;
   /*
    * Class name for the text
    */
@@ -242,11 +239,11 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames(
-                styles["editable-input-text--select"],
+                "editable-input-text--select",
                 className
               )}
               classNamePrefix={classnames(
-                styles["editable-input-text--select"],
+                "editable-input-text--select",
                 className
               )}
               noOptionsMessage={() => "No se encuentra la opción"}
@@ -259,10 +256,6 @@ export const EditableInputText = ({
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  boxShadow: "none",
-                  "&:hover": {
-                    borderColor: "black",
-                  },
                   ...style,
                 }),
                 option: (baseStyles) => ({

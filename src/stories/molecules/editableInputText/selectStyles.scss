@@ -1,0 +1,118 @@
+/// This scss is for the select component. It is used in the editableInputText component.
+/// This is the only way (I found) that the styles from the scss can affect the react select component.
+/// 
+
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
+.editable-input-text--select {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0px;
+  min-width: 200px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  width: 100%;
+
+  .editable-input-text--select__option {
+    &:nth-child(odd) {
+      background-color: #F1F1F1;
+      color: $light-theme--alternative-color;
+    }
+
+    &:nth-child(even) {
+      background-color: $light-theme--background-color;
+      color: $light-theme--alternative-color;
+    }
+
+  }
+
+  .editable-input-text--select__single-value{
+    color: $light-theme--alternative-color;
+  }
+
+  .editable-input-text--select__dropdown-indicator {
+    color: $light-theme--alternative-color;
+  }
+
+  .editable-input-text--select__indicator-separator {
+    display: none;
+  }
+
+  .editable-input-text--select__control {
+    border-color: $light-theme--alternative-color;
+
+    &:hover {
+      border-color: $light-theme--alternative-color;
+    }
+    
+    
+  }
+
+  .editable-input-text--select__menu {
+    border-color: $light-theme--alternative-color;
+    box-shadow: none;
+    border: 1px solid $light-theme--alternative-color;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .editable-input-text--select {
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px;
+    min-width: 200px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    width: 100%;
+    
+    .editable-input-text--select__option {
+      &:nth-child(odd) {
+        background-color: $dark-theme--alternative-background-color;
+        color: $dark-theme--alternative-color;
+      }
+
+      &:nth-child(even) {
+        background-color: $dark-theme--background-color;
+        color: $dark-theme--alternative-color;
+      }
+    }
+
+    .editable-input-text--select__single-value{
+      color: $dark-theme--alternative-color;
+    }
+  
+
+    .editable-input-text--select__dropdown-indicator {
+      color: $dark-theme--alternative-color;
+    }
+
+    .editable-input-text--select__indicator-separator {
+      display: none;
+    }
+
+    .editable-input-text--select__control {
+      border-color: $dark-theme--alternative-color;
+      background-color: $dark-theme--background-color;
+
+      &:hover {
+        border-color: $dark-theme--alternative-color;
+      }
+    }
+
+    .editable-input-text--select__menu {
+      border-color: $dark-theme--alternative-color;
+      box-shadow: none;
+      border: 1px solid $dark-theme--alternative-color;
+      background-color: $dark-theme--background-color;
+    }
+    
+  }
+
+}

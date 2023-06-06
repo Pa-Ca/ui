@@ -1,4 +1,6 @@
 @import "../../assets/scss/variables.module.scss";
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
 
 .editable-input-long-text--super-container {
   width: 100%;
@@ -33,6 +35,13 @@
   overflow: hidden;
   text-overflow: clip;
   resize: none;
+  color : $light-theme--alternative-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  .editable-input-long-text--text-area {
+    color : $dark-theme--alternative-color;
+  }
 }
 
 .editable-input-long-text--text-area-container {

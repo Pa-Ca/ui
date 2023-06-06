@@ -167,8 +167,6 @@ export const EditableInputLongText = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
-          initialColor="black"
-          color={color}
         />
       </Box>
       <div
