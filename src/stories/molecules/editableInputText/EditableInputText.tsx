@@ -1,4 +1,4 @@
-import "./selectStyles.scss";
+
 import React, { useMemo, useState, useRef } from "react";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
@@ -17,6 +17,7 @@ import {
   validatePhoneNumber,
   validateUrl,
 } from "../../utils/stringValidation";
+import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
 
 interface EditableInputTextProps {
   /**
@@ -31,14 +32,14 @@ interface EditableInputTextProps {
    * Input type
    */
   type?:
-    | "text"
-    | "email"
-    | "number"
-    | "positiveNumber"
-    | "positiveInteger"
-    | "phoneNumber"
-    | "select"
-    | "url";
+  | "text"
+  | "email"
+  | "number"
+  | "positiveNumber"
+  | "positiveInteger"
+  | "phoneNumber"
+  | "select"
+  | "url";
   /**
    * Function to save the value
    */
@@ -89,11 +90,12 @@ interface EditableInputTextProps {
   placeholder?: string;
 }
 
+
 export const EditableInputText = ({
   inputHook,
   editable = true,
   type,
-  saveValueFunction = () => {},
+  saveValueFunction = () => { },
   useEditIcons = false,
   options,
   defaultText = "Click to edit",
@@ -107,6 +109,8 @@ export const EditableInputText = ({
   placeholder,
   ...props
 }: EditableInputTextProps) => {
+
+  const { isDarkMode } = React.useContext(ThemeContext);
   const windowSize = useWindowResize();
   const select_enabled = useMemo(() => type === "select", [type]);
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
@@ -180,6 +184,7 @@ export const EditableInputText = ({
     }
   }
 
+
   const onPenClick = () => {
     setEditValue(true);
     valueRef.current?.focus();
@@ -241,36 +246,22 @@ export const EditableInputText = ({
         {editValue ? (
           select_enabled ? (
             <Select
-              className={classnames(
-                "editable-input-text--select",
-                className
-              )}
-              classNamePrefix={classnames(
-                "editable-input-text--select",
-                className
-              )}
-              noOptionsMessage={() => "No se encuentra la opción"}
+              className={classnames(styles["editable-input-text--select"], className)}
+              noOptionsMessage={() => 'No se encuentra la opción'}
               value={{
-                text: inputHook.value || "",
-                label: optionsMap.get(inputHook.value || "") || "",
+                text: inputHook.value || '',
+                label: optionsMap.get(inputHook.value || '') || '',
               }}
               options={options}
               onChange={handleChange}
-              styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  ...style,
-                }),
-                option: (baseStyles) => ({
-                  ...baseStyles,
-                  ...style,
-                  minWidth: "200px",
-                }),
-                menu: (baseStyles) => ({
-                  ...baseStyles,
-                  ...style,
-                }),
-              }}
+              styles={
+                {
+                  input: (provided : any) => ({
+                    ...provided,
+                    color: isDarkMode ? "black" : "white",
+                  }),
+                }
+              }
             />
           ) : (
             <input
@@ -290,8 +281,8 @@ export const EditableInputText = ({
                   inputHook.error == 1
                     ? styleVariables.errorColor
                     : inputHook.error == 2
-                    ? styleVariables.warningColor
-                    : undefined,
+                      ? styleVariables.warningColor
+                      : undefined,
                 borderWidth:
                   inputHook.error == 1 || inputHook.error == 2
                     ? "2.5px"
@@ -366,7 +357,7 @@ export const EditableInputText = ({
           <>
             <Icon
               icon="warning"
-              warningStyle 
+              warningStyle
               size="20px"
             />
             <div style={{ width: "10px" }} />
