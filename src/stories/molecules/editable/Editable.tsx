@@ -45,7 +45,19 @@ export const Editable = ({
   useIcons = false,
   ...props
 }: EditableProps) => {
-  const width = useMemo(() => (useIcons ? "70px" : "220px"), [useIcons]);
+  const width = useMemo(() => (useIcons ? "65px" : "220px"), [useIcons]);
+
+  type StyleProps = {
+    [key: string]: string | number | undefined;
+  };
+
+  // function setStyle(style: StyleProps): StyleProps {
+  //   return {
+  //     ...style,
+  //     "--editable-initial-color": initialColor,
+  //     "--editable-end-color": color,
+  //   };
+  // }
 
   return (
     <Box
@@ -55,8 +67,7 @@ export const Editable = ({
       {editable && (
         <Box
           className={styles["editable--editable-icon"]}
-          onClick={onPencilClick}
-          
+          onClick={onPencilClick}       
         >
           <Icon
             icon="pencil"

@@ -3,10 +3,10 @@ name: Pa'Ca UI run container
 on:
   push:
     branches:
-      - fix_build
+      - develop
   pull_request:
     branches:
-      - fix_build
+      - develop
 
 jobs:
   run-container:
@@ -14,6 +14,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Stop Container
+        run: docker rm -f ui-app-1
+
       - name: Docker Compose
         run: |
           TARGET_ENV=${{ secrets.TARGET_ENV }} \

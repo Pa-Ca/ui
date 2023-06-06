@@ -1,3 +1,4 @@
+@import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 @import "../../assets/scss/dark-theme.scss";
 @import "../../assets/scss/light-theme.scss";
@@ -7,6 +8,10 @@
   display: flex;
   min-height: 80px;
   background-color: $light-theme--background-color;
+
+  @include mobile {
+    min-height: 50px;
+  }
 }
 
 .input-tab--tab {

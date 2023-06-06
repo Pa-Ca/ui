@@ -168,15 +168,14 @@ export const BranchProfile = ({
             name={name}
             logged={user.logged}
             picture={picture}
-            onLeftSectionClick={onHeaderLeftClick}
             onPacaClick={onPacaClick}
-            onRightSectionClick={onHeaderRightClick}
             onProfileClick={onProfileClick}
             onLoginClick={onLoginClick}
             onRegisterClick={onRegisterClick}
             userRole={user.role}
             backgroundColor="transparent"
             color={color}
+            branchOptions={[]}
           />
         </Box>
         <Box className={styles["branch-profile--path"]}>

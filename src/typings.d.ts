@@ -6,3 +6,11 @@ declare module "*.scss" {
 declare module 'color';
 
 declare module 'react-datepicker';
+
+declare module NodeJS {
+  interface ImportMeta {
+    env: {
+      [key: string]: string | string | undefined;
+    };
+  }
+}

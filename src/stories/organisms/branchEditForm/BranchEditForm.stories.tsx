@@ -210,29 +210,29 @@ Default.args = {
   typeOptions: [
     {
       label: "Americano",
-      value: "americano",
+      text: "americano",
     },
     {
       label: "Italiano",
-      value: "italiano",
+      text: "italiano",
     },
     {
       label: "Japones",
-      value: "japones",
+      text: "japones",
     },
   ],
   locationOptions: [
     {
       label: "El Hatillo",
-      value: "el hatillo",
+      text: "el hatillo",
     },
     {
       label: "Las Mercedes",
-      value: "las mercedes",
+      text: "las mercedes",
     },
     {
       label: "Chacao",
-      value: "chacao",
+      text: "chacao",
     },
   ],
   mapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,

@@ -4,6 +4,7 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
 import styles from "./businessAccountInfo.module.scss";
+import useWindowResize from "../../hooks/useWindowResize";
 import { InputText } from "../../molecules/inputText/InputText";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
@@ -90,10 +91,8 @@ export const BusinessAccountInfo = ({
   onForgotPassword,
   ...props
 }: BusinessAccountInfoProps) => {
-  const confirmPassword = useInputForm(
-    "",
-    "Las contraseñas no coinciden."
-  );
+  const windowSize = useWindowResize();
+  const confirmPassword = useInputForm("", "Las contraseñas no coinciden.");
 
   const submit = async () => {
     let error = false;
@@ -116,7 +115,10 @@ export const BusinessAccountInfo = ({
 
   return (
     <Box className={styles["business-account-info--container"]}>
-      <Text type="h3" weight="700">
+      <Text
+        type={windowSize.resolutionType === "desktop" ? "h3" : "h4"}
+        weight="700"
+      >
         Cuenta
       </Text>
 
@@ -127,12 +129,13 @@ export const BusinessAccountInfo = ({
           </Text>
 
           <EditableInputText
+            editable
+            type="text"
             width="100%"
             height="100%"
             inputHook={name}
-            editable
             saveValueFunction={(value: string) => onSaveName(value)}
-            type="text"
+            useEditIcons={windowSize.resolutionType !== "desktop"}
           />
         </Box>
 
@@ -142,12 +145,13 @@ export const BusinessAccountInfo = ({
           </Text>
 
           <EditableInputText
+            type="email"
             width="100%"
             height="100%"
             inputHook={email}
             editable={false}
             saveValueFunction={(value: string) => {}}
-            type="email"
+            useEditIcons={windowSize.resolutionType !== "desktop"}
           />
         </Box>
 
@@ -159,105 +163,107 @@ export const BusinessAccountInfo = ({
           <EditableInputText
             width="100%"
             height="100%"
-            inputHook={phoneNumber}
             editable={true}
-            saveValueFunction={(value: string) => onSavePhoneNumber(value)}
             type="phoneNumber"
+            inputHook={phoneNumber}
+            useEditIcons={windowSize.resolutionType !== "desktop"}
+            saveValueFunction={(value: string) => onSavePhoneNumber(value)}
           />
         </Box>
 
-        <Button
-          primary
-          onClick={() => setChangePassword(true)}
-        >
-          <Text weight="400">Cambiar contraseña</Text>
-        </Button>
+        <Box>
+          <Button
+            primary
+            onClick={() => setChangePassword(true)}
+          >
+            <Text weight="600">Cambiar contraseña</Text>
+          </Button>
+        </Box>
       </Box>
 
       <Modal open={changePassword} setOpen={setChangePassword}>
-        <Box className={styles["business-account-info--modal-title"]}>
-          <Text type="h5" weight="700" color="#112211">
-            Cambio de Contraseña
-          </Text>
-        </Box>
-
-        <InputText
-          width="410px"
-          type="password"
-          inputHook={password}
-          label="Contraseña actual"
-        />
-        <Box height="10px" />
-
-        <InputText
-          width="410px"
-          type="password"
-          inputHook={newPassword}
-          label="Contraseña nueva"
-        />
-        <Box height="10px" />
-
-        <InputText
-          width="410px"
-          type="password"
-          inputHook={confirmPassword}
-          label="Repetir contraseña nueva"
-        />
-        <Box
-          className={styles["business-account-info--forgot-password"]}
-          onClick={onForgotPassword}
-        >
-          <Text  type="h6">
-            ¿Olvidaste tu Contraseña?
-          </Text>
-        </Box>
-        <Box height="20px">
-          {emailSent && (
-            <Text type="h6" color="#112211" weight="400">
-              Te hemos enviado un correo para cambiar tu contraseña.
-            </Text>
-          )}
-        </Box>
-
-        <Box
-          height="24px"
-          width="100%"
-          className={styles["business-account-info--modal-line"]}
-        >
-          <Box width="100%" height="1px" backgroundColor="#DADCDA" />
-        </Box>
-
-        <Button
-          fullWidth
-          primary
-          onClick={submit}
-          state={done ? "inactive" : "normal"}
-        >
-          <Box
-            className={
-              styles["business-account-info--modal-change-password-button"]
-            }
-          >
-            <Text type="h6" weight="600" primaryButtonStyle>
-              Cambiar contraseña
+        <Box className={styles["business-account-info--modal-container"]}>
+          <Box className={styles["business-account-info--modal-title"]}>
+            <Text type="h5" weight="700" color="#112211">
+              Cambio de Contraseña
             </Text>
           </Box>
-        </Button>
-        <Box height="10px" />
-        <Button
-          fullWidth
-          onClick={() => setChangePassword(false)}
-        >
+
+          <InputText
+            type="password"
+            inputHook={password}
+            label="Contraseña actual"
+          />
+          <Box height="10px" />
+
+          <InputText
+            type="password"
+            inputHook={newPassword}
+            label="Contraseña nueva"
+          />
+          <Box height="10px" />
+
+          <InputText
+            type="password"
+            inputHook={confirmPassword}
+            label="Repetir contraseña nueva"
+          />
           <Box
-            className={
-              styles["business-account-info--modal-change-password-button"]
-            }
+            className={styles["business-account-info--forgot-password"]}
+            onClick={onForgotPassword}
           >
-            <Text type="h6" weight="600">
-              Cancelar
+            <Text hyperlinkStyle type="h6">
+              ¿Olvidaste tu Contraseña?
             </Text>
           </Box>
-        </Button>
+          <Box height="20px">
+            {emailSent && (
+              <Text type="h6" color="#112211" weight="400">
+                Te hemos enviado un correo para cambiar tu contraseña.
+              </Text>
+            )}
+          </Box>
+
+          <Box
+            height="24px"
+            width="100%"
+            className={styles["business-account-info--modal-line"]}
+          >
+            <Box width="100%" height="1px" backgroundColor="#DADCDA" />
+          </Box>
+
+          <Button
+            fullWidth
+            primary
+            onClick={submit}
+            state={done ? "inactive" : "normal"}
+          >
+            <Box
+              className={
+                styles["business-account-info--modal-change-password-button"]
+              }
+            >
+              <Text type="h6" weight="600">
+                Cambiar contraseña
+              </Text>
+            </Box>
+          </Button>
+          <Box height="10px" />
+          <Button
+            fullWidth
+            onClick={() => setChangePassword(false)}
+          >
+            <Box
+              className={
+                styles["business-account-info--modal-change-password-button"]
+              }
+            >
+              <Text type="h6" weight="600">
+                Cancelar
+              </Text>
+            </Box>
+          </Button>
+        </Box>
       </Modal>
     </Box>
   );

@@ -211,7 +211,7 @@ export const BranchEditForm = ({
       height={height}
     >
       <Box className={styles["branch-edit-form--name-input"]}>
-        <Text className={styles["branch-edit-form--input-label"]}>
+        <Text color="#112211" weight="400">
           {" "}
           Nombre{" "}
         </Text>
@@ -230,7 +230,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--capacity-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Capacidad{" "}
           </Text>
@@ -246,7 +246,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--average-reserve-time"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Tiempo promedio de reserva{" "}
           </Text>
@@ -265,7 +265,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--type-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Tipo{" "}
           </Text>
@@ -282,7 +282,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--cost-per-person-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Coste por persona ($){" "}
           </Text>
@@ -300,7 +300,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--type-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Hora de apertura{" "}
           </Text>
@@ -317,7 +317,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--cost-per-person-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Hora de cierre{" "}
           </Text>
@@ -336,7 +336,7 @@ export const BranchEditForm = ({
 
       <Box className={styles["branch-edit-form--two-column-row"]}>
         <Box className={styles["branch-edit-form--phone-number-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Número de teléfono Local{" "}
           </Text>
@@ -353,7 +353,7 @@ export const BranchEditForm = ({
         </Box>
 
         <Box className={styles["branch-edit-form--location-input"]}>
-          <Text className={styles["branch-edit-form--input-label"]}>
+          <Text color="#112211" weight="400">
             {" "}
             Ubicación{" "}
           </Text>
@@ -373,7 +373,7 @@ export const BranchEditForm = ({
       </Box>
 
       <Box className={styles["branch-edit-form--description-container"]}>
-        <Text className={styles["branch-edit-form--input-label"]}>
+        <Text color="#112211" weight="400">
           {" "}
           Descripción{" "}
         </Text>
@@ -391,7 +391,7 @@ export const BranchEditForm = ({
       </Box>
 
       <Box className={styles["branch-edit-form--precise-location-container"]}>
-        <Text className={styles["branch-edit-form--input-label"]}>
+        <Text color="#112211" weight="400">
           {" "}
           Ubicación precisa
         </Text>
@@ -423,43 +423,69 @@ export const BranchEditForm = ({
           onClick={() => setDeleteBranch(true)}
         >
           <Box>
-            <Text color="#112211" type="h6" weight="500">
-              Eliminar Local
-            </Text>
+            <Text weight="600">Eliminar Local</Text>
           </Box>
         </Button>
       </Box>
 
       <Modal open={deleteBranch} setOpen={setDeleteBranch}>
         <Box className={styles["branch-edit-form--modal-container"]}>
-          <Text type="h4" weight="600" color="#112211">
+          <Text
+            type="h4"
+            weight="600"
+            color="#112211"
+            className={styles["branch-edit-form--modal-text"]}
+          >
             ¿Estás seguro que deseas eliminar este local?
           </Text>
-          <Text type="h6" weight="400" color="#112211">
+          <Text
+            type="h6"
+            weight="400"
+            color="#112211"
+            className={styles["branch-edit-form--modal-text"]}
+          >
             Esta acción no se puede deshacer. Escriba abajo el correo de su
             cuenta para confirmar.
           </Text>
-          <Box height="20px" />
           <Box width="100%">
-            <InputText inputHook={emailInput} label="Email" width="100%" />
+            <InputText
+              inputHook={emailInput}
+              label="Email"
+              width="100%"
+              showError={false}
+            />
           </Box>
 
-          <Button
-            primary
-            fullWidth
-            size="large"
-            backgroundColor={color}
-            state={emailInput.value === email ? "normal" : "inactive"}
-          >
-            <Box
-              className={styles["branch-edit-form--modal-button"]}
-              onClick={() => emailInput.value === email && onDeleteBranch()}
+          <Box className={styles["branch-edit-form--modal-buttons"]}>
+            <Button
+              primary
+              fullWidth
+              size="large"
+              backgroundColor={color}
+              state={emailInput.value === email ? "normal" : "inactive"}
             >
-              <Text color="#112211" type="h6" weight="500">
-                Eliminar Local
-              </Text>
-            </Box>
-          </Button>
+              <Box
+                className={styles["branch-edit-form--modal-button"]}
+                onClick={() => emailInput.value === email && onDeleteBranch()}
+              >
+                <Text weight="600">Eliminar Local</Text>
+              </Box>
+            </Button>
+            <Button
+              fullWidth
+              size="large"
+              borderColor={color}
+              onClick={() => setDeleteBranch(false)}
+              state={emailInput.value === email ? "normal" : "inactive"}
+            >
+              <Box
+                className={styles["branch-edit-form--modal-button"]}
+                onClick={() => emailInput.value === email && onDeleteBranch()}
+              >
+                <Text weight="600">Cancelar</Text>
+              </Box>
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </Box>

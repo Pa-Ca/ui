@@ -24,6 +24,7 @@ export const MobileBasicPage = ({
   headerArgs = {
     logged: false,
     onPacaClick: () => {},
+    branchOptions: []
   },
   ...props
 }: MobileBasicPageProps) => {

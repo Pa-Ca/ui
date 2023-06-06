@@ -1,5 +1,6 @@
 @import "../../assets/scss/dark-theme.scss";
 @import "../../assets/scss/light-theme.scss";
+@import "../../assets/scss/mixins.scss";
 
 .branch-edit-form--container {
   display: flex;
@@ -11,6 +12,14 @@
   padding-bottom: 2em;
   padding-left: 1.5em;
   padding-right: 1.5em;
+  @include mobile {
+    gap: 10px;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+  }
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,21 +29,22 @@
 }
 
 .branch-edit-form--two-column-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 24px;
-  //width: 100%;
+  display: grid;
   direction: row;
+  grid-template-columns: 1fr 1fr;
+
+  @include mobile {
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .branch-edit-form--name-input {
   //width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.branch-edit-form--input-label {
-  opacity: 0.75;
 }
 
 .branch-edit-form--description-container {
@@ -57,21 +67,41 @@
   height: 377px;
   border-radius: 16px;
   margin-bottom: 64px;
+
+  @include mobile {
+    height: 250px;
+    margin-bottom: 50px;
+  }
 }
 
 .branch-edit-form--input-item {
   padding-top: 8px;
 }
 .branch-edit-form--modal-container {
-  gap: 16px;
+  gap: 25px;
   display: flex;
+  max-width: 75vw;
+  text-align: center;
   align-items: center;
   flex-direction: column;
+}
+.branch-edit-form--modal-text {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 .branch-edit-form--modal-button {
   width: 100%;
   display: flex;
   text-align: center;
   align-items: center;
+  flex-direction: column;
+}
+.branch-edit-form--modal-buttons {
+  gap: 10px;
+  width: 100%;
+  display: flex;
   flex-direction: column;
 }

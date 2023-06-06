@@ -1,11 +1,11 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import { Terms } from "./Terms";
+import { BasicMobilePage } from "./BasicMobilePage";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Templates/Terms",
-  component: Terms,
+  title: "Design System/Organisms/BasicMobilePage",
+  component: BasicMobilePage,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     children: {
@@ -14,11 +14,11 @@ export default {
       },
     },
   },
-} as Meta<typeof Terms>;
+} as Meta<typeof BasicMobilePage>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof Terms> = (args: any) => {
-  return <Terms {...args} />;
+const Template: StoryFn<typeof BasicMobilePage> = (args: any) => {
+  return <BasicMobilePage {...args} />;
 };
 
 export const Default = Template.bind({});

@@ -3,6 +3,7 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./businessHeader.module.scss";
 import { Button } from "../../atoms/button/Button";
+import useWindowResize from "../../hooks/useWindowResize";
 import { ProfilePicture } from "../profilePicture/ProfilePicture";
 
 interface BusinessHeaderProps {
@@ -34,7 +35,9 @@ interface BusinessHeaderProps {
    * Function that is executed when clicking on the pencil icon
    * @param event
    */
-  onPicturePencilClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onPicturePencilClick?: (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void;
 }
 
 /**
@@ -50,31 +53,50 @@ export const BusinessHeader = ({
   onPicturePencilClick,
   ...props
 }: BusinessHeaderProps) => {
+  const windowSize = useWindowResize();
+
   return (
     <Box className={styles["business-header--container"]}>
       <Box className={styles["business-header--profile-picture"]}>
         <ProfilePicture
-          size="160px"
+          size={windowSize.resolutionType === "desktop" ? "160px" : "70px"}
           picture={profilePicture}
           border
           icon="pencil"
           onClick={onPictureClick}
           onPencilClick={onPicturePencilClick}
         />
-        <Box height="20px" />
-        <Text highlightStyle type="h4" weight="600">
-          {name}
-        </Text>
-        <Box height="10px" />
-        <Text highlightStyle weight="400">
-          {email}
-        </Text>
+
+        <Box className={styles["business-header--data"]}>
+          <Text
+            ellipsis
+            weight="600"
+            highlightStyle
+            type={windowSize.resolutionType === "desktop" ? "h4" : "p"}
+          >
+            {name}
+          </Text>
+          <Box height="5px" />
+          <Text
+            ellipsis
+            weight="400"
+            highlightStyle
+            type={windowSize.resolutionType === "desktop" ? "p" : "h6"}
+          >
+            {email}
+          </Text>
+        </Box>
       </Box>
 
       <Box className={styles["business-header--button-container"]}>
-        <Button primary  size="large" onClick={onCreateBranch}>
+        <Button
+          primary
+          size={windowSize.resolutionType === "desktop" ? "large" : "small"}
+          onClick={onCreateBranch}
+          fullWidth={windowSize.resolutionType !== "desktop"}
+        >
           <Box className={styles["business-header--button"]}>
-            <Text highlightStyle type="h6" weight="500">
+            <Text weight="600">
               Crear Local
             </Text>
           </Box>

@@ -32,9 +32,10 @@
 }
 
 .editable-input-text--input {
+  width: 100%;
+  margin-top: 2px;
   font-weight: 600;
-  font-size: 20px;
-  font-family: "Montserrat";
+  border-top: none;
   border-left: none;
   border-right: none;
   border-top: none;

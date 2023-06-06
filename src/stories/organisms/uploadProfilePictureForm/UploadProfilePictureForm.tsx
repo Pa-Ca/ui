@@ -10,13 +10,20 @@ export interface UploadProfilePictureFormProps {
    * onSave function (The function is executed when clicking on the save button)
    * */
   onSave?: (fileSrc: string) => void;
+
+  /**
+   * upload function executed after save
+  */
+  upload?: (file: File) => any;
 }
 
 export const UploadProfilePictureForm = ({
   onSave,
+  upload,
 }: UploadProfilePictureFormProps) => {
   // State for preview image
   const [preview, setPreview] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
 
   // State for image source
   const [src, setSrc] = useState<string | undefined>(undefined);
@@ -40,9 +47,13 @@ export const UploadProfilePictureForm = ({
   };
 
   // Function to handle click on save button
-  const handleSaveClick = () => {
-    if (onSave && preview) {
+  const handleSaveClick = async () => {
+    if (onSave && upload && file && preview) {
       onSave(preview);
+      const res = await upload(file);
+      if (res && !res.isError) {
+        onSave(res.data)
+      }
     }
   };
 
@@ -64,6 +75,7 @@ export const UploadProfilePictureForm = ({
       reader.addEventListener("load", () => {
         if (typeof reader.result === "string") {
           setSrc(reader.result);
+          if (event.target.files) setFile(event.target.files[0]);
         }
       });
       reader.readAsDataURL(file);

@@ -5,6 +5,8 @@ import styles from "./inputTime.module.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
+import useWindowResize from "../../hooks/useWindowResize";
+import textStyles from "../../atoms/text/text.module.scss";
 import styleVariables from "../../assets/scss/variables.module.scss";
 import editableInputTextStyles from "../editableInputText/editableInputText.module.scss";
 
@@ -44,6 +46,8 @@ export const InputTime = ({
   height,
   ...props
 }: InputTimeProps) => {
+  const windowSize = useWindowResize();
+
   const onChangeHour = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value === "") {
       hoursInputHook.setValue(event.target.value);
@@ -109,8 +113,10 @@ export const InputTime = ({
             onChange={onChangeHour}
             value={hoursInputHook.value}
             className={classnames(
-              editableInputTextStyles["editable-input-text--input"],
-              styles["input-time--input"]
+              textStyles["text"],
+              textStyles["text--h5"],
+              styles["input-time--input"],
+              editableInputTextStyles["editable-input-text--input"]
             )}
             style={{
               width: "30px",
@@ -118,19 +124,25 @@ export const InputTime = ({
             }}
           />
           <Text
-            className={editableInputTextStyles["editable-input-text--text"]}
             type="h5"
             weight="400"
+            className={editableInputTextStyles["editable-input-text--text"]}
           >
-            {type === "duration" ? "horas" : ":"}
+            {type === "localtime"
+              ? ":"
+              : windowSize.resolutionType === "desktop"
+              ? "horas"
+              : "h"}
           </Text>
           <input
             type="text"
             onChange={onChangeMinutes}
             value={minutesInputHook.value}
             className={classnames(
-              editableInputTextStyles["editable-input-text--input"],
-              styles["input-time--input"]
+              textStyles["text"],
+              textStyles["text--h5"],
+              styles["input-time--input"],
+              editableInputTextStyles["editable-input-text--input"]
             )}
             style={{
               width: "30px",
@@ -138,11 +150,15 @@ export const InputTime = ({
             }}
           />
           <Text
-            className={editableInputTextStyles["editable-input-text--text"]}
             type="h5"
             weight="400"
+            className={editableInputTextStyles["editable-input-text--text"]}
           >
-            {type === "duration" ? "minutos" : ""}
+            {type === "localtime"
+              ? ""
+              : windowSize.resolutionType === "desktop"
+              ? "minutos"
+              : "m"}
           </Text>
         </Box>
       </Box>

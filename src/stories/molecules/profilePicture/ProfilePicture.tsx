@@ -75,7 +75,8 @@ export const ProfilePicture = ({
     <div
       style={{
         position: "relative",
-        width: size,
+        minWidth: size,
+        minHeight: size,
         display: "flex",
         alignItems: "center",
       }}

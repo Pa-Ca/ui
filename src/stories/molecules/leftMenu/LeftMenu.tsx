@@ -137,9 +137,11 @@ export const LeftMenu = ({
                   <Box className={styles["left-menu--content-item-icon"]}>
                     <Icon icon="restaurant" size="20px" />
                   </Box>
-                  <Text weight="500" type="h6">
-                    {currentBranch}
-                  </Text>
+                  <Box className={styles["left-menu--current-branch"]}>
+                    <Text weight="500" type="h6" ellipsis>
+                      {currentBranch}
+                    </Text>
+                  </Box>
                 </Box>
 
                 <Icon
