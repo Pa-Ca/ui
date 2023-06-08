@@ -1,10 +1,11 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/variables.module.scss";
 
 .branch-profile--container {
   display: flex;
   position: relative;
   flex-direction: column;
-  background-color: $background-color;
+  background-color: var(--background-color);
 }
 .branch-profile--header-container {
   width: 100%;

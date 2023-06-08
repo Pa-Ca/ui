@@ -9,17 +9,7 @@ $screen-xl: 1200px;
 /* Global Styles */
 $corner-radius: 16px;
 $horizontal-padding: 85px;
-$background-color: $white-1;
-$select-color: $white-2;
 $animation-duration: 600ms;
-$error-color: $red;
-$warning-color: $yellow;
-
-/* Status Colors */
-$pending-status: $orange;
-$accepted-status: $green;
-$rejected-status: $red;
-$closed-status: $gray;
 
 /* Branches */
 $branch-summary-min-width: 550px;
@@ -31,11 +21,5 @@ $welcome-padding: 105px;
 $mobile-max-width: 430px;
 
 :export {
-  errorColor: $error-color;
-  warningColor: $warning-color;
   mobileMaxWidth: $mobile-max-width;
-  pendingStatus: $pending-status;
-  acceptedStatus: $accepted-status;
-  rejectedStatus: $rejected-status;
-  closedStatus: $closed-status;
 }

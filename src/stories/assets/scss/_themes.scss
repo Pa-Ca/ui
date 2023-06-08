@@ -1,0 +1,95 @@
+@import "./palette.scss";
+
+/** LIGHT THEME */
+@media (prefers-color-scheme: light) {
+  :root {
+    // Base styles
+    --error-color: #{$red};
+    --main-color: #{$orange};
+    --select-color: #{$white-2};
+    --warning-color: #{$yellow};
+    --background-color: #{$white-1};
+    --alternative-color: #{$black};
+    --alternative-background-color: #{$white-2};
+
+    // Icons
+    --icons-color: #{$black};
+    --select-color: #{$white-2};
+
+    // Text
+    --text-color: #{$black};
+    --text-button-color: #{$white-1};
+    --text-input-color: #{$black};
+    --text-hyperlink-color: #{$pink};
+    --text-highlight-color: #{$black};
+
+    // Icons
+    --icon-color: #{$black};
+
+    // Status Colors
+    --pending-status-color: #{$orange};
+    --accepted-status-color: #{$green};
+    --rejected-status-color: #{$red};
+    --closed-status-color: #{$gray};
+
+    // Products 
+    --product-available-color: #{$green};
+    --product-unavailable-color: #{$gray};
+
+    // Switch 
+    --switch-active-color: #{$green};
+    --switch-inactive-color: #{$gray};
+    --switch-circle-color: #{$white-1};
+
+    // Input tab
+    --input-tab-separator-color: #{$white-2};
+    --input-tab-line-color: #{$green};
+  }
+}
+
+/** DARK THEME */
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Base styles
+    --error-color: #{$red};
+    --main-color: #{$orange};
+    --select-color: #{$white-2};
+    --warning-color: #{$yellow};
+    --background-color: #{$gray};
+    --alternative-color: #{$white-2};
+    --alternative-background-color: #{$black-light};
+
+    // Icons
+    --icons-color: #{$white-1};
+    --select-color: #{$black};
+
+    // Status Colors
+    --pending-status-color: #{$orange};
+    --accepted-status-color: #{$green};
+    --rejected-status-color: #{$red};
+    --closed-status-color: #{$gray};
+
+    // Text
+    --text-color: #{$white-2};
+    --text-button-color: #{$black};
+    --text-input-color: #{$white-2};
+    --text-hyperlink-color: #{$pink};
+    --text-highlight-color: #{$gray-light};
+
+    // Icons
+    --icon-color: #{$white-1};
+
+    // Products 
+    --product-available-color: #{$green};
+    --product-unavailable-color: #{$gray};
+
+    // Switch 
+    --switch-active-color: #{$green};
+    --switch-inactive-color: #{$gray};
+    --switch-circle-color: #{$black-light};
+
+    // Input tab
+    --input-tab-separator-color: #{$green};
+    --input-tab-line-color: #{$black-light};
+  }
+}

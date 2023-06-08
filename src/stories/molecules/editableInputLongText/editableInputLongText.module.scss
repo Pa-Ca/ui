@@ -1,6 +1,4 @@
-@import "../../assets/scss/variables.module.scss";
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
+@import "../../assets/scss/themes";
 
 .editable-input-long-text--super-container {
   width: 100%;
@@ -34,13 +32,7 @@
   overflow: hidden;
   text-overflow: clip;
   resize: none;
-  color : $light-theme--alternative-color;
-}
-
-@media (prefers-color-scheme: dark) {
-  .editable-input-long-text--text-area {
-    color : $dark-theme--alternative-color;
-  }
+  color: var(--alternative-color);
 }
 
 .editable-input-long-text--text-area-container {
@@ -51,14 +43,8 @@
   display: flex;
 }
 
-.editable-input-long-text--text{
+.editable-input-long-text--text {
   padding-top: 1em;
   padding-bottom: 1em;
   overflow: clip;
 }
-
-
-
-
-
-

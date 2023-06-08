@@ -1,24 +1,15 @@
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
-@import '../../assets/scss/variables.module.scss';
+@import "../../assets/scss/themes";
 
-
-.icon{
-    color : $light-theme--icon-color  ;
-}
-
-@media (prefers-color-scheme: dark) {
-    .icon{
-        color : $dark-theme--icon-color;
-    }
+.icon {
+  color: var(--icon-color);
 }
 
 // Create an style for alerts and for errors
 
-.icon--error{
-    color : $error-color
+.icon--error {
+  color: var(--error-color);
 }
 
-.icon--warning{
-    color : $warning-color;
+.icon--warning {
+  color: var(--warning-color);
 }

@@ -1,6 +1,4 @@
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
-@import '../../assets/scss/variables.module.scss';
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
 
 @font-face {
@@ -12,49 +10,29 @@
 
 .text {
   font-family: "Montserrat";
-  font-style: normal;
-  color: $light-theme--text;
   font-weight: 500;
+  font-style: normal;
   line-height: 1.3em;
-}
-
-@media (prefers-color-scheme: dark){
-  .text {
-    color: $dark-theme--text;
-  }
+  color: var(--text-color);
 }
 
 .text--warning {
-  color: $warning-color;
+  color: var(--warning-color);
 }
 .text--error {
-  color: $error-color;
+  color: var(--error-color);
 }
 .text--button {
-  color: $light-theme--text-button-color;
+  color: var(--text-button-color);
 }
-.text--hyperlink{
-  color : $light-theme--text-hyperlink-color;
+.text--hyperlink {
+  color: var(--text-hyperlink-color);
 }
-.text--hightlight{
-  color : $light-theme--text-highlight-color;
-}
-
-@media (prefers-color-scheme: dark){
-  .text--button {
-    color: $dark-theme--text;
-  }
-  .text--hyperlink{
-    color : $dark-theme--text-hyperlink-color;
-  }
-  .text--hightlight{
-    color : $dark-theme--text-highlight-color;
-  }
+.text--hightlight {
+  color: var(--text-highlight-color);
 }
 
-
-
-// Styles 
+// Styles
 .text--italic {
   font-style: italic;
 }

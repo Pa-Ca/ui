@@ -1,13 +1,10 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
-@import "../../assets/scss/variables.module.scss";
-@import "../../assets/scss/dark-theme.scss";
-@import "../../assets/scss/light-theme.scss";
 
 .header-branch-dropdown-input-select--menu {
   display: flex;
   position: absolute;
   flex-direction: column;
-  //width: 100%;
   top: calc(30%);
   left: 0px;
   max-height: 300px;
@@ -23,7 +20,7 @@
   padding-left: 0;
   min-width: 50px;
   max-width: 300px;
-  background-color: $light-theme--background-color;
+  background-color: var(--background-color);
   border-radius: 12px;
   border: solid 2px gray;
 
@@ -40,14 +37,11 @@
         margin-right: 15px;
         aspect-ratio: 1;
         padding: 0px;
-    
       }
     }
   }
 
-
   li {
-
     list-style: none;
     text-align: left;
     padding-top: 14px;
@@ -57,21 +51,9 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $light-theme--alternative-background-color;
+      background-color: var(--alternative-background-color);
     }
-
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  .header-branch-dropdown-input-select--menu {
-    background-color: $dark-theme--background-color;
-    li {
-    &:hover {
-      background-color: $dark-theme--alternative-background-color;
-    }}
-  }
-  
 }
 
 .header-branch-dropdown-input-select--menu-in {
@@ -79,5 +61,6 @@
 }
 
 .header-branch-dropdown-input-select--menu-out {
-  transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
+  transition: opacity 5ms linear $animation-duration,
+    max-height $animation-duration ease-in-out;
 }

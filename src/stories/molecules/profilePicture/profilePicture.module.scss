@@ -1,32 +1,26 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
-@import "../../assets/scss/dark-theme.scss";
-@import "../../assets/scss/light-theme.scss";
 
 .profile-picture--dropdown-input-select--menu {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
   width: 100%;
-  // top: calc(100% + 5px);
   right: 35px;
+  display: flex;
+  padding-left: 0;
+  min-width: 100px;
+  margin-top: 20px;
   max-height: 300px;
+  padding: 14px 0 0;
   overflow-y: scroll;
   overflow-x: hidden;
-
+  position: absolute;
+  border-radius: 12px;
+  flex-direction: column;
+  border: solid 2px gray;
+  background-color: white;
   justify-content: flex-start;
-  
-  margin-top: 20px;
 
   @include hide-scroll();
-
-  padding-left: 0;
-
-  min-width: 100px;
-  padding: 14px 0 0;
-  background-color: white;
-  border-radius: 12px;
-  border: solid 2px gray;
 
   ul {
     padding: 0;
@@ -41,7 +35,7 @@
         padding: 0;
       }
     }
-    hr{
+    hr {
       margin: 14px 0 0;
     }
   }
@@ -53,8 +47,7 @@
     padding-bottom: 14px;
     transition: 0.25s all;
     &:hover {
-      
-      background-color: $select-color;
+      background-color: var(--select-color);
     }
 
     svg {
@@ -62,14 +55,13 @@
     }
   }
 }
-
 .profile-picture--dropdown-input-select--menu-in {
   transition: max-height $animation-duration ease-in-out, opacity 5ms;
 }
 .profile-picture--dropdown-input-select--menu-out {
-  transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
+  transition: opacity 5ms linear $animation-duration,
+    max-height $animation-duration ease-in-out;
 }
-
 .profile-picture--container {
   position: relative;
   display: flex;
@@ -88,20 +80,9 @@
   justify-content: center;
   border-radius: 100%;
 }
-
-.profile-picture--icon{
-  background-color: $light-theme--main-color;
+.profile-picture--icon {
+  background-color: var(--main-color);
 }
-.profile-picture--container{
-  border: 0.25rem solid $light-theme--main-color;
+.profile-picture--container {
+  border: 0.25rem solid var(--main-color);
 }
-
-@media (prefers-color-scheme: dark) {
-  .profile-picture--icon{
-    background-color: $dark-theme--main-color;
-  }
-  .profile-picture--container{
-    border: 0.25rem solid $dark-theme--main-color;
-  }
-}
-

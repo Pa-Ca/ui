@@ -1,10 +1,9 @@
-import React, { useMemo , useEffect, useState} from "react";
+import React, { useMemo } from "react";
 import { Box } from "../../atoms/box/Box";
 import styles from "./editable.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
-import classnames from "classnames";
 
 interface EditableProps {
   /**
@@ -46,18 +45,6 @@ export const Editable = ({
   ...props
 }: EditableProps) => {
   const width = useMemo(() => (useIcons ? "65px" : "220px"), [useIcons]);
-
-  // type StyleProps = {
-  //   [key: string]: string | number | undefined;
-  // };
-
-  // function setStyle(style: StyleProps): StyleProps {
-  //   return {
-  //     ...style,
-  //     "--editable-initial-color": initialColor,
-  //     "--editable-end-color": color,
-  //   };
-  // }
 
   return (
     <Box

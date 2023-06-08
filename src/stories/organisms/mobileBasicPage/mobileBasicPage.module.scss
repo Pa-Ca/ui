@@ -1,3 +1,4 @@
+@import "../../assets/scss/theme";
 @import "../../assets/scss/variables.module.scss";
 
 .mobile-basic-page--container {
@@ -6,7 +7,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  background-color: $background-color;
+  background-color: var(--background-color);
 }
 
 .mobile-basic-page--content-container {

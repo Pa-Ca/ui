@@ -10,6 +10,7 @@ import { InputFormHook } from "../../hooks/useInputForm";
 import useWindowResize from "../../hooks/useWindowResize";
 import textStyles from "../../atoms/text/text.module.scss";
 import OptionObject from "../../utils/objects/OptionObject";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import Select, { ActionMeta, SingleValue } from "react-select";
 import styleVariables from "../../assets/scss/variables.module.scss";
 import {
@@ -17,7 +18,6 @@ import {
   validatePhoneNumber,
   validateUrl,
 } from "../../utils/stringValidation";
-import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
 
 interface EditableInputTextProps {
   /**
@@ -110,7 +110,7 @@ export const EditableInputText = ({
   ...props
 }: EditableInputTextProps) => {
 
-  const { isDarkMode } = React.useContext(ThemeContext);
+  const { isDarkMode } = useThemeProvider();
   const windowSize = useWindowResize();
   const select_enabled = useMemo(() => type === "select", [type]);
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);

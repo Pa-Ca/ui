@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/themes";
 
 .terms--super-container {
   max-height: 100vh;
@@ -10,7 +10,7 @@
   margin-bottom: 50px;
 
   padding: 12px;
-  background-color: white;
+  background-color: var(--background-color);
 }
 .term--section {
   margin-top: 34px;

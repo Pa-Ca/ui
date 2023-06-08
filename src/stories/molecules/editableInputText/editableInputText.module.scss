@@ -1,6 +1,4 @@
-@import "../../assets/scss/variables.module.scss";
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
+@import "../../assets/scss/themes";
 
 .editable-input-text--container {
   display: flex;
@@ -40,17 +38,10 @@
   border-top: none;
   margin-left: 8px;
   margin-top: 2px;
-  border-bottom: 0.5px solid $light-theme--alternative-color ;
-  color :  $light-theme--alternative-color;
+  border-bottom: 0.5px solid var(--alternative-color);
+  color: var(--alternative-color);
   background-color: transparent;
   width: 100%;
-}
-
-@media (prefers-color-scheme: dark) {
-  .editable-input-text--input {
-    border-bottom: 0.5px solid $dark-theme--alternative-color ;
-    color :  $dark-theme--alternative-color;
-  }
 }
 
 .editable-input-text--text {
@@ -81,8 +72,6 @@
   animation-name: none;
 }
 
-
-
 .editable-input-text--select {
   font-family: "Montserrat";
   font-weight: 600;
@@ -97,101 +86,38 @@
 
   [class$="-option"] {
     &:nth-child(odd) {
-      background-color: #F1F1F1;
-      color: $light-theme--alternative-color;
+      background-color: #f1f1f1;
+      color: var(--alternative-color);
     }
 
     &:nth-child(even) {
-      background-color: $light-theme--background-color;
-      color: $light-theme--alternative-color;
+      background-color: var(--background-color);
+      color: var(--alternative-color);
     }
   }
 
-  [class$="-singleValue"]{
-    color: $light-theme--alternative-color;
+  [class$="-singleValue"] {
+    color: var(--alternative-color);
   }
 
-  [class$="-dropdownIndicator"]  {
-    color: $light-theme--alternative-color;
+  [class$="-dropdownIndicator"] {
+    color: var(--alternative-color);
   }
 
   [class$="-indicatorSeparator"] {
     display: none;
   }
 
-  [class$="-control"]  {
-    border-color: $light-theme--alternative-color;
+  [class$="-control"] {
+    border-color: var(--alternative-color);
 
     &:hover {
-      border-color: $light-theme--alternative-color;
-    } 
+      border-color: var(--alternative-color);
+    }
   }
   [class$="-menu"] {
-    border-color: $light-theme--alternative-color;
+    border-color: var(--alternative-color);
     box-shadow: none;
-    border: 1px solid $light-theme--alternative-color;
+    border: 1px solid var(--alternative-color);
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  .editable-input-text--select {
-    font-family: "Montserrat";
-    font-weight: 600;
-    font-size: 20px;
-    margin: 0px;
-    min-width: 200px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 0px;
-    width: 100%;
-    
-    [class$="-option"] {
-      &:nth-child(odd) {
-        background-color: $dark-theme--alternative-background-color;
-        color: $dark-theme--alternative-color;
-      }
-
-      &:nth-child(even) {
-        background-color: $dark-theme--background-color;
-        color: $dark-theme--alternative-color;
-      }
-    }
-
-    [class$="-singleValue"]{
-      color: $dark-theme--alternative-color;
-    }
-
-    [class$="-inputContainer"]{
-      color: blue;
-      background-color: aqua;
-    }
-
-    [class$="-dropdownIndicator"] {
-      color: $dark-theme--alternative-color;
-    }
-
-    [class$="-indicatorSeparator"] {
-      display: none;
-    }
-
-
-
-    [class$="-control"]  {
-      border-color: $dark-theme--alternative-color;
-      background-color: $dark-theme--background-color;
-      &:hover {
-        border-color: $dark-theme--alternative-color;
-      }
-    }
-
-    [class$="-menu"] {
-      border-color: $dark-theme--alternative-color;
-      box-shadow: none;
-      border: 1px solid $dark-theme--alternative-color;
-      background-color: $dark-theme--background-color;
-    }
-    
-  }
-
 }
