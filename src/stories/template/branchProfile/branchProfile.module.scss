@@ -19,7 +19,7 @@
   z-index: 2;
   background: linear-gradient(
     0deg,
-    $background-color 0%,
+    var(--background-color) 0%,
     rgba(255, 255, 255, 0.1) 15%,
     rgba(0, 0, 0, 0.4) 90%
   );

@@ -8,6 +8,8 @@
   position: relative;
   flex-direction: row;
   border-radius: 25px;
+  align-items: center;
+  justify-content: center;
 
   transition: background-color 500ms ease-in-out;
 }

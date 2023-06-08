@@ -81,12 +81,12 @@
 
     // Products 
     --product-available-color: #{$green};
-    --product-unavailable-color: #{$gray};
+    --product-unavailable-color: #{$black-light};
 
     // Switch 
     --switch-active-color: #{$green};
-    --switch-inactive-color: #{$gray};
-    --switch-circle-color: #{$black-light};
+    --switch-inactive-color: #{$black-light};
+    --switch-circle-color: #{$gray};
 
     // Input tab
     --input-tab-separator-color: #{$green};

@@ -43,6 +43,10 @@ interface EditableInputLongTextProps {
    */
   useEditIcons?: boolean;
   /**
+   * Indicates if the space should be placed to show possible errors
+   */
+  showError?: boolean;
+  /**
    * Component width
    */
   width?: string;
@@ -72,6 +76,7 @@ export const EditableInputLongText = ({
   maxRows = undefined,
   maxLength = 800,
   useEditIcons = false,
+  showError = true,
   width = "100%",
   height = "100%",
   color,
@@ -182,6 +187,7 @@ export const EditableInputLongText = ({
             ? inputTextStyles["input-text--error-animation"]
             : inputTextStyles["input-text--error-no-animation"])
         }
+        style={{ height: showError ? undefined : "0px" }}
       >
         {inputHook.error == 1 && (
           <>

@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./branchEditForm.module.scss";
@@ -170,18 +169,18 @@ export const BranchEditForm = ({
   closingTimeHour,
   closingTimeMinute,
 
-  onSaveName = () => { },
-  onSaveDescription = () => { },
-  onSaveLocation = () => { },
-  onSavePhone = () => { },
-  onSaveCapacity = () => { },
-  onSaveAverageReserveTime = () => { },
-  onSavePrice = () => { },
-  onSaveType = () => { },
-  onSaveMapsLink = () => { },
-  onSaveOpeningTime = () => { },
-  onSaveClosingTime = () => { },
-  onDeleteBranch = () => { },
+  onSaveName = () => {},
+  onSaveDescription = () => {},
+  onSaveLocation = () => {},
+  onSavePhone = () => {},
+  onSaveCapacity = () => {},
+  onSaveAverageReserveTime = () => {},
+  onSavePrice = () => {},
+  onSaveType = () => {},
+  onSaveMapsLink = () => {},
+  onSaveOpeningTime = () => {},
+  onSaveClosingTime = () => {},
+  onDeleteBranch = () => {},
 
   email,
   typeOptions,
@@ -240,7 +239,6 @@ export const BranchEditForm = ({
             editable={true}
             type="positiveInteger"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
 
@@ -257,7 +255,6 @@ export const BranchEditForm = ({
             editable={true}
             type="duration"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
       </Box>
@@ -276,7 +273,6 @@ export const BranchEditForm = ({
             editable={true}
             type="select"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
 
@@ -292,7 +288,6 @@ export const BranchEditForm = ({
             editable={true}
             type="positiveNumber"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
       </Box>
@@ -311,7 +306,6 @@ export const BranchEditForm = ({
             editable={true}
             type="localtime"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
 
@@ -328,7 +322,6 @@ export const BranchEditForm = ({
             editable={true}
             type="localtime"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
       </Box>
@@ -365,7 +358,6 @@ export const BranchEditForm = ({
             editable={true}
             type="select"
             containerClassName={styles["branch-edit-form--input-item"]}
-
           />
         </Box>
       </Box>
@@ -375,6 +367,7 @@ export const BranchEditForm = ({
           {" "}
           Descripción{" "}
         </Text>
+        <Box height="10px" />
         <EditableInputLongText
           useEditIcons
           inputHook={description}
@@ -412,11 +405,7 @@ export const BranchEditForm = ({
       </Box>
 
       <Box>
-        <Button
-          primary
-          size="large"
-          onClick={() => setDeleteBranch(true)}
-        >
+        <Button primary size="large" onClick={() => setDeleteBranch(true)}>
           <Box>
             <Text weight="600">Eliminar Local</Text>
           </Box>
@@ -466,14 +455,10 @@ export const BranchEditForm = ({
             <Button
               fullWidth
               size="large"
-
               onClick={() => setDeleteBranch(false)}
               state={emailInput.value === email ? "normal" : "inactive"}
             >
-              <Box
-                className={styles["branch-edit-form--modal-button"]}
-                onClick={() => emailInput.value === email && onDeleteBranch()}
-              >
+              <Box className={styles["branch-edit-form--modal-button"]}>
                 <Text weight="600">Cancelar</Text>
               </Box>
             </Button>
