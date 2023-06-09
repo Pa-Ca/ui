@@ -1,24 +1,72 @@
+@import "../../assets/scss/variables.module.scss";
+
 .reservation--container {
+  min-height: 80px;
+  padding-left: 16px;
+  padding-right: 46px;
+  padding-top: 13px;
+  padding-bottom: 8px;
+  margin-bottom: 32px;
+  background-color: white;
+  border-left-width: 20px;
+  border-left-style: solid;
+}
+.reservation-container-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  min-height: 80px;
-  padding-left: 16px;
-  padding-right: 46px;
-  margin-bottom: 32px;
-  // min-width: 700px;
-  background-color: white;
-  border-left-width: 20px;
-  border-left-style: solid;
 }
 .reservation--details {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  margin: 7px 0;
 }
+
+.reservation--info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.reservation--box-button {
+  margin: 15px 0;
+  display: flex;
+}
+.reservation--right-button {
+  margin-left: auto;
+  .button {
+    background-color: #ef7b00;
+  }
+  .text{
+    color: #112211;
+  }
+}
+
+.reservation--left-button {
+  margin-right: auto;
+  .button {
+    background-color: #ef7b00;
+  }
+  .text{
+    color: #112211;
+  }
+}
+
 .reservation--start {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-right: 16px;
+  background-color: #646464;
+}
+
+.reservation--end {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,14 +76,15 @@
   padding-top: 16px;
   padding-bottom: 16px;
   margin-right: 16px;
+  margin-top: 15px;
 }
-.reservation--dot {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+.reservation--separator {
   margin-left: 12px;
   margin-right: 12px;
+  margin-bottom: 5px;
 }
+
 .reservation--button {
   min-width: 110px;
 }
@@ -55,7 +104,22 @@
   cursor: pointer;
 }
 
-.reservation-status-color {
-  width: 10wh;
-  background-color: aqua;
+.reservation--details-container{
+  margin-left: 24px;
+  overflow: hidden;
+}
+
+.reservation--details-container-show {
+  opacity: 1;
+  height: 230px;
+  transition: height 400ms ease-in-out, opacity 4ms;
+}
+.reservation--details-container-hide {
+  opacity: 0;
+  height: 0;
+  transition: opacity 4ms linear 400ms, height 400ms ease-in-out;
+}
+
+.reservation-flex-box{
+  display: flex;
 }

@@ -25,41 +25,53 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   reservations: [
-    ...new Array(5).fill({
+    ...new Array(13).fill({
       start: "6:00 PM",
+      end: "7:00 PM",
       date: "2021-10-10",
       owner: "Ivan Tortolero",
       ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      persons: 6,
+      tables: 6,
+      state: 2,
+    }),
+    ...new Array(5).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-11",
+      owner: "Ivan Tortolero",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       persons: 6,
       tables: 6,
       state: 1,
     }),
-    ...new Array(5).fill({
+    ...new Array(8).fill({
       start: "6:00 PM",
-      date: "2021-10-11",
-      owner: "Ivan Tortolero",
-      ownerPhone: "0414-8732414",
-      persons: 6,
-      tables: 6,
-      state: 0,
-    }),
-    ...new Array(5).fill({
-      start: "6:00 PM",
+      end: "7:00 PM",
       date: "2021-10-12",
       owner: "Ivan Tortolero",
       ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       persons: 6,
       tables: 6,
-      state: 0,
+      state: 1,
     }),
-    ...new Array(5).fill({
+    ...new Array(12).fill({
       start: "6:00 PM",
+      end: "7:00 PM",
       date: "2021-10-13",
       owner: "Ivan Tortolero",
       ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       persons: 6,
       tables: 6,
-      state: 0,
+      state: 2,
     }),
   ],
 };

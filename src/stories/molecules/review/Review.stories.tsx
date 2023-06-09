@@ -28,6 +28,6 @@ export const Default = Template.bind({});
 Default.args = {
   score: 4.5,
   author: 'Giovanni Giorgio',
-  review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   image: 'https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg'
 };
