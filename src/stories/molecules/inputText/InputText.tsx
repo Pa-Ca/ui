@@ -179,7 +179,7 @@ export const InputText = ({
         >
           {inputHook.error == 1 && (
             <>
-              <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+              <Icon icon="alert" errorStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
               <Text type="h7" color={styleVariables.errorColor}>
                 {inputHook.errorMessage}
@@ -188,7 +188,7 @@ export const InputText = ({
           )}
           {inputHook.error == 2 && (
             <>
-              <Icon icon="warning" color={styleVariables.warningColor} size="20px" />
+              <Icon icon="warning" warningStyle size="20px" />
               <div style={{ width: "10px" }} />
               <Text type="h7" color={styleVariables.warningColor}>
                 {inputHook.errorMessage}

@@ -196,7 +196,7 @@ export const EditableInputTime = ({
                 textStyles["text"],
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
-                editableInputTextStyle["editable-input-text--input"],
+                editableInputTextStyle["editable-input-text--input"]
               )}
               style={{
                 width: "30px",
@@ -226,7 +226,7 @@ export const EditableInputTime = ({
                 textStyles["text"],
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
-                editableInputTextStyle["editable-input-text--input"],
+                editableInputTextStyle["editable-input-text--input"]
               )}
               style={{
                 width: "30px",
@@ -258,20 +258,36 @@ export const EditableInputTime = ({
           </Box>
         ) : (
           <Box className={styles["editable-input-time--inputs"]}>
-            <Text type="h5" weight="600" style={{ ...style }}>
+            <Text
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
+              weight="600"
+              style={{ ...style }}
+            >
               {hoursInputHook.value}
             </Text>
-            <Text type="h5" weight="400" style={{ ...style }}>
+            <Text
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
+              weight="400"
+              style={{ ...style }}
+            >
               {type === "localtime"
                 ? ":"
                 : windowSize.resolutionType === "desktop"
                 ? "horas"
                 : "h"}
             </Text>
-            <Text type="h5" weight="600" style={{ ...style }}>
+            <Text
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
+              weight="600"
+              style={{ ...style }}
+            >
               {minutesInputHook.value}
             </Text>
-            <Text type="h5" weight="400" style={{ ...style }}>
+            <Text
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
+              weight="400"
+              style={{ ...style }}
+            >
               {type === "localtime"
                 ? ""
                 : windowSize.resolutionType === "desktop"

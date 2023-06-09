@@ -7,12 +7,6 @@ import styles from "./uploadProfilePictureForm.module.scss";
 
 export interface UploadProfilePictureFormProps {
   /**
-   * Component main color (The color of the buttons)
-   * @default #EF7A08
-   * */
-  color?: string;
-
-  /**
    * onSave function (The function is executed when clicking on the save button)
    * */
   onSave?: (fileSrc: string) => void;
@@ -24,7 +18,6 @@ export interface UploadProfilePictureFormProps {
 }
 
 export const UploadProfilePictureForm = ({
-  color = "#EF7A08",
   onSave,
   upload,
 }: UploadProfilePictureFormProps) => {
@@ -91,7 +84,7 @@ export const UploadProfilePictureForm = ({
   };
 
   return (
-    <Box className={styles["upload-profile-picture-form--container"]} backgroundColor="white">
+    <Box className={styles["upload-profile-picture-form--container"]}>
       {showAvatar && src ? (
         <Box className={styles["upload-profile-picture-form--crop-canvas-container"]}>
           <CustomAvatar width={500} height={500} onCrop={onCrop} shadingColor="rgba(0,0,0,0.2)" src={src} />
@@ -103,12 +96,12 @@ export const UploadProfilePictureForm = ({
       )}
 
       <Box className={styles["upload-profile-picture-form--button-rack"]}>
-        <Button backgroundColor={color} onClick={handleUploadClick}>
-          <Text type="h6" weight="600">Subir una Imagen</Text>
+        <Button onClick={handleUploadClick}>
+          <Text type="h6" weight="600" primaryButtonStyle>Subir una Imagen</Text>
         </Button>
 
-        <Button backgroundColor={color} onClick={handleSaveClick}>
-          <Text type="h6" weight="600">Guardar Cambios</Text>
+        <Button onClick={handleSaveClick}>
+          <Text type="h6" weight="600" primaryButtonStyle>Guardar Cambios</Text>
         </Button>
       </Box>
       <input type="file" 

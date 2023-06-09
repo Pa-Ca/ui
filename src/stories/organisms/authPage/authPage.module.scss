@@ -1,4 +1,6 @@
 @import "../../assets/scss/mixins.scss";
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
 
 .auth-page--container {
   flex: 1;
@@ -11,6 +13,7 @@
   padding-bottom: 7vh;
   align-items: center;
   justify-content: center;
+  background-color: $light-theme--background-color;
 
   @include mobile {
     padding-top: 10vh;
@@ -19,5 +22,11 @@
     padding-bottom: 10vh;
     min-height: 100%;
     width: 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark){
+  .auth-page--container {
+    background-color: $dark-theme--background-color;
   }
 }

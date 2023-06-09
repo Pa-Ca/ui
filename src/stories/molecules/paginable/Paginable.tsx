@@ -73,7 +73,7 @@ export const Paginable = <T extends any>({
         </Box>
 
         <Box className={styles["paginable--counter"]}>
-          <Text color="#112211" weight="400">
+          <Text highlightStyle weight="400">
             {page} de {totalPages}
           </Text>
         </Box>

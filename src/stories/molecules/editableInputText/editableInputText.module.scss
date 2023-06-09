@@ -1,4 +1,6 @@
 @import "../../assets/scss/variables.module.scss";
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
 
 .editable-input-text--container {
   display: flex;
@@ -17,39 +19,6 @@
   outline: none;
 }
 
-.editable-input-text--select{
-
-  .editable-input-text--select__option {
-    &:nth-child(odd) {
-      background-color: #F1F1F1;
-      color: black;
-    }
-    &:nth-child(even) {
-      background-color: white;
-      color: black;
-    }
-  }
-  .editable-input-text--select__dropdown-indicator {
-    color: black;
-  }
-  .editable-input-text--select__indicator-separator {
-    display: none;
-  }
-  .editable-input-text--select__control {
-    border-color: black;
-    &:hover {
-      border-color: black;
-    }
-  }
-  .editable-input-text--select__menu {
-    border-color: black;
-    box-shadow: none;
-    border: 1px solid black;
-  }
-
-}
-
-
 .editable-input-text--error-message {
   display: flex;
   flex-direction: row;
@@ -61,18 +30,6 @@
   animation-iteration-count: 2;
 }
 
-.editable-input-text--select {
-  font-family: "Montserrat";
-  font-weight: 600;
-  font-size: 20px;
-  margin: 0px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0px;
-  width: 100%;
-}
-
 .editable-input-text--input {
   width: 100%;
   margin-top: 2px;
@@ -80,7 +37,29 @@
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 0.5px solid black;
+  border-top: none;
+  margin-left: 8px;
+  margin-top: 2px;
+  border-bottom: 0.5px solid $light-theme--alternative-color ;
+  color :  $light-theme--alternative-color;
+  background-color: transparent;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .editable-input-text--input {
+    border-bottom: 0.5px solid $dark-theme--alternative-color ;
+    color :  $dark-theme--alternative-color;
+  }
+}
+
+.editable-input-text--text {
+  font-family: "Montserrat";
+  line-height: 24px;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  width: 100%;
 }
 
 @keyframes shake {
@@ -100,4 +79,119 @@
 }
 .editable-input-text--no-animation {
   animation-name: none;
+}
+
+
+
+.editable-input-text--select {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0px;
+  min-width: 200px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  width: 100%;
+
+  [class$="-option"] {
+    &:nth-child(odd) {
+      background-color: #F1F1F1;
+      color: $light-theme--alternative-color;
+    }
+
+    &:nth-child(even) {
+      background-color: $light-theme--background-color;
+      color: $light-theme--alternative-color;
+    }
+  }
+
+  [class$="-singleValue"]{
+    color: $light-theme--alternative-color;
+  }
+
+  [class$="-dropdownIndicator"]  {
+    color: $light-theme--alternative-color;
+  }
+
+  [class$="-indicatorSeparator"] {
+    display: none;
+  }
+
+  [class$="-control"]  {
+    border-color: $light-theme--alternative-color;
+
+    &:hover {
+      border-color: $light-theme--alternative-color;
+    } 
+  }
+  [class$="-menu"] {
+    border-color: $light-theme--alternative-color;
+    box-shadow: none;
+    border: 1px solid $light-theme--alternative-color;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .editable-input-text--select {
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px;
+    min-width: 200px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    width: 100%;
+    
+    [class$="-option"] {
+      &:nth-child(odd) {
+        background-color: $dark-theme--alternative-background-color;
+        color: $dark-theme--alternative-color;
+      }
+
+      &:nth-child(even) {
+        background-color: $dark-theme--background-color;
+        color: $dark-theme--alternative-color;
+      }
+    }
+
+    [class$="-singleValue"]{
+      color: $dark-theme--alternative-color;
+    }
+
+    [class$="-inputContainer"]{
+      color: blue;
+      background-color: aqua;
+    }
+
+    [class$="-dropdownIndicator"] {
+      color: $dark-theme--alternative-color;
+    }
+
+    [class$="-indicatorSeparator"] {
+      display: none;
+    }
+
+
+
+    [class$="-control"]  {
+      border-color: $dark-theme--alternative-color;
+      background-color: $dark-theme--background-color;
+      &:hover {
+        border-color: $dark-theme--alternative-color;
+      }
+    }
+
+    [class$="-menu"] {
+      border-color: $dark-theme--alternative-color;
+      box-shadow: none;
+      border: 1px solid $dark-theme--alternative-color;
+      background-color: $dark-theme--background-color;
+    }
+    
+  }
+
 }

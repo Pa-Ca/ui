@@ -1,6 +1,9 @@
 @import "../../assets/scss/variables.module.scss";
 @import "../../assets/scss/mixins.scss";
 
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
 .input-text--container {
   display: flex;
   flex-direction: column;
@@ -16,8 +19,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: white;
+  background-color   : $light-theme--background-color;
 }
+
+
 .input-text--content {
   flex: 1;
   height: 100%;
@@ -48,7 +53,7 @@
   align-items: center;
   margin: 0 !important;
   justify-content: flex-start;
-  background-color: white;
+  background-color: $light-theme--background-color;
   border-radius: 3px;
 
   top: -10px;
@@ -94,5 +99,14 @@
   }
   100% {
     transform: translateX(-3px);
+  }
+}
+
+@media (prefers-color-scheme: dark){
+  .input-text--input-container {
+    background-color: $dark-theme--background-color;
+  }
+  .input-text--label {
+    background-color: $dark-theme--background-color;
   }
 }

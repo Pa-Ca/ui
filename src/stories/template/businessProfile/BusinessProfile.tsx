@@ -19,6 +19,8 @@ import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
+import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
+
 import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 
 interface BusinessProfileProps {
@@ -233,15 +235,6 @@ interface BusinessProfileProps {
    * On upload profile picture
    */
   uploadProfilePicture: (profilePicture: File) => void;
-
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
 }
 
 /**
@@ -298,10 +291,8 @@ export const BusinessProfile = ({
   onSaveBranchClosingTime,
   onDeleteBranch,
   onSaveProfilePicture,
-  uploadProfilePicture: uploadProfilePicture,
+  uploadProfilePicture,
 
-  color,
-  secondaryColor,
   ...props
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
@@ -328,6 +319,8 @@ export const BusinessProfile = ({
   const newBranchType = useInputForm<OptionObject>({ label: "", text: "" });
   const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
 
+  // Get the theme from the provider
+  const { isDarkMode } = React.useContext(ThemeContext);
   const PageWrapper = useMemo(
     () =>
       windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
@@ -360,6 +353,8 @@ export const BusinessProfile = ({
     useState(profilePicture);
   const [headerProps, setHeaderProps] = useState<HeaderProps>(header);
 
+  headerProps.dark = isDarkMode;
+
   const onProfilePictureChange = (value: string) => {
     setCurrentProfilePicture(value);
     setshowUploadProfilePictureModal(false);
@@ -383,8 +378,6 @@ export const BusinessProfile = ({
           onCreateBranch={() => setShowCreateBranchModal(true)}
           onPictureClick={onPictureClick}
           onPicturePencilClick={onProfilePictureEditClick}
-          color={color}
-          secondaryColor={secondaryColor}
         />
 
         <Box
@@ -421,8 +414,6 @@ export const BusinessProfile = ({
                 onSavePhoneNumber={onSavePhoneNumber}
                 onChangePassword={onChangePassword}
                 onForgotPassword={onForgotPassword}
-                color={color}
-                secondaryColor={secondaryColor}
               />
             </Box>
             <Box width="12px" />
@@ -467,7 +458,6 @@ export const BusinessProfile = ({
                   onSaveOpeningTime={onSaveBranchOpeningTime}
                   onSaveClosingTime={onSaveBranchClosingTime}
                   onDeleteBranch={onDeleteBranch}
-                  color={color}
                 />
               ) : (
                 <Box>
@@ -649,7 +639,6 @@ export const BusinessProfile = ({
             <Box className={styles["business-profile--modal-buttons"]}>
               <Button
                 fullWidth
-                borderColor={color}
                 size="large"
                 onClick={() => setShowCreateBranchModal(false)}
               >
@@ -662,7 +651,6 @@ export const BusinessProfile = ({
               <Button
                 fullWidth
                 primary
-                backgroundColor={color}
                 size="large"
                 onClick={() =>
                   onCreateBranch(

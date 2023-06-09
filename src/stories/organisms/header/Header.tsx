@@ -104,7 +104,7 @@ export const Header = ({
   name,
   onLogout = () => {},
   onEditProfile = () => {},
-  dark = false,
+  dark,
   userRole,
   logged,
   onFavoritesClick = () => {},
@@ -197,7 +197,6 @@ export const Header = ({
               type="h6"
               weight="600"
               className={styles["header--text"]}
-              color={logoColor}
             >
               {text}
             </Text>
@@ -205,7 +204,6 @@ export const Header = ({
               type="h6"
               weight="600"
               className={styles["header--text"]}
-              color={logoColor}
             >
               &nbsp;&nbsp;|
             </Text>
@@ -223,9 +221,8 @@ export const Header = ({
             >
               <ProfilePicture
                 size="45px"
-                border="0px"
+                border={true}
                 icon={view ? "up" : "down"}
-                color={color}
                 picture={picture}
                 userName={name}
                 dropdownOptions={dropdownOptions}
@@ -244,7 +241,6 @@ export const Header = ({
               type="h6"
               weight="600"
               className={styles["header--text"]}
-              color={logoColor}
             >
               Login
             </Text>
@@ -258,12 +254,10 @@ export const Header = ({
             <Button
               primary
               onClick={onRegisterClick}
-              backgroundColor={dark ? "white" : color}
             >
               <Text
                 type="h6"
                 style={{ fontWeight: "600" }}
-                color={dark ? "black" : "white"}
               >
                 Regístrate
               </Text>
@@ -293,7 +287,7 @@ export const Header = ({
                 type="h6"
                 weight="600"
                 className={styles["header--text"]}
-                color={logoColor}
+                //color={logoColor}
                 ellipsis
               >
                 {leftSectionData.text}

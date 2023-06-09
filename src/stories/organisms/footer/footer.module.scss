@@ -1,13 +1,25 @@
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
 @import "../../assets/scss/mixins.scss";
 
 .footer--container {
   display: flex;
   padding: 4vh 5vw;
   overflow: hidden;
+  min-width: 500px;
+  //min-height: 16vh;
+  background-color: $light-theme--main-color;
   min-height: 130px;
   flex-direction: column;
   justify-content: space-between;
 }
+
+@media (prefers-color-scheme: dark){
+  .footer--container {
+    background-color: $dark-theme--main-color;
+  }
+}
+
 
 .footer--1st-column {
   gap: 10px;

@@ -7,6 +7,8 @@ import { Editable } from "../editable/Editable";
 import { TextareaAutosize } from "@mui/material";
 import styles from "./editableInputLongText.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
+import useWindowResize from "../../hooks/useWindowResize";
+import textStyles from "../../atoms/text/text.module.scss";
 import inputTextStyles from "../inputText/inputText.module.scss";
 import styleVariables from "../../assets/scss/variables.module.scss";
 
@@ -77,6 +79,7 @@ export const EditableInputLongText = ({
   style,
   ...props
 }: EditableInputLongTextProps) => {
+  const windowSize = useWindowResize();
   const valueRef = useRef<HTMLInputElement>(null);
 
   const [backup, setBackup] = useState(inputHook.value);
@@ -136,6 +139,8 @@ export const EditableInputLongText = ({
               onChange={onChange}
               style={{ ...style }}
               className={classnames(
+                textStyles["text"],
+                textStyles["text--p"],
                 styles["editable-input-long-text--text-area"],
                 className
               )}
@@ -153,7 +158,7 @@ export const EditableInputLongText = ({
               className
             )}
             weight="600"
-            type="h5"
+            type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
             style={{ ...style }}
           >
             {inputHook.value}
@@ -167,8 +172,6 @@ export const EditableInputLongText = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
-          initialColor="black"
-          color={color}
         />
       </Box>
       <div

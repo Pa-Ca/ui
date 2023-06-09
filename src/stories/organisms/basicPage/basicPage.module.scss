@@ -1,4 +1,6 @@
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 
 .basic-page--container {
   gap: 1em;
@@ -6,8 +8,14 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  background-color: $background-color;
+  background-color: $light-theme--background-color;
 }
+@media (prefers-color-scheme: dark) {
+  .basic-page--container {
+    background-color:#232323;
+  }
+}
+  
 
 .basic-page--content-container {
   display: flex;

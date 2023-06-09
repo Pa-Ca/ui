@@ -1,4 +1,8 @@
 @import "../../assets/scss/variables.module.scss";
+@import '../../assets/scss/dark-theme.scss';
+@import '../../assets/scss/light-theme.scss';
+
+
 
 .editable--container {
   display: flex;
@@ -9,26 +13,23 @@
   margin-left: 10px;
   cursor: pointer;
 }
-@keyframes editable--edit-animation {
-  from {
-    transform: rotate(0deg);
-    color: var(--editable-initial-color);
+
+.editable--edit-animation {
+  animation: editable--edit-animation--light 500ms linear forwards;
+}
+.editable--edit-animation-reverse {
+  animation: editable--edit-animation-reverse--light 500ms linear forwards;
+}
+
+@media (prefers-color-scheme: dark){
+  .editable--edit-animation {
+    animation: editable--edit-animation--dark 500ms linear forwards;
   }
-  to {
-    transform: rotate(-90deg);
-    color: var(--editable-end-color);
+  .editable--edit-animation-reverse {
+    animation: editable--edit-animation-reverse--dark 500ms linear forwards;
   }
 }
-@keyframes editable--edit-animation-reverse {
-  from {
-    transform: rotate(-90deg);
-    color: var(--editable-end-color);
-  }
-  to {
-    transform: rotate(0deg);
-    color: var(--editable-initial-color);
-  }
-}
+
 .editable--edit-button-container {
   position: relative;
   overflow: hidden;
@@ -46,4 +47,50 @@
 }
 .editable--action-icon {
   cursor: pointer;
+}
+
+
+@keyframes editable--edit-animation--light {
+  from {
+    transform: rotate(0deg);
+    color: $light-theme--icon-color;
+  }
+  to {
+    transform: rotate(-90deg);
+    color: $light-theme--main-color;
+  }
+}
+@keyframes editable--edit-animation-reverse--light {
+  from {
+    transform: rotate(-90deg);
+    color: $light-theme--main-color;
+    
+  }
+  to {
+    transform: rotate(0deg);
+    color: $light-theme--icon-color;
+  }
+}
+
+
+@keyframes editable--edit-animation--dark {
+  from {
+    transform: rotate(0deg);
+    color: $dark-theme--icon-color;
+  }
+  to {
+    transform: rotate(-90deg);
+    color: $dark-theme--main-color;
+  }
+}
+@keyframes editable--edit-animation-reverse--dark {
+  from {
+    transform: rotate(-90deg);
+    color: $dark-theme--main-color;
+    
+  }
+  to {
+    transform: rotate(0deg);
+    color: $dark-theme--icon-color;
+  }
 }

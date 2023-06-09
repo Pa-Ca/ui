@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import styles from "./imagesCarousel.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
+import classnames from "classnames";
 
 export interface ImagesCarouselProps {
   /**
@@ -13,10 +14,6 @@ export interface ImagesCarouselProps {
    * there is no automatic scroll
    */
   interval?: number;
-  /**
-   * Component main color
-   */
-  color?: string;
   /**
    * Images width
    */
@@ -33,7 +30,6 @@ export interface ImagesCarouselProps {
 export const ImagesCarousel = ({
   images,
   interval = 3000,
-  color,
   width,
   height,
   ...props
@@ -116,11 +112,12 @@ export const ImagesCarousel = ({
             borderRadius="5px"
             width="10px"
             height="10px"
-            className={styles["images-carousel--dot"]}
+            className={classnames(styles["images-carousel--dot"],
+                      currentImage !== index ? styles["images-carousel--not-current-dot"] : styles["images-carousel--current-dot"])
+            }
             key={`images-carousel--dot-${index}-${image}`}
             style={{
               width: currentImage !== index ? "10px" : "32px",
-              backgroundColor: currentImage !== index ? "white" : color,
             }}
           />
         ))}

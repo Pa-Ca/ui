@@ -33,18 +33,6 @@ export interface LoginComponentProps {
    */
   onGoogleSignUp: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
-  /**
    * height of the component
    */
   height?: string;
@@ -64,9 +52,6 @@ export const LoginComponent = ({
   onForgotClick,
   onSignUp,
   onGoogleSignUp,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   height,
   width,
   ...props
@@ -87,9 +72,7 @@ export const LoginComponent = ({
           >
             ¡Bienvenido!
           </Text>
-          <Text
-            color="gray"
-          >
+          <Text weight="700" primaryButtonStyle>
             Inicia sesión para continuar
           </Text>
         </Box>
@@ -103,9 +86,6 @@ export const LoginComponent = ({
             onForgotClick={onForgotClick}
             onSignUp={onSignUp}
             onGoogleSignUp={onGoogleSignUp}
-            color={color}
-            secondaryColor={secondaryColor}
-            otherLoginsColor={otherLoginsColor}
           />
         </Box>
       </Box>
@@ -113,7 +93,6 @@ export const LoginComponent = ({
       <Box className={styles["login-component--caroussel"]}>
         <ImagesCarousel
           images={images}
-          color={color}
           width="100%"
           height="100%"
         />

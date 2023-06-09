@@ -86,18 +86,22 @@ interface SignUpComponentProps {
    * width of the component
    */
   width?: string;
+  // /**
+  //  * Component main color
+  //  */
+  // color?: string;
+  // /**
+  //  * Component secondary color
+  //  */
+  // secondaryColor?: string;
+  // /**
+  //  * Other logins button border color
+  //  */
+  // otherLoginsColor?: string;
   /**
-   * Component main color
+   * Dark mode
    */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
+  darkMode?: boolean;
 }
 
 /**
@@ -123,9 +127,8 @@ export const SignUpComponent = ({
   images,
   interval,
 
-  color,
-  secondaryColor,
-  otherLoginsColor,
+  darkMode,
+
   height,
   width,
   ...props
@@ -141,7 +144,6 @@ export const SignUpComponent = ({
         <ImagesCarousel
           width="100%"
           height="100%"
-          color={color}
           images={images}
           interval={interval}
         />
@@ -176,9 +178,6 @@ export const SignUpComponent = ({
           onClientSignUp={onClientSignUp}
           onBusinessSignUp={onBusinessSignUp}
           onGoogleSignUp={onGoogleSignUp}
-          color={color}
-          secondaryColor={secondaryColor}
-          otherLoginsColor={otherLoginsColor}
         />
       </Box>
     </Box>

@@ -1,5 +1,8 @@
 @import "../../assets/scss/variables.module.scss";
 
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
+
 .reservation--container {
   min-height: 80px;
   padding-left: 16px;
@@ -12,6 +15,19 @@
   border-left-style: solid;
 }
 .reservation-container-row {
+  // min-width: 700px;
+  background-color: $light-theme--background-color;
+  border-left-width: 20px;
+  border-left-style: solid;
+}
+
+@media (prefers-color-scheme: dark) {
+  .reservation--container {
+    background-color: $dark-theme--background-color;
+  }
+}
+
+.reservation--details {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -65,8 +81,7 @@
   margin-right: 16px;
   background-color: #646464;
 }
-
-.reservation--end {
+.reservation--dot {
   display: flex;
   flex-direction: row;
   align-items: center;

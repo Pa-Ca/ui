@@ -1,5 +1,7 @@
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 
 .profile-picture--dropdown-input-select--menu {
   display: flex;
@@ -86,3 +88,20 @@
   justify-content: center;
   border-radius: 100%;
 }
+
+.profile-picture--icon{
+  background-color: $light-theme--main-color;
+}
+.profile-picture--container{
+  border: 0.25rem solid $light-theme--main-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile-picture--icon{
+    background-color: $dark-theme--main-color;
+  }
+  .profile-picture--container{
+    border: 0.25rem solid $dark-theme--main-color;
+  }
+}
+

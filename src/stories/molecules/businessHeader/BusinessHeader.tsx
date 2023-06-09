@@ -32,14 +32,6 @@ interface BusinessHeaderProps {
    */
   onPictureClick: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
    * Function that is executed when clicking on the pencil icon
    * @param event
    */
@@ -59,8 +51,6 @@ export const BusinessHeader = ({
   onCreateBranch,
   onPictureClick,
   onPicturePencilClick,
-  color,
-  secondaryColor,
   ...props
 }: BusinessHeaderProps) => {
   const windowSize = useWindowResize();
@@ -71,8 +61,7 @@ export const BusinessHeader = ({
         <ProfilePicture
           size={windowSize.resolutionType === "desktop" ? "160px" : "70px"}
           picture={profilePicture}
-          color={secondaryColor}
-          border={windowSize.resolutionType === "desktop" ? "5px" : "3px"}
+          border
           icon="pencil"
           onClick={onPictureClick}
           onPencilClick={onPicturePencilClick}
@@ -82,7 +71,7 @@ export const BusinessHeader = ({
           <Text
             ellipsis
             weight="600"
-            color="#112211"
+            highlightStyle
             type={windowSize.resolutionType === "desktop" ? "h4" : "p"}
           >
             {name}
@@ -91,7 +80,7 @@ export const BusinessHeader = ({
           <Text
             ellipsis
             weight="400"
-            color="#112211"
+            highlightStyle
             type={windowSize.resolutionType === "desktop" ? "p" : "h6"}
           >
             {email}
@@ -103,7 +92,6 @@ export const BusinessHeader = ({
         <Button
           primary
           size={windowSize.resolutionType === "desktop" ? "large" : "small"}
-          backgroundColor={color}
           onClick={onCreateBranch}
           fullWidth={windowSize.resolutionType !== "desktop"}
         >

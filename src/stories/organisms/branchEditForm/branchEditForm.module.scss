@@ -1,20 +1,30 @@
+@import "../../assets/scss/dark-theme.scss";
+@import "../../assets/scss/light-theme.scss";
 @import "../../assets/scss/mixins.scss";
 
 .branch-edit-form--container {
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
-  background-color: #fff;
-  gap: 32px;
-  padding-top: 32px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 32px;
-
+  background-color: $light-theme--background-color;
+  gap: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   @include mobile {
     gap: 10px;
     padding-top: 16px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 16px;
+  }
+  
+}
+
+@media (prefers-color-scheme: dark) {
+  .branch-edit-form--container {
+    background-color: $dark-theme--background-color;
   }
 }
 
@@ -57,6 +67,11 @@
   height: 377px;
   border-radius: 16px;
   margin-bottom: 64px;
+
+  @include mobile {
+    height: 250px;
+    margin-bottom: 50px;
+  }
 }
 
 .branch-edit-form--input-item {

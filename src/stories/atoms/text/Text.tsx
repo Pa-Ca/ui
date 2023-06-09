@@ -43,6 +43,26 @@ interface TextProps {
    * Text content
    */
   children?: React.ReactNode;
+  /**
+   * Apply the button text style
+   */
+  primaryButtonStyle?: boolean;
+  /**
+   * Apply the error text style
+   */
+  errorStyle?: boolean;
+  /**
+   * Apply the warning text style
+  */
+  warningStyle?: boolean;
+  /**
+   * Apply the hyperlink text style
+   */
+  hyperlinkStyle?: boolean;
+  /**
+   * Apply the highlight text style
+   * */
+  highlightStyle?: boolean;
 }
 
 /**
@@ -59,6 +79,11 @@ export function Text({
   style,
   className,
   children,
+  primaryButtonStyle = false,
+  errorStyle = false,
+  warningStyle = false,
+  hyperlinkStyle = false,
+  highlightStyle = false,
   ...props
 }: TextProps): JSX.Element {
   return (
@@ -69,8 +94,13 @@ export function Text({
         italic ? styles["text--italic"] : "",
         uppercase ? styles["text--uppercase"] : "",
         ellipsis ? styles["text--truncated"] : "",
-        className
-      )}
+        primaryButtonStyle ? styles["text--button"] : "",
+        errorStyle ? styles["text--error"] : "",
+        warningStyle ? styles["text--warning"] : "",
+        hyperlinkStyle ? styles["text--hyperlink"] : "",
+        highlightStyle ? styles["text--highlight"] : "",
+        className,
+  )}
       style={{ color, opacity, fontWeight: weight, ...style }}
       {...props}
     >

@@ -2,6 +2,7 @@ import React from "react";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { AuthPage } from "../../organisms/authPage/AuthPage";
 import { SignUpComponent } from "../../organisms/signUpComponent/SignUpComponent";
+import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
 
 interface SignUpProps {
   /**
@@ -115,6 +116,9 @@ export const SignUp = ({
   otherLoginsColor,
   ...props
 }: SignUpProps) => {
+
+  const { isDarkMode } = React.useContext(ThemeContext);
+
   return (
     <AuthPage>
       <SignUpComponent
@@ -134,9 +138,9 @@ export const SignUp = ({
         onGoogleSignUp={onGoogleSignUp}
         images={images}
         interval={interval}
-        color={color}
-        secondaryColor={secondaryColor}
-        otherLoginsColor={otherLoginsColor}
+        // color={color}
+        // secondaryColor={secondaryColor}
+        // otherLoginsColor={otherLoginsColor}
         {...props}
       />
     </AuthPage>

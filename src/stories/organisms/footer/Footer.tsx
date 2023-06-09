@@ -15,14 +15,20 @@ export interface FooterProps {
    * Component secondary color
    * */
   secondaryColor?: string;
+
+  /**
+   * Is dark mode?
+   * */
+  isDarkMode?: boolean;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Footer = ({
-  color = "#EF7A08",
+  color          = "#EF7A08",
   secondaryColor = "white",
+  isDarkMode,
   ...props
 }: FooterProps) => {
   const footerLinks = {
@@ -32,6 +38,14 @@ export const Footer = ({
     youtube: "",
   };
   const windowSize = useWindowResize();
+
+  if (isDarkMode && !secondaryColor) {
+    secondaryColor = "black";
+  }
+  else {
+    secondaryColor = "white";
+  }
+
 
   return (
     <Box
@@ -49,16 +63,16 @@ export const Footer = ({
           </Box>
           <Box className={styles["footer--social-media-container"]}>
             <Box onClick={() => window.open(footerLinks.facebook, "_blank")}>
-              <Icon icon="facebook" color={secondaryColor} size="30px" />
+              <Icon icon="facebook" size="30px" />
             </Box>
             <Box onClick={() => window.open(footerLinks.twitter, "_blank")}>
-              <Icon icon="twitter" color={secondaryColor} size="30px" />
+              <Icon icon="twitter" size="30px"  className={styles["footer--icon"]}/> 
             </Box>
             <Box onClick={() => window.open(footerLinks.youtube, "_blank")}>
-              <Icon icon="youtube" color={secondaryColor} size="30px" />
+              <Icon icon="youtube" size="30px" />
             </Box>
             <Box onClick={() => window.open(footerLinks.instargam, "_blank")}>
-              <Icon icon="instagram" color={secondaryColor} size="30px" />
+              <Icon icon="instagram" size="30px" />
             </Box>
           </Box>
         </Box>

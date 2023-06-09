@@ -20,9 +20,23 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof Text> = (args: any) => {
   return (
+    <div style={{gap: "10px", display:"flex", flexDirection:"column"}}>
     <Text {...args} >
       Text example
     </Text>
+    <Text warningStyle >
+      Warning text example
+    </Text>
+    <Text errorStyle >
+      Error text example
+    </Text>
+    <Text primaryButtonStyle >
+      Primary button text example
+    </Text>
+    <Text hyperlinkStyle >
+      Hyperlink text example
+    </Text>
+    </div>
   );
 }
 
