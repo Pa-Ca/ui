@@ -182,7 +182,7 @@ export const Reservation = ({
       weakShadow
       style={{ width, height, borderLeftColor: statusColor}}
     >
-      <Box className={styles["reservation-container-row"]}>
+      <Box className={styles["reservation-details--row"]}>
         {/* Start Hour */}
         <Box>
           <Box
@@ -231,47 +231,50 @@ export const Reservation = ({
         </Box>
       </Box>
 
-      <Box className={styles["reservation-container-row"]}>
-        <Box className={styles["reservation--details-container"]}>
-          <Box className={active ?
-            styles["reservation--details-container-show"] :
-            styles["reservation--details-container-hide"]
-          }>
-            <div className={styles["reservation--details"]}
-                  style={{marginBottom: "0"}}>
-              <Box className={styles["reservation--icon-container"]}
-                    style={{marginBottom: "2px"}}>
-                <Icon icon="clock" size="22px" />
-              </Box>
-              <Text>{start}</Text>
-              { end != "" && <Text>{hyphen()}</Text>}
-              { end != "" && <Text>{end}</Text>}
-            </div>
+      <Box className={classnames(
+        styles["reservation-details--row"],
+        styles["reservation-more-details--row"]
+      )}>
+        <Box className={active ?
+          styles["reservation-more-details--row-show"] :
+          styles["reservation-more-details--row-hide"]
+        }>
+          <div>
+          <div className={styles["reservation--details"]}
+                style={{marginBottom: "0"}}>
+            <Box className={styles["reservation--icon-container"]}
+                  style={{marginBottom: "2px"}}>
+              <Icon icon="clock" size="22px" />
+            </Box>
+            <Text>{start}</Text>
+            { end != "" && <Text>{hyphen()}</Text>}
+            { end != "" && <Text>{end}</Text>}
+          </div>
 
-            <Box className={styles["reservation--details"]}>
-              <Box className={styles["reservation--icon-container"]}>
-                <Icon icon="phone" size="22px" />
-              </Box>
-              <Text> {ownerPhone} </Text>
+          <Box className={styles["reservation--details"]}>
+            <Box className={styles["reservation--icon-container"]}>
+              <Icon icon="phone" size="22px" />
             </Box>
-            <Box className={styles["reservation--details"]}>
-              <Box className={styles["reservation--icon-container"]}>
-                <Icon icon="mail-envelope" size="22px" />
-              </Box>
-              <Text> {ownerEmail} </Text>
+            <Text> {ownerPhone} </Text>
+          </Box>
+          <Box className={styles["reservation--details"]}>
+            <Box className={styles["reservation--icon-container"]}>
+              <Icon icon="mail-envelope" size="22px" />
             </Box>
-            { ownerOccasion != "" &&
-              <Box>
-                <Box>
-                  <Text weight="600">Ocasion:</Text>
-                  <Text> {ownerOccasion} </Text>
-                </Box>
-              </Box>
-            }
+            <Text> {ownerEmail} </Text>
+          </Box>
+          { ownerOccasion != "" &&
             <Box>
-              {/* Actions */}
-              {getAction}
+              <Box>
+                <Text weight="600">Ocasion:</Text>
+                <Text> {ownerOccasion} </Text>
+              </Box>
             </Box>
+          }
+          </div>
+          <Box>
+            {/* Actions */}
+            {getAction}
           </Box>
         </Box>
       </Box>
