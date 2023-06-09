@@ -1,0 +1,17 @@
+.new-product--container {
+  display: flex;
+  border-left-color: transparent;
+}
+.new-product--header {
+  align-items: flex-start !important;
+  margin-bottom: 10px !important;
+}
+.new-product--category-container {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.new-product--left-section {
+  align-items: flex-start !important;
+}

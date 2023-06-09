@@ -144,7 +144,7 @@ export const Product = ({
             className={styles["product--icon-container"]}
             onClick={() => setViewDetails((prev) => !prev)}
           >
-            <Icon icon="down" size="30px" />
+            <Icon icon={viewDetails ? "up" : "down"} size="30px" />
           </Box>
         </Box>
       </Box>
@@ -309,10 +309,7 @@ export const Product = ({
               </Box>
             </Button>
             <Button primary fullWidth size="large" onClick={onDelete}>
-              <Box
-                className={styles["product--modal-button"]}
-                onClick={() => {}}
-              >
+              <Box className={styles["product--modal-button"]}>
                 <Text weight="600">Eliminar Producto</Text>
               </Box>
             </Button>
