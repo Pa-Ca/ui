@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState, useRef } from "react";
 import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
@@ -32,14 +31,14 @@ interface EditableInputTextProps {
    * Input type
    */
   type?:
-  | "text"
-  | "email"
-  | "number"
-  | "positiveNumber"
-  | "positiveInteger"
-  | "phoneNumber"
-  | "select"
-  | "url";
+    | "text"
+    | "email"
+    | "number"
+    | "positiveNumber"
+    | "positiveInteger"
+    | "phoneNumber"
+    | "select"
+    | "url";
   /**
    * Function to save the value
    */
@@ -90,12 +89,11 @@ interface EditableInputTextProps {
   placeholder?: string;
 }
 
-
 export const EditableInputText = ({
   inputHook,
   editable = true,
   type,
-  saveValueFunction = () => { },
+  saveValueFunction = () => {},
   useEditIcons = false,
   options,
   defaultText = "Click to edit",
@@ -109,7 +107,6 @@ export const EditableInputText = ({
   placeholder,
   ...props
 }: EditableInputTextProps) => {
-
   const { isDarkMode } = useThemeProvider();
   const windowSize = useWindowResize();
   const select_enabled = useMemo(() => type === "select", [type]);
@@ -184,7 +181,6 @@ export const EditableInputText = ({
     }
   }
 
-
   const onPenClick = () => {
     setEditValue(true);
     valueRef.current?.focus();
@@ -246,22 +242,25 @@ export const EditableInputText = ({
         {editValue ? (
           select_enabled ? (
             <Select
-              className={classnames(styles["editable-input-text--select"], className)}
-              noOptionsMessage={() => 'No se encuentra la opción'}
+              className={classnames(
+                styles["editable-input-text--select"],
+                textStyles["text"],
+                textStyles["text--p"],
+                className
+              )}
+              noOptionsMessage={() => "No se encuentra la opción"}
               value={{
-                text: inputHook.value || '',
-                label: optionsMap.get(inputHook.value || '') || '',
+                text: inputHook.value || "",
+                label: optionsMap.get(inputHook.value || "") || "",
               }}
               options={options}
               onChange={handleChange}
-              styles={
-                {
-                  input: (provided : any) => ({
-                    ...provided,
-                    color: isDarkMode ? "black" : "white",
-                  }),
-                }
-              }
+              styles={{
+                input: (provided: any) => ({
+                  ...provided,
+                  color: isDarkMode ? "black" : "white",
+                }),
+              }}
             />
           ) : (
             <input
@@ -273,7 +272,7 @@ export const EditableInputText = ({
               className={classnames(
                 styles["editable-input-text--input"],
                 textStyles["text"],
-                windowSize.resolutionType === "desktop" ? textStyles["text--h5"] : textStyles["text--p"],
+                textStyles["text--p"],
                 className
               )}
               style={{
@@ -281,8 +280,8 @@ export const EditableInputText = ({
                   inputHook.error == 1
                     ? styleVariables.errorColor
                     : inputHook.error == 2
-                      ? styleVariables.warningColor
-                      : undefined,
+                    ? styleVariables.warningColor
+                    : undefined,
                 borderWidth:
                   inputHook.error == 1 || inputHook.error == 2
                     ? "2.5px"
@@ -294,14 +293,13 @@ export const EditableInputText = ({
         ) : hideText ? (
           <>
             <Text
+              ellipsis
+              weight="600"
+              style={{ ...style }}
               className={classnames(
                 styles["editable-input-text--text"],
                 className
               )}
-              ellipsis
-              weight="600"
-              style={{ ...style }}
-              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
             >
               {defaultText}
             </Text>
@@ -309,14 +307,13 @@ export const EditableInputText = ({
         ) : (
           <>
             <Text
+              ellipsis
+              weight="700"
+              style={{ ...style }}
               className={classnames(
                 styles["editable-input-text--text"],
                 className
               )}
-              ellipsis
-              weight="600"
-              style={{ ...style }}
-              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
             >
               {select_enabled
                 ? optionsMap.get(inputHook.value || "") || ""
@@ -355,11 +352,7 @@ export const EditableInputText = ({
         )}
         {inputHook.error == 2 && (
           <>
-            <Icon
-              icon="warning"
-              warningStyle
-              size="20px"
-            />
+            <Icon icon="warning" warningStyle size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.warningColor}>
               {inputHook.errorMessage}

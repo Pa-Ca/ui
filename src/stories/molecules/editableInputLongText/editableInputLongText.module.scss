@@ -9,8 +9,9 @@
 
 .editable-input-long-text--container {
   display: flex;
+  min-height: 43px;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -44,6 +45,5 @@
 }
 
 .editable-input-long-text--text {
-  padding-bottom: 1em;
   overflow: clip;
 }

@@ -162,8 +162,7 @@ export const EditableInputLongText = ({
               styles["editable-input-long-text--text"],
               className
             )}
-            weight="600"
-            type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
+            weight="700"
             style={{ ...style }}
           >
             {inputHook.value}

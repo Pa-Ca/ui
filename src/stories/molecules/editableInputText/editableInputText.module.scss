@@ -30,8 +30,6 @@
 
 .editable-input-text--input {
   width: 100%;
-  margin-top: 2px;
-  font-weight: 600;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -45,11 +43,7 @@
 }
 
 .editable-input-text--text {
-  font-family: "Montserrat";
-  line-height: 24px;
   margin-left: 10px;
-  font-weight: 600;
-  font-size: 20px;
   width: 100%;
 }
 
@@ -73,10 +67,8 @@
 }
 
 .editable-input-text--select {
-  font-family: "Montserrat";
-  font-weight: 600;
-  font-size: 20px;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
   min-width: 200px;
   border-top: none;
   border-left: none;

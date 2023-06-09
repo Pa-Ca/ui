@@ -45,6 +45,36 @@ export interface ProductProps {
    * Sub-category options
    */
   subCategoryOptions: OptionObject[];
+
+  /**
+   * On save product name
+   */
+  onSaveName: (value: string) => void;
+  /**
+   * On save product category
+   */
+  onSaveCategory: (value: string) => void;
+  /**
+   * On save product sub-category
+   */
+  onSaveSubCategory: (value: string) => void;
+  /**
+   * On save product description
+   */
+  onSaveDescription: (value: string) => void;
+  /**
+   * On save product price
+   */
+  onSavePrice: (value: string) => void;
+  /**
+   * On save product availability
+   */
+  onSaveAvailable: (value: boolean) => void;
+  /**
+   * On delete product
+   */
+  onDelete: () => void;
+
   /**
    * Total component width
    */
@@ -67,6 +97,15 @@ export const Product = ({
   available,
   categoryOptions,
   subCategoryOptions,
+
+  onSaveName,
+  onSaveCategory,
+  onSaveSubCategory,
+  onSaveDescription,
+  onSavePrice,
+  onSaveAvailable,
+  onDelete,
+
   width,
   height,
   ...props
@@ -135,7 +174,7 @@ export const Product = ({
                 height="100%"
                 inputHook={name}
                 editable={true}
-                saveValueFunction={() => {}}
+                saveValueFunction={onSaveName}
                 type="text"
                 showError={false}
                 containerClassName={styles["product--input-item"]}
@@ -153,7 +192,7 @@ export const Product = ({
                   height="100%"
                   inputHook={price}
                   editable={true}
-                  saveValueFunction={() => {}}
+                  saveValueFunction={onSavePrice}
                   type="positiveNumber"
                   showError={false}
                   containerClassName={styles["product--input-item"]}
@@ -175,7 +214,7 @@ export const Product = ({
                 inputHook={category}
                 options={categoryOptions}
                 editable={true}
-                saveValueFunction={() => {}}
+                saveValueFunction={onSaveCategory}
                 type="select"
                 showError={false}
                 containerClassName={styles["product--input-item"]}
@@ -195,7 +234,7 @@ export const Product = ({
                   inputHook={subCategory}
                   options={subCategoryOptions}
                   editable={true}
-                  saveValueFunction={() => {}}
+                  saveValueFunction={onSaveSubCategory}
                   type="select"
                   showError={false}
                   containerClassName={styles["product--input-item"]}
@@ -221,7 +260,7 @@ export const Product = ({
                 height="100%"
                 maxLength={200}
                 showError={false}
-                saveValueFunction={() => {}}
+                saveValueFunction={onSaveDescription}
               />
             </Box>
           </Box>
@@ -241,7 +280,12 @@ export const Product = ({
               </Text>
               <Switch
                 active={available.value}
-                onClick={() => available.setValue((prev) => !prev)}
+                onClick={() =>
+                  available.setValue((prev) => {
+                    onSaveAvailable(!prev);
+                    return !prev;
+                  })
+                }
               />
             </Box>
           </Box>
@@ -255,32 +299,21 @@ export const Product = ({
             weight="600"
             className={styles["product--modal-text"]}
           >
-            ¿Estás seguro que deseas eliminar este local?
+            ¿Estás seguro que deseas eliminar este producto?
           </Text>
-          
+
           <Box className={styles["product--modal-buttons"]}>
-            <Button
-              primary
-              fullWidth
-              size="large"
-            >
-              <Box
-                className={styles["product--modal-button"]}
-                onClick={() => { }}
-              >
-                <Text weight="600">Eliminar Producto</Text>
+            <Button fullWidth size="large" onClick={() => setShowModal(false)}>
+              <Box className={styles["product--modal-button"]}>
+                <Text weight="600">Cancelar</Text>
               </Box>
             </Button>
-            <Button
-              fullWidth
-              size="large"
-
-              onClick={() => setShowModal(false)}
-            >
+            <Button primary fullWidth size="large" onClick={onDelete}>
               <Box
                 className={styles["product--modal-button"]}
+                onClick={() => {}}
               >
-                <Text weight="600">Cancelar</Text>
+                <Text weight="600">Eliminar Producto</Text>
               </Box>
             </Button>
           </Box>
