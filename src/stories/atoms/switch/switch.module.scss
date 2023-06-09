@@ -1,0 +1,38 @@
+@import "../../assets/scss/themes";
+
+.switch--container {
+  width: 60px;
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  flex-direction: row;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 500ms ease-in-out;
+}
+.switch--container-active {
+  background-color: var(--switch-active-color);
+}
+.switch--container-inactive {
+  background-color: var(--switch-inactive-color);
+}
+.switch--circle {
+  top: 50%;
+  width: 40%;
+  height: 80%;
+  position: absolute;
+  border-radius: 50px;
+  transform: translateY(-50%);
+  background-color: var(--switch-circle-color);
+
+  transition: left 500ms ease-in-out;
+}
+.switch--circle-active {
+  left: 55%;
+}
+.switch--circle-inactive {
+  left: 5%;
+}

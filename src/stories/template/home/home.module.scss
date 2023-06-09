@@ -1,3 +1,4 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
 
@@ -6,7 +7,7 @@
   position: relative;
   flex-direction: column;
   min-width: 1245px;
-  background-color: $background-color;
+  background-color: var(--background-color);
   flex: 1;
 }
 .home--header-container {

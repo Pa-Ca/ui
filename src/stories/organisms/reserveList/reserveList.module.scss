@@ -1,10 +1,8 @@
-@import "../../assets/scss/dark-theme.scss";
-@import "../../assets/scss/light-theme.scss";
+@import "../../assets/scss/themes";
 
 .reserve-list--container {
   display: flex;
   flex-direction: column;
-  // min-width: 931px;
 }
 .reserve-list--header {
   display: flex;
@@ -32,13 +30,7 @@
   padding-left: 5px;
   padding-right: 5px;
   justify-content: space-between;
-  background-color: $light-theme--background-color;
-}
-
-@media (prefers-color-scheme: dark) {
-  .reserve-list--reservations {
-    background-color: $dark-theme--alternative-background-color;
-  }
+  background-color: var(--background-color);
 }
 .reserve-list--reservation {
   display: flex;
@@ -51,14 +43,8 @@
   align-items: center;
   padding-left: 24px;
   margin-bottom: 16px;
-  background-color: $light-theme--background-color;
+  background-color: var(--background-color);
 }
-@media (prefers-color-scheme: dark) {
-  .reserve-list--date {
-    background-color: $dark-theme--background-color;
-  }
-}
-
 .reserve-list--no-branch-box {
   text-align: center;
   justify-content: center;

@@ -1,32 +1,26 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
-@import "../../assets/scss/dark-theme.scss";
-@import "../../assets/scss/light-theme.scss";
 
 .profile-dropdown--menu {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
   width: 100%;
-  // top: calc(100% + 5px);
   right: 35px;
+  display: flex;
+  padding-left: 0;
+  margin-top: 20px;
+  min-width: 100px;
   max-height: 300px;
+  padding: 14px 0 0;
   overflow-y: scroll;
   overflow-x: hidden;
-
+  position: absolute;
+  border-radius: 12px;
+  flex-direction: column;
+  border: solid 2px gray;
   justify-content: flex-start;
-  
-  margin-top: 20px;
+  background-color: var(--background-color);
 
   @include hide-scroll();
-
-  padding-left: 0;
-
-  min-width: 100px;
-  padding: 14px 0 0;
-  background-color: $light-theme--background-color;
-  border-radius: 12px;
-  border: solid 2px gray;
 
   ul {
     padding: 0;
@@ -41,7 +35,7 @@
         padding: 0;
       }
     }
-    hr{
+    hr {
       margin: 14px 0 0;
     }
   }
@@ -54,8 +48,7 @@
     padding-bottom: 14px;
     transition: 0.25s all;
     &:hover {
-      
-      background-color: $light-theme--alternative-background-color;
+      background-color: var(--alternative-background-color);
     }
 
     svg {
@@ -64,22 +57,12 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .profile-dropdown--menu {
-    background-color: $dark-theme--background-color;
-    li {
-    &:hover {
-      background-color: $dark-theme--alternative-background-color;
-    }}
-  }
-  
-}
-
 .profile-dropdown--menu-in {
   transition: max-height $animation-duration ease-in-out, opacity 5ms;
 }
 .profile-dropdown--menu-out {
-  transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
+  transition: opacity 5ms linear $animation-duration,
+    max-height $animation-duration ease-in-out;
 }
 
 .profile-dropdown--container {

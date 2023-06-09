@@ -1,7 +1,6 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
 @import "../../assets/scss/variables.module.scss";
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
 
 .input-select--menu {
   display: flex;
@@ -17,14 +16,15 @@
   border-radius: 4px;
   border: 1px solid #79747e;
   justify-content: flex-start;
-  
+
   @include hide-scroll();
 }
 .input-select--menu-in {
   transition: max-height $animation-duration ease-in-out, opacity 5ms;
 }
 .input-select--menu-out {
-  transition: opacity 5ms linear $animation-duration, max-height $animation-duration ease-in-out;
+  transition: opacity 5ms linear $animation-duration,
+    max-height $animation-duration ease-in-out;
 }
 .input-select--option-button {
   width: 100%;
@@ -46,36 +46,18 @@
   outline: none;
 }
 .input-select--button {
-  background-color: transparent; 
-  border: 0; 
+  background-color: transparent;
+  border: 0;
   height: "100%";
   outline: none;
 }
 
-.input-select--option--pair{
-  background-color: $light-theme--alternative-background-color ;
+.input-select--option--pair {
+  background-color: var(--alternative-background-color);
 }
-.input-select--option--odd{
-  background-color: $light-theme--background-color ;
+.input-select--option--odd {
+  background-color: var(--background-color);
 }
-
-// now do the dark theme
-@media (prefers-color-scheme: dark) {
-  .input-select--option--pair{
-    background-color: $dark-theme--alternative-background-color ;
-  }
-  .input-select--option--odd{
-    background-color: $dark-theme--background-color ;
-  }
-}
-
-.input-text--input-container{
-  background-color: $light-theme--alternative-background-color ;
-}
-
-// now do the dark theme
-@media (prefers-color-scheme: dark) {
-  .input-text--input-container{
-    background-color: $dark-theme--alternative-background-color ;
-  }
+.input-text--input-container {
+  background-color: var(--alternative-background-color);
 }

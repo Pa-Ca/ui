@@ -1,8 +1,8 @@
 import React from "react";
 import { InputFormHook } from "../../hooks/useInputForm";
 import { AuthPage } from "../../organisms/authPage/AuthPage";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { SignUpComponent } from "../../organisms/signUpComponent/SignUpComponent";
-import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
 
 interface SignUpProps {
   /**
@@ -117,7 +117,7 @@ export const SignUp = ({
   ...props
 }: SignUpProps) => {
 
-  const { isDarkMode } = React.useContext(ThemeContext);
+  const { isDarkMode } = useThemeProvider();
 
   return (
     <AuthPage>

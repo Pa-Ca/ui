@@ -1,44 +1,30 @@
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
+@import "../../assets/scss/themes";;
+;
 .upload-profile-picture-form--container {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 1em;
   padding: 1.5em;
-  background-color: $light-theme--background-color;
+  background-color: var(--background-color);
   min-width: 30rem;
   min-height: 25rem;
 }
-
-
-
 .upload-profile-picture-form--crop-canvas-container {
   display: flex;
 }
-
 .upload-profile-picture-form--button-rack {
   display: flex;
   flex-direction: row;
   gap: 1em;
   padding: 1em;
 }
-
 .upload-profile-picture-form--placeholder-box {
-  border: 2px dashed $light-theme--text-input-color;
+  border: 2px dashed var(--text-input-color);
   min-width: 20rem;
   min-height: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 1em;
-}
-
-@media (prefers-color-scheme: dark) {
-  .upload-profile-picture-form--container {
-    background-color: $dark-theme--background-color;
-  }
-  .upload-profile-picture-form--placeholder-box {
-    border: 2px dashed $dark-theme--text-input-color;
-  }
 }
