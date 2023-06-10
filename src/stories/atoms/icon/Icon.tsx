@@ -545,33 +545,33 @@ export const Icon = ({
     case "menu":
       return (
         <Iconify
+          className={finalClassName}
           icon={menuIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "clock":
       return (
         <Iconify
+          className={finalClassName}
           icon={clockIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "phone":
       return (
         <Iconify
+          className={finalClassName}
           icon={baselinePhone}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     case "mail-envelope":
       return (
         <Iconify
+          className={finalClassName}
           icon={baselineEmail}
           style={{ fontSize: size, ...style }}
-          color={color}
         />
       );
     default:

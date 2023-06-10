@@ -1,6 +1,4 @@
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
-
+@import "../../assets/scss/themes";
 
 .button {
   border: 0;
@@ -13,29 +11,14 @@
 
 // Type
 .button--primary {
-  color: $light-theme--text-button-color;
-  background-color: $light-theme--main-color;
+  color: var(--text-button-color);
+  background-color: var(--main-color);
 }
 
 .button--secondary {
-  color: black;
-  background-color: transparent ;//!important;
-  border: 1px solid $light-theme--main-color;
+  background-color: transparent;
+  border: 1px solid var(--main-color);
 }
-
-@media (prefers-color-scheme: dark) {
-  .button--primary {
-    color: $dark-theme--text-button-color;
-    background-color: $dark-theme--main-color;
-  }
-
-  .button--secondary {
-    color: $dark-theme--text-button-color;
-    background-color: transparent;
-    border-color: $dark-theme--main-color;
-  }
-}
-
 
 // Sizes
 .button--extra-small {

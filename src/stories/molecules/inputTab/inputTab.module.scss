@@ -1,19 +1,16 @@
 @import "../../assets/scss/mixins.scss";
-@import "../../assets/scss/variables.module.scss";
-@import "../../assets/scss/dark-theme.scss";
-@import "../../assets/scss/light-theme.scss";
+@import "../../assets/scss/themes.scss";
 
 .input-tab--container {
   position: relative;
   display: flex;
   min-height: 80px;
-  background-color: $light-theme--background-color;
+  background-color: var(--background-color);
 
   @include mobile {
     min-height: 50px;
   }
 }
-
 .input-tab--tab {
   position: relative;
   display: flex;
@@ -29,26 +26,14 @@
   left: 0;
   top: 16px;
   bottom: 16px;
-  border: 1px solid #D7E2EE;
+  border: 1px solid var(--input-tab-separator-color);
 }
 .input-tab--line {
   position: absolute;
   height: 0;
   border: 2px solid;
   bottom: 0;
-  transition: width $animation-duration ease-in-out, left $animation-duration ease-in-out;
-  border-color: #8DD3BB;
+  transition: width $animation-duration ease-in-out,
+    left $animation-duration ease-in-out;
+  border-color: var(--input-tab-line-color);
 }
-
-@media (prefers-color-scheme: dark) {
-  .input-tab--container {
-    background-color: $dark-theme--background-color;
-  }
-  .input-tab--line {
-    border-color: #8DD3BB;
-  }
-  .input-tab--separator{
-    border-color: #242628;
-  }
-}
-

@@ -1,66 +1,65 @@
 @import "../../assets/scss/mixins.scss";
-@import "../../assets/scss/variables.module.scss";
 
-.menu-view--container{
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    overflow-x: auto;
-    overflow-y: auto;
+.menu-view--container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow-x: auto;
+  overflow-y: auto;
 }
-.menu-view--menu-section{
-    border-radius: 10px;
-    background-color: transparent; 
+.menu-view--menu-section {
+  border-radius: 10px;
+  background-color: transparent;
 }
-.menu-view--menu-sections{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 1rem;
-    padding: 1em;
-    border-radius: 10px;
-}
-
-.menu-view--line{
-    border-bottom: rgba(#000000, 0.25) 1px solid;
-    width: 90%;
-    margin-right: 1rem;
-    margin-left: 1rem;
+.menu-view--menu-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 1rem;
+  padding: 1em;
+  border-radius: 10px;
 }
 
-.menu-view--course{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1em;
+.menu-view--line {
+  border-bottom: rgba(#000000, 0.25) 1px solid;
+  width: 90%;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
-.menu-view--product{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1em;
-    flex : 1;
+.menu-view--course {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1em;
+}
+
+.menu-view--product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1em;
+  flex: 1;
 }
 
 // Add the dotted line atributes it is a dotted horizontal line between the item and its price
-.menu-view--product-dotted-line{
-    border-bottom: rgba(#112211, 0.25) 1px dotted;
-    width: 100%;
-    margin-right: 0;
-    margin-left: 1rem;
-    flex :2;
+.menu-view--product-dotted-line {
+  border-bottom: rgba(#112211, 0.25) 1px dotted;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 1rem;
+  flex: 2;
 }
 
 .menu-view--top-carousel {
-    display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    overflow-y: auto;
-    background-color: transparent;
-    border-radius: 10px;
-    @include hide-scroll();
-  }
-  
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: auto;
+  background-color: transparent;
+  border-radius: 10px;
+
+  @include hide-scroll();
+}

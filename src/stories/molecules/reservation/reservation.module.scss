@@ -1,28 +1,17 @@
-@import "../../assets/scss/variables.module.scss";
-
-@import "../../assets/scss/dark-theme.scss";
-@import "../../assets/scss/light-theme.scss";
+@import "../../assets/scss/themes";
 
 .reservation--container {
-  min-height: 80px;
   padding-left: 16px;
   padding-right: 46px;
-  padding-top: 13px;
-  padding-bottom: 8px;
+  padding-top: 23px;
   margin-bottom: 32px;
-  background-color: $light-theme--background-color;
+  background-color: var(--card-background-color);
   border-left-width: 20px;
   border-left-style: solid;
 }
 .reservation-details--row {
   display: flex;
   align-items: center;
-}
-
-@media (prefers-color-scheme: dark) {
-  .reservation--container {
-    background-color: $dark-theme--background-color;
-  }
 }
 
 .reservation--details {
@@ -43,22 +32,10 @@
 }
 .reservation--right-button {
   margin-left: auto;
-  .button {
-    background-color: #ef7b00;
-  }
-  .text{
-    color: #112211;
-  }
 }
 
 .reservation--left-button {
   margin-right: auto;
-  .button {
-    background-color: #ef7b00;
-  }
-  .text{
-    color: #112211;
-  }
 }
 
 .reservation--start {
@@ -98,7 +75,6 @@
 .reservation--action {
   display: flex;
   flex-direction: row;
-
 }
 .reservation--icon-container {
   margin-right: 5px;
@@ -114,21 +90,35 @@
 .reservation-more-details--row{
   margin-left: 24px;
   overflow: hidden;
+  margin-top: 23px;
 }
 
 .reservation-more-details--row-show {
   width: 100%;
   opacity: 1;
-  height: 230px;
-  transition: height 400ms ease-in-out, opacity 4ms;
+  max-height: 400px;
+  transition: max-height 400ms ease-in, opacity 4ms;
 }
 .reservation-more-details--row-hide {
   width: 100%;
   opacity: 0;
-  height: 0;
-  transition: opacity 4ms linear 400ms, height 400ms ease-in-out;
+  max-height: 0;
+  transition: opacity 4ms linear 400ms, max-height 400ms ease-out;
 }
 
 .reservation-flex-box{
   display: flex;
+}
+
+.reservation--hr{
+  width: 100%;
+  margin-bottom: 20px;
+  color: var(--hr-color);
+}
+
+.reservation-modal--box{
+  padding: 15px;
+}
+.reservation-modal--box .reservation-flex-box {
+  margin-top: 15px;
 }

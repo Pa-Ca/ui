@@ -1,5 +1,4 @@
-@import '../../assets/scss/dark-theme.scss';
-@import '../../assets/scss/light-theme.scss';
+@import "../../assets/scss/themes";
 
 .modal--container {
   width: 100vw;
@@ -14,11 +13,5 @@
   padding: 24px;
   border-radius: 12px;
   flex-direction: column;
-  background-color: $light-theme--background-color;
-}
-
-@media (prefers-color-scheme: dark){
-  .modal--content {
-    background-color: $dark-theme--background-color;
-  }
+  background-color: var(--background-color) !important;
 }

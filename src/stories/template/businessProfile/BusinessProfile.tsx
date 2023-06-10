@@ -7,6 +7,7 @@ import { Modal } from "../../molecules/modal/Modal";
 import useWindowResize from "../../hooks/useWindowResize";
 import OptionObject from "../../utils/objects/OptionObject";
 import { HeaderProps } from "../../organisms/header/Header";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
@@ -19,7 +20,6 @@ import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
-import { ThemeContext } from "../../atoms/themeProvider/themeProvider";
 
 import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
 
@@ -320,7 +320,7 @@ export const BusinessProfile = ({
   const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
 
   // Get the theme from the provider
-  const { isDarkMode } = React.useContext(ThemeContext);
+  const { isDarkMode } = useThemeProvider();
   const PageWrapper = useMemo(
     () =>
       windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,

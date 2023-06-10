@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/themes";
 
 .branch-nav--container {
   display: flex;
@@ -8,7 +8,7 @@
   overflow: hidden;
   min-width: 450px;
   min-height: 30px;
-  background-color: $background-color;
+  background-color: var(--background-color);
 }
 .branch-nav--menu {
   display: flex;
