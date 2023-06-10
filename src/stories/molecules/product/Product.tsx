@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import classnames from "classnames";
 import { Modal } from "../modal/Modal";
 import { Box } from "../../atoms/box/Box";
@@ -13,6 +13,10 @@ import { EditableInputText } from "../editableInputText/EditableInputText";
 import { EditableInputLongText } from "../editableInputLongText/EditableInputLongText";
 
 export interface ProductProps {
+  /**
+   * Product id
+   */
+  id: number;
   /**
    * Product name
    */
@@ -40,11 +44,16 @@ export interface ProductProps {
   /**
    * Category options
    */
-  categoryOptions: OptionObject[];
+  categoryOptions?: OptionObject[];
   /**
    * Sub-category options
    */
-  subCategoryOptions: OptionObject[];
+  subCategoryOptions?: OptionObject[];
+  /**
+   * Sub-category dependencies. Given a subcategory, indicate to which
+   * category it belongs
+   */
+  subCategoryDependency?: Record<string, string>;
 
   /**
    * On save product name
@@ -95,8 +104,9 @@ export const Product = ({
   description,
   price,
   available,
-  categoryOptions,
-  subCategoryOptions,
+  categoryOptions = [],
+  subCategoryOptions = [],
+  subCategoryDependency = {},
 
   onSaveName,
   onSaveCategory,
@@ -112,6 +122,25 @@ export const Product = ({
 }: ProductProps) => {
   const [viewDetails, setViewDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const currentSubCategoriyOptions = useMemo(() => {
+    if (category.value === "") return subCategoryOptions;
+
+    // If the category is selected, filter the subcategories
+    return subCategoryOptions.filter((c) => {
+      return subCategoryDependency[c.text!] === category.value;
+    });
+  }, [subCategoryOptions, category.value]);
+
+  useEffect(() => {
+    if (!subCategory.value || subCategory.value === "") return;
+
+    // If there is a subcategory selected while changing the category, and
+    // both do not match, then we deselect the subcategory
+    if (subCategoryDependency[subCategory.value!] !== category.value) {
+      subCategory.setValue("");
+    }
+  }, [category.value]);
 
   return (
     <Box
@@ -232,7 +261,7 @@ export const Product = ({
                   useEditIcons
                   height="100%"
                   inputHook={subCategory}
-                  options={subCategoryOptions}
+                  options={currentSubCategoriyOptions}
                   editable={true}
                   saveValueFunction={onSaveSubCategory}
                   type="select"
@@ -308,7 +337,15 @@ export const Product = ({
                 <Text weight="600">Cancelar</Text>
               </Box>
             </Button>
-            <Button primary fullWidth size="large" onClick={onDelete}>
+            <Button
+              primary
+              fullWidth
+              size="large"
+              onClick={() => {
+                onDelete();
+                setShowModal(false);
+              }}
+            >
               <Box className={styles["product--modal-button"]}>
                 <Text weight="600">Eliminar Producto</Text>
               </Box>

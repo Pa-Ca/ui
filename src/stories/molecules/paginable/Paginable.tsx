@@ -41,7 +41,12 @@ export const Paginable = <T extends any>({
     const begin = (page - 1) * objectsPerPage;
     const end = begin + objectsPerPage;
     setCurrentList(currentList.slice(begin, end));
-  }, [page, list.length]);
+  }, [page, list]);
+
+  useEffect(() => {
+    // Reset page when list changes
+    setPage(1);
+  }, [list.length]);
 
   const goToNextPage = () => {
     if (page > totalPages - 1) return;

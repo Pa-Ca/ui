@@ -26,6 +26,10 @@ export interface NewProductProps {
    */
   price: InputFormHook<string>;
   /**
+   * Indicates if the NewProduct can be created
+   */
+  canCreate: boolean;
+  /**
    * On create product
    */
   onCreate: () => void;
@@ -47,6 +51,7 @@ export const NewProduct = ({
   category,
   subCategory,
   price,
+  canCreate,
   onCreate,
   width,
   height,
@@ -87,7 +92,13 @@ export const NewProduct = ({
             label="Precio ($)"
             type="noNegativeNumber"
           />
-          <Button primary fullWidth size="large" onClick={onCreate}>
+          <Button
+            primary
+            fullWidth
+            size="large"
+            onClick={onCreate}
+            state={canCreate ? "normal" : "inactive"}
+          >
             <Box className={productStyles["product--modal-button"]}>
               <Text weight="600">Agregar</Text>
             </Box>

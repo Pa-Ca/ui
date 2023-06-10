@@ -9,67 +9,17 @@ export default {
   component: NewProduct,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
+    onCreate: {
+      table: {
+        disable: true,
+      },
+    },
     name: {
       table: {
         disable: true,
       },
     },
-    category: {
-      table: {
-        disable: true,
-      },
-    },
-    subCategory: {
-      table: {
-        disable: true,
-      },
-    },
-    description: {
-      table: {
-        disable: true,
-      },
-    },
     price: {
-      table: {
-        disable: true,
-      },
-    },
-    available: {
-      table: {
-        disable: true,
-      },
-    },
-    onSaveName: {
-      table: {
-        disable: true,
-      },
-    },
-    onSaveCategory: {
-      table: {
-        disable: true,
-      },
-    },
-    onSaveSubCategory: {
-      table: {
-        disable: true,
-      },
-    },
-    onSaveDescription: {
-      table: {
-        disable: true,
-      },
-    },
-    onSavePrice: {
-      table: {
-        disable: true,
-      },
-    },
-    onSaveAvailable: {
-      table: {
-        disable: true,
-      },
-    },
-    onDelete: {
       table: {
         disable: true,
       },

@@ -34,6 +34,10 @@ interface InputSelectProps {
    */
   showError?: boolean;
   /**
+   * Add empty option
+   */
+  addEmptyOption?: boolean;
+  /**
    * Input width
    */
   width?: string;
@@ -52,13 +56,13 @@ export const InputSelect = ({
   label = "Text select",
   required,
   showError = true,
+  addEmptyOption = false,
   width,
   height,
   ...props
 }: InputSelectProps) => {
-  const observer = useResizeObserver<HTMLDivElement>();
-
   const [view, setView] = useState(false);
+  const observer = useResizeObserver<HTMLDivElement>();
 
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
@@ -74,6 +78,14 @@ export const InputSelect = ({
     setView(false);
     inputHook.setValue(option);
   };
+
+  const currentOptions = useMemo(() => {
+    if (addEmptyOption) {
+      return [{ label: "", text: "", value: -1 }, ...options];
+    } else {
+      return options;
+    }
+  }, [options, addEmptyOption]);
 
   const iconJSX = useMemo(() => {
     if (view) {
@@ -175,14 +187,14 @@ export const InputSelect = ({
             {...events}
             ref={ref}
           >
-            {options.map((option, index) => {
+            {currentOptions.map((option, index) => {
               // La primera y ultima opcion deben tener bordes en la zona
               // superior e inferior respectivamente para adaptarse al
               // menu
               const borderTopLeftRadius = index === 0 ? 4 : 0;
               const borderTopRightRadius = borderTopLeftRadius;
               const borderBottomLeftRadius =
-                index === options.length - 1 ? 4 : 0;
+                index === currentOptions.length - 1 ? 4 : 0;
               const borderBottomRightRadius = borderBottomLeftRadius;
               // Estilo de los bordes de la opcion
               const optionStyle = {
@@ -200,8 +212,11 @@ export const InputSelect = ({
                   key={`input-select--option-${index}-${option.label}`}
                 >
                   <button
-                    className={classnames(styles["input-select--option-button"],
-                    index % 2 === 0 ? styles["input-select--option--pair"] : styles["input-select--option--odd"]
+                    className={classnames(
+                      styles["input-select--option-button"],
+                      index % 2 === 0
+                        ? styles["input-select--option--pair"]
+                        : styles["input-select--option--odd"]
                     )}
                     style={{ ...optionStyle }}
                     onClick={() => selectOption(option)}

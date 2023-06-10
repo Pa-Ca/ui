@@ -20,11 +20,11 @@
   @include hide-scroll();
 }
 .input-select--menu-in {
-  transition: max-height $animation-duration ease-in-out, opacity 5ms;
+  transition: max-height $animation-duration ease-in, opacity 5ms;
 }
 .input-select--menu-out {
   transition: opacity 5ms linear $animation-duration,
-    max-height $animation-duration ease-in-out;
+    max-height $animation-duration ease-out;
 }
 .input-select--option-button {
   width: 100%;
