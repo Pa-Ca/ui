@@ -29,6 +29,10 @@ interface InputTextProps {
    */
   label?: string;
   /**
+   * Indicates if the input is disabled
+   */
+  disabled?: boolean;
+  /**
    * Input width
    */
   width?: string;
@@ -51,6 +55,7 @@ export const InputText = ({
   required,
   showError = true,
   label = "Text input",
+  disabled,
   width,
   height,
   placeholder,
@@ -133,13 +138,14 @@ export const InputText = ({
                 ? currentType
                 : "text"
             }
+            disabled={disabled}
             value={inputHook.value}
             onChange={changeValue}
             className={classnames(styles["input-text--input"], textStyles["text"], textStyles["text--h6"])}
           />
           <div className={styles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400">
+              <Text color="red" weight="400" style={{ zIndex: 1 }}>
                 *
               </Text>
             )}
@@ -155,9 +161,11 @@ export const InputText = ({
                   ? styleVariables.warningColor
                   : undefined
               }
+              style={{ zIndex: 1 }}
             >
               &nbsp;{label}&nbsp;
             </Text>
+            <div className={styles["input-text--medium-box"]} />
           </div>
         </div>
 

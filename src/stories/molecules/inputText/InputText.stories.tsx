@@ -2,6 +2,7 @@ import React from "react";
 import { InputText } from "./InputText";
 import useInputForm from "../../hooks/useInputForm";
 import { StoryFn, Meta } from "@storybook/react";
+import { Box } from "../../atoms/box/Box";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -25,7 +26,12 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof InputText> = (args: any) => {
   const value = useInputForm("");
-  return <InputText inputHook={value} {...args} />;
+  return (
+    <>
+      <Box height="50px" />
+      <InputText inputHook={value} {...args} />
+    </>
+  );
 };
 
 export const Text = Template.bind({});
