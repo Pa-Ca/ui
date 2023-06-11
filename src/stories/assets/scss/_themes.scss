@@ -5,6 +5,7 @@
   :root {
     // Base styles
     --error-color: #{$red};
+    --cancel-color: #{$red};
     --main-color: #{$orange};
     --select-color: #{$white-dark};
     --warning-color: #{$yellow};
@@ -23,9 +24,6 @@
     --text-input-color: #{$black};
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$black};
-
-    // Icons
-    --icon-color: #{$black};
 
     // Status Colors
     --pending-status-color: #{$orange};
@@ -53,6 +51,7 @@
   :root {
     // Base styles
     --error-color: #{$red};
+    --cancel-color: #{$red};
     --main-color: #{$orange};
     --select-color: #{$white-dark};
     --warning-color: #{$yellow};
@@ -78,12 +77,9 @@
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$gray-light};
 
-    // Icons
-    --icon-color: #{$white};
-
     // Products 
     --product-available-color: #{$green};
-    --product-unavailable-color: #{$black-light};
+    --product-unavailable-color: #{$black};
 
     // Switch 
     --switch-active-color: #{$green};
