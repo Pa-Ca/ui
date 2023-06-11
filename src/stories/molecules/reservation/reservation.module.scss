@@ -1,25 +1,56 @@
 @import "../../assets/scss/themes";
 
 .reservation--container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 80px;
   padding-left: 16px;
   padding-right: 46px;
+  padding-top: 23px;
   margin-bottom: 32px;
-  background-color: var(--background-color);
+  background-color: var(--card-background-color);
   border-left-width: 20px;
   border-left-style: solid;
 }
+.reservation-details--row {
+  display: flex;
+  align-items: center;
+}
+
 .reservation--details {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  margin: 7px 0;
 }
+
+.reservation--info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.reservation--box-button {
+  margin: 15px 0;
+  display: flex;
+}
+.reservation--right-button {
+  margin-left: auto;
+}
+
+.reservation--left-button {
+  margin-right: auto;
+}
+
 .reservation--start {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-right: 16px;
+  background-color: #646464;
+}
+.reservation--dot {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,14 +60,15 @@
   padding-top: 16px;
   padding-bottom: 16px;
   margin-right: 16px;
+  margin-top: 15px;
 }
-.reservation--dot {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+.reservation--separator {
   margin-left: 12px;
   margin-right: 12px;
+  margin-bottom: 5px;
 }
+
 .reservation--button {
   min-width: 110px;
 }
@@ -54,7 +86,39 @@
   margin-left: 12px;
   cursor: pointer;
 }
-.reservation-status-color {
-  width: 10wh;
-  background-color: aqua;
+
+.reservation-more-details--row{
+  margin-left: 24px;
+  overflow: hidden;
+  margin-top: 23px;
+}
+
+.reservation-more-details--row-show {
+  width: 100%;
+  opacity: 1;
+  max-height: 400px;
+  transition: max-height 400ms ease-in, opacity 4ms;
+}
+.reservation-more-details--row-hide {
+  width: 100%;
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 4ms linear 400ms, max-height 400ms ease-out;
+}
+
+.reservation-flex-box{
+  display: flex;
+}
+
+.reservation--hr{
+  width: 100%;
+  margin-bottom: 20px;
+  color: var(--hr-color);
+}
+
+.reservation-modal--box{
+  padding: 15px;
+}
+.reservation-modal--box .reservation-flex-box {
+  margin-top: 15px;
 }

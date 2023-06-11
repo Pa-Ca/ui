@@ -167,9 +167,12 @@ export const ReserveList = ({
                   <Reservation
                     key={`reserve-list--reservation-date-${reservation.date}-index-${index}}`}
                     start={reservation.start}
+                    end={reservation.end}
                     date={reservation.date}
                     owner={reservation.owner}
                     ownerPhone={reservation.ownerPhone}
+                    ownerEmail={reservation.ownerEmail}
+                    ownerOccasion={reservation.ownerOccasion}
                     persons={reservation.persons}
                     tables={reservation.tables}
                     state={reservation.state}

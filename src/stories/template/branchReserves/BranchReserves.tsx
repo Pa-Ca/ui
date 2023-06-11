@@ -16,6 +16,9 @@ import { ReserveList } from "../../organisms/reserveList/ReserveList";
 import { ReservationProps } from "../../molecules/reservation/Reservation";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
+import useThemeProvider from "../../hooks/useThemeProvider";
+import useWindowResize from "../../hooks/useWindowResize";
+import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 
 interface BranchReservesProps {
   /**
@@ -138,6 +141,16 @@ export const BranchReserves = ({
   onSubmit,
   ...props
 }: BranchReservesProps) => {
+
+  const windowSize = useWindowResize();
+  // Get the theme from the provider
+  const { isDarkMode } = useThemeProvider();
+  const PageWrapper = useMemo(
+    () =>
+      windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
+    [windowSize.resolutionType]
+  );
+
   const [page, setPage] = useState(0);
   const [currentActiveReservation, setCurrentActiveReservation] = useState<
     ReservationProps[]
@@ -173,7 +186,9 @@ export const BranchReserves = ({
   }, [observer.width, page]);
 
   return (
-    <BasicPage headerArgs={header}>
+
+    <PageWrapper headerArgs={header}>
+      <Box>
       {/* Reserve type */}
       <Box width="100%" className={styles["branch-reserves--header"]}>
         <InputTab
@@ -301,6 +316,7 @@ export const BranchReserves = ({
 
         </Box>
       </Modal>
-    </BasicPage>
+      </Box>
+    </PageWrapper>
   );
 };

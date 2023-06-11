@@ -5,6 +5,7 @@ import wineIcon from "@iconify/icons-ion/wine";
 import menuIcon from "@iconify/icons-ion/menu";
 import heartIcon from "@iconify/icons-ph/heart";
 import ccVisa from "@iconify/icons-cib/cc-visa";
+import clockIcon from '@iconify/icons-mdi/clock';
 import eyeFill from "@iconify/icons-bi/eye-fill";
 import pencilIcon from "@iconify/icons-mdi/pencil";
 import coffeeIcon from "@iconify/icons-mdi/coffee";
@@ -21,6 +22,8 @@ import flagFilled from "@iconify/icons-tabler/flag-filled";
 import eyeSlashFill from "@iconify/icons-bi/eye-slash-fill";
 import wifiHighBold from "@iconify/icons-ph/wifi-high-bold";
 import circleSlice8 from "@iconify/icons-mdi/circle-slice-8";
+import baselineEmail from '@iconify/icons-ic/baseline-email';
+import baselinePhone from '@iconify/icons-ic/baseline-phone';
 import shareIcon from "@iconify/icons-material-symbols/share";
 import fitnessCentre from "@iconify/icons-maki/fitness-centre";
 import logoutIcon from "@iconify/icons-material-symbols/logout";
@@ -102,7 +105,11 @@ export type IconType =
   | "email-sent"
   | "upload"
   | "warning"
-  | "menu";
+  | "menu"
+  | "clock"
+  | "phone"
+  | "mail-envelope"
+  ;
 
 interface IconProps {
   /**
@@ -538,9 +545,33 @@ export const Icon = ({
     case "menu":
       return (
         <Iconify
+          className={finalClassName}
           icon={menuIcon}
           style={{ fontSize: size, ...style }}
-          color={color}
+        />
+      );
+    case "clock":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={clockIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "phone":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={baselinePhone}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "mail-envelope":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={baselineEmail}
+          style={{ fontSize: size, ...style }}
         />
       );
     default:

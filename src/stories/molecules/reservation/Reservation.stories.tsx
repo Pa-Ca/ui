@@ -35,8 +35,11 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   start: "6:00 PM",
+  end: "7:00 PM",
   owner: "Ivan Tortolero",
   ownerPhone: "0414-8732414",
   persons: 6,
   tables: 6,
+  ownerEmail: "hola@fe.com",
+  ownerOccasion: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
 };

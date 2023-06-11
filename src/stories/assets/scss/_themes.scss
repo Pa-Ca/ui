@@ -6,19 +6,20 @@
     // Base styles
     --error-color: #{$red};
     --main-color: #{$orange};
-    --select-color: #{$white-2};
+    --select-color: #{$white-dark};
     --warning-color: #{$yellow};
-    --background-color: #{$white-1};
+    --background-color: #{$white};
+    --card-background-color: #{$white-dark};
     --alternative-color: #{$black};
-    --alternative-background-color: #{$white-2};
+    --alternative-background-color: #{$white-dark};
 
     // Icons
     --icons-color: #{$black};
-    --select-color: #{$white-2};
+    --select-color: #{$white-dark};
 
     // Text
     --text-color: #{$black};
-    --text-button-color: #{$white-1};
+    --text-button-color: #{$white};
     --text-input-color: #{$black};
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$black};
@@ -39,10 +40,10 @@
     // Switch 
     --switch-active-color: #{$green};
     --switch-inactive-color: #{$gray};
-    --switch-circle-color: #{$white-1};
+    --switch-circle-color: #{$white};
 
     // Input tab
-    --input-tab-separator-color: #{$white-2};
+    --input-tab-separator-color: #{$white-dark};
     --input-tab-line-color: #{$green};
   }
 }
@@ -53,14 +54,15 @@
     // Base styles
     --error-color: #{$red};
     --main-color: #{$orange};
-    --select-color: #{$white-2};
+    --select-color: #{$white-dark};
     --warning-color: #{$yellow};
-    --background-color: #{$gray};
-    --alternative-color: #{$white-2};
-    --alternative-background-color: #{$black-light};
+    --background-color: #{$black-light};
+    --card-background-color: #{$gray-dark};
+    --alternative-color: #{$white-dark};
+    --alternative-background-color: #{$gray-light};
 
     // Icons
-    --icons-color: #{$white-1};
+    --icons-color: #{$white};
     --select-color: #{$black};
 
     // Status Colors
@@ -70,14 +72,14 @@
     --closed-status-color: #{$gray};
 
     // Text
-    --text-color: #{$white-2};
+    --text-color: #{$white-dark};
     --text-button-color: #{$black};
-    --text-input-color: #{$white-2};
+    --text-input-color: #{$white-dark};
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$gray-light};
 
     // Icons
-    --icon-color: #{$white-1};
+    --icon-color: #{$white};
 
     // Products 
     --product-available-color: #{$green};
