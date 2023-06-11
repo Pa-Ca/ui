@@ -62,6 +62,10 @@ export const InputSelect = ({
   ...props
 }: InputSelectProps) => {
   const [view, setView] = useState(false);
+  const [filter, setFilter] = useState(false);
+  const [currentFilter, setCurrentFilter] = useState("");
+  const [currentValue, setCurrentValue] = useState(inputHook.value.label!);
+
   const observer = useResizeObserver<HTMLDivElement>();
 
   const ref =
@@ -71,21 +75,44 @@ export const InputSelect = ({
   });
 
   const selectDropdown = () => {
-    setView((currentView) => !currentView);
+    setView((currentView) => {
+      // If the dropdown is being opened, the filter is reset
+      if (!currentView) {
+        setFilter(true);
+        setCurrentFilter("");
+      }
+      return !currentView;
+    });
   };
 
   const selectOption = (option: OptionObject) => {
     setView(false);
     inputHook.setValue(option);
+    setCurrentValue(option.label!);
+  };
+
+  const onWrite = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setView(true);
+    setFilter(true);
+    setCurrentValue(event.target.value);
+    setCurrentFilter(event.target.value);
   };
 
   const currentOptions = useMemo(() => {
+    // Filter options
+    const currentOptions = options.filter(
+      (option) =>
+        !filter ||
+        option.label!.toLowerCase().includes(currentFilter.toLowerCase())
+    );
+
+    // Add empty option
     if (addEmptyOption) {
-      return [{ label: "", text: "", value: -1 }, ...options];
+      return [{ label: "", text: "", value: -1 }, ...currentOptions];
     } else {
-      return options;
+      return currentOptions;
     }
-  }, [options, addEmptyOption]);
+  }, [options, addEmptyOption, filter, currentFilter]);
 
   const iconJSX = useMemo(() => {
     if (view) {
@@ -137,17 +164,15 @@ export const InputSelect = ({
         }}
       >
         <div className={inputTextStyles["input-text--content"]}>
-          <button
+          <input
+            value={currentValue}
+            onChange={onWrite}
             className={classnames(
               textStyles["text"],
               textStyles["text--h6"],
               inputTextStyles["input-text--input"]
             )}
-            onClick={selectDropdown}
-          >
-            {inputHook.value.label!}
-          </button>
-
+          />
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
               <Text color="red" weight="400">
