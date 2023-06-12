@@ -70,9 +70,7 @@ export const InputSelect = ({
 
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
-  const { events } = useDraggable(ref, {
-    isMounted: view,
-  });
+  const { events } = useDraggable(ref, { isMounted: view });
 
   const selectDropdown = () => {
     setView((currentView) => {
@@ -106,6 +104,21 @@ export const InputSelect = ({
         option.label!.toLowerCase().includes(currentFilter.toLowerCase())
     );
 
+    // Verify if the current value is in the options. If not, unselect
+    if (
+      !!inputHook.value.label &&
+      !currentOptions.some(
+        (option) =>
+          option.label!.toLowerCase() ===
+            inputHook.value.label!.toLowerCase() &&
+          option.text!.toLowerCase() === inputHook.value.text!.toLowerCase() &&
+          option.number === inputHook.value.number
+      )
+    ) {
+      inputHook.setValue({ label: "", text: "", number: -1 });
+      setCurrentValue("");
+    }
+
     // Add empty option
     if (addEmptyOption) {
       return [{ label: "", text: "", value: -1 }, ...currentOptions];
@@ -129,6 +142,10 @@ export const InputSelect = ({
       );
     }
   }, [view]);
+
+  useEffect(() => {
+    setCurrentValue(inputHook.value.label!);
+  }, [inputHook.value.label]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -175,13 +192,14 @@ export const InputSelect = ({
           />
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400">
+              <Text color="red" weight="400" style={{ zIndex: 1 }}>
                 *
               </Text>
             )}
             {label.length > 0 && (
               <Text
                 type="h6"
+                style={{ zIndex: 1 }}
                 weight={
                   inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
                 }
@@ -196,6 +214,7 @@ export const InputSelect = ({
                 &nbsp;{label}&nbsp;
               </Text>
             )}
+            <div className={inputTextStyles["input-text--medium-box"]} />
           </div>
 
           <div

@@ -145,7 +145,7 @@ export const InputText = ({
           />
           <div className={styles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400" style={{ zIndex: 1 }}>
+              <Text color="red" weight="400" style={{ zIndex: 2 }}>
                 *
               </Text>
             )}
@@ -161,7 +161,7 @@ export const InputText = ({
                   ? styleVariables.warningColor
                   : undefined
               }
-              style={{ zIndex: 1 }}
+              style={{ zIndex: 2 }}
             >
               &nbsp;{label}&nbsp;
             </Text>

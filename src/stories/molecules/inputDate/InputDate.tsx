@@ -99,12 +99,13 @@ export const InputDate = ({
 
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400">
+              <Text color="red" weight="400" style={{ zIndex: 1 }}>
                 *
               </Text>
             )}
             <Text
               type="h6"
+              style={{ zIndex: 1 }}
               weight={
                 inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
               }
@@ -118,6 +119,7 @@ export const InputDate = ({
             >
               &nbsp;{label}&nbsp;
             </Text>
+            <div className={inputTextStyles["input-text--medium-box"]} />
           </div>
         </div>
       </div>
