@@ -15,6 +15,8 @@
 .branch-reserves--content {
   display: flex;
   flex-direction: row;
+  column-gap: 5px;
+  padding-right: 5px;
 }
 .branch-reserves--submit-reservation--button-text {
   display: flex;
