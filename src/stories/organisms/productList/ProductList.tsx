@@ -88,8 +88,8 @@ export const ProductList = ({
   const editSubCategory = useInputForm<string>("");
   const editCategory = useInputForm<OptionObject>({ label: "", text: "" });
 
-  const category = useInputForm<OptionObject>({ label: "", text: "" });
-  const subCategory = useInputForm<OptionObject>({ label: "", text: "" });
+  const category = useInputForm<OptionObject>({ label: "Todas", text: "" });
+  const subCategory = useInputForm<OptionObject>({ label: "Todas", text: "" });
 
   const currentSubCategories = useMemo(() => {
     if (!category.value.text || category.value.text === "")
@@ -130,7 +130,7 @@ export const ProductList = ({
     // If there is a subcategory selected while changing the category, and
     // both do not match, then we deselect the subcategory
     if (subCategoryDependency[subCategory.value.text] !== category.value.text) {
-      subCategory.setValue({ label: "", text: "" });
+      subCategory.setValue({ label: "Todas", text: "" });
     }
   }, [category.value.text]);
 
@@ -176,6 +176,7 @@ export const ProductList = ({
                 showError={false}
                 options={categories}
                 inputHook={category}
+                emptyOptionLabel="Todas"
               />
             </Box>
           </Box>
@@ -188,6 +189,7 @@ export const ProductList = ({
                 showError={false}
                 label="Sub-categoría"
                 inputHook={subCategory}
+                emptyOptionLabel="Todas"
                 options={currentSubCategories}
               />
             </Box>
@@ -289,7 +291,7 @@ export const ProductList = ({
             Actualice los datos de la sub-categoría
           </Text>
 
-          <Box width="100%" style={{ zIndex: 2 }}>
+          <Box width="100%" style={{ zIndex: 3 }}>
             <InputSelect
               required
               width="100%"
@@ -346,7 +348,7 @@ export const ProductList = ({
             Indique los datos de la nueva sub-categoría
           </Text>
 
-          <Box width="100%" style={{ zIndex: 2 }}>
+          <Box width="100%" style={{ zIndex: 3 }}>
             <InputSelect
               required
               width="100%"

@@ -145,7 +145,7 @@ export const InputText = ({
           />
           <div className={styles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400" style={{ zIndex: 2 }}>
+              <Text color="red" type="h6" weight="400" style={{ zIndex: 2 }}>
                 *
               </Text>
             )}

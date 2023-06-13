@@ -243,10 +243,10 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames(
+                className,
                 styles["editable-input-text--select"],
                 textStyles["text"],
                 textStyles["text--p"],
-                className
               )}
               noOptionsMessage={() => "No se encuentra la opción"}
               value={{

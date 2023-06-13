@@ -73,7 +73,7 @@ export const NewProduct = ({
           styles["new-product--header"]
         )}
       >
-        <Box>
+        <Box className={styles["new-product--name"]}>
           <InputText required type="text" label="Nombre" inputHook={name} />
         </Box>
         <Box className={styles["new-product--category-container"]}>
@@ -94,7 +94,6 @@ export const NewProduct = ({
           />
           <Button
             primary
-            fullWidth
             size="large"
             onClick={onCreate}
             state={canCreate ? "normal" : "inactive"}

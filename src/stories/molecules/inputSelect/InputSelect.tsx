@@ -38,6 +38,10 @@ interface InputSelectProps {
    */
   addEmptyOption?: boolean;
   /**
+   * Empty option label
+   */
+  emptyOptionLabel?: string;
+  /**
    * Input width
    */
   width?: string;
@@ -57,6 +61,7 @@ export const InputSelect = ({
   required,
   showError = true,
   addEmptyOption = false,
+  emptyOptionLabel = "",
   width,
   height,
   ...props
@@ -98,33 +103,33 @@ export const InputSelect = ({
 
   const currentOptions = useMemo(() => {
     // Filter options
-    const currentOptions = options.filter(
+    let currentOptions = options.filter(
       (option) =>
         !filter ||
         option.label!.toLowerCase().includes(currentFilter.toLowerCase())
     );
+
+    // Add empty option
+    if (addEmptyOption) {
+      currentOptions = [
+        { label: emptyOptionLabel, text: "", number: -1 },
+        ...currentOptions,
+      ];
+    }
 
     // Verify if the current value is in the options. If not, unselect
     if (
       !!inputHook.value.label &&
       !currentOptions.some(
         (option) =>
-          option.label!.toLowerCase() ===
-            inputHook.value.label!.toLowerCase() &&
-          option.text!.toLowerCase() === inputHook.value.text!.toLowerCase() &&
-          option.number === inputHook.value.number
+          option.label!.toLowerCase() === inputHook.value.label!.toLowerCase()
       )
     ) {
       inputHook.setValue({ label: "", text: "", number: -1 });
       setCurrentValue("");
     }
 
-    // Add empty option
-    if (addEmptyOption) {
-      return [{ label: "", text: "", value: -1 }, ...currentOptions];
-    } else {
-      return currentOptions;
-    }
+    return currentOptions;
   }, [options, addEmptyOption, filter, currentFilter]);
 
   const iconJSX = useMemo(() => {
@@ -192,7 +197,7 @@ export const InputSelect = ({
           />
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400" style={{ zIndex: 1 }}>
+              <Text color="red" type="h6" weight="400" style={{ zIndex: 1 }}>
                 *
               </Text>
             )}
@@ -232,15 +237,15 @@ export const InputSelect = ({
             ref={ref}
           >
             {currentOptions.map((option, index) => {
-              // La primera y ultima opcion deben tener bordes en la zona
-              // superior e inferior respectivamente para adaptarse al
-              // menu
+              // The first and last option must have borders in the upper
+              // and lower zone respectively to adapt to the menu
               const borderTopLeftRadius = index === 0 ? 4 : 0;
               const borderTopRightRadius = borderTopLeftRadius;
               const borderBottomLeftRadius =
                 index === currentOptions.length - 1 ? 4 : 0;
               const borderBottomRightRadius = borderBottomLeftRadius;
-              // Estilo de los bordes de la opcion
+
+              // Style of the option borders
               const optionStyle = {
                 borderTopLeftRadius,
                 borderTopRightRadius,
@@ -249,6 +254,9 @@ export const InputSelect = ({
                 height: `${observer.height}px`,
                 width: `${observer.width}px`,
               };
+
+              // If the option is the first and the empty option is added
+              const emptyOption = addEmptyOption && index === 0;
 
               return (
                 <div
@@ -265,7 +273,13 @@ export const InputSelect = ({
                     style={{ ...optionStyle }}
                     onClick={() => selectOption(option)}
                   >
-                    <Text type="h6">&nbsp;{option.label}&nbsp;</Text>
+                    <Text
+                      type="h6"
+                      italic={emptyOption}
+                      weight={emptyOption ? "600" : "500"}
+                    >
+                      &nbsp;{option.label}&nbsp;
+                    </Text>
                   </button>
                 </div>
               );

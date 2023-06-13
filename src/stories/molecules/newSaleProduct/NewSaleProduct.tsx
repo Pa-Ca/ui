@@ -56,8 +56,8 @@ export const NewSaleProduct = ({
 }: NewSaleProductProps) => {
   const quantity = useInputForm<string>("1");
   const product = useInputForm<OptionObject>({ label: "", text: "" });
-  const category = useInputForm<OptionObject>({ label: "", text: "" });
-  const subCategory = useInputForm<OptionObject>({ label: "", text: "" });
+  const category = useInputForm<OptionObject>({ label: "Todas", text: "" });
+  const subCategory = useInputForm<OptionObject>({ label: "Todas", text: "" });
 
   const currentSubCategories = useMemo(() => {
     if (!category.value.text || category.value.text === "") {
@@ -109,7 +109,7 @@ export const NewSaleProduct = ({
     // If there is a subcategory selected while changing the category, and
     // both do not match, then we deselect the subcategory
     if (subCategoryDependency[subCategory.value.text] !== category.value.text) {
-      subCategory.setValue({ label: "", text: "" });
+      subCategory.setValue({ label: "Todas", text: "" });
     }
   }, [category.value.text]);
 
@@ -145,6 +145,7 @@ export const NewSaleProduct = ({
           showError={false}
           options={categories}
           inputHook={category}
+          emptyOptionLabel="Todas"
         />
       </Box>
       <Box className={styles["new-sale-product--sub-category-container"]}>
@@ -154,6 +155,7 @@ export const NewSaleProduct = ({
           showError={false}
           label="Sub-categoría"
           inputHook={subCategory}
+          emptyOptionLabel="Todas"
           options={currentSubCategories}
         />
       </Box>

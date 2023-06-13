@@ -28,11 +28,22 @@
   margin-bottom: 25px;
   justify-content: space-between;
 }
+.product--header-title{
+  flex: 1;
+  display: flex;
+}
+.product--header-category{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 .product--price-and-icon-container {
+  flex: 1;
   gap: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
 }
 .product--icon-container {
   display: flex;

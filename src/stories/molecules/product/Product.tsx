@@ -155,13 +155,13 @@ export const Product = ({
       )}
     >
       <Box className={styles["product--header"]}>
-        <Box>
+        <Box className={styles["product--header-title"]}>
           <Text weight="700" type="h5">
             {" "}
             {name.value}{" "}
           </Text>
         </Box>
-        <Box>
+        <Box className={styles["product--header-category"]}>
           <Text type="h5"> {`${category.value} | ${subCategory.value}`} </Text>
         </Box>
         <Box className={styles["product--price-and-icon-container"]}>

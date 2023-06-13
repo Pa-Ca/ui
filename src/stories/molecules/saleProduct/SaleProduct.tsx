@@ -3,8 +3,9 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./saleProduct.module.scss";
-import { InputText } from "../inputText/InputText";
 import { InputFormHook } from "../../hooks/useInputForm";
+import textStyles from "../../atoms/text/text.module.scss";
+import { EditableInputText } from "../editableInputText/EditableInputText";
 
 export interface SaleProductProps {
   /**
@@ -19,6 +20,10 @@ export interface SaleProductProps {
    * Product quantity
    */
   quantity: InputFormHook<string>;
+  /**
+   * On change quantity
+   */
+  onChangeQuantity: (value: string) => void;
   /**
    * On delete
    */
@@ -40,6 +45,7 @@ export const SaleProduct = ({
   name,
   price,
   quantity,
+  onChangeQuantity,
   onDelete,
   width,
   height,
@@ -70,13 +76,18 @@ export const SaleProduct = ({
         </Text>
       </Box>
       <Box className={styles["sale-product--quantity-container"]}>
-        <InputText
-          height="45px"
-          width="100px"
-          type="naturalNumber"
-          label="Cantidad"
+        <Text weight="400" type="h6">
+          Cantidad:
+        </Text>
+        <EditableInputText
+          useEditIcons
+          width="180px"
+          editable={true}
           showError={false}
           inputHook={quantity}
+          type="positiveInteger"
+          className={textStyles["text--h5"]}
+          saveValueFunction={onChangeQuantity}
         />
       </Box>
       <Box className={styles["sale-product--left-container"]}>
