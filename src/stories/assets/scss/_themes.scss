@@ -43,6 +43,10 @@
     // Input tab
     --input-tab-separator-color: #{$white-dark};
     --input-tab-line-color: #{$green};
+
+    // Paginable icons color
+    --paginable-active-color: #{$black};
+    --paginable-inactive-color: #{$gray-light};
   }
 }
 
@@ -89,5 +93,9 @@
     // Input tab
     --input-tab-separator-color: #{$green};
     --input-tab-line-color: #{$black-light};
+
+    // Paginable icons color
+    --paginable-active-color: #{$white-dark};
+    --paginable-inactive-color: #{$gray};
   }
 }

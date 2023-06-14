@@ -1,0 +1,149 @@
+@import "../../assets/scss/themes";
+
+.past-sale--container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-background-color);
+
+  padding-top: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  transition: border-left-color 500ms ease-out;
+}
+.past-sale--header {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 25px;
+  justify-content: space-between;
+}
+.past-sale--header-hour {
+  flex: 1;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.past-sale--header-table {
+  flex: 1;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.past-sale--price-and-icon-container {
+  flex: 1;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.past-sale--icon-container {
+  display: flex;
+  cursor: pointer;
+  min-width: 30px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.past-sale--details-container {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+.past-sale--details-container-show {
+  opacity: 1;
+  max-height: 400px;
+  transition: max-height 650ms ease-in, opacity 5ms;
+}
+.past-sale--details-container-hide {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 5ms linear 650ms, max-height 650ms ease-out;
+}
+.past-sale--details-container-hr {
+  width: 100%;
+  margin-bottom: 20px;
+  color: var(--hr-color);
+}
+.past-sale--details {
+  gap: 35px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+}
+.past-sale--summary-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.past-sale--details-products-container {
+  flex: 1.7;
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+.past-sale--details-product-item {
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.past-sale--item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.past-sale--item-quantity {
+  flex: 1;
+  max-width: 150px;
+  display: flex;
+}
+.past-sale--item-product {
+  flex: 2;
+  display: flex;
+}
+.past-sale--item-price {
+  flex: 1;
+  display: flex;
+  max-width: 150px;
+  flex-direction: column;
+}
+.past-sale--details-products {
+  display: flex;
+  overflow-y: auto;
+  max-height: 270px;
+  flex-direction: column;
+}
+.past-sale--summary {
+  flex: 1;
+  gap: 40px;
+  display: flex;
+  padding-bottom: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.past-sale--reservation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.past-sale--reservation-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.past-sale--reservation-item {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

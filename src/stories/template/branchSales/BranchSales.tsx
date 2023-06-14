@@ -15,6 +15,7 @@ import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { SaleProductProps } from "../../molecules/saleProduct/SaleProduct";
 import { SaleProductList } from "../../organisms/saleProductList/SaleProductList";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
+import { PastSaleProps } from "../../molecules/pastSale/PastSale";
 
 interface BranchSalesProps {
   /**
@@ -51,9 +52,13 @@ interface BranchSalesProps {
    */
   subCategoryDependency: Record<string, string>;
   /**
-   * Change table name
+   * On create table
    */
-  onChangeTableName: (name: InputFormHook<string>) => boolean;
+  onCreateTable: (name: InputFormHook<string>) => boolean;
+  /**
+   * Edit table
+   */
+  onEditTable: (name: InputFormHook<string>) => boolean;
   /**
    * On create product
    */
@@ -66,6 +71,31 @@ interface BranchSalesProps {
    * On close sale
    */
   onCloseSale: (note: string) => void;
+  /**
+   * On delete table
+   */
+  onDeleteTable: () => void;
+
+  /**
+   * Past sale list
+   */
+  pastSales: PastSaleProps[];
+  /**
+   * Current past sale page
+   */
+  page: number;
+  /**
+   * Total past sale pages
+   */
+  totalPages: number;
+  /**
+   * On next page
+   */
+  onNextPage: () => void;
+  /**
+   * On previous page
+   */
+  onPreviousPage: () => void;
 }
 
 /**
@@ -80,24 +110,40 @@ export const BranchSales = ({
   categories,
   subCategories,
   subCategoryDependency,
-  onChangeTableName,
+  onCreateTable,
+  onEditTable,
   onAddProduct,
   onClearProducts,
   onCloseSale,
+  onDeleteTable,
+
+  pastSales,
+  page,
+  totalPages,
+  onNextPage,
+  onPreviousPage,
   ...props
 }: BranchSalesProps) => {
   const windowSize = useWindowResize();
-  const newTableName = useInputForm(table.value.label!);
-  const [showChangeNameModal, setShowChangeNameModal_] = useState(false);
+  const newTableName = useInputForm("");
+  const editTableName = useInputForm(table.value.label!);
+  const [showNewModal, setShowNewModal_] = useState(false);
+  const [showEditModal, setShowEditModal_] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const PageWrapper = useMemo(
     () =>
       windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
     [windowSize.resolutionType]
   );
 
-  const setShowChangeNameModal = (show: boolean) => {
-    newTableName.setValue(table.value.label!);
-    setShowChangeNameModal_(show);
+  const setShowEditModal = (show: boolean) => {
+    editTableName.setValue(table.value.label!);
+    setShowEditModal_(show);
+  };
+
+  const setShowNewModal = (show: boolean) => {
+    newTableName.setValue("");
+    setShowNewModal_(show);
   };
 
   return (
@@ -113,18 +159,25 @@ export const BranchSales = ({
             options={allTables}
             inputHook={table}
           />
+          <Button primary size="large" onClick={() => setShowNewModal(true)}>
+            <Box className={styles["sale-branch-sales--button"]}>
+              <Text weight="600">Crear Mesa</Text>
+            </Box>
+          </Button>
         </Box>
 
-        <Button
-          primary
-          size="large"
-          state={products.length > 0 ? "normal" : "inactive"}
-          onClick={() => setShowChangeNameModal(true)}
-        >
-          <Box className={styles["sale-product-list--button"]}>
-            <Text weight="600">Cambiar nombre de la Mesa</Text>
-          </Box>
-        </Button>
+        <Box className={styles["branch-sales--table-selector"]}>
+          <Button size="large" onClick={() => setShowDeleteModal(true)}>
+            <Box className={styles["sale-branch-sales--button"]}>
+              <Text weight="600">Eliminar Mesa</Text>
+            </Box>
+          </Button>
+          <Button primary size="large" onClick={() => setShowEditModal(true)}>
+            <Box className={styles["sale-branch-sales--button"]}>
+              <Text weight="600">Editar Mesa</Text>
+            </Box>
+          </Button>
+        </Box>
       </Box>
 
       <SaleProductList
@@ -138,10 +191,10 @@ export const BranchSales = ({
         onCloseSale={onCloseSale}
       />
 
-      <Modal open={showChangeNameModal} setOpen={setShowChangeNameModal}>
-        <Box className={styles["product-list--modal-container"]}>
+      <Modal open={showNewModal} setOpen={setShowNewModal}>
+        <Box className={styles["branch-sales--modal-container"]}>
           <Text type="h5" weight="500">
-            Indique el nuevo nombre de la mesa
+            Indique el nombre de la nueva mesa
           </Text>
 
           <Box width="100%" style={{ marginTop: "20px" }}>
@@ -158,7 +211,7 @@ export const BranchSales = ({
             <Button
               fullWidth
               size="large"
-              onClick={() => setShowChangeNameModal(false)}
+              onClick={() => setShowNewModal(false)}
             >
               <Box className={styles["branch-sales--modal-button"]}>
                 <Text weight="600">Cancelar</Text>
@@ -169,11 +222,87 @@ export const BranchSales = ({
               fullWidth
               size="large"
               onClick={() =>
-                onChangeTableName(newTableName) && setShowChangeNameModal(false)
+                onCreateTable(editTableName) && setShowNewModal(false)
               }
             >
               <Box className={styles["branch-sales--modal-button"]}>
                 <Text weight="600">Aceptar</Text>
+              </Box>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      <Modal open={showEditModal} setOpen={setShowEditModal}>
+        <Box className={styles["branch-sales--modal-container"]}>
+          <Text type="h5" weight="500">
+            Indique el nuevo nombre de la mesa
+          </Text>
+
+          <Box width="100%" style={{ marginTop: "20px" }}>
+            <InputText
+              required
+              type="text"
+              width="100%"
+              label="Nombre"
+              inputHook={editTableName}
+            />
+          </Box>
+
+          <Box className={styles["branch-sales--modal-buttons"]}>
+            <Button
+              fullWidth
+              size="large"
+              onClick={() => setShowEditModal(false)}
+            >
+              <Box className={styles["branch-sales--modal-button"]}>
+                <Text weight="600">Cancelar</Text>
+              </Box>
+            </Button>
+            <Button
+              primary
+              fullWidth
+              size="large"
+              onClick={() =>
+                onEditTable(editTableName) && setShowEditModal(false)
+              }
+            >
+              <Box className={styles["branch-sales--modal-button"]}>
+                <Text weight="600">Aceptar</Text>
+              </Box>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      <Modal open={showDeleteModal} setOpen={setShowDeleteModal}>
+        <Box className={styles["branch-sales--delete-modal-container"]}>
+          <Text type="h5" weight="500">
+            ¿Estás seguro que deseas eliminar la mesa
+            <span style={{ fontWeight: "600" }}> {table.value.label!} </span>?
+          </Text>
+
+          <Box className={styles["branch-sales--modal-buttons"]}>
+            <Button
+              fullWidth
+              size="large"
+              onClick={() => setShowDeleteModal(false)}
+            >
+              <Box className={styles["branch-sales--modal-button"]}>
+                <Text weight="600">Cancelar</Text>
+              </Box>
+            </Button>
+            <Button
+              primary
+              fullWidth
+              size="large"
+              onClick={() => {
+                setShowDeleteModal(false);
+                onDeleteTable();
+              }}
+            >
+              <Box className={styles["branch-sales--modal-button"]}>
+                <Text weight="600">Eliminar Mesa</Text>
               </Box>
             </Button>
           </Box>

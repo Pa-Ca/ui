@@ -38,3 +38,8 @@
   align-items: center;
   flex-direction: column;
 }
+.branch-sales--delete-modal-container {
+  @extend .branch-sales--modal-container;
+
+  max-width: 550px;
+}

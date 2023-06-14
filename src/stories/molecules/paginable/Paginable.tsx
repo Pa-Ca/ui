@@ -73,7 +73,11 @@ export const Paginable = <T extends any>({
           <Icon
             icon="left"
             size="18px"
-            color={page < 2 ? "#a7a2a2" : "black"}
+            className={
+              page < 2
+                ? styles["paginable--icons-inactive-color"]
+                : styles["paginable--icons-active-color"]
+            }
           />
         </Box>
 
@@ -91,7 +95,11 @@ export const Paginable = <T extends any>({
           <Icon
             icon="right"
             size="18px"
-            color={page > totalPages - 1 ? "#a7a2a2" : "black"}
+            className={
+              page > totalPages - 1
+                ? styles["paginable--icons-inactive-color"]
+                : styles["paginable--icons-active-color"]
+            }
           />
         </Box>
       </Box>
