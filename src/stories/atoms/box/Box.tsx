@@ -51,6 +51,14 @@ interface BoxProps {
    */
   borderBottomLeftRadius?: string;
   /**
+   * Apply the error text style
+   */
+  errorStyle?: boolean;
+  /**
+   * Apply the warning text style
+  */
+  warningStyle?: boolean;
+  /**
    * Box on Click function
    */
   onClick?: MouseEventHandler<HTMLDivElement>;
@@ -104,6 +112,8 @@ export const Box = ({
   borderTopRightRadius,
   borderBottomRightRadius,
   borderBottomLeftRadius,
+  errorStyle = false,
+  warningStyle = false,
   onClick,
   style,
   className,

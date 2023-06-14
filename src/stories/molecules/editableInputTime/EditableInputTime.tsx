@@ -196,13 +196,13 @@ export const EditableInputTime = ({
                 textStyles["text"],
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
-                editableInputTextStyle["editable-input-text--input"]
+                editableInputTextStyle["editable-input-text--input"],
+                (hoursInputHook.error == 1) ? textStyles["text--error-border"] :
+                (hoursInputHook.error == 2) ? textStyles["text--warning-border"] :
+                "",
               )}
               style={{
                 width: "30px",
-                borderColor: hoursInputHook.error
-                  ? styleVariables.errorColor
-                  : undefined,
                 borderWidth:
                   hoursInputHook.error == 1 || hoursInputHook.error == 2
                     ? "2.5px"
@@ -226,13 +226,13 @@ export const EditableInputTime = ({
                 textStyles["text"],
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
-                editableInputTextStyle["editable-input-text--input"]
+                editableInputTextStyle["editable-input-text--input"],
+                (minutesInputHook.error == 1) ? textStyles["text--error-border"] :
+                (minutesInputHook.error == 2) ? textStyles["text--warning-border"] :
+                "",
               )}
               style={{
                 width: "30px",
-                borderColor: minutesInputHook.error
-                  ? styleVariables.errorColor
-                  : undefined,
                 borderWidth:
                   minutesInputHook.error == 1 || minutesInputHook.error == 2
                     ? "2.5px"

@@ -273,15 +273,12 @@ export const EditableInputText = ({
                 styles["editable-input-text--input"],
                 textStyles["text"],
                 textStyles["text--p"],
+                (inputHook.error == 1) ? textStyles["text--error-border"] :
+                (inputHook.error == 2) ? textStyles["text--warning-border"] :
+                "",
                 className
               )}
               style={{
-                borderColor:
-                  inputHook.error == 1
-                    ? styleVariables.errorColor
-                    : inputHook.error == 2
-                    ? styleVariables.warningColor
-                    : undefined,
                 borderWidth:
                   inputHook.error == 1 || inputHook.error == 2
                     ? "2.5px"

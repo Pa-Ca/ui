@@ -87,16 +87,6 @@ export const InputTime = ({
     minutesInputHook.setValue(event.target.value);
   };
 
-  const color = (error: number) => {
-    if (error === 1) {
-      return styleVariables.errorColor;
-    }
-    if (error === 2) {
-      return styleVariables.warningColor;
-    }
-    return undefined;
-  };
-
   return (
     <Box
       className={editableInputTextStyles["editable-input-text--container"]}
@@ -116,11 +106,13 @@ export const InputTime = ({
               textStyles["text"],
               textStyles["text--h5"],
               styles["input-time--input"],
-              editableInputTextStyles["editable-input-text--input"]
+              editableInputTextStyles["editable-input-text--input"],
+              (hoursInputHook.error == 1) ? styles["input-time--error-border-bottom"] :
+              (hoursInputHook.error == 2) ? styles["input-time--warning-border-bottom"] :
+              "",
             )}
             style={{
               width: "30px",
-              borderBottomColor: color(hoursInputHook.error),
             }}
           />
           <Text
@@ -142,11 +134,13 @@ export const InputTime = ({
               textStyles["text"],
               textStyles["text--h5"],
               styles["input-time--input"],
-              editableInputTextStyles["editable-input-text--input"]
+              editableInputTextStyles["editable-input-text--input"],
+              (minutesInputHook.error == 1) ? styles["input-time--error-border-bottom"] :
+              (minutesInputHook.error == 2) ? styles["input-time--warning-border-bottom"] :
+              "",
             )}
             style={{
               width: "30px",
-              borderBottomColor: color(minutesInputHook.error),
             }}
           />
           <Text

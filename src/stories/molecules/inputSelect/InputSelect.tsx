@@ -111,15 +111,11 @@ export const InputSelect = ({
       <Box
         className={inputTextStyles["input-text--input-container"]}
         innerRef={observer.ref}
+        warningStyle={inputHook.error == 1}
+        errorStyle={inputHook.error == 2}
         style={{
           width,
           height,
-          borderColor:
-            inputHook.error == 1
-              ? styleVariables.errorColor
-              : inputHook.error == 2
-              ? styleVariables.warningColor
-              : undefined,
           borderWidth:
             inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
@@ -148,13 +144,8 @@ export const InputSelect = ({
                 weight={
                   inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
                 }
-                color={
-                  inputHook.error == 1
-                    ? styleVariables.errorColor
-                    : inputHook.error == 2
-                    ? styleVariables.warningColor
-                    : undefined
-                }
+                warningStyle={inputHook.error == 1}
+                errorStyle={inputHook.error == 2}
               >
                 &nbsp;{label}&nbsp;
               </Text>

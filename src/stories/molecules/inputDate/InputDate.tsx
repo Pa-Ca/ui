@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import styles from "./inputDate.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import { Box } from "../../atoms/box/Box";
 import "react-datepicker/dist/react-datepicker.css";
 import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
@@ -72,21 +73,17 @@ export const InputDate = ({
 
   return (
     <div>
-      <div
+      <Box
         className={inputTextStyles["input-text--input-container"]}
+        warningStyle={inputHook.error == 1}
+        errorStyle={inputHook.error == 2}
         style={{
           width,
           height,
-          borderColor:
-            inputHook.error == 1
-              ? styleVariables.errorColor
-              : inputHook.error == 2
-              ? styleVariables.warningColor
-              : undefined,
           borderWidth:
             inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
-        ref={observer.ref}
+        innerRef={observer.ref}
       >
         <div className={inputTextStyles["input-text--content"]}>
           <DatePicker
@@ -108,19 +105,14 @@ export const InputDate = ({
               weight={
                 inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
               }
-              color={
-                inputHook.error == 1
-                  ? styleVariables.errorColor
-                  : inputHook.error == 2
-                  ? styleVariables.warningColor
-                  : undefined
-              }
+              warningStyle={inputHook.error == 1}
+              errorStyle={inputHook.error == 2}
             >
               &nbsp;{label}&nbsp;
             </Text>
           </div>
         </div>
-      </div>
+      </Box>
       <div
         className={
           inputTextStyles["input-text--error-container"] +
