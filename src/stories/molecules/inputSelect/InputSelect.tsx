@@ -235,9 +235,9 @@ export const InputSelect = ({
       >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h7" color={styleVariables.errorColor}>
+            <Text type="h7" errorStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>
@@ -246,11 +246,11 @@ export const InputSelect = ({
           <>
             <Icon
               icon="warning"
-              color={styleVariables.warningColor}
+              warningStyle={true}
               size="20px"
             />
             <div style={{ width: "10px" }} />
-            <Text type="h7" color={styleVariables.warningColor}>
+            <Text type="h7" warningStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>

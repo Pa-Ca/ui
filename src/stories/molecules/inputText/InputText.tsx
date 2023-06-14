@@ -181,16 +181,16 @@ export const InputText = ({
             <>
               <Icon icon="alert" errorStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.errorColor}>
+              <Text type="h7" errorStyle={true}>
                 {inputHook.errorMessage}
               </Text>
             </>
           )}
           {inputHook.error == 2 && (
             <>
-              <Icon icon="warning" warningStyle size="20px" />
+              <Icon icon="warning" warningStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.warningColor}>
+              <Text type="h7" warningStyle={true}>
                 {inputHook.errorMessage}
               </Text>
             </>
