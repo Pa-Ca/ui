@@ -158,7 +158,13 @@ export const BranchReserves = ({
   const [currentPendingReservation, setCurrentPendingReservation] = useState<
     ReservationProps[]
   >([]);
-  const observer = useResizeObserver<HTMLDivElement>();
+
+  const [currentHistoricReservation, setCurrentHistoricReservation] = useState<
+    ReservationProps[]
+  >([]);
+
+  const observerTab = useResizeObserver<HTMLDivElement>();
+  const observerContainer = useResizeObserver<HTMLDivElement>();
 
   // Ordered reservations by date
   reservations.sort((a, b) => {
@@ -172,18 +178,26 @@ export const BranchReserves = ({
     () => reservations.filter((reservation) => reservation.state === 2),
     [reservations]
   );
-
+  
   // Filter reservations by state equals to 1
   const pendingReservations = useMemo(
     () => reservations.filter((reservation) => reservation.state === 1),
     [reservations]
   );
 
+  // Filter all other previosly filter reservations by state
+  const historicReservation = useMemo(
+    () => reservations.filter(
+      (reservation) => reservation.state !== 1 && reservation.state !== 2
+    ),
+    [reservations]
+  );
+
   useEffect(() => {
-    if (observer.ref.current) {
-      observer.ref.current.scrollLeft = page * (observer.width + 30);
+    if (observerTab.ref.current && observerContainer.ref.current) {
+      observerContainer.ref.current.scrollLeft = page * (observerTab.width / 3);
     }
-  }, [observer.width, page]);
+  }, [observerTab.width, page]);
 
   return (
 
@@ -197,17 +211,20 @@ export const BranchReserves = ({
           tabs={[
             `Reservas Activas (${activeReservations.length})`,
             `Reservas Pendientes (${pendingReservations.length})`,
+            `Histórico (${historicReservation.length})`,
           ]}
         />
       </Box>
 
       <Box
         className={styles["branch-reserves--content-container"]}
-        innerRef={observer.ref}
+        innerRef={observerContainer.ref}
       >
         {haveBranch ? (
-          <Box width="200%" className={styles["branch-reserves--content"]}>
-            <Box width="100%">
+          <Box width="300%" 
+            className={styles["branch-reserves--content"]}
+            innerRef={observerTab.ref}>
+            <Box style={{flex: 1}}>
               <Paginable
                 list={activeReservations}
                 setCurrentList={setCurrentActiveReservation}
@@ -223,9 +240,7 @@ export const BranchReserves = ({
               </Paginable>
             </Box>
 
-            <Box width="30px" />
-
-            <Box width="100%">
+            <Box style={{flex: 1}}>
               <Paginable
                 list={pendingReservations}
                 setCurrentList={setCurrentPendingReservation}
@@ -240,6 +255,23 @@ export const BranchReserves = ({
                 <Box height="40px" />
               </Paginable>
             </Box>
+
+            <Box style={{flex: 1}}>
+              <Paginable
+                list={historicReservation}
+                setCurrentList={setCurrentHistoricReservation}
+                objectsPerPage={10}
+              >
+                <ReserveList
+                  icon_size={icon_size}
+                  reservations={currentHistoricReservation}
+                  state={3}
+                  setShowModal={setShowModal}
+                />
+                <Box height="40px" />
+              </Paginable>
+            </Box>
+
           </Box>
         ) : (
           <Box className={styles["branch-reserves--no-branch-box"]}>

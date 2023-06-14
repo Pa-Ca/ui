@@ -66,7 +66,8 @@ export const ReserveList = ({
       const filteredGroup = {
         ...group,
         reservations: group.reservations.filter(
-          (reservation) => reservation.state === state
+          // (reservation) => reservation.state === state
+          (reservation) => true
         ),
       };
       if (filteredGroup.reservations.length > 0) {
@@ -83,7 +84,7 @@ export const ReserveList = ({
       case 2:
         return "Reservas Activas";
       default:
-        return "Reservas";
+        return "Histórico";
     }
   }, [state]);
 
@@ -194,7 +195,7 @@ export const ReserveList = ({
           <Text type="h4">
             {" "}
             No hay reservas
-            {state == 1 ? " Pendientes" : state == 2 ? " Activas" : ""}.
+            {state == 1 ? " Pendientes" : state == 2 ? " Activas" : " Registradas"}.
           </Text>
         </Box>
       )}

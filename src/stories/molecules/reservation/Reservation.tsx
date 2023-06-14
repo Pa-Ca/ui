@@ -175,7 +175,9 @@ export const Reservation = ({
         );
 
       default:
-        return <></>;
+        return (
+          <Box className={styles["reservation--box-button"]}></Box>
+        );
     }
   }, [state]);
 
@@ -186,7 +188,7 @@ export const Reservation = ({
       weakShadow
       style={{ width, height, borderLeftColor: statusColor}}
     >
-      <Box className={styles["reservation-details--row"]}>
+      <Box className={styles["reservation--details-row"]}>
         {/* Start Hour */}
         <Box>
           <Box
@@ -236,12 +238,12 @@ export const Reservation = ({
       </Box>
 
       <Box className={classnames(
-        styles["reservation-details--row"],
-        styles["reservation-more-details--row"]
+        styles["reservation--details-row"],
+        styles["reservation--more-details-row"]
       )}>
         <Box className={active ?
-          styles["reservation-more-details--row-show"] :
-          styles["reservation-more-details--row-hide"]
+          styles["reservation--more-details-row-show"] :
+          styles["reservation--more-details-row-hide"]
         }>
           <hr className={styles["reservation--hr"]}/>
           <div>
@@ -284,84 +286,103 @@ export const Reservation = ({
       </Box>
 
       <Modal open={confirmReject} setOpen={setconfirmReject}>
-        <Box className={styles["reservation-modal--box"]}>
+        <Box className={styles["reservation--modal-box"]}>
+
           <Text>
             ¿Está seguro que desea <span style={{fontWeight: "600"}}>Rechazar</span> la reserva ?
           </Text>
 
-          <Box className={styles["reservation-flex-box"]}>
+          <Box className={styles["reservation--confirmation-button-row"]}>
             <Button
               onClick={() => setconfirmReject(false)}
+              fullWidth
               className={styles["reservation--left-button"]}
             >
-              <Text type="h6">
-                No
-              </Text>
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Rechazar
+                </Text>
+              </Box>
             </Button>
             <Button
               primary
+              fullWidth
               onClick={onReject}
               className={styles["reservation--right-button"]}
             >
-              <Text type="h6">
-                Sí
-              </Text>
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Aceptar
+                </Text>
+              </Box>
             </Button>
           </Box>
         </Box>
       </Modal>
 
       <Modal open={confirmAccept} setOpen={setConfirmAccept}>
-        <Box className={styles["reservation-modal--box"]}>
+        <Box className={styles["reservation--modal-box"]}>
           <Text>
             ¿Está seguro que desea <span style={{fontWeight: "600"}}>Aceptar</span> la reserva ?
           </Text>
 
-          <Box className={styles["reservation-flex-box"]}>
+          <Box className={styles["reservation--confirmation-button-row"]}>
             <Button
               onClick={() => setconfirmReject(false)}
+              fullWidth
               className={styles["reservation--left-button"]}
             >
-              <Text type="h6">
-                No
-              </Text>
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Rechazar
+                </Text>
+              </Box>
             </Button>
             <Button
               primary
+              fullWidth
               onClick={onAccept}
               className={styles["reservation--right-button"]}
             >
-              <Text type="h6">
-                Sí
-              </Text>
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Aceptar
+                </Text>
+              </Box>
             </Button>
           </Box>
         </Box>
       </Modal>
 
       <Modal open={confirmClose} setOpen={setconfirmClose}>
-        <Box className={styles["reservation-modal--box"]}>
+        <Box className={styles["reservation--modal-box"]}>
           <Text>
             ¿Está seguro que desea <span style={{fontWeight: "600"}}>Cerrar</span> la reserva ?
           </Text>
 
-          <Box className={styles["reservation-flex-box"]}>
+          <Box className={styles["reservation--confirmation-button-row"]}>
             <Button
               onClick={() => setconfirmReject(false)}
+              fullWidth
               className={styles["reservation--left-button"]}
             >
-              <Text type="h6">
-                No
-              </Text>
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Rechazar
+                </Text>
+              </Box>
             </Button>
             <Button
               primary
+              fullWidth
               onClick={onCloseReservation}
               className={styles["reservation--right-button"]}
             >
-              <Text type="h6">
-                Sí
-              </Text>
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Aceptar
+                </Text>
+              </Box>
             </Button>
           </Box>
         </Box>

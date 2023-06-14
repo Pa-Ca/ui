@@ -9,7 +9,7 @@
   border-left-width: 20px;
   border-left-style: solid;
 }
-.reservation-details--row {
+.reservation--details-row {
   display: flex;
   align-items: center;
 }
@@ -87,26 +87,26 @@
   cursor: pointer;
 }
 
-.reservation-more-details--row{
+.reservation--more-details-row{
   margin-left: 24px;
   overflow: hidden;
   margin-top: 23px;
 }
 
-.reservation-more-details--row-show {
+.reservation--more-details-row-show {
   width: 100%;
   opacity: 1;
   max-height: 400px;
   transition: max-height 400ms ease-in, opacity 4ms;
 }
-.reservation-more-details--row-hide {
+.reservation--more-details-row-hide {
   width: 100%;
   opacity: 0;
   max-height: 0;
   transition: opacity 4ms linear 400ms, max-height 400ms ease-out;
 }
 
-.reservation-flex-box{
+.reservation--flex-box{
   display: flex;
 }
 
@@ -116,9 +116,19 @@
   color: var(--hr-color);
 }
 
-.reservation-modal--box{
+.reservation--modal-box{
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
-.reservation-modal--box .reservation-flex-box {
-  margin-top: 15px;
+
+.reservation--confirmation-button-box {
+  width: 100%;
+  text-align: center;
+}
+
+.reservation--confirmation-button-row{
+  display: flex;
+  column-gap: 20px;
 }
