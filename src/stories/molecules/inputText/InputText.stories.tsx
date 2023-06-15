@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { InputText } from "./InputText";
 import useInputForm from "../../hooks/useInputForm";
 import { StoryFn, Meta } from "@storybook/react";
+import { Box } from "../../atoms/box/Box";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -19,13 +20,33 @@ export default {
         disable: true,
       },
     },
+    error: {
+      control: "number",
+    },
+    errorMessage: {
+      control: "text",
+    },
   },
 } as Meta<typeof InputText>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof InputText> = (args: any) => {
   const value = useInputForm("");
-  return <InputText inputHook={value} {...args} />;
+
+  useEffect(() => {
+    value.setError(args.error);
+  }, [args.error]);
+
+  useEffect(() => {
+    value.setErrorMessage(args.errorMessage);
+  }, [args.errorMessage]);
+
+  return (
+    <>
+      <Box height="50px" />
+      <InputText inputHook={value} {...args} />
+    </>
+  );
 };
 
 export const Text = Template.bind({});

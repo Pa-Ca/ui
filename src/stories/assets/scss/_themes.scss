@@ -45,6 +45,9 @@
     // Input tab
     --input-tab-separator-color: #{$white-dark};
     --input-tab-line-color: #{$green};
+
+    // Input select
+    --odd-option-color: #{$white};
   }
 }
 
@@ -93,5 +96,8 @@
     // Input tab
     --input-tab-separator-color: #{$green};
     --input-tab-line-color: #{$green};
+
+    // Input select
+    --odd-option-color: #{$gray-dark};
   }
 }

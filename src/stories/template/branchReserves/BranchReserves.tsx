@@ -143,8 +143,7 @@ export const BranchReserves = ({
 }: BranchReservesProps) => {
 
   const windowSize = useWindowResize();
-  // Get the theme from the provider
-  const { isDarkMode } = useThemeProvider();
+
   const PageWrapper = useMemo(
     () =>
       windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
@@ -198,6 +197,10 @@ export const BranchReserves = ({
       observerContainer.ref.current.scrollLeft = page * (observerTab.width / 3);
     }
   }, [observerTab.width, page]);
+
+  // Get the theme from the provider
+  const { isDarkMode } = useThemeProvider();
+  header.dark = isDarkMode;
 
   return (
 

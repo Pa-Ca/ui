@@ -129,6 +129,8 @@ export const Box = ({
         styles["box"],
         strongShadow ? styles["box--strong-shadow"] : "",
         weakShadow ? styles["box--weak-shadow"] : "",
+        errorStyle ? styles["box--error-border"] : "",
+        warningStyle ? styles["box--warning-border"] : "",
         className,
       ].join(" ")}
       style={{

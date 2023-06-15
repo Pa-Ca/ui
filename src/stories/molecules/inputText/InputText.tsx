@@ -111,8 +111,8 @@ export const InputText = ({
     <div className={styles["input-text--container"]}>
       <Box
         className={styles["input-text--input-container"]}
-        warningStyle={inputHook.error == 1}
-        errorStyle={inputHook.error == 2}
+        warningStyle={inputHook.error == 2}
+        errorStyle={inputHook.error == 1}
         style={{
           width,
           height,
@@ -145,8 +145,8 @@ export const InputText = ({
               weight={
                 inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
               }
-              warningStyle={inputHook.error == 1}
-              errorStyle={inputHook.error == 2}
+              warningStyle={inputHook.error == 2}
+              errorStyle={inputHook.error == 1}
             >
               &nbsp;{label}&nbsp;
             </Text>
