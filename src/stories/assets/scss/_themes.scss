@@ -48,6 +48,7 @@
 
     // Input select
     --odd-option-color: #{$white};
+    --pair-option-color: #{$white-dark};
   }
 }
 
@@ -99,5 +100,6 @@
 
     // Input select
     --odd-option-color: #{$gray-dark};
+    --pair-option-color: #{$black-light};
   }
 }
