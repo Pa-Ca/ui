@@ -23,5 +23,5 @@ Default.args = {
   lat: 10.4302,
   lng: -66.8771,
   location: "El Hatillo, Caracas, Venezuela",
-  apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  apiKey: process.env.VITE_GOOGLE_MAPS_API_KEY,
 };

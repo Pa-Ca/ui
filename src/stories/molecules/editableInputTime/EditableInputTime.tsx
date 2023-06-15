@@ -304,8 +304,6 @@ export const EditableInputTime = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
-          initialColor="black"
-          color={color}
         />
       </Box>
       <Box
