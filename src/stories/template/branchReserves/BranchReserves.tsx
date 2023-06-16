@@ -150,7 +150,10 @@ export const BranchReserves = ({
   }, [windowSize.resolutionType]);
 
   const [page, setPage] = useState(0);
-  const [currentActiveReservation, setCurrentActiveReservation] = useState<
+  const [currentOngoingReservation, setCurrentOngoingReservation] = useState<
+    ReservationProps[]
+  >([]);
+  const [currentAcceptedReservation, setCurrentAcceptedReservation] = useState<
     ReservationProps[]
   >([]);
   const [currentPendingReservation, setCurrentPendingReservation] = useState<
@@ -171,13 +174,19 @@ export const BranchReserves = ({
     return dateA.getTime() - dateB.getTime();
   });
 
-  // Filter reservations by state equals to 2
-  const activeReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 2),
+  // Filter reservations by state equals to 6, meaning ongoing
+  const ongoingReservations = useMemo(
+    () => reservations.filter((reservation) => reservation.state === 6),
     [reservations]
   );
 
-  // Filter reservations by state equals to 1
+  // Filter reservations by state equals to 3, meaning accepted
+  const acceptedReservations = useMemo(
+    () => reservations.filter((reservation) => reservation.state === 3),
+    [reservations]
+  );
+
+  // Filter reservations by state equals to 1, meaning pending
   const pendingReservations = useMemo(
     () => reservations.filter((reservation) => reservation.state === 1),
     [reservations]
@@ -187,14 +196,16 @@ export const BranchReserves = ({
   const historicReservation = useMemo(
     () =>
       reservations.filter(
-        (reservation) => reservation.state !== 1 && reservation.state !== 2
+        (reservation) => reservation.state !== 1 &&
+                         reservation.state !== 3 &&
+                         reservation.state !== 6
       ),
     [reservations]
   );
 
   useEffect(() => {
     if (observerTab.ref.current && observerContainer.ref.current) {
-      observerContainer.ref.current.scrollLeft = page * (observerTab.width / 3);
+      observerContainer.ref.current.scrollLeft = page * (observerTab.width / 4);
     }
   }, [observerTab.width, page]);
 
@@ -211,7 +222,8 @@ export const BranchReserves = ({
             index={page}
             setIndex={setPage}
             tabs={[
-              `Reservas Activas (${activeReservations.length})`,
+              `Reservas En Curso (${ongoingReservations.length})`,
+              `Reservas Aceptadas (${acceptedReservations.length})`,
               `Reservas Pendientes (${pendingReservations.length})`,
               `Histórico (${historicReservation.length})`,
             ]}
@@ -224,19 +236,36 @@ export const BranchReserves = ({
         >
           {haveBranch ? (
             <Box
-              width="300%"
+              width="400%"
               className={styles["branch-reserves--content"]}
               innerRef={observerTab.ref}
             >
+
               <Box style={{ flex: 1 }}>
                 <Paginable
-                  list={activeReservations}
-                  setCurrentList={setCurrentActiveReservation}
+                  list={ongoingReservations}
+                  setCurrentList={setCurrentOngoingReservation}
                   objectsPerPage={10}
                 >
                   <ReserveList
                     icon_size={icon_size}
-                    reservations={currentActiveReservation}
+                    reservations={currentOngoingReservation}
+                    state={1}
+                    setShowModal={setShowModal}
+                  />
+                  <Box height="40px" />
+                </Paginable>
+              </Box>
+
+              <Box style={{ flex: 1 }}>
+                <Paginable
+                  list={acceptedReservations}
+                  setCurrentList={setCurrentAcceptedReservation}
+                  objectsPerPage={10}
+                >
+                  <ReserveList
+                    icon_size={icon_size}
+                    reservations={currentAcceptedReservation}
                     state={2}
                     setShowModal={setShowModal}
                   />
@@ -253,7 +282,7 @@ export const BranchReserves = ({
                   <ReserveList
                     icon_size={icon_size}
                     reservations={currentPendingReservation}
-                    state={1}
+                    state={3}
                     setShowModal={setShowModal}
                   />
                   <Box height="40px" />
@@ -269,7 +298,7 @@ export const BranchReserves = ({
                   <ReserveList
                     icon_size={icon_size}
                     reservations={currentHistoricReservation}
-                    state={3}
+                    state={4}
                     setShowModal={setShowModal}
                   />
                   <Box height="40px" />

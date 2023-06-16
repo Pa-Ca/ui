@@ -74,7 +74,7 @@ Default.args = {
       ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       persons: 6,
       tables: 6,
-      state: 2,
+      state: 3,
     }),
     ...new Array(5).fill({
       start: "6:00 PM",
@@ -110,9 +110,9 @@ Default.args = {
       ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       persons: 6,
       tables: 6,
-      state: 2,
+      state: 3,
     }),
-    ...new Array(12).fill({
+    ...new Array(9).fill({
       start: "6:00 PM",
       end: "7:00 PM",
       date: "2021-10-13",
@@ -122,7 +122,19 @@ Default.args = {
       ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       persons: 6,
       tables: 6,
-      state: 3,
+      state: 5,
+    }),
+    ...new Array(7).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-13",
+      owner: "Ivan Tortolero",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      persons: 6,
+      tables: 6,
+      state: 6,
     }),
   ],
 };
