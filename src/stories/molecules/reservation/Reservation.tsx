@@ -50,7 +50,7 @@ export interface ReservationProps {
    */
   state: number;
   /**
-   * Indicates reservation status color
+   * Indicates reservation status name
    */
   statusColor: string;
   /**
@@ -77,10 +77,6 @@ export interface ReservationProps {
    * Total component height
    */
   height?: string;
-  /**
-   * Main color
-   */
-  color?: string;
 }
 
 /**
@@ -102,7 +98,6 @@ export const Reservation = ({
   onAccept,
   width,
   height,
-  color,
   ...props
 }: ReservationProps) => {
 
@@ -183,10 +178,13 @@ export const Reservation = ({
 
   return (
     <Box
-      className={styles["reservation--container"]}
+      className={classnames(
+        styles["reservation--container"],
+        styles[`reservation--status-${statusColor}`]
+      )}
       borderRadius="12px"
       weakShadow
-      style={{ width, height, borderLeftColor: statusColor}}
+      style={{ width, height}}
     >
       <Box className={styles["reservation--details-row"]}>
         {/* Start Hour */}
