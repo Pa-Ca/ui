@@ -182,7 +182,8 @@ export const ReserveList = ({
                     statusColor={reservation.statusColor}
                     onCloseReservation={reservation.onCloseReservation}
                     onReject={reservation.onReject}
-                    onAccept={reservation.onAccept}
+                    onRetire={reservation.onRetire}
+                    onStart={reservation.onStart}
                   />
                 ))}
               </Box>

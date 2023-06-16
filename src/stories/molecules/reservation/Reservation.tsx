@@ -62,13 +62,21 @@ export interface ReservationProps {
    */
   onCloseReservation?: () => {};
   /**
-   * On reject reservation icon click
+   * On reject reservation button click
    */
   onReject?: () => {};
   /**
-   * On accept reservation icon click
+   * On accept reservation button click
    */
   onAccept?: () => {};
+  /**
+   * On retire reservation button click
+   */
+  onRetire?: () => {};
+  /**
+   * On retire reservation button click
+   */
+  onStart?: () => {};
   /**
    * Total component width
    */
@@ -96,14 +104,18 @@ export const Reservation = ({
   onCloseReservation,
   onReject,
   onAccept,
+  onRetire,
+  onStart,
   width,
   height,
   ...props
 }: ReservationProps) => {
 
-  const [confirmClose, setconfirmClose] = useState(false);
+  const [confirmClose, setConfirmClose] = useState(false);
   const [confirmAccept, setConfirmAccept] = useState(false);
-  const [confirmReject, setconfirmReject] = useState(false);
+  const [confirmReject, setConfirmReject] = useState(false);
+  const [confirmStart, setConfirmStart] = useState(false);
+  const [confirmRetire, setConfirmRetire] = useState(false);
 
   const dot = () => (
     <Box className={styles["reservation--separator"]}>
@@ -129,16 +141,56 @@ export const Reservation = ({
 
   const getAction = useMemo(() => {
     switch (state) {
-      // Pending reservsation
+      // Ongoing reservation
+      case 5:
+        return (
+          <Box className={styles["reservation--box-button"]}>
+            <Button
+              primary
+              onClick={() => setConfirmClose(true)}
+              className={styles["reservation--right-button"]}
+            >
+              <Text type="h6">
+                Finalizar
+              </Text>
+            </Button>
+          </Box>
+        );
+
+        // Accepted reservation
+        case 3:
+          return (
+            <Box className={styles["reservation--box-button"]}>
+              <Button
+                onClick={() => setConfirmRetire(true)}
+                className={styles["reservation--left-button"]}
+              >
+                <Text type="h6">
+                  Retirar
+                </Text>
+              </Button>
+              <Button
+                primary
+                onClick={() => setConfirmStart(true)}
+                className={styles["reservation--right-button"]}
+              >
+                <Text type="h6">
+                  Empezar
+                </Text>
+              </Button>
+            </Box>
+          );
+
+      // Pending reservation
       case 1:
         return (
           <Box className={styles["reservation--box-button"]}>
             <Button
-              onClick={() => setconfirmReject(true)}
+              onClick={() => setConfirmReject(true)}
               className={styles["reservation--left-button"]}
             >
               <Text type="h6">
-                Rechazar Reserva
+                Rechazar
               </Text>
             </Button>
             <Button
@@ -147,23 +199,7 @@ export const Reservation = ({
               className={styles["reservation--right-button"]}
             >
               <Text type="h6">
-                Aceptar Reserva
-              </Text>
-            </Button>
-          </Box>
-        );
-
-      // Active reservation
-      case 2:
-        return (
-          <Box className={styles["reservation--box-button"]}>
-            <Button
-              primary
-              onClick={() => setconfirmClose(true)}
-              className={styles["reservation--right-button"]}
-            >
-              <Text type="h6">
-                Cerrar Reserva
+                Aceptar
               </Text>
             </Button>
           </Box>
@@ -283,7 +319,8 @@ export const Reservation = ({
         </Box>
       </Box>
 
-      <Modal open={confirmReject} setOpen={setconfirmReject}>
+      {/* Rechazar */}
+      <Modal open={confirmReject} setOpen={setConfirmReject}>
         <Box className={styles["reservation--modal-box"]}>
 
           <Text>
@@ -292,13 +329,13 @@ export const Reservation = ({
 
           <Box className={styles["reservation--confirmation-button-row"]}>
             <Button
-              onClick={() => setconfirmReject(false)}
+              onClick={() => setConfirmReject(false)}
               fullWidth
               className={styles["reservation--left-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
                 <Text type="h6">
-                  Rechazar
+                  Cancelar
                 </Text>
               </Box>
             </Button>
@@ -310,7 +347,7 @@ export const Reservation = ({
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
                 <Text type="h6">
-                  Aceptar
+                  Confirmar
                 </Text>
               </Box>
             </Button>
@@ -318,6 +355,7 @@ export const Reservation = ({
         </Box>
       </Modal>
 
+      {/* Aceptar */}
       <Modal open={confirmAccept} setOpen={setConfirmAccept}>
         <Box className={styles["reservation--modal-box"]}>
           <Text>
@@ -326,13 +364,13 @@ export const Reservation = ({
 
           <Box className={styles["reservation--confirmation-button-row"]}>
             <Button
-              onClick={() => setconfirmReject(false)}
+              onClick={() => setConfirmAccept(false)}
               fullWidth
               className={styles["reservation--left-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
                 <Text type="h6">
-                  Rechazar
+                  Cancelar
                 </Text>
               </Box>
             </Button>
@@ -344,7 +382,7 @@ export const Reservation = ({
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
                 <Text type="h6">
-                  Aceptar
+                  Confirmar
                 </Text>
               </Box>
             </Button>
@@ -352,21 +390,92 @@ export const Reservation = ({
         </Box>
       </Modal>
 
-      <Modal open={confirmClose} setOpen={setconfirmClose}>
+      {/* Empezar */}
+      <Modal open={confirmStart} setOpen={setConfirmStart}>
         <Box className={styles["reservation--modal-box"]}>
           <Text>
-            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Cerrar</span> la reserva ?
+            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Empezar</span> la reserva ?
           </Text>
 
           <Box className={styles["reservation--confirmation-button-row"]}>
             <Button
-              onClick={() => setconfirmReject(false)}
+              onClick={() => setConfirmStart(false)}
               fullWidth
               className={styles["reservation--left-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
                 <Text type="h6">
-                  Rechazar
+                  Cancelar
+                </Text>
+              </Box>
+            </Button>
+            <Button
+              primary
+              fullWidth
+              onClick={onStart}
+              className={styles["reservation--right-button"]}
+            >
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Confirmar
+                </Text>
+              </Box>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      {/* Retirar */}
+      <Modal open={confirmRetire} setOpen={setConfirmRetire}>
+        <Box className={styles["reservation--modal-box"]}>
+          <Text>
+            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Retirar</span> la reserva ?
+          </Text>
+
+          <Box className={styles["reservation--confirmation-button-row"]}>
+            <Button
+              onClick={() => setConfirmRetire(false)}
+              fullWidth
+              className={styles["reservation--left-button"]}
+            >
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Cancelar
+                </Text>
+              </Box>
+            </Button>
+            <Button
+              primary
+              fullWidth
+              onClick={onAccept}
+              className={styles["reservation--right-button"]}
+            >
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Confirmar
+                </Text>
+              </Box>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      {/* Finalizar */}
+      <Modal open={confirmClose} setOpen={setConfirmClose}>
+        <Box className={styles["reservation--modal-box"]}>
+          <Text>
+            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Finalizar</span> la reserva ?
+          </Text>
+
+          <Box className={styles["reservation--confirmation-button-row"]}>
+            <Button
+              onClick={() => setConfirmClose(false)}
+              fullWidth
+              className={styles["reservation--left-button"]}
+            >
+              <Box className={styles["reservation--confirmation-button-box"]}>
+                <Text type="h6">
+                  Cancelar
                 </Text>
               </Box>
             </Button>
@@ -378,7 +487,7 @@ export const Reservation = ({
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
                 <Text type="h6">
-                  Aceptar
+                  Confirmar
                 </Text>
               </Box>
             </Button>

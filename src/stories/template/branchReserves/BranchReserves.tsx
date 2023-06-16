@@ -174,21 +174,21 @@ export const BranchReserves = ({
     return dateA.getTime() - dateB.getTime();
   });
 
-  // Filter reservations by state equals to 6, meaning ongoing
-  const ongoingReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 6),
+  // Filter reservations by state equals to 1, meaning pending
+  const pendingReservations = useMemo(
+    () => reservations.filter((reservation) => reservation.state === 1),
     [reservations]
   );
-
+  
   // Filter reservations by state equals to 3, meaning accepted
   const acceptedReservations = useMemo(
     () => reservations.filter((reservation) => reservation.state === 3),
     [reservations]
   );
-
-  // Filter reservations by state equals to 1, meaning pending
-  const pendingReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 1),
+    
+  // Filter reservations by state equals to 5, meaning ongoing
+  const ongoingReservations = useMemo(
+    () => reservations.filter((reservation) => reservation.state === 5),
     [reservations]
   );
 
@@ -198,7 +198,7 @@ export const BranchReserves = ({
       reservations.filter(
         (reservation) => reservation.state !== 1 &&
                          reservation.state !== 3 &&
-                         reservation.state !== 6
+                         reservation.state !== 5
       ),
     [reservations]
   );
