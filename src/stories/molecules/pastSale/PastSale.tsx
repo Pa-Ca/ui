@@ -22,6 +22,14 @@ export interface PastSaleProps {
     price: number;
     quantity: number;
   }[];
+  /**
+   * Taxes list
+   */
+  taxes: {
+    name: string;
+    value: number;
+    type: "%" | "$";
+  }[];
 
   /**
    * Indicates if the sale has a reservation associated
@@ -61,6 +69,7 @@ export const PastSale = ({
   startDate,
   tableName,
   products = [],
+  taxes = [],
 
   hasReservation = false,
   ownerName = "",
@@ -80,17 +89,18 @@ export const PastSale = ({
     }, 0);
   }, [products]);
 
-  const iva = useMemo(() => {
-    return subTotal * 0.12;
-  }, [subTotal]);
-
-  const igtf = useMemo(() => {
-    return subTotal * 0.03;
-  }, [subTotal]);
-
   const total = useMemo(() => {
-    return subTotal + iva + igtf;
-  }, [subTotal, iva, igtf]);
+    // Get taxes
+    const totalTaxes = taxes.reduce((acc, tax) => {
+      if (tax.type === "%") {
+        return acc + (subTotal * tax.value) / 100;
+      } else {
+        return acc + tax.value;
+      }
+    }, 0);
+
+    return subTotal + totalTaxes;
+  }, [subTotal, taxes]);
 
   return (
     <Box
@@ -104,10 +114,7 @@ export const PastSale = ({
           <Icon icon="calendar" size="28px" />
 
           <Box>
-            <Text weight="700">
-              {" "}
-              {startDate.toISOString().split('T')[0]}{" "}
-            </Text>
+            <Text weight="700"> {startDate.toISOString().split("T")[0]} </Text>
             <Text>
               {" "}
               {startDate.toLocaleTimeString("en-US", { hour12: false })}{" "}
@@ -198,7 +205,7 @@ export const PastSale = ({
                   Reservación:
                 </Text>
               </Box>
-                <hr className={styles["past-sale--details-container-hr"]} />
+              <hr className={styles["past-sale--details-container-hr"]} />
 
               {hasReservation ? (
                 <Box width="100%">
@@ -252,22 +259,21 @@ export const PastSale = ({
                   {subTotal.toFixed(2)}$
                 </Text>
               </Box>
-              <Box className={styles["past-sale--summary-item"]}>
-                <Text type="h5" weight="600">
-                  IVA (12%):
-                </Text>
-                <Text type="h5" weight="400">
-                  {iva.toFixed(2)}$
-                </Text>
-              </Box>
-              <Box className={styles["past-sale--summary-item"]}>
-                <Text type="h5" weight="600">
-                  IGTF (3%):
-                </Text>
-                <Text type="h5" weight="400">
-                  {igtf.toFixed(2)}$
-                </Text>
-              </Box>
+              {taxes.map((tax, index) => (
+                <Box className={styles["past-sale--summary-item"]}>
+                  <Text type="h5" weight="600">
+                    {tax.name} ({tax.value}
+                    {tax.type}):
+                  </Text>
+                  <Text type="h5" weight="400">
+                    {(tax.type === "%"
+                      ? (subTotal * tax.value) / 100
+                      : tax.value
+                    ).toFixed(2)}
+                    $
+                  </Text>
+                </Box>
+              ))}
               <hr className={styles["past-sale--hr"]} />
               <Box className={styles["past-sale--summary-item"]}>
                 <Text type="h5" weight="600">

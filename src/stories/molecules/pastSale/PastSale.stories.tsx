@@ -52,4 +52,16 @@ Default.args = {
       quantity: 3,
     }
   ],
+  taxes: [
+    {
+      name: "IVA",
+      value: 12,
+      type: "%",
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: "%",
+    },
+  ]
 };

@@ -3,12 +3,16 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./saleProductList.module.scss";
 import { Button } from "../../atoms/button/Button";
-import useInputForm from "../../hooks/useInputForm";
 import { Modal } from "../../molecules/modal/Modal";
 import OptionObject from "../../utils/objects/OptionObject";
 import { ProductProps } from "../../molecules/product/Product";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { NewSaleProduct } from "../../molecules/newSaleProduct/NewSaleProduct";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
+import {
+  EditableInputTax,
+  EditableInputTaxProps,
+} from "../../molecules/editableInputTax/EditableInputTax";
 import {
   SaleProduct,
   SaleProductProps,
@@ -37,6 +41,14 @@ interface SaleProductListProps {
    */
   subCategoryDependency: Record<string, string>;
   /**
+   * Taxes
+   */
+  taxes: EditableInputTaxProps[];
+  /**
+   * On add tax
+   */
+  onAddTax: () => void;
+  /**
    * On create product
    */
   onAddProduct: (productId: number, quantity: number) => void;
@@ -48,6 +60,10 @@ interface SaleProductListProps {
    * On close sale
    */
   onCloseSale: (note: string) => void;
+  /**
+   * On delete sale
+   */
+  onDeleteSale: () => void;
 }
 
 /**
@@ -59,13 +75,17 @@ export const SaleProductList = ({
   categories,
   subCategories,
   subCategoryDependency,
+  taxes,
+  onAddTax,
   onAddProduct,
   onClearProducts,
   onCloseSale,
+  onDeleteSale,
   ...props
 }: SaleProductListProps) => {
   const note = useInputForm("");
   const [showPayModal, setShowPayModal] = useState(false);
+  const [showClearModal, setShowClearModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const subTotal = useMemo(() => {
@@ -76,17 +96,20 @@ export const SaleProductList = ({
     }, 0);
   }, [products]);
 
-  const iva = useMemo(() => {
-    return subTotal * 0.12;
-  }, [subTotal]);
-
-  const igtf = useMemo(() => {
-    return subTotal * 0.03;
-  }, [subTotal]);
-
   const total = useMemo(() => {
-    return subTotal + iva + igtf;
-  }, [subTotal, iva, igtf]);
+    // Get taxes
+    const totalTaxes = taxes.reduce((acc, tax) => {
+      const taxValue = parseFloat(tax.valueInputHook.value);
+      const taxType = tax.typeInputHook.value;
+      if (taxType === "%") {
+        return acc + (subTotal * taxValue) / 100;
+      } else {
+        return acc + taxValue;
+      }
+    }, 0);
+
+    return subTotal + totalTaxes;
+  }, [subTotal, taxes]);
 
   const summary = useMemo(() => {
     return (
@@ -99,21 +122,29 @@ export const SaleProductList = ({
             {subTotal.toFixed(2)}$
           </Text>
         </Box>
-        <Box className={styles["sale-product-list--summary-item"]}>
-          <Text type="h5" weight="600">
-            IVA (12%):
-          </Text>
-          <Text type="h5" weight="400">
-            {iva.toFixed(2)}$
-          </Text>
-        </Box>
-        <Box className={styles["sale-product-list--summary-item"]}>
-          <Text type="h5" weight="600">
-            IGTF (3%):
-          </Text>
-          <Text type="h5" weight="400">
-            {igtf.toFixed(2)}$
-          </Text>
+        {taxes.map((tax, index) => {
+          return (
+            <EditableInputTax
+              {...tax}
+              totalValue={subTotal}
+              editable={!showPayModal}
+              showError={tax.nameInputHook.error + tax.valueInputHook.error > 0}
+              key={`sale-product-list--tax-${index}`}
+            />
+          );
+        })}
+        <Box>
+          <Button
+            size="box"
+            onClick={onAddTax}
+            style={{
+              marginTop: "10px",
+            }}
+          >
+            <Box className={styles["sale-product-list--button"]}>
+              <Text weight="600">Agregar Tarifa</Text>
+            </Box>  
+          </Button>
         </Box>
         <hr className={styles["sale-product-list--hr"]} />
         <Box className={styles["sale-product-list--summary-item"]}>
@@ -126,14 +157,17 @@ export const SaleProductList = ({
         </Box>
       </Box>
     );
-  }, [subTotal, iva, igtf, total]);
+  }, [subTotal, taxes, total, showPayModal]);
 
   return (
     <Box className={styles["sale-product-list--container"]}>
       {products.map((product, index) => {
         return (
-          <Box width="100%">
-            <SaleProduct key={index} {...product} />
+          <Box
+            key={`sale-product-list--product-${index}-${product.name}`}
+            width="100%"
+          >
+            <SaleProduct {...product} />
           </Box>
         );
       })}
@@ -152,7 +186,7 @@ export const SaleProductList = ({
         <Button
           size="large"
           state={products.length > 0 ? "normal" : "inactive"}
-          onClick={() => setShowDeleteModal(true)}
+          onClick={() => setShowClearModal(true)}
         >
           <Box className={styles["sale-product-list--button"]}>
             <Text weight="600">Limpiar Mesa</Text>
@@ -184,24 +218,69 @@ export const SaleProductList = ({
         <Box className={styles["sale-product-list--summary"]}>
           {summary}
 
-          <Button
-            primary
-            fullWidth
-            size="large"
-            onClick={() => setShowPayModal(true)}
-            state={products.length > 0 ? "normal" : "inactive"}
-          >
-            <Box className={styles["sale-product-list--button"]}>
-              <Text weight="600">Cerrar Mesa</Text>
-            </Box>
-          </Button>
+          <Box className={styles["sale-product-list--summary-buttons"]}>
+            <Button
+              primary
+              fullWidth
+              size="large"
+              onClick={() => setShowPayModal(true)}
+              state={products.length > 0 ? "normal" : "inactive"}
+            >
+              <Box className={styles["sale-product-list--button"]}>
+                <Text weight="600">Cerrar Mesa</Text>
+              </Box>
+            </Button>
+            <Button
+              fullWidth
+              size="large"
+              onClick={() => setShowDeleteModal(true)}
+              state={products.length > 0 ? "normal" : "inactive"}
+            >
+              <Box className={styles["sale-product-list--button"]}>
+                <Text weight="600">Eliminar Factura</Text>
+              </Box>
+            </Button>
+          </Box>
         </Box>
       </Box>
+
+      <Modal open={showClearModal} setOpen={setShowClearModal}>
+        <Box className={styles["sale-product-list--delete-modal-container"]}>
+          <Text type="h5" weight="500">
+            ¿Estás seguro que deseas eliminar todos los productos de la mesa?
+          </Text>
+
+          <Box className={styles["sale-product-list--modal-buttons"]}>
+            <Button
+              fullWidth
+              size="large"
+              onClick={() => setShowClearModal(false)}
+            >
+              <Box className={styles["sale-product-list--modal-button"]}>
+                <Text weight="600">Cancelar</Text>
+              </Box>
+            </Button>
+            <Button
+              primary
+              fullWidth
+              size="large"
+              onClick={() => {
+                setShowClearModal(false);
+                onClearProducts();
+              }}
+            >
+              <Box className={styles["sale-product-list--modal-button"]}>
+                <Text weight="600">Limpiar Mesa</Text>
+              </Box>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
 
       <Modal open={showDeleteModal} setOpen={setShowDeleteModal}>
         <Box className={styles["sale-product-list--delete-modal-container"]}>
           <Text type="h5" weight="500">
-            ¿Estás seguro que deseas eliminar todos los productos de la mesa?
+            ¿Estás seguro que deseas eliminar esta factura?
           </Text>
 
           <Box className={styles["sale-product-list--modal-buttons"]}>
@@ -220,11 +299,11 @@ export const SaleProductList = ({
               size="large"
               onClick={() => {
                 setShowDeleteModal(false);
-                onClearProducts();
+                onDeleteSale();
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Limpiar Mesa</Text>
+                <Text weight="600">Eliminar</Text>
               </Box>
             </Button>
           </Box>

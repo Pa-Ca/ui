@@ -2,14 +2,195 @@ import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { BranchSales } from "./BranchSales";
 import useInputForm from "../../hooks/useInputForm";
+import { PastSaleProps } from "../../molecules/pastSale/PastSale";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "Design System/Templates/BranchSales",
   component: BranchSales,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {},
+  argTypes: {
+    onCreateTable: {
+      table: {
+        disable: true,
+      },
+    },
+    onEditTable: {
+      table: {
+        disable: true,
+      },
+    },
+    onAddProduct: {
+      table: {
+        disable: true,
+      },
+    },
+    onClearProducts: {
+      table: {
+        disable: true,
+      },
+    },
+    onCreateSale: {
+      table: {
+        disable: true,
+      },
+    },
+    onCloseSale: {
+      table: {
+        disable: true,
+      },
+    },
+    onDeleteTable: {
+      table: {
+        disable: true,
+      },
+    },
+    onDeleteSale: {
+      table: {
+        disable: true,
+      },
+    },
+    pastSales: {
+      table: {
+        disable: true,
+      },
+    },
+    onNextPage: {
+      table: {
+        disable: true,
+      },
+    },
+    onPreviousPage: {
+      table: {
+        disable: true,
+      },
+    },
+    header: {
+      table: {
+        disable: true,
+      },
+    },
+    table: {
+      table: {
+        disable: true,
+      },
+    },
+    allTables: {
+      table: {
+        disable: true,
+      },
+    },
+    products: {
+      table: {
+        disable: true,
+      },
+    },
+    allProducts: {
+      table: {
+        disable: true,
+      },
+    },
+    categories: {
+      table: {
+        disable: true,
+      },
+    },
+    subCategories: {
+      table: {
+        disable: true,
+      },
+    },
+    subCategoryDependency: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta<typeof BranchSales>;
+
+function generateRandomDate(): Date {
+  const from = new Date();
+  from.setDate(from.getDate() - 5);
+  return new Date(
+    from.getTime() + Math.random() * (new Date().getTime() - from.getTime())
+  );
+}
+
+function getRandomSubarray(arr: any[]) {
+  const size = Math.floor(1 + Math.random() * arr.length);
+  var shuffled = arr.slice(0),
+    i = arr.length,
+    min = i - size,
+    temp,
+    index;
+  while (i-- > min) {
+    index = Math.floor((i + 1) * Math.random());
+    temp = shuffled[index];
+    shuffled[index] = shuffled[i];
+    shuffled[i] = temp;
+  }
+  return shuffled.slice(min);
+}
+
+function generatePastSale(): PastSaleProps {
+  const taxes = [
+    {
+      name: "IVA",
+      value: 12,
+      type: "%" as "%" | "$",
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: "%" as "%" | "$",
+    },
+  ];
+  if (Math.random() >= 0.5) {
+    taxes.push({
+      name: "Propina",
+      value: 10,
+      type: "$" as "%" | "$",
+    });
+  }
+
+  return {
+    startDate: generateRandomDate(),
+    hasReservation: Math.random() >= 0.5,
+    tableName: `Mesa ${Math.floor(1 + Math.random() * 5)}`,
+    ownerName: "John Doe",
+    ownerEmail: "john_doe@fe.com",
+    ownerPhone: "0424-1234567",
+    persons: Math.floor(1 + Math.random() * 10),
+    products: getRandomSubarray([
+      {
+        name: "Coca Cola",
+        price: 1.5,
+        quantity: Math.floor(1 + Math.random() * 5),
+      },
+      {
+        name: "Pepsi",
+        price: 1.5,
+        quantity: Math.floor(1 + Math.random() * 5),
+      },
+      {
+        name: "Pizza de peperoni",
+        price: 10.99,
+        quantity: Math.floor(1 + Math.random() * 2),
+      },
+      {
+        name: "Hamburguesa",
+        price: 5.45,
+        quantity: Math.floor(1 + Math.random() * 5),
+      },
+      {
+        name: "Papas fritas",
+        price: 2.1,
+        quantity: Math.floor(1 + Math.random() * 5),
+      },
+    ]),
+    taxes,
+  };
+}
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BranchSales> = (args: any) => {
@@ -234,9 +415,24 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
     },
   ];
   const table = useInputForm(allTables[0]);
+  const taxes = [
+    {
+      nameInputHook: useInputForm("IVA"),
+      valueInputHook: useInputForm("12"),
+      typeInputHook: useInputForm("%"),
+      saveValueFunction: () => {},
+    },
+    {
+      nameInputHook: useInputForm("IGTF"),
+      valueInputHook: useInputForm("3"),
+      typeInputHook: useInputForm("%"),
+      saveValueFunction: () => {},
+    },
+  ];
 
   return (
     <BranchSales
+      taxes={taxes}
       table={table}
       allTables={allTables}
       products={products}
@@ -276,4 +472,13 @@ Default.args = {
     Tortas: "Postres",
     Brownies: "Postres",
   },
+  page: 5,
+  totalPages: 10,
+  // Sort by date
+  pastSales: new Array(15)
+    .fill(null)
+    .map(generatePastSale)
+    .sort((a, b) => {
+      return a.startDate.getTime() - b.startDate.getTime();
+    }),
 };

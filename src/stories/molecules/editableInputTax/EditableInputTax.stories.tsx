@@ -1,11 +1,11 @@
 import React from "react";
 import useInputForm from "../../hooks/useInputForm";
-import { EditableInputTime } from "./EditableInputTime";
+import { EditableInputTax } from "./EditableInputTax";
 import { StoryFn, Meta } from "@storybook/react";
 
 export default {
-  title: "Design System/Molecules/EditableInputTime",
-  component: EditableInputTime,
+  title: "Design System/Molecules/EditableInputTax",
+  component: EditableInputTax,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     hoursInputHook: {
@@ -39,16 +39,18 @@ export default {
       }
     },
   },
-} as Meta<typeof EditableInputTime>;
+} as Meta<typeof EditableInputTax>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof EditableInputTime> = (args: any) => {
-  const hoursInputHook = useInputForm("");
-  const minutesInputHook = useInputForm("");
+const Template: StoryFn<typeof EditableInputTax> = (args: any) => {
+  const nameInputHook = useInputForm("IVA");
+  const valueInputHook = useInputForm("13");
+  const typeInputHook = useInputForm("%");
   return (
-    <EditableInputTime
-      hoursInputHook={hoursInputHook}
-      minutesInputHook={minutesInputHook}
+    <EditableInputTax
+      nameInputHook={nameInputHook}
+      typeInputHook={typeInputHook}
+      valueInputHook={valueInputHook}
       {...args}
     />
   );
@@ -58,5 +60,6 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   width: "100%",
-  saveValueFunction: (value: string) => {},
+  totalValue: 42,
+  saveValueFunction: () => {},
 };

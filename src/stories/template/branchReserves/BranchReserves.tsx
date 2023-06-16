@@ -141,15 +141,13 @@ export const BranchReserves = ({
   onSubmit,
   ...props
 }: BranchReservesProps) => {
-
   const windowSize = useWindowResize();
-  // Get the theme from the provider
-  const { isDarkMode } = useThemeProvider();
-  const PageWrapper = useMemo(
-    () =>
-      windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
-    [windowSize.resolutionType]
-  );
+  
+  const PageWrapper = useMemo(() => {
+    return windowSize.resolutionType === "desktop"
+      ? BasicPage
+      : BasicMobilePage;
+  }, [windowSize.resolutionType]);
 
   const [page, setPage] = useState(0);
   const [currentActiveReservation, setCurrentActiveReservation] = useState<
@@ -178,7 +176,7 @@ export const BranchReserves = ({
     () => reservations.filter((reservation) => reservation.state === 2),
     [reservations]
   );
-  
+
   // Filter reservations by state equals to 1
   const pendingReservations = useMemo(
     () => reservations.filter((reservation) => reservation.state === 1),
@@ -187,9 +185,10 @@ export const BranchReserves = ({
 
   // Filter all other previosly filter reservations by state
   const historicReservation = useMemo(
-    () => reservations.filter(
-      (reservation) => reservation.state !== 1 && reservation.state !== 2
-    ),
+    () =>
+      reservations.filter(
+        (reservation) => reservation.state !== 1 && reservation.state !== 2
+      ),
     [reservations]
   );
 
@@ -200,154 +199,153 @@ export const BranchReserves = ({
   }, [observerTab.width, page]);
 
   return (
-
     <PageWrapper headerArgs={header}>
       <Box>
-      {/* Reserve type */}
-      <Box width="100%" className={styles["branch-reserves--header"]}>
-        <InputTab
-          index={page}
-          setIndex={setPage}
-          tabs={[
-            `Reservas Activas (${activeReservations.length})`,
-            `Reservas Pendientes (${pendingReservations.length})`,
-            `Histórico (${historicReservation.length})`,
-          ]}
-        />
-      </Box>
-
-      <Box
-        className={styles["branch-reserves--content-container"]}
-        innerRef={observerContainer.ref}
-      >
-        {haveBranch ? (
-          <Box width="300%" 
-            className={styles["branch-reserves--content"]}
-            innerRef={observerTab.ref}>
-            <Box style={{flex: 1}}>
-              <Paginable
-                list={activeReservations}
-                setCurrentList={setCurrentActiveReservation}
-                objectsPerPage={10}
-              >
-                <ReserveList
-                  icon_size={icon_size}
-                  reservations={currentActiveReservation}
-                  state={2}
-                  setShowModal={setShowModal}
-                />
-                <Box height="40px" />
-              </Paginable>
-            </Box>
-
-            <Box style={{flex: 1}}>
-              <Paginable
-                list={pendingReservations}
-                setCurrentList={setCurrentPendingReservation}
-                objectsPerPage={10}
-              >
-                <ReserveList
-                  icon_size={icon_size}
-                  reservations={currentPendingReservation}
-                  state={1}
-                  setShowModal={setShowModal}
-                />
-                <Box height="40px" />
-              </Paginable>
-            </Box>
-
-            <Box style={{flex: 1}}>
-              <Paginable
-                list={historicReservation}
-                setCurrentList={setCurrentHistoricReservation}
-                objectsPerPage={10}
-              >
-                <ReserveList
-                  icon_size={icon_size}
-                  reservations={currentHistoricReservation}
-                  state={3}
-                  setShowModal={setShowModal}
-                />
-                <Box height="40px" />
-              </Paginable>
-            </Box>
-
-          </Box>
-        ) : (
-          <Box className={styles["branch-reserves--no-branch-box"]}>
-            {" "}
-            <Icon icon="share" size={icon_size} />
-            <Text> Parece que no tienes ningún local asociado. </Text>
-          </Box>
-        )}
-      </Box>
-
-      <Modal open={showModal} setOpen={setShowModal}>
-        <Box width="720px">
-          {/* Client Form */}
-          <ClientInfoForm
-            firstName={firstName}
-            lastName={lastName}
-            email={email}
-            phone={phone}
+        {/* Reserve type */}
+        <Box width="100%" className={styles["branch-reserves--header"]}>
+          <InputTab
+            index={page}
+            setIndex={setPage}
+            tabs={[
+              `Reservas Activas (${activeReservations.length})`,
+              `Reservas Pendientes (${pendingReservations.length})`,
+              `Histórico (${historicReservation.length})`,
+            ]}
           />
-
-          {/* Reservation Form */}
-          <ReserveDetails
-            durationHour={durationHour}
-            durationMin={durationMin}
-            date={date}
-            hourIn={hourIn}
-            validHoursIn={validHoursIn}
-            hourOut={hourOut}
-            validHoursOut={validHoursOut}
-            persons={persons}
-            occasion={occasion}
-            showInviteFriends={false}
-          />
-
-          <div className={styles["branch-reserves--modal-button-box"]}>
-            {/* Cancel Button */}
-            <Button
-              fullWidth
-              primary={false}
-              size="medium"
-              onClick={() => setShowModal(false)}
-            >
-              <Box
-                className={
-                  styles["branch-reserves--submit-reservation--button-text"]
-                }
-              >
-                <Text type="h6" weight="600">
-                  Cerrar
-                </Text>
-              </Box>
-            </Button>
-
-            <div style={{width:"24px"}} />
-
-            {/* Submit Button */}
-            <Button
-              fullWidth
-              primary
-              size="medium"
-              onClick={() => onSubmit()}
-            >
-              <Box
-                className={
-                  styles["branch-reserves--submit-reservation--button-text"]
-                }
-              >
-                <Text primaryButtonStyle type="h6" weight="600">
-                  Completar
-                </Text>
-              </Box>
-            </Button>
-          </div>
-
         </Box>
-      </Modal>
+
+        <Box
+          className={styles["branch-reserves--content-container"]}
+          innerRef={observerContainer.ref}
+        >
+          {haveBranch ? (
+            <Box
+              width="300%"
+              className={styles["branch-reserves--content"]}
+              innerRef={observerTab.ref}
+            >
+              <Box style={{ flex: 1 }}>
+                <Paginable
+                  list={activeReservations}
+                  setCurrentList={setCurrentActiveReservation}
+                  objectsPerPage={10}
+                >
+                  <ReserveList
+                    icon_size={icon_size}
+                    reservations={currentActiveReservation}
+                    state={2}
+                    setShowModal={setShowModal}
+                  />
+                  <Box height="40px" />
+                </Paginable>
+              </Box>
+
+              <Box style={{ flex: 1 }}>
+                <Paginable
+                  list={pendingReservations}
+                  setCurrentList={setCurrentPendingReservation}
+                  objectsPerPage={10}
+                >
+                  <ReserveList
+                    icon_size={icon_size}
+                    reservations={currentPendingReservation}
+                    state={1}
+                    setShowModal={setShowModal}
+                  />
+                  <Box height="40px" />
+                </Paginable>
+              </Box>
+
+              <Box style={{ flex: 1 }}>
+                <Paginable
+                  list={historicReservation}
+                  setCurrentList={setCurrentHistoricReservation}
+                  objectsPerPage={10}
+                >
+                  <ReserveList
+                    icon_size={icon_size}
+                    reservations={currentHistoricReservation}
+                    state={3}
+                    setShowModal={setShowModal}
+                  />
+                  <Box height="40px" />
+                </Paginable>
+              </Box>
+            </Box>
+          ) : (
+            <Box className={styles["branch-reserves--no-branch-box"]}>
+              {" "}
+              <Icon icon="share" size={icon_size} />
+              <Text> Parece que no tienes ningún local asociado. </Text>
+            </Box>
+          )}
+        </Box>
+
+        <Modal open={showModal} setOpen={setShowModal}>
+          <Box width="720px">
+            {/* Client Form */}
+            <ClientInfoForm
+              firstName={firstName}
+              lastName={lastName}
+              email={email}
+              phone={phone}
+            />
+
+            {/* Reservation Form */}
+            <ReserveDetails
+              durationHour={durationHour}
+              durationMin={durationMin}
+              date={date}
+              hourIn={hourIn}
+              validHoursIn={validHoursIn}
+              hourOut={hourOut}
+              validHoursOut={validHoursOut}
+              persons={persons}
+              occasion={occasion}
+              showInviteFriends={false}
+            />
+
+            <div className={styles["branch-reserves--modal-button-box"]}>
+              {/* Cancel Button */}
+              <Button
+                fullWidth
+                primary={false}
+                size="medium"
+                onClick={() => setShowModal(false)}
+              >
+                <Box
+                  className={
+                    styles["branch-reserves--submit-reservation--button-text"]
+                  }
+                >
+                  <Text type="h6" weight="600">
+                    Cerrar
+                  </Text>
+                </Box>
+              </Button>
+
+              <div style={{ width: "24px" }} />
+
+              {/* Submit Button */}
+              <Button
+                fullWidth
+                primary
+                size="medium"
+                onClick={() => onSubmit()}
+              >
+                <Box
+                  className={
+                    styles["branch-reserves--submit-reservation--button-text"]
+                  }
+                >
+                  <Text primaryButtonStyle type="h6" weight="600">
+                    Completar
+                  </Text>
+                </Box>
+              </Button>
+            </div>
+          </Box>
+        </Modal>
       </Box>
     </PageWrapper>
   );

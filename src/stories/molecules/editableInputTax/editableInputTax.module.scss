@@ -1,0 +1,39 @@
+.editable-input-tax--input-container {
+  min-height: 0;
+}
+.editable-input-tax--inputs {
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.editable-input-tax--content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.editable-input-tax--text {
+  text-align: center;
+}
+.editable-input-tax--name-input {
+  min-width: 30px;
+  max-width: 150px;
+}
+.editable-input-tax--value-input {
+  min-width: 30px;
+  max-width: 100px;
+}
+.editable-input-tax--editable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.editable-input-tax--delete {
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  transition: width 500ms ease-in-out;
+}

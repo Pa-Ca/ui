@@ -60,12 +60,6 @@ export const PastSaleList = ({
 
   return (
     <Box className={styles["past-sale-list--container"]}>
-      <Box className={styles["past-sale-list--header"]}>
-        <Text weight="700" type="h3">
-          Histórico de Ventas
-        </Text>
-      </Box>
-
       <Box className={styles["past-sale-list--body"]}>
         {dates.map((date, index) => (
           <Box

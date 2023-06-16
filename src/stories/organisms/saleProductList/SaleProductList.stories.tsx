@@ -2,6 +2,7 @@ import React from "react";
 import { SaleProductList } from "./SaleProductList";
 import { StoryFn, Meta } from "@storybook/react";
 import useInputForm from "../../hooks/useInputForm";
+import { EditableInputTaxProps } from "../../molecules/editableInputTax/EditableInputTax";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -187,9 +188,30 @@ const Template: StoryFn<typeof SaleProductList> = (args: any) => {
       onDelete: () => {},
     },
   ];
+  const taxes: EditableInputTaxProps[] = [
+    {
+      nameInputHook: useInputForm("IVA"),
+      valueInputHook: useInputForm("12"),
+      typeInputHook: useInputForm("%"),
+      saveValueFunction: () => {},
+      deleteValueFunction: () => {},
+    },
+    {
+      nameInputHook: useInputForm("IGTF"),
+      valueInputHook: useInputForm("3"),
+      typeInputHook: useInputForm("%"),
+      saveValueFunction: () => {},
+      deleteValueFunction: () => {},
+    },
+  ];
 
   return (
-    <SaleProductList products={products} allProducts={allProducts} {...args} />
+    <SaleProductList
+      products={products}
+      allProducts={allProducts}
+      taxes={taxes}
+      {...args}
+    />
   );
 };
 

@@ -42,6 +42,26 @@ function getRandomSubarray(arr: any[]) {
 }
 
 function generatePastSale(): PastSaleProps {
+  const taxes = [
+    {
+      name: "IVA",
+      value: 12,
+      type: "%" as "%" | "$",
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: "%" as "%" | "$",
+    },
+  ];
+  if (Math.random() >= 0.5) {
+    taxes.push({
+      name: "Propina",
+      value: 10,
+      type: "$" as "%" | "$",
+    });
+  }
+
   return {
     startDate: generateRandomDate(),
     hasReservation: Math.random() >= 0.5,
@@ -77,6 +97,7 @@ function generatePastSale(): PastSaleProps {
         quantity: Math.floor(1 + Math.random() * 5),
       },
     ]),
+    taxes: taxes,
   };
 }
 

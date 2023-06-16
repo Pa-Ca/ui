@@ -27,6 +27,7 @@ import baselineEmail from "@iconify/icons-ic/baseline-email";
 import baselinePhone from "@iconify/icons-ic/baseline-phone";
 import shareIcon from "@iconify/icons-material-symbols/share";
 import fitnessCentre from "@iconify/icons-maki/fitness-centre";
+import deleteIcon from "@iconify/icons-material-symbols/delete";
 import logoutIcon from "@iconify/icons-material-symbols/logout";
 import googleIcon from "@iconify/icons-flat-color-icons/google";
 import personIcon from "@iconify/icons-material-symbols/person";
@@ -110,7 +111,8 @@ export type IconType =
   | "clock"
   | "phone"
   | "mail-envelope"
-  | "calendar";
+  | "calendar"
+  | "delete";
 
 interface IconProps {
   /**
@@ -587,6 +589,14 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={calendarIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "delete":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={deleteIcon}
           style={{ fontSize: size, ...style }}
         />
       );
