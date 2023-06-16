@@ -1,0 +1,26 @@
+.new-product--container {
+  display: flex;
+  border-left-color: transparent;
+}
+.new-product--header {
+  align-items: flex-start !important;
+  margin-bottom: 10px !important;
+}
+.new-product--name {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.new-product--category-container {
+  flex: 1;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.new-product--left-section {
+  align-items: flex-start !important;
+}

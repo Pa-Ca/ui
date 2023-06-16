@@ -34,6 +34,14 @@ interface InputSelectProps {
    */
   showError?: boolean;
   /**
+   * Add empty option
+   */
+  addEmptyOption?: boolean;
+  /**
+   * Empty option label
+   */
+  emptyOptionLabel?: string;
+  /**
    * Input width
    */
   width?: string;
@@ -52,28 +60,77 @@ export const InputSelect = ({
   label = "Text select",
   required,
   showError = true,
+  addEmptyOption = false,
+  emptyOptionLabel = "",
   width,
   height,
   ...props
 }: InputSelectProps) => {
-  const observer = useResizeObserver<HTMLDivElement>();
-
   const [view, setView] = useState(false);
+  const [filter, setFilter] = useState(false);
+  const [currentFilter, setCurrentFilter] = useState("");
+  const [currentValue, setCurrentValue] = useState(inputHook.value.label!);
+
+  const observer = useResizeObserver<HTMLDivElement>();
 
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
-  const { events } = useDraggable(ref, {
-    isMounted: view,
-  });
+  const { events } = useDraggable(ref, { isMounted: view });
 
   const selectDropdown = () => {
-    setView((currentView) => !currentView);
+    setView((currentView) => {
+      // If the dropdown is being opened, the filter is reset
+      if (!currentView) {
+        setFilter(true);
+        setCurrentFilter("");
+      }
+      return !currentView;
+    });
   };
 
   const selectOption = (option: OptionObject) => {
     setView(false);
     inputHook.setValue(option);
+    setCurrentValue(option.label!);
   };
+
+  const onWrite = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setView(true);
+    setFilter(true);
+    setCurrentValue(event.target.value);
+    setCurrentFilter(event.target.value);
+  };
+
+  const currentOptions = useMemo(() => {
+    // Filter options
+    let currentOptions = options.filter(
+      (option) =>
+        !filter ||
+        option.label!.toLowerCase().includes(currentFilter.toLowerCase())
+    );
+
+    // Add empty option
+    if (addEmptyOption) {
+      currentOptions = [
+        { label: emptyOptionLabel, text: "", number: -1 },
+        ...currentOptions,
+      ];
+    }
+
+    // Verify if the current value is in the options. If not, unselect
+    if (
+      !!inputHook.value.label &&
+      !currentOptions.some(
+        (option) =>
+          option.label!.toLowerCase() === inputHook.value.label!.toLowerCase()
+      )
+    ) {
+      inputHook.setValue({ label: "", text: "", number: -1 });
+      setCurrentValue("");
+    }
+
+    return currentOptions;
+  }, [options, addEmptyOption, filter, currentFilter]);
 
   const iconJSX = useMemo(() => {
     if (view) {
@@ -90,6 +147,10 @@ export const InputSelect = ({
       );
     }
   }, [view]);
+
+  useEffect(() => {
+    setCurrentValue(inputHook.value.label!);
+  }, [inputHook.value.label]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -121,26 +182,25 @@ export const InputSelect = ({
         }}
       >
         <div className={inputTextStyles["input-text--content"]}>
-          <button
+          <input
+            value={currentValue}
+            onChange={onWrite}
             className={classnames(
               textStyles["text"],
               textStyles["text--h6"],
               inputTextStyles["input-text--input"]
             )}
-            onClick={selectDropdown}
-          >
-            {inputHook.value.label!}
-          </button>
-
+          />
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400">
+              <Text color="red" type="h6" weight="400" style={{ zIndex: 1 }}>
                 *
               </Text>
             )}
             {label.length > 0 && (
               <Text
                 type="h6"
+                style={{ zIndex: 1 }}
                 weight={
                   inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
                 }
@@ -150,6 +210,7 @@ export const InputSelect = ({
                 &nbsp;{label}&nbsp;
               </Text>
             )}
+            <div className={inputTextStyles["input-text--medium-box"]} />
           </div>
 
           <div
@@ -166,16 +227,16 @@ export const InputSelect = ({
             {...events}
             ref={ref}
           >
-            {options.map((option, index) => {
-              // La primera y ultima opcion deben tener bordes en la zona
-              // superior e inferior respectivamente para adaptarse al
-              // menu
+            {currentOptions.map((option, index) => {
+              // The first and last option must have borders in the upper
+              // and lower zone respectively to adapt to the menu
               const borderTopLeftRadius = index === 0 ? 4 : 0;
               const borderTopRightRadius = borderTopLeftRadius;
               const borderBottomLeftRadius =
-                index === options.length - 1 ? 4 : 0;
+                index === currentOptions.length - 1 ? 4 : 0;
               const borderBottomRightRadius = borderBottomLeftRadius;
-              // Estilo de los bordes de la opcion
+
+              // Style of the option borders
               const optionStyle = {
                 borderTopLeftRadius,
                 borderTopRightRadius,
@@ -185,19 +246,31 @@ export const InputSelect = ({
                 width: `${observer.width}px`,
               };
 
+              // If the option is the first and the empty option is added
+              const emptyOption = addEmptyOption && index === 0;
+
               return (
                 <div
                   style={{ ...optionStyle }}
                   key={`input-select--option-${index}-${option.label}`}
                 >
                   <button
-                    className={classnames(styles["input-select--option-button"],
-                    index % 2 === 0 ? styles["input-select--option--pair"] : styles["input-select--option--odd"]
+                    className={classnames(
+                      styles["input-select--option-button"],
+                      index % 2 === 0
+                        ? styles["input-select--option--pair"]
+                        : styles["input-select--option--odd"]
                     )}
                     style={{ ...optionStyle }}
                     onClick={() => selectOption(option)}
                   >
-                    <Text type="h6">&nbsp;{option.label}&nbsp;</Text>
+                    <Text
+                      type="h6"
+                      italic={emptyOption}
+                      weight={emptyOption ? "600" : "500"}
+                    >
+                      &nbsp;{option.label}&nbsp;
+                    </Text>
                   </button>
                 </div>
               );

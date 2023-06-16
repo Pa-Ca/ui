@@ -5,7 +5,7 @@ import { StoryFn, Meta } from "@storybook/react";
 import OptionObject from "../../utils/objects/OptionObject";
 
 export default {
-  title: "Design System/molecules/EditableInputText",
+  title: "Design System/Molecules/EditableInputText",
   component: EditableInputText,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

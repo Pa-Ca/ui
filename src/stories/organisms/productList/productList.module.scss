@@ -1,0 +1,70 @@
+@import "../../assets/scss/themes";
+
+.product-list--header {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.product-list--header-filters {
+  gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.product-list--header-filter-item {
+  flex: 1;
+  gap: 10px;
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.product-list--header-filter-buttons {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.product-list--body {
+  gap: 20px;
+  display: flex;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  flex-direction: column;
+}
+.product-list--body-item {
+  margin-bottom: 30px;
+}
+.product-list--modal-container {
+  gap: 25px;
+  display: flex;
+  max-width: 75vw;
+  min-width: 350px;
+  text-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.product-list--modal-buttons {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.product-list--modal-button {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.product-list--delete-modal-container {
+  @extend .product-list--modal-container;
+
+  max-width: 550px;
+}

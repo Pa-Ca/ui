@@ -6,7 +6,6 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Box } from "../../atoms/box/Box";
 import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface InputTextProps {
   /**
@@ -30,6 +29,10 @@ interface InputTextProps {
    */
   label?: string;
   /**
+   * Indicates if the input is disabled
+   */
+  disabled?: boolean;
+  /**
    * Input width
    */
   width?: string;
@@ -52,6 +55,7 @@ export const InputText = ({
   required,
   showError = true,
   label = "Text input",
+  disabled,
   width,
   height,
   placeholder,
@@ -130,13 +134,14 @@ export const InputText = ({
                 ? currentType
                 : "text"
             }
+            disabled={disabled}
             value={inputHook.value}
             onChange={changeValue}
             className={classnames(styles["input-text--input"], textStyles["text"], textStyles["text--h6"])}
           />
           <div className={styles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400">
+              <Text color="red" type="h6" weight="400" style={{ zIndex: 2 }}>
                 *
               </Text>
             )}
@@ -147,9 +152,11 @@ export const InputText = ({
               }
               warningStyle={inputHook.error == 2}
               errorStyle={inputHook.error == 1}
+              style={{ zIndex: 2 }}
             >
               &nbsp;{label}&nbsp;
             </Text>
+            <div className={styles["input-text--medium-box"]} />
           </div>
         </div>
 

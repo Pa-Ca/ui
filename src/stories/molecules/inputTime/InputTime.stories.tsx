@@ -4,7 +4,7 @@ import { StoryFn, Meta } from "@storybook/react";
 import useInputForm from "../../hooks/useInputForm";
 
 export default {
-  title: "Design System/molecules/InputTime",
+  title: "Design System/Molecules/InputTime",
   component: InputTime,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

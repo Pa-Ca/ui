@@ -1,0 +1,50 @@
+@import "../../assets/scss/themes";
+
+.new-sale-product--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--card-background-color);
+
+  padding-top: 25px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 25px;
+}
+.new-sale-product--category-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.new-sale-product--sub-category-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.new-sale-product--product-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sale-product--right-section-container {
+  flex: 0.5;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sale-product--button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

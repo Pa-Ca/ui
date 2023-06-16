@@ -116,7 +116,6 @@ export const SignUp = ({
   otherLoginsColor,
   ...props
 }: SignUpProps) => {
-
   const { isDarkMode } = useThemeProvider();
 
   return (

@@ -5,7 +5,7 @@ import wineIcon from "@iconify/icons-ion/wine";
 import menuIcon from "@iconify/icons-ion/menu";
 import heartIcon from "@iconify/icons-ph/heart";
 import ccVisa from "@iconify/icons-cib/cc-visa";
-import clockIcon from '@iconify/icons-mdi/clock';
+import clockIcon from "@iconify/icons-mdi/clock";
 import eyeFill from "@iconify/icons-bi/eye-fill";
 import pencilIcon from "@iconify/icons-mdi/pencil";
 import coffeeIcon from "@iconify/icons-mdi/coffee";
@@ -15,6 +15,7 @@ import twitterIcon from "@iconify/icons-mdi/twitter";
 import youtubeIcon from "@iconify/icons-mdi/youtube";
 import warningIcon from "@iconify/icons-uiw/warning";
 import facebookIcon from "@iconify/icons-mdi/facebook";
+import calendarIcon from "@iconify/icons-mdi/calendar";
 import paperPlane from "@iconify/icons-ion/paper-plane";
 import alertCircle from "@iconify/icons-mdi/alert-circle";
 import zelleIcon from "@iconify/icons-simple-icons/zelle";
@@ -22,10 +23,11 @@ import flagFilled from "@iconify/icons-tabler/flag-filled";
 import eyeSlashFill from "@iconify/icons-bi/eye-slash-fill";
 import wifiHighBold from "@iconify/icons-ph/wifi-high-bold";
 import circleSlice8 from "@iconify/icons-mdi/circle-slice-8";
-import baselineEmail from '@iconify/icons-ic/baseline-email';
-import baselinePhone from '@iconify/icons-ic/baseline-phone';
+import baselineEmail from "@iconify/icons-ic/baseline-email";
+import baselinePhone from "@iconify/icons-ic/baseline-phone";
 import shareIcon from "@iconify/icons-material-symbols/share";
 import fitnessCentre from "@iconify/icons-maki/fitness-centre";
+import deleteIcon from "@iconify/icons-material-symbols/delete";
 import logoutIcon from "@iconify/icons-material-symbols/logout";
 import googleIcon from "@iconify/icons-flat-color-icons/google";
 import personIcon from "@iconify/icons-material-symbols/person";
@@ -52,7 +54,7 @@ import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-fill
 import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-fill";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
-import Color from 'color';
+import Color from "color";
 import styles from "./icon.module.scss";
 import classnames from "classnames";
 
@@ -109,7 +111,8 @@ export type IconType =
   | "clock"
   | "phone"
   | "mail-envelope"
-  ;
+  | "calendar"
+  | "delete";
 
 interface IconProps {
   /**
@@ -140,7 +143,6 @@ interface IconProps {
    * Error icon color
    */
   errorStyle?: boolean;
-
 }
 
 /**
@@ -156,16 +158,22 @@ export const Icon = ({
   className,
   ...props
 }: IconProps) => {
-  const finalClassName = classnames(styles.icon,
-                                    errorStyle ? styles["icon--error"] : warningStyle ? styles["icon--warning"] : "",
-                                    className);
+  const finalClassName = classnames(
+    styles.icon,
+    errorStyle
+      ? styles["icon--error"]
+      : warningStyle
+      ? styles["icon--warning"]
+      : "",
+    className
+  );
 
   switch (icon) {
     case "pa-ca":
       const paca_color =
-          Color(color).hex() === Color("white").hex()
-            ? "/images/pa-ca-icon-white.png"
-            : "/images/pa-ca-icon.png";
+        Color(color).hex() === Color("white").hex()
+          ? "/images/pa-ca-icon-white.png"
+          : "/images/pa-ca-icon.png";
 
       return <img src={paca_color} width={size} height={size} {...props} />;
     case "facebook":
@@ -265,11 +273,13 @@ export const Icon = ({
         />
       );
     case "google":
-      return <Iconify
-            className={finalClassName} 
-            icon={googleIcon} 
-            style={{ fontSize: size }} 
-        />;
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={googleIcon}
+          style={{ fontSize: size }}
+        />
+      );
     case "person":
       return (
         <Iconify
@@ -571,6 +581,22 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={baselineEmail}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "calendar":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={calendarIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "delete":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={deleteIcon}
           style={{ fontSize: size, ...style }}
         />
       );
