@@ -198,6 +198,10 @@ export const BranchReserves = ({
     }
   }, [observerTab.width, page]);
 
+  // Get the theme from the provider
+  const { isDarkMode } = useThemeProvider();
+  header.dark = isDarkMode;
+
   return (
     <PageWrapper headerArgs={header}>
       <Box>

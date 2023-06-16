@@ -272,15 +272,12 @@ export const EditableInputText = ({
                 styles["editable-input-text--input"],
                 textStyles["text"],
                 textStyles["text--p"],
+                (inputHook.error == 1) ? textStyles["text--error-border"] :
+                (inputHook.error == 2) ? textStyles["text--warning-border"] :
+                "",
                 className
               )}
               style={{
-                borderColor:
-                  inputHook.error == 1
-                    ? styleVariables.errorColor
-                    : inputHook.error == 2
-                    ? styleVariables.warningColor
-                    : undefined,
                 borderWidth:
                   inputHook.error == 1 || inputHook.error == 2
                     ? "2.5px"
@@ -344,7 +341,7 @@ export const EditableInputText = ({
           <>
             <Icon icon="alert" errorStyle size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h6" errorStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>
@@ -353,7 +350,7 @@ export const EditableInputText = ({
           <>
             <Icon icon="warning" warningStyle size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.warningColor}>
+            <Text type="h6" warningStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>

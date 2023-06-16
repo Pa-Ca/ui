@@ -3,9 +3,9 @@ import classnames from "classnames";
 import styles from "./inputText.module.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import { Box } from "../../atoms/box/Box";
 import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface InputTextProps {
   /**
@@ -113,17 +113,13 @@ export const InputText = ({
 
   return (
     <div className={styles["input-text--container"]}>
-      <div
+      <Box
         className={styles["input-text--input-container"]}
+        warningStyle={inputHook.error == 2}
+        errorStyle={inputHook.error == 1}
         style={{
           width,
           height,
-          borderColor:
-            inputHook.error == 1
-              ? styleVariables.errorColor
-              : inputHook.error == 2
-              ? styleVariables.warningColor
-              : undefined,
           borderWidth:
             inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
@@ -154,13 +150,8 @@ export const InputText = ({
               weight={
                 inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
               }
-              color={
-                inputHook.error == 1
-                  ? styleVariables.errorColor
-                  : inputHook.error == 2
-                  ? styleVariables.warningColor
-                  : undefined
-              }
+              warningStyle={inputHook.error == 2}
+              errorStyle={inputHook.error == 1}
               style={{ zIndex: 2 }}
             >
               &nbsp;{label}&nbsp;
@@ -174,7 +165,7 @@ export const InputText = ({
         ) : (
           <div style={{ width: 16 }} />
         )}
-      </div>
+      </Box>
 
       {showError && (
         <div
@@ -189,16 +180,16 @@ export const InputText = ({
             <>
               <Icon icon="alert" errorStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.errorColor}>
+              <Text type="h7" errorStyle={true}>
                 {inputHook.errorMessage}
               </Text>
             </>
           )}
           {inputHook.error == 2 && (
             <>
-              <Icon icon="warning" warningStyle size="20px" />
+              <Icon icon="warning" warningStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.warningColor}>
+              <Text type="h7" warningStyle={true}>
                 {inputHook.errorMessage}
               </Text>
             </>

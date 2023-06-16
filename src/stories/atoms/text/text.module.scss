@@ -19,8 +19,14 @@
 .text--warning {
   color: var(--warning-color);
 }
+.text--warning-border {
+  border-color: var(--warning-color);
+}
 .text--error {
   color: var(--error-color);
+}
+.text--error-border {
+  border-color: var(--error-color);
 }
 .text--button {
   color: var(--text-button-color);

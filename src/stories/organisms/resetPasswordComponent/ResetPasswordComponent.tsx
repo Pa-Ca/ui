@@ -139,7 +139,6 @@ export const ResetPasswordComponent = ({
       <Box className={styles["reset-password-component--caroussel"]}>
         <ImagesCarousel
           images={images}
-          color={color}
           width="100%"
           height="100%"
         />

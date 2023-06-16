@@ -249,8 +249,6 @@ export const PromotionCard = ({
             onPencilClick={setEditMode}
             onCancelClick={cancelEdits}
             onSaveClick={saveEdits}
-            initialColor={secondaryColor}
-            color={secondaryColor}
             useIcons
           />
         </Box>

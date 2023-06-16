@@ -199,7 +199,6 @@ export const BranchContentSummary = ({
             onPencilClick={setEditMode}
             onCancelClick={cancelEdits}
             onSaveClick={saveEdits}
-            color={color}
           />
         </Box>
 

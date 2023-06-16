@@ -172,15 +172,11 @@ export const InputSelect = ({
       <Box
         className={inputTextStyles["input-text--input-container"]}
         innerRef={observer.ref}
+        warningStyle={inputHook.error == 2}
+        errorStyle={inputHook.error == 1}
         style={{
           width,
           height,
-          borderColor:
-            inputHook.error == 1
-              ? styleVariables.errorColor
-              : inputHook.error == 2
-              ? styleVariables.warningColor
-              : undefined,
           borderWidth:
             inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
@@ -208,13 +204,8 @@ export const InputSelect = ({
                 weight={
                   inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
                 }
-                color={
-                  inputHook.error == 1
-                    ? styleVariables.errorColor
-                    : inputHook.error == 2
-                    ? styleVariables.warningColor
-                    : undefined
-                }
+                warningStyle={inputHook.error == 2}
+                errorStyle={inputHook.error == 1}
               >
                 &nbsp;{label}&nbsp;
               </Text>
@@ -308,9 +299,9 @@ export const InputSelect = ({
       >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h7" color={styleVariables.errorColor}>
+            <Text type="h7" errorStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>
@@ -319,11 +310,11 @@ export const InputSelect = ({
           <>
             <Icon
               icon="warning"
-              color={styleVariables.warningColor}
+              warningStyle={true}
               size="20px"
             />
             <div style={{ width: "10px" }} />
-            <Text type="h7" color={styleVariables.warningColor}>
+            <Text type="h7" warningStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>

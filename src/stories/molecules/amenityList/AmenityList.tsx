@@ -262,7 +262,6 @@ export const AmenityList = ({
           onPencilClick={selectEdit}
           onSaveClick={onSaveClick}
           onCancelClick={onCancelClick}
-          color={color}
         />
       </Box>
 

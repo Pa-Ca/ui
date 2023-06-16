@@ -102,11 +102,11 @@ export const ResetPasswordForm = ({
             <>
               <Icon
                 icon="alert"
-                color={styleVariables.errorColor}
+                errorStyle={true}
                 size="20px"
               />
               <Box style={{ width: "10px" }} />
-              <Text type="h7" color={styleVariables.errorColor}>
+              <Text type="h7" errorStyle={true}>
                 Credenciales inválidas, inténtelo de nuevo.
               </Text>
             </>

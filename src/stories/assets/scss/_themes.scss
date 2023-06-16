@@ -26,9 +26,12 @@
     --text-highlight-color: #{$black};
 
     // Status Colors
-    --pending-status-color: #{$orange};
-    --accepted-status-color: #{$green};
+    --undefined-status-color: #{$black};
+    --pending-status-color: #{$yellow-dark};
     --rejected-status-color: #{$red};
+    --accepted-status-color: #{$green};
+    --unfinished-status-color: #{$purple-light};
+    --ongoing-status-color: #{$blue-light};
     --closed-status-color: #{$gray};
 
     // Products 
@@ -47,6 +50,10 @@
     // Paginable icons color
     --paginable-active-color: #{$black};
     --paginable-inactive-color: #{$gray-light};
+
+    // Input select
+    --odd-option-color: #{$white};
+    --pair-option-color: #{$white-dark};
   }
 }
 
@@ -69,9 +76,12 @@
     --select-color: #{$black};
 
     // Status Colors
-    --pending-status-color: #{$orange};
-    --accepted-status-color: #{$green};
+    --undefined-status-color: #{$black};
+    --pending-status-color: #{$yellow-dark};
     --rejected-status-color: #{$red};
+    --accepted-status-color: #{$green};
+    --unfinished-status-color: #{$purple-light};
+    --ongoing-status-color: #{$blue-light};
     --closed-status-color: #{$gray};
 
     // Text
@@ -97,5 +107,9 @@
     // Paginable icons color
     --paginable-active-color: #{$white-dark};
     --paginable-inactive-color: #{$gray};
+
+    // Input select
+    --odd-option-color: #{$gray-dark};
+    --pair-option-color: #{$black-light};
   }
 }

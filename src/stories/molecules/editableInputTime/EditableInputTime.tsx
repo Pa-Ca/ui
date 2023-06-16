@@ -196,13 +196,13 @@ export const EditableInputTime = ({
                 textStyles["text"],
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
-                editableInputTextStyle["editable-input-text--input"]
+                editableInputTextStyle["editable-input-text--input"],
+                (hoursInputHook.error == 1) ? textStyles["text--error-border"] :
+                (hoursInputHook.error == 2) ? textStyles["text--warning-border"] :
+                "",
               )}
               style={{
                 width: "30px",
-                borderColor: hoursInputHook.error
-                  ? styleVariables.errorColor
-                  : undefined,
                 borderWidth:
                   hoursInputHook.error == 1 || hoursInputHook.error == 2
                     ? "2.5px"
@@ -226,13 +226,13 @@ export const EditableInputTime = ({
                 textStyles["text"],
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
-                editableInputTextStyle["editable-input-text--input"]
+                editableInputTextStyle["editable-input-text--input"],
+                (minutesInputHook.error == 1) ? textStyles["text--error-border"] :
+                (minutesInputHook.error == 2) ? textStyles["text--warning-border"] :
+                "",
               )}
               style={{
                 width: "30px",
-                borderColor: minutesInputHook.error
-                  ? styleVariables.errorColor
-                  : undefined,
                 borderWidth:
                   minutesInputHook.error == 1 || minutesInputHook.error == 2
                     ? "2.5px"
@@ -304,8 +304,6 @@ export const EditableInputTime = ({
           onSaveClick={() => onSaveClick()}
           onCancelClick={() => onCancelClick()}
           useIcons={useEditIcons}
-          initialColor="black"
-          color={color}
         />
       </Box>
       <Box
@@ -323,17 +321,17 @@ export const EditableInputTime = ({
       >
         {hoursInputHook.error == 1 ? (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h6" errorStyle={true}>
               {hoursInputHook.errorMessage}
             </Text>
           </>
         ) : minutesInputHook.error == 1 ? (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h6" errorStyle={true}>
               {minutesInputHook.errorMessage}
             </Text>
           </>
@@ -342,11 +340,11 @@ export const EditableInputTime = ({
           <>
             <Icon
               icon="warning"
-              color={styleVariables.errorColor}
+              errorStyle={true}
               size="20px"
             />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.warningColor}>
+            <Text type="h6" warningStyle={true}>
               {hoursInputHook.errorMessage}
             </Text>
           </>
@@ -354,11 +352,11 @@ export const EditableInputTime = ({
           <>
             <Icon
               icon="warning"
-              color={styleVariables.errorColor}
+              errorStyle={true}
               size="20px"
             />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.warningColor}>
+            <Text type="h6" warningStyle={true}>
               {minutesInputHook.errorMessage}
             </Text>
           </>

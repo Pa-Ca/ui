@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import styles from "./inputDate.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
+import { Box } from "../../atoms/box/Box";
 import "react-datepicker/dist/react-datepicker.css";
 import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
@@ -72,21 +73,17 @@ export const InputDate = ({
 
   return (
     <div>
-      <div
+      <Box
         className={inputTextStyles["input-text--input-container"]}
+        warningStyle={inputHook.error == 2}
+        errorStyle={inputHook.error == 1}
         style={{
           width,
           height,
-          borderColor:
-            inputHook.error == 1
-              ? styleVariables.errorColor
-              : inputHook.error == 2
-              ? styleVariables.warningColor
-              : undefined,
           borderWidth:
             inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
         }}
-        ref={observer.ref}
+        innerRef={observer.ref}
       >
         <div className={inputTextStyles["input-text--content"]}>
           <DatePicker
@@ -109,20 +106,15 @@ export const InputDate = ({
               weight={
                 inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
               }
-              color={
-                inputHook.error == 1
-                  ? styleVariables.errorColor
-                  : inputHook.error == 2
-                  ? styleVariables.warningColor
-                  : undefined
-              }
+              warningStyle={inputHook.error == 2}
+              errorStyle={inputHook.error == 1}
             >
               &nbsp;{label}&nbsp;
             </Text>
             <div className={inputTextStyles["input-text--medium-box"]} />
           </div>
         </div>
-      </div>
+      </Box>
       <div
         className={
           inputTextStyles["input-text--error-container"] +
@@ -136,9 +128,9 @@ export const InputDate = ({
       >
         {inputHook.error == 1 && (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h7" color={styleVariables.errorColor}>
+            <Text type="h7" errorStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>
@@ -147,11 +139,11 @@ export const InputDate = ({
           <>
             <Icon
               icon="warning"
-              color={styleVariables.warningColor}
+              warningStyle={true}
               size="20px"
             />
             <div style={{ width: "10px" }} />
-            <Text type="h7" color={styleVariables.warningColor}>
+            <Text type="h7" warningStyle={true}>
               {inputHook.errorMessage}
             </Text>
           </>

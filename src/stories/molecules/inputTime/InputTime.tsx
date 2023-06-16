@@ -87,16 +87,6 @@ export const InputTime = ({
     minutesInputHook.setValue(event.target.value);
   };
 
-  const color = (error: number) => {
-    if (error === 1) {
-      return styleVariables.errorColor;
-    }
-    if (error === 2) {
-      return styleVariables.warningColor;
-    }
-    return undefined;
-  };
-
   return (
     <Box
       className={editableInputTextStyles["editable-input-text--container"]}
@@ -116,11 +106,13 @@ export const InputTime = ({
               textStyles["text"],
               textStyles["text--h5"],
               styles["input-time--input"],
-              editableInputTextStyles["editable-input-text--input"]
+              editableInputTextStyles["editable-input-text--input"],
+              (hoursInputHook.error == 1) ? styles["input-time--error-border-bottom"] :
+              (hoursInputHook.error == 2) ? styles["input-time--warning-border-bottom"] :
+              "",
             )}
             style={{
               width: "30px",
-              borderBottomColor: color(hoursInputHook.error),
             }}
           />
           <Text
@@ -142,11 +134,13 @@ export const InputTime = ({
               textStyles["text"],
               textStyles["text--h5"],
               styles["input-time--input"],
-              editableInputTextStyles["editable-input-text--input"]
+              editableInputTextStyles["editable-input-text--input"],
+              (minutesInputHook.error == 1) ? styles["input-time--error-border-bottom"] :
+              (minutesInputHook.error == 2) ? styles["input-time--warning-border-bottom"] :
+              "",
             )}
             style={{
               width: "30px",
-              borderBottomColor: color(minutesInputHook.error),
             }}
           />
           <Text
@@ -177,17 +171,17 @@ export const InputTime = ({
       >
         {hoursInputHook.error == 1 ? (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h6" errorStyle={true}>
               {hoursInputHook.errorMessage}
             </Text>
           </>
         ) : minutesInputHook.error == 1 ? (
           <>
-            <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
+            <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.errorColor}>
+            <Text type="h6" errorStyle={true}>
               {minutesInputHook.errorMessage}
             </Text>
           </>
@@ -196,7 +190,7 @@ export const InputTime = ({
           <>
             <Icon icon="warning" color={styleVariables.warning} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.warningColor}>
+            <Text type="h6" warningStyle={true}>
               {hoursInputHook.errorMessage}
             </Text>
           </>
@@ -204,7 +198,7 @@ export const InputTime = ({
           <>
             <Icon icon="warning" color={styleVariables.warning} size="20px" />
             <div style={{ width: "10px" }} />
-            <Text type="h6" color={styleVariables.warningColor}>
+            <Text type="h6" warningStyle={true}>
               {minutesInputHook.errorMessage}
             </Text>
           </>

@@ -22,7 +22,5 @@ Default.args = {
     "https://i.pinimg.com/originals/55/00/d3/5500d308acf37ec5c31cc2e5c7785921.jpg",
   profilePicture: "https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg",
   name: "Empresa Fresa",
-  email: "john.doe@gmail.com",
-  color: "#EF7A08",
-  secondaryColor: "#FF8682",
+  email: "john.doe@gmail.com"
 };

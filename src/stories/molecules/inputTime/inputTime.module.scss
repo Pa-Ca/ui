@@ -7,3 +7,11 @@
 .input-time--input {
   text-align: center;
 }
+
+.input-time--error-border-bottom {
+  border-bottom-color: var(--error-color);
+}
+
+.input-time--warning-border-bottom {
+  border-bottom-color: var(--warning-color);
+}
