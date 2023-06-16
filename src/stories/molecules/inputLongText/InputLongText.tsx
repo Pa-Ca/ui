@@ -80,9 +80,10 @@ export const InputLongText = ({
     >
       {label != "" && (
         <div className={inputTextStyles["input-text--label"]}>
-          <Text type="h6" weight={"400"} color={undefined}>
+          <Text type="h6" weight={"400"} color={undefined} style={{ zIndex: 1 }}>
             &nbsp;{label}&nbsp;
           </Text>
+          <div className={inputTextStyles["input-text--medium-box"]} />
         </div>
       )}
       <TextareaAutosize

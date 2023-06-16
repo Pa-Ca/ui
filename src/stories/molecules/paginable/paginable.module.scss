@@ -22,3 +22,9 @@
 .paginable--counter {
   @include unselectable();
 }
+.paginable--icons-active-color {
+  color: var(--paginable-active-color);
+}
+.paginable--icons-inactive-color {
+  color: var(--paginable-inactive-color);
+}

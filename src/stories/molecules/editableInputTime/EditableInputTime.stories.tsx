@@ -4,7 +4,7 @@ import { EditableInputTime } from "./EditableInputTime";
 import { StoryFn, Meta } from "@storybook/react";
 
 export default {
-  title: "Design System/molecules/EditableInputTime",
+  title: "Design System/Molecules/EditableInputTime",
   component: EditableInputTime,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

@@ -108,7 +108,6 @@ export const EditableInputText = ({
   ...props
 }: EditableInputTextProps) => {
   const { isDarkMode } = useThemeProvider();
-  const windowSize = useWindowResize();
   const select_enabled = useMemo(() => type === "select", [type]);
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
 
@@ -243,10 +242,10 @@ export const EditableInputText = ({
           select_enabled ? (
             <Select
               className={classnames(
+                className,
                 styles["editable-input-text--select"],
                 textStyles["text"],
                 textStyles["text--p"],
-                className
               )}
               noOptionsMessage={() => "No se encuentra la opción"}
               value={{

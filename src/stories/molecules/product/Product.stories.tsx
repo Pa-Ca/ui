@@ -102,6 +102,7 @@ const Template: StoryFn<typeof Product> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  id: 1000,
   categoryOptions: [
     { label: "Bebidas", text: "Bebidas" },
     { label: "Comida", text: "Comida" },
@@ -112,4 +113,14 @@ Default.args = {
     { label: "Jugos", text: "Jugos" },
     { label: "Cervezas", text: "Cervezas" },
   ],
+  subCategoryDependency: {
+    "Gaseosas": "Bebidas",
+    "Carnes": "Comidas",
+    "Vegetales": "Comidas",
+    "Agua": "Bebidas",
+    "Helados": "Postres",
+    "Pizzas": "Comidas",
+    "Jugos": "Bebidas",
+    "Tortas": "Postres",
+  }
 };

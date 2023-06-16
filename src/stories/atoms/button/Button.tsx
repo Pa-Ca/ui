@@ -54,7 +54,7 @@ export const Button = ({
   fullWidth = false,
   backgroundColor,
   borderColor,
-  onClick,
+  onClick = () => {},
   className,
   style,
   children,
@@ -75,7 +75,7 @@ export const Button = ({
       className={[
         styles["button"],
         styles[`button--${size}`],
-        primary ? styles[`button--state-${currentState}`] : "",
+        styles[`button--state-${currentState}`],
         fullWidth ? styles["button--full-width"] : "",
         primary ? styles["button--primary"] : styles["button--secondary"],
         className,
@@ -83,7 +83,7 @@ export const Button = ({
       style={{ backgroundColor, borderColor, ...style }}
       onMouseDown={() => setMouseDown(true)}
       onMouseUp={() => setMouseDown(false)}
-      onClick={onClick}
+      onClick={() => state !== "inactive" && onClick()}
       {...props}
     >
       {children}

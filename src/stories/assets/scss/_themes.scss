@@ -5,6 +5,7 @@
   :root {
     // Base styles
     --error-color: #{$red};
+    --cancel-color: #{$red};
     --main-color: #{$orange};
     --select-color: #{$white-dark};
     --warning-color: #{$yellow};
@@ -23,9 +24,6 @@
     --text-input-color: #{$black};
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$black};
-
-    // Icons
-    --icon-color: #{$black};
 
     // Status Colors
     --undefined-status-color: #{$black};
@@ -49,6 +47,10 @@
     --input-tab-separator-color: #{$white-dark};
     --input-tab-line-color: #{$green};
 
+    // Paginable icons color
+    --paginable-active-color: #{$black};
+    --paginable-inactive-color: #{$gray-light};
+
     // Input select
     --odd-option-color: #{$white};
     --pair-option-color: #{$white-dark};
@@ -60,6 +62,7 @@
   :root {
     // Base styles
     --error-color: #{$red};
+    --cancel-color: #{$red};
     --main-color: #{$orange};
     --select-color: #{$white-dark};
     --warning-color: #{$yellow};
@@ -88,12 +91,9 @@
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$gray-light};
 
-    // Icons
-    --icon-color: #{$white};
-
     // Products 
     --product-available-color: #{$green};
-    --product-unavailable-color: #{$black-light};
+    --product-unavailable-color: #{$black};
 
     // Switch 
     --switch-active-color: #{$green};
@@ -103,6 +103,10 @@
     // Input tab
     --input-tab-separator-color: #{$green};
     --input-tab-line-color: #{$green};
+
+    // Paginable icons color
+    --paginable-active-color: #{$white-dark};
+    --paginable-inactive-color: #{$gray};
 
     // Input select
     --odd-option-color: #{$gray-dark};

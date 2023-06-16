@@ -4,7 +4,7 @@ import { EditableInputLongText } from "./EditableInputLongText";
 import { StoryFn, Meta } from "@storybook/react";
 
 export default {
-  title: "Design System/molecules/EditableInputLongText",
+  title: "Design System/Molecules/EditableInputLongText",
   component: EditableInputLongText,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

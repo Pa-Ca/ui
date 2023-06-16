@@ -4,7 +4,7 @@ import { AddFriends } from "./AddFriends";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/molecules/AddFriends",
+  title: "Design System/Molecules/AddFriends",
   component: AddFriends,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
