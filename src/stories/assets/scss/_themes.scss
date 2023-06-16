@@ -28,9 +28,12 @@
     --icon-color: #{$black};
 
     // Status Colors
-    --pending-status-color: #{$orange};
-    --accepted-status-color: #{$green};
+    --undefined-status-color: #{$black};
+    --pending-status-color: #{$yellow-dark};
     --rejected-status-color: #{$red};
+    --accepted-status-color: #{$green};
+    --unfinished-status-color: #{$purple-light};
+    --ongoing-status-color: #{$blue-light};
     --closed-status-color: #{$gray};
 
     // Products 
@@ -70,9 +73,12 @@
     --select-color: #{$black};
 
     // Status Colors
-    --pending-status-color: #{$orange};
-    --accepted-status-color: #{$green};
+    --undefined-status-color: #{$black};
+    --pending-status-color: #{$yellow-dark};
     --rejected-status-color: #{$red};
+    --accepted-status-color: #{$green};
+    --unfinished-status-color: #{$purple-light};
+    --ongoing-status-color: #{$blue-light};
     --closed-status-color: #{$gray};
 
     // Text
