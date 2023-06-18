@@ -9,14 +9,16 @@ import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
-import { ProductProps } from "../../molecules/product/Product";
+import ProductObject from "../../utils/objects/ProductObject";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { InputText } from "../../molecules/inputText/InputText";
 import { PastSaleProps } from "../../molecules/pastSale/PastSale";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { PastSaleList } from "../../organisms/pastSaleList/PastSaleList";
 import { SaleProductProps } from "../../molecules/saleProduct/SaleProduct";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { SaleProductList } from "../../organisms/saleProductList/SaleProductList";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 import { EditableInputTaxProps } from "../../molecules/editableInputTax/EditableInputTax";
@@ -30,11 +32,11 @@ interface BranchSalesProps {
   /**
    * Current selected table
    */
-  table: InputFormHook<OptionObject>;
+  table: InputFormHook<OptionObject<string | null>>;
   /**
    * All tables
    */
-  allTables: OptionObject[];
+  allTables: OptionObject<string>[];
   /**
    * Has sale
    */
@@ -44,22 +46,17 @@ interface BranchSalesProps {
    */
   products: SaleProductProps[];
   /**
-   * Product list
+   * Products
    */
-  allProducts: ProductProps[];
+  allProducts: Record<number, ProductObject>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * Taxes
    */
@@ -136,7 +133,6 @@ export const BranchSales = ({
   allProducts,
   categories,
   subCategories,
-  subCategoryDependency,
   taxes,
   onAddTax,
   onCreateTable,
@@ -270,7 +266,6 @@ export const BranchSales = ({
                   allProducts={allProducts}
                   categories={categories}
                   subCategories={subCategories}
-                  subCategoryDependency={subCategoryDependency}
                   onAddTax={onAddTax}
                   onAddProduct={onAddProduct}
                   onClearProducts={onClearProducts}

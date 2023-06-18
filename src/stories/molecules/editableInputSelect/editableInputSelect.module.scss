@@ -1,0 +1,115 @@
+@import "../../assets/scss/themes";
+
+.editable-input-select--container {
+  display: flex;
+  flex-direction: column;
+}
+
+.editable-input-select--input-container {
+  display: flex;
+  min-height: 43px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editable-input-select--input:focus {
+  outline: none;
+}
+
+.editable-input-select--error-message {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 20px;
+
+  animation-name: shake;
+  animation-duration: 0.15s;
+  animation-iteration-count: 2;
+}
+
+.editable-input-select--input {
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin-left: 8px;
+  margin-top: 2px;
+  border-bottom: 0.5px solid var(--alternative-color);
+  color: var(--alternative-color);
+  background-color: transparent;
+  width: 100%;
+}
+
+.editable-input-select--text {
+  margin-left: 10px;
+  width: 100%;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+  }
+}
+
+.editable-input-select--animation {
+  animation-name: shake;
+}
+.editable-input-select--no-animation {
+  animation-name: none;
+}
+
+.editable-input-select--select {
+  margin: 0;
+  padding: 0;
+  min-width: 200px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  width: 100%;
+
+  [class$="-option"] {
+    &:nth-child(odd) {
+      background-color: #f1f1f1;
+      color: var(--alternative-color);
+    }
+
+    &:nth-child(even) {
+      background-color: var(--background-color);
+      color: var(--alternative-color);
+    }
+  }
+
+  [class$="-singleValue"] {
+    color: var(--alternative-color);
+  }
+
+  [class$="-dropdownIndicator"] {
+    color: var(--alternative-color);
+  }
+
+  [class$="-indicatorSeparator"] {
+    display: none;
+  }
+
+  [class$="-control"] {
+    border-color: var(--alternative-color);
+
+    &:hover {
+      border-color: var(--alternative-color);
+    }
+  }
+  [class$="-menu"] {
+    border-color: var(--alternative-color);
+    box-shadow: none;
+    border: 1px solid var(--alternative-color);
+  }
+}

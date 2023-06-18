@@ -29,7 +29,7 @@ interface BranchProfileProps {
   /**
    * Current hour input hook
    */
-  hour: InputFormHook<OptionObject>;
+  hour: InputFormHook<OptionObject<string | null>>;
   /**
    * Current persons number input hook
    */

@@ -1,5 +1,9 @@
 import React from "react";
 import { Icon as Iconify } from "@iconify/react";
+import Color from "color";
+import { Bolivar } from "./Bolivar";
+import classnames from "classnames";
+import styles from "./icon.module.scss";
 import poolIcon from "@iconify/icons-mdi/pool";
 import wineIcon from "@iconify/icons-ion/wine";
 import menuIcon from "@iconify/icons-ion/menu";
@@ -9,6 +13,7 @@ import clockIcon from "@iconify/icons-mdi/clock";
 import eyeFill from "@iconify/icons-bi/eye-fill";
 import pencilIcon from "@iconify/icons-mdi/pencil";
 import coffeeIcon from "@iconify/icons-mdi/coffee";
+import dollarIcon from "@iconify/icons-mdi/dollar";
 import fastFood from "@iconify/icons-ion/fast-food";
 import heartFill from "@iconify/icons-ph/heart-fill";
 import twitterIcon from "@iconify/icons-mdi/twitter";
@@ -51,12 +56,8 @@ import tableRestaurant from "@iconify/icons-material-symbols/table-restaurant";
 import roundKeyboardArrowDown from "@iconify/icons-ic/round-keyboard-arrow-down";
 import iosArrowLeft24Filled from "@iconify/icons-fluent/ios-arrow-left-24-filled";
 import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-filled";
-import currencyCircleDollarFill from "@iconify/icons-ph/currency-circle-dollar-fill";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
-import Color from "color";
-import styles from "./icon.module.scss";
-import classnames from "classnames";
 
 export type IconType =
   | "pa-ca"
@@ -112,7 +113,8 @@ export type IconType =
   | "phone"
   | "mail-envelope"
   | "calendar"
-  | "delete";
+  | "delete"
+  | "bolivar";
 
 interface IconProps {
   /**
@@ -244,7 +246,7 @@ export const Icon = ({
       return (
         <Iconify
           className={finalClassName}
-          icon={currencyCircleDollarFill}
+          icon={dollarIcon}
           style={{ fontSize: size, ...style }}
         />
       );
@@ -600,6 +602,8 @@ export const Icon = ({
           style={{ fontSize: size, ...style }}
         />
       );
+    case "bolivar":
+      return <Bolivar className={finalClassName} width={size} height={size} />;
     default:
       return (
         <Iconify

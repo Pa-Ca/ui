@@ -1,8 +1,7 @@
 import React from "react";
+import { Header } from "./Header";
 import { StoryFn, Meta } from "@storybook/react";
 import useInputForm from "../../hooks/useInputForm";
-import { Header } from "./Header";
-import UserDropdownElement from "../../utils/objects/UserDropdownElement";
 import BranchDropdownElement from "../../utils/objects/BranchDropdownElement";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

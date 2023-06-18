@@ -9,6 +9,7 @@ import { InputText } from "../../molecules/inputText/InputText";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { EditableInputTime } from "../../molecules/editableInputTime/EditableInputTime";
 import { EditableInputText } from "../../molecules/editableInputText/EditableInputText";
+import { EditableInputSelect } from "../../molecules/editableInputSelect/EditableInputSelect";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
 
@@ -24,7 +25,7 @@ interface BranchEditFormProps {
   /**
    * Location of the branch
    */
-  location: InputFormHook<string>;
+  location: InputFormHook<OptionObject<string | null>>;
   /**
    * Phone of the branch
    */
@@ -48,7 +49,7 @@ interface BranchEditFormProps {
   /**
    * Branch type
    */
-  type: InputFormHook<string>;
+  type: InputFormHook<OptionObject<string | null>>;
   /**
    * Precise location of the branch (Google maps link)
    */
@@ -75,49 +76,47 @@ interface BranchEditFormProps {
   /**
    * Function that is executed when the name is saved
    */
-  onSaveName: (value: string) => void;
+  onSaveName: () => void;
   /**
    * Description of the branch
    */
-  onSaveDescription: (value: string) => void;
+  onSaveDescription: () => void;
   /**
    * Location of the branch
    */
-  onSaveLocation: (value: string) => void;
+  onSaveLocation: () => void;
   /**
    * Phone of the branch
    */
-  onSavePhone: (value: string) => void;
+  onSavePhone: () => void;
   /**
    * Capacity of the branch
    */
-  onSaveCapacity: (value: string) => void;
+  onSaveCapacity: () => void;
   /**
    * Average reserve time of the branch
    */
-  onSaveAverageReserveTime: (hours: string, minutes: string) => void;
+  onSaveAverageReserveTime: () => void;
   /**
    * Average price per person of the branch (in USD)
    */
-  onSavePrice: (value: string) => void;
+  onSavePrice: () => void;
   /**
    * On save event for the opening time
    * */
-  onSaveOpeningTime: (hour: string, minute: string) => void;
-
+  onSaveOpeningTime: () => void;
   /**
    * On save event for the closing time
    * */
-  onSaveClosingTime: (hour: string, minute: string) => void;
-
+  onSaveClosingTime: () => void;
   /**
    * Branch type
    */
-  onSaveType: (value: string) => void;
+  onSaveType: () => void;
   /**
    * Precise location of the branch (Google maps link)
    */
-  onSaveMapsLink: (value: string) => void;
+  onSaveMapsLink: () => void;
   /**
    * On delete branch
    */
@@ -134,11 +133,11 @@ interface BranchEditFormProps {
   /**
    * Options for the branch type
    */
-  typeOptions: OptionObject[];
+  typeOptions: OptionObject<string>[];
   /**
    * Options for the branch location
    */
-  locationOptions: OptionObject[];
+  locationOptions: OptionObject<string>[];
   /**
    * Component width
    */
@@ -265,13 +264,12 @@ export const BranchEditForm = ({
             {" "}
             Tipo{" "}
           </Text>
-          <EditableInputText
+          <EditableInputSelect
             useEditIcons
             inputHook={type}
             options={typeOptions}
             saveValueFunction={onSaveType}
             editable={true}
-            type="select"
             containerClassName={styles["branch-edit-form--input-item"]}
           />
         </Box>
@@ -348,7 +346,7 @@ export const BranchEditForm = ({
             {" "}
             Ubicación{" "}
           </Text>
-          <EditableInputText
+          <EditableInputSelect
             useEditIcons
             width="100%"
             height="100%"
@@ -356,7 +354,6 @@ export const BranchEditForm = ({
             options={locationOptions}
             saveValueFunction={onSaveLocation}
             editable={true}
-            type="select"
             containerClassName={styles["branch-edit-form--input-item"]}
           />
         </Box>

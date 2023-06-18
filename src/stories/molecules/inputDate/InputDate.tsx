@@ -1,16 +1,14 @@
 import React, { forwardRef } from "react";
 import classnames from "classnames";
 import DatePicker from "react-datepicker";
-import styles from "./inputDate.module.scss";
+import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
-import { Box } from "../../atoms/box/Box";
 import "react-datepicker/dist/react-datepicker.css";
 import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import inputTextStyles from "../inputText/inputText.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface InputDateProps {
   /**
@@ -96,7 +94,7 @@ export const InputDate = ({
 
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
-              <Text color="red" weight="400" style={{ zIndex: 1 }}>
+              <Text color="red" type="h6" weight="400" style={{ zIndex: 1 }}>
                 *
               </Text>
             )}

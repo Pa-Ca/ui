@@ -10,40 +10,37 @@ import { InputText } from "../../molecules/inputText/InputText";
 import { NewProduct } from "../../molecules/newProduct/NewProduct";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import { Product, ProductProps } from "../../molecules/product/Product";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 
 interface ProductListProps {
   /**
    * Product list
    */
-  products: ProductProps[];
+  products: Record<number, ProductProps>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * On create product
    */
   onCreateProduct: (
     name: InputFormHook<string>,
     price: InputFormHook<string>,
-    category: string,
-    subCategory: string
+    categoryId: number,
+    subCategoryId: number
   ) => void;
   /**
    * On create sub-category.
    */
   onCreateSubCategory: (
-    category: InputFormHook<OptionObject>,
+    categoryId: number,
     subCategory: InputFormHook<string>
   ) => boolean;
   /**
@@ -67,7 +64,6 @@ export const ProductList = ({
   products,
   categories,
   subCategories,
-  subCategoryDependency,
   onCreateProduct,
   onCreateSubCategory,
   onEditSubCategory,
@@ -77,78 +73,119 @@ export const ProductList = ({
   const [showNewModal, setShowNewModal_] = useState(false);
   const [showEditModal, setShowEditModal_] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [currentProducts, setCurrentProducts] = useState<ProductProps[]>([]);
-
+  const [currentProducts, setCurrentProducts] = useState<
+    OptionObject<ProductProps>[]
+  >([]);
   const newProductName = useInputForm<string>("");
   const newProductPrice = useInputForm<string>("");
-
   const newSubCategory = useInputForm<string>("");
-  const newCategory = useInputForm<OptionObject>({ label: "", text: "" });
-
+  const newCategory = useInputForm<OptionObject<CategoryObject | null>>({
+    label: "",
+    value: null,
+  });
   const editSubCategory = useInputForm<string>("");
-  const editCategory = useInputForm<OptionObject>({ label: "", text: "" });
+  const editCategory = useInputForm<OptionObject<CategoryObject | null>>({
+    label: "",
+    value: null,
+  });
+  const category = useInputForm<OptionObject<CategoryObject | null>>({
+    label: "Todas",
+    value: null,
+  });
+  const subCategory = useInputForm<OptionObject<SubCategoryObject | null>>({
+    label: "Todas",
+    value: null,
+  });
 
-  const category = useInputForm<OptionObject>({ label: "Todas", text: "" });
-  const subCategory = useInputForm<OptionObject>({ label: "Todas", text: "" });
+  const allCategories: OptionObject<CategoryObject>[] = useMemo(() => {
+    return Object.values(categories).map((category) => {
+      return { label: category.name, value: category };
+    });
+  }, [categories]);
+
+  const allSubCategories: OptionObject<SubCategoryObject>[] = useMemo(() => {
+    return Object.values(subCategories).map((subCategory) => {
+      return { label: subCategory.name, value: subCategory };
+    });
+  }, [subCategories]);
+
+  const allProducts: OptionObject<ProductProps>[] = useMemo(() => {
+    return Object.values(products).map((product) => {
+      return { label: product.name.value, value: product };
+    });
+  }, [products]);
 
   const currentSubCategories = useMemo(() => {
-    if (!category.value.text || category.value.text === "")
-      return subCategories;
+    if (!category.value.value) {
+      return allSubCategories;
+    }
 
-    return subCategories.filter((subCategory) => {
-      return subCategoryDependency[subCategory.text!] === category.value.text!;
-    });
-  }, [category.value.text, subCategories, subCategoryDependency]);
+    // Filter sub-categories by category
+    return allSubCategories.filter(
+      (subCategory) => subCategory.value.categoryId === category.value.value!.id
+    );
+  }, [allSubCategories, category.value.value]);
 
   const currentProductsBySubCategory = useMemo(() => {
+    let currentProducts: OptionObject<ProductProps>[] = [];
+
     // If there is no category nor sub-category selected, return all products
-    if (
-      (!category.value.text || category.value.text === "") &&
-      (!subCategory.value.text || subCategory.value.text === "")
-    ) {
-      return products;
+    if (!category.value.value && !subCategory.value.value) {
+      currentProducts = allProducts;
     }
+
     // If there is no sub-category selected, return all products from the
     // selected category
-    else if (!subCategory.value.text || subCategory.value.text === "") {
-      return products.filter((product) => {
-        return product.category.value === category.value.text;
-      });
+    else if (!subCategory.value.value) {
+      for (const product of allProducts) {
+        if (
+          product.value.category.value.value?.id === category.value.value!.id
+        ) {
+          currentProducts.push(product);
+        }
+      }
     }
     // If there is a sub-category selected, return all products from the
     // selected sub-category
     else {
-      return products.filter((product) => {
-        return product.subCategory.value === subCategory.value.text;
-      });
+      for (const product of allProducts) {
+        if (
+          product.value.subCategory.value.value?.id ===
+          subCategory.value.value!.id
+        ) {
+          currentProducts.push(product);
+        }
+      }
     }
-  }, [products, category.value.text, subCategory.value.text]);
+
+    return currentProducts;
+  }, [allProducts, category.value.value, subCategory.value.value]);
 
   useEffect(() => {
-    if (!subCategory.value.text || subCategory.value.text === "") return;
+    if (!subCategory.value.value) return;
 
     // If there is a subcategory selected while changing the category, and
     // both do not match, then we deselect the subcategory
-    if (subCategoryDependency[subCategory.value.text] !== category.value.text) {
-      subCategory.setValue({ label: "Todas", text: "" });
+    if (subCategory.value.value.categoryId !== category.value.value?.id) {
+      subCategory.setValue({ label: "Todas", value: null });
     }
-  }, [category.value.text]);
+  }, [category.value.value]);
 
   useEffect(() => {
     // If we select a subcategory and there is no selected category, then we
     // place the corresponding category
-    if (category.value.text === "") {
-      for (const c of categories) {
-        if (c.text === subCategoryDependency[subCategory.value.text!]) {
+    if (!category.value.value) {
+      for (const c of allCategories) {
+        if (c.value.id === subCategory.value.value?.categoryId) {
           category.setValue(c);
           break;
         }
       }
     }
-  }, [subCategory.value.text]);
+  }, [subCategory.value.value]);
 
   const setShowEditModal = (show: boolean) => {
-    editSubCategory.setValue(subCategory.value.text!);
+    editSubCategory.setValue(subCategory.value.label);
     editCategory.setValue(category.value);
     setShowEditModal_(show);
   };
@@ -174,9 +211,9 @@ export const ProductList = ({
                 addEmptyOption
                 label="Categoría"
                 showError={false}
-                options={categories}
+                options={allCategories}
                 inputHook={category}
-                emptyOptionLabel="Todas"
+                emptyLabel="Todas"
               />
             </Box>
           </Box>
@@ -189,7 +226,7 @@ export const ProductList = ({
                 showError={false}
                 label="Sub-categoría"
                 inputHook={subCategory}
-                emptyOptionLabel="Todas"
+                emptyLabel="Todas"
                 options={currentSubCategories}
               />
             </Box>
@@ -201,7 +238,7 @@ export const ProductList = ({
                 fullWidth
                 size="large"
                 onClick={() => setShowEditModal(true)}
-                state={subCategory.value.text! === "" ? "inactive" : "normal"}
+                state={!subCategory.value.value ? "inactive" : "normal"}
               >
                 <Box className={styles["product-list--button"]}>
                   <Text weight="600">Editar Sub-Categoría</Text>
@@ -228,18 +265,16 @@ export const ProductList = ({
         <Box className={styles["product-list--body-item"]}>
           <NewProduct
             name={newProductName}
-            category={category.value.text!}
-            subCategory={subCategory.value.text!}
+            category={!category.value.value ? "" : category.value.label}
+            subCategory={!subCategory.value.value ? "" : subCategory.value.label}
             price={newProductPrice}
-            canCreate={
-              category.value.text! !== "" && subCategory.value.text! !== ""
-            }
+            canCreate={!!category.value.value && !!subCategory.value.value}
             onCreate={() =>
               onCreateProduct(
                 newProductName,
                 newProductPrice,
-                category.value.text!,
-                subCategory.value.text!
+                category.value.value?.id!,
+                subCategory.value.value?.id!
               )
             }
           />
@@ -252,13 +287,12 @@ export const ProductList = ({
           {currentProducts.map((product, index) => (
             <Box
               className={styles["product-list--body-item"]}
-              key={`product-list--body-item-${index}-${product.id}`}
+              key={`product-list--body-item-${index}-${product.value.id}`}
             >
               <Product
-                categoryOptions={categories}
-                subCategoryOptions={subCategories}
-                subCategoryDependency={subCategoryDependency}
-                {...product}
+                categories={categories}
+                subCategories={subCategories}
+                {...product.value}
               />
             </Box>
           ))}
@@ -269,7 +303,7 @@ export const ProductList = ({
             size="large"
             onClick={() => setShowDeleteModal(true)}
             state={
-              subCategory.value.text! === "" ||
+              !subCategory.value.value ||
               currentProductsBySubCategory.length > 0
                 ? "inactive"
                 : "normal"
@@ -297,7 +331,7 @@ export const ProductList = ({
               width="100%"
               label="Categoría"
               showError={false}
-              options={categories}
+              options={allCategories}
               inputHook={editCategory}
             />
           </Box>
@@ -328,9 +362,9 @@ export const ProductList = ({
               size="large"
               onClick={() =>
                 onEditSubCategory(
-                  subCategory.value.number!,
+                  subCategory.value.value?.id!,
                   editSubCategory,
-                  editCategory.value.number!
+                  editCategory.value.value?.id!
                 ) && setShowEditModal(false)
               }
             >
@@ -354,7 +388,7 @@ export const ProductList = ({
               width="100%"
               label="Categoría"
               showError={false}
-              options={categories}
+              options={allCategories}
               inputHook={newCategory}
             />
           </Box>
@@ -384,7 +418,7 @@ export const ProductList = ({
               fullWidth
               size="large"
               onClick={() =>
-                onCreateSubCategory(newCategory, newSubCategory) &&
+                onCreateSubCategory(newCategory.value.value?.id!, newSubCategory) &&
                 setShowNewModal(false)
               }
             >
@@ -402,10 +436,10 @@ export const ProductList = ({
             ¿Estás seguro que deseas eliminar la sub-categoría
             <span style={{ fontWeight: "600" }}>
               {" "}
-              {subCategory.value.text!}{" "}
+              {subCategory.value.label}{" "}
             </span>
             de la categoría{" "}
-            <span style={{ fontWeight: "600" }}> {category.value.text!} </span>?
+            <span style={{ fontWeight: "600" }}> {category.value.label} </span>?
           </Text>
 
           <Box className={styles["product-list--modal-buttons"]}>
@@ -424,7 +458,7 @@ export const ProductList = ({
               size="large"
               onClick={() => {
                 setShowDeleteModal(false);
-                onDeleteSubCategory(subCategory.value.number!);
+                onDeleteSubCategory(subCategory.value.value?.id!);
               }}
             >
               <Box className={styles["product-list--modal-button"]}>

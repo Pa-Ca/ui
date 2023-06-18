@@ -72,6 +72,7 @@ export * from "./stories/template/signUp/SignUp";
 export * from "./stories/template/branchListing/BranchListing";
 export * from "./stories/template/branchProfile/BranchProfile";
 export * from "./stories/template/resetPassword/ResetPassword";
+export * from "./stories/template/branchProducts/BranchProducts";
 export * from "./stories/template/branchReserves/BranchReserves";
 export * from "./stories/template/businessProfile/BusinessProfile";
 export * from "./stories/template/recoverPassword/RecoverPassword";

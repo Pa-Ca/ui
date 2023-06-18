@@ -12,11 +12,11 @@ interface CancellationFormProps {
   /**
    * Possible reasons for the cancellation
    * */
-  cancellationReasons: OptionObject[];
+  cancellationReasons: OptionObject<number>[];
   /**
    * Reason for the cancellation
    */
-  reason: InputFormHook<OptionObject>;
+  reason: InputFormHook<OptionObject<number | null>>;
   /**
    * Special occasion in the reservation
    */

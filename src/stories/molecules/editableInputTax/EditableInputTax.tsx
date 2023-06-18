@@ -95,27 +95,27 @@ export const EditableInputTax = ({
   const valueRef = useRef<HTMLInputElement>(null);
 
   const options = [
-    { text: "%", label: "%" },
-    { text: "$", label: "$" },
+    { value: "%", label: "%" },
+    { value: "$", label: "$" },
   ];
   const optionsMap = useMemo(() => {
     const map = new Map<string, string>();
     if (options) {
       options.forEach((option) => {
-        map.set(option.text!, option.label);
+        map.set(option.value, option.label);
       });
     }
     return map;
   }, [options]);
 
   const onChangeType = (
-    selectedOption: SingleValue<OptionObject>,
-    actionMeta: ActionMeta<OptionObject>
+    selectedOption: SingleValue<OptionObject<string>>,
+    actionMeta: ActionMeta<OptionObject<string>>
   ) => {
     if (selectedOption === null) {
       typeInputHook.setValue("");
     } else {
-      typeInputHook.setValue(selectedOption.text!);
+      typeInputHook.setValue(selectedOption.value);
     }
   };
 
@@ -222,8 +222,8 @@ export const EditableInputTax = ({
                 )}
                 noOptionsMessage={() => "No se encuentra la opción"}
                 value={{
-                  text: typeInputHook.value || "",
-                  label: optionsMap.get(typeInputHook.value || "") || "",
+                  label: typeInputHook.value,
+                  value: optionsMap.get(typeInputHook.value) || "",
                 }}
                 options={options}
                 onChange={onChangeType}

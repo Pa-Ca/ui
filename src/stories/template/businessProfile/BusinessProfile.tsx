@@ -43,9 +43,9 @@ interface BusinessProfileProps {
     name: InputFormHook<string>,
     phoneNumber: InputFormHook<string>,
     price: InputFormHook<string>,
-    type: InputFormHook<OptionObject>,
+    type: InputFormHook<OptionObject<string | null>>,
     capacity: InputFormHook<string>,
-    location: InputFormHook<OptionObject>,
+    location: InputFormHook<OptionObject<string | null>>,
     averageReserveTimeHours: InputFormHook<string>,
     averageReserveTimeMinutes: InputFormHook<string>,
     openingTimeHour: InputFormHook<string>,
@@ -120,7 +120,7 @@ interface BusinessProfileProps {
   /**
    * Location of the branch
    * */
-  branchLocation: InputFormHook<string>;
+  branchLocation: InputFormHook<OptionObject<string | null>>;
   /**
    * Phone of the branch
    * */
@@ -144,15 +144,15 @@ interface BusinessProfileProps {
   /**
    * Branch type
    * */
-  branchType: InputFormHook<string>;
+  branchType: InputFormHook<OptionObject<string | null>>;
   /**
    * Options for the branch type
    * */
-  branchTypeOptions: OptionObject[];
+  branchTypeOptions: OptionObject<string>[];
   /**
    * Options for the branch location
    * */
-  branchLocationOptions: OptionObject[];
+  branchLocationOptions: OptionObject<string>[];
   /**
    * Precise location of the branch (Google maps link)
    * */
@@ -181,47 +181,47 @@ interface BusinessProfileProps {
   /**
    * Function that is executed when the branch name is saved
    */
-  onSaveBranchName: (value: string) => void;
+  onSaveBranchName: () => void;
   /**
    * Function that is executed when the branch description is saved
    */
-  onSaveBranchDescription: (value: string) => void;
+  onSaveBranchDescription: () => void;
   /**
    * Function that is executed when the branch location is saved
    */
-  onSaveBranchLocation: (value: string) => void;
+  onSaveBranchLocation: () => void;
   /**
    * Function that is executed when the branch phone number is saved
    */
-  onSaveBranchPhone: (value: string) => void;
+  onSaveBranchPhone: () => void;
   /**
    * Function that is executed when the branch capacity is saved
    */
-  onSaveBranchCapacity: (value: string) => void;
+  onSaveBranchCapacity: () => void;
   /**
    * Function that is executed when the branch average reserve time is saved
    */
-  onSaveBranchAverageReserveTime: (hours: string, minutes: string) => void;
+  onSaveBranchAverageReserveTime: () => void;
   /**
    * Function that is executed when the branch reservation price is saved
    */
-  onSaveBranchPrice: (value: string) => void;
+  onSaveBranchPrice: () => void;
   /**
    * Function that is executed when the branch type is saved
    */
-  onSaveBranchType: (value: string) => void;
+  onSaveBranchType: () => void;
   /**
    * Function that is executed when the branch google maps link is saved
    */
-  onSaveBranchMapsLink: (value: string) => void;
+  onSaveBranchMapsLink: () => void;
   /**
    * On save event for the opening time
    * */
-  onSaveBranchOpeningTime: (hour: string, minute: string) => void;
+  onSaveBranchOpeningTime: () => void;
   /**
    * On save event for the closing time
    * */
-  onSaveBranchClosingTime: (hour: string, minute: string) => void;
+  onSaveBranchClosingTime: () => void;
   /**
    * On delete branch
    */
@@ -316,8 +316,14 @@ export const BusinessProfile = ({
   const newBranchClosingTimeMinute = useInputForm("00");
   const newBranchAverageReserveTimeHours = useInputForm("00");
   const newBranchAverageReserveTimeMinutes = useInputForm("00");
-  const newBranchType = useInputForm<OptionObject>({ label: "", text: "" });
-  const newBranchLocation = useInputForm<OptionObject>({ label: "", text: "" });
+  const newBranchType = useInputForm<OptionObject<string | null>>({
+    label: "",
+    value: null,
+  });
+  const newBranchLocation = useInputForm<OptionObject<string | null>>({
+    label: "",
+    value: null,
+  });
 
   // Get the theme from the provider
   const { isDarkMode } = useThemeProvider();
@@ -340,7 +346,7 @@ export const BusinessProfile = ({
 
   useEffect(() => {
     // Retrieve image
-  })
+  });
 
   const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] =
     useState(false);

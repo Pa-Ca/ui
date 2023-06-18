@@ -4,9 +4,10 @@ import { Text } from "../../atoms/text/Text";
 import styles from "./saleProductList.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
-import OptionObject from "../../utils/objects/OptionObject";
-import { ProductProps } from "../../molecules/product/Product";
-import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+import useInputForm from "../../hooks/useInputForm";
+import ProductObject from "../../utils/objects/ProductObject";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { NewSaleProduct } from "../../molecules/newSaleProduct/NewSaleProduct";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import {
@@ -24,22 +25,17 @@ interface SaleProductListProps {
    */
   products: SaleProductProps[];
   /**
-   * Product list
+   * Products
    */
-  allProducts: ProductProps[];
+  allProducts: Record<number, ProductObject>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * Taxes
    */
@@ -74,7 +70,6 @@ export const SaleProductList = ({
   allProducts,
   categories,
   subCategories,
-  subCategoryDependency,
   taxes,
   onAddTax,
   onAddProduct,
@@ -177,7 +172,6 @@ export const SaleProductList = ({
           products={allProducts}
           categories={categories}
           subCategories={subCategories}
-          subCategoryDependency={subCategoryDependency}
           onCreate={onAddProduct}
         />
       </Box>

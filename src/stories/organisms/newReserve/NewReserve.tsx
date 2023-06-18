@@ -57,19 +57,19 @@ interface NewReserveProps {
   /**
    * Current entry hour
    */
-  hourIn: InputFormHook<OptionObject>;
+  hourIn: InputFormHook<OptionObject<string | null>>;
   /**
    * Valid entry hours
    */
-  validHoursIn?: OptionObject[];
+  validHoursIn?: OptionObject<string>[];
   /**
    * Current departure hour
    */
-  hourOut: InputFormHook<OptionObject>;
+  hourOut: InputFormHook<OptionObject<string | null>>;
   /**
    * Valid departure hours
    */
-  validHoursOut?: OptionObject[];
+  validHoursOut?: OptionObject<string>[];
   /**
    * Number of people in the reservation
    */

@@ -6,8 +6,10 @@ import styles from "./branchReserves.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
 import { InputFormHook } from "../../hooks/useInputForm";
+import useWindowResize from "../../hooks/useWindowResize";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
@@ -16,8 +18,6 @@ import { ReserveList } from "../../organisms/reserveList/ReserveList";
 import { ReservationProps } from "../../molecules/reservation/Reservation";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
-import useThemeProvider from "../../hooks/useThemeProvider";
-import useWindowResize from "../../hooks/useWindowResize";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 
 interface BranchReservesProps {
@@ -64,19 +64,19 @@ interface BranchReservesProps {
   /**
    * Reservation hourIn input hook
    */
-  hourIn: InputFormHook<OptionObject>;
+  hourIn: InputFormHook<OptionObject<string | null>>;
   /**
    * List of valid start hour for reservation
    */
-  validHoursIn: OptionObject[];
+  validHoursIn: OptionObject<string>[];
   /**
    * Reservation hourIn input hook
    */
-  hourOut: InputFormHook<OptionObject>;
+  hourOut: InputFormHook<OptionObject<string | null>>;
   /**
    * List of valid end hours for reservation
    */
-  validHoursOut: OptionObject[];
+  validHoursOut: OptionObject<string>[];
   /**
    * Reservation persons number input hook
    */
@@ -142,7 +142,7 @@ export const BranchReserves = ({
   ...props
 }: BranchReservesProps) => {
   const windowSize = useWindowResize();
-  
+
   const PageWrapper = useMemo(() => {
     return windowSize.resolutionType === "desktop"
       ? BasicPage

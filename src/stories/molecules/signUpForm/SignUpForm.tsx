@@ -6,7 +6,6 @@ import styles from "./signUpForm.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import inputTextStyles from "../inputText/inputText.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
 export interface SignUpFormProps {

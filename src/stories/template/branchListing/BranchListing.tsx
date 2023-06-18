@@ -19,7 +19,7 @@ interface BranchListing {
   /**
    * Hour search input hook
    */
-  hour: InputFormHook<OptionObject>;
+  hour: InputFormHook<OptionObject<string | null>>;
   /**
    * Persons number search input hook
    */
@@ -52,11 +52,11 @@ interface BranchListing {
   /**
    * Filter start hour input hook
    */
-  startHour: InputFormHook<OptionObject>;
+  startHour: InputFormHook<OptionObject<string | null>>;
   /**
    * Filter current end hour
    */
-  endHour: InputFormHook<OptionObject>;
+  endHour: InputFormHook<OptionObject<string | null>>;
   /**
    * Filter current minimum rating
    */

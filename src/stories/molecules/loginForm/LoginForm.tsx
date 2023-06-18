@@ -6,9 +6,8 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
-import inputTextStyles from "../inputText/inputText.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 import useWindowResize from "../../hooks/useWindowResize";
+import inputTextStyles from "../inputText/inputText.module.scss";
 
 interface LoginFormProps {
   /**

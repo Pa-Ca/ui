@@ -10,17 +10,16 @@ import textStyles from "../../atoms/text/text.module.scss";
 import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import inputTextStyles from "../inputText/inputText.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 
-interface InputSelectProps {
+interface InputSelectProps<T> {
   /**
    * Input hook
    */
-  inputHook: InputFormHook<OptionObject>;
+  inputHook: InputFormHook<OptionObject<T | null>>;
   /**
    * Possible options
    */
-  options?: OptionObject[];
+  options?: OptionObject<T>[];
   /**
    * Label to be displayed at the top of the input
    */
@@ -40,7 +39,7 @@ interface InputSelectProps {
   /**
    * Empty option label
    */
-  emptyOptionLabel?: string;
+  emptyLabel?: string;
   /**
    * Input width
    */
@@ -54,18 +53,18 @@ interface InputSelectProps {
 /**
  * Primary UI component for user interaction
  */
-export const InputSelect = ({
+export const InputSelect = <T extends any>({
   inputHook,
   options = [],
   label = "Text select",
   required,
   showError = true,
   addEmptyOption = false,
-  emptyOptionLabel = "",
+  emptyLabel = "Seleccione una opción",
   width,
   height,
   ...props
-}: InputSelectProps) => {
+}: InputSelectProps<T>) => {
   const [view, setView] = useState(false);
   const [filter, setFilter] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("");
@@ -88,7 +87,7 @@ export const InputSelect = ({
     });
   };
 
-  const selectOption = (option: OptionObject) => {
+  const selectOption = (option: OptionObject<T | null>) => {
     setView(false);
     inputHook.setValue(option);
     setCurrentValue(option.label!);
@@ -103,7 +102,7 @@ export const InputSelect = ({
 
   const currentOptions = useMemo(() => {
     // Filter options
-    let currentOptions = options.filter(
+    let currentOptions: OptionObject<T | null>[] = options.filter(
       (option) =>
         !filter ||
         option.label!.toLowerCase().includes(currentFilter.toLowerCase())
@@ -112,7 +111,7 @@ export const InputSelect = ({
     // Add empty option
     if (addEmptyOption) {
       currentOptions = [
-        { label: emptyOptionLabel, text: "", number: -1 },
+        { label: emptyLabel, value: null},
         ...currentOptions,
       ];
     }
@@ -125,7 +124,7 @@ export const InputSelect = ({
           option.label!.toLowerCase() === inputHook.value.label!.toLowerCase()
       )
     ) {
-      inputHook.setValue({ label: "", text: "", number: -1 });
+      inputHook.setValue({ label: emptyLabel, value: null });
       setCurrentValue("");
     }
 

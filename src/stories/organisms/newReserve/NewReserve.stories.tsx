@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NewReserve } from "./NewReserve";
 import useInputForm from "../../hooks/useInputForm";
 import { StoryFn, Meta } from "@storybook/react";
@@ -53,30 +53,30 @@ export default {
 } as Meta<typeof NewReserve>;
 
 const validHours = [
-  { value: "1", name: "9:00 am" },
-  { value: "2", name: "9:30 am" },
-  { value: "3", name: "10:00 am" },
-  { value: "4", name: "10:30 am" },
-  { value: "5", name: "11:00 am" },
-  { value: "6", name: "11:30 am" },
-  { value: "7", name: "12:00 pm" },
-  { value: "8", name: "12:30 pm" },
-  { value: "9", name: "1:00 pm" },
-  { value: "10", name: "1:30 pm" },
-  { value: "11", name: "2:00 am" },
-  { value: "12", name: "2:30 pm" },
-  { value: "13", name: "3:00 pm" },
-  { value: "14", name: "3:30 pm" },
-  { value: "15", name: "4:00 pm" },
-  { value: "16", name: "4:30 pm" },
-  { value: "17", name: "5:00 pm" },
+  { value: "1", label: "9:00 am" },
+  { value: "2", label: "9:30 am" },
+  { value: "3", label: "10:00 am" },
+  { value: "4", label: "10:30 am" },
+  { value: "5", label: "11:00 am" },
+  { value: "6", label: "11:30 am" },
+  { value: "7", label: "12:00 pm" },
+  { value: "8", label: "12:30 pm" },
+  { value: "9", label: "1:00 pm" },
+  { value: "10", label: "1:30 pm" },
+  { value: "11", label: "2:00 am" },
+  { value: "12", label: "2:30 pm" },
+  { value: "13", label: "3:00 pm" },
+  { value: "14", label: "3:30 pm" },
+  { value: "15", label: "4:00 pm" },
+  { value: "16", label: "4:30 pm" },
+  { value: "17", label: "5:00 pm" },
 ];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof NewReserve> = (args: any) => {
   const date = useInputForm(new Date());
-  const hourIn = useInputForm({ name: "", value: "" });
-  const hourOut = useInputForm({ name: "", value: "" });
+  const hourIn = useInputForm({ label: "", value: null });
+  const hourOut = useInputForm({ label: "", value: null });
   const persons = useInputForm("");
   const occasion = useInputForm("");
 

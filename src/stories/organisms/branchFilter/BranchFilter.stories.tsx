@@ -117,8 +117,8 @@ const zones_: CheckObject[] = [
 const Template: StoryFn<typeof BranchFilter> = (args: any) => {
   const [rating, setRating] = useState(0);
   const [zones, setZones] = useState(zones_);
-  const [startHour, setStartHour] = useState({ value: '', name: '' });
-  const [endHour, setEndHour] = useState({ value: '', name: '' });
+  const [startHour, setStartHour] = useState({ value: '', label: '' });
+  const [endHour, setEndHour] = useState({ value: '', label: '' });
   const [prices, setPrices] = useState([args.min, args.max]);
   const [cousines, setCousines] = useState(cousines_);
   

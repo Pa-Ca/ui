@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CancellationForm } from "./CancellationForm";
 import useInputForm from "../../hooks/useInputForm";
 import { StoryFn, Meta } from "@storybook/react";
@@ -25,12 +25,12 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof CancellationForm> = (args: any) => {
-  const reason = useInputForm({ value: "", name: "" });
+  const reason = useInputForm({ value: null, name: "" });
   const description = useInputForm("");
   const cancellationReasons = [
-    { value: "1", name: "Reason 1" },
-    { value: "2", name: "Reason 2" },
-    { value: "3", name: "Reason 3" },
+    { value: 1, label: "Reason 1" },
+    { value: 2, label: "Reason 2" },
+    { value: 3, label: "Reason 3" },
   ];
 
   return (

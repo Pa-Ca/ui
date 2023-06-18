@@ -5,7 +5,6 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import styles from "./resetPasswordForm.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
 interface ResetPasswordFormProps {

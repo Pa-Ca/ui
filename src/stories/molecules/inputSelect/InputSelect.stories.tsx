@@ -1,8 +1,8 @@
 import React from "react";
 import { InputSelect } from "./InputSelect";
 import useInputForm from "../../hooks/useInputForm";
-import OptionObject from "../../utils/objects/OptionObject";
 import { StoryFn, Meta } from "@storybook/react";
+import OptionObject from "../../utils/objects/OptionObject";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -25,56 +25,47 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof InputSelect> = (args: any) => {
-  const options: OptionObject[] = [
+  const options: OptionObject<string>[] = [
     {
-      number: 0,
-      text: "option1",
+      value: "option1",
       label: "A. Option 1",
     },
     {
-      number: 1,
-      text: "option2",
+      value: "option2",
       label: "A. Option 2",
     },
     {
-      number: 2,
-      text: "option3",
+      value: "option3",
       label: "A. Option 3",
     },
     {
-      number: 3,
-      text: "option4",
+      value: "option4",
       label: "B. Option 4",
     },
     {
-      number: 4,
-      text: "option5",
+      value: "option5",
       label: "B. Option 5",
     },
     {
-      number: 5,
-      text: "option6",
+      value: "option6",
       label: "C. Option 6",
     },
-    {
-      number: 6, 
-      text: "option7",
+    { 
+      value: "option7",
       label: "C. Option 7",
     },
     {
-      number: 7,
-      text: "option8",
+      value: "option8",
       label: "C. Option 8",
     },
     {
-      number: 8,
-      text: "option9",
+      value: "option9",
       label: "Very very very very very very very very very very very very very very very very very very very very very large Option",
     },
   ];
-  const inputHook = useInputForm<OptionObject | undefined>({
+  const inputHook = useInputForm<OptionObject<string>>({
     label: "",
-    text: "",
+    value: "",
   });
   return <InputSelect inputHook={inputHook} options={options} {...args} />;
 };

@@ -106,13 +106,13 @@
 .product--description {
   @extend .product--details-input;
 
+  margin-top: 12px;
   min-height: 100px;
   align-items: flex-start;
 }
 .product--description-label {
   height: 100%;
   display: flex;
-  margin-top: 12px;
   flex-direction: column;
   justify-content: flex-start;
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import styles from "./leftMenu.module.scss";
 import { Icon } from "../../atoms/icon/Icon";

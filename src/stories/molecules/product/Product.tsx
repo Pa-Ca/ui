@@ -9,7 +9,10 @@ import { Button } from "../../atoms/button/Button";
 import { Switch } from "../../atoms/switch/Switch";
 import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import { EditableInputText } from "../editableInputText/EditableInputText";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
+import { EditableInputSelect } from "../editableInputSelect/EditableInputSelect";
 import { EditableInputLongText } from "../editableInputLongText/EditableInputLongText";
 
 export interface ProductProps {
@@ -24,11 +27,11 @@ export interface ProductProps {
   /**
    * Product category
    */
-  category: InputFormHook<string>;
+  category: InputFormHook<OptionObject<CategoryObject | null>>;
   /**
    * Product sub-category
    */
-  subCategory: InputFormHook<string>;
+  subCategory: InputFormHook<OptionObject<SubCategoryObject | null>>;
   /**
    * Product description
    */
@@ -44,41 +47,36 @@ export interface ProductProps {
   /**
    * Category options
    */
-  categoryOptions?: OptionObject[];
+  categories?: Record<number, CategoryObject>;
   /**
    * Sub-category options
    */
-  subCategoryOptions?: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency?: Record<string, string>;
+  subCategories?: Record<number, SubCategoryObject>;
 
   /**
    * On save product name
    */
-  onSaveName: (value: string) => void;
+  onSaveName: () => void;
   /**
    * On save product category
    */
-  onSaveCategory: (value: string) => void;
+  onSaveCategory: () => void;
   /**
    * On save product sub-category
    */
-  onSaveSubCategory: (value: string) => void;
+  onSaveSubCategory: () => void;
   /**
    * On save product description
    */
-  onSaveDescription: (value: string) => void;
+  onSaveDescription: () => void;
   /**
    * On save product price
    */
-  onSavePrice: (value: string) => void;
+  onSavePrice: () => void;
   /**
    * On save product availability
    */
-  onSaveAvailable: (value: boolean) => void;
+  onSaveAvailable: () => void;
   /**
    * On delete product
    */
@@ -104,9 +102,8 @@ export const Product = ({
   description,
   price,
   available,
-  categoryOptions = [],
-  subCategoryOptions = [],
-  subCategoryDependency = {},
+  categories = {},
+  subCategories = {},
 
   onSaveName,
   onSaveCategory,
@@ -123,22 +120,34 @@ export const Product = ({
   const [viewDetails, setViewDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  const allCategories: OptionObject<CategoryObject>[] = useMemo(() => {
+    return Object.values(categories).map((category) => {
+      return { label: category.name, value: category };
+    });
+  }, [categories]);
+
+  const allSubCategories: OptionObject<SubCategoryObject>[] = useMemo(() => {
+    return Object.values(subCategories).map((subCategory) => {
+      return { label: subCategory.name, value: subCategory };
+    });
+  }, [subCategories]);
+
   const currentSubCategoriyOptions = useMemo(() => {
-    if (category.value === "") return subCategoryOptions;
+    if (!category.value.value) return allSubCategories;
 
     // If the category is selected, filter the subcategories
-    return subCategoryOptions.filter((c) => {
-      return subCategoryDependency[c.text!] === category.value;
+    return allSubCategories.filter((c) => {
+      return c.value.categoryId === category.value.value?.id;
     });
-  }, [subCategoryOptions, category.value]);
+  }, [allSubCategories, category.value, categories, subCategories]);
 
   useEffect(() => {
-    if (!subCategory.value || subCategory.value === "") return;
+    if (!subCategory.value.value) return;
 
     // If there is a subcategory selected while changing the category, and
     // both do not match, then we deselect the subcategory
-    if (subCategoryDependency[subCategory.value!] !== category.value) {
-      subCategory.setValue("");
+    if (subCategory.value.value?.categoryId !== category.value.value?.id) {
+      subCategory.setValue({ label: "", value: null });
     }
   }, [category.value]);
 
@@ -162,7 +171,7 @@ export const Product = ({
           </Text>
         </Box>
         <Box className={styles["product--header-category"]}>
-          <Text type="h5"> {`${category.value} | ${subCategory.value}`} </Text>
+          <Text type="h5"> {`${category.value.label} | ${subCategory.value.label}`} </Text>
         </Box>
         <Box className={styles["product--price-and-icon-container"]}>
           <Text weight="700" type="h5">
@@ -236,15 +245,14 @@ export const Product = ({
                 {" "}
                 Categoría:{" "}
               </Text>
-              <EditableInputText
+              <EditableInputSelect
                 useEditIcons
                 width="100%"
                 height="100%"
                 inputHook={category}
-                options={categoryOptions}
+                options={allCategories}
                 editable={true}
                 saveValueFunction={onSaveCategory}
-                type="select"
                 showError={false}
                 containerClassName={styles["product--input-item"]}
               />
@@ -257,14 +265,13 @@ export const Product = ({
                 </Text>
               </Box>
               <Box style={{ flex: 1 }}>
-                <EditableInputText
+                <EditableInputSelect
                   useEditIcons
                   height="100%"
                   inputHook={subCategory}
                   options={currentSubCategoriyOptions}
                   editable={true}
                   saveValueFunction={onSaveSubCategory}
-                  type="select"
                   showError={false}
                   containerClassName={styles["product--input-item"]}
                 />
@@ -311,7 +318,7 @@ export const Product = ({
                 active={available.value}
                 onClick={() =>
                   available.setValue((prev) => {
-                    onSaveAvailable(!prev);
+                    onSaveAvailable();
                     return !prev;
                   })
                 }

@@ -3,9 +3,9 @@ import { Box } from "../../atoms/box/Box";
 import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import styles from "./loginComponent.module.scss";
+import useWindowResize from "../../hooks/useWindowResize";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
-import useWindowResize, { WindowResizeHook } from "../../hooks/useWindowResize";
 
 export interface LoginComponentProps {
   /**
