@@ -133,8 +133,8 @@
   column-gap: 20px;
 }
 
-.reservation--status-undefined{
-  border-left-color: var(--undefined-status-color);
+.reservation--status-unset{
+  border-left-color: var(--unset-status-color);
 }
 
 .reservation--status-pending{
