@@ -186,7 +186,8 @@ export const NewReserve = ({
       </Box>
 
       {/* Inputs 2 */}
-      <Box className={styles["new-reserve--input-container"]}>
+      <Box className={styles["new-reserve--input-container"]}
+          style={{ flex: 3 }}>
         <Box width="100%">
           <InputText
             inputHook={occasion}

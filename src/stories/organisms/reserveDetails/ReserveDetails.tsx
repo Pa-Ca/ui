@@ -139,7 +139,7 @@ export const ReserveDetails = ({
         <Box height="16px" />
 
         <Box className={styles["reserve-details--input-container"]}>
-          <Box width="100%" style={{ zIndex: 2 }}>
+          <Box width="100%" style={{ zIndex: 3 }}>
             <InputSelect
               required
               inputHook={hourIn}
