@@ -342,7 +342,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={onReject}
+              onClick={() => {onReject; setConfirmReject(false)}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -377,7 +377,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={onAccept}
+              onClick={() => {onAccept; setConfirmAccept(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -412,7 +412,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={onStart}
+              onClick={() => {onStart; setConfirmStart(false)}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -447,7 +447,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={onAccept}
+              onClick={() => {onRetire; setConfirmRetire(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -482,7 +482,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={onCloseReservation}
+              onClick={() => {onCloseReservation; setConfirmClose(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
