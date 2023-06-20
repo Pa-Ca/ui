@@ -60,23 +60,23 @@ export interface ReservationProps {
   /**
    * On close reservation button click
    */
-  onCloseReservation: () => {};
+  onCloseReservation?: () => {};
   /**
    * On reject reservation button click
    */
-  onReject: () => {};
+  onReject?: () => {};
   /**
    * On accept reservation button click
    */
-  onAccept: () => {};
+  onAccept?: () => {};
   /**
    * On retire reservation button click
    */
-  onRetire: () => {};
+  onRetire?: () => {};
   /**
    * On retire reservation button click
    */
-  onStart: () => {};
+  onStart?: () => {};
   /**
    * Total component width
    */
@@ -213,27 +213,27 @@ export const Reservation = ({
   }, [state]);
 
   const doReject = () => {
-    onReject();
+    onReject!();
     setConfirmReject(false);
   }
 
   const doAccept = () => {
-    onAccept();
+    onAccept!();
     setConfirmAccept(false);
   }
 
   const doRetire = () => {
-    onRetire();
+    onRetire!();
     setConfirmRetire(false);
   }
 
   const doStart = () => {
-    onStart();
+    onStart!();
     setConfirmStart(false);
   }
 
   const doClose = () => {
-    onCloseReservation();
+    onCloseReservation!();
     setConfirmStart(false);
   }
 
