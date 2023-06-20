@@ -184,6 +184,7 @@ export const ReserveList = ({
                     onReject={reservation.onReject}
                     onRetire={reservation.onRetire}
                     onStart={reservation.onStart}
+                    onAccept={reservation.onAccept}
                   />
                 ))}
               </Box>

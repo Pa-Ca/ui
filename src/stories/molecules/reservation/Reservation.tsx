@@ -60,23 +60,23 @@ export interface ReservationProps {
   /**
    * On close reservation button click
    */
-  onCloseReservation?: () => {};
+  onCloseReservation: () => {};
   /**
    * On reject reservation button click
    */
-  onReject?: () => {};
+  onReject: () => {};
   /**
    * On accept reservation button click
    */
-  onAccept?: () => {};
+  onAccept: () => {};
   /**
    * On retire reservation button click
    */
-  onRetire?: () => {};
+  onRetire: () => {};
   /**
    * On retire reservation button click
    */
-  onStart?: () => {};
+  onStart: () => {};
   /**
    * Total component width
    */
@@ -212,6 +212,31 @@ export const Reservation = ({
     }
   }, [state]);
 
+  const doReject = () => {
+    onReject();
+    setConfirmReject(false);
+  }
+
+  const doAccept = () => {
+    onAccept();
+    setConfirmAccept(false);
+  }
+
+  const doRetire = () => {
+    onRetire();
+    setConfirmRetire(false);
+  }
+
+  const doStart = () => {
+    onStart();
+    setConfirmStart(false);
+  }
+
+  const doClose = () => {
+    onCloseReservation();
+    setConfirmStart(false);
+  }
+
   return (
     <Box
       className={classnames(
@@ -342,7 +367,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onReject; setConfirmReject(false)}}
+              onClick={doReject}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -377,7 +402,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onAccept; setConfirmAccept(false);}}
+              onClick={doAccept}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -412,7 +437,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onStart; setConfirmStart(false)}}
+              onClick={doStart}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -447,7 +472,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onRetire; setConfirmRetire(false);}}
+              onClick={doRetire}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -482,7 +507,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onCloseReservation; setConfirmClose(false);}}
+              onClick={doClose}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
