@@ -141,7 +141,7 @@ export const Reservation = ({
 
   const getAction = useMemo(() => {
     switch (state) {
-      // Ongoing reservation
+      // Started reservation
       case 5:
         return (
           <Box className={styles["reservation--box-button"]}>

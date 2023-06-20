@@ -153,8 +153,8 @@
   border-left-color: var(--unfinished-status-color);
 }
 
-.reservation--status-ongoing{
-  border-left-color: var(--ongoing-status-color);
+.reservation--status-started{
+  border-left-color: var(--started-status-color);
 }
 
 .reservation--status-closed{

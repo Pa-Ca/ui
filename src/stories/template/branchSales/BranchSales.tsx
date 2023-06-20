@@ -209,7 +209,7 @@ export const BranchSales = ({
             innerRef={observerTab.ref}
           >
             <Box style={{ flex: 1 }}>
-              <Box className={styles["branch-sales--ongoing-sales-header"]}>
+              <Box className={styles["branch-sales--started-sales-header"]}>
                 <Box className={styles["branch-sales--table-selector"]}>
                   <Text weight="700" type="h3">
                     Factura de la mesa:

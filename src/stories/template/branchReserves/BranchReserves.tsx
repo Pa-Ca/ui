@@ -150,7 +150,7 @@ export const BranchReserves = ({
   }, [windowSize.resolutionType]);
 
   const [page, setPage] = useState(0);
-  const [currentOngoingReservation, setCurrentOngoingReservation] = useState<
+  const [currentStartedReservation, setCurrentStartedReservation] = useState<
     ReservationProps[]
   >([]);
   const [currentAcceptedReservation, setCurrentAcceptedReservation] = useState<
@@ -186,8 +186,8 @@ export const BranchReserves = ({
     [reservations]
   );
     
-  // Filter reservations by state equals to 5, meaning ongoing
-  const ongoingReservations = useMemo(
+  // Filter reservations by state equals to 5, meaning started
+  const startedReservations = useMemo(
     () => reservations.filter((reservation) => reservation.state === 5),
     [reservations]
   );
@@ -222,7 +222,7 @@ export const BranchReserves = ({
             index={page}
             setIndex={setPage}
             tabs={[
-              `Reservas En Curso (${ongoingReservations.length})`,
+              `Reservas En Curso (${startedReservations.length})`,
               `Reservas Aceptadas (${acceptedReservations.length})`,
               `Reservas Pendientes (${pendingReservations.length})`,
               `Histórico (${historicReservation.length})`,
@@ -243,13 +243,13 @@ export const BranchReserves = ({
 
               <Box style={{ flex: 1 }}>
                 <Paginable
-                  list={ongoingReservations}
-                  setCurrentList={setCurrentOngoingReservation}
+                  list={startedReservations}
+                  setCurrentList={setCurrentStartedReservation}
                   objectsPerPage={10}
                 >
                   <ReserveList
                     icon_size={icon_size}
-                    reservations={currentOngoingReservation}
+                    reservations={currentStartedReservation}
                     state={1}
                     setShowModal={setShowModal}
                   />
