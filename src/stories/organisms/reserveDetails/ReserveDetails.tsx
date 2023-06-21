@@ -47,6 +47,10 @@ interface ReserveDetailsProps {
    */
   persons: InputFormHook<string>;
   /**
+   * Number of tables in the reservation
+   */
+  tables: InputFormHook<string>;
+  /**
    * Special occasion in the reservation
    */
   occasion: InputFormHook<string>;
@@ -84,6 +88,7 @@ export const ReserveDetails = ({
   hourOut,
   validHoursOut,
   persons,
+  tables,
   occasion,
   width,
   height,
@@ -126,7 +131,7 @@ export const ReserveDetails = ({
             <InputDate required inputHook={date} minDate={new Date()} />
           </Box>
 
-          <Box width="100%" className={styles["reserve-details--input1"]}>
+          <Box width="100%">
             <InputText
               required
               inputHook={persons}
@@ -134,9 +139,16 @@ export const ReserveDetails = ({
               label="Personas"
             />
           </Box>
-        </Box>
 
-        <Box height="16px" />
+          <Box width="100%">
+            <InputText
+              required
+              inputHook={tables}
+              type="naturalNumber"
+              label="Mesas"
+            />
+          </Box>
+        </Box>
 
         <Box className={styles["reserve-details--input-container"]}>
           <Box width="100%">
@@ -148,7 +160,7 @@ export const ReserveDetails = ({
             />
           </Box>
 
-          <Box width="100%" className={styles["reserve-details--input1"]}>
+          <Box width="100%">
             <InputSelect
               inputHook={hourOut}
               options={validHoursOut}

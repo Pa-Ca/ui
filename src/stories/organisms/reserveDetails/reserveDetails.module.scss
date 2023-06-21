@@ -13,10 +13,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-.reserve-details--input1 {
-  margin-left: 16px;
-  z-index: 2;
+  column-gap: 16px;
+  margin-bottom: 8px;
 }
 .reserve-details--invite-friends {
   display: flex;

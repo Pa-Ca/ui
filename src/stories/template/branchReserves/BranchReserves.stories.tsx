@@ -19,6 +19,7 @@ const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   const hourIn = useInputForm<OptionObject>({ text: "", label: "" });
   const hourOut = useInputForm<OptionObject>({ text: "", label: "" });
   const persons = useInputForm<string>("");
+  const tables = useInputForm<string>("");
   const occasion = useInputForm<string>("");
 
   // Client data
@@ -34,6 +35,7 @@ const Template: StoryFn<typeof BranchReserves> = (args: any) => {
       hourIn={hourIn}
       hourOut={hourOut}
       persons={persons}
+      tables={tables}
       occasion={occasion}
       firstName={firstName}
       lastName={lastName}

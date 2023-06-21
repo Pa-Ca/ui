@@ -82,6 +82,10 @@ interface BranchReservesProps {
    */
   persons: InputFormHook<string>;
   /**
+   * Number of tables in the reservation
+   */
+  tables: InputFormHook<string>;
+  /**
    * Reservation occasion input hook
    */
   occasion: InputFormHook<string>;
@@ -133,6 +137,7 @@ export const BranchReserves = ({
   hourOut,
   validHoursOut,
   persons,
+  tables,
   occasion,
   haveBranch = true,
   icon_size,
@@ -334,6 +339,7 @@ export const BranchReserves = ({
               hourOut={hourOut}
               validHoursOut={validHoursOut}
               persons={persons}
+              tables={tables}
               occasion={occasion}
               showInviteFriends={false}
             />
