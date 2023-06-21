@@ -13,4 +13,8 @@
 }
 .react-datepicker__navigation--previous {
   border-right-color: #EF7A08 !important;
-} 
+}
+
+.react-datepicker--container {
+  z-index: 69;
+}

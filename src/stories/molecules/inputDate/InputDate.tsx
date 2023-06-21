@@ -92,6 +92,7 @@ export const InputDate = ({
             onSelect={inputHook.setValue}
             customInput={<DateInputButton />}
             minDate={minDate}
+            popperClassName={styles["react-datepicker--container"]}
           />
 
           <div className={inputTextStyles["input-text--label"]}>

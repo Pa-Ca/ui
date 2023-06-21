@@ -122,7 +122,7 @@ export const ReserveDetails = ({
       {/* Inputs 1 */}
       <Box>
         <Box className={styles["reserve-details--input-container"]}>
-          <Box width="100%" className={styles["reserve-details--input-date"]}>
+          <Box width="100%">
             <InputDate required inputHook={date} minDate={new Date()} />
           </Box>
 
@@ -139,7 +139,7 @@ export const ReserveDetails = ({
         <Box height="16px" />
 
         <Box className={styles["reserve-details--input-container"]}>
-          <Box width="100%" style={{ zIndex: 3 }}>
+          <Box width="100%">
             <InputSelect
               required
               inputHook={hourIn}
