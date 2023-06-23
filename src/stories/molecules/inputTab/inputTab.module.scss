@@ -1,11 +1,11 @@
 @import "../../assets/scss/mixins.scss";
-@import "../../assets/scss/themes.scss";
+@import "../../assets/scss/themes";
 
 .input-tab--container {
   position: relative;
   display: flex;
   min-height: 80px;
-  background-color: var(--background-color);
+  background-color: var(--input-tab-background-color);
 
   @include mobile {
     min-height: 50px;

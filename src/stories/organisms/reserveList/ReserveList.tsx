@@ -80,9 +80,11 @@ export const ReserveList = ({
   const title = useMemo(() => {
     switch (state) {
       case 1:
-        return "Reservas Pendientes";
+        return "Reservas En Curso";
       case 2:
-        return "Reservas Activas";
+          return "Reservas Aceptadas";
+      case 3:
+        return "Reservas Pendientes";
       default:
         return "Histórico";
     }
@@ -90,7 +92,7 @@ export const ReserveList = ({
 
   const header = useMemo(() => {
     switch (state) {
-      case 1:
+      case 3:
         return (
           <Box className={styles["reserve-list--header"]}>
             <Box className={styles["reserve-list--active"]}>
@@ -180,8 +182,9 @@ export const ReserveList = ({
                     statusColor={reservation.statusColor}
                     onCloseReservation={reservation.onCloseReservation}
                     onReject={reservation.onReject}
+                    onRetire={reservation.onRetire}
+                    onStart={reservation.onStart}
                     onAccept={reservation.onAccept}
-                    color={color}
                   />
                 ))}
               </Box>
@@ -195,7 +198,10 @@ export const ReserveList = ({
           <Text type="h4">
             {" "}
             No hay reservas
-            {state == 1 ? " Pendientes" : state == 2 ? " Activas" : " Registradas"}.
+            {state == 1 ? " En Curso" : 
+             state == 2 ? " Aceptadas" :
+             state == 3 ? " Pendientes" :
+              " Registradas"}.
           </Text>
         </Box>
       )}

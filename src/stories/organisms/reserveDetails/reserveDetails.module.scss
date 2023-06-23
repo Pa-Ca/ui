@@ -13,15 +13,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  column-gap: 16px;
+  margin-bottom: 8px;
 }
-.reserve-details--input-date {
-  z-index: 3;
-}
-.reserve-details--input1 {
-  margin-left: 16px;
-  z-index: 2;
-}
-
 .reserve-details--invite-friends {
   display: flex;
   flex-direction: row;

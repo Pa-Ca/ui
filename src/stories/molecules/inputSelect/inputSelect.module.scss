@@ -17,6 +17,8 @@
   border: 1px solid #79747e;
   justify-content: flex-start;
 
+  z-index: 69;
+
   @include hide-scroll();
 }
 .input-select--menu-in {

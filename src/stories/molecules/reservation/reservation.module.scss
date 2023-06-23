@@ -132,3 +132,31 @@
   display: flex;
   column-gap: 20px;
 }
+
+.reservation--status-unset{
+  border-left-color: var(--unset-status-color);
+}
+
+.reservation--status-pending{
+  border-left-color: var(--pending-status-color);
+}
+
+.reservation--status-rejected{
+  border-left-color: var(--rejected-status-color);
+}
+
+.reservation--status-accepted{
+  border-left-color: var(--accepted-status-color);
+}
+
+.reservation--status-unfinished{
+  border-left-color: var(--unfinished-status-color);
+}
+
+.reservation--status-started{
+  border-left-color: var(--started-status-color);
+}
+
+.reservation--status-closed{
+  border-left-color: var(--closed-status-color);
+}
