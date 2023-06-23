@@ -19,7 +19,7 @@ interface BranchSearchProps {
   /**
    * Hour input hook
    */
-  hour: InputFormHook<OptionObject>;
+  hour: InputFormHook<OptionObject<string | null>>;
   /**
    * Persons number input hook
    */

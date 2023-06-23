@@ -74,27 +74,27 @@ function generatePastSale(): PastSaleProps {
       {
         name: "Coca Cola",
         price: 1.5,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
       {
         name: "Pepsi",
         price: 1.5,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
       {
         name: "Pizza de peperoni",
         price: 10.99,
-        quantity: Math.floor(1 + Math.random() * 2),
+        amount: Math.floor(1 + Math.random() * 2),
       },
       {
         name: "Hamburguesa",
         price: 5.45,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
       {
         name: "Papas fritas",
         price: 2.1,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
     ]),
     taxes: taxes,

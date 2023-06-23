@@ -2,35 +2,32 @@ import React, { useEffect, useMemo } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./newSaleProduct.module.scss";
-import { ProductProps } from "../product/Product";
 import { InputText } from "../inputText/InputText";
 import { Button } from "../../atoms/button/Button";
 import useInputForm from "../../hooks/useInputForm";
 import { InputSelect } from "../inputSelect/InputSelect";
 import OptionObject from "../../utils/objects/OptionObject";
+import ProductObject from "../../utils/objects/ProductObject";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 
 export interface NewSaleProductProps {
   /**
-   * Product list
+   * Products
    */
-  products: ProductProps[];
+  products: Record<number, ProductObject>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * On create product
    */
-  onCreate: (productId: number, quantity: number) => void;
+  onCreate: (productId: number, amount: number) => void;
   /**
    * Total component width
    */
@@ -48,91 +45,125 @@ export const NewSaleProduct = ({
   products,
   categories,
   subCategories,
-  subCategoryDependency,
   onCreate,
   width,
   height,
   ...props
 }: NewSaleProductProps) => {
-  const quantity = useInputForm<string>("1");
-  const product = useInputForm<OptionObject>({ label: "", text: "" });
-  const category = useInputForm<OptionObject>({ label: "Todas", text: "" });
-  const subCategory = useInputForm<OptionObject>({ label: "Todas", text: "" });
+  const amount = useInputForm<string>("1");
+  const product = useInputForm<OptionObject<ProductObject | null>>({
+    label: "Todas",
+    value: null,
+  });
+  const category = useInputForm<OptionObject<CategoryObject | null>>({
+    label: "Todas",
+    value: null,
+  });
+  const subCategory = useInputForm<OptionObject<SubCategoryObject | null>>({
+    label: "Todas",
+    value: null,
+  });
+
+  const allCategories = useMemo(() => {
+    return Object.values(categories).map((category) => {
+      return {
+        label: category.name,
+        value: category,
+      };
+    });
+  }, [categories]);
+
+  const allSubCategories = useMemo(() => {
+    return Object.values(subCategories).map((subCategory) => {
+      return {
+        label: subCategory.name,
+        value: subCategory,
+      };
+    });
+  }, [subCategories]);
+
+  const allProducts = useMemo(() => {
+    return Object.values(products).map((product) => {
+      return {
+        label: product.name,
+        value: product,
+      };
+    });
+  }, [products]);
 
   const currentSubCategories = useMemo(() => {
-    if (!category.value.text || category.value.text === "") {
-      return subCategories;
+    if (!category.value.value) {
+      return allSubCategories;
     }
 
-    return subCategories.filter((subCategory) => {
-      return subCategoryDependency[subCategory.text!] === category.value.text!;
+    // Filter sub-categories by category
+    return allSubCategories.filter((subCategory) => {
+      return (
+        categories[subCategory.value.categoryId].name ===
+        category.value.value?.name
+      );
     });
-  }, [category.value.text, subCategories, subCategoryDependency]);
+  }, [category.value.value, subCategories, categories, allSubCategories]);
 
   const currentProductsBySubCategory = useMemo(() => {
     let currentProducts;
+
     // If there is no category nor sub-category selected, return all products
-    if (
-      (!category.value.text || category.value.text === "") &&
-      (!subCategory.value.text || subCategory.value.text === "")
-    ) {
-      currentProducts = products;
+    if (!category.value.value && !subCategory.value.value) {
+      currentProducts = allProducts;
     }
     // If there is no sub-category selected, return all products from the
     // selected category
-    else if (!subCategory.value.text || subCategory.value.text === "") {
-      currentProducts = products.filter((product) => {
-        return product.category.value === category.value.text;
+    else if (!subCategory.value.value) {
+      currentProducts = allProducts.filter((product) => {
+        return (
+          subCategories[product.value.subCategoryId].categoryId ===
+          category.value.value?.id
+        );
       });
     }
     // If there is a sub-category selected, return all products from the
     // selected sub-category
     else {
-      currentProducts = products.filter((product) => {
-        return product.subCategory.value === subCategory.value.text;
+      currentProducts = allProducts.filter((product) => {
+        return product.value.subCategoryId === subCategory.value.value?.id;
       });
     }
 
     // Convert products to options
-    return currentProducts.map((product) => {
-      return {
-        label: product.name.value,
-        text: product.name.value,
-        number: product.id,
-      };
-    });
-  }, [products, category.value.text, subCategory.value.text]);
+    return currentProducts;
+  }, [category.value.value, subCategory.value.value, allProducts]);
 
   useEffect(() => {
-    if (!subCategory.value.text || subCategory.value.text === "") return;
+    if (!subCategory.value.value) return;
 
     // If there is a subcategory selected while changing the category, and
     // both do not match, then we deselect the subcategory
-    if (subCategoryDependency[subCategory.value.text] !== category.value.text) {
-      subCategory.setValue({ label: "Todas", text: "" });
+    if (subCategory.value.value.categoryId !== category.value.value?.id) {
+      subCategory.setValue({ label: "Todas", value: null });
     }
-  }, [category.value.text]);
+  }, [category.value.value]);
 
   useEffect(() => {
-    if (!subCategory.value.text || subCategory.value.text === "") return;
-    
+    if (!subCategory.value.value) return;
+
     // If we select a subcategory and there is no selected category, then we
     // place the corresponding category
-    if (category.value.text === "") {
-      for (const c of categories) {
-        if (c.text === subCategoryDependency[subCategory.value.text!]) {
+    if (!category.value.value) {
+      for (const c of allCategories) {
+        if (c.value.id === subCategory.value.value.categoryId) {
           category.setValue(c);
           break;
         }
       }
     }
-  }, [subCategory.value.text]);
+  }, [subCategory.value.value]);
 
   const handleCreate = () => {
-    const productId = product.value.number!;
-    const productQuantity = parseInt(quantity.value);
+    const productId = product.value.value?.id!;
+    const productAmount = parseInt(amount.value);
 
-    onCreate(productId, productQuantity);
+    onCreate(productId, productAmount);
   };
 
   return (
@@ -143,9 +174,9 @@ export const NewSaleProduct = ({
           addEmptyOption
           label="Categoría"
           showError={false}
-          options={categories}
+          emptyLabel="Todas"
           inputHook={category}
-          emptyOptionLabel="Todas"
+          options={allCategories}
         />
       </Box>
       <Box className={styles["new-sale-product--sub-category-container"]}>
@@ -153,14 +184,15 @@ export const NewSaleProduct = ({
           height="45px"
           addEmptyOption
           showError={false}
+          emptyLabel="Todas"
           label="Sub-categoría"
           inputHook={subCategory}
-          emptyOptionLabel="Todas"
           options={currentSubCategories}
         />
       </Box>
       <Box className={styles["new-sale-product--product-container"]}>
         <InputSelect
+          required
           height="45px"
           addEmptyOption
           label="Producto"
@@ -171,18 +203,23 @@ export const NewSaleProduct = ({
       </Box>
       <Box className={styles["sale-product--right-section-container"]}>
         <InputText
+          required
           height="45px"
           width="100px"
           type="naturalNumber"
           label="Cantidad"
           showError={false}
-          inputHook={quantity}
+          inputHook={amount}
         />
         <Button
           primary
           fullWidth
           onClick={handleCreate}
-          state={!!product.value.label && parseInt(quantity.value) > 0 ? "normal" : "inactive"}
+          state={
+            !!product.value.value && parseInt(amount.value) > 0
+              ? "normal"
+              : "inactive"
+          }
         >
           <Box className={styles["sale-product--button"]}>
             <Text weight="600">Agregar</Text>

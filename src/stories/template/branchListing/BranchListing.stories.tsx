@@ -65,13 +65,13 @@ const Template: StoryFn<typeof BranchListing> = (args: any) => {
   const search = useInputForm("");
   const persons = useInputForm("");
   const date = useInputForm(new Date());
-  const hour = useInputForm({ value: "", name: "" });
+  const hour = useInputForm({ value: null, label: "" });
 
   const min = 0;
   const max = 200;
   const [prices, setPrices] = useState([min, max]);
-  const startHour = useInputForm({ value: "", name: "" });
-  const endHour = useInputForm({ value: "", name: "" });
+  const startHour = useInputForm({ value: null, label: "" });
+  const endHour = useInputForm({ value: null, label: "" });
   const [rating, setRating] = useState(0);
   const [cousines, setCousines] = useState(cousines_);
   const [zones, setZones] = useState(zones_);

@@ -17,7 +17,7 @@ interface FastReserveBoxProps {
   /**
    * Current hour input hook
    */
-  hour: InputFormHook<OptionObject>;
+  hour: InputFormHook<OptionObject<string | null>>;
   /**
    * Current persons number input hook
    */
@@ -25,7 +25,7 @@ interface FastReserveBoxProps {
   /**
    * Valid hours (Hours that can be selected on the hours input select)
    */
-  validHours?: OptionObject[];
+  validHours?: OptionObject<string>[];
   /**
    * The height of the box
    */

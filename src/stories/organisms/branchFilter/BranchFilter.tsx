@@ -32,11 +32,11 @@ export interface BranchFilterProps {
   /**
    * Start hour input hook
    */
-  startHour: InputFormHook<OptionObject>;
+  startHour: InputFormHook<OptionObject<string | null>>;
   /**
    * Current end hour
    */
-  endHour: InputFormHook<OptionObject>;
+  endHour: InputFormHook<OptionObject<string | null>>;
   /**
    * Current minimum rating
    */

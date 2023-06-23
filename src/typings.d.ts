@@ -3,6 +3,6 @@ declare module "*.scss" {
   export default content;
 }
 
-declare module 'color';
+declare module "color";
 
-declare module 'react-datepicker';
+declare module "react-datepicker";

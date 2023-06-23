@@ -8,10 +8,6 @@ import styles from "./editableInputText.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import useWindowResize from "../../hooks/useWindowResize";
 import textStyles from "../../atoms/text/text.module.scss";
-import OptionObject from "../../utils/objects/OptionObject";
-import useThemeProvider from "../../hooks/useThemeProvider";
-import Select, { ActionMeta, SingleValue } from "react-select";
-import styleVariables from "../../assets/scss/variables.module.scss";
 import {
   validateEmail,
   validatePhoneNumber,
@@ -37,7 +33,6 @@ interface EditableInputTextProps {
     | "positiveNumber"
     | "positiveInteger"
     | "phoneNumber"
-    | "select"
     | "url";
   /**
    * Function to save the value
@@ -47,10 +42,6 @@ interface EditableInputTextProps {
    * Indicates if the edit icons are shown or if false if instead of icons buttons are shown
    */
   useEditIcons?: boolean;
-  /**
-   * Options for the select type
-   */
-  options?: OptionObject[];
   /**
    * Default text to show when the value is empty or the hideTextAfterEditing is true
    */
@@ -95,7 +86,6 @@ export const EditableInputText = ({
   type,
   saveValueFunction = () => {},
   useEditIcons = false,
-  options,
   defaultText = "Click to edit",
   hideTextAfterEditing = false,
   showError = true,
@@ -107,19 +97,8 @@ export const EditableInputText = ({
   placeholder,
   ...props
 }: EditableInputTextProps) => {
-  const { isDarkMode } = useThemeProvider();
-  const select_enabled = useMemo(() => type === "select", [type]);
+  const windowSize = useWindowResize();
   const hideText = useMemo(() => hideTextAfterEditing, [hideTextAfterEditing]);
-
-  const optionsMap = useMemo(() => {
-    const map = new Map<string, string>();
-    if (options) {
-      options.forEach((option) => {
-        map.set(option.text!, option.label);
-      });
-    }
-    return map;
-  }, [options]);
 
   const valueRef = useRef<HTMLInputElement>(null);
 
@@ -212,17 +191,6 @@ export const EditableInputText = ({
     inputHook.setValue(backup);
   };
 
-  function handleChange(
-    selectedOption: SingleValue<OptionObject>,
-    actionMeta: ActionMeta<OptionObject>
-  ) {
-    if (selectedOption === null) {
-      inputHook.setValue("");
-    } else {
-      inputHook.setValue(selectedOption.text!);
-    }
-  }
-
   return (
     <Box
       className={classnames(
@@ -239,59 +207,40 @@ export const EditableInputText = ({
         )}
       >
         {editValue ? (
-          select_enabled ? (
-            <Select
-              className={classnames(
-                className,
-                styles["editable-input-text--select"],
-                textStyles["text"],
-                textStyles["text--p"],
-              )}
-              noOptionsMessage={() => "No se encuentra la opción"}
-              value={{
-                text: inputHook.value || "",
-                label: optionsMap.get(inputHook.value || "") || "",
-              }}
-              options={options}
-              onChange={handleChange}
-              styles={{
-                input: (provided: any) => ({
-                  ...provided,
-                  color: isDarkMode ? "black" : "white",
-                }),
-              }}
-            />
-          ) : (
-            <input
-              type="text"
-              placeholder={placeholder}
-              ref={valueRef}
-              value={inputHook.value}
-              onChange={onChange}
-              className={classnames(
-                styles["editable-input-text--input"],
-                textStyles["text"],
-                textStyles["text--p"],
-                (inputHook.error == 1) ? textStyles["text--error-border"] :
-                (inputHook.error == 2) ? textStyles["text--warning-border"] :
-                "",
-                className
-              )}
-              style={{
-                borderWidth:
-                  inputHook.error == 1 || inputHook.error == 2
-                    ? "2.5px"
-                    : undefined,
-                ...style,
-              }}
-            />
-          )
+          <input
+            type="text"
+            placeholder={placeholder}
+            ref={valueRef}
+            value={inputHook.value}
+            onChange={onChange}
+            className={classnames(
+              styles["editable-input-text--input"],
+              textStyles["text"],
+              windowSize.resolutionType === "desktop"
+                ? textStyles["text--h5"]
+                : textStyles["text--p"],
+              inputHook.error == 1
+                ? textStyles["text--error-border"]
+                : inputHook.error == 2
+                ? textStyles["text--warning-border"]
+                : "",
+              className
+            )}
+            style={{
+              borderWidth:
+                inputHook.error == 1 || inputHook.error == 2
+                  ? "2.5px"
+                  : undefined,
+              ...style,
+            }}
+          />
         ) : hideText ? (
           <>
             <Text
               ellipsis
               weight="600"
               style={{ ...style }}
+              type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
               className={classnames(
                 styles["editable-input-text--text"],
                 className
@@ -301,21 +250,18 @@ export const EditableInputText = ({
             </Text>
           </>
         ) : (
-          <>
-            <Text
-              ellipsis
-              weight="700"
-              style={{ ...style }}
-              className={classnames(
-                styles["editable-input-text--text"],
-                className
-              )}
-            >
-              {select_enabled
-                ? optionsMap.get(inputHook.value || "") || ""
-                : inputHook.value}
-            </Text>
-          </>
+          <Text
+            ellipsis
+            weight="700"
+            style={{ ...style }}
+            type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
+            className={classnames(
+              styles["editable-input-text--text"],
+              className
+            )}
+          >
+            {inputHook.value}
+          </Text>
         )}
 
         <Editable

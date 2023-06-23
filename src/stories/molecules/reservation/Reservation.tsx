@@ -1,12 +1,11 @@
 import React, { useMemo, useState } from "react";
+import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./reservation.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
-import styleVariables from "../../assets/scss/variables.module.scss";
-import classnames from "classnames";
 
 export interface ReservationProps {
   /**

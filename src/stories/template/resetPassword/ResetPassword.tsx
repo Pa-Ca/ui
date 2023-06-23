@@ -28,18 +28,6 @@ interface ResetPasswordProps {
    * On submit button click
    */
   onSubmit: () => void;
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
 }
 
 /**
@@ -52,9 +40,6 @@ export const ResetPassword = ({
   images = [],
   onBackToLogin,
   onSubmit,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   ...props
 }: ResetPasswordProps) => {
   return (
@@ -66,9 +51,6 @@ export const ResetPassword = ({
         images={images}
         onBackToLogin={onBackToLogin}
         onSubmit={onSubmit}
-        color={color}
-        secondaryColor={secondaryColor}
-        otherLoginsColor={otherLoginsColor}
         {...props}
       />
     </AuthPage>

@@ -4,15 +4,14 @@ import { Text } from "../../atoms/text/Text";
 import styles from "./saleProductList.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
-import OptionObject from "../../utils/objects/OptionObject";
-import { ProductProps } from "../../molecules/product/Product";
-import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+import useInputForm from "../../hooks/useInputForm";
+import TaxObject from "../../utils/objects/TaxObject";
+import ProductObject from "../../utils/objects/ProductObject";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { NewSaleProduct } from "../../molecules/newSaleProduct/NewSaleProduct";
+import { EditableInputTax } from "../../molecules/editableInputTax/EditableInputTax";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
-import {
-  EditableInputTax,
-  EditableInputTaxProps,
-} from "../../molecules/editableInputTax/EditableInputTax";
 import {
   SaleProduct,
   SaleProductProps,
@@ -24,26 +23,21 @@ interface SaleProductListProps {
    */
   products: SaleProductProps[];
   /**
-   * Product list
+   * Products
    */
-  allProducts: ProductProps[];
+  allProducts: Record<number, ProductObject>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * Taxes
    */
-  taxes: EditableInputTaxProps[];
+  taxes: TaxObject[];
   /**
    * On add tax
    */
@@ -51,7 +45,7 @@ interface SaleProductListProps {
   /**
    * On create product
    */
-  onAddProduct: (productId: number, quantity: number) => void;
+  onAddProduct: (productId: number, amount: number) => Promise<boolean>;
   /**
    * On clear products
    */
@@ -59,7 +53,11 @@ interface SaleProductListProps {
   /**
    * On close sale
    */
-  onCloseSale: (note: string) => void;
+  onCloseSale: () => void;
+  /**
+   * On save sale note
+   */
+  onSaveSaleNote: (note: string) => void;
   /**
    * On delete sale
    */
@@ -74,12 +72,12 @@ export const SaleProductList = ({
   allProducts,
   categories,
   subCategories,
-  subCategoryDependency,
   taxes,
   onAddTax,
   onAddProduct,
   onClearProducts,
   onCloseSale,
+  onSaveSaleNote,
   onDeleteSale,
   ...props
 }: SaleProductListProps) => {
@@ -87,18 +85,35 @@ export const SaleProductList = ({
   const [showPayModal, setShowPayModal] = useState(false);
   const [showClearModal, setShowClearModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const quantities = products.map((product) => {
+    return useInputForm(product.amount.toString());
+  });
+  const taxesHook = taxes.map((tax) => {
+    let type;
+    if (tax.type === 0) {
+      type = "%";
+    } else {
+      type = "$";
+    }
+
+    return {
+      nameInputHook: useInputForm(tax.name),
+      valueInputHook: useInputForm(tax.value.toString()),
+      typeInputHook: useInputForm(type),
+    };
+  });
 
   const subTotal = useMemo(() => {
-    return products.reduce((acc, product) => {
+    return products.reduce((acc, product, index) => {
       const value =
-        product.quantity.value === "" ? 1 : parseInt(product.quantity.value);
+        quantities[index].value === "" ? 1 : parseInt(quantities[index].value);
       return acc + product.price * value;
     }, 0);
   }, [products]);
 
   const total = useMemo(() => {
     // Get taxes
-    const totalTaxes = taxes.reduce((acc, tax) => {
+    const totalTaxes = taxesHook.reduce((acc, tax) => {
       const taxValue = parseFloat(tax.valueInputHook.value);
       const taxType = tax.typeInputHook.value;
       if (taxType === "%") {
@@ -122,30 +137,45 @@ export const SaleProductList = ({
             {subTotal.toFixed(2)}$
           </Text>
         </Box>
+        <hr className={styles["sale-product-list--hr"]} />
         {taxes.map((tax, index) => {
           return (
-            <EditableInputTax
-              {...tax}
-              totalValue={subTotal}
-              editable={!showPayModal}
-              showError={tax.nameInputHook.error + tax.valueInputHook.error > 0}
-              key={`sale-product-list--tax-${index}`}
-            />
+            <Box key={`sale-product-list--tax-${index}`}>
+              <EditableInputTax
+                {...tax}
+                totalValue={subTotal}
+                editable={!showPayModal}
+                nameInputHook={taxesHook[index].nameInputHook}
+                valueInputHook={taxesHook[index].valueInputHook}
+                typeInputHook={taxesHook[index].typeInputHook}
+                saveValueFunction={() =>
+                  tax.saveValueFunction(
+                    taxesHook[index].nameInputHook,
+                    taxesHook[index].valueInputHook,
+                    taxesHook[index].typeInputHook
+                  )
+                }
+                showError={
+                  taxesHook[index].nameInputHook.error +
+                    taxesHook[index].valueInputHook.error >
+                  0
+                }
+                key={`sale-product-list--tax-${index}`}
+              />
+            </Box>
           );
         })}
-        <Box>
-          <Button
-            size="box"
-            onClick={onAddTax}
-            style={{
-              marginTop: "10px",
-            }}
-          >
-            <Box className={styles["sale-product-list--button"]}>
-              <Text weight="600">Agregar Tarifa</Text>
-            </Box>  
-          </Button>
-        </Box>
+        <Button
+          size="box"
+          onClick={onAddTax}
+          style={{
+            marginTop: "10px",
+          }}
+        >
+          <Box className={styles["sale-product-list--button"]}>
+            <Text weight="600">Agregar Tarifa</Text>
+          </Box>
+        </Button>
         <hr className={styles["sale-product-list--hr"]} />
         <Box className={styles["sale-product-list--summary-item"]}>
           <Text type="h5" weight="600">
@@ -157,7 +187,7 @@ export const SaleProductList = ({
         </Box>
       </Box>
     );
-  }, [subTotal, taxes, total, showPayModal]);
+  }, [subTotal, taxes, taxesHook, total, showPayModal]);
 
   return (
     <Box className={styles["sale-product-list--container"]}>
@@ -167,7 +197,11 @@ export const SaleProductList = ({
             key={`sale-product-list--product-${index}-${product.name}`}
             width="100%"
           >
-            <SaleProduct {...product} />
+            <SaleProduct
+              {...product}
+              amountHook={quantities[index]}
+              onDelete={product.onDelete}
+            />
           </Box>
         );
       })}
@@ -177,7 +211,6 @@ export const SaleProductList = ({
           products={allProducts}
           categories={categories}
           subCategories={subCategories}
-          subCategoryDependency={subCategoryDependency}
           onCreate={onAddProduct}
         />
       </Box>
@@ -210,7 +243,7 @@ export const SaleProductList = ({
               width="100%"
               height="250px"
               maxLength={640}
-              saveValueFunction={() => {}}
+              saveValueFunction={onSaveSaleNote}
             />
           </Box>
         </Box>
@@ -318,7 +351,7 @@ export const SaleProductList = ({
 
           <Box className={styles["sale-product-list--modal-summary"]}>
             <Box className={styles["sale-product-list--modal-item"]}>
-              <Box className={styles["sale-product-list--modal-item-quantity"]}>
+              <Box className={styles["sale-product-list--modal-item-amount"]}>
                 <Text type="h5" weight="600">
                   Cantidad
                 </Text>
@@ -343,11 +376,9 @@ export const SaleProductList = ({
                 >
                   <Box className={styles["sale-product-list--modal-item"]}>
                     <Box
-                      className={
-                        styles["sale-product-list--modal-item-quantity"]
-                      }
+                      className={styles["sale-product-list--modal-item-amount"]}
                     >
-                      <Text type="h5">{product.quantity.value}</Text>
+                      <Text type="h5">{quantities[index].value}</Text>
                     </Box>
                     <Box
                       className={
@@ -362,9 +393,9 @@ export const SaleProductList = ({
                       <Text type="h5">
                         {(
                           product.price *
-                          (product.quantity.value === ""
+                          (quantities[index].value === ""
                             ? 1
-                            : parseInt(product.quantity.value))
+                            : parseInt(quantities[index].value))
                         ).toFixed(2)}
                         $
                       </Text>
@@ -393,7 +424,7 @@ export const SaleProductList = ({
               size="large"
               onClick={() => {
                 setShowPayModal(false);
-                onCloseSale(note.value);
+                onCloseSale();
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>

@@ -4,22 +4,25 @@ import { Text } from "../../atoms/text/Text";
 import styles from "./branchSales.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
+import TaxObject from "../../utils/objects/TaxObject";
+import TableObject from "../../utils/objects/TableObject";
 import useWindowResize from "../../hooks/useWindowResize";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
-import { ProductProps } from "../../molecules/product/Product";
+import ProductObject from "../../utils/objects/ProductObject";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { InputText } from "../../molecules/inputText/InputText";
 import { PastSaleProps } from "../../molecules/pastSale/PastSale";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { PastSaleList } from "../../organisms/pastSaleList/PastSaleList";
 import { SaleProductProps } from "../../molecules/saleProduct/SaleProduct";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { SaleProductList } from "../../organisms/saleProductList/SaleProductList";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
-import { EditableInputTaxProps } from "../../molecules/editableInputTax/EditableInputTax";
 
 interface BranchSalesProps {
   /**
@@ -30,11 +33,11 @@ interface BranchSalesProps {
   /**
    * Current selected table
    */
-  table: InputFormHook<OptionObject>;
+  table: InputFormHook<OptionObject<TableObject | null>>;
   /**
    * All tables
    */
-  allTables: OptionObject[];
+  allTables: OptionObject<TableObject>[];
   /**
    * Has sale
    */
@@ -44,26 +47,21 @@ interface BranchSalesProps {
    */
   products: SaleProductProps[];
   /**
-   * Product list
+   * Products
    */
-  allProducts: ProductProps[];
+  allProducts: Record<number, ProductObject>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * Taxes
    */
-  taxes: EditableInputTaxProps[];
+  taxes: TaxObject[];
   /**
    * On add tax
    */
@@ -71,15 +69,15 @@ interface BranchSalesProps {
   /**
    * On create table
    */
-  onCreateTable: (name: InputFormHook<string>) => boolean;
+  onCreateTable: (name: InputFormHook<string>) => Promise<boolean>;
   /**
    * Edit table
    */
-  onEditTable: (name: InputFormHook<string>) => boolean;
+  onEditTable: (name: InputFormHook<string>) => Promise<boolean>;
   /**
    * On create product
    */
-  onAddProduct: (productId: number, quantity: number) => void;
+  onAddProduct: (productId: number, amount: number) => Promise<boolean>;
   /**
    * On clear products
    */
@@ -91,11 +89,15 @@ interface BranchSalesProps {
   /**
    * On close sale
    */
-  onCloseSale: (note: string) => void;
+  onCloseSale: () => void;
   /**
    * On delete table
    */
   onDeleteTable: () => void;
+  /**
+   * On save sale note
+   */
+  onSaveSaleNote: (note: string) => void;
   /**
    * On delete sale
    */
@@ -136,7 +138,6 @@ export const BranchSales = ({
   allProducts,
   categories,
   subCategories,
-  subCategoryDependency,
   taxes,
   onAddTax,
   onCreateTable,
@@ -146,6 +147,7 @@ export const BranchSales = ({
   onCreateSale,
   onCloseSale,
   onDeleteTable,
+  onSaveSaleNote,
   onDeleteSale,
 
   pastSales,
@@ -187,6 +189,42 @@ export const BranchSales = ({
       observerContainer.ref.current.scrollLeft = tab * (observerTab.width / 2);
     }
   }, [observerTab.width, tab]);
+
+  const content = useMemo(() => {
+    return (
+      <>
+        {!hasSale ? (
+          <Box>
+            <Box className={styles["sale-branch-sales--new-sale-title"]}>
+              <Text>No hay ninguna venta activa en esta mesa.</Text>
+            </Box>
+
+            <Box className={styles["sale-branch-sales--new-sale-button"]}>
+              <Button primary size="large" onClick={onCreateSale}>
+                <Box className={styles["sale-branch-sales--button"]}>
+                  <Text weight="600">Crear venta</Text>
+                </Box>
+              </Button>
+            </Box>
+          </Box>
+        ) : (
+          <SaleProductList
+            taxes={taxes}
+            products={products}
+            allProducts={allProducts}
+            categories={categories}
+            subCategories={subCategories}
+            onAddTax={onAddTax}
+            onAddProduct={onAddProduct}
+            onClearProducts={onClearProducts}
+            onCloseSale={onCloseSale}
+            onSaveSaleNote={onSaveSaleNote}
+            onDeleteSale={onDeleteSale}
+          />
+        )}
+      </>
+    );
+  }, [hasSale, products, taxes, allProducts, categories, subCategories]);
 
   return (
     <PageWrapper headerArgs={header}>
@@ -249,35 +287,7 @@ export const BranchSales = ({
                 </Box>
               </Box>
 
-              {!hasSale ? (
-                <Box>
-                  <Box className={styles["sale-branch-sales--new-sale-title"]}>
-                    <Text>No hay ninguna venta activa en esta mesa.</Text>
-                  </Box>
-
-                  <Box className={styles["sale-branch-sales--new-sale-button"]}>
-                    <Button primary size="large" onClick={onCreateSale}>
-                      <Box className={styles["sale-branch-sales--button"]}>
-                        <Text weight="600">Crear venta</Text>
-                      </Box>
-                    </Button>
-                  </Box>
-                </Box>
-              ) : (
-                <SaleProductList
-                  taxes={taxes}
-                  products={products}
-                  allProducts={allProducts}
-                  categories={categories}
-                  subCategories={subCategories}
-                  subCategoryDependency={subCategoryDependency}
-                  onAddTax={onAddTax}
-                  onAddProduct={onAddProduct}
-                  onClearProducts={onClearProducts}
-                  onCloseSale={onCloseSale}
-                  onDeleteSale={onDeleteSale}
-                />
-              )}
+              {content}
 
               <Modal open={showNewModal} setOpen={setShowNewModal}>
                 <Box className={styles["branch-sales--modal-container"]}>
@@ -309,8 +319,9 @@ export const BranchSales = ({
                       primary
                       fullWidth
                       size="large"
-                      onClick={() =>
-                        onCreateTable(editTableName) && setShowNewModal(false)
+                      onClick={async () =>
+                        (await onCreateTable(editTableName)) &&
+                        setShowNewModal(false)
                       }
                     >
                       <Box className={styles["branch-sales--modal-button"]}>
@@ -351,8 +362,9 @@ export const BranchSales = ({
                       primary
                       fullWidth
                       size="large"
-                      onClick={() =>
-                        onEditTable(editTableName) && setShowEditModal(false)
+                      onClick={async () =>
+                        (await onEditTable(editTableName)) &&
+                        setShowEditModal(false)
                       }
                     >
                       <Box className={styles["branch-sales--modal-button"]}>

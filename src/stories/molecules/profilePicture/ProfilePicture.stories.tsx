@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { ProfilePicture } from "./ProfilePicture";
 import UserDropdownElement from "../../utils/objects/UserDropdownElement";
+import { Box } from "../../atoms/box/Box";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -19,7 +20,11 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof ProfilePicture> = (args: any) => {
-  return <ProfilePicture {...args} />;
+  return (
+    <Box>
+      <ProfilePicture {...args} />
+    </Box>
+  );
 };
 
 const dropdownOptions: UserDropdownElement[] = [

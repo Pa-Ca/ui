@@ -331,29 +331,29 @@ Default.args = {
   branchTypeOptions: [
     {
       label: "Americano",
-      text: "americano",
+      value: "americano",
     },
     {
       label: "Italiano",
-      text: "italiano",
+      value: "italiano",
     },
     {
       label: "Japones",
-      text: "japones",
+      value: "japones",
     },
   ],
   branchLocationOptions: [
     {
       label: "El Hatillo",
-      text: "el hatillo",
+      value: "el hatillo",
     },
     {
       label: "Las Mercedes",
-      text: "las mercedes",
+      value: "las mercedes",
     },
     {
       label: "Chacao",
-      text: "chacao",
+      value: "chacao",
     },
   ],
 };

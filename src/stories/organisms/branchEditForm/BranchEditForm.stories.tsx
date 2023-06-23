@@ -167,20 +167,20 @@ const Template: StoryFn<typeof BranchEditForm> = (args: any) => {
   const description = useInputForm(
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
   );
-  const location = useInputForm("chacao");
+  const location = useInputForm({ label: "Chacao", value: "chacao" });
   const phone = useInputForm("+32 14521452");
   const capacity = useInputForm("5");
-  const averageReserveTimeHours = useInputForm("5");
-  const averageReserveTimeMinutes = useInputForm("");
+  const averageReserveTimeHours = useInputForm("05");
+  const averageReserveTimeMinutes = useInputForm("00");
   const price = useInputForm("5");
-  const openingTimeHour = useInputForm("9");
-  const openingTimeMinute = useInputForm("0");
+  const openingTimeHour = useInputForm("09");
+  const openingTimeMinute = useInputForm("00");
   const closingTimeHour = useInputForm("21");
-  const closingTimeMinute = useInputForm("0");
+  const closingTimeMinute = useInputForm("00");
   const mapsLink = useInputForm(
     "https://www.google.com/maps/place/El+Charrito/@35.5174476,-108.794712,14z/data=!4m10!1m2!2m1!1sRestaurantes!3m6!1s0x8725209d38b2af65:0x61914de8cdc7c448!8m2!3d35.5174099!4d-108.7747707!15sCgxSZXN0YXVyYW50ZXNaDiIMcmVzdGF1cmFudGVzkgESbWV4aWNhbl9yZXN0YXVyYW504AEA!16s%2Fg%2F1tj1sk5w?hl=es"
   );
-  const type = useInputForm("americano");
+  const type = useInputForm({ label: "Americano", value: "americano" });
 
   return (
     <BranchEditForm
@@ -210,29 +210,29 @@ Default.args = {
   typeOptions: [
     {
       label: "Americano",
-      text: "americano",
+      value: "americano",
     },
     {
       label: "Italiano",
-      text: "italiano",
+      value: "italiano",
     },
     {
       label: "Japones",
-      text: "japones",
+      value: "japones",
     },
   ],
   locationOptions: [
     {
       label: "El Hatillo",
-      text: "el hatillo",
+      value: "el hatillo",
     },
     {
       label: "Las Mercedes",
-      text: "las mercedes",
+      value: "las mercedes",
     },
     {
       label: "Chacao",
-      text: "chacao",
+      value: "chacao",
     },
   ],
   mapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,

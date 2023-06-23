@@ -1,11 +1,12 @@
 import React, { useMemo }  from "react";
 import { InputFormHook } from "../../hooks/useInputForm";
+import useWindowResize from "../../hooks/useWindowResize";
 import { HeaderProps } from "../../organisms/header/Header";
-import OptionObject from "../../utils/objects/OptionObject";
 import { ProductProps } from "../../molecules/product/Product";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { ProductList } from "../../organisms/productList/ProductList";
-import useWindowResize from "../../hooks/useWindowResize";
+import CategoryObject from "../../utils/objects/ProductCategoryObject";
+import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 
 interface BranchProductsProps {
@@ -16,36 +17,31 @@ interface BranchProductsProps {
   /**
    * Product list
    */
-  products: ProductProps[];
+  products: Record<number, ProductProps>;
   /**
    * Product categories
    */
-  categories: OptionObject[];
+  categories: Record<number, CategoryObject>;
   /**
    * Product sub-categories
    */
-  subCategories: OptionObject[];
-  /**
-   * Sub-category dependencies. Given a subcategory, indicate to which
-   * category it belongs
-   */
-  subCategoryDependency: Record<string, string>;
+  subCategories: Record<number, SubCategoryObject>;
   /**
    * On create product
    */
   onCreateProduct: (
     name: InputFormHook<string>,
     price: InputFormHook<string>,
-    category: string,
-    subCategory: string
+    categoryId: number,
+    subCategoryId: number
   ) => void;
   /**
    * On create sub-category.
    */
   onCreateSubCategory: (
-    category: InputFormHook<OptionObject>,
+    categoryId: number,
     subCategory: InputFormHook<string>
-  ) => boolean;
+  ) => Promise<SubCategoryObject>;
   /**
    * On edit sub-category.
    */
@@ -53,7 +49,7 @@ interface BranchProductsProps {
     id: number,
     subCategory: InputFormHook<string>,
     categoryId: number
-  ) => boolean;
+  ) => Promise<boolean>;
   /**
    * On delete sub-category.
    */
@@ -68,7 +64,6 @@ export const BranchProducts = ({
   products,
   categories,
   subCategories,
-  subCategoryDependency,
   onCreateProduct,
   onCreateSubCategory,
   onEditSubCategory,
@@ -88,7 +83,6 @@ export const BranchProducts = ({
         products={products}
         categories={categories}
         subCategories={subCategories}
-        subCategoryDependency={subCategoryDependency}
         onCreateProduct={onCreateProduct}
         onCreateSubCategory={onCreateSubCategory}
         onEditSubCategory={onEditSubCategory}

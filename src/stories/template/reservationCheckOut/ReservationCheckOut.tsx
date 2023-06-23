@@ -3,7 +3,7 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Path } from "../../molecules/path/Path";
 import { Button } from "../../atoms/button/Button";
-import useInputForm from "../../hooks/useInputForm";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import styles from "./reservationCheckOut.module.scss";
 import BranchData from "../../utils/objects/BranchData";
 import { HeaderProps } from "../../organisms/header/Header";
@@ -23,9 +23,14 @@ interface ReservationCheckOut {
    * Path from Home to current page
    */
   path: { name: string; onClick: () => void }[];
-  color: string;
-  validHoursIn: OptionObject[];
-  validHoursOut: OptionObject[];
+  /**
+   * Valid hours in
+   */
+  validHoursIn: OptionObject<string>[];
+  /**
+   * Valid hours out
+   */
+  validHoursOut: OptionObject<string>[];
   /**
    * Get Branch data
    */
@@ -58,11 +63,11 @@ interface ReservationCheckOut {
    * On submit
    */
   onSubmit: (
-    date: Date,
-    persons: number,
-    hourIn: string,
-    hourOut: string | null,
-    occasion: string | null
+    date: InputFormHook<Date>,
+    persons: InputFormHook<string>,
+    hourIn: InputFormHook<OptionObject<string | null>>,
+    hourOut: InputFormHook<OptionObject<string | null>>,
+    occasion: InputFormHook<string>
   ) => void;
 }
 
@@ -79,7 +84,6 @@ export const ReservationCheckOut = ({
   onGoogleSignUp,
   getReservationPrice,
   headerArgs,
-  color,
   path,
   validHoursIn,
   validHoursOut,
@@ -89,8 +93,14 @@ export const ReservationCheckOut = ({
   const reservationPrice = getReservationPrice();
 
   const date = useInputForm<Date>(new Date());
-  const hourIn = useInputForm<OptionObject>({ label: "", text: "" });
-  const hourOut = useInputForm<OptionObject>({ label: "", text: "" });
+  const hourIn = useInputForm<OptionObject<string | null>>({
+    label: "",
+    value: null,
+  });
+  const hourOut = useInputForm<OptionObject<string | null>>({
+    label: "",
+    value: null,
+  });
   const persons = useInputForm<string>("");
   const occasion = useInputForm<string>("");
 
@@ -106,7 +116,9 @@ export const ReservationCheckOut = ({
           secondaryColor="black"
         />
       </Box>
-      <Box className={styles["reservation-checkout-branch-profile--main-content"]}>
+      <Box
+        className={styles["reservation-checkout-branch-profile--main-content"]}
+      >
         <Box className="left-content-box">
           <Box className="RestaurantDetails-box">
             <RestaurantDetails
@@ -165,18 +177,13 @@ export const ReservationCheckOut = ({
               fullWidth
               primary
               size="large"
-              backgroundColor={color}
-              onClick={() =>
-                onSubmit(
-                  date.value,
-                  parseInt(persons.value),
-                  hourIn.value.text!,
-                  hourOut.value.text!,
-                  occasion.value
-                )
-              }
+              onClick={() => onSubmit(date, persons, hourIn, hourOut, occasion)}
             >
-              <Box className={styles["reservation-checkout-login-form--button-text"]}>
+              <Box
+                className={
+                  styles["reservation-checkout-login-form--button-text"]
+                }
+              >
                 <Text color="white" type="h6" weight="600">
                   Completar Reserva
                 </Text>

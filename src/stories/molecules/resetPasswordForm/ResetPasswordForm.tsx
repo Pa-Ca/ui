@@ -5,7 +5,6 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
 import styles from "./resetPasswordForm.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 
 interface ResetPasswordFormProps {
@@ -21,14 +20,6 @@ interface ResetPasswordFormProps {
    * On submit button click
    */
   onSubmit: () => void;
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
   /**
    * Component width
    */
@@ -46,8 +37,6 @@ export const ResetPasswordForm = ({
   error = false,
   password,
   onSubmit,
-  color,
-  secondaryColor,
   width,
   height,
   ...props
@@ -117,7 +106,6 @@ export const ResetPasswordForm = ({
             fullWidth
             primary
             size="large"
-            backgroundColor={color}
             onClick={submit}
           >
             <Box className={styles["reset-password-form--button-text"]}>

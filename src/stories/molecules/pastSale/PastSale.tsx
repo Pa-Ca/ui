@@ -20,7 +20,7 @@ export interface PastSaleProps {
   products: {
     name: string;
     price: number;
-    quantity: number;
+    amount: number;
   }[];
   /**
    * Taxes list
@@ -34,7 +34,7 @@ export interface PastSaleProps {
   /**
    * Indicates if the sale has a reservation associated
    */
-  hasReservation: boolean;
+  hasReservation?: boolean;
   /**
    * Reservation owner name
    */
@@ -85,7 +85,7 @@ export const PastSale = ({
 
   const subTotal = useMemo(() => {
     return products.reduce((acc, product) => {
-      return acc + product.price * product.quantity;
+      return acc + product.price * product.amount;
     }, 0);
   }, [products]);
 
@@ -117,7 +117,7 @@ export const PastSale = ({
             <Text weight="700"> {startDate.toISOString().split("T")[0]} </Text>
             <Text>
               {" "}
-              {startDate.toLocaleTimeString("en-US", { hour12: false })}{" "}
+              {startDate.toISOString().split("T")[1].split(".")[0]}{" "}
             </Text>
           </Box>
         </Box>
@@ -157,7 +157,7 @@ export const PastSale = ({
           <Box className={styles["past-sale--details-products-container"]}>
             {/* Header */}
             <Box className={styles["past-sale--item"]}>
-              <Box className={styles["past-sale--item-quantity"]}>
+              <Box className={styles["past-sale--item-amount"]}>
                 <Text type="h5" weight="600">
                   Cantidad
                 </Text>
@@ -184,8 +184,8 @@ export const PastSale = ({
                   }`}
                   className={styles["past-sale--item"]}
                 >
-                  <Box className={styles["past-sale--item-quantity"]}>
-                    <Text type="h5">{product.quantity}</Text>
+                  <Box className={styles["past-sale--item-amount"]}>
+                    <Text type="h5">{product.amount}</Text>
                   </Box>
                   <Box className={styles["past-sale--item-price"]}>
                     <Text type="h5">{product.price.toFixed(2)}$</Text>
@@ -260,7 +260,10 @@ export const PastSale = ({
                 </Text>
               </Box>
               {taxes.map((tax, index) => (
-                <Box className={styles["past-sale--summary-item"]}>
+                <Box
+                  key={`past-sale--date-${startDate.toISOString()}-index-${index}`}
+                  className={styles["past-sale--summary-item"]}
+                >
                   <Text type="h5" weight="600">
                     {tax.name} ({tax.value}
                     {tax.type}):

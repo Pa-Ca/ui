@@ -29,27 +29,27 @@ Default.args = {
     {
       name: "Coca Cola",
       price: 1.5,
-      quantity: 4,
+      amount: 4,
     },
     {
       name: "Pepsi",
       price: 1.5,
-      quantity: 3,
+      amount: 3,
     },
     {
       name: "Pizza de peperoni",
       price: 10.99,
-      quantity: 1,
+      amount: 1,
     },
     {
       name: "Hamburguesa",
       price: 5.45,
-      quantity: 3,
+      amount: 3,
     },
     {
       name: "Papas fritas",
       price: 2.1,
-      quantity: 3,
+      amount: 3,
     }
   ],
   taxes: [

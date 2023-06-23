@@ -51,7 +51,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BranchProfile> = (args: any) => {
   const date = useInputForm(new Date());
-  const hour = useInputForm({ name: "", value: "" });
+  const hour = useInputForm({ label: "", value: null });
   const persons = useInputForm("");
 
   return <BranchProfile date={date} hour={hour} persons={persons} {...args} />;

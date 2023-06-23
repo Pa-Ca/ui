@@ -2,12 +2,12 @@ import React from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
-import useInputForm from "../../hooks/useInputForm";
 import BranchData from "../../utils/objects/BranchData";
 import styles from "./reservationCheckOutBeta.module.scss";
 import { HeaderProps } from "../../organisms/header/Header";
 import OptionObject from "../../utils/objects/OptionObject";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { RestaurantDetails } from "../../molecules/restaurantDetails/restaurantDetails";
@@ -24,11 +24,11 @@ interface ReservationCheckOutBeta {
   /**
    * Valid start hour for reservation
    */
-  validHoursIn: OptionObject[];
+  validHoursIn: OptionObject<string>[];
   /**
    * Valid end hour for reservation
    */
-  validHoursOut: OptionObject[];
+  validHoursOut: OptionObject<string>[];
   /**
    * Get Branch data
    */
@@ -52,11 +52,11 @@ interface ReservationCheckOutBeta {
    * On submit
    */
   onSubmit: (
-    date: Date,
-    persons: number,
-    hourIn: string,
-    hourOut: string | null,
-    occasion: string | null
+    date: InputFormHook<Date>,
+    persons: InputFormHook<string>,
+    hourIn: InputFormHook<OptionObject<string | null>>,
+    hourOut: InputFormHook<OptionObject<string | null>>,
+    occasion: InputFormHook<string>
   ) => void;
 }
 
@@ -76,11 +76,17 @@ export const ReservationCheckOutBeta = ({
   const branch = getBranchData();
 
   // Reservation data
-  const date = useInputForm<Date >(new Date());
-  const hourIn = useInputForm<OptionObject >({ text: "", label: "" });
-  const hourOut = useInputForm<OptionObject >({ text: "", label: "" });
-  const persons = useInputForm<string >("");
-  const occasion = useInputForm<string >("");
+  const date = useInputForm<Date>(new Date());
+  const hourIn = useInputForm<OptionObject<string | null>>({
+    value: null,
+    label: "",
+  });
+  const hourOut = useInputForm<OptionObject<string | null>>({
+    value: null,
+    label: "",
+  });
+  const persons = useInputForm<string>("");
+  const occasion = useInputForm<string>("");
 
   // Client data
   const firstName = useInputForm("");
@@ -108,11 +114,14 @@ export const ReservationCheckOutBeta = ({
           </Box>
 
           {/* Client Form */}
-          <Box className={styles["reservation-checkout-beta-white-background-box"]} weakShadow>
+          <Box
+            className={styles["reservation-checkout-beta-white-background-box"]}
+            weakShadow
+          >
             <ClientInfoForm
-              firstName = {firstName}
-              lastName = {lastName}
-              email = {email}
+              firstName={firstName}
+              lastName={lastName}
+              email={email}
               phone={phone}
             />
           </Box>
@@ -133,7 +142,10 @@ export const ReservationCheckOutBeta = ({
           </Box>
 
           {/* Submit Button */}
-          <Box className={styles["reservation-checkout-beta-white-background-box"]} weakShadow>
+          <Box
+            className={styles["reservation-checkout-beta-white-background-box"]}
+            weakShadow
+          >
             <Button
               fullWidth
               primary
@@ -141,15 +153,11 @@ export const ReservationCheckOutBeta = ({
               backgroundColor={submitButtonColor}
               onClick={() =>
                 onSubmit(
-                  date.value,
-                  parseInt(persons.value),
-                  typeof hourIn!.value === "string"
-                    ? hourIn!.value
-                    : hourIn!.value.toString(),
-                  typeof hourOut!.value === "string"
-                    ? hourOut!.value
-                    : hourOut!.value.toString(),
-                  occasion.value
+                  date,
+                  persons,
+                  hourIn,
+                  hourOut,
+                  occasion
                 )
               }
             >

@@ -9,7 +9,17 @@ export default {
   component: SaleProduct,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    quantity: {
+    amount: {
+      table: {
+        disable: true,
+      },
+    },
+    amountHook: {
+      table: {
+        disable: true,
+      },
+    },
+    onChangeAmount: {
       table: {
         disable: true,
       },
@@ -24,9 +34,9 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof SaleProduct> = (args: any) => {
-  const quantity = useInputForm<string>("1");
+  const amountHook = useInputForm<string>("1");
 
-  return <SaleProduct quantity={quantity} {...args} />;
+  return <SaleProduct amountHook={amountHook} {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -34,4 +44,5 @@ export const Default = Template.bind({});
 Default.args = {
   name: "Coca-cola",
   price: 4.99,
+  amount: 5,
 };
