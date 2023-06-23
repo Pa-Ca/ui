@@ -17,17 +17,21 @@ export interface SaleProductProps {
    */
   price: number;
   /**
-   * Product quantity
+   * Product amount
    */
-  quantity: InputFormHook<string>;
+  amount: number;
   /**
-   * On change quantity
+   * Product amount hook
    */
-  onChangeQuantity: (value: string) => void;
+  amountHook?: InputFormHook<string>;
+  /**
+   * On change amount
+   */
+  onChangeAmount: (value: string) => void;
   /**
    * On delete
    */
-  onDelete: () => void;
+  onDelete: () => Promise<void>;
   /**
    * Total component width
    */
@@ -44,19 +48,20 @@ export interface SaleProductProps {
 export const SaleProduct = ({
   name,
   price,
-  quantity,
-  onChangeQuantity,
+  amount,
+  amountHook,
+  onChangeAmount,
   onDelete,
   width,
   height,
   ...props
 }: SaleProductProps) => {
   const total = useMemo(() => {
-    if (quantity.value === "") return price;
-    const total = price * parseInt(quantity.value);
+    if (amountHook!.value === "") return price;
+    const total = price * parseInt(amountHook!.value);
     // Use only two decimals
     return Math.round(total * 100) / 100;
-  }, [quantity.value, price]);
+  }, [amountHook!.value, price]);
 
   return (
     <Box borderRadius="12px" className={styles["sale-product--container"]}>
@@ -75,7 +80,7 @@ export const SaleProduct = ({
           {price}${" "}
         </Text>
       </Box>
-      <Box className={styles["sale-product--quantity-container"]}>
+      <Box className={styles["sale-product--amount-container"]}>
         <Text weight="400" type="h6">
           Cantidad:
         </Text>
@@ -84,10 +89,10 @@ export const SaleProduct = ({
           width="180px"
           editable={true}
           showError={false}
-          inputHook={quantity}
+          inputHook={amountHook!}
           type="positiveInteger"
           className={textStyles["text--h5"]}
-          saveValueFunction={onChangeQuantity}
+          saveValueFunction={onChangeAmount}
         />
       </Box>
       <Box className={styles["sale-product--left-container"]}>

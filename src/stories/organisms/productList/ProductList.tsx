@@ -42,7 +42,7 @@ interface ProductListProps {
   onCreateSubCategory: (
     categoryId: number,
     subCategory: InputFormHook<string>
-  ) => boolean;
+  ) => Promise<SubCategoryObject>;
   /**
    * On edit sub-category.
    */
@@ -50,7 +50,7 @@ interface ProductListProps {
     id: number,
     subCategory: InputFormHook<string>,
     categoryId: number
-  ) => boolean;
+  ) => Promise<boolean>;
   /**
    * On delete sub-category.
    */
@@ -111,7 +111,7 @@ export const ProductList = ({
 
   const allProducts: OptionObject<ProductProps>[] = useMemo(() => {
     return Object.values(products).map((product) => {
-      return { label: product.name.value, value: product };
+      return { label: product.name, value: product };
     });
   }, [products]);
 
@@ -138,9 +138,7 @@ export const ProductList = ({
     // selected category
     else if (!subCategory.value.value) {
       for (const product of allProducts) {
-        if (
-          product.value.category.value.value?.id === category.value.value!.id
-        ) {
+        if (product.value.category.value?.id === category.value.value!.id) {
           currentProducts.push(product);
         }
       }
@@ -150,8 +148,7 @@ export const ProductList = ({
     else {
       for (const product of allProducts) {
         if (
-          product.value.subCategory.value.value?.id ===
-          subCategory.value.value!.id
+          product.value.subCategory.value?.id === subCategory.value.value!.id
         ) {
           currentProducts.push(product);
         }
@@ -266,7 +263,9 @@ export const ProductList = ({
           <NewProduct
             name={newProductName}
             category={!category.value.value ? "" : category.value.label}
-            subCategory={!subCategory.value.value ? "" : subCategory.value.label}
+            subCategory={
+              !subCategory.value.value ? "" : subCategory.value.label
+            }
             price={newProductPrice}
             canCreate={!!category.value.value && !!subCategory.value.value}
             onCreate={() =>
@@ -360,12 +359,12 @@ export const ProductList = ({
               primary
               fullWidth
               size="large"
-              onClick={() =>
-                onEditSubCategory(
+              onClick={async () =>
+                (await onEditSubCategory(
                   subCategory.value.value?.id!,
                   editSubCategory,
                   editCategory.value.value?.id!
-                ) && setShowEditModal(false)
+                )) && setShowEditModal(false)
               }
             >
               <Box className={styles["product-list--modal-button"]}>
@@ -417,10 +416,19 @@ export const ProductList = ({
               primary
               fullWidth
               size="large"
-              onClick={() =>
-                onCreateSubCategory(newCategory.value.value?.id!, newSubCategory) &&
-                setShowNewModal(false)
-              }
+              onClick={async () => {
+                const response = await onCreateSubCategory(
+                  newCategory.value.value?.id!,
+                  newSubCategory
+                );
+                if (response.id > -1) {
+                  setShowNewModal(false);
+                  subCategory.setValue({
+                    label: response.name,
+                    value: response,
+                  });
+                }
+              }}
             >
               <Box className={styles["product-list--modal-button"]}>
                 <Text weight="600">Crear Sub-Categoría</Text>
@@ -459,6 +467,7 @@ export const ProductList = ({
               onClick={() => {
                 setShowDeleteModal(false);
                 onDeleteSubCategory(subCategory.value.value?.id!);
+                subCategory.setValue({ label: "", value: null });
               }}
             >
               <Box className={styles["product-list--modal-button"]}>

@@ -1,9 +1,8 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import React, { useState } from "react";
 import { BranchSales } from "./BranchSales";
+import { StoryFn, Meta } from "@storybook/react";
 import useInputForm from "../../hooks/useInputForm";
 import { PastSaleProps } from "../../molecules/pastSale/PastSale";
-import { EditableInputTaxProps } from "../../molecules/editableInputTax/EditableInputTax";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -166,27 +165,27 @@ function generatePastSale(): PastSaleProps {
       {
         name: "Coca Cola",
         price: 1.5,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
       {
         name: "Pepsi",
         price: 1.5,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
       {
         name: "Pizza de peperoni",
         price: 10.99,
-        quantity: Math.floor(1 + Math.random() * 2),
+        amount: Math.floor(1 + Math.random() * 2),
       },
       {
         name: "Hamburguesa",
         price: 5.45,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
       {
         name: "Papas fritas",
         price: 2.1,
-        quantity: Math.floor(1 + Math.random() * 5),
+        amount: Math.floor(1 + Math.random() * 5),
       },
     ]),
     taxes,
@@ -195,120 +194,129 @@ function generatePastSale(): PastSaleProps {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BranchSales> = (args: any) => {
+  const table = useInputForm(args.allTables[0]);
   const products = [
     {
       name: "Coca-cola",
       price: 10,
-      quantity: useInputForm("5"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
+      amount: 5,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
     },
     {
       name: "Pizza de peperoni",
       price: 22.99,
-      quantity: useInputForm("1"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
+      amount: 1,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
     },
     {
       name: "Hamburguesa",
       price: 15.99,
-      quantity: useInputForm("2"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
+      amount: 2,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
     },
     {
       name: "Papas fritas",
       price: 5.99,
-      quantity: useInputForm("1"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
+      amount: 1,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
     },
   ];
-  const taxes: EditableInputTaxProps[] = [
+  const [taxes, setTaxes] = useState([
     {
-      nameInputHook: useInputForm("IVA"),
-      valueInputHook: useInputForm("12"),
-      typeInputHook: useInputForm("%"),
+      name: "IVA",
+      value: 12,
+      type: 0,
       saveValueFunction: () => {},
       deleteValueFunction: () => {},
     },
     {
-      nameInputHook: useInputForm("IGTF"),
-      valueInputHook: useInputForm("3"),
-      typeInputHook: useInputForm("%"),
+      name: "IGTF",
+      value: 3,
+      type: 0,
       saveValueFunction: () => {},
       deleteValueFunction: () => {},
     },
-  ];
-  const allTables = [
-    {
-      number: 1000,
-      text: "Mesa 1",
-      label: "Mesa 1",
-    },
-    {
-      number: 1001,
-      text: "Mesa 2",
-      label: "Mesa 2",
-    },
-    {
-      number: 1002,
-      text: "Mesa 3",
-      label: "Mesa 3",
-    },
-    {
-      number: 1003,
-      text: "Mesa 4",
-      label: "Mesa 4",
-    },
-    {
-      number: 1004,
-      text: "Mesa 5",
-      label: "Mesa 5",
-    },
-    {
-      number: 1005,
-      text: "Mesa 6",
-      label: "Mesa 6",
-    },
-    {
-      number: 1006,
-      text: "Mesa 7",
-      label: "Mesa 7",
-    },
-    {
-      number: 1007,
-      text: "Mesa 8",
-      label: "Mesa 8",
-    },
-    {
-      number: 1008,
-      text: "Mesa 9",
-      label: "Mesa 9",
-    },
-    {
-      number: 1009,
-      text: "Mesa 10",
-      label: "Mesa 10",
-    },
-  ];
-  const table = useInputForm(allTables[0]);
+  ]);
+
+  const onAddTax = () => {
+    console.log("onAddTax");
+    setTaxes((oldTaxes) => [
+      ...oldTaxes,
+      {
+        name: "IVA",
+        value: 12,
+        type: 0,
+        saveValueFunction: () => {},
+        deleteValueFunction: () => {},
+      },
+    ]);
+    console.log(taxes);
+  };
 
   return (
     <BranchSales
-      taxes={taxes}
-      table={table}
-      allTables={allTables}
       products={products}
+      table={table}
+      taxes={taxes}
       {...args}
+      onAddTax={onAddTax}
     />
   );
 };
 
+const BranchOptions = [
+  {
+    name: "Sucursal 1",
+    func: () => {},
+  },
+  {
+    name: "Sucursal 2",
+    func: () => {},
+  },
+  {
+    name: "Mi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvador, Mi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvadorMi cocinita, los pollitos cachaperos de tijuana jesucristo esta muert, satanas es nuestro seños y salvador",
+    func: () => {},
+  },
+  {
+    name: "Sucursal 2",
+    func: () => {},
+  },
+  {
+    name: "Sucursal 1",
+    func: () => {},
+  },
+  {
+    name: "Sucursal 2",
+    func: () => {},
+  },
+  {
+    name: "Sucursal 1",
+    func: () => {},
+  },
+  {
+    name: "Sucursal 2",
+    func: () => {},
+  },
+];
+
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  header: {
+    logged: true,
+    userRole: "business",
+    onPacaClick: () => {},
+    picture:
+      "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
+    name: "Sempre Dritto",
+    color: "#EF7A08",
+    branchOptions: BranchOptions,
+    currentBranch: BranchOptions[0].name,
+  },
   categories: {
     1000: {
       id: 1000,
@@ -363,7 +371,7 @@ Default.args = {
       id: 1007,
       name: "Jugos",
       categoryId: 1000,
-    }
+    },
   },
   allProducts: {
     1000: {
@@ -372,7 +380,7 @@ Default.args = {
       subCategoryId: 1000,
       description: "Bebida gaseosa de 500ml.",
       price: 4.99,
-      available: true,
+      disabled: false,
     },
     1001: {
       id: 1001,
@@ -380,15 +388,15 @@ Default.args = {
       subCategoryId: 1001,
       description: "Pan con carne, queso, lechuga y tomate.",
       price: 12.99,
-      available: true,
+      disabled: false,
     },
     1002: {
       id: 1002,
       name: "Ensalada César",
-      subCategoryId: 1002, 
+      subCategoryId: 1002,
       description: "Lechuga, croutons, queso parmesano y salsa césar.",
       price: 8.99,
-      available: true,
+      disabled: false,
     },
     1003: {
       id: 1003,
@@ -396,7 +404,7 @@ Default.args = {
       subCategoryId: 1003,
       description: "Agua natural sin gas de 500ml.",
       price: 2.99,
-      available: true,
+      disabled: false,
     },
     1004: {
       id: 1004,
@@ -404,7 +412,7 @@ Default.args = {
       subCategoryId: 1004,
       description: "Crema helada de sabor vainilla con salsa de chocolate.",
       price: 6.99,
-      available: true,
+      disabled: false,
     },
     1005: {
       id: 1005,
@@ -412,7 +420,7 @@ Default.args = {
       subCategoryId: 1004,
       description: "Masa con salsa de tomate, queso mozzarella y pepperoni.",
       price: 14.99,
-      available: true,
+      disabled: false,
     },
     1006: {
       id: 1006,
@@ -420,7 +428,7 @@ Default.args = {
       subCategoryId: 1001,
       description: "Jugo natural de naranja exprimida de 300ml.",
       price: 3.99,
-      available: true,
+      disabled: false,
     },
     1007: {
       id: 1007,
@@ -428,9 +436,101 @@ Default.args = {
       subCategoryId: 1005,
       description: "Bizcocho húmedo de chocolate con nueces y crema batida.",
       price: 7.99,
-      available: true,
+      disabled: false,
     },
   },
+  allTables: [
+    {
+      label: "Mesa 1",
+      value: {
+        id: 1000,
+        name: "Mesa 1",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 2",
+      value: {
+        id: 1001,
+        name: "Mesa 2",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 3",
+      value: {
+        id: 1002,
+        name: "Mesa 3",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 4",
+      value: {
+        id: 1003,
+        name: "Mesa 4",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 5",
+      value: {
+        id: 1004,
+        name: "Mesa 5",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 6",
+      value: {
+        id: 1005,
+        name: "Mesa 6",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 7",
+      value: {
+        id: 1006,
+        name: "Mesa 7",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 8",
+      value: {
+        id: 1007,
+        name: "Mesa 8",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 9",
+      value: {
+        id: 1008,
+        name: "Mesa 9",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+    {
+      label: "Mesa 10",
+      value: {
+        id: 1009,
+        name: "Mesa 10",
+        branchId: 1000,
+        deleted: false,
+      },
+    },
+  ],
   page: 5,
   totalPages: 10,
   // Sort by date
@@ -438,6 +538,6 @@ Default.args = {
     .fill(null)
     .map(generatePastSale)
     .sort((a, b) => {
-      return a.startDate.getTime() - b.startDate.getTime();
+      return b.startDate.getTime() - a.startDate.getTime();
     }),
 };

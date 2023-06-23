@@ -86,18 +86,6 @@ interface SignUpComponentProps {
    * width of the component
    */
   width?: string;
-  // /**
-  //  * Component main color
-  //  */
-  // color?: string;
-  // /**
-  //  * Component secondary color
-  //  */
-  // secondaryColor?: string;
-  // /**
-  //  * Other logins button border color
-  //  */
-  // otherLoginsColor?: string;
   /**
    * Dark mode
    */

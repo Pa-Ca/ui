@@ -3,7 +3,7 @@ type ProductObject = {
   subCategoryId: number;
   name: string;
   price: number;
-  available: boolean;
+  disabled: boolean;
   description: string;
 };
 

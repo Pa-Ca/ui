@@ -220,7 +220,7 @@ export const Header = ({
               innerRef={pictureObserver.ref}
             >
               <ProfilePicture
-                size="45px"
+                size="50px"
                 border={true}
                 icon={view ? "up" : "down"}
                 picture={picture}

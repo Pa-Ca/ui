@@ -34,18 +34,6 @@ export interface ResetPasswordComponentProps {
    */
   onSubmit: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
-  /**
    * height of the component
    */
   height?: string;
@@ -65,9 +53,6 @@ export const ResetPasswordComponent = ({
   images = [],
   onBackToLogin,
   onSubmit,
-  color,
-  secondaryColor,
-  otherLoginsColor,
   height,
   width,
   ...props
@@ -115,8 +100,6 @@ export const ResetPasswordComponent = ({
                 password={password}
                 error={error}
                 onSubmit={onSubmit}
-                color={color}
-                secondaryColor={secondaryColor}
               />
             </Box>
           ) : (

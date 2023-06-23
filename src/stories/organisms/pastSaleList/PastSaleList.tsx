@@ -54,7 +54,7 @@ export const PastSaleList = ({
   // Get all dates
   const dates = useMemo(() => {
     return Object.keys(pastSalesByDate).sort((a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
+      return new Date(b).getTime() - new Date(a).getTime();
     });
   }, [pastSalesByDate]);
 

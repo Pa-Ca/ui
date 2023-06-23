@@ -118,7 +118,7 @@ export const InputSelect = <T extends any>({
 
     // Verify if the current value is in the options. If not, unselect
     if (
-      !!inputHook.value.label &&
+      !!inputHook.value.value &&
       !currentOptions.some(
         (option) =>
           option.label!.toLowerCase() === inputHook.value.label!.toLowerCase()

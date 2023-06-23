@@ -84,5 +84,6 @@
   background-color: var(--main-color);
 }
 .profile-picture--container {
-  border: 0.25rem solid var(--main-color);
+  position: relative;
+  border: 0.15rem solid var(--main-color);
 }

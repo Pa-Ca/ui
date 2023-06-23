@@ -37,11 +37,6 @@ export default {
         disable: true,
       },
     },
-    available: {
-      table: {
-        disable: true,
-      },
-    },
     onSaveName: {
       table: {
         disable: true,
@@ -67,7 +62,7 @@ export default {
         disable: true,
       },
     },
-    onSaveAvailable: {
+    onSaveDisabled: {
       table: {
         disable: true,
       },
@@ -82,36 +77,25 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof Product> = (args: any) => {
-  const name = useInputForm<string>("Coca-Cola");
-  const category = useInputForm<OptionObject<CategoryObject | null>>({
-    label: "",
-    value: null,
-  });
-  const subCategory = useInputForm<OptionObject<SubCategoryObject | null>>({
-    label: "",
-    value: null,
-  });
-  const description = useInputForm<string>("Bebida gaseosa de cola de 500ml.");
-  const price = useInputForm<string>("4.99");
-  const available = useInputForm<boolean>(true);
-
-  return (
-    <Product
-      name={name}
-      category={category}
-      subCategory={subCategory}
-      description={description}
-      price={price}
-      available={available}
-      {...args}
-    />
-  );
+  return <Product {...args} />;
 };
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   id: 1000,
+  name: "Coca-Cola",
+  category: {
+    label: "",
+    value: null,
+  },
+  subCategory: {
+    label: "",
+    value: null,
+  },
+  description: "Bebida gaseosa de cola de 500ml.",
+  price: "4.99",
+  disabled: true,
   categories: {
     1000: {
       id: 1000,

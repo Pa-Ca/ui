@@ -27,7 +27,7 @@ export interface NewSaleProductProps {
   /**
    * On create product
    */
-  onCreate: (productId: number, quantity: number) => void;
+  onCreate: (productId: number, amount: number) => void;
   /**
    * Total component width
    */
@@ -50,7 +50,7 @@ export const NewSaleProduct = ({
   height,
   ...props
 }: NewSaleProductProps) => {
-  const quantity = useInputForm<string>("1");
+  const amount = useInputForm<string>("1");
   const product = useInputForm<OptionObject<ProductObject | null>>({
     label: "Todas",
     value: null,
@@ -161,9 +161,9 @@ export const NewSaleProduct = ({
 
   const handleCreate = () => {
     const productId = product.value.value?.id!;
-    const productQuantity = parseInt(quantity.value);
+    const productAmount = parseInt(amount.value);
 
-    onCreate(productId, productQuantity);
+    onCreate(productId, productAmount);
   };
 
   return (
@@ -209,14 +209,14 @@ export const NewSaleProduct = ({
           type="naturalNumber"
           label="Cantidad"
           showError={false}
-          inputHook={quantity}
+          inputHook={amount}
         />
         <Button
           primary
           fullWidth
           onClick={handleCreate}
           state={
-            !!product.value.value && parseInt(quantity.value) > 0
+            !!product.value.value && parseInt(amount.value) > 0
               ? "normal"
               : "inactive"
           }

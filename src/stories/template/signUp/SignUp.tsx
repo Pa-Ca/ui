@@ -73,19 +73,6 @@ interface SignUpProps {
    * there is no automatic scroll
    */
   interval?: number;
-
-  /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
-   * Other logins button border color
-   */
-  otherLoginsColor?: string;
 }
 
 /**
@@ -110,10 +97,6 @@ export const SignUp = ({
 
   images,
   interval,
-
-  color,
-  secondaryColor,
-  otherLoginsColor,
   ...props
 }: SignUpProps) => {
   const { isDarkMode } = useThemeProvider();
@@ -137,9 +120,6 @@ export const SignUp = ({
         onGoogleSignUp={onGoogleSignUp}
         images={images}
         interval={interval}
-        // color={color}
-        // secondaryColor={secondaryColor}
-        // otherLoginsColor={otherLoginsColor}
         {...props}
       />
     </AuthPage>

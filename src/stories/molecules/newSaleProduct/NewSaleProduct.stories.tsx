@@ -8,7 +8,7 @@ export default {
   component: NewSaleProduct,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    quantity: {
+    amount: {
       table: {
         disable: true,
       },
@@ -92,7 +92,7 @@ Default.args = {
       subCategoryId: 1000,
       description: "Bebida gaseosa de 500ml.",
       price: 4.99,
-      available: true,
+      disabled: false,
     },
     1001: {
       id: 1001,
@@ -100,7 +100,7 @@ Default.args = {
       subCategoryId: 1001,
       description: "Pan con carne, queso, lechuga y tomate.",
       price: 12.99,
-      available: true,
+      disabled: false,
     },
     1002: {
       id: 1002,
@@ -108,7 +108,7 @@ Default.args = {
       subCategoryId: 1002, 
       description: "Lechuga, croutons, queso parmesano y salsa césar.",
       price: 8.99,
-      available: true,
+      disabled: false,
     },
     1003: {
       id: 1003,
@@ -116,7 +116,7 @@ Default.args = {
       subCategoryId: 1003,
       description: "Agua natural sin gas de 500ml.",
       price: 2.99,
-      available: true,
+      disabled: false,
     },
     1004: {
       id: 1004,
@@ -124,7 +124,7 @@ Default.args = {
       subCategoryId: 1004,
       description: "Crema helada de sabor vainilla con salsa de chocolate.",
       price: 6.99,
-      available: true,
+      disabled: false,
     },
     1005: {
       id: 1005,
@@ -132,7 +132,7 @@ Default.args = {
       subCategoryId: 1004,
       description: "Masa con salsa de tomate, queso mozzarella y pepperoni.",
       price: 14.99,
-      available: true,
+      disabled: false,
     },
     1006: {
       id: 1006,
@@ -140,7 +140,7 @@ Default.args = {
       subCategoryId: 1001,
       description: "Jugo natural de naranja exprimida de 300ml.",
       price: 3.99,
-      available: true,
+      disabled: false,
     },
     1007: {
       id: 1007,
@@ -148,7 +148,7 @@ Default.args = {
       subCategoryId: 1005,
       description: "Bizcocho húmedo de chocolate con nueces y crema batida.",
       price: 7.99,
-      available: true,
+      disabled: false,
     },
   }
 };

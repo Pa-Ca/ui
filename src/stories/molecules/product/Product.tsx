@@ -7,7 +7,7 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import { Button } from "../../atoms/button/Button";
 import { Switch } from "../../atoms/switch/Switch";
-import { InputFormHook } from "../../hooks/useInputForm";
+import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import { EditableInputText } from "../editableInputText/EditableInputText";
@@ -23,27 +23,27 @@ export interface ProductProps {
   /**
    * Product name
    */
-  name: InputFormHook<string>;
+  name: string;
   /**
    * Product category
    */
-  category: InputFormHook<OptionObject<CategoryObject | null>>;
+  category: OptionObject<CategoryObject | null>;
   /**
    * Product sub-category
    */
-  subCategory: InputFormHook<OptionObject<SubCategoryObject | null>>;
+  subCategory: OptionObject<SubCategoryObject | null>;
   /**
    * Product description
    */
-  description: InputFormHook<string>;
+  description: string;
   /**
    * Product price
    */
-  price: InputFormHook<string>;
+  price: string;
   /**
-   * Indicates if the product is available
+   * Indicates if the product is disabled
    */
-  available: InputFormHook<boolean>;
+  disabled: boolean;
   /**
    * Category options
    */
@@ -56,31 +56,30 @@ export interface ProductProps {
   /**
    * On save product name
    */
-  onSaveName: () => void;
-  /**
-   * On save product category
-   */
-  onSaveCategory: () => void;
+  onSaveName: (id: number, name: InputFormHook<string>) => void;
   /**
    * On save product sub-category
    */
-  onSaveSubCategory: () => void;
+  onSaveSubCategory: (
+    id: number,
+    subCategory: InputFormHook<OptionObject<SubCategoryObject | null>>
+  ) => void;
   /**
    * On save product description
    */
-  onSaveDescription: () => void;
+  onSaveDescription: (id: number, description: InputFormHook<string>) => void;
   /**
    * On save product price
    */
-  onSavePrice: () => void;
+  onSavePrice: (id: number, price: InputFormHook<string>) => void;
   /**
-   * On save product availability
+   * On save product disabled
    */
-  onSaveAvailable: () => void;
+  onSaveDisabled: (id: number, disabled: boolean) => void;
   /**
    * On delete product
    */
-  onDelete: () => void;
+  onDelete: (id: number) => void;
 
   /**
    * Total component width
@@ -96,27 +95,34 @@ export interface ProductProps {
  * Primary UI component for user interaction
  */
 export const Product = ({
+  id,
   name,
   category,
   subCategory,
   description,
   price,
-  available,
+  disabled,
   categories = {},
   subCategories = {},
 
   onSaveName,
-  onSaveCategory,
   onSaveSubCategory,
   onSaveDescription,
   onSavePrice,
-  onSaveAvailable,
+  onSaveDisabled,
   onDelete,
 
   width,
   height,
   ...props
 }: ProductProps) => {
+  const nameHook = useInputForm(name);
+  const priceHook = useInputForm(price);
+  const categoryHook = useInputForm(category);
+  const disabledHook = useInputForm(disabled);
+  const subCategoryHook = useInputForm(subCategory);
+  const descriptionHook = useInputForm(description);
+
   const [viewDetails, setViewDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -133,23 +139,25 @@ export const Product = ({
   }, [subCategories]);
 
   const currentSubCategoriyOptions = useMemo(() => {
-    if (!category.value.value) return allSubCategories;
+    if (!categoryHook.value.value) return allSubCategories;
 
     // If the category is selected, filter the subcategories
     return allSubCategories.filter((c) => {
-      return c.value.categoryId === category.value.value?.id;
+      return c.value.categoryId === categoryHook.value.value?.id;
     });
-  }, [allSubCategories, category.value, categories, subCategories]);
+  }, [allSubCategories, categoryHook.value, categories, subCategories]);
 
   useEffect(() => {
-    if (!subCategory.value.value) return;
+    if (!subCategoryHook.value.value) return;
 
     // If there is a subcategory selected while changing the category, and
     // both do not match, then we deselect the subcategory
-    if (subCategory.value.value?.categoryId !== category.value.value?.id) {
-      subCategory.setValue({ label: "", value: null });
+    if (
+      subCategoryHook.value.value?.categoryId !== categoryHook.value.value?.id
+    ) {
+      subCategoryHook.setValue({ label: "", value: null });
     }
-  }, [category.value]);
+  }, [categoryHook.value]);
 
   return (
     <Box
@@ -158,25 +166,28 @@ export const Product = ({
       style={{ width, height }}
       className={classnames(
         styles["product--container"],
-        available.value
-          ? styles["product--container-available"]
-          : styles["product--container-unavailable"]
+        disabledHook.value
+          ? styles["product--container-unavailable"]
+          : styles["product--container-available"]
       )}
     >
       <Box className={styles["product--header"]}>
         <Box className={styles["product--header-title"]}>
           <Text weight="700" type="h5">
             {" "}
-            {name.value}{" "}
+            {nameHook.value}{" "}
           </Text>
         </Box>
         <Box className={styles["product--header-category"]}>
-          <Text type="h5"> {`${category.value.label} | ${subCategory.value.label}`} </Text>
+          <Text type="h5">
+            {" "}
+            {`${categoryHook.value.label} | ${subCategoryHook.value.label}`}{" "}
+          </Text>
         </Box>
         <Box className={styles["product--price-and-icon-container"]}>
           <Text weight="700" type="h5">
             {" "}
-            {`$${price.value}`}{" "}
+            {`$${priceHook.value}`}{" "}
           </Text>
           <Box
             className={styles["product--icon-container"]}
@@ -210,9 +221,9 @@ export const Product = ({
                 useEditIcons
                 width="100%"
                 height="100%"
-                inputHook={name}
+                inputHook={nameHook}
                 editable={true}
-                saveValueFunction={onSaveName}
+                saveValueFunction={() => onSaveName(id, nameHook)}
                 type="text"
                 showError={false}
                 containerClassName={styles["product--input-item"]}
@@ -228,9 +239,9 @@ export const Product = ({
                   useEditIcons
                   width="100%"
                   height="100%"
-                  inputHook={price}
+                  inputHook={priceHook}
                   editable={true}
-                  saveValueFunction={onSavePrice}
+                  saveValueFunction={() => onSavePrice(id, priceHook)}
                   type="positiveNumber"
                   showError={false}
                   containerClassName={styles["product--input-item"]}
@@ -249,10 +260,10 @@ export const Product = ({
                 useEditIcons
                 width="100%"
                 height="100%"
-                inputHook={category}
+                inputHook={categoryHook}
                 options={allCategories}
                 editable={true}
-                saveValueFunction={onSaveCategory}
+                saveValueFunction={() => {}}
                 showError={false}
                 containerClassName={styles["product--input-item"]}
               />
@@ -268,10 +279,10 @@ export const Product = ({
                 <EditableInputSelect
                   useEditIcons
                   height="100%"
-                  inputHook={subCategory}
+                  inputHook={subCategoryHook}
                   options={currentSubCategoriyOptions}
                   editable={true}
-                  saveValueFunction={onSaveSubCategory}
+                  saveValueFunction={() => onSaveSubCategory(id, subCategoryHook)}
                   showError={false}
                   containerClassName={styles["product--input-item"]}
                 />
@@ -289,14 +300,14 @@ export const Product = ({
             <Box className={styles["product--description-content"]}>
               <EditableInputLongText
                 useEditIcons
-                inputHook={description}
+                inputHook={descriptionHook}
                 minRows={3}
                 maxRows={3}
                 width="100%"
                 height="100%"
                 maxLength={200}
                 showError={false}
-                saveValueFunction={onSaveDescription}
+                saveValueFunction={() => onSaveDescription(id, descriptionHook)}
               />
             </Box>
           </Box>
@@ -315,10 +326,10 @@ export const Product = ({
                 Disponible:{" "}
               </Text>
               <Switch
-                active={available.value}
+                active={!disabledHook.value}
                 onClick={() =>
-                  available.setValue((prev) => {
-                    onSaveAvailable();
+                  disabledHook.setValue((prev) => {
+                    onSaveDisabled(id, !prev);
                     return !prev;
                   })
                 }
@@ -349,7 +360,7 @@ export const Product = ({
               fullWidth
               size="large"
               onClick={() => {
-                onDelete();
+                onDelete(id);
                 setShowModal(false);
               }}
             >

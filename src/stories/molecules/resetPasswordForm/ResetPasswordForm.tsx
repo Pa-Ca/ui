@@ -21,14 +21,6 @@ interface ResetPasswordFormProps {
    */
   onSubmit: () => void;
   /**
-   * Component main color
-   */
-  color?: string;
-  /**
-   * Component secondary color
-   */
-  secondaryColor?: string;
-  /**
    * Component width
    */
   width?: string;
@@ -45,8 +37,6 @@ export const ResetPasswordForm = ({
   error = false,
   password,
   onSubmit,
-  color,
-  secondaryColor,
   width,
   height,
   ...props
@@ -116,7 +106,6 @@ export const ResetPasswordForm = ({
             fullWidth
             primary
             size="large"
-            backgroundColor={color}
             onClick={submit}
           >
             <Box className={styles["reset-password-form--button-text"]}>

@@ -1,8 +1,6 @@
 import React from "react";
 import { SaleProductList } from "./SaleProductList";
 import { StoryFn, Meta } from "@storybook/react";
-import useInputForm from "../../hooks/useInputForm";
-import { EditableInputTaxProps } from "../../molecules/editableInputTax/EditableInputTax";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -20,65 +18,42 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof SaleProductList> = (args: any) => {
-  const products = [
-    {
-      name: "Coca-cola",
-      price: 10,
-      quantity: useInputForm("5"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
-    },
-    {
-      name: "Pizza de peperoni",
-      price: 22.99,
-      quantity: useInputForm("1"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
-    },
-    {
-      name: "Hamburguesa",
-      price: 15.99,
-      quantity: useInputForm("2"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
-    },
-    {
-      name: "Papas fritas",
-      price: 5.99,
-      quantity: useInputForm("1"),
-      onChangeQuantity: () => {},
-      onDelete: () => {},
-    },
-  ];
-  const taxes: EditableInputTaxProps[] = [
-    {
-      nameInputHook: useInputForm("IVA"),
-      valueInputHook: useInputForm("12"),
-      typeInputHook: useInputForm("%"),
-      saveValueFunction: () => {},
-      deleteValueFunction: () => {},
-    },
-    {
-      nameInputHook: useInputForm("IGTF"),
-      valueInputHook: useInputForm("3"),
-      typeInputHook: useInputForm("%"),
-      saveValueFunction: () => {},
-      deleteValueFunction: () => {},
-    },
-  ];
-
-  return (
-    <SaleProductList
-      products={products}
-      taxes={taxes}
-      {...args}
-    />
-  );
+  return <SaleProductList {...args} />;
 };
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+  products: [
+    {
+      name: "Coca-cola",
+      price: 10,
+      amount: 5,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
+    },
+    {
+      name: "Pizza de peperoni",
+      price: 22.99,
+      amount: 1,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
+    },
+    {
+      name: "Hamburguesa",
+      price: 15.99,
+      amount: 2,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
+    },
+    {
+      name: "Papas fritas",
+      price: 5.99,
+      amount: 1,
+      onChangeAmount: () => {},
+      onDelete: async () => {},
+    },
+  ],
   categories: {
     1000: {
       id: 1000,
@@ -133,7 +108,7 @@ Default.args = {
       id: 1007,
       name: "Jugos",
       categoryId: 1000,
-    }
+    },
   },
   allProducts: {
     1000: {
@@ -142,7 +117,7 @@ Default.args = {
       subCategoryId: 1000,
       description: "Bebida gaseosa de 500ml.",
       price: 4.99,
-      available: true,
+      disabled: false,
     },
     1001: {
       id: 1001,
@@ -150,15 +125,15 @@ Default.args = {
       subCategoryId: 1001,
       description: "Pan con carne, queso, lechuga y tomate.",
       price: 12.99,
-      available: true,
+      disabled: false,
     },
     1002: {
       id: 1002,
       name: "Ensalada César",
-      subCategoryId: 1002, 
+      subCategoryId: 1002,
       description: "Lechuga, croutons, queso parmesano y salsa césar.",
       price: 8.99,
-      available: true,
+      disabled: false,
     },
     1003: {
       id: 1003,
@@ -166,7 +141,7 @@ Default.args = {
       subCategoryId: 1003,
       description: "Agua natural sin gas de 500ml.",
       price: 2.99,
-      available: true,
+      disabled: false,
     },
     1004: {
       id: 1004,
@@ -174,7 +149,7 @@ Default.args = {
       subCategoryId: 1004,
       description: "Crema helada de sabor vainilla con salsa de chocolate.",
       price: 6.99,
-      available: true,
+      disabled: false,
     },
     1005: {
       id: 1005,
@@ -182,7 +157,7 @@ Default.args = {
       subCategoryId: 1004,
       description: "Masa con salsa de tomate, queso mozzarella y pepperoni.",
       price: 14.99,
-      available: true,
+      disabled: false,
     },
     1006: {
       id: 1006,
@@ -190,7 +165,7 @@ Default.args = {
       subCategoryId: 1001,
       description: "Jugo natural de naranja exprimida de 300ml.",
       price: 3.99,
-      available: true,
+      disabled: false,
     },
     1007: {
       id: 1007,
@@ -198,7 +173,24 @@ Default.args = {
       subCategoryId: 1005,
       description: "Bizcocho húmedo de chocolate con nueces y crema batida.",
       price: 7.99,
-      available: true,
+      disabled: false,
     },
-  }
+  },
+  taxes: [
+    {
+      name: "IVA",
+      value: 12,
+      type: 0,
+      saveValueFunction: () => {},
+      deleteValueFunction: () => {},
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: 0,
+      saveValueFunction: () => {},
+      deleteValueFunction: () => {},
+    },
+  ],
+  onAddProduct: async () => true,
 };

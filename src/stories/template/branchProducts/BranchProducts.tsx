@@ -2,10 +2,10 @@ import React, { useMemo }  from "react";
 import { InputFormHook } from "../../hooks/useInputForm";
 import useWindowResize from "../../hooks/useWindowResize";
 import { HeaderProps } from "../../organisms/header/Header";
+import { ProductProps } from "../../molecules/product/Product";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { ProductList } from "../../organisms/productList/ProductList";
 import CategoryObject from "../../utils/objects/ProductCategoryObject";
-import { Product, ProductProps } from "../../molecules/product/Product";
 import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 
@@ -41,7 +41,7 @@ interface BranchProductsProps {
   onCreateSubCategory: (
     categoryId: number,
     subCategory: InputFormHook<string>
-  ) => boolean;
+  ) => Promise<SubCategoryObject>;
   /**
    * On edit sub-category.
    */
@@ -49,7 +49,7 @@ interface BranchProductsProps {
     id: number,
     subCategory: InputFormHook<string>,
     categoryId: number
-  ) => boolean;
+  ) => Promise<boolean>;
   /**
    * On delete sub-category.
    */
