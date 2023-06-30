@@ -63,7 +63,7 @@ function generatePastSale(): PastSaleProps {
   }
 
   return {
-    startDate: generateRandomDate(),
+    startTime: generateRandomDate(),
     hasReservation: Math.random() >= 0.5,
     tableName: `Mesa ${Math.floor(1 + Math.random() * 5)}`,
     ownerName: "John Doe",
@@ -116,6 +116,6 @@ Default.args = {
     .fill(null)
     .map(generatePastSale)
     .sort((a, b) => {
-      return a.startDate.getTime() - b.startDate.getTime();
+      return a.startTime.getTime() - b.startTime.getTime();
     }),
 };

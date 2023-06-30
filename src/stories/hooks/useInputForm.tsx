@@ -11,7 +11,7 @@ export interface InputFormHook<T> {
   /**
    * Hook to change current value
    */
-  setValue: (newValue: React.SetStateAction<T>) => void;
+  setValue: React.Dispatch<React.SetStateAction<T>>;
   /**
    * Indicates if there is no error = 0, 
    * error = 1, warning = 2 in the input

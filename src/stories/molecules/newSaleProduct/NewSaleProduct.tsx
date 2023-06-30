@@ -65,30 +65,51 @@ export const NewSaleProduct = ({
   });
 
   const allCategories = useMemo(() => {
-    return Object.values(categories).map((category) => {
+    const allCategories= Object.values(categories).map((category) => {
       return {
         label: category.name,
         value: category,
       };
     });
+
+    // Sort by name
+    allCategories.sort((a, b) => {
+      return a.label.localeCompare(b.label);
+    });
+
+    return allCategories;
   }, [categories]);
 
   const allSubCategories = useMemo(() => {
-    return Object.values(subCategories).map((subCategory) => {
+    const allSubCategories = Object.values(subCategories).map((subCategory) => {
       return {
         label: subCategory.name,
         value: subCategory,
       };
     });
+
+    // Sort by name
+    allSubCategories.sort((a, b) => {
+      return a.label.localeCompare(b.label);
+    });
+
+    return allSubCategories;
   }, [subCategories]);
 
   const allProducts = useMemo(() => {
-    return Object.values(products).map((product) => {
+    const allProducts = Object.values(products).map((product) => {
       return {
         label: product.name,
         value: product,
       };
     });
+
+    // Sort by name
+    allProducts.sort((a, b) => {
+      return a.label.localeCompare(b.label);
+    });
+
+    return allProducts;
   }, [products]);
 
   const currentSubCategories = useMemo(() => {

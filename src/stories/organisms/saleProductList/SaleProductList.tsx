@@ -39,6 +39,10 @@ interface SaleProductListProps {
    */
   taxes: TaxObject[];
   /**
+   * Sale note
+   */
+  note: string;
+  /**
    * On add tax
    */
   onAddTax: () => void;
@@ -73,6 +77,7 @@ export const SaleProductList = ({
   categories,
   subCategories,
   taxes,
+  note,
   onAddTax,
   onAddProduct,
   onClearProducts,
@@ -81,7 +86,7 @@ export const SaleProductList = ({
   onDeleteSale,
   ...props
 }: SaleProductListProps) => {
-  const note = useInputForm("");
+  const noteHook = useInputForm(note);
   const [showPayModal, setShowPayModal] = useState(false);
   const [showClearModal, setShowClearModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -165,17 +170,20 @@ export const SaleProductList = ({
             </Box>
           );
         })}
-        <Button
-          size="box"
-          onClick={onAddTax}
-          style={{
-            marginTop: "10px",
-          }}
-        >
-          <Box className={styles["sale-product-list--button"]}>
-            <Text weight="600">Agregar Tarifa</Text>
-          </Box>
-        </Button>
+
+        {!showPayModal && (
+          <Button
+            size="box"
+            onClick={onAddTax}
+            style={{
+              marginTop: "10px",
+            }}
+          >
+            <Box className={styles["sale-product-list--button"]}>
+              <Text weight="600">Agregar Tarifa</Text>
+            </Box>
+          </Button>
+        )}
         <hr className={styles["sale-product-list--hr"]} />
         <Box className={styles["sale-product-list--summary-item"]}>
           <Text type="h5" weight="600">
@@ -237,7 +245,7 @@ export const SaleProductList = ({
           <Box width="100%">
             <EditableInputLongText
               useEditIcons
-              inputHook={note}
+              inputHook={noteHook}
               minRows={6}
               maxRows={6}
               width="100%"
@@ -267,7 +275,6 @@ export const SaleProductList = ({
               fullWidth
               size="large"
               onClick={() => setShowDeleteModal(true)}
-              state={products.length > 0 ? "normal" : "inactive"}
             >
               <Box className={styles["sale-product-list--button"]}>
                 <Text weight="600">Eliminar Factura</Text>

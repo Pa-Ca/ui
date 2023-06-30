@@ -154,7 +154,7 @@ function generatePastSale(): PastSaleProps {
   }
 
   return {
-    startDate: generateRandomDate(),
+    startTime: generateRandomDate(),
     hasReservation: Math.random() >= 0.5,
     tableName: `Mesa ${Math.floor(1 + Math.random() * 5)}`,
     ownerName: "John Doe",
@@ -243,7 +243,6 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
   ]);
 
   const onAddTax = () => {
-    console.log("onAddTax");
     setTaxes((oldTaxes) => [
       ...oldTaxes,
       {
@@ -254,7 +253,6 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
         deleteValueFunction: () => {},
       },
     ]);
-    console.log(taxes);
   };
 
   return (
@@ -538,6 +536,6 @@ Default.args = {
     .fill(null)
     .map(generatePastSale)
     .sort((a, b) => {
-      return b.startDate.getTime() - a.startDate.getTime();
+      return b.startTime.getTime() - a.startTime.getTime();
     }),
 };
