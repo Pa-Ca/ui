@@ -16,8 +16,8 @@ export default {
 const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   // Reservation data
   const date = useInputForm<Date>(new Date());
-  const hourIn = useInputForm<OptionObject>({ text: "", label: "" });
-  const hourOut = useInputForm<OptionObject>({ text: "", label: "" });
+  const hourIn = useInputForm<OptionObject<string>>({ value: "", label: "" });
+  const hourOut = useInputForm<OptionObject<string>>({ value: "", label: "" });
   const persons = useInputForm<string>("");
   const tables = useInputForm<string>("");
   const occasion = useInputForm<string>("");
@@ -66,34 +66,34 @@ Default.args = {
   submitButtonColor: "#EF7A08",
   cancelButtonColor: "#EF7A08",
   validHoursIn: [
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
   ],
   validHoursOut:[
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
-    {text: "9:00", number:9, label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
+    {value: "9:00", label: "9:00"},
   ],
   reservations: [
     ...new Array(13).fill({

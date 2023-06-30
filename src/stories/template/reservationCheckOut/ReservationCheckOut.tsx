@@ -90,6 +90,7 @@ export const ReservationCheckOut = ({
   ...props
 }: ReservationCheckOut) => {
   const branch = getBranchData();
+  const tables = useInputForm<string>("");
   const reservationPrice = getReservationPrice();
 
   const date = useInputForm<Date>(new Date());
@@ -161,6 +162,7 @@ export const ReservationCheckOut = ({
           <Box>
             <ReserveDetails
               date={date}
+              tables={tables}
               hourIn={hourIn}
               validHoursIn={validHoursIn}
               hourOut={hourOut}
