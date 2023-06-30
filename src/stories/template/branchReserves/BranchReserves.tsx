@@ -34,6 +34,18 @@ interface BranchReservesProps {
    */
   color?: string;
   /**
+   * Identity document options Option Object
+   */
+  identityDocumentTypeOpt?: OptionObject<string>[];
+  /**
+   * Identity document options input hook
+   */
+  identityDocumentType: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Identity document input hook
+   */
+  identityDocument: InputFormHook<string>;
+  /**
    * Client first name input hook
    */
   firstName: InputFormHook<string>;
@@ -117,6 +129,10 @@ interface BranchReservesProps {
    * Submit fuction
    */
   onSubmit: () => void;
+  /**
+   * Submit fuction
+   */
+  onGetGuest: () => void;
 }
 
 /**
@@ -127,6 +143,9 @@ export const BranchReserves = ({
   durationMin,
   reservations,
   header,
+  identityDocumentTypeOpt,
+  identityDocumentType,
+  identityDocument,
   firstName,
   lastName,
   phone,
@@ -144,6 +163,7 @@ export const BranchReserves = ({
   showModal,
   setShowModal,
   onSubmit,
+  onGetGuest,
   ...props
 }: BranchReservesProps) => {
   const windowSize = useWindowResize();
@@ -323,6 +343,10 @@ export const BranchReserves = ({
           <Box width="720px">
             {/* Client Form */}
             <ClientInfoForm
+              onGetGuest={onGetGuest}
+              identityDocumentType={identityDocumentType}
+              identityDocument={identityDocument}
+              identityDocumentTypeOpt={identityDocumentTypeOpt}
               firstName={firstName}
               lastName={lastName}
               email={email}

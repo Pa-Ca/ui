@@ -1,0 +1,213 @@
+@import "../../assets/scss/themes";
+@import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/variables.module.scss";
+
+//Input select
+.input-text-select--container {
+  display: flex;
+  flex-direction: column;
+}
+.input-text-select--input-container {
+  height: 3rem;
+  position: relative;
+
+  border-radius: 4px;
+  border: 1px solid #79747e;
+  justify-content: flex-start;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+.input-text-select--content {
+  flex: 1;
+  height: 100%;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.input-text-select--input {
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0px;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: transparent;
+}
+.input-text-select--label {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 !important;
+  justify-content: flex-start;
+  background-color: transparent;
+  border-radius: 3px;
+
+  top: -10px;
+  left: 12px;
+  z-index: 2;
+}
+.input-text-select--medium-box {
+  bottom: 0;
+  height: 55%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-color);
+}
+.input-text-select--icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 0px;
+  outline: none;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+.input-text-select--error-container {
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  animation-name: shake;
+  animation-duration: 0.15s;
+  animation-iteration-count: 2;
+}
+.input-text-select--error-animation {
+  animation-name: shake;
+}
+.input-text-select--error-no-animation {
+  animation-name: none;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+  }
+}
+
+//Input text
+.input-text-select--container {
+  display: flex;
+  flex-direction: column;
+}
+.input-text-select--input-container {
+  height: 3rem;
+  position: relative;
+
+  border-radius: 4px;
+  border: 1px solid #79747e;
+  justify-content: flex-start;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+.input-text-select--content {
+  flex: 1;
+  height: 100%;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.input-text-select--input {
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0px;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: transparent;
+}
+.input-text-select--label {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 !important;
+  justify-content: flex-start;
+  background-color: transparent;
+  border-radius: 3px;
+
+  top: -10px;
+  left: 12px;
+  z-index: 2;
+}
+.input-text-select--medium-box {
+  bottom: 0;
+  height: 55%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-color);
+}
+.input-text-select--icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 0px;
+  outline: none;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+.input-text-select--error-container {
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  animation-name: shake;
+  animation-duration: 0.15s;
+  animation-iteration-count: 2;
+}
+.input-text-select--error-animation {
+  animation-name: shake;
+}
+.input-text-select--error-no-animation {
+  animation-name: none;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+  }
+}

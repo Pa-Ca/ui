@@ -23,6 +23,18 @@ const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   const occasion = useInputForm<string>("");
 
   // Client data
+  const identityDocument = useInputForm("");
+  const identityDocumentTypeOpt: OptionObject<string>[] = [
+    {label: "V", value: "V"},
+    {label: "E", value: "E"},
+    {label: "J", value: "J"},
+    {label: "G", value: "G"},
+    {label: "P", value: "P"},
+  ];
+  const identityDocumentType = useInputForm<OptionObject<string>>({
+    label: "",
+    value: "",
+  });
   const firstName = useInputForm("");
   const lastName = useInputForm("");
   const phone = useInputForm("");
@@ -37,6 +49,8 @@ const Template: StoryFn<typeof BranchReserves> = (args: any) => {
       persons={persons}
       tables={tables}
       occasion={occasion}
+      identityDocument={identityDocument}
+      identityDocumentType={identityDocumentType}
       firstName={firstName}
       lastName={lastName}
       phone={phone}

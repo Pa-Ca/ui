@@ -3,9 +3,25 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./clientInfoForm.module.scss";
 import { InputText } from "../inputText/InputText";
+import { Button } from "../../atoms/button/Button";
 import { InputFormHook } from "../../hooks/useInputForm";
+import { InputSelect } from "../inputSelect/InputSelect";
+import { InputTextSelect } from "../inputTextSelect/InputTextSelect";
+import OptionObject from "../../utils/objects/OptionObject";
 
 export interface ClientInfoFormProps {
+  /**
+   * Identity document options Option Object
+   */
+  identityDocumentTypeOpt?: OptionObject<string>[];
+  /**
+   * Identity document options input hook
+   */
+  identityDocumentType: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Identity document input hook
+   */
+  identityDocument: InputFormHook<string>;
   /**
    * First name input hook
    */
@@ -27,6 +43,10 @@ export interface ClientInfoFormProps {
    */
   formTitle?: string;
   /**
+   * Get Guest fuction
+   */
+  onGetGuest: () => void;
+  /**
    * Component width
    */
   width?: string;
@@ -40,11 +60,21 @@ export interface ClientInfoFormProps {
  * Primary UI component for user interaction
  */
 export const ClientInfoForm = ({
+  identityDocumentTypeOpt = [
+    {label: "V", value: "V"},
+    {label: "E", value: "E"},
+    {label: "J", value: "J"},
+    {label: "G", value: "G"},
+    {label: "P", value: "P"},
+  ],
+  identityDocumentType,
+  identityDocument,
   firstName,
   lastName,
   email,
   phone,
   formTitle = "Datos Personales",
+  onGetGuest,
   width,
   height,
   ...props
@@ -58,6 +88,28 @@ export const ClientInfoForm = ({
           </Text>
         </Box>
         <Box className={styles["client-info-form-inputs-box"]}>
+          <InputTextSelect
+            required
+            inputHookText={identityDocument}
+            inputHookSelect={identityDocumentType}
+            inputHookSelectOptions={identityDocumentTypeOpt}
+            label="Documento de Identidad" />
+          <Button
+            fullWidth
+            primary
+            size="medium"
+            onClick={() => onGetGuest()}
+          >
+            <Box
+              className={
+                styles["client-info--submit-reservation--button-text"]
+              }
+            >
+              <Text primaryButtonStyle type="h6" weight="600">
+                Obtener Usuario
+              </Text>
+            </Box>
+          </Button>
           <InputText required inputHook={firstName} label="Nombre" />
           <InputText required inputHook={lastName} label="Apellido" />
           <InputText required inputHook={email} label="Correo" />
