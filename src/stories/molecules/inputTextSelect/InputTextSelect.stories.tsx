@@ -34,8 +34,8 @@ const Template: StoryFn<typeof InputTextSelect> = (args: any) => {
     {label: "P", value: "P"},
   ];
   const inputHookSelect = useInputForm<OptionObject<string>>({
-    label: "",
-    value: "",
+    label: "V",
+    value: "V",
   });
   return <InputTextSelect
           required

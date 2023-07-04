@@ -63,6 +63,10 @@ interface BranchSalesProps {
    */
   taxes: TaxObject[];
   /**
+   * Sale note
+   */
+  note: string;
+  /**
    * On add tax
    */
   onAddTax: () => void;
@@ -139,6 +143,7 @@ export const BranchSales = ({
   categories,
   subCategories,
   taxes,
+  note,
   onAddTax,
   onCreateTable,
   onEditTable,
@@ -194,7 +199,7 @@ export const BranchSales = ({
     return (
       <>
         {!hasSale ? (
-          <Box>
+          <Box style={{ height: "300px" }}>
             <Box className={styles["sale-branch-sales--new-sale-title"]}>
               <Text>No hay ninguna venta activa en esta mesa.</Text>
             </Box>
@@ -209,6 +214,7 @@ export const BranchSales = ({
           </Box>
         ) : (
           <SaleProductList
+            note={note}
             taxes={taxes}
             products={products}
             allProducts={allProducts}
@@ -220,11 +226,12 @@ export const BranchSales = ({
             onCloseSale={onCloseSale}
             onSaveSaleNote={onSaveSaleNote}
             onDeleteSale={onDeleteSale}
+            key={`branch-sales--sale-product-list-products-${products.length}-taxes-${taxes.length}`}
           />
         )}
       </>
     );
-  }, [hasSale, products, taxes, allProducts, categories, subCategories]);
+  }, [table, hasSale, products, taxes, allProducts, categories, subCategories]);
 
   return (
     <PageWrapper headerArgs={header}>
@@ -320,7 +327,7 @@ export const BranchSales = ({
                       fullWidth
                       size="large"
                       onClick={async () =>
-                        (await onCreateTable(editTableName)) &&
+                        (await onCreateTable(newTableName)) &&
                         setShowNewModal(false)
                       }
                     >

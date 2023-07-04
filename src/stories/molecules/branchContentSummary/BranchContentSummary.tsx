@@ -8,6 +8,7 @@ import useInputForm from "../../hooks/useInputForm";
 import styles from "./branchContentSummary.module.scss";
 import { InputSelect } from "../inputSelect/InputSelect";
 import textStyles from "../../atoms/text/text.module.scss";
+import OptionObject from "../../utils/objects/OptionObject";
 import { StarRating } from "../../atoms/starRating/StarRating";
 import getAllBranchCategories from "../../utils/getAllBranchCategories";
 
@@ -94,11 +95,11 @@ export const BranchContentSummary = ({
   const [currentPrice, setCurrentPrice] = useState(price);
   const [pricePersonBackup, setPricePersonBackup] = useState(pricePerson);
   const [currentPricePerson, setCurrentPricePerson] = useState(pricePerson);
-  const [categoryBackup, setCategoryBackup] = useState(
+  const [categoryBackup, setCategoryBackup] = useState<OptionObject<number | null>>(
     allCategories.find((c) => c.label === category)!
   );
 
-  const currentCategory = useInputForm(
+  const currentCategory = useInputForm<OptionObject<number | null>>(
     allCategories.find((c) => c.label === category)!
   );
 
@@ -134,7 +135,7 @@ export const BranchContentSummary = ({
       currentName,
       currentPrice,
       currentPricePerson,
-      currentCategory.value.number!
+      currentCategory.value.value!
     );
   };
 

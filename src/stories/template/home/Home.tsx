@@ -8,6 +8,7 @@ import getValidHours from "../../utils/getValidHours";
 import { Header } from "../../organisms/header/Header";
 import { Footer } from "../../organisms/footer/Footer";
 import { useDraggable } from "react-use-draggable-scroll";
+import OptionObject from "../../utils/objects/OptionObject";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BranchSearch } from "../../organisms/branchSearch/BranchSearch";
 import { CategoryCard } from "../../molecules/categoryCard/CategoryCard";
@@ -102,7 +103,7 @@ export const Home = ({
 }: HomeProps) => {
   const search = useInputForm("");
   const persons = useInputForm("");
-  const hour = useInputForm(getValidHours()[0]);
+  const hour = useInputForm<OptionObject<string | null>>(getValidHours()[0]);
   const date = useInputForm<Date>(new Date());
 
   const ref =
@@ -130,9 +131,7 @@ export const Home = ({
   }, [observer.width]);
 
   const searchFunction = () => {
-    if (typeof hour.value.text === "number") return;
-
-    onSearch(date.value, hour.value.text!, parseInt(persons.value), search.value)
+    onSearch(date.value, hour.value.value!, parseInt(persons.value), search.value)
   }
 
   return (

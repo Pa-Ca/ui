@@ -18,7 +18,7 @@ const Template: StoryFn<typeof PastSale> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  startDate: new Date(),
+  startTime: new Date(),
   hasReservation: true,
   tableName: "Mesa 1",
   ownerName: "John Doe",

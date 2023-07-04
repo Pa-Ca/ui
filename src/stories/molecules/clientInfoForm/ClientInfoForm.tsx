@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./clientInfoForm.module.scss";
 import { InputText } from "../inputText/InputText";
 import { Button } from "../../atoms/button/Button";
 import { InputFormHook } from "../../hooks/useInputForm";
-import { InputSelect } from "../inputSelect/InputSelect";
 import { InputTextSelect } from "../inputTextSelect/InputTextSelect";
 import OptionObject from "../../utils/objects/OptionObject";
 
@@ -79,6 +78,7 @@ export const ClientInfoForm = ({
   height,
   ...props
 }: ClientInfoFormProps) => {
+  const [activeInputs, setActiveInputs] = useState(false);
   return (
     <Box className={styles["client-info-form--container"]} style={{ width, height }}>
       <Box className={styles["client-info-form--content"]}>
@@ -93,27 +93,37 @@ export const ClientInfoForm = ({
             inputHookText={identityDocument}
             inputHookSelect={identityDocumentType}
             inputHookSelectOptions={identityDocumentTypeOpt}
-            label="Documento de Identidad" />
+            label="Documento de Identidad" 
+          />
           <Button
             fullWidth
             primary
             size="medium"
-            onClick={() => onGetGuest()}
+            onClick={() => {setActiveInputs(true); onGetGuest()}}
+            className={
+              styles["client-info--submit-reservation--button-text"]
+            }
           >
-            <Box
-              className={
-                styles["client-info--submit-reservation--button-text"]
-              }
-            >
-              <Text primaryButtonStyle type="h6" weight="600">
-                Obtener Usuario
-              </Text>
-            </Box>
+            <Text primaryButtonStyle type="h6" weight="600">
+              Obtener Usuario
+            </Text>
           </Button>
-          <InputText required inputHook={firstName} label="Nombre" />
-          <InputText required inputHook={lastName} label="Apellido" />
-          <InputText required inputHook={email} label="Correo" />
-          <InputText required inputHook={phone} label="Teléfono" placeholder="+58 4240000000 | 04240000000" />
+          { activeInputs && <Box>
+            <InputText required inputHook={firstName} label="Nombre" />
+            </Box>
+          }
+          { activeInputs && <Box>
+            <InputText required inputHook={lastName} label="Apellido" />
+            </Box>
+          }
+          { activeInputs && <Box>
+            <InputText required inputHook={email} label="Correo" />
+            </Box>
+          }
+          { activeInputs && <Box>
+            <InputText required inputHook={phone} label="Teléfono" placeholder="+58 4240000000 | 04240000000" />
+            </Box>
+          }
         </Box>
       </Box>
     </Box>

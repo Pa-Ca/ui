@@ -9,7 +9,7 @@ export interface PastSaleProps {
   /**
    * Sale start date
    */
-  startDate: Date;
+  startTime: Date;
   /**
    * Table name
    */
@@ -66,7 +66,7 @@ export interface PastSaleProps {
  * Primary UI component for user interaction
  */
 export const PastSale = ({
-  startDate,
+  startTime,
   tableName,
   products = [],
   taxes = [],
@@ -114,10 +114,10 @@ export const PastSale = ({
           <Icon icon="calendar" size="28px" />
 
           <Box>
-            <Text weight="700"> {startDate.toISOString().split("T")[0]} </Text>
+            <Text weight="700"> {startTime.toISOString().split("T")[0]} </Text>
             <Text>
               {" "}
-              {startDate.toISOString().split("T")[1].split(".")[0]}{" "}
+              {startTime.toISOString().split("T")[1].split(".")[0]}{" "}
             </Text>
           </Box>
         </Box>
@@ -179,7 +179,7 @@ export const PastSale = ({
             <Box className={styles["past-sale--details-products"]}>
               {products.map((product, index) => (
                 <Box
-                  key={`past-sale--${startDate.toISOString()}-${tableName}-product-${index}-${
+                  key={`past-sale--${startTime.toISOString()}-${tableName}-product-${index}-${
                     product.name
                   }`}
                   className={styles["past-sale--item"]}
@@ -261,7 +261,7 @@ export const PastSale = ({
               </Box>
               {taxes.map((tax, index) => (
                 <Box
-                  key={`past-sale--date-${startDate.toISOString()}-index-${index}`}
+                  key={`past-sale--date-${startTime.toISOString()}-index-${index}`}
                   className={styles["past-sale--summary-item"]}
                 >
                   <Text type="h5" weight="600">
