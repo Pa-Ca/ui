@@ -70,6 +70,14 @@ export interface HeaderProps {
    */
   onRegisterClick?: () => void;
   /**
+   * On sales click
+   */
+  onSalesClick?: () => void;
+  /**
+   * On products click
+   */
+  onProductsClick?: () => void;
+  /**
    * Background color
    */
   backgroundColor?: string;
@@ -114,6 +122,8 @@ export const Header = ({
   onProfileClick = () => {},
   onLoginClick,
   onRegisterClick,
+  onSalesClick = () => { },
+  onProductsClick = () => {},
   backgroundColor,
   color,
   width,
@@ -134,6 +144,16 @@ export const Header = ({
       name: "Editar Perfil",
       func: onEditProfile,
       icon: "pencil",
+    },
+    {
+      name: "Ventas",
+      func: onSalesClick,
+      icon: "table",
+    },
+    {
+      name: "Productos",
+      func: onProductsClick,
+      icon: "restaurant",
     },
     {
       name: "Cerrar Sesión",

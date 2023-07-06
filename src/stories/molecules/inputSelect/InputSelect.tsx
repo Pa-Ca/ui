@@ -110,15 +110,13 @@ export const InputSelect = <T extends any>({
 
     // Add empty option
     if (addEmptyOption) {
-      currentOptions = [
-        { label: emptyLabel, value: null},
-        ...currentOptions,
-      ];
+      currentOptions = [{ label: emptyLabel, value: null }, ...currentOptions];
     }
 
     // Verify if the current value is in the options. If not, unselect
     if (
-      !!inputHook.value.value && !filter &&
+      !!inputHook.value.value &&
+      !filter &&
       !currentOptions.some(
         (option) =>
           option.label!.toLowerCase() === inputHook.value.label!.toLowerCase()
@@ -220,7 +218,9 @@ export const InputSelect = <T extends any>({
             }
             style={{
               width: `${observer.width}px`,
-              maxHeight: view ? "300px" : "0px",
+              maxHeight: view
+                ? `${Math.min(6.5, currentOptions.length) * 48}px`
+                : "0px",
               opacity: view ? "1" : "0",
             }}
             {...events}
@@ -307,11 +307,7 @@ export const InputSelect = <T extends any>({
         )}
         {inputHook.error == 2 && (
           <>
-            <Icon
-              icon="warning"
-              warningStyle={true}
-              size="20px"
-            />
+            <Icon icon="warning" warningStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h7" warningStyle={true}>
               {inputHook.errorMessage}

@@ -25,6 +25,8 @@ export const MobileHeader = ({
   onProfileClick = () => {},
   onLoginClick,
   onRegisterClick,
+  onProductsClick = () => { },
+  onSalesClick = () => { },
   backgroundColor,
   color,
   width,
@@ -112,6 +114,8 @@ export const MobileHeader = ({
           onReservationsClick={onReservationsClick}
           onFavoritesClick={onFavoritesClick}
           onLogoutClick={onLogout}
+          onProductsClick={onProductsClick}
+          onSalesClick={onSalesClick}
         />
       </Box>
     </Box>
