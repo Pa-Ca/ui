@@ -224,9 +224,9 @@ export const Reservation = ({
           )}
         >
           <Box className={styles["reservation--status-box-inner"]}>
-            <Icon icon={status.icon} size="40px"
+            <Icon icon={status.icon} size="50px"
                 className={styles["reservation--status-icon-color"]} />
-            <Text className={styles["reservation--status-text"]} color="white">
+            <Text ellipsis={true} weight="700"className={styles["reservation--status-text"]} color="white">
               {status.nameShow}
             </Text>
           </Box>

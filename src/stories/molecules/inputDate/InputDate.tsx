@@ -8,6 +8,7 @@ import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import inputTextStyles from "../inputText/inputText.module.scss";
+import styles from "./inputDate.module.scss";
 
 interface InputDateProps {
   /**
@@ -88,6 +89,7 @@ export const InputDate = ({
             onChange={(date: Date) => inputHook.setValue(date)}
             onSelect={inputHook.setValue}
             customInput={<DateInputButton />}
+            popperClassName={styles["react-datepicker--container"]}
             minDate={minDate}
           />
 
