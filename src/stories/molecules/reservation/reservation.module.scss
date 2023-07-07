@@ -1,14 +1,77 @@
 @import "../../assets/scss/themes";
+@import "../../assets/scss/palette.scss";
+@import "../../assets/scss/variables.module.scss";
 
 .reservation--container {
-  padding-left: 16px;
-  padding-right: 46px;
-  padding-top: 23px;
+  padding: 0;
   margin-bottom: 32px;
   background-color: var(--card-background-color);
-  border-left-width: 20px;
-  border-left-style: solid;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
 }
+
+.reservation--status-icon-color{
+  color: $white;
+  animation: show-icon--visible 300ms linear forwards;
+}
+
+.reservation--status-text{
+  animation: show-icon--visible 300ms linear forwards;
+}
+
+.reservation--container:hover  {
+  .reservation--status-box {
+    width: 125px;
+  }
+  .reservation--status-icon-color , .reservation--status-text{
+    animation: show-icon--hide 300ms linear forwards;
+  }
+}
+
+@keyframes show-icon--visible {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes show-icon--hide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reservation--status-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  background-color: var(--unset-status-color);
+  transition: all 300ms;
+  overflow: hidden;
+}
+
+.reservation--status-box-inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reservation--information-box{
+  padding-right: 46px;
+  padding-top: 23px;
+  margin-left: 16px;
+  width: 100%;
+}
+
 .reservation--details-row {
   display: flex;
   align-items: center;
@@ -134,29 +197,29 @@
 }
 
 .reservation--status-unset{
-  border-left-color: var(--unset-status-color);
+  background-color: var(--unset-status-color);
 }
 
 .reservation--status-pending{
-  border-left-color: var(--pending-status-color);
+  background-color: var(--pending-status-color);
 }
 
 .reservation--status-rejected{
-  border-left-color: var(--rejected-status-color);
+  background-color: var(--rejected-status-color);
 }
 
 .reservation--status-accepted{
-  border-left-color: var(--accepted-status-color);
+  background-color: var(--accepted-status-color);
 }
 
-.reservation--status-unfinished{
-  border-left-color: var(--unfinished-status-color);
+.reservation--status-retired{
+  background-color: var(--retired-status-color);
 }
 
 .reservation--status-started{
-  border-left-color: var(--started-status-color);
+  background-color: var(--started-status-color);
 }
 
 .reservation--status-closed{
-  border-left-color: var(--closed-status-color);
+  background-color: var(--closed-status-color);
 }

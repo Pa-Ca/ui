@@ -201,19 +201,19 @@ export const BranchReserves = ({
 
   // Filter reservations by state equals to 1, meaning pending
   const pendingReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 1),
+    () => reservations.filter((reservation) => reservation.status.number === 1),
     [reservations]
   );
   
   // Filter reservations by state equals to 3, meaning accepted
   const acceptedReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 3),
+    () => reservations.filter((reservation) => reservation.status.number === 3),
     [reservations]
   );
     
   // Filter reservations by state equals to 5, meaning started
   const startedReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 5),
+    () => reservations.filter((reservation) => reservation.status.number === 5),
     [reservations]
   );
 
@@ -221,9 +221,9 @@ export const BranchReserves = ({
   const historicReservation = useMemo(
     () =>
       reservations.filter(
-        (reservation) => reservation.state !== 1 &&
-                         reservation.state !== 3 &&
-                         reservation.state !== 5
+        (reservation) => reservation.status.number !== 1 &&
+                         reservation.status.number !== 3 &&
+                         reservation.status.number !== 5
       ),
     [reservations]
   );
