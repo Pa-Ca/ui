@@ -30,6 +30,10 @@ export interface ReservationProps {
    */
   ownerPhone: string;
   /**
+   * Identity document the owner
+   */
+  identityDocument: string;
+  /**
    * Email of the owner
    */
   ownerEmail: string;
@@ -91,6 +95,7 @@ export const Reservation = ({
   end,
   owner,
   ownerPhone,
+  identityDocument,
   persons,
   tables,
   status,
@@ -304,6 +309,12 @@ export const Reservation = ({
                 { end != "" && <Text>{end}</Text>}
               </div>
 
+              <Box className={styles["reservation--details"]}>
+                <Box className={styles["reservation--icon-container"]}>
+                  <Icon icon="identity-document" size="22px" />
+                </Box>
+                <Text> {identityDocument} </Text>
+              </Box>
               <Box className={styles["reservation--details"]}>
                 <Box className={styles["reservation--icon-container"]}>
                   <Icon icon="phone" size="22px" />

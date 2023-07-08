@@ -174,6 +174,7 @@ export const ReserveList = ({
                     date={reservation.date}
                     owner={reservation.owner}
                     ownerPhone={reservation.ownerPhone}
+                    identityDocument={reservation.identityDocument}
                     ownerEmail={reservation.ownerEmail}
                     ownerOccasion={reservation.ownerOccasion}
                     persons={reservation.persons}

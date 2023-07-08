@@ -49,6 +49,7 @@ import lensOutline from "@iconify/icons-material-symbols/lens-outline";
 import roomService from "@iconify/icons-material-symbols/room-service";
 import checkCircle from "@iconify/icons-material-symbols/check-circle";
 import emailCheckOutline from "@iconify/icons-mdi/email-check-outline";
+import identificationCard from '@iconify/icons-mdi/identification-card';
 import restaurantIcon from "@iconify/icons-material-symbols/restaurant";
 import baselineLocationOn from "@iconify/icons-ic/baseline-location-on";
 import questionMark from "@iconify/icons-material-symbols/question-mark";
@@ -124,7 +125,9 @@ export type IconType =
   | "accepted-status"
   | "retired-status"
   | "started-status"
-  | "closed-status";
+  | "closed-status"
+  | "identity-document"
+  ;
 
 interface IconProps {
   /**
@@ -660,6 +663,15 @@ export const Icon = ({
           style={{ fontSize: size, ...style }}
         />
       );
+    case "identity-document":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={identificationCard}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+
     case "bolivar":
       return <Bolivar className={finalClassName} width={size} height={size} />;
     default:
