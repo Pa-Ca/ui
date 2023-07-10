@@ -6,6 +6,7 @@ import { Icon } from "../../atoms/icon/Icon";
 import styles from "./reservation.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../../molecules/modal/Modal";
+import ReservationStatus from "../../utils/objects/ReservationStatus";
 
 export interface ReservationProps {
   /**
@@ -29,6 +30,10 @@ export interface ReservationProps {
    */
   ownerPhone: string;
   /**
+   * Identity document the owner
+   */
+  identityDocument: string;
+  /**
    * Email of the owner
    */
   ownerEmail: string;
@@ -45,13 +50,9 @@ export interface ReservationProps {
    */
   tables: number;
   /**
-   * Indicates the current reservation state
+   * Object with all info related with reservation state
    */
-  state: number;
-  /**
-   * Indicates reservation status name
-   */
-  statusColor: string;
+  status: ReservationStatus;
   /**
    * Reservation date
    */
@@ -94,10 +95,10 @@ export const Reservation = ({
   end,
   owner,
   ownerPhone,
+  identityDocument,
   persons,
   tables,
-  state,
-  statusColor,
+  status,
   ownerEmail,
   ownerOccasion,
   onCloseReservation,
@@ -139,7 +140,7 @@ export const Reservation = ({
   }
 
   const getAction = useMemo(() => {
-    switch (state) {
+    switch (status.number) {
       // Started reservation
       case 5:
         return (
@@ -209,136 +210,136 @@ export const Reservation = ({
           <Box className={styles["reservation--box-button"]}></Box>
         );
     }
-  }, [state]);
-
-  const doReject = () => {
-    onReject!();
-    setConfirmReject(false);
-  }
-
-  const doAccept = () => {
-    onAccept!();
-    setConfirmAccept(false);
-  }
-
-  const doRetire = () => {
-    onRetire!();
-    setConfirmRetire(false);
-  }
-
-  const doStart = () => {
-    onStart!();
-    setConfirmStart(false);
-  }
-
-  const doClose = () => {
-    onCloseReservation!();
-    setConfirmStart(false);
-  }
+  }, [status.number]);
 
   return (
-    <Box
-      className={classnames(
-        styles["reservation--container"],
-        styles[`reservation--status-${statusColor}`]
-      )}
-      borderRadius="12px"
-      weakShadow
-      style={{ width, height}}
-    >
-      <Box className={styles["reservation--details-row"]}>
-        {/* Start Hour */}
-        <Box>
-          <Box
-            className={styles["reservation--start"]}
-            borderRadius="10px"
-          >
-            <Text type="h6" color="white" weight="700">
-              {start}
+    <div>
+      <Box
+        className={classnames(
+          styles["reservation--container"]
+        )}
+        weakShadow
+        style={{ width, height}}
+      >
+
+        <Box
+          className={classnames(
+            styles["reservation--status-box"],
+            styles[`reservation--status-${status.name}`]
+          )}
+        >
+          <Box className={styles["reservation--status-box-inner"]}>
+            <Icon icon={status.icon} size="50px"
+                className={styles["reservation--status-icon-color"]} />
+            <Text ellipsis={true} weight="700"className={styles["reservation--status-text"]} color="white">
+              {status.nameShow}
             </Text>
           </Box>
         </Box>
-
-        {/* Info */}
-        <Box>
-          <Box className={styles["reservation--info"]}>
-              <Text weight="700"> {owner} </Text>
-          </Box>
-          <Box className={styles["reservation--info"]}>
-            <Box className={styles["reservation--info"]}>
-              <Box className={styles["reservation--icon-container"]}>
-                <Icon icon="person" size="22px" />
-              </Box>
-              <Text>
-                {persons}
-              </Text>
-            </Box>
-
-            {dot()}
-
-            <Box className={styles["reservation--info"]}>
-              <Box className={styles["reservation--icon-container"]}>
-                <Icon icon="table" size="22px" />
-              </Box>
-              <Text>
-                {tables}
-              </Text>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Show Info Switch */}
-        <Box className={styles["reservation--icon"]}
-              onClick={onClickEye}
-              style={{marginLeft:"auto"}}>
-          <Icon icon={active ? "up" : "down" } size="32px" />
-        </Box>
-      </Box>
-
-      <Box className={classnames(
-        styles["reservation--details-row"],
-        styles["reservation--more-details-row"]
-      )}>
-        <Box className={active ?
-          styles["reservation--more-details-row-show"] :
-          styles["reservation--more-details-row-hide"]
-        }>
-          <hr className={styles["reservation--hr"]}/>
-          <div>
-          <div className={styles["reservation--details"]}
-                style={{marginBottom: "0"}}>
-            <Box className={styles["reservation--icon-container"]}
-                  style={{marginBottom: "2px"}}>
-              <Icon icon="clock" size="22px" />
-            </Box>
-            <Text>{start}</Text>
-            { end != "" && <Text>{hyphen()}</Text>}
-            { end != "" && <Text>{end}</Text>}
-          </div>
-
-          <Box className={styles["reservation--details"]}>
-            <Box className={styles["reservation--icon-container"]}>
-              <Icon icon="phone" size="22px" />
-            </Box>
-            <Text> {ownerPhone} </Text>
-          </Box>
-          <Box className={styles["reservation--details"]}>
-            <Box className={styles["reservation--icon-container"]}>
-              <Icon icon="mail-envelope" size="22px" />
-            </Box>
-            <Text> {ownerEmail} </Text>
-          </Box>
-          { ownerOccasion != "" &&
+        <Box className={styles["reservation--information-box"]}>
+          {/* Info */}
+          <Box className={styles["reservation--details-row"]}>
+            {/* Start Hour */}
             <Box>
-              <Box>
-                <Text> <span style={{fontWeight: "600"}}>Ocasion:</span> {ownerOccasion} </Text>
+              <Box
+                className={styles["reservation--start"]}
+                borderRadius="10px"
+              >
+                <Text type="h6" color="white" weight="700">
+                  {start}
+                </Text>
               </Box>
             </Box>
-          }
-          </div>
-          <Box>
-            {/* Actions */}
-            {getAction}
+
+            {/* Info */}
+            <Box>
+              <Box className={styles["reservation--info"]}>
+                  <Text weight="700"> {owner} </Text>
+              </Box>
+              <Box className={styles["reservation--info"]}>
+                <Box className={styles["reservation--info"]}>
+                  <Box className={styles["reservation--icon-container"]}>
+                    <Icon icon="person" size="22px" />
+                  </Box>
+                  <Text>
+                    {persons}
+                  </Text>
+                </Box>
+
+                {dot()}
+
+                <Box className={styles["reservation--info"]}>
+                  <Box className={styles["reservation--icon-container"]}>
+                    <Icon icon="table" size="22px" />
+                  </Box>
+                  <Text>
+                    {tables}
+                  </Text>
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Show Info Switch */}
+            <Box className={styles["reservation--icon"]}
+                  onClick={onClickEye}
+                  style={{marginLeft:"auto"}}>
+              <Icon icon={active ? "up" : "down" } size="32px" />
+            </Box>
+          </Box>
+
+          {/* Details */}
+          <Box className={classnames(
+            styles["reservation--details-row"],
+            styles["reservation--more-details-row"]
+          )}>
+            <Box className={active ?
+              styles["reservation--more-details-row-show"] :
+              styles["reservation--more-details-row-hide"]
+            }>
+              <hr className={styles["reservation--hr"]}/>
+              <div>
+              <div className={styles["reservation--details"]}
+                    style={{marginBottom: "0"}}>
+                <Box className={styles["reservation--icon-container"]}
+                      style={{marginBottom: "2px"}}>
+                  <Icon icon="clock" size="22px" />
+                </Box>
+                <Text>{start}</Text>
+                { end != "" && <Text>{hyphen()}</Text>}
+                { end != "" && <Text>{end}</Text>}
+              </div>
+
+              <Box className={styles["reservation--details"]}>
+                <Box className={styles["reservation--icon-container"]}>
+                  <Icon icon="identity-document" size="22px" />
+                </Box>
+                <Text> {identityDocument} </Text>
+              </Box>
+              <Box className={styles["reservation--details"]}>
+                <Box className={styles["reservation--icon-container"]}>
+                  <Icon icon="phone" size="22px" />
+                </Box>
+                <Text> {ownerPhone} </Text>
+              </Box>
+              <Box className={styles["reservation--details"]}>
+                <Box className={styles["reservation--icon-container"]}>
+                  <Icon icon="mail-envelope" size="22px" />
+                </Box>
+                <Text> {ownerEmail} </Text>
+              </Box>
+              { ownerOccasion != "" &&
+                <Box>
+                  <Box>
+                    <Text> <span style={{fontWeight: "600"}}>Ocasion:</span> {ownerOccasion} </Text>
+                  </Box>
+                </Box>
+              }
+              </div>
+              <Box>
+                {/* Actions */}
+                {getAction}
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -366,7 +367,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={doReject}
+              onClick={() => {onReject!(); setConfirmReject(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -401,7 +402,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={doAccept}
+              onClick={() => {onAccept!(); setConfirmAccept(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -436,7 +437,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={doStart}
+              onClick={() => {onStart!(); setConfirmStart(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -471,7 +472,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={doRetire}
+              onClick={() => {onRetire!(); setConfirmRetire(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -506,7 +507,7 @@ export const Reservation = ({
             <Button
               primary
               fullWidth
-              onClick={doClose}
+              onClick={() => {onCloseReservation!(); setConfirmClose(false);}}
               className={styles["reservation--right-button"]}
             >
               <Box className={styles["reservation--confirmation-button-box"]}>
@@ -518,7 +519,6 @@ export const Reservation = ({
           </Box>
         </Box>
       </Modal>
-
-    </Box>
+    </div>
   );
 };

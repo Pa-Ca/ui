@@ -34,6 +34,18 @@ interface BranchReservesProps {
    */
   color?: string;
   /**
+   * Identity document options Option Object
+   */
+  identityDocumentTypeOpt?: OptionObject<string>[];
+  /**
+   * Identity document options input hook
+   */
+  identityDocumentType: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Identity document input hook
+   */
+  identityDocument: InputFormHook<string>;
+  /**
    * Client first name input hook
    */
   firstName: InputFormHook<string>;
@@ -117,6 +129,10 @@ interface BranchReservesProps {
    * Submit fuction
    */
   onSubmit: () => void;
+  /**
+   * Submit fuction
+   */
+  onGetGuest: () => void;
 }
 
 /**
@@ -127,6 +143,9 @@ export const BranchReserves = ({
   durationMin,
   reservations,
   header,
+  identityDocumentTypeOpt,
+  identityDocumentType,
+  identityDocument,
   firstName,
   lastName,
   phone,
@@ -144,6 +163,7 @@ export const BranchReserves = ({
   showModal,
   setShowModal,
   onSubmit,
+  onGetGuest,
   ...props
 }: BranchReservesProps) => {
   const windowSize = useWindowResize();
@@ -181,19 +201,19 @@ export const BranchReserves = ({
 
   // Filter reservations by state equals to 1, meaning pending
   const pendingReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 1),
+    () => reservations.filter((reservation) => reservation.status.number === 1),
     [reservations]
   );
   
   // Filter reservations by state equals to 3, meaning accepted
   const acceptedReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 3),
+    () => reservations.filter((reservation) => reservation.status.number === 3),
     [reservations]
   );
     
   // Filter reservations by state equals to 5, meaning started
   const startedReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.state === 5),
+    () => reservations.filter((reservation) => reservation.status.number === 5),
     [reservations]
   );
 
@@ -201,9 +221,9 @@ export const BranchReserves = ({
   const historicReservation = useMemo(
     () =>
       reservations.filter(
-        (reservation) => reservation.state !== 1 &&
-                         reservation.state !== 3 &&
-                         reservation.state !== 5
+        (reservation) => reservation.status.number !== 1 &&
+                         reservation.status.number !== 3 &&
+                         reservation.status.number !== 5
       ),
     [reservations]
   );
@@ -323,6 +343,10 @@ export const BranchReserves = ({
           <Box width="720px">
             {/* Client Form */}
             <ClientInfoForm
+              onGetGuest={onGetGuest}
+              identityDocumentType={identityDocumentType}
+              identityDocument={identityDocument}
+              identityDocumentTypeOpt={identityDocumentTypeOpt}
               firstName={firstName}
               lastName={lastName}
               email={email}

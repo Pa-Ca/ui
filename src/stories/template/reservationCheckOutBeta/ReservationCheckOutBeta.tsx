@@ -78,6 +78,11 @@ export const ReservationCheckOutBeta = ({
 
   // Reservation data
   const date = useInputForm<Date>(new Date());
+  const identityDocument = useInputForm("");
+  const identityDocumentType = useInputForm<OptionObject<string | null>>({
+    label: "",
+    value: null,
+  });
   const hourIn = useInputForm<OptionObject<string | null>>({
     value: null,
     label: "",
@@ -124,6 +129,10 @@ export const ReservationCheckOutBeta = ({
               lastName={lastName}
               email={email}
               phone={phone}
+              // TODO
+              identityDocument={identityDocument}
+              identityDocumentType={identityDocumentType}
+              onGetGuest={() => { }}
             />
           </Box>
 

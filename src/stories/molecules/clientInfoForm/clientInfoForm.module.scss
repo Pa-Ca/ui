@@ -10,7 +10,6 @@
 }
 .client-info-form-inputs-box {
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
@@ -20,4 +19,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.client-info--submit-reservation--button-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 25px;
 }

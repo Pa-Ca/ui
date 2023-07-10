@@ -21,8 +21,10 @@ import youtubeIcon from "@iconify/icons-mdi/youtube";
 import warningIcon from "@iconify/icons-uiw/warning";
 import facebookIcon from "@iconify/icons-mdi/facebook";
 import calendarIcon from "@iconify/icons-mdi/calendar";
+import clockCheck from '@iconify/icons-mdi/clock-check';
 import paperPlane from "@iconify/icons-ion/paper-plane";
 import alertCircle from "@iconify/icons-mdi/alert-circle";
+import clockRemove from "@iconify/icons-mdi/clock-remove";
 import zelleIcon from "@iconify/icons-simple-icons/zelle";
 import flagFilled from "@iconify/icons-tabler/flag-filled";
 import eyeSlashFill from "@iconify/icons-bi/eye-slash-fill";
@@ -42,10 +44,12 @@ import checkBox from "@iconify/icons-material-symbols/check-box";
 import spaRounded from "@iconify/icons-material-symbols/spa-rounded";
 import instagramLogoFill from "@iconify/icons-ph/instagram-logo-fill";
 import cloudUpload from "@iconify/icons-material-symbols/cloud-upload";
+import taskRounded from '@iconify/icons-material-symbols/task-rounded';
 import lensOutline from "@iconify/icons-material-symbols/lens-outline";
 import roomService from "@iconify/icons-material-symbols/room-service";
 import checkCircle from "@iconify/icons-material-symbols/check-circle";
 import emailCheckOutline from "@iconify/icons-mdi/email-check-outline";
+import identificationCard from '@iconify/icons-mdi/identification-card';
 import restaurantIcon from "@iconify/icons-material-symbols/restaurant";
 import baselineLocationOn from "@iconify/icons-ic/baseline-location-on";
 import questionMark from "@iconify/icons-material-symbols/question-mark";
@@ -58,6 +62,7 @@ import iosArrowLeft24Filled from "@iconify/icons-fluent/ios-arrow-left-24-filled
 import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-filled";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
+import pendingActionsRounded from "@iconify/icons-material-symbols/pending-actions-rounded";
 
 export type IconType =
   | "pa-ca"
@@ -114,7 +119,15 @@ export type IconType =
   | "mail-envelope"
   | "calendar"
   | "delete"
-  | "bolivar";
+  | "bolivar"
+  | "pending-status"
+  | "rejected-status"
+  | "accepted-status"
+  | "retired-status"
+  | "started-status"
+  | "closed-status"
+  | "identity-document"
+  ;
 
 interface IconProps {
   /**
@@ -602,6 +615,63 @@ export const Icon = ({
           style={{ fontSize: size, ...style }}
         />
       );
+    case "pending-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={pendingActionsRounded}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "rejected-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={cancelIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "accepted-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={checkCircle}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "retired-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={clockRemove}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "started-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={clockCheck}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "closed-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={taskRounded}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "identity-document":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={identificationCard}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+
     case "bolivar":
       return <Bolivar className={finalClassName} width={size} height={size} />;
     default:

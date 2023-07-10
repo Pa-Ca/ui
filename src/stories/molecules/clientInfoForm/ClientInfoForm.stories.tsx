@@ -2,6 +2,7 @@ import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { ClientInfoForm } from "./ClientInfoForm";
 import useInputForm from "../../hooks/useInputForm";
+import OptionObject from "../../utils/objects/OptionObject";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -39,8 +40,24 @@ const Template: StoryFn<typeof ClientInfoForm> = (args: any) => {
   const email = useInputForm<string>("");
   const phone = useInputForm<string>("");
 
+  const identityDocument = useInputForm("");
+  const identityDocumentTypeOpt: OptionObject<string>[] = [
+    {label: "V", value: "V"},
+    {label: "E", value: "E"},
+    {label: "J", value: "J"},
+    {label: "G", value: "G"},
+    {label: "P", value: "P"},
+  ];
+  const identityDocumentType = useInputForm<OptionObject<string>>({
+    label: "",
+    value: "",
+  });
+
   return (
     <ClientInfoForm
+      identityDocument={identityDocument}
+      identityDocumentType={identityDocumentType}
+      identityDocumentTypeOpt={identityDocumentTypeOpt}
       firstName={firstName}
       lastName={lastName}
       email={email}
