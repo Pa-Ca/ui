@@ -15,6 +15,14 @@ type TableDTO = {
    * Table name
    */
   name: string;
+  /**
+   * Indicates if the table has a active sale
+   */
+  hasSale: boolean;
+  /**
+   * On click function
+   */
+  onClick: () => void;
 };
 
 export { type TableDTO as default };

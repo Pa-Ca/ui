@@ -1,3 +1,4 @@
+@import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
 
 .branch-sales--header {
@@ -17,20 +18,6 @@
   display: flex;
   padding-right: 5px;
   flex-direction: row;
-}
-.branch-sales--started-sales-header {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 40px;
-  justify-content: space-between;
-}
-.branch-sales--table-selector {
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 .branch-sales--modal-container {
   gap: 25px;
@@ -70,4 +57,62 @@
   text-align: center;
   align-items: center;
   flex-direction: column;
+}
+.branch-sales--tables-and-sale {
+  gap: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.branch-sales--tables {
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.branch-sales--table {
+  width: 300px;
+  display: flex;
+  cursor: pointer;
+  min-height: 60px;
+  border-radius: 10px;
+  align-items: center;
+  border-left-width: 15px;
+  border-left-style: solid;
+  transition: background-color 500ms ease-in-out;
+  background-color: var(--table-inactive-backgroung-color);
+}
+.branch-sales--table-available {
+  border-left-color: var(--product-available-color);
+}
+.branch-sales--table-unavailable {
+  border-left-color: var(--product-unavailable-color);
+}
+.branch-sales--tables-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.branch-sales--sale {
+  flex: 1;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.branch-sales--sale-header {
+  gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-sales--sale-header-buttons {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.branch-sales--table-selected {
+  background-color: var(--table-active-backgroung-color);
 }
