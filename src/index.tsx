@@ -87,11 +87,13 @@ export * from "./stories/utils/stringValidation";
 import useInputForm from "./stories/hooks/useInputForm";
 export { useInputForm };
 
+import TableObject from "./stories/utils/objects/TableObject";
 import OptionObject from "./stories/utils/objects/OptionObject";
 import ProductObject from "./stories/utils/objects/ProductObject";
 import ProductCategoryObject from "./stories/utils/objects/ProductCategoryObject";
 import ProductSubCategoryObject from "./stories/utils/objects/ProductSubCategoryObject";
 export type {
+  TableObject,
   OptionObject,
   ProductObject,
   ProductCategoryObject,

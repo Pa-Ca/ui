@@ -50,6 +50,14 @@ export interface LeftMenuProps {
    * onLogoutClick function
    */
   onLogoutClick: () => void;
+  /**
+   * On sales click
+   */
+  onSalesClick?: () => void;
+  /**
+   * On products click
+   */
+  onProductsClick?: () => void;
 }
 
 /**

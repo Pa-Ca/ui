@@ -2,6 +2,7 @@ import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { ClientInfoForm } from "./ClientInfoForm";
 import useInputForm from "../../hooks/useInputForm";
+import OptionObject from "../../utils/objects/OptionObject";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

@@ -55,6 +55,10 @@
     // Input select
     --odd-option-color: #{$white};
     --pair-option-color: #{$white-dark};
+
+    // Tables
+    --table-active-backgroung-color: #{$white};
+    --table-inactive-backgroung-color: #{$gray-light};
   }
 }
 
@@ -113,5 +117,9 @@
     // Input select
     --odd-option-color: #{$gray-dark};
     --pair-option-color: #{$black-light};
+
+    // Tables
+    --table-active-backgroung-color: #{$white};
+    --table-inactive-backgroung-color: #{$gray-dark};
   }
 }

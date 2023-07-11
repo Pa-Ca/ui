@@ -71,9 +71,7 @@ export default {
       },
     },
     table: {
-      table: {
-        disable: true,
-      },
+      control: "number",
     },
     allTables: {
       table: {
@@ -194,7 +192,7 @@ function generatePastSale(): PastSaleProps {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BranchSales> = (args: any) => {
-  const table = useInputForm(args.allTables[0]);
+  const table = args.allTables[parseInt(args.table)];
   const products = [
     {
       name: "Coca-cola",
@@ -257,10 +255,10 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
 
   return (
     <BranchSales
+      {...args}
       products={products}
       table={table}
       taxes={taxes}
-      {...args}
       onAddTax={onAddTax}
     />
   );
@@ -439,94 +437,84 @@ Default.args = {
   },
   allTables: [
     {
-      label: "Mesa 1",
-      value: {
-        id: 1000,
-        name: "Mesa 1",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1000,
+      name: "Mesa 1",
+      branchId: 1000,
+      deleted: false,
+      hasSale: true,
+      onClick: () => {},
     },
     {
-      label: "Mesa 2",
-      value: {
-        id: 1001,
-        name: "Mesa 2",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1001,
+      name: "Mesa 2",
+      branchId: 1000,
+      deleted: false,
+      hasSale: false,
+      onClick: () => {},
     },
     {
-      label: "Mesa 3",
-      value: {
-        id: 1002,
-        name: "Mesa 3",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1002,
+      name: "Mesa 3",
+      branchId: 1000,
+      deleted: false,
+      hasSale: false,
+      onClick: () => {},
     },
     {
-      label: "Mesa 4",
-      value: {
-        id: 1003,
-        name: "Mesa 4",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1003,
+      name: "Mesa 4",
+      branchId: 1000,
+      deleted: false,
+      hasSale: false,
+      onClick: () => {},
     },
     {
-      label: "Mesa 5",
-      value: {
-        id: 1004,
-        name: "Mesa 5",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1004,
+      name: "Mesa 5",
+      branchId: 1000,
+      deleted: false,
+      hasSale: true,
+      onClick: () => {},
     },
     {
-      label: "Mesa 6",
-      value: {
-        id: 1005,
-        name: "Mesa 6",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1005,
+      name: "Mesa 6",
+      branchId: 1000,
+      deleted: false,
+      hasSale: true,
+      onClick: () => {},
     },
     {
-      label: "Mesa 7",
-      value: {
-        id: 1006,
-        name: "Mesa 7",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1006,
+      name: "Mesa 7",
+      branchId: 1000,
+      deleted: false,
+      hasSale: false,
+      onClick: () => {},
     },
     {
-      label: "Mesa 8",
-      value: {
-        id: 1007,
-        name: "Mesa 8",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1007,
+      name: "Mesa 8",
+      branchId: 1000,
+      deleted: false,
+      hasSale: true,
+      onClick: () => {},
     },
     {
-      label: "Mesa 9",
-      value: {
-        id: 1008,
-        name: "Mesa 9",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1008,
+      name: "Mesa 9",
+      branchId: 1000,
+      deleted: false,
+      hasSale: true,
+      onClick: () => {},
     },
     {
-      label: "Mesa 10",
-      value: {
-        id: 1009,
-        name: "Mesa 10",
-        branchId: 1000,
-        deleted: false,
-      },
+      id: 1009,
+      name: "Mesa 10",
+      branchId: 1000,
+      deleted: false,
+      hasSale: true,
+      onClick: () => {},
     },
   ],
   page: 5,
