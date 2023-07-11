@@ -120,6 +120,7 @@ export type IconType =
   | "calendar"
   | "delete"
   | "bolivar"
+  | "unset-status"
   | "pending-status"
   | "rejected-status"
   | "accepted-status"
@@ -612,6 +613,14 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={deleteIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "unset-status":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={questionMark}
           style={{ fontSize: size, ...style }}
         />
       );
