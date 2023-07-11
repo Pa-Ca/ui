@@ -94,7 +94,6 @@ export const InputLongText = ({
         }}
         style={{ opacity: "0.75", lineHeight: "20px", ...style }}
         className={classnames(styles["input-long-text"], className)}
-        hidden={true}
         minRows={minRows}
         maxRows={maxRows}
         maxLength={maxLength}

@@ -230,7 +230,10 @@ export const InputTextSelect = <T extends any> ({
               style={{
                 width: "125px",
                 marginRight: "15px",
-                height,
+                borderBottomRightRadius: 0,
+                borderBottom: 0,
+                height: "2.8rem",
+                marginBottom: "1px",
                 borderWidth:
                   inputHookSelect.error == 1 || inputHookSelect.error == 2 ? "2.5px" : undefined,
               }}
