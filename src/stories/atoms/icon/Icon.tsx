@@ -152,6 +152,10 @@ interface IconProps {
    */
   className?: string;
   /**
+   * Check icon color
+   */
+  checkStyle?: boolean;
+  /**
    * Warning icon color
    */
   warningStyle?: boolean;
@@ -168,18 +172,21 @@ export const Icon = ({
   icon = "pa-ca",
   size = "1x",
   color = "#000000",
-  errorStyle = false,
+  checkStyle = false,
   warningStyle = false,
+  errorStyle = false,
   style,
   className,
   ...props
 }: IconProps) => {
   const finalClassName = classnames(
     styles.icon,
-    errorStyle
-      ? styles["icon--error"]
+    checkStyle
+      ? styles["icon--check"]
       : warningStyle
       ? styles["icon--warning"]
+      : errorStyle
+      ? styles["icon--error"]
       : "",
     className
   );
@@ -304,27 +311,35 @@ export const Icon = ({
           style={{ fontSize: size, ...style }}
         />
       );
-    case "cancel":
-      return (
-        <Iconify
-          className={finalClassName}
-          icon={cancelIcon}
-          style={{ fontSize: size, ...style }}
-        />
-      );
     case "check":
       return (
         <Iconify
           className={finalClassName}
           icon={checkCircle}
           style={{ fontSize: size, ...style }}
-        />
-      );
+          />
+          );
     case "check-outline":
       return (
         <Iconify
           className={finalClassName}
           icon={checkCircleOutline}
+          style={{ fontSize: size, ...style }}
+          />
+          );
+    case "warning":
+      return (
+        <Iconify
+        className={finalClassName}
+        icon={warningIcon}
+        style={{ fontSize: size, ...style }}
+        />
+        );
+    case "cancel":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={cancelIcon}
           style={{ fontSize: size, ...style }}
         />
       );
@@ -557,14 +572,6 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={cloudUpload}
-          style={{ fontSize: size, ...style }}
-        />
-      );
-    case "warning":
-      return (
-        <Iconify
-          className={finalClassName}
-          icon={warningIcon}
           style={{ fontSize: size, ...style }}
         />
       );

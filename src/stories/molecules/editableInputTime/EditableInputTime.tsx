@@ -163,8 +163,8 @@ export const EditableInputTime = ({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    hoursInputHook.setError(0);
-    minutesInputHook.setError(0);
+    hoursInputHook.setCode(0);
+    minutesInputHook.setCode(0);
     // We set the value to the current value (the unedited value)
     hoursInputHook.setValue(backupHour);
     minutesInputHook.setValue(backupMinutes);
@@ -197,14 +197,14 @@ export const EditableInputTime = ({
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
                 editableInputTextStyle["editable-input-text--input"],
-                (hoursInputHook.error == 1) ? textStyles["text--error-border"] :
-                (hoursInputHook.error == 2) ? textStyles["text--warning-border"] :
+                (hoursInputHook.code == 4) ? textStyles["text--error-border"] :
+                (hoursInputHook.code == 3) ? textStyles["text--warning-border"] :
                 "",
               )}
               style={{
                 width: "30px",
                 borderWidth:
-                  hoursInputHook.error == 1 || hoursInputHook.error == 2
+                  hoursInputHook.code == 4 || hoursInputHook.code == 3
                     ? "2.5px"
                     : undefined,
                 ...style,
@@ -227,14 +227,14 @@ export const EditableInputTime = ({
                 textStyles["text--h5"],
                 styles["editable-input-time--text"],
                 editableInputTextStyle["editable-input-text--input"],
-                (minutesInputHook.error == 1) ? textStyles["text--error-border"] :
-                (minutesInputHook.error == 2) ? textStyles["text--warning-border"] :
+                (minutesInputHook.code == 4) ? textStyles["text--error-border"] :
+                (minutesInputHook.code == 3) ? textStyles["text--warning-border"] :
                 "",
               )}
               style={{
                 width: "30px",
                 borderWidth:
-                  minutesInputHook.error == 1 || minutesInputHook.error == 2
+                  minutesInputHook.code == 4 || minutesInputHook.code == 3
                     ? "2.5px"
                     : undefined,
                 ...style,
@@ -310,33 +310,33 @@ export const EditableInputTime = ({
         className={classnames(
           editableInputTextStyle["editable-input-text--error-message"],
           className,
-          hoursInputHook.error == 1 ||
-            minutesInputHook.error == 1 ||
-            hoursInputHook.error == 2 ||
-            minutesInputHook.error == 2
+          hoursInputHook.code == 4 ||
+            minutesInputHook.code == 4 ||
+            hoursInputHook.code == 3 ||
+            minutesInputHook.code == 3
             ? editableInputTextStyle["editable-input-text--animation"]
             : editableInputTextStyle["editable-input-text--no-animation"]
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
-        {hoursInputHook.error == 1 ? (
+        {hoursInputHook.code == 4 ? (
           <>
             <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" errorStyle={true}>
-              {hoursInputHook.errorMessage}
+              {hoursInputHook.message}
             </Text>
           </>
-        ) : minutesInputHook.error == 1 ? (
+        ) : minutesInputHook.code == 4 ? (
           <>
             <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" errorStyle={true}>
-              {minutesInputHook.errorMessage}
+              {minutesInputHook.message}
             </Text>
           </>
         ) : null}
-        {hoursInputHook.error == 2 ? (
+        {hoursInputHook.code == 3 ? (
           <>
             <Icon
               icon="warning"
@@ -345,10 +345,10 @@ export const EditableInputTime = ({
             />
             <div style={{ width: "10px" }} />
             <Text type="h6" warningStyle={true}>
-              {hoursInputHook.errorMessage}
+              {hoursInputHook.message}
             </Text>
           </>
-        ) : minutesInputHook.error == 2 ? (
+        ) : minutesInputHook.code == 3 ? (
           <>
             <Icon
               icon="warning"
@@ -357,7 +357,7 @@ export const EditableInputTime = ({
             />
             <div style={{ width: "10px" }} />
             <Text type="h6" warningStyle={true}>
-              {minutesInputHook.errorMessage}
+              {minutesInputHook.message}
             </Text>
           </>
         ) : null}

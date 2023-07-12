@@ -13,22 +13,22 @@ export interface InputFormHook<T> {
    */
   setValue: React.Dispatch<React.SetStateAction<T>>;
   /**
-   * Indicates if there is no error = 0, 
-   * error = 1, warning = 2 in the input
+   * Indicates no code = 0, check = 1,
+   * log = 2, warning = 3, error = 4
    */
-  error: number;
+  code: number;
   /**
-   * Hook to change the current error
+   * Hook to change the current code
    */
-  setError: (error: number) => void;
+  setCode: (code: number) => void;
   /**
-   * Error message if any
+   * Code message if any
    */
-  errorMessage: string;
+  message: string;
   /**
-   * Hook to change the error message
+   * Hook to change the code message
    */
-  setErrorMessage: (message: string) => void;
+  setMessage: (message: string) => void;
 }
 
 /**
@@ -36,23 +36,23 @@ export interface InputFormHook<T> {
  */
 export default <T extends any>(
   initialValue: T,
-  initialErrorMessage: string = ""
+  initialmessage: string = ""
 ): InputFormHook<T> => {
   const [value, setValue_] = useState<T>(initialValue);
-  const [error, setError] = useState<number>(0);
-  const [errorMessage, setErrorMessage] = useState<string>(initialErrorMessage);
+  const [code, setCode] = useState<number>(0);
+  const [message, setMessage] = useState<string>(initialmessage);
 
   const setValue = (newValue: React.SetStateAction<T>) => {
-    if (error != 2) setError(0);
+    if (code != 2) setCode(0);
     setValue_(newValue);
   };
 
   return {
     value,
     setValue,
-    error,
-    setError,
-    errorMessage,
-    setErrorMessage,
+    code,
+    setCode,
+    message,
+    setMessage,
   };
 };

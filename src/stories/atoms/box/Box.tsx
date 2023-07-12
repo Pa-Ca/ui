@@ -59,6 +59,10 @@ interface BoxProps {
   */
   warningStyle?: boolean;
   /**
+   * Apply the check text style
+  */
+  checkStyle?: boolean;
+  /**
    * Box on Click function
    */
   onClick?: MouseEventHandler<HTMLDivElement>;
@@ -114,6 +118,7 @@ export const Box = ({
   borderBottomLeftRadius,
   errorStyle = false,
   warningStyle = false,
+  checkStyle = false,
   onClick,
   style,
   className,

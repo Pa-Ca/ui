@@ -50,10 +50,10 @@ export const ResetPasswordForm = ({
     let error = false;
 
     if (confirmPassword.value !== password.value) {
-      confirmPassword.setError(1);
+      confirmPassword.setCode(1);
       error = true;
     } else {
-      confirmPassword.setError(0);
+      confirmPassword.setCode(0);
     }
 
     if (error) return;
@@ -81,10 +81,10 @@ export const ResetPasswordForm = ({
 
         <Box
           className={
-            "input-text--error-container " +
+            "input-text--message-container " +
             (error
-              ? "input-text--error-animation"
-              : "input-text--error-no-animation")
+              ? "input-text--message-animation"
+              : "input-text--message-no-animation")
           }
         >
           {error && (

@@ -125,7 +125,7 @@ export const EditableInputSelect = <T extends any>({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    inputHook.setError(0);
+    inputHook.setCode(0);
     // We set the value to the current value (the unedited value)
     inputHook.setValue(backup);
   };
@@ -201,27 +201,36 @@ export const EditableInputSelect = <T extends any>({
         className={classnames(
           styles["editable-input-select--error-message"],
           className,
-          inputHook.error
+          inputHook.code
             ? styles["editable-input-select--animation"]
             : styles["editable-input-select--no-animation"]
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error == 1 && (
+        {inputHook.code == 4 && (
           <>
             <Icon icon="alert" errorStyle size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" errorStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
             </Text>
           </>
         )}
-        {inputHook.error == 2 && (
+        {inputHook.code == 3 && (
           <>
             <Icon icon="warning" warningStyle size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" warningStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
+            </Text>
+          </>
+        )}
+        {inputHook.code == 1 && (
+          <>
+            <Icon icon="check" checkStyle size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" checkStyle={true}>
+              {inputHook.message}
             </Text>
           </>
         )}

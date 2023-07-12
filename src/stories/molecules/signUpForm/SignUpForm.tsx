@@ -127,17 +127,17 @@ export const SignUpForm = ({
     let error = false;
 
     if (confirmPassword.value !== password!.value) {
-      confirmPassword.setError(1);
+      confirmPassword.setCode(1);
       error = true;
     } else {
-      confirmPassword.setError(0);
+      confirmPassword.setCode(0);
     }
 
     if (!terms.value) {
-      terms.setError(1);
+      terms.setCode(1);
       error = true;
     } else {
-      terms.setError(0);
+      terms.setCode(0);
     }
 
     if (business && !validateBusinessData()) {
@@ -271,17 +271,17 @@ export const SignUpForm = ({
             </Box>
             <Box
               className={
-                inputTextStyles["input-text--error-container"] +
+                inputTextStyles["input-text--message-container"] +
                 " " +
                 inputTextStyles[
-                  terms.error == 1
-                    ? "input-text--error-animation"
-                    : "input-text--error-no-animation"
+                  terms.code == 4
+                    ? "input-text--message-animation"
+                    : "input-text--message-no-animation"
                 ]
               }
               height="10px"
             >
-              {terms.error == 1 && (
+              {terms.code == 4 && (
                 <>
                   <Icon
                     icon="alert"

@@ -115,13 +115,14 @@ export const InputText = ({
     <div className={styles["input-text--container"]}>
       <Box
         className={styles["input-text--input-container"]}
-        warningStyle={inputHook.error == 2}
-        errorStyle={inputHook.error == 1}
+        warningStyle={inputHook.code == 3}
+        errorStyle={inputHook.code == 4}
+        checkStyle={inputHook.code == 1}
         style={{
           width,
           height,
           borderWidth:
-            inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
+            inputHook.code ? "2.5px" : undefined,
         }}
       >
         <div className={styles["input-text--content"]}>
@@ -148,10 +149,11 @@ export const InputText = ({
             <Text
               type="h6"
               weight={
-                inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
+                inputHook.code ? "600" : "400"
               }
-              warningStyle={inputHook.error == 2}
-              errorStyle={inputHook.error == 1}
+              warningStyle={inputHook.code == 3}
+              errorStyle={inputHook.code == 4}
+              checkStyle={inputHook.code == 4}
               style={{ zIndex: 2 }}
             >
               &nbsp;{label}&nbsp;
@@ -170,27 +172,36 @@ export const InputText = ({
       {showError && (
         <div
           className={
-            styles["input-text--error-container"] + " " +
-            (inputHook.error == 1 || inputHook.error == 2
-              ? styles["input-text--error-animation"]
-              : styles["input-text--error-no-animation"])
+            styles["input-text--message-container"] + " " +
+            (inputHook.code
+              ? styles["input-text--message-animation"]
+              : styles["input-text--message-no-animation"])
           }
         >
-          {inputHook.error == 1 && (
+          {inputHook.code == 4 && (
             <>
               <Icon icon="alert" errorStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
               <Text type="h7" errorStyle={true}>
-                {inputHook.errorMessage}
+                {inputHook.message}
               </Text>
             </>
           )}
-          {inputHook.error == 2 && (
+          {inputHook.code == 3 && (
             <>
               <Icon icon="warning" warningStyle={true} size="20px" />
               <div style={{ width: "10px" }} />
               <Text type="h7" warningStyle={true}>
-                {inputHook.errorMessage}
+                {inputHook.message}
+              </Text>
+            </>
+          )}
+          {inputHook.code == 1 && (
+            <>
+              <Icon icon="check" checkStyle={true} size="20px" />
+              <div style={{ width: "10px" }} />
+              <Text type="h7" checkStyle={true}>
+                {inputHook.message}
               </Text>
             </>
           )}

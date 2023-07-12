@@ -4,12 +4,13 @@
   color: var(--icon-color);
 }
 
-// Create an style for alerts and for errors
-
-.icon--error {
-  color: var(--error-color);
+// Create an style for alerts and for code messages
+.icon--check {
+  color: var(--check-color);
 }
-
 .icon--warning {
   color: var(--warning-color);
+}
+.icon--error {
+  color: var(--error-color);
 }

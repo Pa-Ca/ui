@@ -180,24 +180,24 @@ export const EditableInputLongText = ({
       </Box>
       <div
         className={
-          inputTextStyles["input-text--error-container"] +
+          inputTextStyles["input-text--message-container"] +
           " " +
-          (inputHook.error == 1 || inputHook.error == 2
-            ? inputTextStyles["input-text--error-animation"]
-            : inputTextStyles["input-text--error-no-animation"])
+          (inputHook.code
+            ? inputTextStyles["input-text--message-animation"]
+            : inputTextStyles["input-text--message-no-animation"])
         }
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error == 1 && (
+        {inputHook.code == 4 && (
           <>
             <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h7" errorStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
             </Text>
           </>
         )}
-        {inputHook.error == 2 && (
+        {inputHook.code == 3 && (
           <>
             <Icon
               icon="warning"
@@ -206,7 +206,20 @@ export const EditableInputLongText = ({
             />
             <div style={{ width: "10px" }} />
             <Text type="h7" warningStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
+            </Text>
+          </>
+        )}
+        {inputHook.code == 1 && (
+          <>
+            <Icon
+              icon="check"
+              checkStyle={true}
+              size="20px"
+            />
+            <div style={{ width: "10px" }} />
+            <Text type="h7" checkStyle={true}>
+              {inputHook.message}
             </Text>
           </>
         )}

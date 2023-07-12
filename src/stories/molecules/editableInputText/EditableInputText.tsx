@@ -146,13 +146,13 @@ export const EditableInputText = ({
 
   function validateInput(input: string | any) {
     if (type === "email" && !validateEmail(input)) {
-      inputHook.setErrorMessage("Correo inválido");
+      inputHook.setMessage("Correo inválido");
       return false;
     } else if (type === "phoneNumber" && !validatePhoneNumber(input)) {
-      inputHook.setErrorMessage("Número de teléfono inválido");
+      inputHook.setMessage("Número de teléfono inválido");
       return false;
     } else if (type === "url" && !validateUrl(input)) {
-      inputHook.setErrorMessage("Url inválido");
+      inputHook.setMessage("Url inválido");
       return false;
     } else {
       return true;
@@ -172,7 +172,7 @@ export const EditableInputText = ({
     // We validate the input
     // If its not valid, we show an error message and we do not save the value
     if (!validateInput(inputHook.value)) {
-      inputHook.setError(1);
+      inputHook.setCode(1);
       return;
     }
     // We disable the edit mode
@@ -186,7 +186,7 @@ export const EditableInputText = ({
     // We first disable the edit mode
     setEditValue(false);
     // Disabele the error message
-    inputHook.setError(0);
+    inputHook.setCode(0);
     // We set the value to the current value (the unedited value)
     inputHook.setValue(backup);
   };
@@ -219,16 +219,18 @@ export const EditableInputText = ({
               windowSize.resolutionType === "desktop"
                 ? textStyles["text--h5"]
                 : textStyles["text--p"],
-              inputHook.error == 1
+              inputHook.code == 4
                 ? textStyles["text--error-border"]
-                : inputHook.error == 2
+                : inputHook.code == 3
                 ? textStyles["text--warning-border"]
+                : inputHook.code == 1
+                ? textStyles["text--check-border"]
                 : "",
               className
             )}
             style={{
               borderWidth:
-                inputHook.error == 1 || inputHook.error == 2
+                inputHook.code
                   ? "2.5px"
                   : undefined,
               ...style,
@@ -277,27 +279,36 @@ export const EditableInputText = ({
         className={classnames(
           styles["editable-input-text--error-message"],
           className,
-          inputHook.error
+          inputHook.code
             ? styles["editable-input-text--animation"]
             : styles["editable-input-text--no-animation"]
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error == 1 && (
+        {inputHook.code == 4 && (
           <>
             <Icon icon="alert" errorStyle size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" errorStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
             </Text>
           </>
         )}
-        {inputHook.error == 2 && (
+        {inputHook.code == 3 && (
           <>
             <Icon icon="warning" warningStyle size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" warningStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
+            </Text>
+          </>
+        )}
+        {inputHook.code == 1 && (
+          <>
+            <Icon icon="check" checkStyle size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" checkStyle={true}>
+              {inputHook.message}
             </Text>
           </>
         )}
