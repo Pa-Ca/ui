@@ -94,6 +94,7 @@ export const ClientInfoForm = ({
             inputHookSelect={identityDocumentType}
             inputHookSelectOptions={identityDocumentTypeOpt}
             label="Documento de Identidad" 
+            onlySelectOptions={true}
           />
           <Button
             fullWidth

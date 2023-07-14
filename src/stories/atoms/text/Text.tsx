@@ -56,6 +56,10 @@ interface TextProps {
   */
   warningStyle?: boolean;
   /**
+   * Apply the check text style
+  */
+  checkStyle?: boolean;
+  /**
    * Apply the hyperlink text style
    */
   hyperlinkStyle?: boolean;
@@ -82,6 +86,7 @@ export function Text({
   primaryButtonStyle = false,
   errorStyle = false,
   warningStyle = false,
+  checkStyle = false,
   hyperlinkStyle = false,
   highlightStyle = false,
   ...props
@@ -97,6 +102,7 @@ export function Text({
         primaryButtonStyle ? styles["text--button"] : "",
         errorStyle ? styles["text--error"] : "",
         warningStyle ? styles["text--warning"] : "",
+        checkStyle ? styles["text--check"] : "",
         hyperlinkStyle ? styles["text--hyperlink"] : "",
         highlightStyle ? styles["text--highlight"] : "",
         className,

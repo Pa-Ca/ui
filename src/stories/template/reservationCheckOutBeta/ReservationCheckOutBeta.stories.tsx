@@ -27,10 +27,10 @@ const amenities: AmenityObject[] = [
 const globalArgs = {
   color: "#EF7A08",
 
-  firstNameErrorMessage : "firstNameErrorMessage",
-  lastNameErrorMessage : "lastNameErrorMessage",
-  emailErrorMessage : "emailErrorMessage",
-  phoneErrorMessage : "phoneErrorMessage",
+  firstNamemessage : "firstNamemessage",
+  lastNamemessage : "lastNamemessage",
+  emailmessage : "emailmessage",
+  phonemessage : "phonemessage",
 
   getBranchData: () => {
     return {
@@ -113,19 +113,6 @@ const globalArgs = {
   ],
 
 };
-
-const dropdownOptions: UserDropdownElement[] = [
-  {
-    name: 'Edit Profile',
-    func: () => {},
-    icon: "pencil",
-  },
-  {
-    name: 'Logout',
-    func: () => {console.log("logout")},
-    icon: "logout",
-  },
-];
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

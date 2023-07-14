@@ -149,9 +149,9 @@ export const EditableInputTax = ({
     setEditValue(false);
 
     // Disabele the error message
-    nameInputHook.setError(0);
-    typeInputHook.setError(0);
-    valueInputHook.setError(0);
+    nameInputHook.setCode(0);
+    typeInputHook.setCode(0);
+    valueInputHook.setCode(0);
 
     // We set the value to the current value (the unedited value)
     nameInputHook.setValue(backupName);
@@ -295,38 +295,38 @@ export const EditableInputTax = ({
         className={classnames(
           editableInputTextStyle["editable-input-text--error-message"],
           className,
-          nameInputHook.error + valueInputHook.error + typeInputHook.error > 0
+          nameInputHook.code + valueInputHook.code + typeInputHook.code > 0
             ? editableInputTextStyle["editable-input-text--animation"]
             : editableInputTextStyle["editable-input-text--no-animation"]
         )}
         style={{ height: showError ? undefined : "0px" }}
       >
-        {nameInputHook.error == 1 ? (
+        {nameInputHook.code == 4 ? (
           <>
             <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.errorColor}>
-              {nameInputHook.errorMessage}
+              {nameInputHook.message}
             </Text>
           </>
-        ) : valueInputHook.error == 1 ? (
+        ) : valueInputHook.code == 4 ? (
           <>
             <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.errorColor}>
-              {valueInputHook.errorMessage}
+              {valueInputHook.message}
             </Text>
           </>
-        ) : typeInputHook.error == 1 ? (
+        ) : typeInputHook.code == 4 ? (
           <>
             <Icon icon="alert" color={styleVariables.errorColor} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.errorColor}>
-              {typeInputHook.errorMessage}
+              {typeInputHook.message}
             </Text>
           </>
         ) : null}
-        {nameInputHook.error == 2 ? (
+        {nameInputHook.code == 3 ? (
           <>
             <Icon
               icon="warning"
@@ -335,10 +335,10 @@ export const EditableInputTax = ({
             />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.warningColor}>
-              {nameInputHook.errorMessage}
+              {nameInputHook.message}
             </Text>
           </>
-        ) : valueInputHook.error == 2 ? (
+        ) : valueInputHook.code == 3 ? (
           <>
             <Icon
               icon="warning"
@@ -347,10 +347,10 @@ export const EditableInputTax = ({
             />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.warningColor}>
-              {valueInputHook.errorMessage}
+              {valueInputHook.message}
             </Text>
           </>
-        ) : typeInputHook.error == 2 ? (
+        ) : typeInputHook.code == 3 ? (
           <>
             <Icon
               icon="warning"
@@ -359,7 +359,44 @@ export const EditableInputTax = ({
             />
             <div style={{ width: "10px" }} />
             <Text type="h6" color={styleVariables.warningColor}>
-              {typeInputHook.errorMessage}
+              {typeInputHook.message}
+            </Text>
+          </>
+        ) : null}
+        {nameInputHook.code == 1 ? (
+          <>
+            <Icon
+              icon="check"
+              color={styleVariables.errorColor}
+              size="20px"
+            />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styleVariables.checkColor}>
+              {nameInputHook.message}
+            </Text>
+          </>
+        ) : valueInputHook.code == 1 ? (
+          <>
+            <Icon
+              icon="check"
+              color={styleVariables.errorColor}
+              size="20px"
+            />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styleVariables.checkColor}>
+              {valueInputHook.message}
+            </Text>
+          </>
+        ) : typeInputHook.code == 1 ? (
+          <>
+            <Icon
+              icon="check"
+              color={styleVariables.errorColor}
+              size="20px"
+            />
+            <div style={{ width: "10px" }} />
+            <Text type="h6" color={styleVariables.checkColor}>
+              {typeInputHook.message}
             </Text>
           </>
         ) : null}

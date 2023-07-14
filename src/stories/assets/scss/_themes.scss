@@ -4,15 +4,18 @@
 @media (prefers-color-scheme: light) {
   :root {
     // Base styles
-    --error-color: #{$red};
-    --cancel-color: #{$red};
     --main-color: #{$orange};
-    --select-color: #{$white-dark};
-    --warning-color: #{$yellow};
-    --background-color: #{$white};
-    --card-background-color: #{$white-dark};
     --alternative-color: #{$black};
+    --background-color: #{$white};
     --alternative-background-color: #{$white-dark};
+    --cancel-color: #{$red};
+    --select-color: #{$white-dark};
+    --card-background-color: #{$white-dark};
+    
+    //Code
+    --error-color: #{$red};
+    --check-color: #{$green};
+    --warning-color: #{$yellow};
 
     // Icons
     --icons-color: #{$black};
@@ -66,15 +69,18 @@
 @media (prefers-color-scheme: dark) {
   :root {
     // Base styles
-    --error-color: #{$red};
-    --cancel-color: #{$red};
     --main-color: #{$orange};
-    --select-color: #{$white-dark};
-    --warning-color: #{$yellow};
-    --background-color: #{$black-light};
-    --card-background-color: #{$gray-dark};
     --alternative-color: #{$white-dark};
+    --background-color: #{$black-light};
     --alternative-background-color: #{$gray-light};
+    --cancel-color: #{$red};
+    --select-color: #{$white-dark};
+    --card-background-color: #{$gray-dark};
+
+    //Code
+    --error-color: #{$red};
+    --check-color: #{$green};
+    --warning-color: #{$yellow};
 
     // Icons
     --icons-color: #{$white};

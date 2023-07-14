@@ -161,8 +161,8 @@ export const SaleProductList = ({
                   )
                 }
                 showError={
-                  taxesHook[index].nameInputHook.error +
-                    taxesHook[index].valueInputHook.error >
+                  taxesHook[index].nameInputHook.code +
+                    taxesHook[index].valueInputHook.code >
                   0
                 }
                 key={`sale-product-list--tax-${index}`}

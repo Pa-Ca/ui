@@ -77,7 +77,7 @@
   align-items: center;
   justify-content: center;
 }
-.input-text--error-container {
+.input-text--message-container {
   height: 25px;
   display: flex;
   flex-direction: row;
@@ -87,10 +87,10 @@
   animation-duration: 0.15s;
   animation-iteration-count: 2;
 }
-.input-text--error-animation {
+.input-text--message-animation {
   animation-name: shake;
 }
-.input-text--error-no-animation {
+.input-text--message-no-animation {
   animation-name: none;
 }
 

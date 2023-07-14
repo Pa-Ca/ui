@@ -23,7 +23,7 @@ export default {
     error: {
       control: "number",
     },
-    errorMessage: {
+    message: {
       control: "text",
     },
   },
@@ -34,12 +34,12 @@ const Template: StoryFn<typeof InputText> = (args: any) => {
   const value = useInputForm("");
 
   useEffect(() => {
-    value.setError(args.error);
+    value.setCode(args.error);
   }, [args.error]);
 
   useEffect(() => {
-    value.setErrorMessage(args.errorMessage);
-  }, [args.errorMessage]);
+    value.setMessage(args.message);
+  }, [args.message]);
 
   return (
     <>

@@ -59,12 +59,12 @@ export const RecoverPasswordForm = ({
 
         <Box
           className={
-            inputTextStyles["input-text--error-container"] +
+            inputTextStyles["input-text--message-container"] +
             " " +
             inputTextStyles[
               error
-                ? "input-text--error-animation"
-                : "input-text--error-no-animation"
+                ? "input-text--message-animation"
+                : "input-text--message-no-animation"
             ]
           }
         >

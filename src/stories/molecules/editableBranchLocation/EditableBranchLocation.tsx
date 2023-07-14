@@ -59,7 +59,7 @@ export const EditableBranchLocation = ({
     language: "es",
   });
 
-  const [error, setError] = useState(false);
+  const [code, setCode] = useState(false);
   const [center, setCenter] = useState({ lat: 0, lng: 0 })
 
   const latitude = useMemo(() => {
@@ -68,10 +68,10 @@ export const EditableBranchLocation = ({
       lat = googleMapsLink.match(/\@(-?[\d\.]*)/);
     }
     if (!lat) {
-      setError(true);
+      setCode(true);
     }
     else {
-      setError(false);
+      setCode(false);
     }
 
     return lat ? parseFloat(lat[1]) : 0;
@@ -83,10 +83,10 @@ export const EditableBranchLocation = ({
       long = googleMapsLink.match(/\@[-?\d\.]*\,([-?\d\.]*)/);
     }
     if (!long) {
-      setError(true);
+      setCode(true);
     }
     else {
-      setError(false);
+      setCode(false);
     }
 
     return long ? parseFloat(long[1]) : 0;
@@ -117,13 +117,13 @@ export const EditableBranchLocation = ({
     >
       <div
         className={
-          inputTextStyles["input-text--error-container"] + " " +
-          (error
-            ? inputTextStyles["input-text--error-animation"]
-            : inputTextStyles["input-text--error-no-animation"])
+          inputTextStyles["input-text--message-container"] + " " +
+          (code
+            ? inputTextStyles["input-text--message-animation"]
+            : inputTextStyles["input-text--message-no-animation"])
         }
       >
-        {error && (
+        {code && (
           <>
             <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />

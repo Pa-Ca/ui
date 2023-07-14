@@ -98,10 +98,10 @@ export const BusinessAccountInfo = ({
     let error = false;
 
     if (confirmPassword.value !== newPassword.value) {
-      confirmPassword.setError(1);
+      confirmPassword.setCode(1);
       error = true;
     } else {
-      confirmPassword.setError(0);
+      confirmPassword.setCode(0);
     }
 
     if (error) return;

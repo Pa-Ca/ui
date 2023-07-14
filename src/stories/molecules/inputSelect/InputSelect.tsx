@@ -169,13 +169,14 @@ export const InputSelect = <T extends any>({
       <Box
         className={inputTextStyles["input-text--input-container"]}
         innerRef={observer.ref}
-        warningStyle={inputHook.error == 2}
-        errorStyle={inputHook.error == 1}
+        warningStyle={inputHook.code == 3}
+        errorStyle={inputHook.code == 4}
+        checkStyle={inputHook.code == 1}
         style={{
           width,
           height,
           borderWidth:
-            inputHook.error == 1 || inputHook.error == 2 ? "2.5px" : undefined,
+            inputHook.code ? "2.5px" : undefined,
         }}
       >
         <div className={inputTextStyles["input-text--content"]}>
@@ -199,10 +200,11 @@ export const InputSelect = <T extends any>({
                 type="h6"
                 style={{ zIndex: 1 }}
                 weight={
-                  inputHook.error == 1 || inputHook.error == 2 ? "600" : "400"
+                  inputHook.code ? "600" : "400"
                 }
-                warningStyle={inputHook.error == 2}
-                errorStyle={inputHook.error == 1}
+                checkStyle={inputHook.code == 1}
+                warningStyle={inputHook.code == 3}
+                errorStyle={inputHook.code == 4}
               >
                 &nbsp;{label}&nbsp;
               </Text>
@@ -286,31 +288,40 @@ export const InputSelect = <T extends any>({
       </Box>
       <div
         className={
-          inputTextStyles["input-text--error-container"] +
+          inputTextStyles["input-text--message-container"] +
           " " +
           inputTextStyles[
-            inputHook.error == 1 || inputHook.error == 2
-              ? "input-text--error-animation"
-              : "input-text--error-no-animation"
+            inputHook.code
+              ? "input-text--message-animation"
+              : "input-text--message-no-animation"
           ]
         }
         style={{ height: showError ? undefined : "0px" }}
       >
-        {inputHook.error == 1 && (
+        {inputHook.code == 4 && (
           <>
             <Icon icon="alert" errorStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h7" errorStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
             </Text>
           </>
         )}
-        {inputHook.error == 2 && (
+        {inputHook.code == 3 && (
           <>
             <Icon icon="warning" warningStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h7" warningStyle={true}>
-              {inputHook.errorMessage}
+              {inputHook.message}
+            </Text>
+          </>
+        )}
+        {inputHook.code == 1 && (
+          <>
+            <Icon icon="check" checkStyle={true} size="20px" />
+            <div style={{ width: "10px" }} />
+            <Text type="h7" checkStyle={true}>
+              {inputHook.message}
             </Text>
           </>
         )}
