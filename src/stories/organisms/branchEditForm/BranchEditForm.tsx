@@ -12,6 +12,9 @@ import { EditableInputText } from "../../molecules/editableInputText/EditableInp
 import { EditableInputSelect } from "../../molecules/editableInputSelect/EditableInputSelect";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
 import { EditableBranchLocation } from "../../molecules/editableBranchLocation/EditableBranchLocation";
+import TaxObject from "../../utils/objects/TaxObject";
+import { EditableInputTax } from "../../molecules/editableInputTax/EditableInputTax";
+import { Icon } from "../../atoms/icon/Icon";
 
 interface BranchEditFormProps {
   /**
@@ -72,6 +75,10 @@ interface BranchEditFormProps {
    * Closing time minutes of the branch
    */
   closingTimeMinute: InputFormHook<string>;
+  /**
+   * Taxes
+   */
+  taxes: TaxObject[];
 
   /**
    * Function that is executed when the name is saved
@@ -121,6 +128,10 @@ interface BranchEditFormProps {
    * On delete branch
    */
   onDeleteBranch: () => void;
+  /**
+   * On add tax
+   */
+  onAddTax: () => void;
 
   /**
    * Business email
@@ -167,6 +178,7 @@ export const BranchEditForm = ({
   openingTimeMinute,
   closingTimeHour,
   closingTimeMinute,
+  taxes,
 
   onSaveName = () => {},
   onSaveDescription = () => {},
@@ -180,6 +192,7 @@ export const BranchEditForm = ({
   onSaveOpeningTime = () => {},
   onSaveClosingTime = () => {},
   onDeleteBranch = () => {},
+  onAddTax = () => {},
 
   email,
   typeOptions,
@@ -190,8 +203,24 @@ export const BranchEditForm = ({
   color,
   ...props
 }: BranchEditFormProps) => {
+  const [taxInfo, setTaxInfo] = useState(false);
   const [deleteBranch, setDeleteBranch] = useState(false);
   const emailInput = useInputForm("");
+
+  const taxesHook = taxes.map((tax) => {
+    let type;
+    if (tax.type === 0) {
+      type = "%";
+    } else {
+      type = "$";
+    }
+
+    return {
+      nameInputHook: useInputForm(tax.name),
+      valueInputHook: useInputForm(tax.value.toString()),
+      typeInputHook: useInputForm(type),
+    };
+  });
 
   const locationName = useMemo(() => {
     const match = mapsLink.value.match(/\/place\/(.*?)\//);
@@ -359,22 +388,70 @@ export const BranchEditForm = ({
         </Box>
       </Box>
 
-      <Box className={styles["branch-edit-form--description-container"]}>
-        <Text weight="400" highlightStyle>
-          {" "}
-          Descripción{" "}
-        </Text>
-        <Box height="10px" />
-        <EditableInputLongText
-          useEditIcons
-          inputHook={description}
-          minRows={6}
-          maxRows={6}
-          width="100%"
-          height="100%"
-          maxLength={480}
-          saveValueFunction={onSaveDescription}
-        />
+      <Box className={styles["branch-edit-form--two-column-row"]}>
+        <Box className={styles["branch-edit-form--description-container"]}>
+          <Text weight="400" highlightStyle>
+            {" "}
+            Descripción{" "}
+          </Text>
+          <Box height="10px" />
+          <EditableInputLongText
+            useEditIcons
+            inputHook={description}
+            minRows={6}
+            maxRows={6}
+            width="100%"
+            height="100%"
+            maxLength={480}
+            saveValueFunction={onSaveDescription}
+          />
+        </Box>
+
+        <Box>
+          <Box style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <Text weight="400" highlightStyle>
+              {" "}
+              Tarifas por defecto{" "}
+            </Text>
+            <Box style={{ cursor: "pointer" }} onClick={() => setTaxInfo(true)}>
+              <Icon icon="info" size="20px" />
+            </Box>
+          </Box>
+
+          {taxes.map((tax, index) => {
+            return (
+              <Box key={`sale-product-list--tax-${index}`}>
+                <EditableInputTax
+                  {...tax}
+                  editable
+                  hideSubtotal
+                  nameInputHook={taxesHook[index].nameInputHook}
+                  valueInputHook={taxesHook[index].valueInputHook}
+                  typeInputHook={taxesHook[index].typeInputHook}
+                  saveValueFunction={() =>
+                    tax.saveValueFunction(
+                      taxesHook[index].nameInputHook,
+                      taxesHook[index].typeInputHook,
+                      taxesHook[index].valueInputHook,
+                    )
+                  }
+                  showError={
+                    taxesHook[index].nameInputHook.error +
+                      taxesHook[index].valueInputHook.error >
+                    0
+                  }
+                  key={`sale-product-list--tax-${index}`}
+                />
+              </Box>
+            );
+          })}
+
+          <Button size="box" onClick={onAddTax} style={{ marginTop: "10px" }}>
+            <Box className={styles["sale-product-list--button"]}>
+              <Text weight="600">Agregar Tarifa</Text>
+            </Box>
+          </Button>
+        </Box>
       </Box>
 
       <Box className={styles["branch-edit-form--precise-location-container"]}>
@@ -460,6 +537,34 @@ export const BranchEditForm = ({
               </Box>
             </Button>
           </Box>
+        </Box>
+      </Modal>
+
+      <Modal open={taxInfo} setOpen={setTaxInfo}>
+        <Box className={styles["branch-edit-form--modal-container-info"]}>
+          <Text
+            type="h4"
+            weight="600"
+            className={styles["branch-edit-form--modal-text"]}
+          >
+            Taxes por defecto
+          </Text>
+          <Text
+            type="h6"
+            weight="400"
+            className={styles["branch-edit-form--modal-text"]}
+          >
+            Las tarifas por defecto se crean automáticamente cuando se inicia
+            una venta y modifican el precio total de la venta. Puedes agregar
+            tantas tarifas como desees. En cada venta se pueden modificar las
+            tarifas por defecto.
+          </Text>
+
+          <Button primary fullWidth onClick={() => setTaxInfo(false)}>
+            <Box className={styles["branch-edit-form--modal-button"]}>
+              <Text weight="600">Entendido</Text>
+            </Box>
+          </Button>
         </Box>
       </Modal>
     </Box>

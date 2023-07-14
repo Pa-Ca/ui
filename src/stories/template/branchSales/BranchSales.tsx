@@ -225,7 +225,7 @@ export const BranchSales = ({
         )}
       </>
     );
-  }, [table, products, taxes, allProducts, categories, subCategories]);
+  }, [table, table?.hasSale, products, taxes, allProducts, categories, subCategories]);
 
   return (
     <PageWrapper headerArgs={header}>

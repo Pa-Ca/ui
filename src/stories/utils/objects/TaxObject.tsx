@@ -20,11 +20,11 @@ type TaxObject = {
     name: InputFormHook<string>,
     type: InputFormHook<string>,
     value: InputFormHook<string>
-  ) => void,
+  ) => Promise<void>,
   /**
    * On delete function
    */
-  deleteValueFunction: () => void,
+  deleteValueFunction: () => Promise<void>,
 };
 
 export { type TaxObject as default };

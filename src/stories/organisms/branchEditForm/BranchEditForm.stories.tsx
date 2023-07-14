@@ -235,5 +235,21 @@ Default.args = {
       value: "chacao",
     },
   ],
+  taxes: [
+    {
+      name: "IVA",
+      value: 12,
+      type: 0,
+      saveValueFunction: () => {},
+      deleteValueFunction: () => {},
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: 0,
+      saveValueFunction: () => {},
+      deleteValueFunction: () => {},
+    },
+  ],
   mapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
 };

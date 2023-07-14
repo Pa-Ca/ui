@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import styles from "./editable.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
@@ -44,6 +44,20 @@ export const Editable = ({
   useIcons = false,
   ...props
 }: EditableProps) => {
+  const [prevEditable, setPrevEditable] = useState(false);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    if (editable && !prevEditable) {
+      setAnimate(false);
+      setPrevEditable(editable);
+    } else if (!editable) {
+      setPrevEditable(editable);
+    } else {
+      setAnimate(true);
+    }
+  }, [editable, edit]);
+
   const width = useMemo(() => (useIcons ? "65px" : "220px"), [useIcons]);
 
   return (
@@ -51,18 +65,25 @@ export const Editable = ({
       className={styles["editable--container"]}
       style={{ display: editable ? "flex" : "none" }}
     >
-      {editable && (
-        <Box
-          className={styles["editable--editable-icon"]}
-          onClick={onPencilClick}       
-        >
-          <Icon
-            icon="pencil"
-            size="25px"
-            className={edit ? styles['editable--edit-animation'] : styles['editable--edit-animation-reverse']}
-          />
-        </Box>
-      )}
+      <Box
+        className={styles["editable--editable-icon"]}
+        onClick={onPencilClick}
+        style={{
+          display: editable ? undefined : "none",
+        }}
+      >
+        <Icon
+          icon="pencil"
+          size="25px"
+          className={
+            animate && edit
+              ? styles["editable--edit-animation"]
+              : animate && !edit
+              ? styles["editable--edit-animation-reverse"]
+              : ""
+          }
+        />
+      </Box>
       <Box
         className={styles["editable--edit-button-container"]}
         style={{

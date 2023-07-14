@@ -356,4 +356,20 @@ Default.args = {
       value: "chacao",
     },
   ],
+  taxes: [
+    {
+      name: "IVA",
+      value: 12,
+      type: 0,
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: 0,
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
+    },
+  ],
 };

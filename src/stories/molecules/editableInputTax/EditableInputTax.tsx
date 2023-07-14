@@ -44,6 +44,10 @@ export interface EditableInputTaxProps {
    */
   deleteValueFunction: () => void;
   /**
+   * Hide subtotal value
+   */
+  hideSubtotal?: boolean;
+  /**
    * Indicates if the space should be placed to show possible errors
    */
   showError?: boolean;
@@ -75,8 +79,9 @@ export const EditableInputTax = ({
   typeInputHook,
   totalValue = 0,
   editable = true,
-  saveValueFunction = () => { },
-  deleteValueFunction = () => { },
+  saveValueFunction = () => {},
+  deleteValueFunction = () => {},
+  hideSubtotal = false,
   showError = true,
   width,
   height,
@@ -263,16 +268,19 @@ export const EditableInputTax = ({
         </Box>
 
         <Box className={styles["editable-input-tax--editable"]}>
-          <Box>
-            <Text type="h5" weight="400">
-              {typeInputHook.value === "%"
-                ? (
-                    totalValue *
-                    (parseFloat(valueInputHook.value) / 100)
-                  ).toFixed(2)
-                : parseFloat(valueInputHook.value)}$
-            </Text>
-          </Box>
+          {!hideSubtotal && (
+            <Box>
+              <Text type="h5" weight="400">
+                {typeInputHook.value === "%"
+                  ? (
+                      totalValue *
+                      (parseFloat(valueInputHook.value) / 100)
+                    ).toFixed(2)
+                  : parseFloat(valueInputHook.value)}
+                $
+              </Text>
+            </Box>
+          )}
           <Editable
             useIcons
             edit={editValue}

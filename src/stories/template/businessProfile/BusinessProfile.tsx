@@ -22,6 +22,7 @@ import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
 
 import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
+import TaxObject from "../../utils/objects/TaxObject";
 
 interface BusinessProfileProps {
   /**
@@ -177,6 +178,10 @@ interface BusinessProfileProps {
    * Google maps API key
    * */
   mapsApiKey: string;
+  /**
+   * Taxes
+   */
+  taxes: TaxObject[];
 
   /**
    * Function that is executed when the branch name is saved
@@ -226,6 +231,10 @@ interface BusinessProfileProps {
    * On delete branch
    */
   onDeleteBranch: () => void;
+  /**
+   * On add tax
+   */
+  onAddTax: () => void;
 
   /**
    * On save profile picture TODO: Check if the type is correct
@@ -277,6 +286,7 @@ export const BusinessProfile = ({
   branchClosingTimeHour,
   branchClosingTimeMinute,
   mapsApiKey,
+  taxes,
 
   onSaveBranchName,
   onSaveBranchDescription,
@@ -292,6 +302,7 @@ export const BusinessProfile = ({
   onDeleteBranch,
   onSaveProfilePicture,
   uploadProfilePicture,
+  onAddTax,
 
   ...props
 }: BusinessProfileProps) => {
@@ -433,38 +444,42 @@ export const BusinessProfile = ({
               </Text>
               <Box height="16px" />
               {haveBranch ? (
-                <BranchEditForm
-                  name={branchName}
-                  description={branchDescription}
-                  location={branchLocation}
-                  phone={branchPhone}
-                  capacity={branchCapacity}
-                  averageReserveTimeHours={branchAverageReserveTimeHours}
-                  averageReserveTimeMinutes={branchAverageReserveTimeMinutes}
-                  price={branchPrice}
-                  mapsLink={branchMapsLink}
-                  type={branchType}
-                  typeOptions={branchTypeOptions}
-                  locationOptions={branchLocationOptions}
-                  openingTimeHour={branchOpeningTimeHour}
-                  openingTimeMinute={branchOpeningTimeMinute}
-                  closingTimeHour={branchClosingTimeHour}
-                  closingTimeMinute={branchClosingTimeMinute}
-                  mapsApiKey={mapsApiKey}
-                  email={email.value}
-                  onSaveName={onSaveBranchName}
-                  onSaveDescription={onSaveBranchDescription}
-                  onSaveLocation={onSaveBranchLocation}
-                  onSavePhone={onSaveBranchPhone}
-                  onSaveCapacity={onSaveBranchCapacity}
-                  onSaveAverageReserveTime={onSaveBranchAverageReserveTime}
-                  onSavePrice={onSaveBranchPrice}
-                  onSaveType={onSaveBranchType}
-                  onSaveMapsLink={onSaveBranchMapsLink}
-                  onSaveOpeningTime={onSaveBranchOpeningTime}
-                  onSaveClosingTime={onSaveBranchClosingTime}
-                  onDeleteBranch={onDeleteBranch}
-                />
+                <Box key={`business-profile--branch-edit-form-taxes-${taxes.length}`}>
+                  <BranchEditForm
+                    name={branchName}
+                    description={branchDescription}
+                    location={branchLocation}
+                    phone={branchPhone}
+                    capacity={branchCapacity}
+                    averageReserveTimeHours={branchAverageReserveTimeHours}
+                    averageReserveTimeMinutes={branchAverageReserveTimeMinutes}
+                    price={branchPrice}
+                    mapsLink={branchMapsLink}
+                    type={branchType}
+                    typeOptions={branchTypeOptions}
+                    locationOptions={branchLocationOptions}
+                    openingTimeHour={branchOpeningTimeHour}
+                    openingTimeMinute={branchOpeningTimeMinute}
+                    closingTimeHour={branchClosingTimeHour}
+                    closingTimeMinute={branchClosingTimeMinute}
+                    mapsApiKey={mapsApiKey}
+                    email={email.value}
+                    taxes={taxes}
+                    onSaveName={onSaveBranchName}
+                    onSaveDescription={onSaveBranchDescription}
+                    onSaveLocation={onSaveBranchLocation}
+                    onSavePhone={onSaveBranchPhone}
+                    onSaveCapacity={onSaveBranchCapacity}
+                    onSaveAverageReserveTime={onSaveBranchAverageReserveTime}
+                    onSavePrice={onSaveBranchPrice}
+                    onSaveType={onSaveBranchType}
+                    onSaveMapsLink={onSaveBranchMapsLink}
+                    onSaveOpeningTime={onSaveBranchOpeningTime}
+                    onSaveClosingTime={onSaveBranchClosingTime}
+                    onDeleteBranch={onDeleteBranch}
+                    onAddTax={onAddTax}
+                  />
+                </Box>
               ) : (
                 <Box>
                   {" "}

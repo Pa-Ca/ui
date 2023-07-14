@@ -69,6 +69,11 @@
   align-items: center;
   flex-direction: column;
 }
+.branch-edit-form--modal-container-info {
+  @extend .branch-edit-form--modal-container;
+
+  max-width: 550px !important;
+}
 .branch-edit-form--modal-text {
   width: 100%;
   display: flex;

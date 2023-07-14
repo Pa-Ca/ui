@@ -21,7 +21,7 @@ import youtubeIcon from "@iconify/icons-mdi/youtube";
 import warningIcon from "@iconify/icons-uiw/warning";
 import facebookIcon from "@iconify/icons-mdi/facebook";
 import calendarIcon from "@iconify/icons-mdi/calendar";
-import clockCheck from '@iconify/icons-mdi/clock-check';
+import clockCheck from "@iconify/icons-mdi/clock-check";
 import paperPlane from "@iconify/icons-ion/paper-plane";
 import alertCircle from "@iconify/icons-mdi/alert-circle";
 import clockRemove from "@iconify/icons-mdi/clock-remove";
@@ -43,13 +43,14 @@ import plusCircle24 from "@iconify/icons-octicon/plus-circle-24";
 import checkBox from "@iconify/icons-material-symbols/check-box";
 import spaRounded from "@iconify/icons-material-symbols/spa-rounded";
 import instagramLogoFill from "@iconify/icons-ph/instagram-logo-fill";
+import infoOutline from "@iconify/icons-material-symbols/info-outline";
 import cloudUpload from "@iconify/icons-material-symbols/cloud-upload";
-import taskRounded from '@iconify/icons-material-symbols/task-rounded';
+import taskRounded from "@iconify/icons-material-symbols/task-rounded";
 import lensOutline from "@iconify/icons-material-symbols/lens-outline";
 import roomService from "@iconify/icons-material-symbols/room-service";
 import checkCircle from "@iconify/icons-material-symbols/check-circle";
 import emailCheckOutline from "@iconify/icons-mdi/email-check-outline";
-import identificationCard from '@iconify/icons-mdi/identification-card';
+import identificationCard from "@iconify/icons-mdi/identification-card";
 import restaurantIcon from "@iconify/icons-material-symbols/restaurant";
 import baselineLocationOn from "@iconify/icons-ic/baseline-location-on";
 import questionMark from "@iconify/icons-material-symbols/question-mark";
@@ -128,7 +129,7 @@ export type IconType =
   | "started-status"
   | "closed-status"
   | "identity-document"
-  ;
+  | "info";
 
 interface IconProps {
   /**
@@ -680,9 +681,16 @@ export const Icon = ({
           style={{ fontSize: size, ...style }}
         />
       );
-
     case "bolivar":
       return <Bolivar className={finalClassName} width={size} height={size} />;
+    case "info":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={infoOutline}
+          style={{ fontSize: size, ...style }}
+        />
+      );
     default:
       return (
         <Iconify
