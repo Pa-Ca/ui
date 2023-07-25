@@ -1,4 +1,5 @@
 @import "../../assets/scss/variables.module.scss";
+@import "../../assets/scss/themes";
 
 .branch-content-summary--container {
   display: flex;
@@ -42,7 +43,7 @@
   align-items: center;
 }
 .branch-content-summary--input {
-  border: 1px solid #79747e;
+  border: 1px solid var(--input-border-color);
   border-radius: 6px;
   outline: none;
 }

@@ -18,7 +18,15 @@ interface InputDateProps {
   /**
    * Date input hook
    */
-  inputHook: InputFormHook<Date>;
+  inputHook: InputFormHook<Date|null>;
+  /**
+  * Indicates if show clean date button
+  */
+  cleanDateIcon?: boolean;
+  /**
+  * Indicates if input is disabled
+  */
+  disabled?: boolean;
   /**
    * Label to be displayed at the top of the input
    */
@@ -42,6 +50,8 @@ interface InputDateProps {
  */
 export const InputDate = ({
   inputHook,
+  cleanDateIcon,
+  disabled,
   label = "Fecha",
   required,
   minDate,
@@ -76,6 +86,7 @@ export const InputDate = ({
         checkStyle={inputHook.code == 1}
         warningStyle={inputHook.code == 3}
         errorStyle={inputHook.code == 4}
+        disabledStyle={disabled}
         style={{
           width,
           height,
@@ -84,7 +95,7 @@ export const InputDate = ({
         }}
         innerRef={observer.ref}
       >
-        <div className={inputTextStyles["input-text--content"]}>
+        <div className={styles["input-date--content"]}>
           <DatePicker
             selected={inputHook.value}
             onChange={(date: Date) => inputHook.setValue(date)}
@@ -92,7 +103,16 @@ export const InputDate = ({
             customInput={<DateInputButton />}
             popperClassName={styles["react-datepicker--container"]}
             minDate={minDate}
+            disabled={disabled}
           />
+
+          {cleanDateIcon &&
+            <Box className={styles["input-date--clean-icon-box"]}
+              onClick={()=>{inputHook.setValue(null)}}>
+              <Icon className={styles["input-date--clean-icon-color"]}
+               icon="cancel" size="30px" />
+            </Box>
+          }
 
           <div className={inputTextStyles["input-text--label"]}>
             {required && (

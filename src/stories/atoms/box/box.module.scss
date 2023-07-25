@@ -24,3 +24,7 @@
 .box--error-border {
   border-color: var(--error-color);
 }
+
+.box--disabled{
+  opacity: 0.5;
+}

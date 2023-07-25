@@ -94,6 +94,7 @@ const Template: StoryFn<typeof ReserveDetails> = (args: any) => {
   const hourOut = useInputForm({ value: null, label: "" });
   const persons = useInputForm("");
   const occasion = useInputForm("");
+  const tables = useInputForm("");
 
   return (
     <ReserveDetails
@@ -104,6 +105,7 @@ const Template: StoryFn<typeof ReserveDetails> = (args: any) => {
       hourOut={hourOut}
       validHoursOut={validHours}
       persons={persons}
+      tables={tables}
       occasion={occasion}
     />
   );

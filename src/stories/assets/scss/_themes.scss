@@ -20,6 +20,7 @@
     // Icons
     --icons-color: #{$black};
     --select-color: #{$white-dark};
+    --icons-color-reversed: #{$white};
 
     // Text
     --text-color: #{$black};
@@ -55,6 +56,9 @@
     --paginable-active-color: #{$black};
     --paginable-inactive-color: #{$gray-light};
 
+    // Input 
+    --input-border-color: #{$gray};
+
     // Input select
     --odd-option-color: #{$white};
     --pair-option-color: #{$white-dark};
@@ -85,6 +89,7 @@
     // Icons
     --icons-color: #{$white};
     --select-color: #{$black};
+    --icons-color-reversed: #{$black};
 
     // Status Colors
     --unset-status-color: #{$black};
@@ -119,6 +124,9 @@
     // Paginable icons color
     --paginable-active-color: #{$white-dark};
     --paginable-inactive-color: #{$gray};
+
+    // Input 
+    --input-border-color: #{$gray};
 
     // Input select
     --odd-option-color: #{$gray-dark};

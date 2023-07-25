@@ -63,6 +63,10 @@ interface BoxProps {
   */
   checkStyle?: boolean;
   /**
+   * Apply the disabled style
+  */
+  disabledStyle?: boolean;
+  /**
    * Box on Click function
    */
   onClick?: MouseEventHandler<HTMLDivElement>;
@@ -119,6 +123,7 @@ export const Box = ({
   errorStyle = false,
   warningStyle = false,
   checkStyle = false,
+  disabledStyle = false,
   onClick,
   style,
   className,
@@ -136,6 +141,7 @@ export const Box = ({
         weakShadow ? styles["box--weak-shadow"] : "",
         errorStyle ? styles["box--error-border"] : "",
         warningStyle ? styles["box--warning-border"] : "",
+        disabledStyle ? styles["box--disabled"] : "",
         className,
       ].join(" ")}
       style={{
