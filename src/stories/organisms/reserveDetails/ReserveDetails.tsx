@@ -25,7 +25,7 @@ interface ReserveDetailsProps {
   /**
    * Current date
    */
-  date: InputFormHook<Date>;
+  date: InputFormHook<Date|null>;
   /**
    * Current entry hour
    */

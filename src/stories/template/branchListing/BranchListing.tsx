@@ -15,7 +15,7 @@ interface BranchListing {
   /**
    * Date search search input hook
    */
-  date: InputFormHook<Date>;
+  date: InputFormHook<Date|null>;
   /**
    * Hour search input hook
    */

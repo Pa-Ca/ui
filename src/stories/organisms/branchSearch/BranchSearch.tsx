@@ -15,7 +15,7 @@ interface BranchSearchProps {
   /**
    * Date input hook
    */
-  date: InputFormHook<Date>;
+  date: InputFormHook<Date|null>;
   /**
    * Hour input hook
    */

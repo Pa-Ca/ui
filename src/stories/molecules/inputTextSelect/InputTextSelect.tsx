@@ -239,10 +239,7 @@ export const InputTextSelect = <T extends any> ({
               style={{
                 width: "125px",
                 marginRight: "15px",
-                borderBottomRightRadius: 0,
-                borderBottom: 0,
-                height: "2.8rem",
-                marginBottom: "1px",
+                border: "0 1px 0 0 solid",
                 borderWidth:
                   inputHookSelect.code == 4 || inputHookSelect.code == 3 ? "2.5px" : undefined,
               }}

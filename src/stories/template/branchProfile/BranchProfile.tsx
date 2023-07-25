@@ -25,7 +25,7 @@ interface BranchProfileProps {
   /**
    * Current date input hook
    */
-  date: InputFormHook<Date>;
+  date: InputFormHook<Date|null>;
   /**
    * Current hour input hook
    */

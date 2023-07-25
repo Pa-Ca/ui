@@ -72,7 +72,7 @@ interface BranchReservesProps {
   /**
    * Reservation date input hook
    */
-  date: InputFormHook<Date>;
+  date: InputFormHook<Date|null>;
   /**
    * Reservation hourIn input hook
    */

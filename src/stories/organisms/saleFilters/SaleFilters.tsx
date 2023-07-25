@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import styles from "./reservationFilters.module.scss";
+import styles from "./saleFilters.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
 import { InputText } from "../../molecules/inputText/InputText";
 import { InputDate } from "../../molecules/inputDate/InputDate";
-import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import { InputTextSelect } from "../../molecules/inputTextSelect/InputTextSelect";
 import { Button } from "../../atoms/button/Button";
 
-interface ReservationFiltersProps {
+interface SaleFiltersProps {
   /**
-   * Reservation startDate
+   * Sale startDate
    */
   startDate: InputFormHook<Date|null>;
   /**
-   * Reservation endDate
+   * Sale endDate
    */
   endDate: InputFormHook<Date|null>;
-  /**
-   * Reservation entry hour
-   */
-  status: InputFormHook<OptionObject<string | null>>;
-  /**
-   * Valid status
-   */
-  statusOptions?: OptionObject<string>[];
   /**
    * Identity document options Option Object
    */
@@ -40,11 +31,11 @@ interface ReservationFiltersProps {
    */
   identityDocument: InputFormHook<string>;
   /**
-   * Full client name of the reservation owner
+   * Full client name of the sale owner
    */
   fullName: InputFormHook<string>;
   /**
-   * Reservation entry hour
+   * Sale entry hour
    */
   hourIn: InputFormHook<OptionObject<string | null>>;
   /**
@@ -62,17 +53,15 @@ interface ReservationFiltersProps {
   /**
    * Submit fuction
    */
-  onGetReservationsFiltered: () => void;
+  onGetSalesFiltered: () => void;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const ReservationFilters = ({
+export const SaleFilters = ({
   startDate,
   endDate,
-  status,
-  statusOptions,
   identityDocumentTypeOpt = [
     {label: "V", value: "V"},
     {label: "E", value: "E"},
@@ -85,9 +74,9 @@ export const ReservationFilters = ({
   fullName,
   width,
   height,
-  onGetReservationsFiltered,
+  onGetSalesFiltered,
   ...props
-}: ReservationFiltersProps) => {
+}: SaleFiltersProps) => {
 
   const [startDateSelected, setStartDateSelected] = useState(false);
   useEffect(() => {
@@ -102,23 +91,19 @@ export const ReservationFilters = ({
       value: "",
     });
     identityDocument.setValue("");
-    status.setValue({
-      label: "",
-      value: "",
-    });
     fullName.setValue("");
     startDate.setValue(null);
     endDate.setValue(null);
   };
   return (
     <Box
-      className={styles["reservation-filters--container"]}
+      className={styles["sale-filters--container"]}
       style={{ width, height }}
       {...props}
     >
       <Box>
         {/* Row 1 */}
-        <Box className={styles["reservation-filters--input-container"]}>
+        <Box className={styles["sale-filters--input-container"]}>
           <Box width="100%">
             <InputTextSelect
               required
@@ -137,17 +122,9 @@ export const ReservationFilters = ({
               label="Nombre Completo"
             />
           </Box>
-          <Box width="100%">
-          <InputSelect
-              width="100%"
-              label="Estatus"
-              inputHook={status}
-              options={statusOptions}
-            />
-          </Box>
         </Box>
         {/* Row 2 */}
-        <Box className={styles["reservation-filters--input-container"]}>
+        <Box className={styles["sale-filters--input-container"]}>
           <Box width="100%">
             <InputDate cleanDateIcon label="Desde" inputHook={startDate} />
           </Box>
@@ -161,7 +138,7 @@ export const ReservationFilters = ({
                 size="medium"
                 onClick={resetFilters}
                 className={
-                  styles["reservation-filters--submit-button-text"]
+                  styles["sale-filters--submit-button-text"]
                 }
               >
                 <Text type="h6" weight="600">
@@ -174,9 +151,9 @@ export const ReservationFilters = ({
                 fullWidth
                 primary
                 size="medium"
-                onClick={onGetReservationsFiltered}
+                onClick={onGetSalesFiltered}
                 className={
-                  styles["reservation-filters--submit-button-text"]
+                  styles["sale-filters--submit-button-text"]
                 }
               >
                 <Text type="h6" weight="600">

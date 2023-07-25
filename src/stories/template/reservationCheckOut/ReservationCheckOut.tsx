@@ -63,7 +63,7 @@ interface ReservationCheckOut {
    * On submit
    */
   onSubmit: (
-    date: InputFormHook<Date>,
+    date: InputFormHook<Date|null>,
     persons: InputFormHook<string>,
     hourIn: InputFormHook<OptionObject<string | null>>,
     hourOut: InputFormHook<OptionObject<string | null>>,

@@ -53,7 +53,7 @@ interface NewReserveProps {
   /**
    * Current date
    */
-  date: InputFormHook<Date>;
+  date: InputFormHook<Date|null>;
   /**
    * Current entry hour
    */

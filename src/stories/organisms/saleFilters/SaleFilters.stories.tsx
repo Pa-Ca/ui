@@ -1,13 +1,13 @@
 import React from "react";
-import { ReservationFilters } from "./ReservationFilters";
+import { SaleFilters } from "./SaleFilters";
 import useInputForm from "../../hooks/useInputForm";
 import { StoryFn, Meta } from "@storybook/react";
 import OptionObject from "../../utils/objects/OptionObject";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Organisms/ReservationFilters",
-  component: ReservationFilters,
+  title: "Design System/Organisms/SaleFilters",
+  component: SaleFilters,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     startDate: {
@@ -16,18 +16,14 @@ export default {
       },
     },
   },
-} as Meta<typeof ReservationFilters>;
+} as Meta<typeof SaleFilters>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof ReservationFilters> = (args: any) => {
+const Template: StoryFn<typeof SaleFilters> = (args: any) => {
   const startDate = useInputForm(null);
   const endDate = useInputForm(null);
   const fullName = useInputForm("");
 
-  const status = useInputForm<OptionObject<string>>({
-    label: "",
-    value: "",
-  });
   const statusOptions: OptionObject<string>[] = [
     {label: "Cerrada", value: "6"},
     {label: "Retirada", value: "4"},
@@ -48,17 +44,16 @@ const Template: StoryFn<typeof ReservationFilters> = (args: any) => {
   });
   
   return (
-    <ReservationFilters
+    <SaleFilters
       {...args}
       startDate={startDate}
       endDate={endDate}
-      status={status}
       statusOptions={statusOptions}
       identityDocument={identityDocument}
       identityDocumentType={identityDocumentType}
       identityDocumentTypeOpt={identityDocumentTypeOpt}
       fullName={fullName}
-      onGetReservationsFiltered={()=>{}}
+      onGetSalesFiltered={()=>{}}
     />
   );
 };
