@@ -9,12 +9,14 @@ import TaxObject from "../../utils/objects/TaxObject";
 import TableObject from "../../utils/objects/TableObject";
 import useWindowResize from "../../hooks/useWindowResize";
 import { HeaderProps } from "../../organisms/header/Header";
+import OptionObject from "../../utils/objects/OptionObject";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import ProductObject from "../../utils/objects/ProductObject";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
 import { InputText } from "../../molecules/inputText/InputText";
 import { PastSaleProps } from "../../molecules/pastSale/PastSale";
+import { SaleFilters } from "../../organisms/saleFilters/SaleFilters";
 import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import { PastSaleList } from "../../organisms/pastSaleList/PastSaleList";
@@ -122,6 +124,42 @@ interface BranchSalesProps {
    * On previous page
    */
   onPreviousPage: () => void;
+  /**
+   * Sale startDate
+   */
+  startDate: InputFormHook<Date|null>;
+  /**
+   * Sale endDate
+   */
+  endDate: InputFormHook<Date|null>;
+  /**
+   * Identity document options Option Object
+   */
+  identityDocumentTypeOpt?: OptionObject<string>[];
+  /**
+   * Identity document options input hook
+   */
+  identityDocumentType: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Identity document input hook
+   */
+  identityDocument: InputFormHook<string>;
+  /**
+   * Full client name of the sale owner
+   */
+  fullName: InputFormHook<string>;
+  /**
+   * Sale entry hour
+   */
+  hourIn: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Valid entry hours
+   */
+  validHoursIn?: OptionObject<string>[];
+  /**
+   * Submit fuction
+   */
+  onGetSalesFiltered: () => void;
 }
 
 /**
@@ -148,6 +186,21 @@ export const BranchSales = ({
   onDeleteTable,
   onSaveSaleNote,
   onDeleteSale,
+
+  // Filters
+  startDate,
+  endDate,
+  identityDocumentTypeOpt = [
+    {label: "V", value: "V"},
+    {label: "E", value: "E"},
+    {label: "J", value: "J"},
+    {label: "G", value: "G"},
+    {label: "P", value: "P"},
+  ],
+  identityDocumentType,
+  identityDocument,
+  fullName,
+  onGetSalesFiltered,
 
   pastSales,
   page,
@@ -452,6 +505,16 @@ export const BranchSales = ({
             </Box>
 
             <Box style={{ flex: 1, paddingBottom: "40px" }}>
+              <SaleFilters
+                startDate={startDate}
+                endDate={endDate}
+                identityDocumentTypeOpt={identityDocumentTypeOpt}
+                identityDocumentType={identityDocumentType}
+                identityDocument={identityDocument}
+                fullName={fullName}
+                onGetSalesFiltered={onGetSalesFiltered}
+              />
+
               <PastSaleList
                 pastSales={pastSales}
                 page={page}

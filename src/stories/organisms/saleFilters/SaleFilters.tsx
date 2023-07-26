@@ -35,14 +35,6 @@ interface SaleFiltersProps {
    */
   fullName: InputFormHook<string>;
   /**
-   * Sale entry hour
-   */
-  hourIn: InputFormHook<OptionObject<string | null>>;
-  /**
-   * Valid entry hours
-   */
-  validHoursIn?: OptionObject<string>[];
-  /**
    * Component width
    */
   width?: string;
