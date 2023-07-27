@@ -1,0 +1,48 @@
+@import "../../assets/scss/themes";
+@import "../../assets/scss/mixins.scss";
+
+.past-reservation-list--header {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.past-reservation-list--body {
+  gap: 20px;
+  display: flex;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  flex-direction: column;
+}
+.past-reservation-list--body-item {
+  margin-bottom: 30px;
+}
+.past-reservation-list--body-item-title {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: var(--card-background-color);
+}
+.past-reservation-list--pages {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.past-reservation-list--icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 33px;
+  margin-right: 33px;
+}
+.past-reservation-list--counter {
+  @include unselectable();
+}
+.past-reservation-list--icons-active-color {
+  color: var(--paginable-active-color);
+}
+.past-reservation-list--icons-inactive-color {
+  color: var(--paginable-inactive-color);
+}
