@@ -3,6 +3,7 @@ import { BranchSales } from "./BranchSales";
 import { StoryFn, Meta } from "@storybook/react";
 import useInputForm from "../../hooks/useInputForm";
 import { PastSaleProps } from "../../molecules/pastSale/PastSale";
+import OptionObject from "../../utils/objects/OptionObject";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -240,6 +241,23 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
     },
   ]);
 
+  // Filters
+  const startDate = useInputForm(null);
+  const endDate = useInputForm(null);
+  const fullName = useInputForm("");
+  const identityDocument = useInputForm("");
+  const identityDocumentTypeOpt: OptionObject<string>[] = [
+    {label: "V", value: "V"},
+    {label: "E", value: "E"},
+    {label: "J", value: "J"},
+    {label: "G", value: "G"},
+    {label: "P", value: "P"},
+  ];
+  const identityDocumentType = useInputForm<OptionObject<string>>({
+    label: "",
+    value: "",
+  });
+
   const onAddTax = () => {
     setTaxes((oldTaxes) => [
       ...oldTaxes,
@@ -260,6 +278,12 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
       table={table}
       taxes={taxes}
       onAddTax={onAddTax}
+      endDate={endDate}
+      fullName={fullName}
+      startDate={startDate}
+      identityDocument={identityDocument}
+      identityDocumentType={identityDocumentType}
+      identityDocumentTypeOpt={identityDocumentTypeOpt}
     />
   );
 };
