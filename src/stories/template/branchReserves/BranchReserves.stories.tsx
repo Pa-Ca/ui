@@ -15,6 +15,35 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof BranchReserves> = (args: any) => {
+
+  //Filters
+  const filterStartDate = useInputForm(null);
+  const filterEndDate = useInputForm(null);
+  const filterFullName = useInputForm("");
+
+  const filterStatus = useInputForm<OptionObject<string>>({
+    label: "",
+    value: "",
+  });
+  const filterStatusOptions: OptionObject<string>[] = [
+    {label: "Cerrada", value: "6"},
+    {label: "Retirada", value: "4"},
+    {label: "Rechazada", value: "2"},
+  ];
+
+  const filterIdentityDocument = useInputForm("");
+  const filterIdentityDocumentTypeOpt: OptionObject<string>[] = [
+    {label: "V", value: "V"},
+    {label: "E", value: "E"},
+    {label: "J", value: "J"},
+    {label: "G", value: "G"},
+    {label: "P", value: "P"},
+  ];
+  const filterIdentityDocumentType = useInputForm<OptionObject<string>>({
+    label: "",
+    value: "",
+  });
+
   // Reservation data
   const date = useInputForm<Date>(new Date());
   const hourIn = useInputForm<OptionObject<string>>({ value: "", label: "" });
@@ -42,8 +71,143 @@ const Template: StoryFn<typeof BranchReserves> = (args: any) => {
   const email = useInputForm("");
   const [showModal, setshowModal] = useState(false);
 
+  const pendingReservationList = [
+    ...new Array(35).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-11",
+      owner: "Ivan Tortolero 1",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      identityDocument: "V69420616",
+      persons: 1,
+      tables: 1,
+      status: reservationsStatus[0],
+      onCloseReservation: () => {console.log("close")},
+      onReject: () => {console.log("reject")},
+      onAccept: () => {console.log("accept")},
+      onRetire: () => {console.log("retire")},
+      onStart: () => {console.log("start")},      
+    }),
+  ];
+  const acceptedReservationList = [
+    ...new Array(25).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-13",
+      owner: "Ivan Tortolero 3",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      identityDocument: "V69420616",
+      persons: 3,
+      tables: 3,
+      status: reservationsStatus[2],
+      onCloseReservation: () => {console.log("close")},
+      onReject: () => {console.log("reject")},
+      onAccept: () => {console.log("accept")},
+      onRetire: () => {console.log("retire")},
+      onStart: () => {console.log("start")},
+    }),
+  ];
+  const startedReservationList = [
+    ...new Array(18).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-13",
+      owner: "Ivan Tortolero 5",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      identityDocument: "V69420616",
+      persons: 5,
+      tables: 5,
+      status: reservationsStatus[4],
+      onCloseReservation: () => {console.log("close")},
+      onReject: () => {console.log("reject")},
+      onAccept: () => {console.log("accept")},
+      onRetire: () => {console.log("retire")},
+      onStart: () => {console.log("start")},
+    }),
+  ];
+  const historicReservationList = [
+    ...new Array(8).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-12",
+      owner: "Ivan Tortolero 1",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      identityDocument: "V69420616",
+      persons: 2,
+      tables: 2,
+      status: reservationsStatus[1],
+      onCloseReservation: () => {console.log("close")},
+      onReject: () => {console.log("reject")},
+      onAccept: () => {console.log("accept")},
+      onRetire: () => {console.log("retire")},
+      onStart: () => {console.log("start")},
+    }),
+    ...new Array(13).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-10",
+      owner: "Ivan Tortolero 4",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      identityDocument: "V69420616",
+      persons: 4,
+      tables: 4,
+      status: reservationsStatus[3],
+      onCloseReservation: () => {console.log("close")},
+      onReject: () => {console.log("reject")},
+      onAccept: () => {console.log("accept")},
+      onRetire: () => {console.log("retire")},
+      onStart: () => {console.log("start")},
+    }),
+    ...new Array(7).fill({
+      start: "6:00 PM",
+      end: "7:00 PM",
+      date: "2021-10-13",
+      owner: "Ivan Tortolero 6",
+      ownerPhone: "0414-8732414",
+      ownerEmail: "Sisepuede@fe.com",
+      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      identityDocument: "V69420616",
+      persons: 6,
+      tables: 6,
+      status: reservationsStatus[5],
+      onCloseReservation: () => {console.log("close")},
+      onReject: () => {console.log("reject")},
+      onAccept: () => {console.log("accept")},
+      onRetire: () => {console.log("retire")},
+      onStart: () => {console.log("start")},
+    }),
+  ];
+
+  const historicCurrentPage = 1;
+  const historicReservationListTotalLenght = 28;
+
   return (
     <BranchReserves
+      startedReservationList={startedReservationList}
+      acceptedReservationList={acceptedReservationList}
+      pendingReservationList={pendingReservationList}
+      historicReservationList={historicReservationList}
+      historicCurrentPage={historicCurrentPage}
+      historicReservationListTotalLenght={historicReservationListTotalLenght}
+      filterStartDate={filterStartDate}
+      filterEndDate={filterEndDate}
+      filterStatus={filterStatus}
+      filterStatusOptions={filterStatusOptions}
+      filterIdentityDocument={filterIdentityDocument}
+      filterIdentityDocumentType={filterIdentityDocumentType}
+      filterIdentityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
+      filterFullName={filterFullName}
+      onGetReservationsFiltered={()=>{}}
       date={date}
       hourIn={hourIn}
       hourOut={hourOut}
@@ -119,115 +283,5 @@ Default.args = {
     {value: "9:00", label: "9:00"},
     {value: "9:00", label: "9:00"},
     {value: "9:00", label: "9:00"},
-  ],
-  reservations: [
-    ...new Array(5).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      date: "2021-10-11",
-      owner: "Ivan Tortolero 1",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 1,
-      tables: 1,
-      status: reservationsStatus[0],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},      
-    }),
-    ...new Array(8).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      date: "2021-10-12",
-      owner: "Ivan Tortolero 1",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 2,
-      tables: 2,
-      status: reservationsStatus[1],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-    ...new Array(12).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero 3",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 3,
-      tables: 3,
-      status: reservationsStatus[2],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-    ...new Array(13).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      date: "2021-10-10",
-      owner: "Ivan Tortolero 4",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 4,
-      tables: 4,
-      status: reservationsStatus[3],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-    ...new Array(9).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero 5",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 5,
-      tables: 5,
-      status: reservationsStatus[4],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-    ...new Array(7).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero 6",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 6,
-      tables: 6,
-      status: reservationsStatus[5],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
   ],
 };

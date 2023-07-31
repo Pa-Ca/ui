@@ -118,7 +118,11 @@ export const SaleFilters = ({
         {/* Row 2 */}
         <Box className={styles["sale-filters--input-container"]}>
           <Box width="100%">
-            <InputDate cleanDateIcon label="Desde" inputHook={startDate} />
+            <InputDate
+              cleanDateIcon
+              label="Desde"
+              inputHook={startDate} 
+            />
           </Box>
           <Box width="100%">
             <InputDate

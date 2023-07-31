@@ -19,6 +19,8 @@ import { ReservationProps } from "../../molecules/reservation/Reservation";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
 import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
+import { ReservationFilters } from "../../organisms/reservationFilters/ReservationFilters";
+import { PastReservationList } from "../../organisms/pastReservationList/PastReservationList";
 
 interface BranchReservesProps {
   /**
@@ -26,9 +28,65 @@ interface BranchReservesProps {
    */
   header: HeaderProps;
   /**
-   * Reservation list data
+   * Reservation list with status started
    */
-  reservations: ReservationProps[];
+  startedReservationList: ReservationProps[];
+  /**
+   * Reservation list with status accepted
+   */
+  acceptedReservationList: ReservationProps[];
+  /**
+   * Reservation list with status pending
+   */
+  pendingReservationList: ReservationProps[];
+  /**
+   * Reservation list with status rejected, retired or closed
+   */
+  historicReservationList: ReservationProps[];
+  /**
+   * Total number of reservation with status rejected, retired or closed
+   */
+  historicReservationListTotalLenght: number;
+  /**
+   * Current past sale page
+   */
+  historicCurrentPage: number;
+  /**
+   * Filter by Reservation startDate
+   */
+  filterStartDate: InputFormHook<Date|null>;
+  /**
+   * Filter by Reservation endDate
+   */
+  filterEndDate: InputFormHook<Date|null>;
+  /**
+   * Filter by Reservation status
+   */
+  filterStatus: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Valid status options for filter
+   */
+  filterStatusOptions?: OptionObject<string>[];
+  /**
+   * Identity document options Option Object for filter
+   */
+  filterIdentityDocumentTypeOpt?: OptionObject<string>[];
+  /**
+   * Filter by  Identity document options
+   */
+  filterIdentityDocumentType: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Filter by Identity document
+   */
+  filterIdentityDocument: InputFormHook<string>;
+  /**
+   * Filter by Full client name of the reservation owner
+   */
+  filterFullName: InputFormHook<string>;
+  /**
+   * Submit filters for reservation
+   */
+  onGetReservationsFiltered: () => void;
   /**
    * Main color
    */
@@ -133,16 +191,37 @@ interface BranchReservesProps {
    * Submit fuction
    */
   onGetGuest: () => void;
+  /**
+   * On next page
+   */
+  onNextPage: () => void;
+  /**
+   * On previous page
+   */
+  onPreviousPage: () => void;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const BranchReserves = ({
+  header,
+  startedReservationList,
+  acceptedReservationList,
+  pendingReservationList,
+  historicReservationList,
+  historicCurrentPage,
+  historicReservationListTotalLenght,
+  filterStartDate,
+  filterEndDate,
+  filterStatus,
+  filterStatusOptions,
+  filterIdentityDocumentTypeOpt,
+  filterIdentityDocumentType,
+  filterIdentityDocument,
+  filterFullName,
   durationHour,
   durationMin,
-  reservations,
-  header,
   identityDocumentTypeOpt,
   identityDocumentType,
   identityDocument,
@@ -164,6 +243,9 @@ export const BranchReserves = ({
   setShowModal,
   onSubmit,
   onGetGuest,
+  onGetReservationsFiltered,
+  onNextPage,
+  onPreviousPage,
   ...props
 }: BranchReservesProps) => {
   const windowSize = useWindowResize();
@@ -185,48 +267,8 @@ export const BranchReserves = ({
     ReservationProps[]
   >([]);
 
-  const [currentHistoricReservation, setCurrentHistoricReservation] = useState<
-    ReservationProps[]
-  >([]);
-
   const observerTab = useResizeObserver<HTMLDivElement>();
   const observerContainer = useResizeObserver<HTMLDivElement>();
-
-  // Ordered reservations by date
-  reservations.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateA.getTime() - dateB.getTime();
-  });
-
-  // Filter reservations by state equals to 1, meaning pending
-  const pendingReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.status.number === 1),
-    [reservations]
-  );
-  
-  // Filter reservations by state equals to 3, meaning accepted
-  const acceptedReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.status.number === 3),
-    [reservations]
-  );
-    
-  // Filter reservations by state equals to 5, meaning started
-  const startedReservations = useMemo(
-    () => reservations.filter((reservation) => reservation.status.number === 5),
-    [reservations]
-  );
-
-  // Filter all other previosly filter reservations by state
-  const historicReservation = useMemo(
-    () =>
-      reservations.filter(
-        (reservation) => reservation.status.number !== 1 &&
-                         reservation.status.number !== 3 &&
-                         reservation.status.number !== 5
-      ),
-    [reservations]
-  );
 
   useEffect(() => {
     if (observerTab.ref.current && observerContainer.ref.current) {
@@ -247,10 +289,10 @@ export const BranchReserves = ({
             index={page}
             setIndex={setPage}
             tabs={[
-              `Reservas En Curso (${startedReservations.length})`,
-              `Reservas Aceptadas (${acceptedReservations.length})`,
-              `Reservas Pendientes (${pendingReservations.length})`,
-              `Histórico (${historicReservation.length})`,
+              `Reservas En Curso (${startedReservationList.length})`,
+              `Reservas Aceptadas (${acceptedReservationList.length})`,
+              `Reservas Pendientes (${pendingReservationList.length})`,
+              `Histórico  (${historicReservationListTotalLenght})`,
             ]}
           />
         </Box>
@@ -268,7 +310,7 @@ export const BranchReserves = ({
 
               <Box style={{ flex: 1 }}>
                 <Paginable
-                  list={startedReservations}
+                  list={startedReservationList}
                   setCurrentList={setCurrentStartedReservation}
                   objectsPerPage={10}
                 >
@@ -284,7 +326,7 @@ export const BranchReserves = ({
 
               <Box style={{ flex: 1 }}>
                 <Paginable
-                  list={acceptedReservations}
+                  list={acceptedReservationList}
                   setCurrentList={setCurrentAcceptedReservation}
                   objectsPerPage={10}
                 >
@@ -299,8 +341,9 @@ export const BranchReserves = ({
               </Box>
 
               <Box style={{ flex: 1 }}>
+
                 <Paginable
-                  list={pendingReservations}
+                  list={pendingReservationList}
                   setCurrentList={setCurrentPendingReservation}
                   objectsPerPage={10}
                 >
@@ -315,19 +358,24 @@ export const BranchReserves = ({
               </Box>
 
               <Box style={{ flex: 1 }}>
-                <Paginable
-                  list={historicReservation}
-                  setCurrentList={setCurrentHistoricReservation}
-                  objectsPerPage={10}
-                >
-                  <ReserveList
-                    icon_size={icon_size}
-                    reservations={currentHistoricReservation}
-                    state={4}
-                    setShowModal={setShowModal}
-                  />
-                  <Box height="40px" />
-                </Paginable>
+                <ReservationFilters
+                  startDate={filterStartDate}
+                  endDate={filterEndDate}
+                  status={filterStatus}
+                  statusOptions={filterStatusOptions}
+                  identityDocument={filterIdentityDocument}
+                  identityDocumentType={filterIdentityDocumentType}
+                  identityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
+                  fullName={filterFullName}
+                  onGetReservationsFiltered={onGetReservationsFiltered}
+                />  
+                <PastReservationList
+                  pastReservations={historicReservationList}
+                  page={historicCurrentPage}
+                  totalPages={10}
+                  onNextPage={onNextPage}
+                  onPreviousPage={onPreviousPage}
+                />
               </Box>
             </Box>
           ) : (

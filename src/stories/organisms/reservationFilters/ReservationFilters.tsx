@@ -44,14 +44,6 @@ interface ReservationFiltersProps {
    */
   fullName: InputFormHook<string>;
   /**
-   * Reservation entry hour
-   */
-  hourIn: InputFormHook<OptionObject<string | null>>;
-  /**
-   * Valid entry hours
-   */
-  validHoursIn?: OptionObject<string>[];
-  /**
    * Component width
    */
   width?: string;
@@ -73,13 +65,7 @@ export const ReservationFilters = ({
   endDate,
   status,
   statusOptions,
-  identityDocumentTypeOpt = [
-    {label: "V", value: "V"},
-    {label: "E", value: "E"},
-    {label: "J", value: "J"},
-    {label: "G", value: "G"},
-    {label: "P", value: "P"},
-  ],
+  identityDocumentTypeOpt,
   identityDocumentType,
   identityDocument,
   fullName,
@@ -149,10 +135,19 @@ export const ReservationFilters = ({
         {/* Row 2 */}
         <Box className={styles["reservation-filters--input-container"]}>
           <Box width="100%">
-            <InputDate cleanDateIcon label="Desde" inputHook={startDate} />
+            <InputDate
+              cleanDateIcon
+              label="Desde"
+              inputHook={startDate}
+            />
           </Box>
           <Box width="100%">
-            <InputDate cleanDateIcon disabled={!startDateSelected} label="Hasta" inputHook={endDate}/>
+            <InputDate cleanDateIcon
+              label="Hasta"
+              inputHook={endDate}
+              disabled={!startDateSelected}
+              minDate={startDate.value || undefined}
+            />
           </Box>
           <Box width="100%">
             <Button

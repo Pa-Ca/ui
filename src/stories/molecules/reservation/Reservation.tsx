@@ -30,13 +30,13 @@ export interface ReservationProps {
    */
   ownerPhone: string;
   /**
-   * Identity document the owner
-   */
-  identityDocument: string;
-  /**
    * Email of the owner
    */
   ownerEmail: string;
+  /**
+   * Identity document the owner
+   */
+  identityDocument: string;
   /**
    * Special Occasion of the owner
    */

@@ -7,9 +7,6 @@ import { Button } from "../../atoms/button/Button";
 import ReservationList from "../../utils/objects/ReservationList";
 import { Reservation } from "../../molecules/reservation/Reservation";
 import { ReservationProps } from "../../molecules/reservation/Reservation";
-import { ReservationFilters } from "../reservationFilters/ReservationFilters";
-import useInputForm from "../../hooks/useInputForm";
-import OptionObject from "../../utils/objects/OptionObject";
 
 interface ReserveListProps {
   /**
@@ -93,23 +90,6 @@ export const ReserveList = ({
     }
   }, [state]);
 
-
-  const date = useInputForm(new Date());
-  const fullName = useInputForm("");
-
-  const identityDocument = useInputForm("");
-  const identityDocumentTypeOpt: OptionObject<string>[] = [
-    {label: "V", value: "V"},
-    {label: "E", value: "E"},
-    {label: "J", value: "J"},
-    {label: "G", value: "G"},
-    {label: "P", value: "P"},
-  ];
-  const identityDocumentType = useInputForm<OptionObject<string|null>>({
-    label: "",
-    value: "",
-  });
-
   const header = useMemo(() => {
     switch (state) {
       case 3:
@@ -154,15 +134,6 @@ export const ReserveList = ({
               </Text>
               <Icon icon="down" size="24px" />
             </Box> */}
-
-            
-            {/* <ReservationFilters
-              identityDocument={identityDocument}
-              identityDocumentType={identityDocumentType}
-              identityDocumentTypeOpt={identityDocumentTypeOpt}
-              fullName={fullName}
-              onGetReservationsFiltered={()=>{}}
-            /> */}
           </Box>
         );
     }
