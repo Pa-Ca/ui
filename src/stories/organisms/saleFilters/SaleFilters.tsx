@@ -13,11 +13,11 @@ interface SaleFiltersProps {
   /**
    * Sale startDate
    */
-  startDate: InputFormHook<Date|null>;
+  startDate: InputFormHook<Date | null>;
   /**
    * Sale endDate
    */
-  endDate: InputFormHook<Date|null>;
+  endDate: InputFormHook<Date | null>;
   /**
    * Identity document options Option Object
    */
@@ -55,11 +55,11 @@ export const SaleFilters = ({
   startDate,
   endDate,
   identityDocumentTypeOpt = [
-    {label: "V", value: "V"},
-    {label: "E", value: "E"},
-    {label: "J", value: "J"},
-    {label: "G", value: "G"},
-    {label: "P", value: "P"},
+    { label: "V", value: "V" },
+    { label: "E", value: "E" },
+    { label: "J", value: "J" },
+    { label: "G", value: "G" },
+    { label: "P", value: "P" },
   ],
   identityDocumentType,
   identityDocument,
@@ -69,14 +69,12 @@ export const SaleFilters = ({
   onGetSalesFiltered,
   ...props
 }: SaleFiltersProps) => {
-
   const [startDateSelected, setStartDateSelected] = useState(false);
   useEffect(() => {
-    if (startDate.value !== null)
-      setStartDateSelected(true);
-    else
-      setStartDateSelected(false);
+    if (startDate.value !== null) setStartDateSelected(true);
+    else setStartDateSelected(false);
   }, [startDate.value]);
+
   const resetFilters = () => {
     identityDocumentType.setValue({
       label: "",
@@ -87,6 +85,17 @@ export const SaleFilters = ({
     startDate.setValue(null);
     endDate.setValue(null);
   };
+
+  useEffect(() => {
+    if (
+      startDate.value !== null &&
+      endDate.value !== null &&
+      startDate.value > endDate.value
+    ) {
+      endDate.setValue(null);
+    }
+  }, [startDate.value, endDate.value]);
+
   return (
     <Box
       className={styles["sale-filters--container"]}
@@ -99,10 +108,12 @@ export const SaleFilters = ({
           <Box width="100%">
             <InputTextSelect
               required
+              addEmptyOption
+              emptyLabel=""
               inputHookText={identityDocument}
               inputHookSelect={identityDocumentType}
               inputHookSelectOptions={identityDocumentTypeOpt}
-              label="Documento de Identidad" 
+              label="Documento de Identidad"
               onlySelectOptions={true}
             />
           </Box>
@@ -118,11 +129,7 @@ export const SaleFilters = ({
         {/* Row 2 */}
         <Box className={styles["sale-filters--input-container"]}>
           <Box width="100%">
-            <InputDate
-              cleanDateIcon
-              label="Desde"
-              inputHook={startDate} 
-            />
+            <InputDate cleanDateIcon label="Desde" inputHook={startDate} />
           </Box>
           <Box width="100%">
             <InputDate
@@ -135,33 +142,29 @@ export const SaleFilters = ({
           </Box>
           <Box width="100%">
             <Button
-                fullWidth
-                primary={false}
-                size="medium"
-                onClick={resetFilters}
-                className={
-                  styles["sale-filters--submit-button-text"]
-                }
-              >
-                <Text type="h6" weight="600">
-                  Limpiar filtros
-                </Text>
-              </Button>
+              fullWidth
+              primary={false}
+              size="medium"
+              onClick={resetFilters}
+              className={styles["sale-filters--submit-button-text"]}
+            >
+              <Text type="h6" weight="600">
+                Limpiar filtros
+              </Text>
+            </Button>
           </Box>
           <Box width="100%">
             <Button
-                fullWidth
-                primary
-                size="medium"
-                onClick={onGetSalesFiltered}
-                className={
-                  styles["sale-filters--submit-button-text"]
-                }
-              >
-                <Text type="h6" weight="600">
-                  Aplicar filtros
-                </Text>
-              </Button>
+              fullWidth
+              primary
+              size="medium"
+              onClick={onGetSalesFiltered}
+              className={styles["sale-filters--submit-button-text"]}
+            >
+              <Text type="h6" weight="600">
+                Aplicar filtros
+              </Text>
+            </Button>
           </Box>
         </Box>
       </Box>
