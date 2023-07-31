@@ -149,14 +149,6 @@ interface BranchSalesProps {
    */
   fullName: InputFormHook<string>;
   /**
-   * Sale entry hour
-   */
-  hourIn: InputFormHook<OptionObject<string | null>>;
-  /**
-   * Valid entry hours
-   */
-  validHoursIn?: OptionObject<string>[];
-  /**
    * Submit fuction
    */
   onGetSalesFiltered: () => void;

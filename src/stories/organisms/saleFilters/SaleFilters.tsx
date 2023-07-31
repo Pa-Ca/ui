@@ -121,7 +121,13 @@ export const SaleFilters = ({
             <InputDate cleanDateIcon label="Desde" inputHook={startDate} />
           </Box>
           <Box width="100%">
-            <InputDate cleanDateIcon disabled={!startDateSelected} label="Hasta" inputHook={endDate}/>
+            <InputDate
+              cleanDateIcon
+              disabled={!startDateSelected}
+              label="Hasta"
+              inputHook={endDate}
+              minDate={startDate.value || undefined}
+            />
           </Box>
           <Box width="100%">
             <Button
