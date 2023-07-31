@@ -93,7 +93,7 @@ export const ReservationCheckOut = ({
   const tables = useInputForm<string>("");
   const reservationPrice = getReservationPrice();
 
-  const date = useInputForm<Date>(new Date());
+  const date = useInputForm<Date | null>(new Date());
   const hourIn = useInputForm<OptionObject<string | null>>({
     label: "",
     value: null,

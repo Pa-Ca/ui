@@ -104,7 +104,7 @@ export const Home = ({
   const search = useInputForm("");
   const persons = useInputForm("");
   const hour = useInputForm<OptionObject<string | null>>(getValidHours()[0]);
-  const date = useInputForm<Date>(new Date());
+  const date = useInputForm<Date | null>(new Date());
 
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
@@ -131,7 +131,7 @@ export const Home = ({
   }, [observer.width]);
 
   const searchFunction = () => {
-    onSearch(date.value, hour.value.value!, parseInt(persons.value), search.value)
+    onSearch(date.value || undefined, hour.value.value!, parseInt(persons.value), search.value)
   }
 
   return (

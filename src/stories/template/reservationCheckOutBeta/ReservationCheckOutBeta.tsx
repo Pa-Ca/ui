@@ -77,7 +77,7 @@ export const ReservationCheckOutBeta = ({
   const tables = useInputForm<string>("");
 
   // Reservation data
-  const date = useInputForm<Date>(new Date());
+  const date = useInputForm<Date | null>(new Date());
   const identityDocument = useInputForm("");
   const identityDocumentType = useInputForm<OptionObject<string | null>>({
     label: "",
