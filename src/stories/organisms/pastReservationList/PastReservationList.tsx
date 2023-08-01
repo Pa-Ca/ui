@@ -58,7 +58,6 @@ export const PastReservationList = ({
     });
   }, [pastReservationsByDate]);
 
-  console.log(pastReservations);
   return (
     <Box className={styles["past-reservation-list--container"]}>
       <Box className={styles["past-reservation-list--body"]}>
