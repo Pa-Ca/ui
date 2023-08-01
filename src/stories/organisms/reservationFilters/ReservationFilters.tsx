@@ -90,7 +90,7 @@ export const ReservationFilters = ({
     identityDocument.setValue("");
     status.setValue({
       label: "",
-      value: "",
+      value: null,
     });
     fullName.setValue("");
     startDate.setValue(null);
