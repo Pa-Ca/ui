@@ -42,7 +42,7 @@ export const PastReservationList = ({
   // Group past sales by date
   const pastReservationsByDate = useMemo(() => {
     return pastReservations.reduce((acc, reservation) => {
-      const date = reservation.date;
+      const date = new Date(reservation.date).toISOString().split('T')[0];
       if (!acc[date]) {
         acc[date] = [];
       }

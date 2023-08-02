@@ -74,14 +74,8 @@ export const ReservationFilters = ({
   onGetReservationsFiltered,
   ...props
 }: ReservationFiltersProps) => {
-
   const [startDateSelected, setStartDateSelected] = useState(false);
-  useEffect(() => {
-    if (startDate.value !== null)
-      setStartDateSelected(true);
-    else
-      setStartDateSelected(false);
-  }, [startDate.value]);
+
   const resetFilters = () => {
     identityDocumentType.setValue({
       label: "",
@@ -96,6 +90,23 @@ export const ReservationFilters = ({
     startDate.setValue(null);
     endDate.setValue(null);
   };
+
+  useEffect(() => {
+    if (startDate.value !== null)
+      setStartDateSelected(true);
+    else
+      setStartDateSelected(false);
+  }, [startDate.value]);
+
+  useEffect(() => {
+    if (
+      startDate.value === null ||
+      (endDate.value !== null && startDate.value > endDate.value)
+    ) {
+      endDate.setValue(null);
+    }
+  }, [startDate.value, endDate.value]);
+
   return (
     <Box
       className={styles["reservation-filters--container"]}
@@ -108,6 +119,8 @@ export const ReservationFilters = ({
           <Box width="100%">
             <InputTextSelect
               required
+              addEmptyOption
+              emptyLabel=""
               inputHookText={identityDocument}
               inputHookSelect={identityDocumentType}
               inputHookSelectOptions={identityDocumentTypeOpt}
@@ -127,6 +140,8 @@ export const ReservationFilters = ({
           <InputSelect
               width="100%"
               label="Estatus"
+              addEmptyOption
+              emptyLabel=""
               inputHook={status}
               options={statusOptions}
             />

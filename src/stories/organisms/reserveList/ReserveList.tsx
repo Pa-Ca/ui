@@ -47,7 +47,7 @@ export const ReserveList = ({
    */
   const reservationsByDate = useMemo(() => {
     return reservations.reduce((result: ReservationList[], reservation) => {
-      const date = new Date(reservation.date).toLocaleDateString();
+      const date = new Date(reservation.date).toISOString().split('T')[0];
       const group = result.find((group) => group.date === date);
       if (group) {
         group.reservations.push(reservation);

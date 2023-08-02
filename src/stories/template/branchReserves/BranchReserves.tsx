@@ -52,6 +52,10 @@ interface BranchReservesProps {
    */
   historicCurrentPage: number;
   /**
+   * Total number of past sale pages
+   */
+  historicTotalPage: number;
+  /**
    * Filter by Reservation startDate
    */
   filterStartDate: InputFormHook<Date|null>;
@@ -211,6 +215,7 @@ export const BranchReserves = ({
   pendingReservationList,
   historicReservationList,
   historicCurrentPage,
+  historicTotalPage,
   historicReservationListTotalLenght,
   filterStartDate,
   filterEndDate,
@@ -341,7 +346,6 @@ export const BranchReserves = ({
               </Box>
 
               <Box style={{ flex: 1 }}>
-
                 <Paginable
                   list={pendingReservationList}
                   setCurrentList={setCurrentPendingReservation}
@@ -372,7 +376,7 @@ export const BranchReserves = ({
                 <PastReservationList
                   pastReservations={historicReservationList}
                   page={historicCurrentPage}
-                  totalPages={10}
+                  totalPages={historicTotalPage}
                   onNextPage={onNextPage}
                   onPreviousPage={onPreviousPage}
                 />

@@ -70,10 +70,6 @@ export const SaleFilters = ({
   ...props
 }: SaleFiltersProps) => {
   const [startDateSelected, setStartDateSelected] = useState(false);
-  useEffect(() => {
-    if (startDate.value !== null) setStartDateSelected(true);
-    else setStartDateSelected(false);
-  }, [startDate.value]);
 
   const resetFilters = () => {
     identityDocumentType.setValue({
@@ -87,10 +83,14 @@ export const SaleFilters = ({
   };
 
   useEffect(() => {
+    if (startDate.value !== null) setStartDateSelected(true);
+    else setStartDateSelected(false);
+  }, [startDate.value]);
+
+  useEffect(() => {
     if (
-      startDate.value !== null &&
-      endDate.value !== null &&
-      startDate.value > endDate.value
+      startDate.value === null ||
+      (endDate.value !== null && startDate.value > endDate.value)
     ) {
       endDate.setValue(null);
     }
