@@ -26,7 +26,7 @@ export interface FooterProps {
  * Primary UI component for user interaction
  */
 export const Footer = ({
-  color          = "#EF7A08",
+  color = "#EF7A08",
   secondaryColor = "white",
   isDarkMode,
   ...props
@@ -41,11 +41,9 @@ export const Footer = ({
 
   if (isDarkMode && !secondaryColor) {
     secondaryColor = "black";
-  }
-  else {
+  } else {
     secondaryColor = "white";
   }
-
 
   return (
     <Box
@@ -58,21 +56,37 @@ export const Footer = ({
           <Box>
             <Icon icon="pa-ca" color={secondaryColor} size="75px" />
             <Box className={styles["footer--email-text-input"]}>
-              <Text color={secondaryColor}>Contactanos!</Text>
+              <Text color={secondaryColor}>Contáctanos!</Text>
             </Box>
           </Box>
           <Box className={styles["footer--social-media-container"]}>
             <Box onClick={() => window.open(footerLinks.facebook, "_blank")}>
-              <Icon icon="facebook" size="30px" />
+              <Icon
+                size="30px"
+                icon="facebook"
+                className={styles["footer--icon"]}
+              />
             </Box>
             <Box onClick={() => window.open(footerLinks.twitter, "_blank")}>
-              <Icon icon="twitter" size="30px"  className={styles["footer--icon"]}/> 
+              <Icon
+                size="30px"
+                icon="twitter"
+                className={styles["footer--icon"]}
+              />
             </Box>
             <Box onClick={() => window.open(footerLinks.youtube, "_blank")}>
-              <Icon icon="youtube" size="30px" />
+              <Icon
+                size="30px"
+                icon="youtube"
+                className={styles["footer--icon"]}
+              />
             </Box>
             <Box onClick={() => window.open(footerLinks.instargam, "_blank")}>
-              <Icon icon="instagram" size="30px" />
+              <Icon
+                size="30px"
+                icon="instagram"
+                className={styles["footer--icon"]}
+              />
             </Box>
           </Box>
         </Box>

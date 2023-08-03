@@ -1,8 +1,14 @@
+@import "../../assets/scss/mixins.scss";
+
 .input-time--inputs {
-  gap: 5px;
+  gap: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @include mobile {
+    gap: 5px;
+  }
 }
 .input-time--input {
   text-align: center;

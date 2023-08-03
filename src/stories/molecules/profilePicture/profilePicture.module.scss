@@ -62,14 +62,7 @@
   transition: opacity 5ms linear $animation-duration,
     max-height $animation-duration ease-in-out;
 }
-.profile-picture--container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-}
-.profile-picture--icon {
+.profile-picture--icon-container {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -77,10 +70,8 @@
   height: 27.5%;
   display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: 100%;
-}
-.profile-picture--icon {
+  justify-content: center;
   background-color: var(--main-color);
 }
 .profile-picture--container {

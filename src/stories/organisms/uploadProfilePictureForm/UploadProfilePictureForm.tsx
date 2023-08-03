@@ -96,11 +96,11 @@ export const UploadProfilePictureForm = ({
       )}
 
       <Box className={styles["upload-profile-picture-form--button-rack"]}>
-        <Button onClick={handleUploadClick}>
+        <Button primary onClick={handleUploadClick}>
           <Text type="h6" weight="600" primaryButtonStyle>Subir una Imagen</Text>
         </Button>
 
-        <Button onClick={handleSaveClick}>
+        <Button primary onClick={handleSaveClick}>
           <Text type="h6" weight="600" primaryButtonStyle>Guardar Cambios</Text>
         </Button>
       </Box>

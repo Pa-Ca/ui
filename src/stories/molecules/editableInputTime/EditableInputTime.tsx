@@ -260,7 +260,7 @@ export const EditableInputTime = ({
           <Box className={styles["editable-input-time--inputs"]}>
             <Text
               type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
-              weight="600"
+              weight="700"
               style={{ ...style }}
             >
               {hoursInputHook.value}
@@ -278,7 +278,7 @@ export const EditableInputTime = ({
             </Text>
             <Text
               type={windowSize.resolutionType === "desktop" ? "h5" : "p"}
-              weight="600"
+              weight="700"
               style={{ ...style }}
             >
               {minutesInputHook.value}

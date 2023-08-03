@@ -24,7 +24,7 @@ interface InputTextSelectProps<T> {
   /**
    * Input select value hook
    */
-  inputHookSelect:  InputFormHook<OptionObject<T | null>>;
+  inputHookSelect: InputFormHook<OptionObject<T | null>>;
   /**
    * Add empty option
    */
@@ -40,7 +40,12 @@ interface InputTextSelectProps<T> {
   /**
    * Input type
    */
-  type?: "text" | "number" | "naturalNumber" | "phoneNumber" | "noNegativeNumber";
+  type?:
+    | "text"
+    | "number"
+    | "naturalNumber"
+    | "phoneNumber"
+    | "noNegativeNumber";
   /**
    * Indicates if the input is required
    */
@@ -74,10 +79,10 @@ interface InputTextSelectProps<T> {
 /**
  * Primary UI component for user interaction
  */
-export const InputTextSelect = <T extends any> ({
+export const InputTextSelect = <T extends any>({
   inputHookText,
   inputHookSelect,
-  inputHookSelectOptions  = [],
+  inputHookSelectOptions = [],
   addEmptyOption = false,
   emptyLabel = "Seleccione una opción",
   onlySelectOptions = false,
@@ -91,7 +96,6 @@ export const InputTextSelect = <T extends any> ({
   placeholder,
   ...props
 }: InputTextSelectProps<T>) => {
-
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (type == "naturalNumber") {
       event.target.value = event.target.value.replace(/[^0-9]/g, "");
@@ -114,7 +118,9 @@ export const InputTextSelect = <T extends any> ({
   const [view, setView] = useState(false);
   const [filter, setFilter] = useState(false);
   const [currentFilter, setCurrentFilter] = useState("");
-  const [currentValue, setCurrentValue] = useState(inputHookSelect.value.label!);
+  const [currentValue, setCurrentValue] = useState(
+    inputHookSelect.value.label!
+  );
 
   const observer = useResizeObserver<HTMLDivElement>();
 
@@ -140,7 +146,7 @@ export const InputTextSelect = <T extends any> ({
   };
 
   const onWrite = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (onlySelectOptions){
+    if (onlySelectOptions) {
       event.target.value = event.target.value.replace(/[\s\S]*/g, "");
     }
 
@@ -152,18 +158,16 @@ export const InputTextSelect = <T extends any> ({
 
   const currentOptions = useMemo(() => {
     // Filter options
-    let currentOptions: OptionObject<T | null>[] = inputHookSelectOptions.filter(
-      (option) =>
-        !filter ||
-        option.label!.toLowerCase().includes(currentFilter.toLowerCase())
-    );
+    let currentOptions: OptionObject<T | null>[] =
+      inputHookSelectOptions.filter(
+        (option) =>
+          !filter ||
+          option.label!.toLowerCase().includes(currentFilter.toLowerCase())
+      );
 
     // Add empty option
     if (addEmptyOption) {
-      currentOptions = [
-        { label: emptyLabel, value: null},
-        ...currentOptions,
-      ];
+      currentOptions = [{ label: emptyLabel, value: null }, ...currentOptions];
     }
 
     // Verify if the current value is in the options. If not, unselect
@@ -171,7 +175,8 @@ export const InputTextSelect = <T extends any> ({
       !!inputHookSelect.value.value &&
       !currentOptions.some(
         (option) =>
-          option.label!.toLowerCase() === inputHookSelect.value.label!.toLowerCase()
+          option.label!.toLowerCase() ===
+          inputHookSelect.value.label!.toLowerCase()
       )
     ) {
       inputHookSelect.setValue({ label: emptyLabel, value: null });
@@ -216,7 +221,7 @@ export const InputTextSelect = <T extends any> ({
     };
   }, [observer.ref]);
 
-  return (    
+  return (
     <div className={inputTextStyles["input-text--container"]}>
       <Box
         className={inputTextStyles["input-text--input-container"]}
@@ -226,22 +231,29 @@ export const InputTextSelect = <T extends any> ({
           width,
           height,
           borderWidth:
-            inputHookText.code == 4 || inputHookText.code == 3 ? "2.5px" : undefined,
+            inputHookText.code == 4 || inputHookText.code == 3
+              ? "2.5px"
+              : undefined,
         }}
       >
-        <div className={inputTextStyles["input-text--content"]} style={{paddingLeft: 0}}>
+        <div
+          className={inputTextStyles["input-text--content"]}
+          style={{ paddingLeft: 0 }}
+        >
           <div className={styles["input-text-select--inputs-box"]}>
             <Box
-              className={inputTextStyles["input-text--input-container"]}
+              className={classnames(
+                inputTextStyles["input-text--input-container"],
+                styles["input-text-select--input-container"]
+              )}
               innerRef={observer.ref}
               warningStyle={inputHookSelect.code == 3}
               errorStyle={inputHookSelect.code == 4}
               style={{
-                width: "125px",
-                marginRight: "15px",
-                border: "0 1px 0 0 solid",
                 borderWidth:
-                  inputHookSelect.code == 4 || inputHookSelect.code == 3 ? "2.5px" : undefined,
+                  inputHookSelect.code == 4 || inputHookSelect.code == 3
+                    ? "2.5px"
+                    : undefined,
               }}
             >
               <div className={inputTextStyles["input-text--content"]}>
@@ -259,7 +271,9 @@ export const InputTextSelect = <T extends any> ({
                   className={
                     inputSelectStyles["input-select--menu"] +
                     " " +
-                    inputSelectStyles["input-select--menu-" + (view ? "in" : "out")]
+                    inputSelectStyles[
+                      "input-select--menu-" + (view ? "in" : "out")
+                    ]
                   }
                   style={{
                     width: `${observer.width}px`,
@@ -329,16 +343,15 @@ export const InputTextSelect = <T extends any> ({
             </Box>
             <input
               placeholder={placeholder}
-              type={
-                type == "number" ||
-                  type == "text"
-                  ? type
-                  : "text"
-              }
+              type={type == "number" || type == "text" ? type : "text"}
               disabled={disabled}
               value={inputHookText.value}
               onChange={changeValue}
-              className={classnames(inputTextStyles["input-text--input"], textStyles["text"], textStyles["text--h6"])}
+              className={classnames(
+                inputTextStyles["input-text--input"],
+                textStyles["text"],
+                textStyles["text--h6"]
+              )}
             />
           </div>
           <div className={inputTextStyles["input-text--label"]}>
@@ -349,9 +362,7 @@ export const InputTextSelect = <T extends any> ({
             )}
             <Text
               type="h6"
-              weight={
-                inputHookText.code != 0 ? "600" : "400"
-              }
+              weight={inputHookText.code != 0 ? "600" : "400"}
               checkStyle={inputHookText.code == 1}
               warningStyle={inputHookText.code == 3}
               errorStyle={inputHookText.code == 4}
@@ -367,7 +378,8 @@ export const InputTextSelect = <T extends any> ({
       {showError && (
         <div
           className={
-            inputTextStyles["input-text--message-container"] + " " +
+            inputTextStyles["input-text--message-container"] +
+            " " +
             (inputHookText.code
               ? inputTextStyles["input-text--message-animation"]
               : inputTextStyles["input-text--message-no-animation"])

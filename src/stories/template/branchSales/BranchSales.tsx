@@ -117,6 +117,10 @@ interface BranchSalesProps {
    */
   totalPages: number;
   /**
+   * Total past sale elements
+   */
+  totalElements: number;
+  /**
    * On next page
    */
   onNextPage: () => void;
@@ -197,6 +201,7 @@ export const BranchSales = ({
   pastSales,
   page,
   totalPages,
+  totalElements,
   onNextPage,
   onPreviousPage,
   ...props
@@ -279,7 +284,7 @@ export const BranchSales = ({
           <InputTab
             index={tab}
             setIndex={setTab}
-            tabs={["Ventas Activas", "Histórico de Ventas"]}
+            tabs={["Ventas Activas", `Histórico de Ventas (${totalElements})`]}
           />
         </Box>
 

@@ -408,12 +408,15 @@ export const BranchEditForm = ({
         </Box>
 
         <Box>
-          <Box style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <Box style={{ display: "flex", gap: "7px", alignItems: "center" }}>
             <Text weight="400" highlightStyle>
               {" "}
               Tarifas por defecto{" "}
             </Text>
-            <Box style={{ cursor: "pointer" }} onClick={() => setTaxInfo(true)}>
+            <Box
+              style={{ cursor: "pointer", height: "100%", marginBottom: "5px" }}
+              onClick={() => setTaxInfo(true)}
+            >
               <Icon icon="info" size="20px" />
             </Box>
           </Box>
@@ -432,7 +435,7 @@ export const BranchEditForm = ({
                     tax.saveValueFunction(
                       taxesHook[index].nameInputHook,
                       taxesHook[index].typeInputHook,
-                      taxesHook[index].valueInputHook,
+                      taxesHook[index].valueInputHook
                     )
                   }
                   showError={

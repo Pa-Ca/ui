@@ -71,6 +71,10 @@ export const ProfilePicture = ({
     }
   }, [icon]);
 
+  const borderSize = useMemo(() => {
+    return `${observer.width * 0.2}px`;
+  }, [observer.width]);
+
   return (
     <div
       style={{
@@ -91,25 +95,16 @@ export const ProfilePicture = ({
         width={size}
         height={size}
         //style={{ border: `${border} solid ${color}` }}
-        className={
-          border ? styles["profile-picture--container"] : ""}
+        className={border ? styles["profile-picture--container"] : ""}
+        style={border ? { borderWidth: borderSize } : {}}
         onClick={onClick}
       >
         <Box
-          className={styles["profile-picture--icon"]}
           innerRef={observer.ref}
+          onClick={onPencilClick}
+          className={styles["profile-picture--icon-container"]}
         >
-          <div className={inputSelectStyles["input-select--button"]}>
-            <div
-              onClick={onPencilClick}
-              className={styles["dropdown-input-select--icon"]}
-            >
-              <Icon
-                icon={icon}
-                size={`${observer.width * iconProportion!}px`}
-              />
-            </div>
-          </div>
+          <Icon icon={icon} size={`${observer.width * iconProportion!}px`} />
         </Box>
       </Box>
     </div>

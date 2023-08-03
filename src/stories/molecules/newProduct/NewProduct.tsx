@@ -94,7 +94,6 @@ export const NewProduct = ({
           />
           <Button
             primary
-            size="large"
             onClick={onCreate}
             state={canCreate ? "normal" : "inactive"}
           >
