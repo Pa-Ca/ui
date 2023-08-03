@@ -5,7 +5,6 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./editableBranchLocation.module.scss";
 import inputTextStyles from "../inputText/inputText.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 
 export interface EditableBranchLocationProps {

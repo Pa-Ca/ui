@@ -18,14 +18,14 @@ interface InputDateProps {
   /**
    * Date input hook
    */
-  inputHook: InputFormHook<Date|null>;
+  inputHook: InputFormHook<Date | null>;
   /**
-  * Indicates if show clean date button
-  */
+   * Indicates if show clean date button
+   */
   cleanDateIcon?: boolean;
   /**
-  * Indicates if input is disabled
-  */
+   * Indicates if input is disabled
+   */
   disabled?: boolean;
   /**
    * Label to be displayed at the top of the input
@@ -90,8 +90,7 @@ export const InputDate = ({
         style={{
           width,
           height,
-          borderWidth:
-            inputHook.code ? "2.5px" : undefined,
+          borderWidth: inputHook.code ? "2.5px" : undefined,
         }}
         innerRef={observer.ref}
       >
@@ -106,13 +105,20 @@ export const InputDate = ({
             disabled={disabled}
           />
 
-          {cleanDateIcon &&
-            <Box className={styles["input-date--clean-icon-box"]}
-              onClick={()=>{inputHook.setValue(null)}}>
-              <Icon className={styles["input-date--clean-icon-color"]}
-               icon="cancel" size="30px" />
+          {cleanDateIcon && (
+            <Box
+              className={styles["input-date--clean-icon-box"]}
+              onClick={() => {
+                inputHook.setValue(null);
+              }}
+            >
+              <Icon
+                className={styles["input-date--clean-icon-color"]}
+                icon="cancel"
+                size="30px"
+              />
             </Box>
-          }
+          )}
 
           <div className={inputTextStyles["input-text--label"]}>
             {required && (
@@ -123,9 +129,7 @@ export const InputDate = ({
             <Text
               type="h6"
               style={{ zIndex: 1 }}
-              weight={
-                inputHook.code != 4 ? "600" : "400"
-              }
+              weight={inputHook.code != 4 ? "400" : "600"}
               checkStyle={inputHook.code == 1}
               warningStyle={inputHook.code == 3}
               errorStyle={inputHook.code == 4}
@@ -158,11 +162,7 @@ export const InputDate = ({
         )}
         {inputHook.code == 3 && (
           <>
-            <Icon
-              icon="warning"
-              warningStyle={true}
-              size="20px"
-            />
+            <Icon icon="warning" warningStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h7" warningStyle={true}>
               {inputHook.message}
@@ -171,11 +171,7 @@ export const InputDate = ({
         )}
         {inputHook.code == 1 && (
           <>
-            <Icon
-              icon="check"
-              checkStyle={true}
-              size="20px"
-            />
+            <Icon icon="check" checkStyle={true} size="20px" />
             <div style={{ width: "10px" }} />
             <Text type="h7" checkStyle={true}>
               {inputHook.message}
