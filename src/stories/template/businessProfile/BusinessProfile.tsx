@@ -369,21 +369,31 @@ export const BusinessProfile = ({
 
   const [currentProfilePicture, setCurrentProfilePicture] =
     useState(profilePicture);
-  const [headerProps, setHeaderProps] = useState<HeaderProps>(header);
-
-  headerProps.dark = isDarkMode;
+  const [headerProps, setHeaderProps] = useState<HeaderProps>({
+    ...header,
+    dark: isDarkMode,
+  });
 
   const onProfilePictureChange = (value: string) => {
     setCurrentProfilePicture(value);
     setshowUploadProfilePictureModal(false);
     onSaveProfilePicture(value);
-    setHeaderProps({ ...headerProps, picture: value });
+    setHeaderProps((oldProps) => {
+      return { ...oldProps, picture: value };
+    });
   };
+
   const asterisk = (
     <Text color="red" type="h6" weight="400">
       &nbsp;&nbsp;&nbsp;*&nbsp;
     </Text>
   );
+
+  useEffect(() => {
+    setHeaderProps((oldProps) => {
+      return { ...oldProps, ...header };
+    });
+  }, [header]);
 
   return (
     <PageWrapper headerArgs={headerProps}>

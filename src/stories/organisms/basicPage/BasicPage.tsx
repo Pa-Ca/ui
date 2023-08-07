@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "../../atoms/box/Box";
-import styles from"./basicPage.module.scss";
+import styles from "./basicPage.module.scss";
 import { Header } from "../../organisms/header/Header";
 import { Footer } from "../../organisms/footer/Footer";
 import { HeaderProps } from "../../organisms/header/Header";
@@ -13,7 +13,7 @@ interface BasicPageProps {
   /**
    * Header object
    * */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
 }
 
 /**
@@ -21,11 +21,7 @@ interface BasicPageProps {
  */
 export const BasicPage = ({
   children,
-  headerArgs = {
-    logged: false,
-    onPacaClick: () => { },
-    branchOptions: [],
-  },
+  headerArgs,
   ...props
 }: BasicPageProps) => {
   return (
