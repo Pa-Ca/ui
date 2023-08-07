@@ -33,6 +33,10 @@ interface InputTextProps {
    */
   disabled?: boolean;
   /**
+   * Max length of the input
+   */
+  maxLength?: number;
+  /**
    * Input width
    */
   width?: string;
@@ -56,6 +60,7 @@ export const InputText = ({
   showError = true,
   label = "Text input",
   disabled,
+  maxLength,
   width,
   height,
   placeholder,
@@ -65,6 +70,11 @@ export const InputText = ({
   const [currentType, setCurrentType] = useState(type);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // If the input has a max length we check that the new value is not longer 
+    // than the max length
+    if (maxLength && event.target.value.length > maxLength) {
+      return;
+    }
     if (type == "naturalNumber") {
       event.target.value = event.target.value.replace(/[^0-9]/g, "");
     } else if (type === "phoneNumber") {

@@ -4,6 +4,7 @@ export * from "./stories/atoms/text/Text";
 export * from "./stories/atoms/icon/Icon";
 export * from "./stories/atoms/range/Range";
 export * from "./stories/atoms/button/Button";
+export * from "./stories/atoms/spinner/Spinner";
 export * from "./stories/atoms/checkbox/Checkbox";
 export * from "./stories/atoms/starRating/StarRating";
 

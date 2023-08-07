@@ -1,0 +1,10 @@
+@import "../../assets/scss/themes";
+
+.spinner--container {
+  position: absolute;
+  bottom: 3vh;
+  right: 3vw;
+}
+.spinner--color circle{
+  fill: var(--main-color);
+}

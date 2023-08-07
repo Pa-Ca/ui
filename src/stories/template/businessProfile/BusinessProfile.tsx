@@ -55,7 +55,7 @@ interface BusinessProfileProps {
     closingTimeMinute: InputFormHook<string>,
     description: InputFormHook<string>,
     mapsLink: InputFormHook<string>
-  ) => void;
+  ) => Promise<void>;
   /**
    * Function that is executed when clicking on the profile picture
    */
@@ -308,6 +308,7 @@ export const BusinessProfile = ({
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
   const windowSize = useWindowResize();
+  const [wait, setWait] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
 
   const observer = useResizeObserver<HTMLDivElement>();
@@ -444,7 +445,9 @@ export const BusinessProfile = ({
               </Text>
               <Box height="16px" />
               {haveBranch ? (
-                <Box key={`business-profile--branch-edit-form-taxes-${taxes.length}`}>
+                <Box
+                  key={`business-profile--branch-edit-form-taxes-${taxes.length}`}
+                >
                   <BranchEditForm
                     name={branchName}
                     description={branchDescription}
@@ -525,6 +528,7 @@ export const BusinessProfile = ({
                 required
                 width="100%"
                 label="Nombre"
+                maxLength={64}
                 inputHook={newBranchName}
                 placeholder="Mi Nuevo Local"
               />
@@ -533,6 +537,7 @@ export const BusinessProfile = ({
             <Box className={styles["business-profile--two-column-row"]}>
               <InputText
                 required
+                maxLength={4}
                 label="Capacidad"
                 type="naturalNumber"
                 inputHook={newBranchCapacity}
@@ -566,6 +571,7 @@ export const BusinessProfile = ({
               <Box>
                 <InputText
                   required
+                  maxLength={7}
                   type="noNegativeNumber"
                   inputHook={newBranchPrice}
                   label="Coste por persona ($)"
@@ -612,6 +618,7 @@ export const BusinessProfile = ({
                   type="phoneNumber"
                   inputHook={newBranchPhone}
                   label="Número de teléfono"
+                  maxLength={16}
                   placeholder="+58 4240000000 | 04240000000"
                 />
               </Box>
@@ -635,9 +642,9 @@ export const BusinessProfile = ({
                 height="100%"
                 maxLength={480}
                 label="Descripción"
-                placeholder="Escribe una descripción para tu local"
                 value={newBranchDescription.value}
                 setValue={newBranchDescription.setValue}
+                placeholder="Escribe una descripción para tu local"
               />
             </Box>
 
@@ -673,8 +680,10 @@ export const BusinessProfile = ({
                 fullWidth
                 primary
                 size="large"
-                onClick={() =>
-                  onCreateBranch(
+                state={wait ? "inactive" : "normal"}
+                onClick={async () => {
+                  setWait(true);
+                  await onCreateBranch(
                     newBranchName,
                     newBranchPhone,
                     newBranchPrice,
@@ -689,8 +698,9 @@ export const BusinessProfile = ({
                     newBranchClosingTimeMinute,
                     newBranchDescription,
                     newBranchMapsLink
-                  )
-                }
+                  );
+                  setWait(false);
+                }}
               >
                 <Box
                   className={styles["business-profile--button-create-branch"]}
