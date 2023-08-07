@@ -134,7 +134,7 @@ export const SignUpForm = ({
     }
 
     if (!terms.value) {
-      terms.setCode(1);
+      terms.setCode(4);
       error = true;
     } else {
       terms.setCode(0);
