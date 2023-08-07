@@ -5,6 +5,7 @@ import { Text } from "../../atoms/text/Text";
 import { InputFormHook } from "../../hooks/useInputForm";
 import styles from "./resetPasswordComponent.module.scss";
 import useWindowResize from "../../hooks/useWindowResize";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { ResetPasswordForm } from "../../molecules/resetPasswordForm/ResetPasswordForm";
 
@@ -58,6 +59,7 @@ export const ResetPasswordComponent = ({
   ...props
 }: ResetPasswordComponentProps) => {
   const window = useWindowResize();
+  const { isDarkMode } = useThemeProvider();
 
   return (
     <Box
@@ -68,13 +70,18 @@ export const ResetPasswordComponent = ({
         <Box className={styles["reset-password-component--content"]}>
           <Box className={styles["reset-password-component--header"]}>
             <Box width="24px" />
-            <Icon icon="pa-ca" size="70px" />
+            <Icon
+              icon="pa-ca"
+              size="70px"
+              color={isDarkMode ? "white" : undefined}
+            />
             <Box
               className={styles["reset-password-component--back-to-login"]}
               onClick={onBackToLogin}
             >
               <Icon
                 icon="left"
+                className={styles["reset-password-component--back-icon"]}
                 size={window.resolutionType === "desktop" ? "18px" : "24px"}
               />
               {window.resolutionType === "desktop" && (
@@ -120,11 +127,7 @@ export const ResetPasswordComponent = ({
       </Box>
 
       <Box className={styles["reset-password-component--caroussel"]}>
-        <ImagesCarousel
-          images={images}
-          width="100%"
-          height="100%"
-        />
+        <ImagesCarousel images={images} width="100%" height="100%" />
       </Box>
     </Box>
   );

@@ -4,6 +4,7 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import styles from "./loginComponent.module.scss";
 import useWindowResize from "../../hooks/useWindowResize";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { LoginForm } from "../../molecules/loginForm/LoginForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
@@ -57,6 +58,7 @@ export const LoginComponent = ({
   ...props
 }: LoginComponentProps) => {
   const window = useWindowResize();
+  const { isDarkMode } = useThemeProvider();
 
   return (
     <Box
@@ -65,16 +67,18 @@ export const LoginComponent = ({
     >
       <Box className={styles["login-component--left-container"]}>
         <Box className={styles["login-component--title"]} width="100%">
-          <Icon icon="pa-ca" size="70px" />
+          <Icon
+            icon="pa-ca"
+            size="70px"
+            color={isDarkMode ? "white" : undefined}
+          />
           <Text
             weight="700"
             type={window.resolutionType === "desktop" ? "h2" : "h3"}
           >
             ¡Bienvenido!
           </Text>
-          <Text weight="700" primaryButtonStyle>
-            Inicia sesión para continuar
-          </Text>
+          <Text weight="400">Inicia sesión para continuar</Text>
         </Box>
 
         <Box className={styles["login-component--content"]}>
@@ -91,11 +95,7 @@ export const LoginComponent = ({
       </Box>
 
       <Box className={styles["login-component--caroussel"]}>
-        <ImagesCarousel
-          images={images}
-          width="100%"
-          height="100%"
-        />
+        <ImagesCarousel images={images} width="100%" height="100%" />
       </Box>
     </Box>
   );

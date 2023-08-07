@@ -5,6 +5,7 @@ import { Icon } from "../../atoms/icon/Icon";
 import styles from "./signUpComponent.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import useWindowResize from "../../hooks/useWindowResize";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { SignUpForm } from "../../molecules/signUpForm/SignUpForm";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 
@@ -122,6 +123,7 @@ export const SignUpComponent = ({
   ...props
 }: SignUpComponentProps) => {
   const window = useWindowResize();
+  const { isDarkMode } = useThemeProvider();
 
   return (
     <Box
@@ -139,7 +141,11 @@ export const SignUpComponent = ({
       <Box className={styles["sign-up-component--form-container"]}>
         <Box className={styles["sign-up-component--header"]}>
           <Box className={styles["sign-up-component--icon"]}>
-            <Icon icon="pa-ca" size={window.resolutionType === "desktop" ? "62px" : "62px"} />
+            <Icon
+              icon="pa-ca"
+              color={isDarkMode ? "white" : undefined}
+              size={window.resolutionType === "desktop" ? "62px" : "62px"}
+            />
           </Box>
           <Text
             weight="700"

@@ -4,6 +4,7 @@ import { Icon } from "../../atoms/icon/Icon";
 import { Text } from "../../atoms/text/Text";
 import useWindowResize from "../../hooks/useWindowResize";
 import styles from "./recoverPasswordComponent.module.scss";
+import useThemeProvider from "../../hooks/useThemeProvider";
 import { ImagesCarousel } from "../../molecules/imagesCarousel/ImagesCarousel";
 import { RecoverPasswordForm } from "../../molecules/recoverPasswordForm/RecoverPasswordForm";
 
@@ -57,6 +58,7 @@ export const RecoverPasswordComponent = ({
   ...props
 }: RecoverPasswordComponentProps) => {
   const window = useWindowResize();
+  const { isDarkMode } = useThemeProvider();
 
   return (
     <Box
@@ -68,7 +70,11 @@ export const RecoverPasswordComponent = ({
           <Box className={styles["recover-password-component--header"]}>
             <Box width="24px" />
             <Box className={styles["recover-password-component--logo"]}>
-              <Icon icon="pa-ca" size="70px" />
+              <Icon
+                icon="pa-ca"
+                size="70px"
+                color={isDarkMode ? "white" : undefined}
+              />
             </Box>
             <Box
               className={styles["recover-password-component--back-to-login"]}
@@ -76,6 +82,7 @@ export const RecoverPasswordComponent = ({
             >
               <Icon
                 icon="left"
+                className={styles["recover-password-component--back-icon"]}
                 size={window.resolutionType === "desktop" ? "18px" : "24px"}
               />
               {window.resolutionType === "desktop" && (
@@ -90,12 +97,15 @@ export const RecoverPasswordComponent = ({
           {!completed ? (
             <Box className={styles["recover-password-component--form"]}>
               <Box className={styles["recover-password-component--title"]}>
-                <Text weight="700" type={window.resolutionType === "desktop" ? "h3" : "h3"}>
+                <Text
+                  weight="700"
+                  type={window.resolutionType === "desktop" ? "h3" : "h3"}
+                >
                   ¿Olvidaste tu contraseña?
                 </Text>
               </Box>
               <Box className={styles["recover-password-component--subtitle"]}>
-                <Text color="grey" weight="400" type="h6">
+                <Text weight="400" type="h6">
                   Ingresa tu correo abajo para recuperar tu contraseña.
                 </Text>
               </Box>
@@ -125,11 +135,7 @@ export const RecoverPasswordComponent = ({
       </Box>
 
       <Box className={styles["recover-password-component--caroussel"]}>
-        <ImagesCarousel
-          images={images}
-          width="100%"
-          height="100%"
-        />
+        <ImagesCarousel images={images} width="100%" height="100%" />
       </Box>
     </Box>
   );

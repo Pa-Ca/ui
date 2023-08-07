@@ -252,8 +252,9 @@ export const SignUpForm = ({
                 onClick={() => terms.setValue((check) => !check)}
               >
                 <Icon
-                  icon={terms.value ? "checkbox" : "uncheckbox"}
                   size="24px"
+                  className={styles["sign-up-form--checkbox"]}
+                  icon={terms.value ? "checkbox" : "uncheckbox"}
                 />
               </Box>
               <Box width="8px" />
