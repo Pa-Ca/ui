@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./saleProductList.module.scss";
@@ -107,6 +107,10 @@ export const SaleProductList = ({
       typeInputHook: useInputForm(type),
     };
   });
+
+  useEffect(() => {
+    noteHook.setValue(note);
+  }, [note]);
 
   const subTotal = useMemo(() => {
     return products.reduce((acc, product, index) => {
