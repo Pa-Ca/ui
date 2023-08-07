@@ -99,13 +99,13 @@ export const InputText = ({
       case "eye":
         return (
           <button className={styles["input-text--icon"]} onClick={changeType}>
-            <Icon icon={icon} size="24" />
+            <Icon icon={icon} size="24" className={styles["input-text--hide-icon"]} />
           </button>
         );
       case "eye-slash":
         return (
           <button className={styles["input-text--icon"]} onClick={changeType}>
-            <Icon icon={icon} size="24" />
+            <Icon icon={icon} size="24" className={styles["input-text--hide-icon"]}/>
           </button>
         );
     }
