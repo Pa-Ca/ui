@@ -331,8 +331,8 @@ export const BranchSales = ({
                       onClick={t.onClick}
                       strongShadow
                     >
-                      <Box style={{ marginLeft: "10px" }}>
-                        <Text weight="600">{t.name}</Text>
+                      <Box style={{ marginLeft: "10px", overflow: "hidden" }}>
+                        <Text weight="600" ellipsis>{t.name}</Text>
                       </Box>
                     </Box>
                   ))}
@@ -392,6 +392,7 @@ export const BranchSales = ({
                       type="text"
                       width="100%"
                       label="Nombre"
+                      maxLength={32}
                       inputHook={newTableName}
                     />
                   </Box>
