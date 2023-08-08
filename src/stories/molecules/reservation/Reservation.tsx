@@ -22,6 +22,10 @@ export interface ReservationProps {
    */
   end: string;
   /**
+   * Date when reservation was requested
+   */
+  requestDate: string;
+  /**
    * Reservation main owner
    */
   owner: string;
@@ -93,6 +97,7 @@ export interface ReservationProps {
 export const Reservation = ({
   start,
   end,
+  requestDate,
   owner,
   ownerPhone,
   identityDocument,
@@ -308,7 +313,6 @@ export const Reservation = ({
                 { end != "" && <Text>{hyphen()}</Text>}
                 { end != "" && <Text>{end}</Text>}
               </div>
-
               <Box className={styles["reservation--details"]}>
                 <Box className={styles["reservation--icon-container"]}>
                   <Icon icon="identity-document" size="22px" />
@@ -338,6 +342,11 @@ export const Reservation = ({
               <Box>
                 {/* Actions */}
                 {getAction}
+                <Box className={styles["reservation--box-button"]}>
+                  <Text className={styles["reservation--right-button"]}>
+                    {requestDate}
+                  </Text>
+                </Box>
               </Box>
             </Box>
           </Box>

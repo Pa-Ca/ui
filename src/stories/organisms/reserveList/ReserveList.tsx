@@ -36,7 +36,7 @@ interface ReserveListProps {
  */
 export const ReserveList = ({
   reservations = [],
-  icon_size,
+  icon_size = "450px",
   state,
   color,
   setShowModal,
@@ -130,6 +130,7 @@ export const ReserveList = ({
                   key={`reserve-list--reservation-date-${reservation.date}-index-${index}}`}
                   start={reservation.start}
                   end={reservation.end}
+                  requestDate={reservation.requestDate}
                   date={reservation.date}
                   owner={reservation.owner}
                   ownerPhone={reservation.ownerPhone}
