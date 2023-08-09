@@ -18,7 +18,7 @@ interface ReservationCheckOut {
   /**
    * Component width
    */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
   /**
    * Path from Home to current page
    */

@@ -9,7 +9,7 @@ interface TermsProps {
   /**
    * Component width
    */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
 }
 
 /**

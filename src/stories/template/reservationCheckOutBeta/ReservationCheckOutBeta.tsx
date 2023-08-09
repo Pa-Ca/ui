@@ -16,7 +16,7 @@ interface ReservationCheckOutBeta {
   /**
    * Component width
    */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
   /**
    * Color of Submit button
    */
