@@ -194,7 +194,7 @@ interface BranchReservesProps {
   /**
    * Submit fuction
    */
-  onGetGuest: () => void;
+  onGetGuest: () => Promise<void>;
   /**
    * On next page
    */

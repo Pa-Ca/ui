@@ -117,3 +117,9 @@
 .branch-sales--table-selected {
   background-color: var(--table-active-backgroung-color);
 }
+.branch-sales--no-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

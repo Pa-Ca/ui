@@ -1,4 +1,8 @@
-import React, { useMemo }  from "react";
+import React, { useMemo } from "react";
+import { Box } from "../../atoms/box/Box";
+import { Icon } from "../../atoms/icon/Icon";
+import { Text } from "../../atoms/text/Text";
+import styles from "./branchProducts.module.scss";
 import { InputFormHook } from "../../hooks/useInputForm";
 import useWindowResize from "../../hooks/useWindowResize";
 import { HeaderProps } from "../../organisms/header/Header";
@@ -14,6 +18,10 @@ interface BranchProductsProps {
    * Header parameters
    */
   header: HeaderProps;
+  /**
+   * Indicates if have branch
+   */
+  haveBranch: boolean;
   /**
    * Product list
    */
@@ -61,6 +69,7 @@ interface BranchProductsProps {
  */
 export const BranchProducts = ({
   header,
+  haveBranch,
   products,
   categories,
   subCategories,
@@ -79,15 +88,25 @@ export const BranchProducts = ({
 
   return (
     <PageWrapper headerArgs={header}>
-      <ProductList
-        products={products}
-        categories={categories}
-        subCategories={subCategories}
-        onCreateProduct={onCreateProduct}
-        onCreateSubCategory={onCreateSubCategory}
-        onEditSubCategory={onEditSubCategory}
-        onDeleteSubCategory={onDeleteSubCategory}
-      />
+      {haveBranch ? (
+        <ProductList
+          products={products}
+          categories={categories}
+          subCategories={subCategories}
+          onCreateProduct={onCreateProduct}
+          onCreateSubCategory={onCreateSubCategory}
+          onEditSubCategory={onEditSubCategory}
+          onDeleteSubCategory={onDeleteSubCategory}
+        />
+      ) : (
+        <Box className={styles["branch-products--no-branch"]}>
+          <Icon
+            icon="share"
+            size={windowSize.resolutionType === "desktop" ? "50vh" : "50vw"}
+          />
+          <Text> Parece que no tienes ningún local asociado. </Text>
+        </Box>
+      )}
     </PageWrapper>
   );
 };

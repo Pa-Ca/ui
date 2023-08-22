@@ -24,12 +24,17 @@ import { SaleProductProps } from "../../molecules/saleProduct/SaleProduct";
 import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { SaleProductList } from "../../organisms/saleProductList/SaleProductList";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
+import { Icon } from "../../atoms/icon/Icon";
 
 interface BranchSalesProps {
   /**
    * Header parameters
    */
   header: HeaderProps;
+  /**
+   * Indicates if have branch
+   */
+  haveBranch: boolean;
 
   /**
    * Current selected table
@@ -131,11 +136,11 @@ interface BranchSalesProps {
   /**
    * Sale startDate
    */
-  startDate: InputFormHook<Date|null>;
+  startDate: InputFormHook<Date | null>;
   /**
    * Sale endDate
    */
-  endDate: InputFormHook<Date|null>;
+  endDate: InputFormHook<Date | null>;
   /**
    * Identity document options Option Object
    */
@@ -163,6 +168,7 @@ interface BranchSalesProps {
  */
 export const BranchSales = ({
   header,
+  haveBranch,
 
   table,
   allTables,
@@ -187,11 +193,11 @@ export const BranchSales = ({
   startDate,
   endDate,
   identityDocumentTypeOpt = [
-    {label: "V", value: "V"},
-    {label: "E", value: "E"},
-    {label: "J", value: "J"},
-    {label: "G", value: "G"},
-    {label: "P", value: "P"},
+    { label: "V", value: "V" },
+    { label: "E", value: "E" },
+    { label: "J", value: "J" },
+    { label: "G", value: "G" },
+    { label: "P", value: "P" },
   ],
   identityDocumentType,
   identityDocument,
@@ -275,255 +281,288 @@ export const BranchSales = ({
         )}
       </>
     );
-  }, [table, table?.hasSale, products, taxes, allProducts, categories, subCategories]);
+  }, [
+    table,
+    table?.hasSale,
+    products,
+    taxes,
+    allProducts,
+    categories,
+    subCategories,
+  ]);
 
   return (
     <PageWrapper headerArgs={header}>
-      <Box>
-        <Box width="100%" className={styles["branch-sales--header"]}>
-          <InputTab
-            index={tab}
-            setIndex={setTab}
-            tabs={["Ventas Activas", `Histórico de Ventas (${totalElements})`]}
-          />
-        </Box>
+      {haveBranch ? (
+        <Box>
+          <Box width="100%" className={styles["branch-sales--header"]}>
+            <InputTab
+              index={tab}
+              setIndex={setTab}
+              tabs={[
+                "Ventas Activas",
+                `Histórico de Ventas (${totalElements})`,
+              ]}
+            />
+          </Box>
 
-        <Box
-          className={styles["branch-sales--content-container"]}
-          innerRef={observerContainer.ref}
-        >
           <Box
-            width="200%"
-            className={styles["branch-sales--content"]}
-            innerRef={observerTab.ref}
+            className={styles["branch-sales--content-container"]}
+            innerRef={observerContainer.ref}
           >
-            <Box style={{ flex: 1 }}>
-              <Box className={styles["branch-sales--tables-and-sale"]}>
-                <Box className={styles["branch-sales--tables"]}>
-                  <Box className={styles["branch-sales--tables-header"]}>
-                    <Text weight="700" type="h3">
-                      Mesas:
-                    </Text>
-
-                    <Button
-                      primary
-                      size="box"
-                      onClick={() => setShowNewModal(true)}
-                    >
-                      <Box className={styles["sale-branch-sales--button"]}>
-                        <Text weight="600">Crear Mesa</Text>
-                      </Box>
-                    </Button>
-                  </Box>
-
-                  {allTables.map((t, index) => (
-                    <Box
-                      key={`branch-sales--table-${index}-${t.name}`}
-                      className={classnames(
-                        table?.id === t.id
-                          ? styles["branch-sales--table-selected"]
-                          : "",
-                        styles["branch-sales--table"],
-                        t.hasSale
-                          ? styles["branch-sales--table-available"]
-                          : styles["branch-sales--table-unavailable"],
-                      )}
-                      onClick={t.onClick}
-                      strongShadow
-                    >
-                      <Box style={{ marginLeft: "10px", overflow: "hidden" }}>
-                        <Text weight="600" ellipsis>{t.name}</Text>
-                      </Box>
-                    </Box>
-                  ))}
-                </Box>
-
-                {!!table ? (
-                  <Box className={styles["branch-sales--sale"]}>
-                    <Box className={styles["branch-sales--sale-header"]}>
+            <Box
+              width="200%"
+              className={styles["branch-sales--content"]}
+              innerRef={observerTab.ref}
+            >
+              <Box style={{ flex: 1 }}>
+                <Box className={styles["branch-sales--tables-and-sale"]}>
+                  <Box className={styles["branch-sales--tables"]}>
+                    <Box className={styles["branch-sales--tables-header"]}>
                       <Text weight="700" type="h3">
-                        {table?.name}
+                        Mesas:
                       </Text>
 
-                      <Box
-                        className={styles["branch-sales--sale-header-buttons"]}
+                      <Button
+                        primary
+                        size="box"
+                        onClick={() => setShowNewModal(true)}
                       >
-                        <Button
-                          primary
-                          size="large"
-                          onClick={() => setShowEditModal(true)}
-                        >
-                          <Box className={styles["sale-branch-sales--button"]}>
-                            <Text weight="600">Editar Mesa</Text>
-                          </Box>
-                        </Button>
-                        <Button
-                          size="large"
-                          onClick={() => setShowDeleteModal(true)}
-                          state={table?.hasSale ? "inactive" : "normal"}
-                        >
-                          <Box className={styles["sale-branch-sales--button"]}>
-                            <Text weight="600">Eliminar Mesa</Text>
-                          </Box>
-                        </Button>
-                      </Box>
+                        <Box className={styles["sale-branch-sales--button"]}>
+                          <Text weight="600">Crear Mesa</Text>
+                        </Box>
+                      </Button>
                     </Box>
 
-                    {content}
+                    {allTables.map((t, index) => (
+                      <Box
+                        key={`branch-sales--table-${index}-${t.name}`}
+                        className={classnames(
+                          table?.id === t.id
+                            ? styles["branch-sales--table-selected"]
+                            : "",
+                          styles["branch-sales--table"],
+                          t.hasSale
+                            ? styles["branch-sales--table-available"]
+                            : styles["branch-sales--table-unavailable"]
+                        )}
+                        onClick={t.onClick}
+                        strongShadow
+                      >
+                        <Box style={{ marginLeft: "10px", overflow: "hidden" }}>
+                          <Text weight="600" ellipsis>
+                            {t.name}
+                          </Text>
+                        </Box>
+                      </Box>
+                    ))}
                   </Box>
-                ) : (
-                  <Box>
-                    <Text>
-                      Primero debe crear una mesa para poder iniciar una venta.
+
+                  {!!table ? (
+                    <Box className={styles["branch-sales--sale"]}>
+                      <Box className={styles["branch-sales--sale-header"]}>
+                        <Text weight="700" type="h3">
+                          {table?.name}
+                        </Text>
+
+                        <Box
+                          className={
+                            styles["branch-sales--sale-header-buttons"]
+                          }
+                        >
+                          <Button
+                            primary
+                            size="large"
+                            onClick={() => setShowEditModal(true)}
+                          >
+                            <Box
+                              className={styles["sale-branch-sales--button"]}
+                            >
+                              <Text weight="600">Editar Mesa</Text>
+                            </Box>
+                          </Button>
+                          <Button
+                            size="large"
+                            onClick={() => setShowDeleteModal(true)}
+                            state={table?.hasSale ? "inactive" : "normal"}
+                          >
+                            <Box
+                              className={styles["sale-branch-sales--button"]}
+                            >
+                              <Text weight="600">Eliminar Mesa</Text>
+                            </Box>
+                          </Button>
+                        </Box>
+                      </Box>
+
+                      {content}
+                    </Box>
+                  ) : (
+                    <Box>
+                      <Text>
+                        Primero debe crear una mesa para poder iniciar una
+                        venta.
+                      </Text>
+                    </Box>
+                  )}
+                </Box>
+
+                <Modal open={showNewModal} setOpen={setShowNewModal}>
+                  <Box className={styles["branch-sales--modal-container"]}>
+                    <Text type="h5" weight="500">
+                      Indique el nombre de la nueva mesa
                     </Text>
+
+                    <Box width="100%" style={{ marginTop: "20px" }}>
+                      <InputText
+                        required
+                        type="text"
+                        width="100%"
+                        label="Nombre"
+                        maxLength={32}
+                        inputHook={newTableName}
+                      />
+                    </Box>
+
+                    <Box className={styles["branch-sales--modal-buttons"]}>
+                      <Button
+                        fullWidth
+                        size="large"
+                        onClick={() => setShowNewModal(false)}
+                      >
+                        <Box className={styles["branch-sales--modal-button"]}>
+                          <Text weight="600">Cancelar</Text>
+                        </Box>
+                      </Button>
+                      <Button
+                        primary
+                        fullWidth
+                        size="large"
+                        onClick={async () =>
+                          (await onCreateTable(newTableName)) &&
+                          setShowNewModal(false)
+                        }
+                      >
+                        <Box className={styles["branch-sales--modal-button"]}>
+                          <Text weight="600">Aceptar</Text>
+                        </Box>
+                      </Button>
+                    </Box>
                   </Box>
-                )}
+                </Modal>
+
+                <Modal open={showEditModal} setOpen={setShowEditModal}>
+                  <Box className={styles["branch-sales--modal-container"]}>
+                    <Text type="h5" weight="500">
+                      Indique el nuevo nombre de la mesa
+                    </Text>
+
+                    <Box width="100%" style={{ marginTop: "20px" }}>
+                      <InputText
+                        required
+                        type="text"
+                        width="100%"
+                        label="Nombre"
+                        inputHook={editTableName}
+                      />
+                    </Box>
+
+                    <Box className={styles["branch-sales--modal-buttons"]}>
+                      <Button
+                        fullWidth
+                        size="large"
+                        onClick={() => setShowEditModal(false)}
+                      >
+                        <Box className={styles["branch-sales--modal-button"]}>
+                          <Text weight="600">Cancelar</Text>
+                        </Box>
+                      </Button>
+                      <Button
+                        primary
+                        fullWidth
+                        size="large"
+                        onClick={async () =>
+                          (await onEditTable(editTableName)) &&
+                          setShowEditModal(false)
+                        }
+                      >
+                        <Box className={styles["branch-sales--modal-button"]}>
+                          <Text weight="600">Aceptar</Text>
+                        </Box>
+                      </Button>
+                    </Box>
+                  </Box>
+                </Modal>
+
+                <Modal open={showDeleteModal} setOpen={setShowDeleteModal}>
+                  <Box
+                    className={styles["branch-sales--delete-modal-container"]}
+                  >
+                    <Text type="h5" weight="500">
+                      ¿Estás seguro que deseas eliminar la mesa
+                      <span style={{ fontWeight: "600" }}> {table?.name} </span>
+                      ?
+                    </Text>
+
+                    <Box className={styles["branch-sales--modal-buttons"]}>
+                      <Button
+                        fullWidth
+                        size="large"
+                        onClick={() => setShowDeleteModal(false)}
+                      >
+                        <Box className={styles["branch-sales--modal-button"]}>
+                          <Text weight="600">Cancelar</Text>
+                        </Box>
+                      </Button>
+                      <Button
+                        primary
+                        fullWidth
+                        size="large"
+                        onClick={() => {
+                          setShowDeleteModal(false);
+                          onDeleteTable();
+                        }}
+                      >
+                        <Box className={styles["branch-sales--modal-button"]}>
+                          <Text weight="600">Eliminar Mesa</Text>
+                        </Box>
+                      </Button>
+                    </Box>
+                  </Box>
+                </Modal>
               </Box>
 
-              <Modal open={showNewModal} setOpen={setShowNewModal}>
-                <Box className={styles["branch-sales--modal-container"]}>
-                  <Text type="h5" weight="500">
-                    Indique el nombre de la nueva mesa
-                  </Text>
+              <Box style={{ flex: 1, paddingBottom: "40px" }}>
+                <SaleFilters
+                  startDate={startDate}
+                  endDate={endDate}
+                  identityDocumentTypeOpt={identityDocumentTypeOpt}
+                  identityDocumentType={identityDocumentType}
+                  identityDocument={identityDocument}
+                  fullName={fullName}
+                  onGetSalesFiltered={onGetSalesFiltered}
+                />
 
-                  <Box width="100%" style={{ marginTop: "20px" }}>
-                    <InputText
-                      required
-                      type="text"
-                      width="100%"
-                      label="Nombre"
-                      maxLength={32}
-                      inputHook={newTableName}
-                    />
-                  </Box>
-
-                  <Box className={styles["branch-sales--modal-buttons"]}>
-                    <Button
-                      fullWidth
-                      size="large"
-                      onClick={() => setShowNewModal(false)}
-                    >
-                      <Box className={styles["branch-sales--modal-button"]}>
-                        <Text weight="600">Cancelar</Text>
-                      </Box>
-                    </Button>
-                    <Button
-                      primary
-                      fullWidth
-                      size="large"
-                      onClick={async () =>
-                        (await onCreateTable(newTableName)) &&
-                        setShowNewModal(false)
-                      }
-                    >
-                      <Box className={styles["branch-sales--modal-button"]}>
-                        <Text weight="600">Aceptar</Text>
-                      </Box>
-                    </Button>
-                  </Box>
-                </Box>
-              </Modal>
-
-              <Modal open={showEditModal} setOpen={setShowEditModal}>
-                <Box className={styles["branch-sales--modal-container"]}>
-                  <Text type="h5" weight="500">
-                    Indique el nuevo nombre de la mesa
-                  </Text>
-
-                  <Box width="100%" style={{ marginTop: "20px" }}>
-                    <InputText
-                      required
-                      type="text"
-                      width="100%"
-                      label="Nombre"
-                      inputHook={editTableName}
-                    />
-                  </Box>
-
-                  <Box className={styles["branch-sales--modal-buttons"]}>
-                    <Button
-                      fullWidth
-                      size="large"
-                      onClick={() => setShowEditModal(false)}
-                    >
-                      <Box className={styles["branch-sales--modal-button"]}>
-                        <Text weight="600">Cancelar</Text>
-                      </Box>
-                    </Button>
-                    <Button
-                      primary
-                      fullWidth
-                      size="large"
-                      onClick={async () =>
-                        (await onEditTable(editTableName)) &&
-                        setShowEditModal(false)
-                      }
-                    >
-                      <Box className={styles["branch-sales--modal-button"]}>
-                        <Text weight="600">Aceptar</Text>
-                      </Box>
-                    </Button>
-                  </Box>
-                </Box>
-              </Modal>
-
-              <Modal open={showDeleteModal} setOpen={setShowDeleteModal}>
-                <Box className={styles["branch-sales--delete-modal-container"]}>
-                  <Text type="h5" weight="500">
-                    ¿Estás seguro que deseas eliminar la mesa
-                    <span style={{ fontWeight: "600" }}> {table?.name} </span>?
-                  </Text>
-
-                  <Box className={styles["branch-sales--modal-buttons"]}>
-                    <Button
-                      fullWidth
-                      size="large"
-                      onClick={() => setShowDeleteModal(false)}
-                    >
-                      <Box className={styles["branch-sales--modal-button"]}>
-                        <Text weight="600">Cancelar</Text>
-                      </Box>
-                    </Button>
-                    <Button
-                      primary
-                      fullWidth
-                      size="large"
-                      onClick={() => {
-                        setShowDeleteModal(false);
-                        onDeleteTable();
-                      }}
-                    >
-                      <Box className={styles["branch-sales--modal-button"]}>
-                        <Text weight="600">Eliminar Mesa</Text>
-                      </Box>
-                    </Button>
-                  </Box>
-                </Box>
-              </Modal>
-            </Box>
-
-            <Box style={{ flex: 1, paddingBottom: "40px" }}>
-              <SaleFilters
-                startDate={startDate}
-                endDate={endDate}
-                identityDocumentTypeOpt={identityDocumentTypeOpt}
-                identityDocumentType={identityDocumentType}
-                identityDocument={identityDocument}
-                fullName={fullName}
-                onGetSalesFiltered={onGetSalesFiltered}
-              />
-
-              <PastSaleList
-                pastSales={pastSales}
-                page={page}
-                totalPages={totalPages}
-                onNextPage={onNextPage}
-                onPreviousPage={onPreviousPage}
-              />
+                <PastSaleList
+                  pastSales={pastSales}
+                  page={page}
+                  totalPages={totalPages}
+                  onNextPage={onNextPage}
+                  onPreviousPage={onPreviousPage}
+                />
+              </Box>
             </Box>
           </Box>
         </Box>
-      </Box>
+      ) : (
+        <Box className={styles["branch-sales--no-branch"]}>
+          <Icon
+            icon="share"
+            size={windowSize.resolutionType === "desktop" ? "50vh" : "50vw"}
+          />
+          <Text> Parece que no tienes ningún local asociado. </Text>
+        </Box>
+      )}
     </PageWrapper>
   );
 };

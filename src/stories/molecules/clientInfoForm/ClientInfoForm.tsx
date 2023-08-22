@@ -44,7 +44,7 @@ export interface ClientInfoFormProps {
   /**
    * Get Guest fuction
    */
-  onGetGuest: () => void;
+  onGetGuest: () => Promise<void>;
   /**
    * Component width
    */
@@ -100,7 +100,7 @@ export const ClientInfoForm = ({
             fullWidth
             primary
             size="medium"
-            onClick={() => {setActiveInputs(true); onGetGuest()}}
+            onClick={async () => {setActiveInputs(true); await onGetGuest()}}
             className={
               styles["client-info--submit-reservation--button-text"]
             }
