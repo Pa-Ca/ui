@@ -16,7 +16,7 @@ interface ReservationCheckOutBeta {
   /**
    * Component width
    */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
   /**
    * Color of Submit button
    */
@@ -132,7 +132,7 @@ export const ReservationCheckOutBeta = ({
               // TODO
               identityDocument={identityDocument}
               identityDocumentType={identityDocumentType}
-              onGetGuest={() => { }}
+              onGetGuest={async () => { }}
             />
           </Box>
 

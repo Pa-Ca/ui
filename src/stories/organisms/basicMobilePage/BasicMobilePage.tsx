@@ -13,7 +13,7 @@ interface BasicMobilePageProps {
   /**
    * Header object
    * */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
 }
 
 /**

@@ -30,12 +30,24 @@ const reservationsStatus: ReservationStatusObject[] = [
 function formatAMPM(date: Date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  let ampm = hours >= 12 ? 'pm' : 'am';
+  let ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   let strMinutes = minutes < 10 ? '0'+minutes : minutes;
   let strTime = hours + ':' + strMinutes + ' ' + ampm;
   return strTime;
+}
+
+function padTo2Digits(num: number) {
+  return num.toString().padStart(2, '0');
+}
+
+function formatDate(date: Date) {
+  return [
+    padTo2Digits(date.getDate()),
+    padTo2Digits(date.getMonth() + 1),
+    date.getFullYear(),
+  ].join('/');
 }
 
 function generateRandomDate(): Date {
@@ -54,6 +66,7 @@ function generatePastReservation(): ReservationProps {
   return {
     start: formatAMPM(generateRandomDate()),
     end: formatAMPM(generateRandomDate()),
+    requestDate: formatDate(generateRandomDate()) + " " + formatAMPM(generateRandomDate()),
     owner: "John Doe",
     ownerPhone: "0424-1234567",
     ownerEmail: "john_doe@fe.com",

@@ -85,7 +85,7 @@ interface BranchListing {
   /**
    * Component width
    */
-  headerArgs?: HeaderProps;
+  headerArgs: HeaderProps;
 
   /**
    * All branch reviews
