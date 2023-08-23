@@ -221,8 +221,6 @@
   background-color: var(--closed-status-color);
 }
 
-
-
 .online-sale--header {
   gap: 10px;
   width: 100%;
@@ -345,4 +343,29 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.online-sale--invoice-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.online-sale--invoice-box{
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.online-sale--invoice-box-show {
+  opacity: 1;
+  max-height: 400px;
+  transition: max-height 800ms ease-in, opacity 5ms;
+}
+.online-sale--invoice-box-hide {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 5ms linear 800ms, max-height 800ms ease-out;
 }

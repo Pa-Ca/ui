@@ -7,6 +7,7 @@ import styles from "./onlineSale.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { Modal } from "../modal/Modal";
 import ReservationStatus from "../../utils/objects/ReservationStatus";
+import { OnlineSaleInvoice } from "../onlineSaleInvoice/OnlineSaleInvoice";
 
 export interface OnlineSaleProps {
   /**
@@ -49,7 +50,7 @@ export interface OnlineSaleProps {
    * Sale date
    */
   date: string;
-  
+
   /**
    * Is sale a pick-up or delivery
    */
@@ -85,7 +86,7 @@ export interface OnlineSaleProps {
     value: number;
     type: "%" | "$";
   }[];
-  
+
   /**
    * On close reservation button click
    */
@@ -115,6 +116,9 @@ export interface OnlineSaleProps {
    */
   height?: string;
 }
+
+
+
 
 /**
  * Primary UI component for user interaction
@@ -189,6 +193,21 @@ export const OnlineSale = ({
     setActive(active => !active);
   }
 
+  const SaleTypeIcon = ({saleType} : { saleType: "pick-up" | "delivery" }) => {
+    return (
+      <Box className={styles["online-sale--icon"]}>
+        {saleType === "delivery" && <Icon icon="delivery" size="32px" />}
+        {saleType === "pick-up" && <Icon icon="pick-up" size="32px" />}
+      </Box>
+    );
+  }
+
+  // const [showInvoice, setShowInvoice] = useState(false);
+
+  // const onClickInvoiceEye = () => {
+  //   setShowInvoice(showInvoice => !showInvoice);
+  // }
+
   const getAction = useMemo(() => {
     switch (status.number) {
       // Started online-sale
@@ -207,29 +226,29 @@ export const OnlineSale = ({
           </Box>
         );
 
-        // Accepted online-sale
-        case 3:
-          return (
-            <Box className={styles["online-sale--box-button"]}>
-              <Button
-                onClick={() => setConfirmRetire(true)}
-                className={styles["online-sale--left-button"]}
-              >
-                <Text type="h6">
-                  Retirar
-                </Text>
-              </Button>
-              <Button
-                primary
-                onClick={() => setConfirmStart(true)}
-                className={styles["online-sale--right-button"]}
-              >
-                <Text type="h6">
-                  Empezar
-                </Text>
-              </Button>
-            </Box>
-          );
+      // Accepted online-sale
+      case 3:
+        return (
+          <Box className={styles["online-sale--box-button"]}>
+            <Button
+              onClick={() => setConfirmRetire(true)}
+              className={styles["online-sale--left-button"]}
+            >
+              <Text type="h6">
+                Retirar
+              </Text>
+            </Button>
+            <Button
+              primary
+              onClick={() => setConfirmStart(true)}
+              className={styles["online-sale--right-button"]}
+            >
+              <Text type="h6">
+                Empezar
+              </Text>
+            </Button>
+          </Box>
+        );
 
       // Pending online-sale
       case 1:
@@ -269,7 +288,7 @@ export const OnlineSale = ({
           styles["online-sale--container"]
         )}
         weakShadow
-        style={{ width, height}}
+        style={{ width, height }}
       >
 
         <Box
@@ -280,8 +299,8 @@ export const OnlineSale = ({
         >
           <Box className={styles["online-sale--status-box-inner"]}>
             <Icon icon={status.icon} size="50px"
-                className={styles["online-sale--status-icon-color"]} />
-            <Text ellipsis={true} weight="700"className={styles["online-sale--status-text"]} color="white">
+              className={styles["online-sale--status-icon-color"]} />
+            <Text ellipsis={true} weight="700" className={styles["online-sale--status-text"]} color="white">
               {status.nameShow}
             </Text>
           </Box>
@@ -304,27 +323,13 @@ export const OnlineSale = ({
             {/* Info */}
             <Box>
               <Box className={styles["online-sale--info"]}>
-                  <Text weight="700"> {owner} </Text>
-              </Box>
-              <Box className={styles["online-sale--info"]}>
-                
+                <Text weight="700"> {owner} </Text>
               </Box>
             </Box>
-            
+
             {/* Sale  type icons */}
-            {
-              saleType === "delivery" &&
-              <Box className={styles["online-sale--icon"]}>
-                <Icon icon="delivery" size="32px" />
-              </Box>
-            }
-            {
-              saleType === "pick-up" &&
-              <Box className={styles["online-sale--icon"]}>
-                <Icon icon="pick-up" size="32px" />
-              </Box>
-            }
-            
+            <SaleTypeIcon saleType={saleType} />
+
             {/* Total price */}
             <Box className={styles["online-sale--icon"]}>
               <Text weight="700"> {total} $</Text>
@@ -334,9 +339,9 @@ export const OnlineSale = ({
 
             {/* Show Info Switch */}
             <Box className={styles["online-sale--icon"]}
-                  onClick={onClickEye}
-                  style={{marginLeft:"auto"}}>
-              <Icon icon={active ? "up" : "down" } size="32px" />
+              onClick={onClickEye}
+              style={{ marginLeft: "auto" }}>
+              <Icon icon={active ? "up" : "down"} size="32px" />
             </Box>
           </Box>
 
@@ -349,48 +354,68 @@ export const OnlineSale = ({
               styles["online-sale--more-details-row-show"] :
               styles["online-sale--more-details-row-hide"]
             }>
-              <hr className={styles["online-sale--hr"]}/>
+              <hr className={styles["online-sale--hr"]} />
               <div>
-              <div className={styles["online-sale--details"]}
-                    style={{marginBottom: "0"}}>
-                <Box className={styles["online-sale--icon-container"]}
-                      style={{marginBottom: "2px"}}>
-                  <Icon icon="clock" size="22px" />
-                </Box>
-                <Text>{requestTime}</Text>
-              </div>
-              <Box className={styles["online-sale--details"]}>
-                <Box className={styles["online-sale--icon-container"]}>
-                  <Icon icon="identity-document" size="22px" />
-                </Box>
-                <Text> {identityDocument} </Text>
-              </Box>
-              <Box className={styles["online-sale--details"]}>
-                <Box className={styles["online-sale--icon-container"]}>
-                  <Icon icon="phone" size="22px" />
-                </Box>
-                <Text> {ownerPhone} </Text>
-              </Box>
-              <Box className={styles["online-sale--details"]}>
-                <Box className={styles["online-sale--icon-container"]}>
-                  <Icon icon="mail-envelope" size="22px" />
-                </Box>
-                <Text> {ownerEmail} </Text>
-              </Box>
-              <Box className={styles["online-sale--details"]}>
-                <Box className={styles["online-sale--icon-container"]}>
-                  <Icon icon="location" size="22px" />
-                </Box>
-                <Text> {adress} </Text>
-              </Box>
-              { note != "" &&
-                <Box>
-                  <Box>
-                    <Text> <span style={{fontWeight: "600"}}>Nota:</span> {note} </Text>
+                <div className={styles["online-sale--details"]}
+                  style={{ marginBottom: "0" }}>
+                  <Box className={styles["online-sale--icon-container"]}
+                    style={{ marginBottom: "2px" }}>
+                    <Icon icon="clock" size="22px" />
                   </Box>
+                  <Text>{requestTime}</Text>
+                </div>
+                <Box className={styles["online-sale--details"]}>
+                  <Box className={styles["online-sale--icon-container"]}>
+                    <Icon icon="identity-document" size="22px" />
+                  </Box>
+                  <Text> {identityDocument} </Text>
                 </Box>
-              }
+                <Box className={styles["online-sale--details"]}>
+                  <Box className={styles["online-sale--icon-container"]}>
+                    <Icon icon="phone" size="22px" />
+                  </Box>
+                  <Text> {ownerPhone} </Text>
+                </Box>
+                <Box className={styles["online-sale--details"]}>
+                  <Box className={styles["online-sale--icon-container"]}>
+                    <Icon icon="mail-envelope" size="22px" />
+                  </Box>
+                  <Text> {ownerEmail} </Text>
+                </Box>
+                <Box className={styles["online-sale--details"]}>
+                  <Box className={styles["online-sale--icon-container"]}>
+                    <Icon icon="location" size="22px" />
+                  </Box>
+                  <Text> {adress} </Text>
+                </Box>
+                {note != "" &&
+                  <Box>
+                    <Box>
+                      <Text> <span style={{ fontWeight: "600" }}>Nota:</span> {note} </Text>
+                    </Box>
+                  </Box>
+                }
               </div>
+
+              <hr/>
+              <Box className={styles["online-sale--invoice-title"]}>
+                <Box className={styles["online-sale--info"]}>
+                  <Text weight="700"> {"Detalles del pedido"} </Text>
+                </Box>
+                {/* <Box className={styles["online-sale--icon"]}
+                  onClick={onClickInvoiceEye}
+                  style={{ marginLeft: "auto" }}>
+                  <Icon icon={active ? "up" : "down"} size="32px" />
+                </Box> */}
+              </Box>
+              <hr/>
+              <Box className={styles["online-sale--invoice-box"]}>
+                <OnlineSaleInvoice
+                  requestTime={requestTime}
+                  products={products}
+                  taxes={taxes} />
+              </Box>
+              <hr/>
               <Box>
                 {/* Actions */}
                 {getAction}
@@ -401,109 +426,11 @@ export const OnlineSale = ({
                 </Box>
               </Box>
               
-
-              <hr className={styles["online-sale--details-container-hr"]} />
-
-            <Box className={styles["online-sale--details"]}>
-              <Box className={styles["online-sale--details-products-container"]}>
-                {/* Header */}
-                <Box className={styles["online-sale--item"]}>
-                  <Box className={styles["online-sale--item-amount"]}>
-                    <Text type="h5" weight="600">
-                      Cantidad
-                    </Text>
-                  </Box>
-                  <Box className={styles["online-sale--item-price"]}>
-                    <Text type="h5" weight="600">
-                      Precio
-                    </Text>
-                  </Box>
-                  <Box className={styles["online-sale--item-product"]}>
-                    <Text type="h5" weight="600">
-                      Producto
-                    </Text>
-                  </Box>
-                </Box>
-                <hr className={styles["online-sale--details-container-hr"]} />
-
-                {/* Products */}
-                <Box className={styles["online-sale--details-products"]}>
-                  {products.map((product, index) => (
-                    <Box
-                      key={`online-sale--${requestTime}-product-${index}-${
-                        product.name
-                      }`}
-                      className={styles["online-sale--item"]}
-                    >
-                      <Box className={styles["online-sale--item-amount"]}>
-                        <Text type="h5">{product.amount}</Text>
-                      </Box>
-                      <Box className={styles["online-sale--item-price"]}>
-                        <Text type="h5">{product.price.toFixed(2)}$</Text>
-                      </Box>
-                      <Box className={styles["online-sale--item-product"]}>
-                        <Text type="h5">{product.name}</Text>
-                      </Box>
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-
-              <Box className={styles["online-sale--summary"]}>
-                <Box className={styles["online-sale--reservation-container"]}>
-                  <Box className={styles["online-sale--reservation-title"]}>
-                    <Text type="h5" weight="600">
-                      Reservación:
-                    </Text>
-                  </Box>
-                  <hr className={styles["online-sale--details-container-hr"]} />
-
-                </Box>
-
-                <Box width="100%">
-                  <Box className={styles["online-sale--summary-item"]}>
-                    <Text type="h5" weight="600">
-                      SUB-TOTAL:
-                    </Text>
-                    <Text type="h5" weight="400">
-                      {subTotal.toFixed(2)}$
-                    </Text>
-                  </Box>
-                  {taxes.map((tax, index) => (
-                    <Box
-                      key={`online-sale--date-${requestTime}-index-${index}`}
-                      className={styles["online-sale--summary-item"]}
-                    >
-                      <Text type="h5" weight="600">
-                        {tax.name} ({tax.value}
-                        {tax.type}):
-                      </Text>
-                      <Text type="h5" weight="400">
-                        {(tax.type === "%"
-                          ? (subTotal * tax.value) / 100
-                          : tax.value
-                        ).toFixed(2)}
-                        $
-                      </Text>
-                    </Box>
-                  ))}
-                  <hr className={styles["online-sale--hr"]} />
-                  <Box className={styles["online-sale--summary-item"]}>
-                    <Text type="h5" weight="600">
-                      TOTAL:
-                    </Text>
-                    <Text type="h5" weight="400">
-                      {total.toFixed(2)}$
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-
+              
             </Box>
           </Box>
 
-        
+
         </Box>
       </Box>
 
@@ -512,7 +439,7 @@ export const OnlineSale = ({
         <Box className={styles["online-sale--modal-box"]}>
 
           <Text>
-            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Rechazar</span> la reserva ?
+            ¿Está seguro que desea <span style={{ fontWeight: "600" }}>Rechazar</span> la reserva ?
           </Text>
 
           <Box className={styles["online-sale--confirmation-button-row"]}>
@@ -530,7 +457,7 @@ export const OnlineSale = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onReject!(); setConfirmReject(false);}}
+              onClick={() => { onReject!(); setConfirmReject(false); }}
               className={styles["online-sale--right-button"]}
             >
               <Box className={styles["online-sale--confirmation-button-box"]}>
@@ -547,7 +474,7 @@ export const OnlineSale = ({
       <Modal open={confirmAccept} setOpen={setConfirmAccept}>
         <Box className={styles["online-sale--modal-box"]}>
           <Text>
-            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Aceptar</span> la orden ?
+            ¿Está seguro que desea <span style={{ fontWeight: "600" }}>Aceptar</span> la orden ?
           </Text>
 
           <Box className={styles["online-sale--confirmation-button-row"]}>
@@ -565,7 +492,7 @@ export const OnlineSale = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onAccept!(); setConfirmAccept(false);}}
+              onClick={() => { onAccept!(); setConfirmAccept(false); }}
               className={styles["online-sale--right-button"]}
             >
               <Box className={styles["online-sale--confirmation-button-box"]}>
@@ -582,7 +509,7 @@ export const OnlineSale = ({
       <Modal open={confirmStart} setOpen={setConfirmStart}>
         <Box className={styles["online-sale--modal-box"]}>
           <Text>
-            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Empezar</span> la reserva ?
+            ¿Está seguro que desea <span style={{ fontWeight: "600" }}>Empezar</span> la reserva ?
           </Text>
 
           <Box className={styles["online-sale--confirmation-button-row"]}>
@@ -600,7 +527,7 @@ export const OnlineSale = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onStart!(); setConfirmStart(false);}}
+              onClick={() => { onStart!(); setConfirmStart(false); }}
               className={styles["online-sale--right-button"]}
             >
               <Box className={styles["online-sale--confirmation-button-box"]}>
@@ -617,7 +544,7 @@ export const OnlineSale = ({
       <Modal open={confirmRetire} setOpen={setConfirmRetire}>
         <Box className={styles["online-sale--modal-box"]}>
           <Text>
-            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Retirar</span> la reserva ?
+            ¿Está seguro que desea <span style={{ fontWeight: "600" }}>Retirar</span> la reserva ?
           </Text>
 
           <Box className={styles["online-sale--confirmation-button-row"]}>
@@ -635,7 +562,7 @@ export const OnlineSale = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onRetire!(); setConfirmRetire(false);}}
+              onClick={() => { onRetire!(); setConfirmRetire(false); }}
               className={styles["online-sale--right-button"]}
             >
               <Box className={styles["online-sale--confirmation-button-box"]}>
@@ -652,7 +579,7 @@ export const OnlineSale = ({
       <Modal open={confirmClose} setOpen={setConfirmClose}>
         <Box className={styles["online-sale--modal-box"]}>
           <Text>
-            ¿Está seguro que desea <span style={{fontWeight: "600"}}>Finalizar</span> la reserva ?
+            ¿Está seguro que desea <span style={{ fontWeight: "600" }}>Finalizar</span> la reserva ?
           </Text>
 
           <Box className={styles["online-sale--confirmation-button-row"]}>
@@ -670,7 +597,7 @@ export const OnlineSale = ({
             <Button
               primary
               fullWidth
-              onClick={() => {onCloseSale!(); setConfirmClose(false);}}
+              onClick={() => { onCloseSale!(); setConfirmClose(false); }}
               className={styles["online-sale--right-button"]}
             >
               <Box className={styles["online-sale--confirmation-button-box"]}>
