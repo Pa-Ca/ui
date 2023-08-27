@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from "react";
 import classnames from "classnames";
+import { Box } from "../../atoms/box/Box";
 import styles from "./inputText.module.scss";
 import { Text } from "../../atoms/text/Text";
-import { Icon } from "../../atoms/icon/Icon";
-import { Box } from "../../atoms/box/Box";
+import { Icon, IconType } from "../../atoms/icon/Icon";
 import { InputFormHook } from "../../hooks/useInputForm";
 import textStyles from "../../atoms/text/text.module.scss";
 
@@ -15,7 +15,13 @@ interface InputTextProps {
   /**
    * Input type
    */
-  type?: "text" | "number" | "naturalNumber" | "password" | "phoneNumber" | "noNegativeNumber";
+  type?:
+    | "text"
+    | "number"
+    | "naturalNumber"
+    | "password"
+    | "phoneNumber"
+    | "noNegativeNumber";
   /**
    * Indicates if the input is required
    */
@@ -33,6 +39,10 @@ interface InputTextProps {
    */
   disabled?: boolean;
   /**
+   * Icon to show at the left of the input
+   */
+  leftIcon?: IconType;
+  /**
    * Max length of the input
    */
   maxLength?: number;
@@ -48,6 +58,10 @@ interface InputTextProps {
    * Input placeholder
    */
   placeholder?: string;
+  /**
+   * On left icon click
+   */
+  onLeftIconClick?: () => void;
 }
 
 /**
@@ -60,17 +74,19 @@ export const InputText = ({
   showError = true,
   label = "Text input",
   disabled,
+  leftIcon,
   maxLength,
   width,
   height,
   placeholder,
+  onLeftIconClick,
   ...props
 }: InputTextProps) => {
   const [icon, setIcon] = useState("eye-slash");
   const [currentType, setCurrentType] = useState(type);
 
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // If the input has a max length we check that the new value is not longer 
+    // If the input has a max length we check that the new value is not longer
     // than the max length
     if (maxLength && event.target.value.length > maxLength) {
       return;
@@ -109,13 +125,21 @@ export const InputText = ({
       case "eye":
         return (
           <button className={styles["input-text--icon"]} onClick={changeType}>
-            <Icon icon={icon} size="24" className={styles["input-text--hide-icon"]} />
+            <Icon
+              icon={icon}
+              size="24"
+              className={styles["input-text--hide-icon"]}
+            />
           </button>
         );
       case "eye-slash":
         return (
           <button className={styles["input-text--icon"]} onClick={changeType}>
-            <Icon icon={icon} size="24" className={styles["input-text--hide-icon"]}/>
+            <Icon
+              icon={icon}
+              size="24"
+              className={styles["input-text--hide-icon"]}
+            />
           </button>
         );
     }
@@ -131,24 +155,35 @@ export const InputText = ({
         style={{
           width,
           height,
-          borderWidth:
-            inputHook.code ? "2.5px" : undefined,
+          borderWidth: inputHook.code ? "2.5px" : undefined,
         }}
       >
+        {leftIcon && (
+          <Box
+            onClick={onLeftIconClick}
+            className={styles["input-text--left-icon"]}
+          >
+            <Icon icon={leftIcon} size="35" />
+          </Box>
+        )}
         <div className={styles["input-text--content"]}>
           <input
             placeholder={placeholder}
             type={
               currentType == "number" ||
-                currentType == "text" ||
-                currentType == "password"
+              currentType == "text" ||
+              currentType == "password"
                 ? currentType
                 : "text"
             }
             disabled={disabled}
             value={inputHook.value}
             onChange={changeValue}
-            className={classnames(styles["input-text--input"], textStyles["text"], textStyles["text--h6"])}
+            className={classnames(
+              styles["input-text--input"],
+              textStyles["text"],
+              textStyles["text--h6"]
+            )}
           />
           <div className={styles["input-text--label"]}>
             {required && (
@@ -156,18 +191,18 @@ export const InputText = ({
                 *
               </Text>
             )}
-            <Text
-              type="h6"
-              weight={
-                inputHook.code ? "600" : "400"
-              }
-              warningStyle={inputHook.code == 3}
-              errorStyle={inputHook.code == 4}
-              checkStyle={inputHook.code == 4}
-              style={{ zIndex: 2 }}
-            >
-              &nbsp;{label}&nbsp;
-            </Text>
+            {label && (
+              <Text
+                type="h6"
+                weight={inputHook.code ? "600" : "400"}
+                warningStyle={inputHook.code == 3}
+                errorStyle={inputHook.code == 4}
+                checkStyle={inputHook.code == 4}
+                style={{ zIndex: 2 }}
+              >
+                &nbsp;{label}&nbsp;
+              </Text>
+            )}
             <div className={styles["input-text--medium-box"]} />
           </div>
         </div>
@@ -182,7 +217,8 @@ export const InputText = ({
       {showError && (
         <div
           className={
-            styles["input-text--message-container"] + " " +
+            styles["input-text--message-container"] +
+            " " +
             (inputHook.code
               ? styles["input-text--message-animation"]
               : styles["input-text--message-no-animation"])

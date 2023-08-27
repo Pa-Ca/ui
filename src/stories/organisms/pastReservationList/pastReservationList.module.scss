@@ -10,7 +10,10 @@
 .past-reservation-list--body {
   gap: 20px;
   display: flex;
+  overflow-y: auto;
   margin-top: 35px;
+  padding-left: 2px;
+  padding-right: 2px;
   margin-bottom: 35px;
   flex-direction: column;
 }
@@ -26,6 +29,7 @@
 .past-reservation-list--pages {
   width: 100%;
   display: flex;
+  margin-bottom: 40px;
   flex-direction: row;
   align-items: center;
   justify-content: center;

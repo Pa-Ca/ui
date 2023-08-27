@@ -54,6 +54,7 @@ export const Text = Template.bind({});
 Text.args = {
   type: "text",
   placeholder: "Ej: Placeholder",
+  leftIcon: undefined,
 };
 
 export const Password = Template.bind({});

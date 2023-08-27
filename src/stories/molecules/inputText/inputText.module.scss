@@ -108,3 +108,12 @@
 .input-text--hide-icon {
   color: var(--alternative-color);
 }
+
+.input-text--left-icon {
+  display: flex;
+  cursor: pointer;
+  margin-left: 16px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

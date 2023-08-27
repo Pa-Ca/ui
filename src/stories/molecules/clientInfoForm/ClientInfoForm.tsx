@@ -79,6 +79,7 @@ export const ClientInfoForm = ({
   ...props
 }: ClientInfoFormProps) => {
   const [activeInputs, setActiveInputs] = useState(false);
+  
   return (
     <Box className={styles["client-info-form--container"]} style={{ width, height }}>
       <Box className={styles["client-info-form--content"]}>
@@ -105,7 +106,7 @@ export const ClientInfoForm = ({
               styles["client-info--submit-reservation--button-text"]
             }
           >
-            <Text primaryButtonStyle type="h6" weight="600">
+            <Text primaryButtonStyle type="p" weight="600">
               Obtener Usuario
             </Text>
           </Button>

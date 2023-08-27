@@ -19,107 +19,79 @@
   padding-right: 5px;
   flex-direction: row;
 }
-.branch-sales--modal-container {
-  gap: 25px;
-  display: flex;
-  max-width: 75vw;
-  min-width: 350px;
-  text-align: center;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.branch-sales--modal-buttons {
-  gap: 10px;
-  width: 100%;
+.branch-sales--tables-and-sale-header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-}
-.branch-sales--modal-button {
-  width: 100%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-direction: column;
-}
-.branch-sales--delete-modal-container {
-  @extend .branch-sales--modal-container;
-
-  max-width: 550px;
-}
-.sale-branch-sales--new-sale-title {
-  margin-bottom: 30px;
-}
-.sale-branch-sales--new-sale-button {
-  width: 100%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-direction: column;
+  margin-bottom: 60px;
+  justify-content: space-between;
 }
 .branch-sales--tables-and-sale {
   gap: 50px;
   display: flex;
   flex-direction: row;
 }
-.branch-sales--tables {
-  gap: 15px;
-  display: flex;
-  flex-direction: column;
-}
-.branch-sales--table {
-  width: 300px;
-  display: flex;
-  cursor: pointer;
-  min-height: 60px;
-  border-radius: 10px;
-  align-items: center;
-  border-left-width: 15px;
-  border-left-style: solid;
-  transition: background-color 500ms ease-in-out;
-  background-color: var(--table-inactive-backgroung-color);
-}
-.branch-sales--table-available {
-  border-left-color: var(--product-available-color);
-}
-.branch-sales--table-unavailable {
-  border-left-color: var(--product-unavailable-color);
-}
-.branch-sales--tables-header {
-  gap: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-  justify-content: space-between;
-}
-.branch-sales--sale {
-  flex: 1;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.branch-sales--sale-header {
-  gap: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.branch-sales--sale-header-buttons {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.branch-sales--table-selected {
-  background-color: var(--table-active-backgroung-color);
-}
 .branch-sales--no-branch {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.branch-sales--modal-button-box {
+  gap: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.branch-sales--submit-sale-button-text {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.branch-sales--modal-subtitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.branch-sales--modal-inputs {
+  gap: 16px;
+  display: flex;
+  flex-direction: row;
+}
+.branch-sales--modal-tables {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+.branch-sales--modal-table {
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 18px;
+  padding-right: 18px;
+  background-color: var(--main-color);
+}
+.branch-sales--modal-cancel-table {
+  color: white;
+}
+.branch-sales--historical-header {
+  gap: 25px;
+  display: flex;
+  margin-bottom: 60px;
+  flex-direction: row;
+  align-items: center;
+}
+.branch-sales--exchange {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
 }

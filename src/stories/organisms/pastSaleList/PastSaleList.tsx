@@ -26,6 +26,10 @@ interface PastSaleListProps {
    * On previous page
    */
   onPreviousPage: () => void;
+  /**
+   * Max content height
+   */
+  contentHeight?: string;
 }
 
 /**
@@ -37,6 +41,7 @@ export const PastSaleList = ({
   totalPages,
   onNextPage,
   onPreviousPage,
+  contentHeight,
   ...props
 }: PastSaleListProps) => {
   // Group past sales by date
@@ -60,7 +65,10 @@ export const PastSaleList = ({
 
   return (
     <Box className={styles["past-sale-list--container"]}>
-      <Box className={styles["past-sale-list--body"]}>
+      <Box
+        className={styles["past-sale-list--body"]}
+        style={{ height: contentHeight }}
+      >
         {dates.map((date, index) => (
           <Box
             className={styles["past-sale-list--body-item"]}

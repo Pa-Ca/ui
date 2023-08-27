@@ -14,6 +14,7 @@ import eyeFill from "@iconify/icons-bi/eye-fill";
 import pencilIcon from "@iconify/icons-mdi/pencil";
 import coffeeIcon from "@iconify/icons-mdi/coffee";
 import dollarIcon from "@iconify/icons-mdi/dollar";
+import searchIcon from "@iconify/icons-ion/search";
 import fastFood from "@iconify/icons-ion/fast-food";
 import heartFill from "@iconify/icons-ph/heart-fill";
 import twitterIcon from "@iconify/icons-mdi/twitter";
@@ -27,6 +28,7 @@ import alertCircle from "@iconify/icons-mdi/alert-circle";
 import clockRemove from "@iconify/icons-mdi/clock-remove";
 import zelleIcon from "@iconify/icons-simple-icons/zelle";
 import flagFilled from "@iconify/icons-tabler/flag-filled";
+import invoiceIcon from "@iconify/icons-iconamoon/invoice";
 import eyeSlashFill from "@iconify/icons-bi/eye-slash-fill";
 import wifiHighBold from "@iconify/icons-ph/wifi-high-bold";
 import circleSlice8 from "@iconify/icons-mdi/circle-slice-8";
@@ -41,6 +43,7 @@ import personIcon from "@iconify/icons-material-symbols/person";
 import cancelIcon from "@iconify/icons-material-symbols/cancel";
 import plusCircle24 from "@iconify/icons-octicon/plus-circle-24";
 import checkBox from "@iconify/icons-material-symbols/check-box";
+import arrowsExchange from "@iconify/icons-tabler/arrows-exchange";
 import spaRounded from "@iconify/icons-material-symbols/spa-rounded";
 import instagramLogoFill from "@iconify/icons-ph/instagram-logo-fill";
 import infoOutline from "@iconify/icons-material-symbols/info-outline";
@@ -129,7 +132,10 @@ export type IconType =
   | "started-status"
   | "closed-status"
   | "identity-document"
-  | "info";
+  | "info"
+  | "search"
+  | "exchange"
+  | "invoice";
 
 interface IconProps {
   /**
@@ -695,6 +701,30 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={infoOutline}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "search":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={searchIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "exchange":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={arrowsExchange}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "invoice":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={invoiceIcon}
           style={{ fontSize: size, ...style }}
         />
       );

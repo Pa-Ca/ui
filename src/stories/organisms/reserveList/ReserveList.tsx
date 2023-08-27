@@ -20,7 +20,7 @@ interface ReserveListProps {
   /**
    * Icon size
    */
-  icon_size: string;
+  iconSize?: string;
   /**
    * Main color
    */
@@ -29,6 +29,10 @@ interface ReserveListProps {
    * Set show modal
    */
   setShowModal: (open: boolean) => void;
+  /**
+   * Max content height
+   */
+  contentHeight?: string;
 }
 
 /**
@@ -36,10 +40,11 @@ interface ReserveListProps {
  */
 export const ReserveList = ({
   reservations = [],
-  icon_size = "450px",
+  iconSize = "450px",
   state,
   color,
   setShowModal,
+  contentHeight,
   ...props
 }: ReserveListProps) => {
   /**
@@ -66,7 +71,7 @@ export const ReserveList = ({
       case 1:
         return "Reservas En Curso";
       case 2:
-        return "Reservas Aceptadas";
+        return "Reservas Aprobadas";
       case 3:
         return "Reservas Pendientes";
       default:
@@ -91,14 +96,16 @@ export const ReserveList = ({
                 backgroundColor={color}
                 onClick={() => setShowModal(true)}
               >
-                <Text type="h6">Añadir Reserva</Text>
+                <Text type="p" weight="700" primaryButtonStyle>
+                  Añadir Reserva
+                </Text>
               </Button>
             </Box>
           </Box>
         );
       default:
         return (
-          <Box className={styles["reserve-list--header-record"]}>
+          <Box className={styles["reserve-list--header"]}>
             <Text weight="700" type="h3">
               {title}
             </Text>
@@ -112,17 +119,16 @@ export const ReserveList = ({
       {header}
 
       {reservationsByDate.length > 0 ? (
-        <Box className={styles["reserve-list--reservations"]}>
+        <Box className={styles["reserve-list--reservations"]} style={{ height: contentHeight }}>
           {reservationsByDate.map((group, index) => (
             <Box
               key={`reserve-list--state-${state}-date-${group.date}-index-${index}`}
               className={styles["reserve-list--reservation"]}
             >
-              <Box
-                strongShadow
-                className={styles["reserve-list--date"]}
-              >
-                <Text weight="700" type="h4">{group.date}</Text>
+              <Box strongShadow className={styles["reserve-list--date"]}>
+                <Text weight="700" type="h4">
+                  {group.date}
+                </Text>
               </Box>
 
               {group.reservations.map((reservation, index) => (
@@ -153,7 +159,7 @@ export const ReserveList = ({
       ) : (
         <Box className={styles["reserve-list--no-branch-box"]}>
           {" "}
-          <Icon icon="share" size={icon_size} />
+          <Icon icon="share" size={iconSize} />
           <Text type="h4">
             {" "}
             No hay reservas

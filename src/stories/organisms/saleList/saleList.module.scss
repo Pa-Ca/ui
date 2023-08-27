@@ -1,0 +1,72 @@
+@import "../../assets/scss/themes";
+
+.sale-list--container {
+  display: flex;
+  flex-direction: column;
+}
+.sale-list--search-container {
+  gap: 20px;
+  width: 100%;
+  display: flex;
+  padding-left: 2px;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sale-list--search {
+  width: 100%;
+}
+.sale-list--exchange {
+  gap: 5px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+}
+.sale-list--sales {
+  gap: 10px;
+  display: flex;
+  cursor: pointer;
+  overflow: auto;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 10px;
+  flex-direction: column;
+}
+.sale-list--tables {
+  gap: 10px;
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  padding-left: 2px;
+  padding-right: 2px;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+.sale-list--table {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  height: 120px;
+  border-radius: 5px;
+  width: calc(50% - 5px);
+}
+.sale-list--table-active {
+  cursor: pointer;
+  background-color: var(--table-active-backgroung-color);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.sale-list--table-inactive {
+  background-color: var(--table-inactive-backgroung-color);
+}
+.sale-list--table-selected {
+  height: 114px;
+  cursor: pointer;
+  width: calc(50% - 11px);
+  border: 3px solid var(--background-color);
+  background-color: var(--table-selected-backgroung-color);
+}

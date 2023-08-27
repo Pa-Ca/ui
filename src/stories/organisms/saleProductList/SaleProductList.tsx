@@ -184,7 +184,7 @@ export const SaleProductList = ({
             }}
           >
             <Box className={styles["sale-product-list--button"]}>
-              <Text weight="600">Agregar Tarifa</Text>
+              <Text weight="700">Agregar Tarifa</Text>
             </Box>
           </Button>
         )}
@@ -272,7 +272,9 @@ export const SaleProductList = ({
               state={products.length > 0 ? "normal" : "inactive"}
             >
               <Box className={styles["sale-product-list--button"]}>
-                <Text weight="600">Cerrar Mesa</Text>
+                <Text weight="700" primaryButtonStyle>
+                  Cerrar Mesa
+                </Text>
               </Box>
             </Button>
             <Button
@@ -281,7 +283,7 @@ export const SaleProductList = ({
               onClick={() => setShowDeleteModal(true)}
             >
               <Box className={styles["sale-product-list--button"]}>
-                <Text weight="600">Eliminar Factura</Text>
+                <Text weight="700">Eliminar Factura</Text>
               </Box>
             </Button>
           </Box>
@@ -301,7 +303,7 @@ export const SaleProductList = ({
               onClick={() => setShowClearModal(false)}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
             <Button
@@ -314,7 +316,7 @@ export const SaleProductList = ({
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Limpiar Mesa</Text>
+                <Text weight="700" primaryButtonStyle>Limpiar Mesa</Text>
               </Box>
             </Button>
           </Box>
@@ -334,7 +336,7 @@ export const SaleProductList = ({
               onClick={() => setShowDeleteModal(false)}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
             <Button
@@ -347,7 +349,7 @@ export const SaleProductList = ({
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Eliminar</Text>
+                <Text weight="600" primaryButtonStyle>Eliminar</Text>
               </Box>
             </Button>
           </Box>
@@ -426,7 +428,7 @@ export const SaleProductList = ({
               onClick={() => setShowPayModal(false)}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
             <Button
@@ -439,7 +441,7 @@ export const SaleProductList = ({
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cerrar Mesa</Text>
+                <Text weight="700" primaryButtonStyle>Cerrar Mesa</Text>
               </Box>
             </Button>
           </Box>

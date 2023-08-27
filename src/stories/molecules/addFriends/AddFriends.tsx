@@ -75,7 +75,7 @@ export const AddFriends = ({
     return size.toString() + "px";
   }, [height]);
 
-  const icon_size = useMemo(() => {
+  const iconSize = useMemo(() => {
     const size = parseInt(height) * 0.45;
     return size.toString() + "px";
   }, [height]);
@@ -99,7 +99,7 @@ export const AddFriends = ({
         }}
       >
         <Box className={styles["add-friends--icon-sub-container"]} onClick={onClick}>
-          <Icon icon="plus-circle" size={icon_size} />
+          <Icon icon="plus-circle" size={iconSize} />
         </Box>
       </Box>
       <Box className={styles["add-friends--friends-vertical"]}>

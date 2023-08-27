@@ -65,7 +65,7 @@ export const NewSaleProduct = ({
   });
 
   const allCategories = useMemo(() => {
-    const allCategories= Object.values(categories).map((category) => {
+    const allCategories = Object.values(categories).map((category) => {
       return {
         label: category.name,
         value: category,
@@ -243,7 +243,9 @@ export const NewSaleProduct = ({
           }
         >
           <Box className={styles["sale-product--button"]}>
-            <Text weight="600">Agregar</Text>
+            <Text weight="700" primaryButtonStyle>
+              Agregar
+            </Text>
           </Box>
         </Button>
       </Box>

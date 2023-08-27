@@ -64,8 +64,9 @@
     --pair-option-color: #{$white-dark};
 
     // Tables
-    --table-active-backgroung-color: #{$white};
+    --table-active-backgroung-color: #{$orange};
     --table-inactive-backgroung-color: #{$gray-light};
+    --table-selected-backgroung-color: #{$orange-dark};
   }
 }
 
@@ -133,7 +134,7 @@
     --pair-option-color: #{$black-light};
 
     // Tables
-    --table-active-backgroung-color: #{$white};
-    --table-inactive-backgroung-color: #{$gray-dark};
+    --table-active-backgroung-color: #{$orange};
+    --table-inactive-backgroung-color: #{$gray-light};
   }
 }
