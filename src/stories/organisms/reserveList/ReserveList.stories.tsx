@@ -92,5 +92,82 @@ Default.args = {
       status: reservationsStatus[1],
     }),
   ],
+  tableList: [
+    {
+      id: 1,
+      branchId: 1,
+      name: "0001",
+    },
+    {
+      id: 2,
+      branchId: 1,
+      name: "0002",
+    },
+    {
+      id: 3,
+      branchId: 1,
+      name: "0003",
+    },
+    {
+      id: 4,
+      branchId: 1,
+      name: "0004",
+    },
+    {
+      id: 5,
+      branchId: 1,
+      name: "0005",
+    },
+    {
+      id: 6,
+      branchId: 1,
+      name: "0006",
+    },
+    {
+      id: 7,
+      branchId: 1,
+      name: "0007",
+    },
+    {
+      id: 8,
+      branchId: 1,
+      name: "0008",
+    },
+    {
+      id: 9,
+      branchId: 1,
+      name: "0009",
+    },
+    {
+      id: 10,
+      branchId: 1,
+      name: "0010",
+    },
+    {
+      id: 11,
+      branchId: 1,
+      name: "0011",
+    },
+    {
+      id: 12,
+      branchId: 1,
+      name: "0012",
+    },
+    {
+      id: 13,
+      branchId: 1,
+      name: "0013",
+    },
+    {
+      id: 14,
+      branchId: 1,
+      name: "0014",
+    },
+    {
+      id: 15,
+      branchId: 1,
+      name: "0015",
+    },
+  ],
   state: 1,
 };

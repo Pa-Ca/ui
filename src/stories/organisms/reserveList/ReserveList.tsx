@@ -4,6 +4,7 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./reserveList.module.scss";
 import { Button } from "../../atoms/button/Button";
+import TableObject from "../../utils/objects/TableObject";
 import ReservationList from "../../utils/objects/ReservationList";
 import { Reservation } from "../../molecules/reservation/Reservation";
 import { ReservationProps } from "../../molecules/reservation/Reservation";
@@ -17,6 +18,10 @@ interface ReserveListProps {
    * State of reservations that will be displayed
    */
   state: number;
+  /**
+   * Tables
+   */
+  tableList: TableObject[];
   /**
    * Icon size
    */
@@ -42,6 +47,7 @@ export const ReserveList = ({
   reservations = [],
   iconSize = "450px",
   state,
+  tableList,
   color,
   setShowModal,
   contentHeight,
@@ -146,6 +152,7 @@ export const ReserveList = ({
                   persons={reservation.persons}
                   tables={reservation.tables}
                   status={reservation.status}
+                  tableList={tableList}
                   onCloseReservation={reservation.onCloseReservation}
                   onReject={reservation.onReject}
                   onRetire={reservation.onRetire}

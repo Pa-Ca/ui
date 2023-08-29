@@ -65,7 +65,7 @@ export const Sale = ({
 
         <Box className={styles["sale--data-footer-container"]}>
           <Text weight="400" type="h6">
-            {sale.startTime}
+            {sale.startTime.toISOString().split("T")[1].substring(0, 5)}
           </Text>
 
           <Box className={styles["sale--icon-data"]}>

@@ -449,9 +449,16 @@ export const BranchEditForm = ({
             );
           })}
 
-          <Button size="box" onClick={onAddTax} style={{ marginTop: "10px" }}>
+          <Button
+            primary
+            size="medium"
+            onClick={onAddTax}
+            style={{ marginTop: "10px" }}
+          >
             <Box className={styles["sale-product-list--button"]}>
-              <Text weight="600">Agregar Tarifa</Text>
+              <Text type="h6" weight="600" primaryButtonStyle>
+                Agregar Tarifa
+              </Text>
             </Box>
           </Button>
         </Box>
@@ -482,9 +489,9 @@ export const BranchEditForm = ({
       </Box>
 
       <Box>
-        <Button primary size="large" onClick={() => setDeleteBranch(true)}>
+        <Button size="large" onClick={() => setDeleteBranch(true)}>
           <Box>
-            <Text weight="600">Eliminar Local</Text>
+            <Text weight="700">Eliminar Local</Text>
           </Box>
         </Button>
       </Box>
@@ -526,7 +533,7 @@ export const BranchEditForm = ({
                 className={styles["branch-edit-form--modal-button"]}
                 onClick={() => emailInput.value === email && onDeleteBranch()}
               >
-                <Text weight="600">Eliminar Local</Text>
+                <Text weight="700" primaryButtonStyle>Eliminar Local</Text>
               </Box>
             </Button>
             <Button
@@ -536,7 +543,7 @@ export const BranchEditForm = ({
               state={emailInput.value === email ? "normal" : "inactive"}
             >
               <Box className={styles["branch-edit-form--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
           </Box>
@@ -565,7 +572,7 @@ export const BranchEditForm = ({
 
           <Button primary fullWidth onClick={() => setTaxInfo(false)}>
             <Box className={styles["branch-edit-form--modal-button"]}>
-              <Text weight="600">Entendido</Text>
+              <Text weight="700" primaryButtonStyle>Entendido</Text>
             </Box>
           </Button>
         </Box>

@@ -8,10 +8,7 @@ import { InputText } from "../../molecules/inputText/InputText";
 import { InputDate } from "../../molecules/inputDate/InputDate";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import { InputLongText } from "../../molecules/inputLongText/InputLongText";
-import {
-  AddFriends,
-  AddFriendsProps,
-} from "../../molecules/addFriends/AddFriends";
+import { AddFriends, AddFriendsProps } from "../../molecules/addFriends/AddFriends";
 
 interface ReserveDetailsProps {
   /**
@@ -25,7 +22,7 @@ interface ReserveDetailsProps {
   /**
    * Current date
    */
-  date: InputFormHook<Date|null>;
+  date: InputFormHook<Date | null>;
   /**
    * Current entry hour
    */
@@ -106,11 +103,7 @@ export const ReserveDetails = ({
   }
 
   return (
-    <Box
-      className={styles["reserve-details--container"]}
-      style={{ width, height }}
-      {...props}
-    >
+    <Box className={styles["reserve-details--container"]} style={{ width, height }} {...props}>
       {/* Branch details */}
       <Box
         className={styles["reserve-details--title"]}
@@ -132,47 +125,28 @@ export const ReserveDetails = ({
           </Box>
 
           <Box width="100%">
-            <InputText
-              required
-              inputHook={persons}
-              type="naturalNumber"
-              label="Personas"
-            />
+            <InputText required inputHook={persons} type="naturalNumber" label="Personas" />
           </Box>
 
           <Box width="100%">
-            <InputText
-              required
-              inputHook={tables}
-              type="naturalNumber"
-              label="Mesas"
-            />
+            <InputText required inputHook={tables} type="naturalNumber" label="Mesas" />
           </Box>
         </Box>
 
         <Box className={styles["reserve-details--input-container"]}>
           <Box width="100%">
-            <InputSelect
-              required
-              inputHook={hourIn}
-              options={validHoursIn}
-              label="Llegada"
-            />
+            <InputSelect required inputHook={hourIn} options={validHoursIn} label="Llegada" />
           </Box>
 
           <Box width="100%">
-            <InputSelect
-              inputHook={hourOut}
-              options={validHoursOut}
-              label="Salida"
-            />
+            <InputSelect inputHook={hourOut} options={validHoursOut} label="Salida" />
           </Box>
         </Box>
         <Box>
           <Text type="h6">
             {" "}
-            La duración esperada de la reserva es de {durationHour} hora(s) y{" "}
-            {durationMin} minuto(s){" "}
+            La duración esperada de la reserva es de {durationHour} hora(s) y {durationMin}{" "}
+            minuto(s){" "}
           </Text>
         </Box>
       </Box>

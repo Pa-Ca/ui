@@ -358,6 +358,7 @@ Default.args = {
   ],
   taxes: [
     {
+      id: 1,
       name: "IVA",
       value: 12,
       type: 0,
@@ -365,6 +366,7 @@ Default.args = {
       deleteValueFunction: async () => {},
     },
     {
+      id: 2,
       name: "IGTF",
       value: 3,
       type: 0,

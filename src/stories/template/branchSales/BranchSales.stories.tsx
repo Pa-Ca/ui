@@ -109,9 +109,7 @@ export default {
 function generateRandomDate(): Date {
   const from = new Date();
   from.setDate(from.getDate() - 5);
-  return new Date(
-    from.getTime() + Math.random() * (new Date().getTime() - from.getTime())
-  );
+  return new Date(from.getTime() + Math.random() * (new Date().getTime() - from.getTime()));
 }
 
 function getRandomSubarray(arr: any[]) {
@@ -133,65 +131,79 @@ function getRandomSubarray(arr: any[]) {
 function generatePastSale(): PastSaleProps {
   const taxes = [
     {
+      id: 1,
       name: "IVA",
       value: 12,
-      type: "%" as "%" | "$",
+      type: 0,
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
     },
     {
+      id: 2,
       name: "IGTF",
       value: 3,
-      type: "%" as "%" | "$",
+      type: 0,
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
     },
   ];
   if (Math.random() >= 0.5) {
     taxes.push({
+      id: 3,
       name: "Propina",
       value: 10,
-      type: "$" as "%" | "$",
+      type: 1,
+
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
     });
   }
 
   return {
-    startTime: generateRandomDate(),
-    hasReservation: Math.random() >= 0.5,
-    tableName: `Mesa ${Math.floor(1 + Math.random() * 5)}`,
-    ownerName: "John Doe",
-    ownerEmail: "john_doe@fe.com",
-    ownerPhone: "0424-1234567",
-    persons: Math.floor(1 + Math.random() * 10),
-    products: getRandomSubarray([
-      {
-        name: "Coca Cola",
-        price: 1.5,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-      {
-        name: "Pepsi",
-        price: 1.5,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-      {
-        name: "Pizza de peperoni",
-        price: 10.99,
-        amount: Math.floor(1 + Math.random() * 2),
-      },
-      {
-        name: "Hamburguesa",
-        price: 5.45,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-      {
-        name: "Papas fritas",
-        price: 2.1,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-    ]),
-    taxes,
+    sale: {
+      id: Math.floor(1 + Math.random() * 9999999),
+      startTime: generateRandomDate(),
+      ownerName: "John Doe",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      note: "",
+      clientQuantity: Math.floor(1 + Math.random() * 10),
+      products: getRandomSubarray([
+        {
+          name: "Coca Cola",
+          price: 1.5,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+        {
+          name: "Pepsi",
+          price: 1.5,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+        {
+          name: "Pizza de peperoni",
+          price: 10.99,
+          amount: Math.floor(1 + Math.random() * 2),
+        },
+        {
+          name: "Hamburguesa",
+          price: 5.45,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+        {
+          name: "Papas fritas",
+          price: 2.1,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+      ]),
+      taxes: taxes,
+      tables: [],
+      hasReservation: false,
+    },
   };
 }
-
 function productObjectToProps(product: ProductObject): SaleProductProps {
   return {
+    id: product.id,
     name: product.name,
     price: product.price,
     amount: Math.floor(1 + Math.random() * 5),
@@ -202,6 +214,7 @@ function productObjectToProps(product: ProductObject): SaleProductProps {
 
 const taxes = [
   {
+    id: 1,
     name: "IVA",
     type: 0,
     value: 12.5,
@@ -209,6 +222,7 @@ const taxes = [
     deleteValueFunction: async () => {},
   },
   {
+    id: 2,
     name: "IGTF",
     type: 0,
     value: 3,
@@ -216,6 +230,7 @@ const taxes = [
     deleteValueFunction: async () => {},
   },
   {
+    id: 3,
     name: "Propina",
     type: 1,
     value: 10,
@@ -223,6 +238,7 @@ const taxes = [
     deleteValueFunction: async () => {},
   },
   {
+    id: 4,
     name: "Descuento",
     type: 0,
     value: -5,
@@ -400,11 +416,36 @@ const Template: StoryFn<typeof BranchSales> = (args: any) => {
   const tableSelected = useInputForm("");
   const saleSelected = useInputForm<SaleProps | null>(null);
 
+  const nullObject = { label: "", value: null };
+  const filterFullName = useInputForm("");
+  const filterIdentityDocument = useInputForm("");
+  const filterEndDate = useInputForm<Date | null>(null);
+  const filterStartDate = useInputForm<Date | null>(null);
+  const filterStatus = useInputForm<OptionObject<string | null>>(nullObject);
+  const filterIdentityDocumentType = useInputForm<OptionObject<string | null>>(nullObject);
+
+  const guestEmail = useInputForm("");
+  const guestPhone = useInputForm("");
+  const guestLastName = useInputForm("");
+  const guestFirstName = useInputForm("");
+  const newReservationPersons = useInputForm("");
+
   return (
     <BranchSales
       {...args}
       tableSelected={tableSelected}
       saleSelected={saleSelected}
+      guestEmail={guestEmail}
+      guestPhone={guestPhone}
+      guestLastName={guestLastName}
+      guestFirstName={guestFirstName}
+      newReservationPersons={newReservationPersons}
+      filterFullName={filterFullName}
+      filterIdentityDocument={filterIdentityDocument}
+      filterEndDate={filterEndDate}
+      filterStartDate={filterStartDate}
+      filterStatus={filterStatus}
+      filterIdentityDocumentType={filterIdentityDocumentType}
     />
   );
 };
@@ -464,31 +505,35 @@ Default.args = {
     {
       id: 1,
       ownerName: "Iván Tortolero",
-      startTime: "12:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 3,
       tables: [tables[0]],
       note: "Venta 1",
       taxes: [taxes[0], taxes[2]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 2,
       ownerName: "Elio Ortega",
-      startTime: "01:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 8,
       tables: [tables[1], tables[2]],
       note: "Venta 2",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 3,
       ownerName: "José Barrera",
-      startTime: "06:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 25,
       tables: [
         tables[1],
@@ -504,100 +549,99 @@ Default.args = {
       ],
       note: "Venta 3",
       taxes: [taxes[0], taxes[1]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 4,
       ownerName: "Eduardo López",
-      startTime: "03:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 15,
-      tables: [
-        tables[8],
-        tables[9],
-        tables[10],
-        tables[0],
-        tables[1],
-        tables[2],
-      ],
+      tables: [tables[8], tables[9], tables[10], tables[0], tables[1], tables[2]],
       note: "Venta 4",
       taxes: [taxes[0], taxes[1]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 5,
       ownerName: "Amin Arriaga",
-      startTime: "04:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 10,
       tables: [tables[1], tables[7], tables[14]],
       note: "Venta 5",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 6,
       ownerName: "Amin Arriaga",
-      startTime: "04:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 10,
       tables: [tables[1], tables[7], tables[14]],
       note: "Venta 6",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 7,
       ownerName: "Amin Arriaga",
-      startTime: "04:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 10,
       tables: [tables[1], tables[7], tables[14]],
       note: "Venta 7",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 8,
       ownerName: "Amin Arriaga",
-      startTime: "04:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 10,
       tables: [tables[1], tables[7], tables[14]],
       note: "Venta 8",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 9,
       ownerName: "Amin Arriaga",
-      startTime: "04:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 10,
       tables: [tables[1], tables[7], tables[14]],
       note: "Venta 9",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
     {
       id: 10,
       ownerName: "Amin Arriaga",
-      startTime: "04:00 PM",
+      ownerPhone: "+584240000000",
+      ownerEmail: "example@example.com",
+      startTime: generateRandomDate(),
       clientQuantity: 10,
       tables: [tables[1], tables[7], tables[14]],
       note: "Venta 10",
       taxes: [taxes[0], taxes[1], taxes[3]],
-      products: getRandomSubarray(Object.values(products)).map(
-        productObjectToProps
-      ),
+      products: getRandomSubarray(Object.values(products)).map(productObjectToProps),
+      hasReservation: false,
     },
   ],
   tables,
@@ -661,25 +705,29 @@ Default.args = {
   onAddTax: () => {},
   onAddProduct: async () => true,
   onClearProducts: () => {},
-  onCreateSale: () => {},
+  onCreateSale: async () => true,
   onCloseSale: () => {},
+  onSaveSaleNote: () => {},
   onDeleteSale: () => {},
-  onGetSalesFiltered: () => {},
-  onGetReservationsFiltered: () => {},
+  onGetGuest: async () => {},
 
-  page: 5,
-  totalPages: 10,
+  salePage: 5,
+  saleTotalPages: 10,
   pastSales: new Array(15)
     .fill(null)
     .map(generatePastSale)
     .sort((a, b) => {
-      return b.startTime.getTime() - a.startTime.getTime();
+      return b.sale.startTime.getTime() - a.sale.startTime.getTime();
     }),
-  onNextPage: () => {},
-  onPreviousPage: () => {},
+  onSaleNextPage: () => {},
+  onSalePreviousPage: () => {},
+
+  durationHour: 1,
+  durationMin: 30,
+  onCreateReservation: async () => true,
 
   // Reservations
-  pendingReservationList: [
+  pendingReservations: [
     ...new Array(35).fill({
       start: "6:00 PM",
       end: "7:00 PM",
@@ -711,7 +759,7 @@ Default.args = {
       },
     }),
   ],
-  acceptedReservationList: [
+  acceptedReservations: [
     ...new Array(25).fill({
       start: "6:00 PM",
       end: "7:00 PM",
@@ -743,7 +791,7 @@ Default.args = {
       },
     }),
   ],
-  historicReservationList: [
+  pastReservations: [
     ...new Array(8).fill({
       start: "6:00 PM",
       end: "7:00 PM",
@@ -752,16 +800,27 @@ Default.args = {
       owner: "Ivan Tortolero 1",
       ownerPhone: "0414-8732414",
       ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ownerOccasion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       identityDocument: "V69420616",
       persons: 2,
       tables: 2,
       status: reservationsStatus[1],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
+      onCloseReservation: () => {
+        console.log("close");
+      },
+      onReject: () => {
+        console.log("reject");
+      },
+      onAccept: () => {
+        console.log("accept");
+      },
+      onRetire: () => {
+        console.log("retire");
+      },
+      onStart: () => {
+        console.log("start");
+      },
     }),
     ...new Array(13).fill({
       start: "6:00 PM",
@@ -771,16 +830,27 @@ Default.args = {
       owner: "Ivan Tortolero 4",
       ownerPhone: "0414-8732414",
       ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ownerOccasion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       identityDocument: "V69420616",
       persons: 4,
       tables: 4,
       status: reservationsStatus[3],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
+      onCloseReservation: () => {
+        console.log("close");
+      },
+      onReject: () => {
+        console.log("reject");
+      },
+      onAccept: () => {
+        console.log("accept");
+      },
+      onRetire: () => {
+        console.log("retire");
+      },
+      onStart: () => {
+        console.log("start");
+      },
     }),
     ...new Array(7).fill({
       start: "6:00 PM",
@@ -790,20 +860,33 @@ Default.args = {
       owner: "Ivan Tortolero 6",
       ownerPhone: "0414-8732414",
       ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ownerOccasion:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       identityDocument: "V69420616",
       persons: 6,
       tables: 6,
       status: reservationsStatus[5],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
+      onCloseReservation: () => {
+        console.log("close");
+      },
+      onReject: () => {
+        console.log("reject");
+      },
+      onAccept: () => {
+        console.log("accept");
+      },
+      onRetire: () => {
+        console.log("retire");
+      },
+      onStart: () => {
+        console.log("start");
+      },
     }),
   ],
-  historicCurrentPage: 5,
-  historicTotalPage: 10,
+  reservationPage: 5,
+  reservationTotalPages: 10,
+  onReservationNextPage: () => {},
+  onReservationPreviousPage: () => {},
 
   contentHeight: "1000px",
 };

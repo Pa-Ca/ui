@@ -25,7 +25,9 @@ Default.args = {
   sale: {
     id: 1,
     ownerName: "Ivan Tortolero",
-    startTime: "12:30 PM",
+    ownerEmail: "example@example.com",
+    ownerPhone: "+58424000000",
+    startTime: new Date(),
     clientQuantity: 3,
     note: "",
     tables: [
@@ -82,6 +84,7 @@ Default.args = {
     ],
     taxes: [],
     products: [],
+    hasReservation: false,
   },
   selected: false,
   width: "",

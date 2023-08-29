@@ -47,7 +47,7 @@ export const PastSaleList = ({
   // Group past sales by date
   const pastSalesByDate = useMemo(() => {
     return pastSales.reduce((acc, pastSale) => {
-      const date = pastSale.startTime.toISOString().split("T")[0];
+      const date = pastSale.sale.startTime.toISOString().split("T")[0];
       if (!acc[date]) {
         acc[date] = [];
       }
@@ -87,8 +87,8 @@ export const PastSaleList = ({
               <Box
                 className={styles["past-sale-list--body-item"]}
                 key={`past-sale-list--body-item-${index}-${
-                  pastSale.tableName
-                }-${pastSale.startTime.toISOString()}`}
+                  pastSale.sale.id
+                }-${pastSale.sale.startTime.toISOString()}`}
               >
                 <PastSale {...pastSale} />
               </Box>

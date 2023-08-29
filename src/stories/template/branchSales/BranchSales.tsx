@@ -27,6 +27,7 @@ import { PastSaleList } from "../../organisms/pastSaleList/PastSaleList";
 import { ReservationProps } from "../../molecules/reservation/Reservation";
 import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
+import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { SaleProductList } from "../../organisms/saleProductList/SaleProductList";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 import { ReservationFilters } from "../../organisms/reservationFilters/ReservationFilters";
@@ -86,16 +87,11 @@ interface BranchSalesProps {
    * On create sale
    */
   onCreateSale: (
-    saleId: number,
     identityDocumentType: InputFormHook<OptionObject<string | null>>,
     identityDocument: InputFormHook<string>,
-    email: InputFormHook<string>,
-    firstName: InputFormHook<string>,
-    lastName: InputFormHook<string>,
-    phone: InputFormHook<string>,
     clientQuantity: InputFormHook<string>,
     tables: InputFormHook<TableObject[]>
-  ) => void;
+  ) => Promise<boolean>;
   /**
    * On close sale
    */
@@ -108,11 +104,13 @@ interface BranchSalesProps {
    * On delete sale
    */
   onDeleteSale: () => void;
-
   /**
    * Get Guest data fuction
    */
-  onGetGuest: (identityDocument: InputFormHook<string>) => Promise<void>;
+  onGetGuest: (
+    identityDocumentType: InputFormHook<OptionObject<string | null>>,
+    identityDocument: InputFormHook<string>
+  ) => Promise<void>;
 
   /**
    * Past sale list
@@ -121,69 +119,131 @@ interface BranchSalesProps {
   /**
    * Current past sale page
    */
-  page: number;
+  salePage: number;
   /**
    * Total past sale pages
    */
-  totalPages: number;
-  /**
-   * Total past sale elements
-   */
-  totalElements: number;
+  saleTotalPages: number;
   /**
    * On next page
    */
-  onNextPage: () => void;
+  onSaleNextPage: () => void;
   /**
    * On previous page
    */
-  onPreviousPage: () => void;
+  onSalePreviousPage: () => void;
+
+  /**
+   * Guest email
+   */
+  guestEmail: InputFormHook<string>;
+  /**
+   * Guest phone
+   */
+  guestPhone: InputFormHook<string>;
+  /**
+   * Guest identity document
+   */
+  guestLastName: InputFormHook<string>;
+  /**
+   * Guest identity document
+   */
+  guestFirstName: InputFormHook<string>;
+
+  /**
+   * Average reservation duration hour
+   */
+  durationHour: number;
+  /**
+   * Average reservation duration minute
+   */
+  durationMin: number;
+  /**
+   * Valid entry hours
+   */
+  validHoursIn: OptionObject<string>[];
+  /**
+   * Valid departure hours
+   */
+  validHoursOut: OptionObject<string>[];
+  /**
+   * Reservation number of persons
+   */
+  newReservationPersons: InputFormHook<string>;
+  /**
+   * On create new reservation
+   */
+  onCreateReservation: (
+    newReservationDate: InputFormHook<Date | null>,
+    newReservationHourIn: InputFormHook<OptionObject<string | null>>,
+    newReservationHourOut: InputFormHook<OptionObject<string | null>>,
+    newReservationTables: InputFormHook<string>,
+    newReservationOccasion: InputFormHook<string>,
+    identityDocumentType: InputFormHook<OptionObject<string | null>>,
+    identityDocument: InputFormHook<string>
+  ) => Promise<boolean>;
+
+  /**
+   * Filter full name
+   */
+  filterFullName: InputFormHook<string>;
+  /**
+   * Filter identity document
+   */
+  filterIdentityDocument: InputFormHook<string>;
+  /**
+   * Filter start date
+   */
+  filterStartDate: InputFormHook<Date | null>;
+  /**
+   * Filter end date
+   */
+  filterEndDate: InputFormHook<Date | null>;
+  /**
+   * Filter status
+   */
+  filterStatus: InputFormHook<OptionObject<string | null>>;
+  /**
+   * Filter status options
+   */
+  filterIdentityDocumentType: InputFormHook<OptionObject<string | null>>;
   /**
    * On get reservations filtered
    */
-  onGetSalesFiltered: (
-    fullName: InputFormHook<string>,
-    startDate: InputFormHook<Date | null>,
-    endDate: InputFormHook<Date | null>,
-    identityDocumentType: InputFormHook<OptionObject<string | null>>,
-    identityDocument: InputFormHook<string>
-  ) => void;
+  onGetSalesFiltered: () => void;
   /**
    * On get reservations filtered
    */
-  onGetReservationsFiltered: (
-    fullName: InputFormHook<string>,
-    startDate: InputFormHook<Date | null>,
-    endDate: InputFormHook<Date | null>,
-    status: InputFormHook<OptionObject<string | null>>,
-    identityDocumentType: InputFormHook<OptionObject<string | null>>,
-    identityDocument: InputFormHook<string>
-  ) => void;
+  onGetReservationsFiltered: () => void;
 
   /**
    * Reservation list with status pending
    */
-  pendingReservationList: ReservationProps[];
+  pendingReservations: ReservationProps[];
   /**
    * Reservation list with status accepted
    */
-  acceptedReservationList: ReservationProps[];
+  acceptedReservations: ReservationProps[];
   /**
    * Reservation list with status rejected, retired or closed
    */
-  historicReservationList: ReservationProps[];
+  pastReservations: ReservationProps[];
   /**
    * Current past sale page
    */
-  historicCurrentPage: number;
+  reservationPage: number;
   /**
    * Total number of past sale pages
    */
-  historicTotalPage: number;
+  reservationTotalPages: number;
   /**
-   * Controls if modal is shown
+   * On next page
    */
-  setShowModal: (open: boolean) => void;
+  onReservationNextPage: () => void;
+  /**
+   * On previous page
+   */
+  onReservationPreviousPage: () => void;
 
   /**
    * Max content height
@@ -213,23 +273,41 @@ export const BranchSales = ({
   onSaveSaleNote,
   onDeleteSale,
   onGetGuest,
+
+  guestEmail,
+  guestPhone,
+  guestLastName,
+  guestFirstName,
+
+  durationHour,
+  durationMin,
+  validHoursIn,
+  validHoursOut,
+  newReservationPersons,
+  onCreateReservation,
+
+  filterFullName,
+  filterIdentityDocument,
+  filterStartDate,
+  filterEndDate,
+  filterStatus,
+  filterIdentityDocumentType,
   onGetSalesFiltered,
   onGetReservationsFiltered,
 
   pastSales,
-  page,
-  totalPages,
-  totalElements,
-  onNextPage,
-  onPreviousPage,
+  salePage,
+  saleTotalPages,
+  onSaleNextPage,
+  onSalePreviousPage,
 
-  // Reservations
-  pendingReservationList,
-  acceptedReservationList,
-  historicReservationList,
-  historicCurrentPage,
-  historicTotalPage,
-  setShowModal,
+  pastReservations,
+  pendingReservations,
+  acceptedReservations,
+  reservationPage,
+  reservationTotalPages,
+  onReservationNextPage,
+  onReservationPreviousPage,
 
   contentHeight,
   ...props
@@ -241,38 +319,31 @@ export const BranchSales = ({
   const nullObject = { label: "", value: null };
   const observerTab = useResizeObserver<HTMLDivElement>();
   const [showPastSales, setShowPastSales] = useState(true);
+  const [newReservation, setNewReservation] = useState(false);
   const observerContainer = useResizeObserver<HTMLDivElement>();
   const saleByTable = useInputForm<OptionObject<SaleObject | null>>(nullObject);
 
+  // Guest data
+  const guestIdentityDocument = useInputForm("");
+  const guestIdentityDocumentType = useInputForm<OptionObject<string | null>>(nullObject);
+
   // New sale data
-  const newSaleEmail = useInputForm("");
-  const newSalePhone = useInputForm("");
-  const newSaleLastName = useInputForm("");
-  const newSaleFirstName = useInputForm("");
   const newSaleClientQuantity = useInputForm("1");
-  const newSaleIdentityDocument = useInputForm("");
   const newSaleTables = useInputForm<TableObject[]>([]);
-  const newSaleTable =
-    useInputForm<OptionObject<TableObject | null>>(nullObject);
-  const newSaleIdentityDocumentType =
-    useInputForm<OptionObject<string | null>>(nullObject);
+  const newSaleTable = useInputForm<OptionObject<TableObject | null>>(nullObject);
+
+  // New reservation data
+  const newReservationTables = useInputForm("1");
+  const newReservationOccasion = useInputForm("");
+  const newReservationDate = useInputForm<Date | null>(null);
+  const newReservationHourIn = useInputForm<OptionObject<string | null>>(nullObject);
+  const newReservationHourOut = useInputForm<OptionObject<string | null>>(nullObject);
 
   // Reservations
-  const [pendingReservation, setPendingReservation] = useState<
-    ReservationProps[]
-  >([]);
-  const [acceptedReservation, setAcceptedReservation] = useState<
-    ReservationProps[]
-  >([]);
+  const [pendingReservation, setPendingReservation] = useState<ReservationProps[]>([]);
+  const [acceptedReservation, setAcceptedReservation] = useState<ReservationProps[]>([]);
 
   // Filters
-  const filterFullName = useInputForm("");
-  const filterIdentityDocument = useInputForm("");
-  const filterEndDate = useInputForm<Date | null>(null);
-  const filterStartDate = useInputForm<Date | null>(null);
-  const filterStatus = useInputForm<OptionObject<string | null>>(nullObject);
-  const filterIdentityDocumentType =
-    useInputForm<OptionObject<string | null>>(nullObject);
   const filterStatusOptions = [
     { label: "Cerrada", value: "6" },
     { label: "Retirada", value: "4" },
@@ -287,9 +358,7 @@ export const BranchSales = ({
   ];
 
   const PageWrapper = useMemo(() => {
-    return windowSize.resolutionType === "desktop"
-      ? BasicPage
-      : BasicMobilePage;
+    return windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage;
   }, [windowSize.resolutionType]);
 
   const salesByTable = useMemo(() => {
@@ -316,6 +385,24 @@ export const BranchSales = ({
 
     return result;
   }, [tables, newSaleTables.value]);
+
+  const reservationDuration = useMemo(() => {
+    if (!!newReservationHourIn.value.value && !!newReservationHourOut.value.value) {
+      const hourIn = parseInt(newReservationHourIn.value.value!.split(":")[0]);
+      const hourOut = parseInt(newReservationHourOut.value.value!.split(":")[0]);
+      const minIn = parseInt(newReservationHourIn.value.value!.split(":")[1]);
+      const minOut = parseInt(newReservationHourOut.value.value!.split(":")[1]);
+      return {
+        hour: hourOut - hourIn,
+        min: minOut - minIn,
+      };
+    } else {
+      return {
+        hour: durationHour,
+        min: durationMin,
+      };
+    }
+  }, [durationHour, durationMin, newReservationHourIn.value, newReservationHourOut.value]);
 
   useEffect(() => {
     if (observerTab.ref.current && observerContainer.ref.current) {
@@ -344,10 +431,7 @@ export const BranchSales = ({
   }, [salesByTable]);
 
   useEffect(() => {
-    if (
-      saleByTable.value &&
-      salesByTable.some((sale) => sale.id === saleByTable.value.value?.id)
-    ) {
+    if (saleByTable.value && salesByTable.some((sale) => sale.id === saleByTable.value.value?.id)) {
       saleSelected.setValue(saleByTable.value.value);
     }
   }, [saleByTable.value]);
@@ -356,10 +440,7 @@ export const BranchSales = ({
     if (!newSaleTable.value.value) return;
 
     // Add table to new sale tables
-    newSaleTables.setValue((oldList) => [
-      ...oldList,
-      newSaleTable.value.value!,
-    ]);
+    newSaleTables.setValue((oldList) => [...oldList, newSaleTable.value.value!]);
     // Clear table input
     newSaleTable.setValue({
       label: "",
@@ -368,10 +449,28 @@ export const BranchSales = ({
   }, [newSaleTable.value]);
 
   useEffect(() => {
-    if (!newSale) {
-      newSaleTables.setValue([]);
-    }
-  }, [newSale]);
+    guestEmail.setValue("");
+    guestPhone.setValue("");
+    guestLastName.setValue("");
+    guestFirstName.setValue("");
+    guestIdentityDocument.setValue("");
+    guestIdentityDocumentType.setValue(nullObject);
+
+    newSaleTables.setValue([]);
+    newSaleClientQuantity.setValue("1");
+
+    newReservationDate.setValue(null);
+    newReservationTables.setValue("1");
+    newReservationOccasion.setValue("");
+    newReservationPersons.setValue("1");
+    newReservationHourIn.setValue(nullObject);
+    newReservationHourOut.setValue(nullObject);
+  }, [newSale, newReservation]);
+
+  useEffect(() => {
+    newSaleTable.setCode(newSaleTables.code);
+    newSaleTable.setMessage(newSaleTables.message);
+  }, [newSaleTables])
 
   return (
     <PageWrapper headerArgs={header}>
@@ -381,12 +480,7 @@ export const BranchSales = ({
             <InputTab
               index={tab}
               setIndex={setTab}
-              tabs={[
-                "Historial",
-                "Mesa",
-                "Reservas Aprobadas",
-                "Reservas Pendientes",
-              ]}
+              tabs={["Historial", "Mesa", "Reservas Aprobadas", "Reservas Pendientes"]}
             />
           </Box>
 
@@ -419,10 +513,7 @@ export const BranchSales = ({
                       setShowPastSales((value) => !value);
                     }}
                   >
-                    <Icon
-                      icon={showPastSales ? "calendar" : "invoice"}
-                      size="30px"
-                    />
+                    <Icon icon={showPastSales ? "calendar" : "invoice"} size="30px" />
 
                     <Icon icon="exchange" size="30px" />
                   </Box>
@@ -437,24 +528,16 @@ export const BranchSales = ({
                       identityDocumentType={filterIdentityDocumentType}
                       identityDocument={filterIdentityDocument}
                       fullName={filterFullName}
-                      onGetSalesFiltered={() =>
-                        onGetSalesFiltered(
-                          filterFullName,
-                          filterStartDate,
-                          filterEndDate,
-                          filterIdentityDocumentType,
-                          filterIdentityDocument
-                        )
-                      }
+                      onGetSalesFiltered={() => onGetSalesFiltered()}
                     />
 
                     <PastSaleList
-                      page={page}
+                      page={salePage}
                       pastSales={pastSales}
-                      totalPages={totalPages}
-                      onNextPage={onNextPage}
+                      totalPages={saleTotalPages}
                       contentHeight={contentHeight}
-                      onPreviousPage={onPreviousPage}
+                      onNextPage={onSaleNextPage}
+                      onPreviousPage={onSalePreviousPage}
                     />
                   </>
                 ) : (
@@ -468,24 +551,15 @@ export const BranchSales = ({
                       identityDocumentType={filterIdentityDocumentType}
                       identityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
                       fullName={filterFullName}
-                      onGetReservationsFiltered={() =>
-                        onGetReservationsFiltered(
-                          filterFullName,
-                          filterStartDate,
-                          filterEndDate,
-                          filterStatus,
-                          filterIdentityDocumentType,
-                          filterIdentityDocument
-                        )
-                      }
+                      onGetReservationsFiltered={() => onGetReservationsFiltered()}
                     />
                     <PastReservationList
-                      page={historicCurrentPage}
-                      totalPages={historicTotalPage}
+                      page={reservationPage}
                       contentHeight={contentHeight}
-                      pastReservations={historicReservationList}
-                      onNextPage={onNextPage}
-                      onPreviousPage={onPreviousPage}
+                      totalPages={reservationTotalPages}
+                      pastReservations={pastReservations}
+                      onNextPage={onReservationNextPage}
+                      onPreviousPage={onReservationPreviousPage}
                     />
                   </>
                 )}
@@ -498,11 +572,7 @@ export const BranchSales = ({
                   </Text>
 
                   <Box>
-                    <Button
-                      primary
-                      size="large"
-                      onClick={() => setNewSale(true)}
-                    >
+                    <Button primary size="large" onClick={() => setNewSale(true)}>
                       <Text weight="700" primaryButtonStyle>
                         Crear venta
                       </Text>
@@ -525,10 +595,7 @@ export const BranchSales = ({
                   <Box style={{ flex: 2 }}>
                     <Box
                       style={{
-                        opacity:
-                          tableSelected.value && salesByTable.length > 1
-                            ? undefined
-                            : "0",
+                        opacity: tableSelected.value && salesByTable.length > 1 ? undefined : "0",
                       }}
                     >
                       <InputSelect
@@ -548,6 +615,7 @@ export const BranchSales = ({
                         allProducts={products}
                         categories={categories}
                         subCategories={subCategories}
+                        hasReservation={saleSelected.value.hasReservation}
                         onAddTax={onAddTax}
                         onAddProduct={onAddProduct}
                         onClearProducts={onClearProducts}
@@ -563,13 +631,14 @@ export const BranchSales = ({
 
               <Box style={{ flex: 1 }}>
                 <Paginable
-                  list={acceptedReservationList}
+                  list={acceptedReservations}
                   setCurrentList={setAcceptedReservation}
                   objectsPerPage={10}
                 >
                   <ReserveList
                     state={2}
-                    setShowModal={setShowModal}
+                    tableList={tables}
+                    setShowModal={setNewReservation}
                     contentHeight={`calc(${contentHeight} + 180px)`}
                     reservations={acceptedReservation}
                   />
@@ -579,13 +648,14 @@ export const BranchSales = ({
 
               <Box style={{ flex: 1 }}>
                 <Paginable
-                  list={pendingReservationList}
+                  list={pendingReservations}
                   setCurrentList={setPendingReservation}
                   objectsPerPage={10}
                 >
                   <ReserveList
                     state={3}
-                    setShowModal={setShowModal}
+                    tableList={tables}
+                    setShowModal={setNewReservation}
                     contentHeight={`calc(${contentHeight} + 180px)`}
                     reservations={pendingReservation}
                   />
@@ -597,10 +667,7 @@ export const BranchSales = ({
         </Box>
       ) : (
         <Box className={styles["branch-sales--no-branch"]}>
-          <Icon
-            icon="share"
-            size={windowSize.resolutionType === "desktop" ? "50vh" : "50vw"}
-          />
+          <Icon icon="share" size={windowSize.resolutionType === "desktop" ? "50vh" : "50vw"} />
           <Text> Parece que no tienes ningún local asociado. </Text>
         </Box>
       )}
@@ -609,14 +676,14 @@ export const BranchSales = ({
         <Box width="720px">
           {/* Client Form */}
           <ClientInfoForm
-            email={newSaleEmail}
-            phone={newSalePhone}
-            lastName={newSaleLastName}
-            firstName={newSaleFirstName}
-            identityDocument={newSaleIdentityDocument}
-            identityDocumentType={newSaleIdentityDocumentType}
+            email={guestEmail}
+            phone={guestPhone}
+            lastName={guestLastName}
+            firstName={guestFirstName}
+            identityDocument={guestIdentityDocument}
+            identityDocumentType={guestIdentityDocumentType}
             identityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
-            onGetGuest={() => onGetGuest(newSaleIdentityDocument)}
+            onGetGuest={() => onGetGuest(guestIdentityDocumentType, guestIdentityDocument)}
           />
 
           {/* Sale form */}
@@ -658,9 +725,7 @@ export const BranchSales = ({
                 className={styles["branch-sales--modal-table"]}
                 onClick={() => {
                   newSaleTables.setValue((oldList) => {
-                    return oldList.filter(
-                      (oldTable) => oldTable.id !== table.id
-                    );
+                    return oldList.filter((oldTable) => oldTable.id !== table.id);
                   });
                 }}
               >
@@ -673,12 +738,7 @@ export const BranchSales = ({
 
           <div className={styles["branch-sales--modal-button-box"]}>
             {/* Cancel Button */}
-            <Button
-              fullWidth
-              primary={false}
-              size="medium"
-              onClick={() => setNewSale(false)}
-            >
+            <Button fullWidth primary={false} size="medium" onClick={() => setNewSale(false)}>
               <Box className={styles["branch-sales--submit-sale-button-text"]}>
                 <Text type="p" weight="700">
                   Cerrar
@@ -691,19 +751,87 @@ export const BranchSales = ({
               fullWidth
               primary
               size="medium"
-              onClick={() =>
-                onCreateSale(
-                  saleSelected.value?.id || 0,
-                  newSaleIdentityDocumentType,
-                  newSaleIdentityDocument,
-                  newSaleEmail,
-                  newSaleFirstName,
-                  newSaleLastName,
-                  newSalePhone,
+              onClick={async () =>
+                (await onCreateSale(
+                  guestIdentityDocumentType,
+                  guestIdentityDocument,
                   newSaleClientQuantity,
                   newSaleTables
-                )
+                )) && setNewSale(false)
               }
+            >
+              <Box className={styles["branch-sales--submit-sale-button-text"]}>
+                <Text primaryButtonStyle type="p" weight="700">
+                  Completar
+                </Text>
+              </Box>
+            </Button>
+          </div>
+        </Box>
+      </Modal>
+
+      <Modal open={newReservation} setOpen={setNewReservation}>
+        <Box width="720px">
+          {/* Client Form */}
+          <ClientInfoForm
+            email={guestEmail}
+            phone={guestPhone}
+            lastName={guestLastName}
+            firstName={guestFirstName}
+            identityDocument={guestIdentityDocument}
+            identityDocumentType={guestIdentityDocumentType}
+            identityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
+            onGetGuest={() => onGetGuest(guestIdentityDocumentType, guestIdentityDocument)}
+          />
+
+          {/* Reservation Form */}
+          <ReserveDetails
+            validHoursIn={validHoursIn}
+            validHoursOut={validHoursOut}
+            date={newReservationDate}
+            tables={newReservationTables}
+            hourIn={newReservationHourIn}
+            hourOut={newReservationHourOut}
+            persons={newReservationPersons}
+            occasion={newReservationOccasion}
+            durationMin={reservationDuration.min}
+            durationHour={reservationDuration.hour}
+            showInviteFriends={false}
+          />
+
+          <div className={styles["branch-sales--modal-button-box"]}>
+            {/* Cancel Button */}
+            <Button
+              fullWidth
+              primary={false}
+              size="medium"
+              onClick={() => setNewReservation(false)}
+            >
+              <Box className={styles["branch-sales--submit-sale-button-text"]}>
+                <Text type="p" weight="700">
+                  Cerrar
+                </Text>
+              </Box>
+            </Button>
+
+            <div style={{ width: "24px" }} />
+
+            {/* Submit Button */}
+            <Button
+              fullWidth
+              primary
+              size="medium"
+              onClick={async () => {
+                (await onCreateReservation(
+                  newReservationDate,
+                  newReservationHourIn,
+                  newReservationHourOut,
+                  newReservationTables,
+                  newReservationOccasion,
+                  guestIdentityDocumentType,
+                  guestIdentityDocument
+                )) && setNewReservation(false);
+              }}
             >
               <Box className={styles["branch-sales--submit-sale-button-text"]}>
                 <Text primaryButtonStyle type="p" weight="700">

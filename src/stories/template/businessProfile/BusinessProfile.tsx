@@ -683,7 +683,7 @@ export const BusinessProfile = ({
                 <Box
                   className={styles["business-profile--button-create-branch"]}
                 >
-                  <Text weight="600">Cancelar</Text>
+                  <Text weight="700">Cancelar</Text>
                 </Box>
               </Button>
               <Button
@@ -715,7 +715,7 @@ export const BusinessProfile = ({
                 <Box
                   className={styles["business-profile--button-create-branch"]}
                 >
-                  <Text weight="600">Crear</Text>
+                  <Text weight="700" primaryButtonStyle>Crear</Text>
                 </Box>
               </Button>
             </Box>

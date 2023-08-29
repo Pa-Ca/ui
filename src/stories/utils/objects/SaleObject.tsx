@@ -12,9 +12,17 @@ type SaleObject = {
    */
   ownerName: string;
   /**
+   * Sale owner phone
+   */
+  ownerPhone: string;
+  /**
+   * Sale owner email
+   */
+  ownerEmail: string;
+  /**
    * Sale start time
    */
-  startTime: string;
+  startTime: Date;
   /**
    * Number of persons
    */
@@ -23,6 +31,10 @@ type SaleObject = {
    * Sale note
    */
   note: string;
+  /**
+   * Indicates if sale has a associated reservation
+   */
+  hasReservation: boolean;
   /**
    * Taxes
    */

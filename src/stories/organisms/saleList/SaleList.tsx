@@ -94,7 +94,7 @@ export const SaleList = ({
           {sales.map((sale, index) => (
             <Sale
               sale={sale}
-              key={`sale-list--sale-${sale.ownerName}-${sale.startTime}-${index}`}
+              key={`sale-list--sale-${sale.ownerName}-${sale.id}-${index}`}
               width={`calc(100% - ${
                 saleSelected.value?.id === sale.id ? 38 : 37
               }px)`}

@@ -176,7 +176,7 @@ export const BusinessAccountInfo = ({
             primary
             onClick={() => setChangePassword(true)}
           >
-            <Text weight="600">Cambiar contraseña</Text>
+            <Text weight="700" primaryButtonStyle>Cambiar contraseña</Text>
           </Button>
         </Box>
       </Box>
@@ -184,7 +184,7 @@ export const BusinessAccountInfo = ({
       <Modal open={changePassword} setOpen={setChangePassword}>
         <Box className={styles["business-account-info--modal-container"]}>
           <Box className={styles["business-account-info--modal-title"]}>
-            <Text type="h5" weight="700" color="#112211">
+            <Text type="h5" weight="700">
               Cambio de Contraseña
             </Text>
           </Box>
@@ -243,7 +243,7 @@ export const BusinessAccountInfo = ({
                 styles["business-account-info--modal-change-password-button"]
               }
             >
-              <Text type="h6" weight="600">
+              <Text type="h6" weight="700" primaryButtonStyle>
                 Cambiar contraseña
               </Text>
             </Box>
@@ -258,7 +258,7 @@ export const BusinessAccountInfo = ({
                 styles["business-account-info--modal-change-password-button"]
               }
             >
-              <Text type="h6" weight="600">
+              <Text type="h6" weight="700">
                 Cancelar
               </Text>
             </Box>

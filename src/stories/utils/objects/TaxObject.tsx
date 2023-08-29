@@ -2,6 +2,10 @@ import { InputFormHook } from "../../hooks/useInputForm";
 
 type TaxObject = {
   /**
+   * Tax id
+   */
+  id: number;
+  /**
    * Tax name
    */
   name: string;
