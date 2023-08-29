@@ -1,7 +1,6 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { OnlineSaleInvoice } from "./OnlineSaleInvoice";
-import ReservationStatusObject from "../../utils/objects/ReservationStatus";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -16,14 +15,6 @@ const Template: StoryFn<typeof OnlineSaleInvoice> = (args: any) => {
   return <OnlineSaleInvoice {...args} />;
 };
 
-const reservationsStatus: ReservationStatusObject[] = [
-  {number: 1, name: "pending", nameShow: "Pendiente", icon: "pending-status"},
-  {number: 2, name: "rejected", nameShow: "Rechazada", icon: "rejected-status"},
-  {number: 3, name: "accepted", nameShow: "Aceptada", icon: "accepted-status"},
-  {number: 4, name: "retired", nameShow: "Retirada", icon: "retired-status"},
-  {number: 5, name: "started", nameShow: "En curso", icon: "started-status"},
-  {number: 6, name: "closed", nameShow: "Finalizada", icon: "closed-status"}
-]
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

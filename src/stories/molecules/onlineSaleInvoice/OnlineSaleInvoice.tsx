@@ -1,12 +1,7 @@
 import React, { useMemo, useState } from "react";
-import classnames from "classnames";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
-import { Icon } from "../../atoms/icon/Icon";
 import styles from "./onlineSaleInvoice.module.scss";
-import { Button } from "../../atoms/button/Button";
-import { Modal } from "../modal/Modal";
-import ReservationStatus from "../../utils/objects/ReservationStatus";
 
 export interface OnlineSaleInvoiceProps {
   /**
@@ -68,23 +63,6 @@ export const OnlineSaleInvoice = ({
 
     return subTotal + totalTaxes;
   }, [subTotal, taxes]);
-
-  const dot = () => (
-    <Box className={styles["online-sale-invoice--dot"]}>
-      <Text weight="600" type="h5">
-        •
-      </Text>
-    </Box>
-  );
-
-  const hyphen = () => (
-    <Box className={styles["online-sale-invoice--separator"]}>
-      <Text weight="600" type="h5">
-        -
-      </Text>
-    </Box>
-  );
-
 
   return (
     <div>

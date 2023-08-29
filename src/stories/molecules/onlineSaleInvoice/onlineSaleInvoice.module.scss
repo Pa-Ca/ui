@@ -35,25 +35,6 @@
   
 }
 
-.online-sale-invoice--dot {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  margin-right: 16px;
-  margin-top: 15px;
-}
-
-.online-sale-invoice--separator {
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-bottom: 5px;
-}
-
 .online-sale-invoice--hr{
   width: 100%;
   margin-bottom: 20px;
@@ -76,13 +57,6 @@
   justify-content: space-between;
 }
 
-.online-sale-invoice--details-product-item {
-  display: flex;
-  margin-bottom: 10px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
 .online-sale-invoice--item {
   width: 100%;
   display: flex;

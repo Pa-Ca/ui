@@ -1,0 +1,26 @@
+@import "../../assets/scss/themes";
+@import "../../assets/scss/palette.scss";
+@import "../../assets/scss/variables.module.scss";
+
+
+
+.online-sale-details--item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 7px 0;
+}
+
+.online-sale-details--icon-container{
+  margin-right: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+
+// .online-sale--icon {
+//   margin-left: 12px;
+//   cursor: pointer;
+// }

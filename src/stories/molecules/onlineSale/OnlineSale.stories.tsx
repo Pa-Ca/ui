@@ -1,7 +1,7 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { OnlineSale } from "./OnlineSale";
-import ReservationStatusObject from "../../utils/objects/ReservationStatus";
+import OnlineSaleStatusObject from "../../utils/objects/OnlineSaleStatus";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -32,13 +32,20 @@ const Template: StoryFn<typeof OnlineSale> = (args: any) => {
   return <OnlineSale {...args} />;
 };
 
-const reservationsStatus: ReservationStatusObject[] = [
+const onlineSaleStatus: OnlineSaleStatusObject[] = [
   {number: 1, name: "pending", nameShow: "Pendiente", icon: "pending-status"},
   {number: 2, name: "rejected", nameShow: "Rechazada", icon: "rejected-status"},
   {number: 3, name: "accepted", nameShow: "Aceptada", icon: "accepted-status"},
-  {number: 4, name: "retired", nameShow: "Retirada", icon: "retired-status"},
-  {number: 5, name: "started", nameShow: "En curso", icon: "started-status"},
-  {number: 6, name: "closed", nameShow: "Finalizada", icon: "closed-status"}
+  
+  {number: 4, name: "started", nameShow: "En curso", icon: "started-status"},
+  
+  {number: 5, name: "ready-to-take-out",nameShow: "Lista para llevar", icon: "delivery"},
+  {number: 6, name: "on-the-way",       nameShow: "Retirada", icon: "retired-status"},
+
+  {number: 7, name: "delivered", nameShow: "Entregada", icon: "delivery"},
+  
+  {number: 8, name: "canceled", nameShow: "Retirada", icon: "retired-status"},
+  {number: 9, name: "closed", nameShow: "Finalizada", icon: "closed-status"}
 ]
 
 export const Default = Template.bind({});
@@ -49,9 +56,9 @@ Default.args = {
   owner: "Ivan Tortolero",
   ownerPhone: "0414-8732414",
   identityDocument: "V27722357",
-  status: reservationsStatus[0],
+  status: onlineSaleStatus[3],
   ownerEmail: "hola@fe.com",
-  saleType: "delivery",
+  saleType: "pick-up",
   adress : "Av. 1 con calle 2",
   note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
   products: [
