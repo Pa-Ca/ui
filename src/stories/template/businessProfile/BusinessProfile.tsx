@@ -256,6 +256,10 @@ interface BusinessProfileProps {
    */
   sales: SaleObject[];
   /**
+   * On update search
+   */
+  onUpdateSearch: (search: string) => void;
+  /**
    * On search table
    */
   onSearchTable: (table: InputFormHook<string>) => void;
@@ -266,7 +270,11 @@ interface BusinessProfileProps {
   /**
    * On edit table
    */
-  onEditTable: (table: InputFormHook<string>) => void;
+  onEditTable: (id: number, table: InputFormHook<string>) => void;
+  /**
+   * On delete table
+   */
+  onDeleteTable: (tableId: number) => void;
 }
 
 /**
@@ -329,10 +337,11 @@ export const BusinessProfile = ({
 
   tables,
   sales,
+  onUpdateSearch,
   onSearchTable,
   onCreateTable,
   onEditTable,
-
+  onDeleteTable,
   ...props
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
@@ -514,9 +523,11 @@ export const BusinessProfile = ({
               <BranchTables
                 tables={tables}
                 sales={sales}
+                onUpdateSearch={onUpdateSearch}
                 onSearchTable={onSearchTable}
                 onCreateTable={onCreateTable}
                 onEditTable={onEditTable}
+                onDeleteTable={onDeleteTable}
               />
             </Box>
 

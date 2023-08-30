@@ -20,6 +20,10 @@ interface BranchTablesProps {
    */
   sales: SaleObject[];
   /**
+   * On update search
+   */
+  onUpdateSearch: (search: string) => void;
+  /**
    * On search table
    */
   onSearchTable: (table: InputFormHook<string>) => void;
@@ -30,7 +34,15 @@ interface BranchTablesProps {
   /**
    * On edit table
    */
-  onEditTable: (table: InputFormHook<string>) => void;
+  onEditTable: (id: number, table: InputFormHook<string>) => void;
+  /**
+   * On delete table
+   */
+  onDeleteTable: (tableId: number) => void;
+  /**
+   * Content height
+   */
+  contentHeight?: string;
 }
 
 /**
@@ -39,9 +51,12 @@ interface BranchTablesProps {
 export const BranchTables = ({
   tables,
   sales,
+  onUpdateSearch,
   onSearchTable,
   onCreateTable,
   onEditTable,
+  onDeleteTable,
+  contentHeight,
   ...props
 }: BranchTablesProps) => {
   const searchHook = useInputForm("");
@@ -64,6 +79,10 @@ export const BranchTables = ({
       sales.filter((sale) => sale.tables.some((t) => t.id === tableSelected.id)).length
     );
   }, [tableSelected, tableDetails]);
+
+  useEffect(() => {
+    onUpdateSearch(searchHook.value);
+  }, [searchHook.value]);
 
   return (
     <Box className={styles["branch-tables--container"]}>
@@ -88,7 +107,7 @@ export const BranchTables = ({
         </Box>
 
         <Box>
-          <Button primary fullWidth size="box" onClick={() => setNewTable(true)}>
+          <Button primary fullWidth size="medium" onClick={() => setNewTable(true)}>
             <Text type="h5" weight="700" primaryButtonStyle>
               Crear mesa
             </Text>
@@ -96,7 +115,7 @@ export const BranchTables = ({
         </Box>
       </Box>
 
-      <Box className={styles["branch-tables--tables-container"]}>
+      <Box className={styles["branch-tables--tables-container"]} style={{ maxHeight: contentHeight }}>
         {tables.map((table, index) => (
           <Box
             key={`branch-tables--table-${table}-${index}`}
@@ -171,7 +190,7 @@ export const BranchTables = ({
               <EditableInputText
                 editable
                 useEditIcons
-                saveValueFunction={() => onEditTable(editTableName)}
+                saveValueFunction={() => onEditTable(tableSelected?.id!, editTableName)}
                 inputHook={editTableName}
               />
             </Box>
@@ -212,7 +231,10 @@ export const BranchTables = ({
                 primary={false}
                 state={associatedSales === 0 ? "normal" : "inactive"}
                 size="medium"
-                onClick={() => setTableDetails(false)}
+                onClick={() => {
+                  onDeleteTable(tableSelected!.id);
+                  setTableDetails(false);
+                }}
               >
                 <Box className={styles["branch-tables--submit-button-text"]}>
                   <Text type="p" weight="700">

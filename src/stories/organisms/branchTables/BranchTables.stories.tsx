@@ -378,4 +378,5 @@ Default.args = {
     },
   ],
   onCreateTable: async () => true,
+  onUpdateSearch: () => {},
 };
