@@ -1,0 +1,78 @@
+@import "../../assets/scss/themes";
+@import "../../assets/scss/mixins.scss";
+
+.branch-tables--container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.branch-tables--separator {
+  height: 1px;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 50px;
+  background-color: var(--input-border-color);
+}
+.branch-tables--search-container {
+  gap: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+.branch-tables--tables-container {
+  gap: 5px;
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  padding-left: 2px;
+  padding-right: 2px;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+.branch-tables--table {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  height: 64px;
+  border-radius: 5px;
+  width: calc(50% - 5px);
+  background-color: var(--table-active-backgroung-color);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.branch-tables--modal-subtitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.branch-tables--modal-button-box {
+  gap: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.branch-tables--submit-button-text {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.branch-tables--edit-row {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.branch-tables--modal-button-box-column {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}

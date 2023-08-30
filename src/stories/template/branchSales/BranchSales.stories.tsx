@@ -201,6 +201,7 @@ function generatePastSale(): PastSaleProps {
     },
   };
 }
+
 function productObjectToProps(product: ProductObject): SaleProductProps {
   return {
     id: product.id,

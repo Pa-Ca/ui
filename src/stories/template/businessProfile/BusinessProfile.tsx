@@ -4,6 +4,9 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import styles from "./businessProfile.module.scss";
 import { Modal } from "../../molecules/modal/Modal";
+import TaxObject from "../../utils/objects/TaxObject";
+import SaleObject from "../../utils/objects/SaleObject";
+import TableObject from "../../utils/objects/TableObject";
 import useWindowResize from "../../hooks/useWindowResize";
 import OptionObject from "../../utils/objects/OptionObject";
 import { HeaderProps } from "../../organisms/header/Header";
@@ -15,14 +18,13 @@ import { InputText } from "../../molecules/inputText/InputText";
 import { InputTime } from "../../molecules/inputTime/InputTime";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+import { BranchTables } from "../../organisms/branchTables/BranchTables";
 import { InputLongText } from "../../molecules/inputLongText/InputLongText";
 import { BusinessHeader } from "../../molecules/businessHeader/BusinessHeader";
 import { BranchEditForm } from "../../organisms/branchEditForm/BranchEditForm";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
 import { BusinessAccountInfo } from "../../organisms/businessAccountInfo/BusinessAccountInfo";
-
 import { UploadProfilePictureForm } from "../../organisms/uploadProfilePictureForm/UploadProfilePictureForm";
-import TaxObject from "../../utils/objects/TaxObject";
 
 interface BusinessProfileProps {
   /**
@@ -244,6 +246,27 @@ interface BusinessProfileProps {
    * On upload profile picture
    */
   uploadProfilePicture: (profilePicture: File) => void;
+
+  /**
+   * Tables
+   */
+  tables: TableObject[];
+  /**
+   * Sales
+   */
+  sales: SaleObject[];
+  /**
+   * On search table
+   */
+  onSearchTable: (table: InputFormHook<string>) => void;
+  /**
+   * On create table
+   */
+  onCreateTable: (table: InputFormHook<string>) => Promise<boolean>;
+  /**
+   * On edit table
+   */
+  onEditTable: (table: InputFormHook<string>) => void;
 }
 
 /**
@@ -304,6 +327,12 @@ export const BusinessProfile = ({
   uploadProfilePicture,
   onAddTax,
 
+  tables,
+  sales,
+  onSearchTable,
+  onCreateTable,
+  onEditTable,
+
   ...props
 }: BusinessProfileProps) => {
   const [page, setPage] = useState(0);
@@ -340,8 +369,7 @@ export const BusinessProfile = ({
   // Get the theme from the provider
   const { isDarkMode } = useThemeProvider();
   const PageWrapper = useMemo(
-    () =>
-      windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
+    () => (windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage),
     [windowSize.resolutionType]
   );
 
@@ -356,19 +384,13 @@ export const BusinessProfile = ({
     newPassword.setValue("");
   }, [changePassword]);
 
-  useEffect(() => {
-    // Retrieve image
-  });
-
-  const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] =
-    useState(false);
+  const [showUploadProfilePictureModal, setshowUploadProfilePictureModal] = useState(false);
 
   const onProfilePictureEditClick = () => {
     setshowUploadProfilePictureModal(true);
   };
 
-  const [currentProfilePicture, setCurrentProfilePicture] =
-    useState(profilePicture);
+  const [currentProfilePicture, setCurrentProfilePicture] = useState(profilePicture);
   const [headerProps, setHeaderProps] = useState<HeaderProps>({
     ...header,
     dark: isDarkMode,
@@ -408,25 +430,16 @@ export const BusinessProfile = ({
           onPicturePencilClick={onProfilePictureEditClick}
         />
 
-        <Box
-          innerRef={tabObserver.ref}
-          className={styles["business-profile--nav-tab"]}
-        >
+        <Box innerRef={tabObserver.ref} className={styles["business-profile--nav-tab"]}>
           <InputTab
             index={page}
             setIndex={setPage}
-            tabs={["Cuenta", "Local"]}
+            tabs={["Cuenta", "Local", "Mesas"]}
           />
         </Box>
 
-        <Box
-          className={styles["business-profile--content-container"]}
-          innerRef={observer.ref}
-        >
-          <Box
-            width={`${3 * tabObserver.width}px`}
-            className={styles["business-profile--content"]}
-          >
+        <Box className={styles["business-profile--content-container"]} innerRef={observer.ref}>
+          <Box width={`${4 * tabObserver.width}px`} className={styles["business-profile--content"]}>
             <Box width={`${tabObserver.width - 10}px`}>
               <BusinessAccountInfo
                 name={name}
@@ -447,17 +460,12 @@ export const BusinessProfile = ({
             <Box width="12px" />
 
             <Box width={`${tabObserver.width - 10}px`}>
-              <Text
-                type={windowSize.resolutionType === "desktop" ? "h3" : "h4"}
-                weight="700"
-              >
+              <Text type={windowSize.resolutionType === "desktop" ? "h3" : "h4"} weight="700">
                 Detalles del local
               </Text>
               <Box height="16px" />
               {haveBranch ? (
-                <Box
-                  key={`business-profile--branch-edit-form-taxes-${taxes.length}`}
-                >
+                <Box key={`business-profile--branch-edit-form-taxes-${taxes.length}`}>
                   <BranchEditForm
                     name={branchName}
                     description={branchDescription}
@@ -502,6 +510,16 @@ export const BusinessProfile = ({
             </Box>
             <Box width="12px" />
 
+            <Box width={`${tabObserver.width - 4}px`}>
+              <BranchTables
+                tables={tables}
+                sales={sales}
+                onSearchTable={onSearchTable}
+                onCreateTable={onCreateTable}
+                onEditTable={onEditTable}
+              />
+            </Box>
+
             <Box width={`${tabObserver.width - 10}px`}>
               <Text type="h3" weight="700">
                 Métodos de pago
@@ -511,14 +529,8 @@ export const BusinessProfile = ({
           </Box>
         </Box>
 
-        <Modal
-          open={showUploadProfilePictureModal}
-          setOpen={setshowUploadProfilePictureModal}
-        >
-          <UploadProfilePictureForm
-            onSave={onProfilePictureChange}
-            upload={uploadProfilePicture}
-          />
+        <Modal open={showUploadProfilePictureModal} setOpen={setshowUploadProfilePictureModal}>
+          <UploadProfilePictureForm onSave={onProfilePictureChange} upload={uploadProfilePicture} />
         </Modal>
 
         <Modal open={showCreateBranchModal} setOpen={setShowCreateBranchModal}>
@@ -658,9 +670,7 @@ export const BusinessProfile = ({
               />
             </Box>
 
-            <Box
-              className={styles["business-profile--precise-location-container"]}
-            >
+            <Box className={styles["business-profile--precise-location-container"]}>
               <InputText
                 width="100%"
                 showError={false}
@@ -669,20 +679,14 @@ export const BusinessProfile = ({
                 placeholder="https://www.google.com/maps/place/Caracas,+Capital+District/data=!4m2!3m1!1s0x8c2a58adcd824807:0x93dd2eae0a998483?sa=X&ved=2ahUKEwjBkcHWrI__AhVvRzABHY_VCfIQ8gF6BAgIEAI&hl=es-419"
               />
               <Text type="h6" weight="400" color="#6C6C6C">
-                Esta ubicación debe ser un enlace de Google Maps. Este se usará
-                para mostrar la ubicación del local en la aplicación.
+                Esta ubicación debe ser un enlace de Google Maps. Este se usará para mostrar la
+                ubicación del local en la aplicación.
               </Text>
             </Box>
 
             <Box className={styles["business-profile--modal-buttons"]}>
-              <Button
-                fullWidth
-                size="large"
-                onClick={() => setShowCreateBranchModal(false)}
-              >
-                <Box
-                  className={styles["business-profile--button-create-branch"]}
-                >
+              <Button fullWidth size="large" onClick={() => setShowCreateBranchModal(false)}>
+                <Box className={styles["business-profile--button-create-branch"]}>
                   <Text weight="700">Cancelar</Text>
                 </Box>
               </Button>
@@ -712,10 +716,10 @@ export const BusinessProfile = ({
                   setWait(false);
                 }}
               >
-                <Box
-                  className={styles["business-profile--button-create-branch"]}
-                >
-                  <Text weight="700" primaryButtonStyle>Crear</Text>
+                <Box className={styles["business-profile--button-create-branch"]}>
+                  <Text weight="700" primaryButtonStyle>
+                    Crear
+                  </Text>
                 </Box>
               </Button>
             </Box>

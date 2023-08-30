@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./switch.module.scss";
-import styleVariables from "../../assets/scss/variables.module.scss";
 
 interface SwitchProps {
   /**
