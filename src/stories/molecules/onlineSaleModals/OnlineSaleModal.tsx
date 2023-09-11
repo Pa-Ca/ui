@@ -4,7 +4,7 @@ import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import styles from "./onlineSaleModal.module.scss";
 import { Modal } from "../modal/Modal";
-import { OnlineSaleStatuses } from "../onlineSaleAction/onlineSaleAction";
+import { OnlineSaleStatuses } from "../../utils/objects/OnlineSaleStatus";
 
 interface ModalConfirmProps {
   open: boolean;
@@ -96,7 +96,7 @@ export const OnlineSaleModal = ({
 
   let text : string;
   let confirmText : string;
-  let onConfirm;
+  let onConfirm : () => void;
   switch (nextStatus) {
     
     case OnlineSaleStatuses.ACCEPTED:
@@ -144,6 +144,7 @@ export const OnlineSaleModal = ({
     case OnlineSaleStatuses.REJECTED:
       text = "¿Está seguro que desea rechazar la venta?";
       confirmText = "Rechazar";
+      onConfirm = onReject;
       break;
     
     default:
@@ -159,7 +160,7 @@ export const OnlineSaleModal = ({
       text= {text}
       confirmText={confirmText}
       cancelText="Volver"
-      onConfirm={onCancel}
+      onConfirm={onConfirm}
     />
   }, [openModal])
   return (

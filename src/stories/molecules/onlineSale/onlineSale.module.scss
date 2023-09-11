@@ -18,6 +18,7 @@
 
 .online-sale--status-text {
   animation: show-icon--visible 300ms linear forwards;
+  text-overflow: clip
 }
 
 .online-sale--container-colapsed:hover {

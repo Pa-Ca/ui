@@ -3,7 +3,12 @@ import { StoryFn, Meta } from "@storybook/react";
 import { BranchOnlineSales } from "./BranchOnlineSales";
 import useInputForm from "../../hooks/useInputForm";
 import OptionObject from "../../utils/objects/OptionObject";
-import ReservationStatusObject from "../../utils/objects/ReservationStatus";
+//import ReservationStatusObject from "../../utils/objects/ReservationStatus";
+
+//import { OnlineSaleList } from "../../utils/objects/OnlineSaleList";
+import { OnlineSaleStatuses } from "../../utils/objects/OnlineSaleStatus";
+import { onlineSaleStatusList } from "../../utils/objects/OnlineSaleStatus";
+import { start } from "repl";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -71,140 +76,230 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
   const email = useInputForm("");
   const [showModal, setshowModal] = useState(false);
 
-  const pendingReservationList = [
+
+  const products = [
+    {
+      name: "Coca Cola",
+      price: 1.5,
+      amount: 4,
+    },
+    {
+      name: "Pepsi",
+      price: 1.5,
+      amount: 3,
+    },
+    {
+      name: "Pizza de peperoni",
+      price: 10.99,
+      amount: 1,
+    },
+    {
+      name: "Hamburguesa",
+      price: 5.45,
+      amount: 3,
+    },
+    {
+      name: "Papas fritas",
+      price: 2.1,
+      amount: 3,
+    }
+  ]
+  
+  const taxes =  [
+    {
+      name: "IVA",
+      value: 12,
+      type: "%",
+    },
+    {
+      name: "IGTF",
+      value: 3,
+      type: "%",
+    },
+  ]
+
+  const pendingOnlineSalesList = [
     ...new Array(35).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      requestDate: "24/10/2023 7:45 PM",
-      date: "2021-10-11",
-      owner: "Ivan Tortolero 1",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 1,
-      tables: 1,
-      status: reservationsStatus[0],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},      
-    }),
-  ];
-  const acceptedReservationList = [
-    ...new Array(25).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      requestDate: "24/10/2023 7:45 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero 3",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 3,
-      tables: 3,
-      status: reservationsStatus[2],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-  ];
-  const startedReservationList = [
-    ...new Array(18).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      requestDate: "24/10/2023 7:45 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero 5",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 5,
-      tables: 5,
-      status: reservationsStatus[4],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-  ];
-  const historicReservationList = [
-    ...new Array(8).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      requestDate: "24/10/2023 7:45 PM",
-      date: "2021-10-12",
-      owner: "Ivan Tortolero 1",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 2,
-      tables: 2,
-      status: reservationsStatus[1],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
-    }),
-    ...new Array(13).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
+      requestTime: "6:00 PM",
       requestDate: "24/10/2023 7:45 PM",
       date: "2021-10-10",
-      owner: "Ivan Tortolero 4",
+      owner: "Ivan Tortolero",
       ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 4,
-      tables: 4,
-      status: reservationsStatus[3],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.PENDING],
+      products : products,
+      taxes : taxes
+    }),
+  ];
+  const acceptedOnlineSalesList = [
+    ...new Array(25).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Juanito Juan",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.ACCEPTED],
+      products : products,
+      taxes : taxes
+    }),
+  ];
+  const startedOnlineSaleList = [
+    ...new Array(18).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Sivira Del Siviroski",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.STARTED],
+      products : products,
+      taxes : taxes
+    }),
+  ];
+  
+  const onTheWayOnlineSaleList = [
+    ...new Array(18).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Amin Aminchoski",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "delivery",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.ON_THE_WAY],
+      products : products,
+      taxes : taxes
+    }),
+  ];
+  
+  const readyToTakeOutOnlineSaleList = [
+      ...new Array(5).fill({
+        requestTime: "6:00 PM",
+        requestDate: "24/10/2023 7:45 PM",
+        date: "2021-10-10",
+        owner: "Josesph El Barroski",
+        ownerPhone: "0414-8732414",
+        identityDocument: "V27722357",
+        ownerEmail: "hola@fe.com",
+        saleType: "pick-up",
+        adress : "Av. 1 con calle 2",
+        adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+        note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+        status: onlineSaleStatusList[OnlineSaleStatuses.READY_TO_TAKE_OUT],
+        products : products,
+        taxes : taxes
+      }),];
+
+  const deliveredOnlineSaleList = [
+    ...new Array(5).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Elio Di Michelis",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "delivery",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.DELIVERED],
+      products : products,
+      taxes : taxes
+    }),];
+
+  const historicOnlineSaleList = [
+    ...new Array(8).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Pedro Pedraza",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.CANCELLED],
+      products : products,
+      taxes : taxes
+
+    }),
+    ...new Array(13).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Ivan Ivanovich",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress : "Av. 1 con calle 2",
+      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.REJECTED],
+      products : products,
+      taxes : taxes
     }),
     ...new Array(7).fill({
-      start: "6:00 PM",
-      end: "7:00 PM",
-      requestDate: "24/10/2023 7:45 PM",
-      date: "2021-10-13",
-      owner: "Ivan Tortolero 6",
-      ownerPhone: "0414-8732414",
-      ownerEmail: "Sisepuede@fe.com",
-      ownerOccasion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      identityDocument: "V69420616",
-      persons: 6,
-      tables: 6,
-      status: reservationsStatus[5],
-      onCloseReservation: () => {console.log("close")},
-      onReject: () => {console.log("reject")},
-      onAccept: () => {console.log("accept")},
-      onRetire: () => {console.log("retire")},
-      onStart: () => {console.log("start")},
+      ...new Array(13).fill({
+        requestTime: "6:00 PM",
+        requestDate: "24/10/2023 7:45 PM",
+        date: "2021-10-10",
+        owner: "Ivan Tortolero Dos",
+        ownerPhone: "0414-8732414",
+        identityDocument: "V27722357",
+        ownerEmail: "hola@fe.com",
+        saleType: "pick-up",
+        adress : "Av. 1 con calle 2",
+        adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+        note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+        status: onlineSaleStatusList[OnlineSaleStatuses.CLOSED],
+        products : products,
+        taxes : taxes
+      }),
     }),
   ];
 
   const historicCurrentPage = 1;
   const historicReservationListTotalLenght = 28;
 
+  console.log({args})
   return (
     <BranchOnlineSales
-      startedSalesList={startedReservationList}
-      acceptedSalesList={acceptedReservationList}
-      pendingSalesList={pendingReservationList}
-      historicSalesList={historicReservationList}
+    {...args} 
+      pendingSalesList={pendingOnlineSalesList}
+      acceptedSalesList={acceptedOnlineSalesList}
+      startedSalesList={startedOnlineSaleList}
+      readyToTakeOutSalesList={readyToTakeOutOnlineSaleList}
+      onTheWaySalesList={onTheWayOnlineSaleList}
+      deliveredSalesList={deliveredOnlineSaleList}
+      historicSalesList={historicOnlineSaleList}
+      
       historicCurrentPage={historicCurrentPage}
       historicSalesListTotalLenght={historicReservationListTotalLenght}
+      
       filterStartDate={filterStartDate}
       filterEndDate={filterEndDate}
       filterStatus={filterStatus}
@@ -214,6 +309,7 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       filterIdentityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
       filterFullName={filterFullName}
       onGetReservationsFiltered={()=>{}}
+      
       date={date}
       hourIn={hourIn}
       hourOut={hourOut}
@@ -229,19 +325,12 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       email={email}
       showModal={showModal}
       setShowModal={setshowModal}
-      {...args}
+      
     />
   );
 };
 
-const reservationsStatus: ReservationStatusObject[] = [
-  {number: 1, name: "pending", nameShow: "Pendiente", icon: "pending-status"},
-  {number: 2, name: "rejected", nameShow: "Rechazada", icon: "rejected-status"},
-  {number: 3, name: "accepted", nameShow: "Aceptada", icon: "accepted-status"},
-  {number: 4, name: "retired", nameShow: "Retirada", icon: "retired-status"},
-  {number: 5, name: "started", nameShow: "En curso", icon: "started-status"},
-  {number: 6, name: "closed", nameShow: "Finalizada", icon: "closed-status"}
-]
+
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

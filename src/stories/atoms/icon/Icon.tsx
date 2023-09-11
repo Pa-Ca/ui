@@ -66,6 +66,7 @@ import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outl
 import pendingActionsRounded from "@iconify/icons-material-symbols/pending-actions-rounded";
 import baselineDeliveryDining from "@iconify/icons-ic/baseline-delivery-dining";
 import paperBag from '@iconify/icons-tabler/paper-bag';
+import handCoin from '@iconify/icons-mdi/hand-coin';
 
 export type IconType =
   | "pa-ca"
@@ -133,7 +134,8 @@ export type IconType =
   | "identity-document"
   | "info"
   | "delivery"
-  | "pick-up";
+  | "pick-up"
+  | "reciving-package";
 
 interface IconProps {
   /**
@@ -715,6 +717,14 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={paperBag}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "reciving-package":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={handCoin}
           style={{ fontSize: size, ...style }}
         />
       );

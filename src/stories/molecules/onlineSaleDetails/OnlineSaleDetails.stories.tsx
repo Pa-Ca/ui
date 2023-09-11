@@ -24,5 +24,6 @@ Default.args = {
   identityDocument: "V27722357",
   email: "hola@fe.com",
   adress : "Av. 1 con calle 2",
+  adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
   note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
 };

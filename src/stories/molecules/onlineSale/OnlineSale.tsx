@@ -64,7 +64,7 @@ export interface OnlineSaleProps {
   /**
    * Sale address (google maps link)
    */
-  addressLink?: string;
+  adressLink?: string;
   /**
    * Product list
    */
@@ -135,6 +135,7 @@ export const OnlineSale = ({
   status,
   ownerEmail,
   adress,
+  adressLink,
   note,
   saleType,
   products,
@@ -188,8 +189,6 @@ export const OnlineSale = ({
       </Box>
     );
   }
-
-
   
   return (
     <div>
@@ -270,7 +269,7 @@ export const OnlineSale = ({
                 phoneNumber={ownerPhone}
                 email={ownerEmail}
                 adress={adress ? adress : ""}
-                adressLink={adress}
+                adressLink={adressLink ? adressLink : ""}
                 note={note}
               />
               <hr/>

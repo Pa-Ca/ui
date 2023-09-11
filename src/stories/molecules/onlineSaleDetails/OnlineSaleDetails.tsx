@@ -4,6 +4,8 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./onlineSaleDetails.module.scss";
 
+import { openLinkInNewWindow } from "../../utils/openLinkInNewWindow";
+
 export interface OnlineSaleDetailsProps {
   /**
    * requestTime (Time when the sale was opended)
@@ -41,6 +43,11 @@ export interface OnlineSaleDetailsProps {
    * Total component height
    */
   height?: string;
+}
+
+export const openInNewTab = (url: string): void => {
+  const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+  if (newWindow) newWindow.opener = null
 }
 
 /**
@@ -93,6 +100,25 @@ export const OnlineSaleDetails = ({
         </Box>
         <Text> {adress} </Text>
       </Box>
+
+      {
+        adressLink && 
+        <Box className={styles["online-sale-details--item"]}>
+        <Box className={styles["online-sale-details--icon-container"]}>
+          <Icon icon="location" size="22px" />
+        </Box>
+        <Box onClick={
+          () => openInNewTab(adressLink!)
+        }>
+          <Text hyperlinkStyle> Google Maps </Text>
+
+        </Box>
+
+      </Box> 
+      }
+      
+
+
       {note != "" &&
         <Box>
           <Box>

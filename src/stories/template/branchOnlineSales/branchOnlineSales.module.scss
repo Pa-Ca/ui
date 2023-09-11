@@ -1,2 +1,44 @@
 @import "../../assets/scss/themes";
 @import "../../assets/scss/mixins.scss";
+
+
+.branch-reserves--header {
+  margin-bottom: 30px;
+}
+.branch-reserves--content-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-margin-left: 100%;
+
+  @include hide-scroll();
+}
+.branch-reserves--content {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  padding-right: 5px;
+}
+.branch-reserves--submit-reservation--button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.branch-reserves--no-branch-box {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.branch-reserves--modal-button-box {
+  display: flex;
+  justify-content: space-between;
+}

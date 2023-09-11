@@ -13,19 +13,11 @@ import useThemeProvider from "../../hooks/useThemeProvider";
 import { InputTab } from "../../molecules/inputTab/InputTab";
 import useResizeObserver from "../../hooks/useResizeObserver";
 import { BasicPage } from "../../organisms/basicPage/BasicPage";
-import { Paginable } from "../../molecules/paginable/Paginable";
-import { ReserveList } from "../../organisms/reserveList/ReserveList";
-import { ReservationProps } from "../../molecules/reservation/Reservation";
-import { ClientInfoForm } from "../../molecules/clientInfoForm/ClientInfoForm";
-import { ReserveDetails } from "../../organisms/reserveDetails/ReserveDetails";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
-import { ReservationFilters } from "../../organisms/reservationFilters/ReservationFilters";
-import { PastReservationList } from "../../organisms/pastReservationList/PastReservationList";
-//import { OnlineSalesProps } from "../../"
-
-interface OnlineSalesProps{
-
-}
+import { OnlineSaleProps } from "../../molecules/onlineSale/OnlineSale";
+import { Paginable } from "../../molecules/paginable/Paginable";
+import { OnlineSaleList } from "../../organisms/onlineSaleList/OnlineSaleList";
+import { OnlineSaleStatuses } from "../../utils/objects/OnlineSaleStatus";
 
 interface BranchOnlineSalesProps {
   /**
@@ -35,19 +27,31 @@ interface BranchOnlineSalesProps {
   /**
    * Sales list with status started
    */
-  startedSalesList: OnlineSalesProps[];
+  startedSalesList: OnlineSaleProps[];
   /**
    * Sales list with status accepted
    */
-  acceptedSalesList: OnlineSalesProps[];
+  acceptedSalesList: OnlineSaleProps[];
   /**
    * Sales list with status pending
    */
-  pendingSalesList: OnlineSalesProps[];
+  pendingSalesList: OnlineSaleProps[];
+  /*
+  * Sales list with status on the way
+  */
+  onTheWaySalesList: OnlineSaleProps[];
+  /*
+  * Sales list with status ready to take out
+  */
+  readyToTakeOutSalesList: OnlineSaleProps[];
+  /*
+  * Sales list with status delivered (Havent been paid by the client)
+  */
+  deliveredSalesList: OnlineSaleProps[];
   /**
    * Sales list with status rejected, retired or closed
    */
-  historicSalesList: OnlineSalesProps[];
+  historicSalesList: OnlineSaleProps[];
   /**
    * Total number of Sales with status rejected, retired or closed
    */
@@ -63,11 +67,11 @@ interface BranchOnlineSalesProps {
   /**
    * Filter by Online sal startDate
    */
-  filterStartDate: InputFormHook<Date|null>;
+  filterStartDate: InputFormHook<Date | null>;
   /**
    * Filter by Online sal endDate
    */
-  filterEndDate: InputFormHook<Date|null>;
+  filterEndDate: InputFormHook<Date | null>;
   /**
    * Filter by Online sale status
    */
@@ -139,7 +143,7 @@ interface BranchOnlineSalesProps {
   /**
    * Reservation date input hook
    */
-  date: InputFormHook<Date|null>;
+  date: InputFormHook<Date | null>;
   /**
    * Reservation hourIn input hook
    */
@@ -215,9 +219,12 @@ interface BranchOnlineSalesProps {
  */
 export const BranchOnlineSales = ({
   header,
-  startedSalesList,
-  acceptedSalesList,
   pendingSalesList,
+  acceptedSalesList,
+  startedSalesList,
+  readyToTakeOutSalesList,
+  onTheWaySalesList,
+  deliveredSalesList,
   historicSalesList,
   historicCurrentPage,
   historicTotalPage,
@@ -266,23 +273,78 @@ export const BranchOnlineSales = ({
       : BasicMobilePage;
   }, [windowSize.resolutionType]);
 
-  const [page, setPage] = useState(0);
-  const [currentStartedReservation, setCurrentStartedReservation] = useState<
-    ReservationProps[]
+  const [page, setPage] = useState(OnlineSaleStatuses.PENDING);
+
+  const [currentPendingOnlineSale, setCurrentPendingOnlineSale] = useState<
+    OnlineSaleProps[]
   >([]);
-  const [currentAcceptedReservation, setCurrentAcceptedReservation] = useState<
-    ReservationProps[]
+  const [currentAcceptedOnlineSale, setCurrentAcceptedOnlineSale] = useState<
+    OnlineSaleProps[]
   >([]);
-  const [currentPendingReservation, setCurrentPendingReservation] = useState<
-    ReservationProps[]
+  const [currentStartedOnlineSale, setCurrentStartedOnlineSale] = useState<
+    OnlineSaleProps[]
   >([]);
+  const [currentOnTheWayOnlineSale, setCurrentOnTheWayOnlineSale] = useState<
+    OnlineSaleProps[]
+  >([]);
+  const [currentReadyToTakeOutOnlineSale, setCurrentReadyToTakeOutOnlineSale] = useState<
+    OnlineSaleProps[]
+  >([]);
+  const [currentDeliveredOnlineSale, setCurrentDeliveredOnlineSale] = useState<
+    OnlineSaleProps[]
+  >([]);
+
+  const currentAndSetterStatus = {
+    [OnlineSaleStatuses.PENDING]: {
+      state: currentPendingOnlineSale,
+      setState: setCurrentPendingOnlineSale,
+      sales : pendingSalesList
+    },
+    [OnlineSaleStatuses.ACCEPTED]: {
+      state: currentAcceptedOnlineSale,
+      setState: setCurrentAcceptedOnlineSale,
+      sales : acceptedSalesList
+    },
+    [OnlineSaleStatuses.STARTED]: {
+      state: currentStartedOnlineSale,
+      setState: setCurrentStartedOnlineSale,
+      sales : startedSalesList
+    },
+    [OnlineSaleStatuses.ON_THE_WAY]: {
+      state: currentOnTheWayOnlineSale,
+      setState: setCurrentOnTheWayOnlineSale,
+      sales : onTheWaySalesList
+    },
+    [OnlineSaleStatuses.READY_TO_TAKE_OUT]: {
+      state: currentReadyToTakeOutOnlineSale,
+      setState: setCurrentReadyToTakeOutOnlineSale,
+      sales : readyToTakeOutSalesList
+    },
+    [OnlineSaleStatuses.DELIVERED]: {
+      state: currentDeliveredOnlineSale,
+      setState: setCurrentDeliveredOnlineSale,
+      sales : deliveredSalesList
+    }
+  };
+
+
 
   const observerTab = useResizeObserver<HTMLDivElement>();
   const observerContainer = useResizeObserver<HTMLDivElement>();
 
+  const tabs = [
+    `Pendientes (${pendingSalesList.length})`,
+    `Aceptados (${acceptedSalesList.length})`,
+    `En Curso (${startedSalesList.length})`,
+    `Listos para ser buscados (${readyToTakeOutSalesList.length})`,
+    `En Camino (${onTheWaySalesList.length})`,
+    `Entregados (${deliveredSalesList.length})`,
+    // `Histórico  (${historicSalesListTotalLenght})`,
+  ];
+
   useEffect(() => {
     if (observerTab.ref.current && observerContainer.ref.current) {
-      observerContainer.ref.current.scrollLeft = page * (observerTab.width / 4);
+      observerContainer.ref.current.scrollLeft = page * (observerTab.width / tabs.length);
     }
   }, [observerTab.width, page]);
 
@@ -298,12 +360,7 @@ export const BranchOnlineSales = ({
           <InputTab
             index={page}
             setIndex={setPage}
-            tabs={[
-              `Ventas En Curso (${startedSalesList.length})`,
-              `Ventas Aceptadas (${acceptedSalesList.length})`,
-              `Ventas Pendientes (${pendingSalesList.length})`,
-              `Histórico  (${historicSalesListTotalLenght})`,
-            ]}
+            tabs={tabs}
           />
         </Box>
 
@@ -313,58 +370,29 @@ export const BranchOnlineSales = ({
         >
           {haveBranch ? (
             <Box
-              width="400%"
+              width= {(tabs.length * 100).toString() + "%"} // La cantidad de tabs que hay * 100%
               className={styles["branch-reserves--content"]}
               innerRef={observerTab.ref}
             >
 
-              {/* <Box style={{ flex: 1 }}>
-                <Paginable
-                  list={startedSalesList}
-                  setCurrentList={setCurrentStartedReservation}
-                  objectsPerPage={10}
-                >
-                  <ReserveList
-                    icon_size={icon_size}
-                    reservations={currentStartedReservation}
-                    state={1}
-                    setShowModal={setShowModal}
-                  />
-                  <Box height="40px" />
-                </Paginable>
-              </Box> */}
+              {Object.entries(currentAndSetterStatus).map(([status, { state, setState, sales }]) => (
+                <Box style={{ flex: 1 }}>
+                  <Paginable
+                    list={sales}
+                    setCurrentList={setState}
+                    objectsPerPage={10}
+                  >
+                    <OnlineSaleList
+                      icon_size={icon_size}
+                      onlineSales={state}
+                      state={Number(status)}
+                      setShowModal={setShowModal}
+                    />
+                    <Box height="40px" />
+                  </Paginable>
+                </Box>
+              ))}
 
-              {/* <Box style={{ flex: 1 }}>
-                <Paginable
-                  list={acceptedSalesList}
-                  setCurrentList={setCurrentAcceptedReservation}
-                  objectsPerPage={10}
-                >
-                  <ReserveList
-                    icon_size={icon_size}
-                    reservations={currentAcceptedReservation}
-                    state={2}
-                    setShowModal={setShowModal}
-                  />
-                  <Box height="40px" />
-                </Paginable>
-              </Box> */}
-
-              {/* <Box style={{ flex: 1 }}>
-                <Paginable
-                  list={pendingSalesList}
-                  setCurrentList={setCurrentPendingReservation}
-                  objectsPerPage={10}
-                >
-                  <ReserveList
-                    icon_size={icon_size}
-                    reservations={currentPendingReservation}
-                    state={3}
-                    setShowModal={setShowModal}
-                  />
-                  <Box height="40px" />
-                </Paginable>
-              </Box> */}
 
               {/* <Box style={{ flex: 1 }}>
                 <OnlineSalesFilters
@@ -377,7 +405,7 @@ export const BranchOnlineSales = ({
                   identityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
                   fullName={filterFullName}
                   onGetReservationsFiltered={onGetReservationsFiltered}
-                />  
+                />  /}
                 <PastOnlineSalesList
                   pastReservations={historicSalesList}
                   page={historicCurrentPage}
@@ -396,7 +424,7 @@ export const BranchOnlineSales = ({
           )}
         </Box>
 
-        
+
       </Box>
     </PageWrapper>
   );

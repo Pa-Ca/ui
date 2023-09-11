@@ -3,6 +3,7 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Button } from "../../atoms/button/Button";
 import styles from "./onlineSaleAction.module.scss";
+import { OnlineSaleStatuses } from "../../utils/objects/OnlineSaleStatus";
 
 export interface OnlineSaleActionProps {
   /**
@@ -23,36 +24,6 @@ export interface OnlineSaleActionProps {
   setNextStatus: (status: number) => void
 }
 
-// Create an enum with the status of the online-sale
-
-export const enum OnlineSaleStatuses {
-  PENDING = 1,
-  REJECTED = 2,
-  ACCEPTED = 3,
-  STARTED = 4,
-  READY_TO_TAKE_OUT = 5,
-  ON_THE_WAY = 6,
-  DELIVERED = 7,
-  CANCELLED = 8,
-  CLOSED = 9
-}
-
-/**
- * Status transitions
- * 
- * PENDING -> REJECTED
- * PENDING -> ACCEPTED
- * ACCEPTED -> STARTED
- * STARTED -> READY_TO_TAKE_OUT
- * STARTED -> ON_THE_WAY (Only if delivery is true)
- * ON_THE_WAY -> DELIVERED
- * READY_TO_TAKE_OUT -> DELIVERED
- * DELIVERED -> CLOSED
- */
-
-/**
- * Primary UI component for user interaction
- */
 export const OnlineSaleAction = ({
   currentStatus,
   delivery,
