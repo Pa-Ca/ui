@@ -76,7 +76,6 @@ export * from "./stories/template/branchListing/BranchListing";
 export * from "./stories/template/branchProfile/BranchProfile";
 export * from "./stories/template/resetPassword/ResetPassword";
 export * from "./stories/template/branchProducts/BranchProducts";
-export * from "./stories/template/branchReserves/BranchReserves";
 export * from "./stories/template/businessProfile/BusinessProfile";
 export * from "./stories/template/recoverPassword/RecoverPassword";
 export * from "./stories/template/reservationCheckOutBeta/ReservationCheckOutBeta";
@@ -89,16 +88,22 @@ import useInputForm from "./stories/hooks/useInputForm";
 export { useInputForm };
 
 import TaxObject from "./stories/utils/objects/TaxObject";
+import SaleObject from "./stories/utils/objects/SaleObject";
 import TableObject from "./stories/utils/objects/TableObject";
 import OptionObject from "./stories/utils/objects/OptionObject";
 import ProductObject from "./stories/utils/objects/ProductObject";
+import { PastSaleProps } from "./stories/molecules/pastSale/PastSale";
+import { SaleProductProps } from "./stories/molecules/saleProduct/SaleProduct";
 import ProductCategoryObject from "./stories/utils/objects/ProductCategoryObject";
 import ProductSubCategoryObject from "./stories/utils/objects/ProductSubCategoryObject";
 export type {
   TaxObject,
+  SaleObject,
   TableObject,
   OptionObject,
   ProductObject,
+  PastSaleProps,
+  SaleProductProps,
   ProductCategoryObject,
   ProductSubCategoryObject,
 };

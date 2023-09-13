@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import styles from "./saleProductList.module.scss";
@@ -12,10 +12,7 @@ import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { NewSaleProduct } from "../../molecules/newSaleProduct/NewSaleProduct";
 import { EditableInputTax } from "../../molecules/editableInputTax/EditableInputTax";
 import { EditableInputLongText } from "../../molecules/editableInputLongText/EditableInputLongText";
-import {
-  SaleProduct,
-  SaleProductProps,
-} from "../../molecules/saleProduct/SaleProduct";
+import { SaleProduct, SaleProductProps } from "../../molecules/saleProduct/SaleProduct";
 
 interface SaleProductListProps {
   /**
@@ -42,6 +39,10 @@ interface SaleProductListProps {
    * Sale note
    */
   note: string;
+  /**
+   * Indicates if sale has reservation
+   */
+  hasReservation: boolean;
   /**
    * On add tax
    */
@@ -78,6 +79,7 @@ export const SaleProductList = ({
   subCategories,
   taxes,
   note,
+  hasReservation,
   onAddTax,
   onAddProduct,
   onClearProducts,
@@ -108,10 +110,13 @@ export const SaleProductList = ({
     };
   });
 
+  useEffect(() => {
+    noteHook.setValue(note);
+  }, [note]);
+
   const subTotal = useMemo(() => {
     return products.reduce((acc, product, index) => {
-      const value =
-        quantities[index].value === "" ? 1 : parseInt(quantities[index].value);
+      const value = quantities[index].value === "" ? 1 : parseInt(quantities[index].value);
       return acc + product.price * value;
     }, 0);
   }, [products]);
@@ -161,9 +166,7 @@ export const SaleProductList = ({
                   )
                 }
                 showError={
-                  taxesHook[index].nameInputHook.code +
-                    taxesHook[index].valueInputHook.code >
-                  0
+                  taxesHook[index].nameInputHook.code + taxesHook[index].valueInputHook.code > 0
                 }
                 key={`sale-product-list--tax-${index}`}
               />
@@ -180,7 +183,7 @@ export const SaleProductList = ({
             }}
           >
             <Box className={styles["sale-product-list--button"]}>
-              <Text weight="600">Agregar Tarifa</Text>
+              <Text weight="700">Agregar Tarifa</Text>
             </Box>
           </Button>
         )}
@@ -201,15 +204,8 @@ export const SaleProductList = ({
     <Box className={styles["sale-product-list--container"]}>
       {products.map((product, index) => {
         return (
-          <Box
-            key={`sale-product-list--product-${index}-${product.name}`}
-            width="100%"
-          >
-            <SaleProduct
-              {...product}
-              amountHook={quantities[index]}
-              onDelete={product.onDelete}
-            />
+          <Box key={`sale-product-list--product-${index}-${product.name}`} width="100%">
+            <SaleProduct {...product} amountHook={quantities[index]} onDelete={product.onDelete} />
           </Box>
         );
       })}
@@ -268,18 +264,28 @@ export const SaleProductList = ({
               state={products.length > 0 ? "normal" : "inactive"}
             >
               <Box className={styles["sale-product-list--button"]}>
-                <Text weight="600">Cerrar Mesa</Text>
+                <Text weight="700" primaryButtonStyle>
+                  Cerrar Mesa
+                </Text>
               </Box>
             </Button>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowDeleteModal(true)}
-            >
-              <Box className={styles["sale-product-list--button"]}>
-                <Text weight="600">Eliminar Factura</Text>
-              </Box>
-            </Button>
+            <Box>
+              {hasReservation && (
+                <Text type="h7" weight="400">
+                  *No se pueden eliminar ventas asociadas a una reserva
+                </Text>
+              )}
+              <Button
+                fullWidth
+                size="large"
+                onClick={() => setShowDeleteModal(true)}
+                state={hasReservation ? "inactive" : "normal"}
+              >
+                <Box className={styles["sale-product-list--button"]}>
+                  <Text weight="700">Eliminar Factura</Text>
+                </Box>
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -291,13 +297,9 @@ export const SaleProductList = ({
           </Text>
 
           <Box className={styles["sale-product-list--modal-buttons"]}>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowClearModal(false)}
-            >
+            <Button fullWidth size="large" onClick={() => setShowClearModal(false)}>
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
             <Button
@@ -310,7 +312,9 @@ export const SaleProductList = ({
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Limpiar Mesa</Text>
+                <Text weight="700" primaryButtonStyle>
+                  Limpiar Mesa
+                </Text>
               </Box>
             </Button>
           </Box>
@@ -324,13 +328,9 @@ export const SaleProductList = ({
           </Text>
 
           <Box className={styles["sale-product-list--modal-buttons"]}>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowDeleteModal(false)}
-            >
+            <Button fullWidth size="large" onClick={() => setShowDeleteModal(false)}>
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
             <Button
@@ -343,7 +343,9 @@ export const SaleProductList = ({
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Eliminar</Text>
+                <Text weight="600" primaryButtonStyle>
+                  Eliminar
+                </Text>
               </Box>
             </Button>
           </Box>
@@ -382,27 +384,17 @@ export const SaleProductList = ({
                   className={styles["sale-product-list--modal-item"]}
                 >
                   <Box className={styles["sale-product-list--modal-item"]}>
-                    <Box
-                      className={styles["sale-product-list--modal-item-amount"]}
-                    >
+                    <Box className={styles["sale-product-list--modal-item-amount"]}>
                       <Text type="h5">{quantities[index].value}</Text>
                     </Box>
-                    <Box
-                      className={
-                        styles["sale-product-list--modal-item-product"]
-                      }
-                    >
+                    <Box className={styles["sale-product-list--modal-item-product"]}>
                       <Text type="h5">{product.name}</Text>
                     </Box>
-                    <Box
-                      className={styles["sale-product-list--modal-item-total"]}
-                    >
+                    <Box className={styles["sale-product-list--modal-item-total"]}>
                       <Text type="h5">
                         {(
                           product.price *
-                          (quantities[index].value === ""
-                            ? 1
-                            : parseInt(quantities[index].value))
+                          (quantities[index].value === "" ? 1 : parseInt(quantities[index].value))
                         ).toFixed(2)}
                         $
                       </Text>
@@ -416,13 +408,9 @@ export const SaleProductList = ({
           {summary}
 
           <Box className={styles["sale-product-list--modal-buttons"]}>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowPayModal(false)}
-            >
+            <Button fullWidth size="large" onClick={() => setShowPayModal(false)}>
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
+                <Text weight="700">Cancelar</Text>
               </Box>
             </Button>
             <Button
@@ -435,7 +423,9 @@ export const SaleProductList = ({
               }}
             >
               <Box className={styles["sale-product-list--modal-button"]}>
-                <Text weight="600">Cerrar Mesa</Text>
+                <Text weight="700" primaryButtonStyle>
+                  Cerrar Mesa
+                </Text>
               </Box>
             </Button>
           </Box>

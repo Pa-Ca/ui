@@ -118,7 +118,6 @@ export const ReservationFilters = ({
         <Box className={styles["reservation-filters--input-container"]}>
           <Box width="100%">
             <InputTextSelect
-              required
               addEmptyOption
               emptyLabel=""
               inputHookText={identityDocument}
@@ -130,7 +129,6 @@ export const ReservationFilters = ({
           </Box>
           <Box width="100%">
             <InputText
-              required
               inputHook={fullName}
               type="text"
               label="Nombre Completo"
@@ -174,7 +172,7 @@ export const ReservationFilters = ({
                   styles["reservation-filters--submit-button-text"]
                 }
               >
-                <Text type="h6" weight="600">
+                <Text type="p" weight="700">
                   Limpiar filtros
                 </Text>
               </Button>
@@ -189,7 +187,7 @@ export const ReservationFilters = ({
                   styles["reservation-filters--submit-button-text"]
                 }
               >
-                <Text type="h6" weight="600">
+                <Text type="p" weight="700" primaryButtonStyle>
                   Aplicar filtros
                 </Text>
               </Button>

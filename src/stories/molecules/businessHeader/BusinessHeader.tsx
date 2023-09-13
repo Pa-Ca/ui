@@ -96,7 +96,7 @@ export const BusinessHeader = ({
           fullWidth={windowSize.resolutionType !== "desktop"}
         >
           <Box className={styles["business-header--button"]}>
-            <Text weight="600">
+            <Text weight="700" primaryButtonStyle>
               Crear Local
             </Text>
           </Box>

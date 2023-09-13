@@ -1,4 +1,4 @@
-type TableDTO = {
+type TableObject = {
   /**
    * Table id
    */
@@ -8,21 +8,9 @@ type TableDTO = {
    */
   branchId: number;
   /**
-   * Indicates if the product is deleted
-   */
-  deleted: boolean;
-  /**
    * Table name
    */
   name: string;
-  /**
-   * Indicates if the table has a active sale
-   */
-  hasSale: boolean;
-  /**
-   * On click function
-   */
-  onClick: () => void;
 };
 
-export { type TableDTO as default };
+export { type TableObject as default };

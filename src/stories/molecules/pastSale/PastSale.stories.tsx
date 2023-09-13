@@ -18,50 +18,59 @@ const Template: StoryFn<typeof PastSale> = (args: any) => {
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  startTime: new Date(),
-  hasReservation: true,
-  tableName: "Mesa 1",
-  ownerName: "John Doe",
-  ownerEmail: "john_doe@fe.com",
-  ownerPhone: "0424-1234567",
-  persons: 4,
-  products: [
-    {
-      name: "Coca Cola",
-      price: 1.5,
-      amount: 4,
-    },
-    {
-      name: "Pepsi",
-      price: 1.5,
-      amount: 3,
-    },
-    {
-      name: "Pizza de peperoni",
-      price: 10.99,
-      amount: 1,
-    },
-    {
-      name: "Hamburguesa",
-      price: 5.45,
-      amount: 3,
-    },
-    {
-      name: "Papas fritas",
-      price: 2.1,
-      amount: 3,
-    }
-  ],
-  taxes: [
-    {
-      name: "IVA",
-      value: 12,
-      type: "%",
-    },
-    {
-      name: "IGTF",
-      value: 3,
-      type: "%",
-    },
-  ]
+  sale: {
+    id: 1,
+    ownerName: "John Doe",
+    ownerPhone: "+58 4240000000",
+    ownerEmail: "john_doe@gmail.com",
+    startTime: new Date(),
+    clientQuantity: 4,
+    note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nisl nunc eu nunc. Donec euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nisl nunc eu nunc.",
+    taxes: [
+      {
+        id: 1,
+        name: "IVA",
+        type: 0,
+        value: 16,
+        saveValueFunction: async () => { },
+        deleteValueFunction: async () => { },
+      },
+      {
+        id: 2,
+        name: "Propina",
+        type: 1,
+        value: 5,
+        saveValueFunction: async () => { },
+        deleteValueFunction: async () => { },
+      }
+    ],
+    tables: [],
+    products: [
+      {
+        id: 1,
+        name: "Café",
+        price: 1.5,
+        amount: 2,
+        onChangeAmount: () => { },
+        onDelete: async () => { },
+      },
+      {
+        id: 2,
+        name: "Arepa",
+        price: 2.5,
+        amount: 5,
+        onChangeAmount: () => { },
+        onDelete: async () => { },
+      },
+      {
+        id: 3,
+        name: "Refresco",
+        price: 4.5,
+        amount: 1,
+        onChangeAmount: () => { },
+        onDelete: async () => { },
+      }
+    ],
+    hasReservation: false,
+  },
 };

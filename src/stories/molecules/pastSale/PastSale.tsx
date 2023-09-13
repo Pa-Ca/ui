@@ -4,53 +4,13 @@ import { Box } from "../../atoms/box/Box";
 import styles from "./pastSale.module.scss";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
+import SaleObject from "../../utils/objects/SaleObject";
 
 export interface PastSaleProps {
   /**
-   * Sale start date
+   * Sale data
    */
-  startTime: Date;
-  /**
-   * Table name
-   */
-  tableName: string;
-  /**
-   * Product list
-   */
-  products: {
-    name: string;
-    price: number;
-    amount: number;
-  }[];
-  /**
-   * Taxes list
-   */
-  taxes: {
-    name: string;
-    value: number;
-    type: "%" | "$";
-  }[];
-
-  /**
-   * Indicates if the sale has a reservation associated
-   */
-  hasReservation?: boolean;
-  /**
-   * Reservation owner name
-   */
-  ownerName?: string;
-  /**
-   * Reservation owner email
-   */
-  ownerEmail?: string;
-  /**
-   * Reservation owner phone
-   */
-  ownerPhone?: string;
-  /**
-   * Number of person in the reservation
-   */
-  persons?: number;
+  sale: SaleObject;
 
   /**
    * Total component width
@@ -66,16 +26,7 @@ export interface PastSaleProps {
  * Primary UI component for user interaction
  */
 export const PastSale = ({
-  startTime,
-  tableName,
-  products = [],
-  taxes = [],
-
-  hasReservation = false,
-  ownerName = "",
-  ownerEmail = "",
-  ownerPhone = "",
-  persons = 0,
+  sale,
 
   width,
   height,
@@ -84,15 +35,15 @@ export const PastSale = ({
   const [viewDetails, setViewDetails] = useState(false);
 
   const subTotal = useMemo(() => {
-    return products.reduce((acc, product) => {
+    return sale.products.reduce((acc, product) => {
       return acc + product.price * product.amount;
     }, 0);
-  }, [products]);
+  }, [sale.products]);
 
   const total = useMemo(() => {
     // Get taxes
-    const totalTaxes = taxes.reduce((acc, tax) => {
-      if (tax.type === "%") {
+    const totalTaxes = sale.taxes.reduce((acc, tax) => {
+      if (tax.type === 0) {
         return acc + (subTotal * tax.value) / 100;
       } else {
         return acc + tax.value;
@@ -100,7 +51,7 @@ export const PastSale = ({
     }, 0);
 
     return subTotal + totalTaxes;
-  }, [subTotal, taxes]);
+  }, [subTotal, sale.taxes]);
 
   return (
     <Box
@@ -114,17 +65,15 @@ export const PastSale = ({
           <Icon icon="calendar" size="28px" />
 
           <Box>
-            <Text weight="700"> {startTime.toISOString().split("T")[0]} </Text>
-            <Text>
-              {" "}
-              {startTime.toISOString().split("T")[1].split(".")[0]}{" "}
-            </Text>
+            <Text weight="700"> {sale.startTime.toISOString().split("T")[1].substring(0, 5)} </Text>
           </Box>
         </Box>
 
-        <Box className={styles["past-sale--header-table"]}>
-          <Icon icon="table" size="28px" />
-          <Text type="h5"> {tableName} </Text>
+        <Box>
+          <Text weight="700" type="h5">
+            {" "}
+            {sale.ownerName}{" "}
+          </Text>
         </Box>
 
         <Box className={styles["past-sale--price-and-icon-container"]}>
@@ -145,9 +94,7 @@ export const PastSale = ({
         className={classnames(
           styles["past-sale--details-container"],
           styles[
-            viewDetails
-              ? "past-sale--details-container-show"
-              : "past-sale--details-container-hide"
+            viewDetails ? "past-sale--details-container-show" : "past-sale--details-container-hide"
           ]
         )}
       >
@@ -162,14 +109,14 @@ export const PastSale = ({
                   Cantidad
                 </Text>
               </Box>
-              <Box className={styles["past-sale--item-price"]}>
-                <Text type="h5" weight="600">
-                  Precio
-                </Text>
-              </Box>
               <Box className={styles["past-sale--item-product"]}>
                 <Text type="h5" weight="600">
                   Producto
+                </Text>
+              </Box>
+              <Box className={styles["past-sale--item-price"]}>
+                <Text type="h5" weight="600">
+                  Precio
                 </Text>
               </Box>
             </Box>
@@ -177,21 +124,19 @@ export const PastSale = ({
 
             {/* Products */}
             <Box className={styles["past-sale--details-products"]}>
-              {products.map((product, index) => (
+              {sale.products.map((product, index) => (
                 <Box
-                  key={`past-sale--${startTime.toISOString()}-${tableName}-product-${index}-${
-                    product.name
-                  }`}
+                  key={`past-sale--${sale.startTime}-product-${index}-${product.name}`}
                   className={styles["past-sale--item"]}
                 >
                   <Box className={styles["past-sale--item-amount"]}>
                     <Text type="h5">{product.amount}</Text>
                   </Box>
-                  <Box className={styles["past-sale--item-price"]}>
-                    <Text type="h5">{product.price.toFixed(2)}$</Text>
-                  </Box>
                   <Box className={styles["past-sale--item-product"]}>
                     <Text type="h5">{product.name}</Text>
+                  </Box>
+                  <Box className={styles["past-sale--item-price"]}>
+                    <Text type="h5">{product.price.toFixed(2)}$</Text>
                   </Box>
                 </Box>
               ))}
@@ -202,52 +147,48 @@ export const PastSale = ({
             <Box className={styles["past-sale--reservation-container"]}>
               <Box className={styles["past-sale--reservation-title"]}>
                 <Text type="h5" weight="600">
-                  Reservación:
+                  Cliente:
                 </Text>
               </Box>
               <hr className={styles["past-sale--details-container-hr"]} />
 
-              {hasReservation ? (
-                <Box width="100%">
-                  <Box className={styles["past-sale--reservation-item"]}>
-                    <Text type="h5" weight="600">
-                      Nombre:
-                    </Text>
-                    <Text type="h5" weight="400">
-                      {ownerName}
-                    </Text>
-                  </Box>
-
-                  <Box className={styles["past-sale--reservation-item"]}>
-                    <Text type="h5" weight="600">
-                      Teléfono:
-                    </Text>
-                    <Text type="h5" weight="400">
-                      {ownerPhone}
-                    </Text>
-                  </Box>
-
-                  <Box className={styles["past-sale--reservation-item"]}>
-                    <Text type="h5" weight="600">
-                      Correo:
-                    </Text>
-                    <Text type="h5" weight="400">
-                      {ownerEmail}
-                    </Text>
-                  </Box>
-
-                  <Box className={styles["past-sale--reservation-item"]}>
-                    <Text type="h5" weight="600">
-                      Personas:
-                    </Text>
-                    <Text type="h5" weight="400">
-                      {persons}
-                    </Text>
-                  </Box>
+              <Box width="100%">
+                <Box className={styles["past-sale--reservation-item"]}>
+                  <Text type="h5" weight="600">
+                    Nombre:
+                  </Text>
+                  <Text type="h5" weight="400">
+                    {sale.ownerName}
+                  </Text>
                 </Box>
-              ) : (
-                <Text>No hay ninguna reservación asociada</Text>
-              )}
+
+                <Box className={styles["past-sale--reservation-item"]}>
+                  <Text type="h5" weight="600">
+                    Teléfono:
+                  </Text>
+                  <Text type="h5" weight="400">
+                    {sale.ownerPhone}
+                  </Text>
+                </Box>
+
+                <Box className={styles["past-sale--reservation-item"]}>
+                  <Text type="h5" weight="600">
+                    Correo:
+                  </Text>
+                  <Text type="h5" weight="400">
+                    {sale.ownerEmail}
+                  </Text>
+                </Box>
+
+                <Box className={styles["past-sale--reservation-item"]}>
+                  <Text type="h5" weight="600">
+                    Número de personas:
+                  </Text>
+                  <Text type="h5" weight="400">
+                    {sale.clientQuantity}
+                  </Text>
+                </Box>
+              </Box>
             </Box>
 
             <Box width="100%">
@@ -259,21 +200,17 @@ export const PastSale = ({
                   {subTotal.toFixed(2)}$
                 </Text>
               </Box>
-              {taxes.map((tax, index) => (
+              {sale.taxes.map((tax, index) => (
                 <Box
-                  key={`past-sale--date-${startTime.toISOString()}-index-${index}`}
+                  key={`past-sale--date-${sale.id}-index-${index}`}
                   className={styles["past-sale--summary-item"]}
                 >
                   <Text type="h5" weight="600">
                     {tax.name} ({tax.value}
-                    {tax.type}):
+                    {tax.type === 0 ? "%" : "$"}):
                   </Text>
                   <Text type="h5" weight="400">
-                    {(tax.type === "%"
-                      ? (subTotal * tax.value) / 100
-                      : tax.value
-                    ).toFixed(2)}
-                    $
+                    {(tax.type === 0 ? (subTotal * tax.value) / 100 : tax.value).toFixed(2)}$
                   </Text>
                 </Box>
               ))}

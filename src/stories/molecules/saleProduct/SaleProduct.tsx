@@ -9,6 +9,10 @@ import { EditableInputText } from "../editableInputText/EditableInputText";
 
 export interface SaleProductProps {
   /**
+   * Sale product id
+   */
+  id: number;
+  /**
    * Product name
    */
   name: string;

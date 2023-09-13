@@ -44,60 +44,74 @@ function getRandomSubarray(arr: any[]) {
 function generatePastSale(): PastSaleProps {
   const taxes = [
     {
+      id: 1,
       name: "IVA",
       value: 12,
-      type: "%" as "%" | "$",
+      type: 0,
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
     },
     {
+      id: 2,
       name: "IGTF",
       value: 3,
-      type: "%" as "%" | "$",
+      type: 0,
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
     },
   ];
   if (Math.random() >= 0.5) {
     taxes.push({
+      id: 3,
       name: "Propina",
       value: 10,
-      type: "$" as "%" | "$",
+      type: 1,
+
+      saveValueFunction: async () => {},
+      deleteValueFunction: async () => {},
     });
   }
 
   return {
-    startTime: generateRandomDate(),
-    hasReservation: Math.random() >= 0.5,
-    tableName: `Mesa ${Math.floor(1 + Math.random() * 5)}`,
-    ownerName: "John Doe",
-    ownerEmail: "john_doe@fe.com",
-    ownerPhone: "0424-1234567",
-    persons: Math.floor(1 + Math.random() * 10),
-    products: getRandomSubarray([
-      {
-        name: "Coca Cola",
-        price: 1.5,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-      {
-        name: "Pepsi",
-        price: 1.5,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-      {
-        name: "Pizza de peperoni",
-        price: 10.99,
-        amount: Math.floor(1 + Math.random() * 2),
-      },
-      {
-        name: "Hamburguesa",
-        price: 5.45,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-      {
-        name: "Papas fritas",
-        price: 2.1,
-        amount: Math.floor(1 + Math.random() * 5),
-      },
-    ]),
-    taxes: taxes,
+    sale: {
+      id: Math.floor(1 + Math.random() * 9999999),
+      startTime: generateRandomDate(),
+      ownerName: "John Doe",
+      ownerEmail: "john_doe@fe.com",
+      ownerPhone: "0424-1234567",
+      note: "",
+      clientQuantity: Math.floor(1 + Math.random() * 10),
+      products: getRandomSubarray([
+        {
+          name: "Coca Cola",
+          price: 1.5,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+        {
+          name: "Pepsi",
+          price: 1.5,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+        {
+          name: "Pizza de peperoni",
+          price: 10.99,
+          amount: Math.floor(1 + Math.random() * 2),
+        },
+        {
+          name: "Hamburguesa",
+          price: 5.45,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+        {
+          name: "Papas fritas",
+          price: 2.1,
+          amount: Math.floor(1 + Math.random() * 5),
+        },
+      ]),
+      taxes: taxes,
+      tables: [],
+      hasReservation: false
+    },
   };
 }
 
@@ -116,6 +130,6 @@ Default.args = {
     .fill(null)
     .map(generatePastSale)
     .sort((a, b) => {
-      return a.startTime.getTime() - b.startTime.getTime();
+      return a.sale.startTime.getTime() - b.sale.startTime.getTime();
     }),
 };

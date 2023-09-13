@@ -132,7 +132,7 @@ export const ReservationCheckOutBeta = ({
               // TODO
               identityDocument={identityDocument}
               identityDocumentType={identityDocumentType}
-              onGetGuest={() => { }}
+              onGetGuest={async () => { }}
             />
           </Box>
 

@@ -26,6 +26,7 @@ export const Default = Template.bind({});
 Default.args = {
   products: [
     {
+      id: 1,
       name: "Coca-cola",
       price: 10,
       amount: 5,
@@ -33,6 +34,7 @@ Default.args = {
       onDelete: async () => {},
     },
     {
+      id: 2,
       name: "Pizza de peperoni",
       price: 22.99,
       amount: 1,
@@ -40,6 +42,7 @@ Default.args = {
       onDelete: async () => {},
     },
     {
+      id: 3,
       name: "Hamburguesa",
       price: 15.99,
       amount: 2,
@@ -47,6 +50,7 @@ Default.args = {
       onDelete: async () => {},
     },
     {
+      id: 4,
       name: "Papas fritas",
       price: 5.99,
       amount: 1,
@@ -178,6 +182,7 @@ Default.args = {
   },
   taxes: [
     {
+      id: 1,
       name: "IVA",
       value: 12,
       type: 0,
@@ -185,6 +190,7 @@ Default.args = {
       deleteValueFunction: async () => {},
     },
     {
+      id: 2,
       name: "IGTF",
       value: 3,
       type: 0,
@@ -193,4 +199,5 @@ Default.args = {
     },
   ],
   onAddProduct: async () => true,
+  hasReservation: false,
 };

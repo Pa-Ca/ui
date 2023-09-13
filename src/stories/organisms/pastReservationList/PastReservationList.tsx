@@ -3,7 +3,10 @@ import { Box } from "../../atoms/box/Box";
 import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./pastReservationList.module.scss";
-import { Reservation, ReservationProps } from "../../molecules/reservation/Reservation";
+import {
+  Reservation,
+  ReservationProps,
+} from "../../molecules/reservation/Reservation";
 
 interface PastReservationListProps {
   /**
@@ -26,6 +29,10 @@ interface PastReservationListProps {
    * On previous page
    */
   onPreviousPage: () => void;
+  /**
+   * Max content height
+   */
+  contentHeight?: string;
 }
 
 /**
@@ -37,12 +44,13 @@ export const PastReservationList = ({
   totalPages,
   onNextPage,
   onPreviousPage,
+  contentHeight,
   ...props
 }: PastReservationListProps) => {
   // Group past sales by date
   const pastReservationsByDate = useMemo(() => {
     return pastReservations.reduce((acc, reservation) => {
-      const date = new Date(reservation.date).toISOString().split('T')[0];
+      const date = new Date(reservation.date).toISOString().split("T")[0];
       if (!acc[date]) {
         acc[date] = [];
       }
@@ -60,7 +68,10 @@ export const PastReservationList = ({
 
   return (
     <Box className={styles["past-reservation-list--container"]}>
-      <Box className={styles["past-reservation-list--body"]}>
+      <Box
+        className={styles["past-reservation-list--body"]}
+        style={{ height: contentHeight }}
+      >
         {dates.map((date, index) => (
           <Box
             className={styles["past-reservation-list--body-item"]}
@@ -78,9 +89,7 @@ export const PastReservationList = ({
             {pastReservationsByDate[date].map((reservation, index) => (
               <Box
                 className={styles["past-reservation-list--body-item"]}
-                key={`past-reservation-list--body-item-${index}-${
-                  reservation.tables
-                }-${reservation.start}-${reservation.owner}`}
+                key={`past-reservation-list--body-item-${index}-${reservation.tables}-${reservation.start}-${reservation.owner}`}
               >
                 <Reservation {...reservation} />
               </Box>

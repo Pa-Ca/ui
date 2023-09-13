@@ -163,7 +163,7 @@ export const EditableInputLongText = ({
               className
             )}
             weight="700"
-            style={{ ...style }}
+            style={{ ...style, whiteSpace: "pre-wrap", wordWrap: "break-word" }}
           >
             {inputHook.value}
           </Text>
