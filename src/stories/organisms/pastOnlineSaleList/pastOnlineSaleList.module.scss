@@ -1,0 +1,52 @@
+@import "../../assets/scss/themes";
+@import "../../assets/scss/mixins.scss";
+
+.past-online-sale-list--header {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.past-online-sale-list--body {
+  gap: 20px;
+  display: flex;
+  overflow-y: auto;
+  margin-top: 35px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 35px;
+  flex-direction: column;
+}
+.past-online-sale-list--body-item {
+  margin-bottom: 30px;
+}
+.past-online-sale-list--body-item-title {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: var(--card-background-color);
+}
+.past-online-sale-list--pages {
+  width: 100%;
+  display: flex;
+  margin-bottom: 40px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.past-online-sale-list--icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 33px;
+  margin-right: 33px;
+}
+.past-online-sale-list--counter {
+  @include unselectable();
+}
+.past-online-sale-list--icons-active-color {
+  color: var(--paginable-active-color);
+}
+.past-online-sale-list--icons-inactive-color {
+  color: var(--paginable-inactive-color);
+}
