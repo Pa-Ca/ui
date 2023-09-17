@@ -58,3 +58,14 @@
   align-items: center;
   justify-content: center;
 }
+.product-card--quantity-container {
+  gap: 30px;
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-card--delete-icon {
+  color: var(--main-color);
+}

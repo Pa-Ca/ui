@@ -1,0 +1,29 @@
+@import "../../assets/scss/themes";
+
+.product-card-list--container {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+}
+.product-card-list--filters-container {
+  gap: 20px;
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: row;
+  align-items: center;
+}
+.product-card-list--list-container {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.product-card-list--switch {
+  gap: 10px;
+  display: flex;
+  margin-top: -8px;
+  align-items: center;
+  flex-direction: column;
+}

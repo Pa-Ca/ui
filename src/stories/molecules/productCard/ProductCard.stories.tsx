@@ -23,6 +23,7 @@ Default.args = {
   like: false,
   productImage:
     "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
+  onAddToCart: () => Promise.resolve(true),
   width: "0px",
   height: "0px",
 };

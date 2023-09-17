@@ -29,11 +29,13 @@ import clockRemove from "@iconify/icons-mdi/clock-remove";
 import zelleIcon from "@iconify/icons-simple-icons/zelle";
 import flagFilled from "@iconify/icons-tabler/flag-filled";
 import invoiceIcon from "@iconify/icons-iconamoon/invoice";
+import baselinePlus from "@iconify/icons-ic/baseline-plus";
 import eyeSlashFill from "@iconify/icons-bi/eye-slash-fill";
 import wifiHighBold from "@iconify/icons-ph/wifi-high-bold";
 import circleSlice8 from "@iconify/icons-mdi/circle-slice-8";
 import baselineEmail from "@iconify/icons-ic/baseline-email";
 import baselinePhone from "@iconify/icons-ic/baseline-phone";
+import baselineMinus from "@iconify/icons-ic/baseline-minus";
 import shareIcon from "@iconify/icons-material-symbols/share";
 import fitnessCentre from "@iconify/icons-maki/fitness-centre";
 import deleteIcon from "@iconify/icons-material-symbols/delete";
@@ -59,6 +61,7 @@ import baselineLocationOn from "@iconify/icons-ic/baseline-location-on";
 import questionMark from "@iconify/icons-material-symbols/question-mark";
 import phoneAndroid from "@iconify/icons-material-symbols/phone-android";
 import localParking from "@iconify/icons-material-symbols/local-parking";
+import deleteOutline from "@iconify/icons-material-symbols/delete-outline";
 import roundKeyboardArrowUp from "@iconify/icons-ic/round-keyboard-arrow-up";
 import tableRestaurant from "@iconify/icons-material-symbols/table-restaurant";
 import roundKeyboardArrowDown from "@iconify/icons-ic/round-keyboard-arrow-down";
@@ -123,6 +126,7 @@ export type IconType =
   | "mail-envelope"
   | "calendar"
   | "delete"
+  | "delete-outline"
   | "bolivar"
   | "unset-status"
   | "pending-status"
@@ -135,7 +139,9 @@ export type IconType =
   | "info"
   | "search"
   | "exchange"
-  | "invoice";
+  | "invoice"
+  | "minus"
+  | "plus";
 
 interface IconProps {
   /**
@@ -248,19 +254,11 @@ export const Icon = ({
       );
     case "heart":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={heartIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={heartIcon} style={{ fontSize: size, ...style }} />
       );
     case "heart-fill":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={heartFill}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={heartFill} style={{ fontSize: size, ...style }} />
       );
     case "paper-plane":
       return (
@@ -288,11 +286,7 @@ export const Icon = ({
       );
     case "eye":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={eyeFill}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={eyeFill} style={{ fontSize: size, ...style }} />
       );
     case "eye-slash":
       return (
@@ -303,13 +297,7 @@ export const Icon = ({
         />
       );
     case "google":
-      return (
-        <Iconify
-          className={finalClassName}
-          icon={googleIcon}
-          style={{ fontSize: size }}
-        />
-      );
+      return <Iconify className={finalClassName} icon={googleIcon} style={{ fontSize: size }} />;
     case "person":
       return (
         <Iconify
@@ -324,24 +312,24 @@ export const Icon = ({
           className={finalClassName}
           icon={checkCircle}
           style={{ fontSize: size, ...style }}
-          />
-          );
+        />
+      );
     case "check-outline":
       return (
         <Iconify
           className={finalClassName}
           icon={checkCircleOutline}
           style={{ fontSize: size, ...style }}
-          />
-          );
+        />
+      );
     case "warning":
       return (
         <Iconify
-        className={finalClassName}
-        icon={warningIcon}
-        style={{ fontSize: size, ...style }}
+          className={finalClassName}
+          icon={warningIcon}
+          style={{ fontSize: size, ...style }}
         />
-        );
+      );
     case "cancel":
       return (
         <Iconify
@@ -360,11 +348,7 @@ export const Icon = ({
       );
     case "pool":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={poolIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={poolIcon} style={{ fontSize: size, ...style }} />
       );
     case "spa":
       return (
@@ -392,11 +376,7 @@ export const Icon = ({
       );
     case "wine":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={wineIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={wineIcon} style={{ fontSize: size, ...style }} />
       );
     case "wifi":
       return (
@@ -416,11 +396,7 @@ export const Icon = ({
       );
     case "fast-food":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={fastFood}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={fastFood} style={{ fontSize: size, ...style }} />
       );
     case "down":
       return (
@@ -464,11 +440,7 @@ export const Icon = ({
       );
     case "checkbox":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={checkBox}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={checkBox} style={{ fontSize: size, ...style }} />
       );
     case "uncheckbox":
       return (
@@ -480,11 +452,7 @@ export const Icon = ({
       );
     case "share":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={shareIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={shareIcon} style={{ fontSize: size, ...style }} />
       );
     case "flag":
       return (
@@ -496,19 +464,11 @@ export const Icon = ({
       );
     case "zelle":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={zelleIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={zelleIcon} style={{ fontSize: size, ...style }} />
       );
     case "visa":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={ccVisa}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={ccVisa} style={{ fontSize: size, ...style }} />
       );
     case "smartPhone":
       return (
@@ -584,19 +544,11 @@ export const Icon = ({
       );
     case "menu":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={menuIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={menuIcon} style={{ fontSize: size, ...style }} />
       );
     case "clock":
       return (
-        <Iconify
-          className={finalClassName}
-          icon={clockIcon}
-          style={{ fontSize: size, ...style }}
-        />
+        <Iconify className={finalClassName} icon={clockIcon} style={{ fontSize: size, ...style }} />
       );
     case "phone":
       return (
@@ -627,6 +579,14 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={deleteIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "delete-outline":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={deleteOutline}
           style={{ fontSize: size, ...style }}
         />
       );
@@ -725,6 +685,22 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={invoiceIcon}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "minus":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={baselineMinus}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "plus":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={baselinePlus}
           style={{ fontSize: size, ...style }}
         />
       );
