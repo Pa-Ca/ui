@@ -31,18 +31,18 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
     value: "",
   });
   const filterStatusOptions: OptionObject<string>[] = [
-    {label: "Cerrada", value: "6"},
-    {label: "Retirada", value: "4"},
-    {label: "Rechazada", value: "2"},
+    { label: "Cerrada", value: "6" },
+    { label: "Retirada", value: "4" },
+    { label: "Rechazada", value: "2" },
   ];
 
   const filterIdentityDocument = useInputForm("");
   const filterIdentityDocumentTypeOpt: OptionObject<string>[] = [
-    {label: "V", value: "V"},
-    {label: "E", value: "E"},
-    {label: "J", value: "J"},
-    {label: "G", value: "G"},
-    {label: "P", value: "P"},
+    { label: "V", value: "V" },
+    { label: "E", value: "E" },
+    { label: "J", value: "J" },
+    { label: "G", value: "G" },
+    { label: "P", value: "P" },
   ];
   const filterIdentityDocumentType = useInputForm<OptionObject<string>>({
     label: "",
@@ -60,11 +60,11 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
   // Client data
   const identityDocument = useInputForm("");
   const identityDocumentTypeOpt: OptionObject<string>[] = [
-    {label: "V", value: "V"},
-    {label: "E", value: "E"},
-    {label: "J", value: "J"},
-    {label: "G", value: "G"},
-    {label: "P", value: "P"},
+    { label: "V", value: "V" },
+    { label: "E", value: "E" },
+    { label: "J", value: "J" },
+    { label: "G", value: "G" },
+    { label: "P", value: "P" },
   ];
   const identityDocumentType = useInputForm<OptionObject<string>>({
     label: "V",
@@ -104,8 +104,8 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       amount: 3,
     }
   ]
-  
-  const taxes =  [
+
+  const taxes = [
     {
       name: "IVA",
       value: 12,
@@ -128,12 +128,12 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "pick-up",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.PENDING],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
     }),
   ];
   const acceptedOnlineSalesList = [
@@ -146,12 +146,12 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "pick-up",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.ACCEPTED],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
     }),
   ];
   const startedOnlineSaleList = [
@@ -164,15 +164,15 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "pick-up",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.STARTED],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
     }),
   ];
-  
+
   const onTheWayOnlineSaleList = [
     ...new Array(18).fill({
       requestTime: "6:00 PM",
@@ -183,32 +183,32 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "delivery",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.ON_THE_WAY],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
     }),
   ];
-  
+
   const readyToTakeOutOnlineSaleList = [
-      ...new Array(5).fill({
-        requestTime: "6:00 PM",
-        requestDate: "24/10/2023 7:45 PM",
-        date: "2021-10-10",
-        owner: "Josesph El Barroski",
-        ownerPhone: "0414-8732414",
-        identityDocument: "V27722357",
-        ownerEmail: "hola@fe.com",
-        saleType: "pick-up",
-        adress : "Av. 1 con calle 2",
-        adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
-        note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
-        status: onlineSaleStatusList[OnlineSaleStatuses.READY_TO_TAKE_OUT],
-        products : products,
-        taxes : taxes
-      }),];
+    ...new Array(5).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Josesph El Barroski",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.READY_TO_TAKE_OUT],
+      products: products,
+      taxes: taxes
+    }),];
 
   const deliveredOnlineSaleList = [
     ...new Array(5).fill({
@@ -220,12 +220,12 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "delivery",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.DELIVERED],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
     }),];
 
   const historicOnlineSaleList = [
@@ -238,12 +238,12 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "pick-up",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.CANCELLED],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
 
     }),
     ...new Array(13).fill({
@@ -255,40 +255,40 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       identityDocument: "V27722357",
       ownerEmail: "hola@fe.com",
       saleType: "pick-up",
-      adress : "Av. 1 con calle 2",
-      adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
       note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
       status: onlineSaleStatusList[OnlineSaleStatuses.REJECTED],
-      products : products,
-      taxes : taxes
+      products: products,
+      taxes: taxes
     }),
-    ...new Array(7).fill({
-      ...new Array(13).fill({
-        requestTime: "6:00 PM",
-        requestDate: "24/10/2023 7:45 PM",
-        date: "2021-10-10",
-        owner: "Ivan Tortolero Dos",
-        ownerPhone: "0414-8732414",
-        identityDocument: "V27722357",
-        ownerEmail: "hola@fe.com",
-        saleType: "pick-up",
-        adress : "Av. 1 con calle 2",
-        adressLink : "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
-        note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
-        status: onlineSaleStatusList[OnlineSaleStatuses.CLOSED],
-        products : products,
-        taxes : taxes
-      }),
+
+    ...new Array(13).fill({
+      requestTime: "6:00 PM",
+      requestDate: "24/10/2023 7:45 PM",
+      date: "2021-10-10",
+      owner: "Ivan Tortolero Dos",
+      ownerPhone: "0414-8732414",
+      identityDocument: "V27722357",
+      ownerEmail: "hola@fe.com",
+      saleType: "pick-up",
+      adress: "Av. 1 con calle 2",
+      adressLink: "https://www.google.com/maps/@37.109773,-104.4097534,10.08z?hl=es&entry=ttu",
+      note: "Me voy a proponer a mi novia en su restaurante ayuda por favor",
+      status: onlineSaleStatusList[OnlineSaleStatuses.CLOSED],
+      products: products,
+      taxes: taxes
     }),
+
   ];
 
   const historicCurrentPage = 1;
   const historicReservationListTotalLenght = 28;
 
-  console.log({args})
+  console.log({ args })
   return (
     <BranchOnlineSales
-    {...args} 
+      {...args}
       pendingSalesList={pendingOnlineSalesList}
       acceptedSalesList={acceptedOnlineSalesList}
       startedSalesList={startedOnlineSaleList}
@@ -296,10 +296,10 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       onTheWaySalesList={onTheWayOnlineSaleList}
       deliveredSalesList={deliveredOnlineSaleList}
       historicSalesList={historicOnlineSaleList}
-      
+
       historicCurrentPage={historicCurrentPage}
       historicSalesListTotalLenght={historicReservationListTotalLenght}
-      
+
       filterStartDate={filterStartDate}
       filterEndDate={filterEndDate}
       filterStatus={filterStatus}
@@ -308,8 +308,8 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       filterIdentityDocumentType={filterIdentityDocumentType}
       filterIdentityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
       filterFullName={filterFullName}
-      onGetReservationsFiltered={()=>{}}
-      
+      onGetReservationsFiltered={() => { }}
+
       date={date}
       hourIn={hourIn}
       hourOut={hourOut}
@@ -325,7 +325,7 @@ const Template: StoryFn<typeof BranchOnlineSales> = (args: any) => {
       email={email}
       showModal={showModal}
       setShowModal={setshowModal}
-      
+
     />
   );
 };
@@ -337,7 +337,7 @@ export const Default = Template.bind({});
 Default.args = {
   header: {
     logged: true,
-    onPacaClick: () => {},
+    onPacaClick: () => { },
     picture:
       "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?cs=srgb&dl=pexels-chan-walrus-941861.jpg&fm=jpg",
     name: "Sempre Dritto",
@@ -350,33 +350,33 @@ Default.args = {
   submitButtonColor: "#EF7A08",
   cancelButtonColor: "#EF7A08",
   validHoursIn: [
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
   ],
-  validHoursOut:[
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
-    {value: "9:00", label: "9:00"},
+  validHoursOut: [
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
+    { value: "9:00", label: "9:00" },
   ],
 };

@@ -18,6 +18,8 @@ import { OnlineSaleProps } from "../../molecules/onlineSale/OnlineSale";
 import { Paginable } from "../../molecules/paginable/Paginable";
 import { OnlineSaleList } from "../../organisms/onlineSaleList/OnlineSaleList";
 import { OnlineSaleStatuses } from "../../utils/objects/OnlineSaleStatus";
+import { OnlineSaleFilters } from "../../organisms/onlineSaleFilters/OnlineSaleFilters";
+import { PastOnlineSaleList } from "../../organisms/pastOnlineSaleList/PastOnlineSaleList";
 
 interface BranchOnlineSalesProps {
   /**
@@ -339,7 +341,7 @@ export const BranchOnlineSales = ({
     `Listos para ser buscados (${readyToTakeOutSalesList.length})`,
     `En Camino (${onTheWaySalesList.length})`,
     `Entregados (${deliveredSalesList.length})`,
-    // `Histórico  (${historicSalesListTotalLenght})`,
+    `Histórico  (${historicSalesListTotalLenght})`,
   ];
 
   useEffect(() => {
@@ -394,8 +396,8 @@ export const BranchOnlineSales = ({
               ))}
 
 
-              {/* <Box style={{ flex: 1 }}>
-                <OnlineSalesFilters
+              <Box style={{ flex: 1 }}>
+                <OnlineSaleFilters
                   startDate={filterStartDate}
                   endDate={filterEndDate}
                   status={filterStatus}
@@ -405,15 +407,15 @@ export const BranchOnlineSales = ({
                   identityDocumentTypeOpt={filterIdentityDocumentTypeOpt}
                   fullName={filterFullName}
                   onGetReservationsFiltered={onGetReservationsFiltered}
-                />  /}
-                <PastOnlineSalesList
-                  pastReservations={historicSalesList}
+                />  
+                <PastOnlineSaleList
+                  pastOnlineSales={historicSalesList}
                   page={historicCurrentPage}
                   totalPages={historicTotalPage}
                   onNextPage={onNextPage}
                   onPreviousPage={onPreviousPage}
                 />
-              </Box> */}
+              </Box>
             </Box>
           ) : (
             <Box className={styles["branch-reserves--no-branch-box"]}>
