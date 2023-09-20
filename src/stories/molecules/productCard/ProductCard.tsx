@@ -5,7 +5,8 @@ import { Icon } from "../../atoms/icon/Icon";
 import styles from "./productCard.module.scss";
 import { Button } from "../../atoms/button/Button";
 import { InputText } from "../inputText/InputText";
-import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
+import useInputForm from "../../hooks/useInputForm";
+import { StarRating } from "../../atoms/starRating/StarRating";
 
 export interface ProductCardProps {
   /**
@@ -20,6 +21,10 @@ export interface ProductCardProps {
    * Indicates if the user liked the product
    */
   like: boolean;
+  /**
+   * Number of reviews
+   */
+  reviews: number;
   /**
    * On like click
    */
@@ -49,8 +54,8 @@ export const ProductCard = ({
   name,
   cost,
   like,
+  reviews,
   onLike,
-  onAddToCart,
   width,
   height,
   productImage,
@@ -59,28 +64,12 @@ export const ProductCard = ({
   const quantity = useInputForm("1");
   const [quantityMode, setQuantityMode] = useState(false);
 
-  const onAdd = () => {
-    if (quantity.value === "") {
-      quantity.setValue("1");
-    } else {
-      quantity.setValue((parseInt(quantity.value) + 1).toString());
-    }
-  };
-
-  const onSubstract = () => {
-    if (quantity.value === "" || parseInt(quantity.value) < 2) {
-      quantity.setValue("1");
-    } else {
-      quantity.setValue((parseInt(quantity.value) - 1).toString());
-    }
-  };
-
   useEffect(() => {
     quantity.setValue("1");
   }, [quantityMode]);
 
   return (
-    <Box className={styles["product-card--container"]} weakShadow style={{ width, height }}>
+    <Box className={styles["product-card--container"]} style={{ width, height }}>
       {/* Image Box */}
       <Box style={{ flex: 1, display: "flex" }}>
         <Box backgroundImage={productImage} className={styles["product-card--image"]} />
@@ -89,10 +78,20 @@ export const ProductCard = ({
       {/* Branch data Box */}
       <Box className={styles["product-card--data-container"]} style={{ flex: 0.8 }}>
         <Box className={styles["product-card--data-sub-container"]}>
-          <Box style={{ flex: 3, height: "100%", opacity: 0.75 }}>
+          <Box className={styles["product-card--data"]}>
             <Text weight="600" type="h4">
               {name}
             </Text>
+
+            <Box style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <StarRating
+                rating={4}
+                size={20}
+                readonly
+                className={styles["product-card--rating"]}
+              />
+              <Text type="h7">{reviews} reviews</Text>
+            </Box>
           </Box>
 
           <Box className={styles["product-card--cost-container"]}>
@@ -107,88 +106,33 @@ export const ProductCard = ({
 
         <hr className={styles["product-card--hr"]} />
 
-        {quantityMode && (
-          <Box className={styles["product-card--quantity-container"]}>
+        <Box className={styles["product-card--data-sub-container"]}>
+          <Box>
             <Button
-              primary
               size="box"
-              className={styles["product-card--button"]}
-              onClick={onSubstract}
+              primary={like}
+              className={like ? styles["product-card--button"] : ""}
+              onClick={onLike}
             >
-              <Icon size="20px" icon="minus" />
-            </Button>
-
-            <InputText label="" showError={false} inputHook={quantity} type="naturalNumber" />
-
-            <Button primary size="box" className={styles["product-card--button"]} onClick={onAdd}>
-              <Icon size="20px" icon="plus" />
+              <Icon size="20px" icon={like ? "heart-fill" : "heart"} />
             </Button>
           </Box>
-        )}
-        <Box className={styles["product-card--data-sub-container"]}>
-          {quantityMode ? (
-            <>
-              <Box>
-                <Button onClick={() => setQuantityMode(false)}>
-                  <Icon
-                    size="25px"
-                    icon="delete-outline"
-                    className={styles["product-card--delete-icon"]}
-                  />
-                </Button>
-              </Box>
 
-              <Box style={{ flex: 1, marginLeft: "16px" }}>
-                <Button
-                  primary
-                  fullWidth
-                  size="box"
-                  className={styles["product-card--button"]}
-                  onClick={async () => (await onAddToCart(quantity.value)) && setQuantityMode(false)}
-                  state={quantity.value === "" || parseInt(quantity.value) < 1 ? "inactive" : "normal"}
-                >
-                  <Box className={styles["product-card--button-inner-container"]}>
-                    <Text weight="700" primaryButtonStyle type="h5">
-                      Confirmar
-                    </Text>
-                  </Box>
-                </Button>
+          <Box style={{ flex: 1, marginLeft: "16px" }}>
+            <Button
+              primary
+              fullWidth
+              size="box"
+              onClick={() => setQuantityMode(true)}
+              className={styles["product-card--button"]}
+            >
+              <Box className={styles["product-card--button-inner-container"]}>
+                <Text weight="700" primaryButtonStyle type="h5">
+                  Agregar al Carrito
+                </Text>
               </Box>
-            </>
-          ) : (
-            <>
-              <Box>
-                <Button
-                  size="box"
-                  primary={like}
-                  className={like ? styles["product-card--button"] : ""}
-                  onClick={onLike}
-                >
-                  <Icon
-                    size="20px"
-                    icon={like ? "heart-fill" : "heart"}
-                    className={like ? "" : styles["product-card--delete-icon"]}
-                  />
-                </Button>
-              </Box>
-
-              <Box style={{ flex: 1, marginLeft: "16px" }}>
-                <Button
-                  primary
-                  fullWidth
-                  size="box"
-                  onClick={() => setQuantityMode(true)}
-                  className={styles["product-card--button"]}
-                >
-                  <Box className={styles["product-card--button-inner-container"]}>
-                    <Text weight="700" primaryButtonStyle type="h5">
-                      Agregar al Carrito
-                    </Text>
-                  </Box>
-                </Button>
-              </Box>
-            </>
-          )}
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -4,10 +4,6 @@
   gap: 16px;
   display: flex;
   flex-direction: column;
-
-  padding-top: 24px;
-  padding-left: 16px;
-  padding-right: 16px;
   padding-bottom: 24px;
 
   min-width: 325px;
@@ -31,6 +27,14 @@
   align-items: center;
   justify-content: space-between;
 }
+.product-card--data {
+  flex: 3;
+  gap: 5px;
+  height: 100%;
+  display: flex;
+  opacity: 0.75;
+  flex-direction: column;
+}
 .product-card--cost-container {
   flex: 1;
   height: 100%;
@@ -44,7 +48,8 @@
 }
 .product-card--hr {
   width: 100%;
-  height: 0.5px;
+  height: 0.1px;
+  opacity: 0.8;
   color: var(--input-border-color);
   background-color: var(--input-border-color);
 }
@@ -66,6 +71,6 @@
   align-items: center;
   justify-content: space-between;
 }
-.product-card--delete-icon {
+.product-card--rating {
   color: var(--main-color);
 }

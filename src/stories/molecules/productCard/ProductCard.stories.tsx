@@ -21,6 +21,7 @@ Default.args = {
   name: "Pasta Francesa",
   cost: 104,
   like: false,
+  reviews: 4242,
   productImage:
     "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
   onAddToCart: () => Promise.resolve(true),

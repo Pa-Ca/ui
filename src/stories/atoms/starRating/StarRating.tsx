@@ -1,5 +1,5 @@
-import React from 'react';
-import { Rating } from 'react-simple-star-rating';
+import React from "react";
+import { Rating } from "react-simple-star-rating";
 
 interface StarRatingProps {
   /**
@@ -17,11 +17,15 @@ interface StarRatingProps {
   /**
    * Stars color
    */
-  color?: string
+  color?: string;
   /**
    * Stars must be readonly
    */
   readonly?: boolean;
+  /**
+   * Class name
+   */
+  className?: string;
 }
 
 /**
@@ -33,6 +37,7 @@ export const StarRating = ({
   size,
   color,
   readonly,
+  className,
   ...props
 }: StarRatingProps) => {
   return (
@@ -43,6 +48,7 @@ export const StarRating = ({
       allowFraction
       readonly={readonly}
       onClick={setRating}
+      SVGclassName={className}
     />
   );
 };
