@@ -1,0 +1,12 @@
+@import "../../assets/scss/themes";
+
+.required--container {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--main-color) 70%, transparent);
+}
