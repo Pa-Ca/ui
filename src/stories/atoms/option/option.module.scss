@@ -1,0 +1,29 @@
+@import "../../assets/scss/themes";
+
+.option--container {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+
+  cursor: pointer;
+}
+.option--container-circle {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+  justify-content: center;
+  border: 3px solid var(--input-border-color);
+}
+.option--container-circle-selected {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: var(--input-border-color);
+}
+.option--checkbox {
+  color: var(--input-border-color) !important;
+}

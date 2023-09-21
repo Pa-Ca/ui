@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./required.module.scss";
-import { Text } from "../../atoms/text/Text";
+import { Text } from "../text/Text";
 
 export interface RequiredProps {
   /**
