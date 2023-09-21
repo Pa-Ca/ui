@@ -1,0 +1,38 @@
+@import "../../assets/scss/themes";
+
+.counter--container {
+  gap: 10px;
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  background-color: var(--background-color);
+}
+.counter--button {
+  padding: 10px;
+  border-radius: 100%;
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+.counter--button-deactivated {
+  opacity: 0.4;
+  cursor: auto;
+}
+.counter--icon-container {
+  width: 20px;
+  height: 20px;
+}
+.counter--icon {
+  color: white;
+}
+.counter--value-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter--value {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
