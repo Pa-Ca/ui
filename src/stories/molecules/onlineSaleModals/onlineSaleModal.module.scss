@@ -1,0 +1,24 @@
+.online-sale--modal-box {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  
+.online-sale--confirmation-button-box {
+    width: 100%;
+    text-align: center;
+  }
+  
+.online-sale--confirmation-button-row {
+    display: flex;
+    column-gap: 20px;
+}
+  
+.online-sale--right-button {
+    margin-left: auto;
+}
+
+.online-sale--left-button {
+    margin-right: auto;
+}
