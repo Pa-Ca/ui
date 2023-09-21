@@ -1,0 +1,40 @@
+@import "../../assets/scss/themes";
+
+.option-bar--container {
+  display: flex;
+  position: relative;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+
+  padding-top: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 28px;
+  padding-bottom: 12px;
+
+  background: color-mix(in srgb, var(--main-color) 50%, transparent);
+}
+.option-bar--option-container {
+  z-index: 1;
+  height: 35px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.option-bar--description {
+  color: #6b6b6b;
+}
+.option-bar--bar {
+  height: 42px;
+  width: 100px;
+  position: absolute;
+  border-radius: 40px;
+  background-color: white;
+
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
