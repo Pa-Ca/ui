@@ -1,0 +1,23 @@
+@import "../../assets/scss/themes";
+
+.promotion-applied--container {
+  gap: 20px;
+  display: flex;
+  width: fit-content;
+  justify-content: space-between;
+
+  padding: 15px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--main-color) 50%, transparent);
+}
+.promotion-applied--text-container {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.promotion-applied--icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
