@@ -1,0 +1,15 @@
+@import "../../assets/scss/themes";
+
+.promotion-banner--container {
+  gap: 20px;
+  display: flex;
+  padding: 16px;
+  width: fit-content;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 3px solid var(--main-color);
+}
+.promotion-banner--text {
+  color: var(--text-secondary-color);
+}

@@ -11,7 +11,7 @@
     --cancel-color: #{$red};
     --select-color: #{$white-dark};
     --card-background-color: #{$white-dark};
-    
+
     //Code
     --error-color: #{$red};
     --check-color: #{$green};
@@ -28,6 +28,7 @@
     --text-input-color: #{$black};
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$black};
+    --text-secondary-color: #{$gray};
 
     // Status Colors
     --unset-status-color: #{$black};
@@ -38,11 +39,11 @@
     --started-status-color: #{$blue-light};
     --closed-status-color: #{$gray};
 
-    // Products 
+    // Products
     --product-available-color: #{$green};
     --product-unavailable-color: #{$gray};
 
-    // Switch 
+    // Switch
     --switch-active-color: #{$green};
     --switch-inactive-color: #{$gray};
     --switch-circle-color: #{$white};
@@ -56,7 +57,7 @@
     --paginable-active-color: #{$black};
     --paginable-inactive-color: #{$gray-light};
 
-    // Input 
+    // Input
     --input-border-color: #{$gray};
 
     // Input select
@@ -107,12 +108,13 @@
     --text-input-color: #{$white-dark};
     --text-hyperlink-color: #{$pink};
     --text-highlight-color: #{$gray-light};
+    --text-secondary-color: #{$gray};
 
-    // Products 
+    // Products
     --product-available-color: #{$green};
     --product-unavailable-color: #{$black};
 
-    // Switch 
+    // Switch
     --switch-active-color: #{$green};
     --switch-inactive-color: #{$black-light};
     --switch-circle-color: #{$gray};
@@ -126,7 +128,7 @@
     --paginable-active-color: #{$white-dark};
     --paginable-inactive-color: #{$gray};
 
-    // Input 
+    // Input
     --input-border-color: #{$gray};
 
     // Input select

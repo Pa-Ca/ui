@@ -25,7 +25,7 @@
   justify-content: space-between;
 }
 .option-bar--description {
-  color: #6b6b6b;
+  color: var(--text-secondary-color);
 }
 .option-bar--bar {
   height: 42px;
