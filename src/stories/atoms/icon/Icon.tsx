@@ -46,6 +46,7 @@ import cancelIcon from "@iconify/icons-material-symbols/cancel";
 import plusCircle24 from "@iconify/icons-octicon/plus-circle-24";
 import checkBox from "@iconify/icons-material-symbols/check-box";
 import arrowsExchange from "@iconify/icons-tabler/arrows-exchange";
+import baselineDiscount from "@iconify/icons-ic/baseline-discount";
 import spaRounded from "@iconify/icons-material-symbols/spa-rounded";
 import instagramLogoFill from "@iconify/icons-ph/instagram-logo-fill";
 import infoOutline from "@iconify/icons-material-symbols/info-outline";
@@ -65,6 +66,7 @@ import deleteOutline from "@iconify/icons-material-symbols/delete-outline";
 import roundKeyboardArrowUp from "@iconify/icons-ic/round-keyboard-arrow-up";
 import tableRestaurant from "@iconify/icons-material-symbols/table-restaurant";
 import roundKeyboardArrowDown from "@iconify/icons-ic/round-keyboard-arrow-down";
+import roundLocalGroceryStore from "@iconify/icons-ic/round-local-grocery-store";
 import iosArrowLeft24Filled from "@iconify/icons-fluent/ios-arrow-left-24-filled";
 import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-filled";
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
@@ -141,7 +143,9 @@ export type IconType =
   | "exchange"
   | "invoice"
   | "minus"
-  | "plus";
+  | "plus"
+  | "discount"
+  | "grocery";
 
 interface IconProps {
   /**
@@ -701,6 +705,22 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={baselinePlus}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "discount":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={baselineDiscount}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "grocery":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={roundLocalGroceryStore}
           style={{ fontSize: size, ...style }}
         />
       );
