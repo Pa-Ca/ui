@@ -1,0 +1,32 @@
+@import "../../assets/scss/themes";
+@import "../../assets/scss/mixins.scss";
+
+.extra-option--container {
+  display: flex;
+  padding: 17px;
+  padding-top: 25px;
+  flex-direction: row;
+  border-radius: 10px;
+  align-items: center;
+  padding-bottom: 25px;
+  justify-content: space-between;
+  background-color: var(--card-background-color);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--card-background-color) 100%, black 10%);
+  }
+}
+.extra-option--description {
+  color: var(--main-color);
+}
+.extra-option--icon-container {
+  padding: 5px;
+  display: flex;
+  cursor: pointer;
+  width: fit-content;
+  border-radius: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+}
