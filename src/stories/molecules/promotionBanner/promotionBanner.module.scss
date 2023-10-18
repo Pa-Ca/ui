@@ -3,6 +3,11 @@
 .promotion-banner--container {
   gap: 20px;
   display: flex;
+  flex-direction: column;
+}
+.promotion-banner--data-container {
+  gap: 20px;
+  display: flex;
   padding: 16px;
   width: fit-content;
   border-radius: 10px;
