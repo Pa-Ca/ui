@@ -12,7 +12,7 @@ interface CounterProps {
   /**
    * Function to set the value of the counter
    */
-  setValue: React.Dispatch<React.SetStateAction<number>>;
+  setValue: (val: number) => void;
   /**
    * Min value of the counter
    */
@@ -21,6 +21,10 @@ interface CounterProps {
    * Max value of the counter
    */
   max?: number;
+  /**
+   * Width
+   */
+  width?: string;
 }
 
 /**
@@ -31,6 +35,7 @@ export const Counter = ({
   setValue,
   min = -Infinity,
   max = Infinity,
+  width,
 }: CounterProps): JSX.Element => {
   const valueWidth = useMemo(() => {
     const valueLength = value.toString().length * 11;
@@ -52,7 +57,7 @@ export const Counter = ({
         </div>
       </div>
 
-      <div style={{ width: valueWidth }} className={styles["counter--value-container"]}>
+      <div style={{ width: width ?? valueWidth }} className={styles["counter--value-container"]}>
         <Text className={styles["counter--value"]} weight="600">
           {value}
         </Text>

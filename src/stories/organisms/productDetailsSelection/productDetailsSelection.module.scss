@@ -1,0 +1,47 @@
+@import "../../assets/scss/themes";
+
+.product-details-selection--container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.product-details-selection--header-container {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.product-details-selection--description {
+  color: gray;
+}
+.product-details-selection--promotion-container {
+  flex: 1;
+  display: flex;
+}
+.product-details-selection--body-container {
+  gap: 5px;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+.product-details-selection--selection-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+.product-details-selection--counter-container {
+  flex: 1;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.product-details-selection--submit-button {
+  flex: 1;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
