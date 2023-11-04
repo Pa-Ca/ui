@@ -1,0 +1,14 @@
+@import "../../assets/scss/themes";
+
+.branch-products-resume--card {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  margin-top: 25px;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border-radius: 10px;
+
+  flex-direction: row;
+  justify-content: space-between;
+}

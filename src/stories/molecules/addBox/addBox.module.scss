@@ -1,0 +1,24 @@
+@import "../../assets/scss/themes";
+
+.add-box--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30%;
+  border-color: var(--main-color);
+  border-width: 4px;
+  border-style: dashed;
+  padding: 20px;
+  cursor: pointer;
+}
+.add-box--circle {
+  width: 60%;
+  height: 60%;
+  border-radius: 100%;
+  border-color: var(--main-color);
+  border-width: 3px;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

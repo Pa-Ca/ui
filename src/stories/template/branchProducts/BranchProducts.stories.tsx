@@ -16,13 +16,7 @@ const Template: StoryFn<typeof BranchProducts> = (args: any) => {
   const name = useInputForm<string>("");
   const price = useInputForm<string>("");
 
-  return (
-    <BranchProducts
-      newName={name}
-      newPrice={price}
-      {...args}
-    />
-  );
+  return <BranchProducts newName={name} newPrice={price} {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -82,9 +76,7 @@ Default.args = {
         label: "Vegetales",
         value: { id: 1002, name: "Vegetales", categoryId: 1001 },
       },
-      description: 
-        "Lechuga, croutons, queso parmesano y salsa césar."
-      ,
+      description: "Lechuga, croutons, queso parmesano y salsa césar.",
       price: "8.99",
       disabled: false,
       onSaveName: () => {},
@@ -126,9 +118,7 @@ Default.args = {
         label: "Helados",
         value: { id: 1004, name: "Helados", categoryId: 1002 },
       },
-      description: 
-        "Crema helada de sabor vainilla con salsa de chocolate."
-      ,
+      description: "Crema helada de sabor vainilla con salsa de chocolate.",
       price: "6.99",
       disabled: false,
       onSaveName: () => {},
@@ -149,9 +139,7 @@ Default.args = {
         label: "Pizzas",
         value: { id: 1006, name: "Pizzas", categoryId: 1001 },
       },
-      description: 
-        "Masa con salsa de tomate, queso mozzarella y pepperoni."
-      ,
+      description: "Masa con salsa de tomate, queso mozzarella y pepperoni.",
       price: "14.99",
       disabled: false,
       onSaveName: () => {},
@@ -193,9 +181,7 @@ Default.args = {
         label: "Tortas",
         value: { id: 1005, name: "Tortas", categoryId: 1002 },
       },
-      description: 
-        "Bizcocho húmedo de chocolate con nueces y crema batida."
-      ,
+      description: "Bizcocho húmedo de chocolate con nueces y crema batida.",
       price: "7.99",
       disabled: false,
       onSaveName: () => {},
@@ -260,11 +246,21 @@ Default.args = {
       id: 1007,
       name: "Jugos",
       categoryId: 1000,
-    }
+    },
   },
   onEditSubCategory: async () => true,
   onCreateProduct: () => {},
   onCreateSubCategory: async () => {
     return { id: -1, name: "", categoryId: -1 };
+  },
+  header: {
+    logged: true,
+    userRole: "client",
+    onPacaClick: () => {},
+    name: "Daniel Rodríguez",
+    picture:
+      "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
+    color: "#EF7A08",
+    branchOptions: [],
   },
 };
