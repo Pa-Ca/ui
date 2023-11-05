@@ -1,42 +1,43 @@
 import React from "react";
+import { CouponList } from "./ProductList";
 import { StoryFn, Meta } from "@storybook/react";
-import { BranchProducts } from "./BranchProducts";
 import useInputForm from "../../hooks/useInputForm";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Templates/BranchProducts",
-  component: BranchProducts,
+  title: "Design System/Organisms/CouponList",
+  component: CouponList,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {},
-} as Meta<typeof BranchProducts>;
+  argTypes: {
+    reservations: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+} as Meta<typeof CouponList>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof BranchProducts> = (args: any) => {
+const Template: StoryFn<typeof CouponList> = (args: any) => {
   const name = useInputForm<string>("");
   const price = useInputForm<string>("");
 
-  return <BranchProducts newName={name} newPrice={price} {...args} />;
+  return <CouponList newName={name} newPrice={price} {...args} />;
 };
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  haveBranch: true,
   products: {
     1000: {
       name: "Coca-cola",
       category: "Bebidas",
       subCategory: "Gaseosas",
       cost: 4.99,
+      discountCost: 3.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -45,14 +46,10 @@ Default.args = {
       category: "Comidas",
       subCategory: "Carnes",
       cost: 12.99,
+      discountCost: 10.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -61,14 +58,10 @@ Default.args = {
       category: "Comidas",
       subCategory: "Vegetales",
       cost: 8.99,
+      discountCost: 7.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -77,14 +70,10 @@ Default.args = {
       category: "Bebidas",
       subCategory: "Aguas",
       cost: 2.99,
+      discountCost: 2.49,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -93,14 +82,10 @@ Default.args = {
       category: "Postres",
       subCategory: "Helados",
       cost: 6.99,
+      discountCost: 5.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -109,14 +94,10 @@ Default.args = {
       category: "Comidas",
       subCategory: "Pizzas",
       cost: 14.99,
+      discountCost: 12.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -125,14 +106,10 @@ Default.args = {
       category: "Bebidas",
       subCategory: "Jugos",
       cost: 3.99,
+      discountCost: 3.49,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -141,14 +118,10 @@ Default.args = {
       category: "Postres",
       subCategory: "Tortas",
       cost: 7.99,
+      discountCost: 6.0,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -212,15 +185,5 @@ Default.args = {
   onCreateProduct: () => {},
   onCreateSubCategory: async () => {
     return { id: -1, name: "", categoryId: -1 };
-  },
-  header: {
-    logged: true,
-    userRole: "client",
-    onPacaClick: () => {},
-    name: "Daniel Rodríguez",
-    picture:
-      "https://images.generated.photos/V-Z7eZqXKjp1gPXxo6GXGNfjZK1bv2y3USxCOF3zS1w/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzYwMjMyLmpwZw.jpg",
-    color: "#EF7A08",
-    branchOptions: [],
   },
 };

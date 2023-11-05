@@ -346,10 +346,6 @@ export interface SimpleProductCardProps {
    */
   cost: number;
   /**
-   * Cost with discount
-   */
-  discountCost?: number;
-  /**
    * On delete click
    */
   onDelete: () => void;
@@ -369,7 +365,6 @@ export interface SimpleProductCardProps {
 export const SimpleProductCard = ({
   name,
   cost,
-  discountCost,
   onDelete,
   width,
   height,
@@ -417,6 +412,133 @@ export const SimpleProductCard = ({
               Costo
             </Text>
 
+            <Text weight="700" type="h4" className={styles["product-card--cost-text"]}>
+              {cost}$
+            </Text>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export interface CouponProductCardProps {
+  /**
+   * Product name
+   */
+  name: string;
+  /**
+   * Product cost
+   */
+  cost: number;
+  /**
+   * Product category
+   */
+  category: string;
+  /**
+   * Product sub-category
+   */
+  subCategory: string;
+  /**
+   * Cost with discount
+   */
+  discountCost: number;
+  /**
+   * Is available
+   */
+  available: boolean;
+  /**
+   * On delete click
+   */
+  onDelete: () => void;
+  /**
+   * On edit click
+   */
+  onEdit: () => void;
+  /**
+   * Card width
+   */
+  width?: string;
+  /**
+   * Card height
+   */
+  height?: string;
+  /**
+   * Card product image from url
+   */
+  productImage: string;
+}
+export const CouponProductCard = ({
+  name,
+  cost,
+  discountCost,
+  available,
+  onDelete,
+  onEdit,
+  width,
+  height,
+  productImage,
+  ...props
+}: CouponProductCardProps) => {
+  return (
+    <Box
+      className={styles["product-card--container"]}
+      style={{ width, height, minHeight: "225px", minWidth: "225px" }}
+    >
+      {/* Image Box */}
+      <Box style={{ flex: 1, display: "flex", position: "relative" }}>
+        <Box backgroundImage={productImage} className={styles["product-card--image"]} />
+
+        <Box
+          onClick={onDelete}
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          <Icon icon="delete" size="25px" />
+        </Box>
+
+        <Box
+          onClick={onEdit}
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          <Icon icon="pencil" size="25px" />
+        </Box>
+      </Box>
+
+      {/* Branch data Box */}
+      <Box
+        className={styles["product-card--data-container"]}
+        style={{ paddingLeft: "10px", paddingRight: "10px" }}
+      >
+        <Box
+          style={{
+            display: "flex",
+            flex: 1,
+            gap: "10px",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text weight="600" type="h5">
+            {name}
+          </Text>
+
+          <Box className={styles["product-card--cost-container"]}>
+            <Text weight="400" type="h6">
+              Costo
+            </Text>
+
             {discountCost && (
               <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
                 <Text weight="700" type="h4" className={styles["product-card--cost-text"]}>
@@ -435,6 +557,23 @@ export const SimpleProductCard = ({
               </Text>
             )}
           </Box>
+        </Box>
+
+        <hr style={{ width: "100%" }} />
+
+        <Box
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <Text weight="400" type="h6">
+            Activo
+          </Text>
+          <Switch active={available} onClick={() => {}} width="50px" height="27px" />
         </Box>
       </Box>
     </Box>

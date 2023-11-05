@@ -1,22 +1,22 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import { BranchProducts } from "./BranchProducts";
+import { BranchCoupons } from "./BranchProducts";
 import useInputForm from "../../hooks/useInputForm";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Design System/Templates/BranchProducts",
-  component: BranchProducts,
+  title: "Design System/Templates/BranchCoupons",
+  component: BranchCoupons,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as Meta<typeof BranchProducts>;
+} as Meta<typeof BranchCoupons>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof BranchProducts> = (args: any) => {
+const Template: StoryFn<typeof BranchCoupons> = (args: any) => {
   const name = useInputForm<string>("");
   const price = useInputForm<string>("");
 
-  return <BranchProducts newName={name} newPrice={price} {...args} />;
+  return <BranchCoupons newName={name} newPrice={price} {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -29,14 +29,10 @@ Default.args = {
       category: "Bebidas",
       subCategory: "Gaseosas",
       cost: 4.99,
+      discountCost: 3.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -45,14 +41,10 @@ Default.args = {
       category: "Comidas",
       subCategory: "Carnes",
       cost: 12.99,
+      discountCost: 10.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -61,14 +53,10 @@ Default.args = {
       category: "Comidas",
       subCategory: "Vegetales",
       cost: 8.99,
+      discountCost: 7.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -77,14 +65,10 @@ Default.args = {
       category: "Bebidas",
       subCategory: "Aguas",
       cost: 2.99,
+      discountCost: 2.49,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -93,14 +77,10 @@ Default.args = {
       category: "Postres",
       subCategory: "Helados",
       cost: 6.99,
+      discountCost: 5.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -109,14 +89,10 @@ Default.args = {
       category: "Comidas",
       subCategory: "Pizzas",
       cost: 14.99,
+      discountCost: 12.99,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -125,14 +101,10 @@ Default.args = {
       category: "Bebidas",
       subCategory: "Jugos",
       cost: 3.99,
+      discountCost: 3.49,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
@@ -141,14 +113,10 @@ Default.args = {
       category: "Postres",
       subCategory: "Tortas",
       cost: 7.99,
+      discountCost: 6.0,
       available: true,
-      availableMobile: true,
       onDelete: () => {},
       onEdit: () => {},
-      onMobileAvailabilityClick: () => {},
-      onAvailabilityClick: () => {},
-      onCategoryClick: () => {},
-      onSubCategoryClick: () => {},
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
     },
