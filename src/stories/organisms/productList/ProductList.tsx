@@ -7,18 +7,22 @@ import { Modal } from "../../molecules/modal/Modal";
 import OptionObject from "../../utils/objects/OptionObject";
 import { Paginable } from "../../molecules/paginable/Paginable";
 import { InputText } from "../../molecules/inputText/InputText";
-import { NewProduct } from "../../molecules/newProduct/NewProduct";
 import { InputSelect } from "../../molecules/inputSelect/InputSelect";
 import useInputForm, { InputFormHook } from "../../hooks/useInputForm";
 import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import { Product, ProductProps } from "../../molecules/product/Product";
 import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
+import { Icon } from "../../atoms/icon/Icon";
+import {
+  ExtendedProductCard,
+  ExtendedProductCardProps,
+} from "../../molecules/productCard/ProductCard";
 
 interface ProductListProps {
   /**
    * Product list
    */
-  products: Record<number, ProductProps>;
+  products: Record<number, ExtendedProductCardProps>;
   /**
    * Product categories
    */
@@ -27,6 +31,10 @@ interface ProductListProps {
    * Product sub-categories
    */
   subCategories: Record<number, SubCategoryObject>;
+  /**
+   * On back
+   */
+  onBack: () => void;
   /**
    * On create product
    */
@@ -43,18 +51,6 @@ interface ProductListProps {
     categoryId: number,
     subCategory: InputFormHook<string>
   ) => Promise<SubCategoryObject>;
-  /**
-   * On edit sub-category.
-   */
-  onEditSubCategory: (
-    id: number,
-    subCategory: InputFormHook<string>,
-    categoryId: number
-  ) => Promise<boolean>;
-  /**
-   * On delete sub-category.
-   */
-  onDeleteSubCategory: (id: number) => void;
 }
 
 /**
@@ -64,27 +60,19 @@ export const ProductList = ({
   products,
   categories,
   subCategories,
+  onBack,
   onCreateProduct,
   onCreateSubCategory,
-  onEditSubCategory,
-  onDeleteSubCategory,
   ...props
 }: ProductListProps) => {
   const [showNewModal, setShowNewModal_] = useState(false);
-  const [showEditModal, setShowEditModal_] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [currentProducts, setCurrentProducts] = useState<
-    OptionObject<ProductProps>[]
-  >([]);
+  const [currentProducts, setCurrentProducts] = useState<OptionObject<ExtendedProductCardProps>[]>(
+    []
+  );
   const newProductName = useInputForm<string>("");
   const newProductPrice = useInputForm<string>("");
   const newSubCategory = useInputForm<string>("");
   const newCategory = useInputForm<OptionObject<CategoryObject | null>>({
-    label: "",
-    value: null,
-  });
-  const editSubCategory = useInputForm<string>("");
-  const editCategory = useInputForm<OptionObject<CategoryObject | null>>({
     label: "",
     value: null,
   });
@@ -109,7 +97,7 @@ export const ProductList = ({
     });
   }, [subCategories]);
 
-  const allProducts: OptionObject<ProductProps>[] = useMemo(() => {
+  const allProducts: OptionObject<ExtendedProductCardProps>[] = useMemo(() => {
     return Object.values(products).map((product) => {
       return { label: product.name, value: product };
     });
@@ -127,7 +115,7 @@ export const ProductList = ({
   }, [allSubCategories, category.value.value]);
 
   const currentProductsBySubCategory = useMemo(() => {
-    let currentProducts: OptionObject<ProductProps>[] = [];
+    let currentProducts: OptionObject<ExtendedProductCardProps>[] = [];
 
     // If there is no category nor sub-category selected, return all products
     if (!category.value.value && !subCategory.value.value) {
@@ -138,7 +126,7 @@ export const ProductList = ({
     // selected category
     else if (!subCategory.value.value) {
       for (const product of allProducts) {
-        if (product.value.category.value?.id === category.value.value!.id) {
+        if (product.value.category === category.value.value!.name) {
           currentProducts.push(product);
         }
       }
@@ -147,9 +135,7 @@ export const ProductList = ({
     // selected sub-category
     else {
       for (const product of allProducts) {
-        if (
-          product.value.subCategory.value?.id === subCategory.value.value!.id
-        ) {
+        if (product.value.subCategory === subCategory.value.value!.name) {
           currentProducts.push(product);
         }
       }
@@ -181,12 +167,6 @@ export const ProductList = ({
     }
   }, [subCategory.value.value]);
 
-  const setShowEditModal = (show: boolean) => {
-    editSubCategory.setValue(subCategory.value.label);
-    editCategory.setValue(category.value);
-    setShowEditModal_(show);
-  };
-
   const setShowNewModal = (show: boolean) => {
     newSubCategory.setValue("");
     newCategory.setValue(category.value);
@@ -196,10 +176,41 @@ export const ProductList = ({
   return (
     <Box className={styles["product-list--container"]}>
       <Box className={styles["product-list--header"]}>
-        <Text weight="700" type="h3">
-          Productos
-        </Text>
+        <Box style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <Box style={{ cursor: "pointer", padding: "10px" }} onClick={onBack}>
+            <Icon icon="left" size="28px" />
+          </Box>
 
+          <Text weight="700" type="h3">
+            Productos
+          </Text>
+        </Box>
+
+        <Box
+          style={{
+            display: "flex",
+            flex: 1,
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text type="h3" weight="700">
+            Menú
+          </Text>
+
+          <Box style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Button primary onClick={() => setShowNewModal(true)}>
+              <Text primaryButtonStyle>Crear Producto</Text>
+            </Button>
+            <Button primary onClick={() => setShowNewModal(true)}>
+              <Text primaryButtonStyle>Crear Categoría</Text>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box className={styles["product-list--body"]} weakShadow>
         <Box className={styles["product-list--header-filters"]}>
           <Box className={styles["product-list--header-filter-item"]}>
             <Box width="100%">
@@ -228,152 +239,37 @@ export const ProductList = ({
               />
             </Box>
           </Box>
-
-          <Box className={styles["product-list--header-filter-buttons"]}>
-            <Box>
-              <Button
-                fullWidth
-                size="large"
-                onClick={() => setShowEditModal(true)}
-                state={!subCategory.value.value ? "inactive" : "normal"}
-              >
-                <Box className={styles["product-list--button"]}>
-                  <Text weight="600">Editar Sub-Categoría</Text>
-                </Box>
-              </Button>
-            </Box>
-            <Box>
-              <Button
-                primary
-                fullWidth
-                size="large"
-                onClick={() => setShowNewModal(true)}
-              >
-                <Box className={styles["product-list--button"]}>
-                  <Text weight="600">Crear Sub-Categoría</Text>
-                </Box>
-              </Button>
-            </Box>
-          </Box>
         </Box>
-      </Box>
 
-      <Box className={styles["product-list--body"]}>
-        <Box className={styles["product-list--body-item"]}>
-          <NewProduct
-            name={newProductName}
-            category={!category.value.value ? "" : category.value.label}
-            subCategory={
-              !subCategory.value.value ? "" : subCategory.value.label
-            }
-            price={newProductPrice}
-            canCreate={!!category.value.value && !!subCategory.value.value}
-            onCreate={() =>
-              onCreateProduct(
-                newProductName,
-                newProductPrice,
-                category.value.value?.id!,
-                subCategory.value.value?.id!
-              )
-            }
-          />
-        </Box>
         <Paginable
           list={currentProductsBySubCategory}
           setCurrentList={setCurrentProducts}
-          objectsPerPage={5}
+          objectsPerPage={8}
         >
-          {currentProducts.map((product, index) => (
-            <Box
-              className={styles["product-list--body-item"]}
-              key={`product-list--body-item-${index}-${product.value.id}`}
-            >
-              <Product
-                categories={categories}
-                subCategories={subCategories}
-                {...product.value}
-              />
-            </Box>
-          ))}
-        </Paginable>
-
-        <Box>
-          <Button
-            size="large"
-            onClick={() => setShowDeleteModal(true)}
-            state={
-              !subCategory.value.value ||
-              currentProductsBySubCategory.length > 0
-                ? "inactive"
-                : "normal"
-            }
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "20px",
+            }}
           >
-            <Box className={styles["product-list--modal-button"]}>
-              <Text weight="600">Eliminar Sub-Categoría</Text>
-            </Box>
-          </Button>
-          <Text type="h7" weight="400">
-            * Solo se pueden eliminar sub-categorias vacías
-          </Text>
-        </Box>
+            {currentProducts.map((product, index) => (
+              <Box
+                weakShadow
+                className={styles["product-list--body-item"]}
+                key={`product-list--body-item-${index}-${product.value.name}`}
+              >
+                <ExtendedProductCard {...product.value} />
+              </Box>
+            ))}
+            <Box className={styles["product-list--body-item"]} />
+            <Box className={styles["product-list--body-item"]} />
+            <Box className={styles["product-list--body-item"]} />
+            <Box className={styles["product-list--body-item"]} />
+          </Box>
+        </Paginable>
       </Box>
-
-      <Modal open={showEditModal} setOpen={setShowEditModal}>
-        <Box className={styles["product-list--modal-container"]}>
-          <Text type="h5" weight="500">
-            Actualice los datos de la sub-categoría
-          </Text>
-
-          <Box width="100%" style={{ zIndex: 3 }}>
-            <InputSelect
-              required
-              width="100%"
-              label="Categoría"
-              showError={false}
-              options={allCategories}
-              inputHook={editCategory}
-            />
-          </Box>
-
-          <Box width="100%">
-            <InputText
-              required
-              type="text"
-              width="100%"
-              inputHook={editSubCategory}
-              label="Nombre"
-            />
-          </Box>
-
-          <Box className={styles["product-list--modal-buttons"]}>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowEditModal(false)}
-            >
-              <Box className={styles["product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
-              </Box>
-            </Button>
-            <Button
-              primary
-              fullWidth
-              size="large"
-              onClick={async () =>
-                (await onEditSubCategory(
-                  subCategory.value.value?.id!,
-                  editSubCategory,
-                  editCategory.value.value?.id!
-                )) && setShowEditModal(false)
-              }
-            >
-              <Box className={styles["product-list--modal-button"]}>
-                <Text weight="600">Editar Sub-Categoría</Text>
-              </Box>
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
 
       <Modal open={showNewModal} setOpen={setShowNewModal}>
         <Box className={styles["product-list--modal-container"]}>
@@ -403,11 +299,7 @@ export const ProductList = ({
           </Box>
 
           <Box className={styles["product-list--modal-buttons"]}>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowNewModal(false)}
-            >
+            <Button fullWidth size="large" onClick={() => setShowNewModal(false)}>
               <Box className={styles["product-list--modal-button"]}>
                 <Text weight="600">Cancelar</Text>
               </Box>
@@ -432,46 +324,6 @@ export const ProductList = ({
             >
               <Box className={styles["product-list--modal-button"]}>
                 <Text weight="600">Crear Sub-Categoría</Text>
-              </Box>
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
-
-      <Modal open={showDeleteModal} setOpen={setShowDeleteModal}>
-        <Box className={styles["product-list--delete-modal-container"]}>
-          <Text type="h5" weight="500">
-            ¿Estás seguro que deseas eliminar la sub-categoría
-            <span style={{ fontWeight: "600" }}>
-              {" "}
-              {subCategory.value.label}{" "}
-            </span>
-            de la categoría{" "}
-            <span style={{ fontWeight: "600" }}> {category.value.label} </span>?
-          </Text>
-
-          <Box className={styles["product-list--modal-buttons"]}>
-            <Button
-              fullWidth
-              size="large"
-              onClick={() => setShowDeleteModal(false)}
-            >
-              <Box className={styles["product-list--modal-button"]}>
-                <Text weight="600">Cancelar</Text>
-              </Box>
-            </Button>
-            <Button
-              primary
-              fullWidth
-              size="large"
-              onClick={() => {
-                setShowDeleteModal(false);
-                onDeleteSubCategory(subCategory.value.value?.id!);
-                subCategory.setValue({ label: "", value: null });
-              }}
-            >
-              <Box className={styles["product-list--modal-button"]}>
-                <Text weight="600">Eliminar Sub-Categoría</Text>
               </Box>
             </Button>
           </Box>

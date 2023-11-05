@@ -12,6 +12,7 @@ import { ProductList } from "../../organisms/productList/ProductList";
 import CategoryObject from "../../utils/objects/ProductCategoryObject";
 import SubCategoryObject from "../../utils/objects/ProductSubCategoryObject";
 import { BasicMobilePage } from "../../organisms/basicMobilePage/BasicMobilePage";
+import { ExtendedProductCardProps } from "../../molecules/productCard/ProductCard";
 
 interface BranchProductsProps {
   /**
@@ -25,7 +26,7 @@ interface BranchProductsProps {
   /**
    * Product list
    */
-  products: Record<number, ProductProps>;
+  products: Record<number, ExtendedProductCardProps>;
   /**
    * Product categories
    */
@@ -34,6 +35,10 @@ interface BranchProductsProps {
    * Product sub-categories
    */
   subCategories: Record<number, SubCategoryObject>;
+  /**
+   * On back
+   */
+  onBack: () => void;
   /**
    * On create product
    */
@@ -50,18 +55,6 @@ interface BranchProductsProps {
     categoryId: number,
     subCategory: InputFormHook<string>
   ) => Promise<SubCategoryObject>;
-  /**
-   * On edit sub-category.
-   */
-  onEditSubCategory: (
-    id: number,
-    subCategory: InputFormHook<string>,
-    categoryId: number
-  ) => Promise<boolean>;
-  /**
-   * On delete sub-category.
-   */
-  onDeleteSubCategory: (id: number) => void;
 }
 
 /**
@@ -73,16 +66,14 @@ export const BranchProducts = ({
   products,
   categories,
   subCategories,
+  onBack,
   onCreateProduct,
   onCreateSubCategory,
-  onEditSubCategory,
-  onDeleteSubCategory,
   ...props
 }: BranchProductsProps) => {
   const windowSize = useWindowResize();
   const PageWrapper = useMemo(
-    () =>
-      windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage,
+    () => (windowSize.resolutionType === "desktop" ? BasicPage : BasicMobilePage),
     [windowSize.resolutionType]
   );
 
@@ -93,17 +84,13 @@ export const BranchProducts = ({
           products={products}
           categories={categories}
           subCategories={subCategories}
+          onBack={onBack}
           onCreateProduct={onCreateProduct}
           onCreateSubCategory={onCreateSubCategory}
-          onEditSubCategory={onEditSubCategory}
-          onDeleteSubCategory={onDeleteSubCategory}
         />
       ) : (
         <Box className={styles["branch-products--no-branch"]}>
-          <Icon
-            icon="share"
-            size={windowSize.resolutionType === "desktop" ? "50vh" : "50vw"}
-          />
+          <Icon icon="share" size={windowSize.resolutionType === "desktop" ? "50vh" : "50vw"} />
           <Text> Parece que no tienes ningún local asociado. </Text>
         </Box>
       )}

@@ -3,12 +3,14 @@
 .product-list--header {
   gap: 20px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: flex-start;
 }
 .product-list--header-filters {
   gap: 20px;
   width: 100%;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -31,12 +33,16 @@
 }
 .product-list--body {
   gap: 20px;
+  padding: 40px;
+  background-color: white;
+  border-radius: 15px;
   display: flex;
   margin-top: 35px;
   margin-bottom: 35px;
   flex-direction: column;
 }
 .product-list--body-item {
+  width: 310px;
   margin-bottom: 30px;
 }
 .product-list--modal-container {
