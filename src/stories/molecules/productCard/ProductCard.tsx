@@ -4,7 +4,6 @@ import { Text } from "../../atoms/text/Text";
 import { Icon } from "../../atoms/icon/Icon";
 import styles from "./productCard.module.scss";
 import { Button } from "../../atoms/button/Button";
-import { InputText } from "../inputText/InputText";
 import useInputForm from "../../hooks/useInputForm";
 import { StarRating } from "../../atoms/starRating/StarRating";
 
@@ -46,10 +45,6 @@ export interface ProductCardProps {
    */
   productImage: string;
 }
-
-/**
- * Primary UI component for user interaction
- */
 export const ProductCard = ({
   name,
   cost,
@@ -132,6 +127,118 @@ export const ProductCard = ({
                 </Text>
               </Box>
             </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export interface SimpleProductCardProps {
+  /**
+   * Product name
+   */
+  name: string;
+  /**
+   * Product cost
+   */
+  cost: number;
+  /**
+   * Cost with discount
+   */
+  discountCost?: number;
+  /**
+   * On delete click
+   */
+  onDelete: () => void;
+  /**
+   * Card width
+   */
+  width?: string;
+  /**
+   * Card height
+   */
+  height?: string;
+  /**
+   * Card product image from url
+   */
+  productImage: string;
+}
+export const SimpleProductCard = ({
+  name,
+  cost,
+  discountCost,
+  onDelete,
+  width,
+  height,
+  productImage,
+  ...props
+}: SimpleProductCardProps) => {
+  const quantity = useInputForm("1");
+  const [quantityMode, setQuantityMode] = useState(false);
+
+  useEffect(() => {
+    quantity.setValue("1");
+  }, [quantityMode]);
+
+  return (
+    <Box
+      className={styles["product-card--container"]}
+      style={{ width, height, minHeight: "225px", minWidth: "225px" }}
+    >
+      {/* Image Box */}
+      <Box style={{ flex: 1, display: "flex", position: "relative" }}>
+        <Box backgroundImage={productImage} className={styles["product-card--image"]} />
+
+        <Box
+          onClick={onDelete}
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: "20px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          <Icon icon="delete" size="30px" />
+        </Box>
+      </Box>
+
+      {/* Branch data Box */}
+      <Box className={styles["product-card--data-container"]}>
+        <Box
+          style={{
+            display: "flex",
+            flex: 1,
+            justifyContent: "space-between",
+          }}
+        >
+          <Text weight="600" type="h4">
+            {name}
+          </Text>
+
+          <Box className={styles["product-card--cost-container"]}>
+            <Text weight="400" type="h6">
+              Costo
+            </Text>
+
+            {discountCost && (
+              <Box style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+                <Text weight="700" type="h4" className={styles["product-card--cost-text"]}>
+                  {discountCost}$
+                </Text>
+
+                <Text weight="400" type="h6">
+                  <del>{cost}$ </del>
+                </Text>
+              </Box>
+            )}
+
+            {!discountCost && (
+              <Text weight="700" type="h4" className={styles["product-card--cost-text"]}>
+                {cost}$
+              </Text>
+            )}
           </Box>
         </Box>
       </Box>

@@ -25,6 +25,32 @@ Default.args = {
   productsCount: 42,
   categoriesCount: 7,
   productsAvailableOnlineCount: 33,
+  highlightProducts: [
+    {
+      name: "Pasta Francesa",
+      cost: 104,
+      productImage:
+        "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
+      onDelete: () => {},
+    },
+    {
+      name: "Pasta Francesa",
+      cost: 104,
+      productImage:
+        "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
+      onDelete: () => {},
+    },
+  ],
+  cupons: [
+    {
+      name: "Pasta Francesa",
+      cost: 104,
+      discountCost: 95.99,
+      productImage:
+        "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
+      onDelete: () => {},
+    },
+  ],
   header: {
     logged: true,
     userRole: "client",

@@ -10,6 +10,7 @@ import styles from "./branchProductsResume.module.scss";
 import { Icon } from "../../atoms/icon/Icon";
 import { AddBox } from "../../molecules/addBox/AddBox";
 import useResizeObserver from "../../hooks/useResizeObserver";
+import { SimpleProductCard, SimpleProductCardProps } from "../../molecules/productCard/ProductCard";
 
 interface BranchProductsResumeProps {
   /**
@@ -28,6 +29,14 @@ interface BranchProductsResumeProps {
    * Number of products available online
    */
   productsAvailableOnlineCount: number;
+  /**
+   * Highlight products
+   */
+  highlightProducts: SimpleProductCardProps[];
+  /**
+   * Cupons
+   */
+  cupons: SimpleProductCardProps[];
   /**
    * On add highlight product
    */
@@ -54,6 +63,8 @@ export const BranchProductsResume = ({
   productsCount,
   categoriesCount,
   productsAvailableOnlineCount,
+  highlightProducts,
+  cupons,
   onAddHighlightProduct,
   onViewMoreCuponsClick,
   onAddCupon,
@@ -173,7 +184,12 @@ export const BranchProductsResume = ({
             className={styles["branch-products-resume--card"]}
           >
             <Box style={{ display: "flex", flex: 1, justifyContent: "space-between" }}>
-              {new Array(4).fill(0).map((_, index) => (
+              {highlightProducts.map((product, index) => (
+                <Box key={index} style={{ display: "flex", flex: 1, justifyContent: "center" }}>
+                  <SimpleProductCard {...product} width="80%" />
+                </Box>
+              ))}
+              {new Array(Math.max(0, 4 - highlightProducts.length)).fill(0).map((_, index) => (
                 <Box key={index} style={{ display: "flex", flex: 1, justifyContent: "center" }}>
                   <AddBox onClick={onAddHighlightProduct} size={`${observer.width / 5 - 80}px`} />
                 </Box>
@@ -196,9 +212,14 @@ export const BranchProductsResume = ({
 
           <Box weakShadow className={styles["branch-products-resume--card"]}>
             <Box style={{ display: "flex", flex: 1, justifyContent: "space-between" }}>
-              {new Array(4).fill(0).map((_, index) => (
+              {cupons.map((product, index) => (
                 <Box key={index} style={{ display: "flex", flex: 1, justifyContent: "center" }}>
-                  <AddBox onClick={onAddCupon} size={`${observer.width / 5 - 80}px`} />
+                  <SimpleProductCard {...product} width="80%" />
+                </Box>
+              ))}
+              {new Array(Math.max(0, 4 - cupons.length)).fill(0).map((_, index) => (
+                <Box key={index} style={{ display: "flex", flex: 1, justifyContent: "center" }}>
+                  <AddBox onClick={onAddHighlightProduct} size={`${observer.width / 5 - 80}px`} />
                 </Box>
               ))}
             </Box>
