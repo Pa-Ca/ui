@@ -71,6 +71,7 @@ export * from "./stories/template/home/Home";
 export * from "./stories/template/login/Login";
 export * from "./stories/template/terms/Terms";
 export * from "./stories/template/signUp/SignUp";
+export * from "./stories/template/dashboard/Dashboard";
 export * from "./stories/template/branchSales/BranchSales";
 export * from "./stories/template/branchListing/BranchListing";
 export * from "./stories/template/branchProfile/BranchProfile";

@@ -94,7 +94,7 @@ const globalArgs = {
         },
       ],
       overview:
-        "Sempre Dritto es un restaurante italiano ubicado en el pueblo de El Hatillo en Caracas, Venezuela. Este restaurante ofrece una amplia variedad de platos italianos y es conocido por su ambiente tipo italiano y su excelente atención al cliente. Los clientes han elogiado la calidad de la comida y la rapidez del servicio. Algunos de los platos recomendados por los clientes incluyen el Lomito Sempre Dritto, el Lomito al Pepe, la Pasta Alfredo con camarones y las Bruschettas Sempre Drito. Sempre Dritto es un lugar ideal para disfrutar de una deliciosa comida italiana en un ambiente acogedor y con una excelente atención al cliente.",
+        "Sempre Dritto es un restaurante italiano ubicado en el pueblo de El Hatillo en Caracas, Venezuela. Este restaurante ofrece una amplia variedad de platos italianos y es conocido por su ambiente tipo italiano y su excelente atención al cliente. Los clientes han elogiado la calidad de la comida y la rapidez del servicio. Algunos de los platos recomendados por los clientes incluyen el Lomito Sempre Dritto, el Lomito al onTheWaySalesList, la Pasta Alfredo con camarones y las Bruschettas Sempre Drito. Sempre Dritto es un lugar ideal para disfrutar de una deliciosa comida italiana en un ambiente acogedor y con una excelente atención al cliente.",
       images: [
         "https://i.postimg.cc/C55r4Bmr/326630296-854605892289447-3989098525441837248-n.jpg",
         "https://i.postimg.cc/02Jc2q3S/162902730-753319225576640-6128780695292754726-n.jpg",

@@ -44,8 +44,7 @@ Default.args = {
   cupons: [
     {
       name: "Pasta Francesa",
-      cost: 104,
-      discountCost: 95.99,
+      cost: 95.99,
       productImage:
         "https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg",
       onDelete: () => {},

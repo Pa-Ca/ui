@@ -298,7 +298,14 @@ export const ProductList = ({
 
       <Modal open={showNewSubCategoryModal} setOpen={setShowNewSubCategoryModal}>
         <Box className={styles["product-list--modal-container"]}>
-          <Box style={{ display: "flex", flex: 1, width: "100%", justifyContent: "center" }}>
+          <Box
+            style={{
+              display: "flex",
+              flex: 1,
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
             <Text type="h5" weight="700">
               Datos de la sub-categoría
             </Text>
@@ -363,7 +370,14 @@ export const ProductList = ({
 
       <Modal open={showNewProductModal} setOpen={setShowNewProductModal}>
         <Box className={styles["product-list--modal-container"]} style={{ minWidth: "650px" }}>
-          <Box style={{ display: "flex", flex: 1, width: "100%", justifyContent: "center" }}>
+          <Box
+            style={{
+              display: "flex",
+              flex: 1,
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
             <Text type="h5" weight="700">
               Datos del Producto
             </Text>
@@ -426,7 +440,12 @@ export const ProductList = ({
 
           <Box
             width="100%"
-            style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "20px" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginTop: "20px",
+            }}
           >
             <Box style={{ flex: 1 }}>
               <InputText
@@ -483,6 +502,9 @@ export const ProductList = ({
                   newProductActive,
                   newProductMobile
                 );
+                if (!!response) {
+                  setShowNewProductModal(false);
+                }
               }}
             >
               <Box className={styles["product-list--modal-button"]}>
@@ -777,7 +799,7 @@ export const CouponList = ({
                 className={styles["product-list--body-item"]}
                 key={`product-list--body-item-${index}-${product.value.name}`}
               >
-                <CouponProductCard {...product.value} />
+                <CouponProductCard {...product.value} height="300px" />
               </Box>
             ))}
             <Box className={styles["product-list--body-item"]} />

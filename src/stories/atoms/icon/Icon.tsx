@@ -72,6 +72,9 @@ import iosArrowRight24Filled from "@iconify/icons-fluent/ios-arrow-right-24-fill
 import checkCircleOutline from "@iconify/icons-material-symbols/check-circle-outline";
 import checkBoxOutlineBlank from "@iconify/icons-material-symbols/check-box-outline-blank";
 import pendingActionsRounded from "@iconify/icons-material-symbols/pending-actions-rounded";
+import baselineDeliveryDining from "@iconify/icons-ic/baseline-delivery-dining";
+import paperBag from '@iconify/icons-tabler/paper-bag';
+import handCoin from '@iconify/icons-mdi/hand-coin';
 
 export type IconType =
   | "pa-ca"
@@ -139,6 +142,9 @@ export type IconType =
   | "closed-status"
   | "identity-document"
   | "info"
+  | "delivery"
+  | "pick-up"
+  | "reciving-package"
   | "search"
   | "exchange"
   | "invoice"
@@ -665,6 +671,30 @@ export const Icon = ({
         <Iconify
           className={finalClassName}
           icon={infoOutline}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "delivery":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={baselineDeliveryDining}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "pick-up":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={paperBag}
+          style={{ fontSize: size, ...style }}
+        />
+      );
+    case "reciving-package":
+      return (
+        <Iconify
+          className={finalClassName}
+          icon={handCoin}
           style={{ fontSize: size, ...style }}
         />
       );

@@ -219,6 +219,7 @@ export const ProductCardList = ({
             {filteredProducts.map((product, index) => {
               return (
                 <ProductCard
+                  reviews={0}
                   key={`product-card--product-${index}-${product.product.id}`}
                   name={product.product.name}
                   cost={Number(product.product.price)}
