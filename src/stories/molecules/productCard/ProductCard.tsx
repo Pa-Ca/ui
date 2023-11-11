@@ -579,3 +579,122 @@ export const CouponProductCard = ({
     </Box>
   );
 };
+
+export interface HighlightProductCardProps {
+  /**
+   * Product name
+   */
+  name: string;
+  /**
+   * Product cost
+   */
+  cost: number;
+  /**
+   * Product category
+   */
+  category: string;
+  /**
+   * Product sub-category
+   */
+  subCategory: string;
+  /**
+   * Is available
+   */
+  available: boolean;
+  /**
+   * Is button disabled
+   */
+  disabled: boolean;
+  /**
+   * On availability click
+   */
+  onAvailabilityClick: (available: boolean) => void;
+  /**
+   * Card width
+   */
+  width?: string;
+  /**
+   * Card height
+   */
+  height?: string;
+  /**
+   * Card product image from url
+   */
+  productImage: string;
+}
+export const HighlightProductCard = ({
+  name,
+  cost,
+  available,
+  disabled,
+  onAvailabilityClick,
+  width,
+  height,
+  productImage,
+  ...props
+}: HighlightProductCardProps) => {
+  return (
+    <Box
+      className={styles["product-card--container"]}
+      style={{ width, height, minHeight: "225px", minWidth: "225px" }}
+    >
+      {/* Image Box */}
+      <Box style={{ flex: 1, display: "flex", position: "relative" }}>
+        <Box backgroundImage={productImage} className={styles["product-card--image"]} />
+      </Box>
+
+      {/* Branch data Box */}
+      <Box
+        className={styles["product-card--data-container"]}
+        style={{ paddingLeft: "10px", paddingRight: "10px" }}
+      >
+        <Box
+          style={{
+            display: "flex",
+            flex: 1,
+            justifyContent: "space-between",
+          }}
+        >
+          <Text weight="600" type="h5">
+            {name}
+          </Text>
+
+          <Box className={styles["product-card--cost-container"]}>
+            <Text weight="400" type="h6">
+              Costo
+            </Text>
+
+            <Text weight="700" type="h4" className={styles["product-card--cost-text"]}>
+              {cost}$
+            </Text>
+          </Box>
+        </Box>
+
+        <hr style={{ width: "100%" }} />
+
+        <Box
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <Button
+            state={disabled ? "inactive" : "normal"}
+            primary={!available}
+            size="extra-small"
+            fullWidth
+            onClick={() => onAvailabilityClick(!available)}
+            style={{ flex: 1, display: "flex", justifyContent: "center" }}
+          >
+            <Text primaryButtonStyle={!available} weight="700" type="h6">
+              {available ? "Des-seleccionar" : "Seleccionar"}
+            </Text>
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+};

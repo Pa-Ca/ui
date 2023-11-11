@@ -209,7 +209,7 @@ Default.args = {
       categoryId: 1000,
     },
   },
-  onCreateProduct: () => {},
+  onCreateProduct: async () => true,
   onCreateSubCategory: async () => {
     return { id: -1, name: "", categoryId: -1 };
   },

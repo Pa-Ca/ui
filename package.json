@@ -43,6 +43,8 @@
     "@mui/styled-engine-sc": "^5.11.11",
     "@react-google-maps/api": "^2.18.1",
     "color": "^4.2.3",
+    "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
     "react-datepicker": "^4.10.0",
     "react-loader-spinner": "^5.3.4",
     "react-select": "^5.7.3",
